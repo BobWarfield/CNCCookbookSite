@@ -1,0 +1,1044 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNCCookbook: Verburg's Reversible Open Column</title>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p><font size="+4" color="#339933">Elmer Verburg's Reversible Open Column 
+        Steam Engine Team Build</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I'm participating in a Team 
+        Build of this little steam engine with a bunch of guys <a href="http://www.homemodelenginemachinist.com/index.php?topic=1536.0">over 
+        on the HMEM board</a>. I'll document the progress here.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">A Team Build is where a group 
+        of guys get together to make multiple copies of a single project. Each 
+        machinist is assigned one or more parts and at the end, the Team Captain 
+        assembles them all and ships the completed assemblies out to the team 
+        members. It's a fun alternative to doing it all yourself. It's also a 
+        tremendous learning opportunity. When you're a home shop machinist, most 
+        of your work is one-offs. Consequently, we often fall into the lazy habit 
+        of machining a part &quot;close enough&quot;, and then just modifying 
+        any part that it fits with to compensate. There is less scrap that way, 
+        but it is definitely the &quot;lazy&quot; way!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">For a team build, you have 
+        to build your parts to close enough tolerances that somebody else's parts 
+        you've never seen will fit. The other learning opportunity has to do with 
+        making more than one. In this case, there are 12 copies of each part to 
+        be made. And, if you're like me and some do get scrapped, there are actually 
+        more. Hence it pays to think about how to save yourself some time on repetive 
+        work. I actually wound up creating a fair amount of tooling for this project. 
+        Nothing in the way of special-purpose features, but there were 3 new pieces 
+        of tooling and one old that were indispensible:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- <a href="CCColletChuck.htm"><b>5C 
+        Collet Chuck</b></a>: This cheap little chuck had lain on the shelf for 
+        almost two years after I got it for a bargain. Through some heroic efforts 
+        I took a chuck that would've been good to 3 - 5 thousandths and made it 
+        repeatably accurate to 2 or 3 tenths. It has been a real productivity 
+        enhancer for this job, and I don't know how I ever did without a collet 
+        chuck in the past. With the collet chuck goes an inexpensive imported 
+        square collet block so I can carry the work over to the mill as needed.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- <a href="CCButtonVBlock.htm"><b>Button 
+        V-Block</b></a>: This handy fixture was inspired by a Dubosky article 
+        from my Metalworking book. It is a round V-block instead of the normal 
+        square ones and is ideal for certain operations such as small connecting 
+        rods. Easily made and indispensible.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- <a href="CCMiscProjects.htm"><b>Compound 
+        DRO</b></a>: I have no DRO on my lathe because it is my intent to convert 
+        it to CNC operation. Yet, a DRO makes things so much easier. The one I 
+        use most in my shop has been a <a href="MTMillDRO.htm">simple quill DRO</a> 
+        I made for my mill. The lathe equivalent of a quill DRO is to put a scale 
+        on your compound slide. It's amazing how much mileage I've gotten out 
+        of this on this project in exchange for barely an hour's work and a cheap 
+        import digital caliper I never liked anyway.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- <a href="MTMillKurtViseStop.htm"><b>Vise 
+        Stop</b></a>: I made this a while back, but it really has been useful 
+        on this project.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Lots of other tooling was involved, 
+        of course, but those four items really made this project possible and 
+        were all things I made for myself (or at least the backplate on the collet 
+        chuck I made!). If I add up the time spent on the tooling, it would come 
+        close to exceeding the time spent making the parts, and certainly would 
+        exceed if we count the vise stop which I made some time ago. Was it worth 
+        it to spend as much or more time on tooling as parts? In my mind, it was, 
+        simply because this tooling will make me more productive on future projects. 
+        Certainly the collet chuck vise stop, and compound DRO will have extremely 
+        broad applicability. Still I do somewhat hope every new project doesn't 
+        require me to build so much tooling! It's one reason why I probably buy 
+        more off-the-shelf tooling than many. For example, even though I could 
+        easily make a set of machinist's jacks, they're so cheap at Enco, and 
+        I've got so many projects to get done. Most of the tooling I list here 
+        is harder to buy off the shelf or a lot more expensive than the jacks!</font></p>
+      <p class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Plans</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Plans are available in pdf 
+        format <a href="http://www.john-tom.com/ElmersEngines/03_openColumnRev.pdf">here</a>.</font></p>
+      <p class="BlogTitle"><font size="+4" color="#339933">Flywheel: Part #1</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I have two parts assigned, 
+        the flywheel and the connecting rod. I've decided I need to get my collet 
+        chuck going to do the con rod, so I'll start with the flywheel:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/FlywheelPlan.jpg" width="300" height="269"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I'll be making 
+        12 of these beauties, all in brass. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I've recast the 
+        drawing to use decimal rather than fractional notation: </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/FlywheelPlan2.jpg" width="1024" height="412"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/FlywheelPlan3.jpg" width="640" height="876"></font></p>
+      <p align="left"><font size="+4" color="#339933">Flywheel Production Line</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Here is a pictorial 
+        description of how I finally settled on making my 12 flywheels.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Rough 
+        Cut the Stock </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010501.JPG" width="1024" height="768"></font></p>
+      <p align="left" class="BlogTitle">Face and Turn True in a Collet</p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Start out slicing 
+        the rough stock. I'm using my DeWalt Multicutter carbide saw to do this. 
+        Each slug is about 1&quot; long. I deburr one end of each slug with a 
+        Roloc wheel that has some 80 grit and an air die grinder. You just want 
+        to knock the rough edge off so it doesn't interfere with the collet...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010502.JPG" width="1024" height="823"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Inset the deburred 
+        edge into the collet and tighten in the chuck...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010503.JPG" width="1024" height="842"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">First operation 
+        is facing. Just take enough so the whole diameter is faced. This is a 
+        good time to fine tune the tool height to minimize the nub in the center...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010504.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Now turn the 
+        piece. Just take off enough so it is round and machined all over. Don't 
+        run into the collet!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Turn 
+        to 1.000&quot; Diameter </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010505.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Take your digital 
+        calipers and get a rough sense of where you are. I'm shooting for a 1&quot; 
+        diameter and my measurements were typically 1.050-1.090 or so. Based on 
+        that measurement, I ran the dials until I thought I was within a couple 
+        of thou...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010506.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Check the last 
+        couple thou with the mic, do the finish pass, and mic again to be sure. 
+        A habit that saves me time is when I retract the cross slide, I retract 
+        exactly one revolution from wherever I was. That way it's easy to remember 
+        how to get back to cutting...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010507.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Faced and turned 
+        to 1&quot; diameter...</font></p>
+      <p align="left" class="BlogTitle">Bore and Ream</p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010508.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Next I am using 
+        a screw machine-length twist drill for the shaft bore. The screw machine 
+        length is more rigid than normal jobber length and with a minimal facing 
+        nub you can go right in without a center drill, thus saving a step...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010510.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010511.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Ream the hole 
+        after drilling...</font></p>
+      <p align="left" class="BlogTitle">Cut Shoulder</p>
+      <p align="left" ><font face="Arial, Helvetica, sans-serif">Note: If I had 
+        to make another 12, I would not do this step here. Once the overall slug 
+        has been turned and faced to length (see way down below, I do actually 
+        do this on one), the collet stop lets us do one shoulder, and then flip 
+        around to do the other without resetting the depth of cut. That's faster!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010512.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Next up: cutting 
+        the shoulder for the hub. This will be a little facing cut that doesn't 
+        go all the way to the center. To start, go back and just touch the cutter 
+        to the face gently...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010513.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Zero your compound 
+        DRO. What's that, no compound DRO? Well, I made mine just for this project, 
+        but I can tell I'll use it a lot! </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010514.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Pull the cutter 
+        back with the cross slide dial and set the depth of cut with the compound. 
+        I want a 0.156&quot; shoulder, so I dial that in as best I can on the 
+        compound...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010515.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The first time 
+        through, I stopped a couple of times and checked with the digital calipers 
+        to see what the diameter of the hub was...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010516.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">After that first 
+        time, I knew what the cross slide dial should read (&quot;50&quot; for 
+        this part). You can tell by looking which revolution to stop at that dial 
+        number on. Goes really fast that way!</font></p>
+      <p align="left" class="BlogTitle">Deburr With File</p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010477.JPG" width="1024" height="854"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Forgot to take 
+        a picture, but the last step before removing any part from the collet 
+        is a little deburr with a file. The reason is so that when you flip the 
+        part around there is no burr to interfere with the accuracy of the collet.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010519.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">That part is 
+        ready to be removed...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010523.JPG" width="1024" height="903"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">3 Flywheels 
+        were finished during experimentation. The rest await flipping around to 
+        do the back side...</font></p>
+      <p align="left" class="BlogTitle">Flip and Part Off the Excess</p>
+      <p align="center"><img src="img/SteamEngines/VerburgRevOpenCol/P1010524.JPG" width="1024" height="521"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">For this phase, 
+        a collet stop figures into our plans...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010525.JPG" width="1024" height="719"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The stop screws 
+        into the rear of the collet positively locates one end of the workpiece...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010528.JPG" width="800" height="939"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I measure how 
+        far inside the stop is using my compound DRO. Touch off the end of the 
+        collet, and set to zero. Insert a workpiece against the stop, tighten, 
+        face, and using the DRO, measure by touching the face of the workpiece. 
+        In this case, my stop is 0.404&quot; inside the collet from the lip...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010532.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Now I insert 
+        the workpiece into the collet, tighten, and touch off the lip with my 
+        Aloris parting tool...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010533.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Zero the DRO 
+        at the touch off point...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010541.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">My workpiece 
+        will be 0.6562&quot; in length when finished. I took the 0.404&quot; inside 
+        the collet plus 0.290&quot; for the parting off. That will give me 0.694&quot;. 
+        I want the extra slop because I'll need to face the surface. The part 
+        off doesn't leave as nice a finish...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010535.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Now with the 
+        carriage locked, I'll go through and part all the pieces to length. I 
+        was able to turn the crank as fast and hard as I could with one hand and 
+        they parted beautifully. Note: this is not the most accurate of operations. 
+        Why? Because the collet moves in and out as tightened. The good news is 
+        I used pieces already finished to very close to the same diameter, +/- 
+        2 or 3 thou, and tightened to about the same torque. I'll do a check and 
+        see how close they are in length...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010536.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The result of 
+        parting. We'll clean that up with a facing cut after we've run all the 
+        parts through...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010542.JPG" width="1024" height="892"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here we are 
+        all parted. Note there is a variable amount of the larger diameter material 
+        left, but not very much. Also note the lower right part has no shoulder. 
+        I had to remake one of these due to an error on the first one. I decided 
+        it was faster to do both shoulders last because I can just flip the part 
+        once the shoulder cut is set up and do both shoulders at once.</font></p>
+      <p align="left" class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Flip, 
+        Face, and Shoulder</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The next step 
+        is easy. We're going to flip the part around in the collet, face it to 
+        exact length, and then put the little shoulder on the flipped side.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010543.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here's my little 
+        inspection area on the surface plate. I'm measuring each part's width 
+        with the mic and noting under the &quot;P&quot;. It should be 0.6562&quot;, 
+        so the difference tells me how much to take off when facing...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010545.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Insert the part 
+        in the collet against the stop, start the spindle and &quot;touch off&quot; 
+        with a piece of paper. To do this, place the paper between the spinning 
+        work and the tool and slowly advance the tool until it just grabs the 
+        paper. You should be within 0.001&quot; of the part. Zero the compound 
+        DRO...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010546.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Dial in the 
+        desired cut to make the part 0.6562&quot;...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010544.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">And face to 
+        length...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I experimented 
+        with paper touch offs as well as just gently touching a non-moving workpiece. 
+        The paper touch off was more accurate (after allowing for 0.001&quot; 
+        paper thickness). Something to keep in mind...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Cut the shoulder 
+        from this zero point another 0.0156&quot; until the cross slide dial reads 
+        &quot;50&quot; on the right revolution and we're done!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The parts are 
+        now dimensionally correct!</font></p>
+      <p align="left" class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Set 
+        Screws (aka Grub Screws overseas)</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Plans call for 
+        a 5-40, so I have the proper set screws and a couple spiral flute taps 
+        on order from Enco. I'll be using collets on the mill to line things up. 
+        </font></p>
+      <p align="left"><font size="+4" color="#339933">Experiments Before Flywheel 
+        Production</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I thought it a 
+        good idea to try a few things along the way rather than just diving into 
+        production. My goal was to learn some new things and come up with a better 
+        mousetrap for cranking these things out. If you've never had to make more 
+        than one of a part, it's an interesting pastime to try to put together 
+        your optimum assembly line process.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Before starting, 
+        my plan to make each flywheel was this:</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- Turn the OD 
+        on my brass stock down to 1&quot; diameter and polish with brass polish. 
+        I'll do this turning between centers.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- Part off the 
+        individual flywheels.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- Face each end 
+        in a chuck and put the 1/64&quot; shoulder on while facing. Polish the 
+        shoulders, but leave the facing stock from shoulder to end of flywheel 
+        with a matte finish. Perhaps a little coarse emery.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- Bore and ream 
+        the 3/16&quot; hole.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- Take to the 
+        mill and drill and thread the 5-40 set screw hole (grub screw for those 
+        across the pond).</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">A concern I had 
+        is the close fit 3/8&quot; hole. I planned to ream the hole. Looking at 
+        some <a href="http://www.yankeereamer.com/Tech_Info/tech_info.html">helpful 
+        information from Yankee Reamer</a>, I conclude that for a tolerance of 
+        0.0005&quot;, I want to ream 0.0003-0.0004&quot; below the finished size. 
+        3/8&quot; = 0.3750&quot;, so I want a reamer that is 0.3746 - 0.3747&quot; 
+        in diameter. That sounds like an undersized 3/8&quot; to me.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Further, they 
+        suggest the reamer should be removing 0.007 to 0.015&quot; of stock, which 
+        means I want to drill an initial hole that is 0.3676 - 0.3732&quot; in 
+        diameter. They suggest an oversize allowance of 0.0048&quot; for the drill 
+        bit. Hence, we want a drill bit that ranges from 0.3676 - 0.0048 = 0.3628&quot; 
+        to 0.3732 - 0.0048 = 0.3648&quot;. That's going to be a &quot;U&quot; 
+        sized drill whose diameter is 0.3680&quot;. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">If I leave 0.1&quot; 
+        on either side of the rough stock, I get a total width for the rough stock 
+        of circa 0.860&quot;. If I choose to do 4 flywheels per piece of stock, 
+        I need 3 pieces of brass round stock each 3.5&quot; long. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Turning 
+        Brass to 1.000&quot; and Polishing</font></p>
+      <p align="center"><img src="img/SteamEngines/VerburgRevOpenCol/P1010414.JPG" width="1024" height="749"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I started out 
+        by sticking the brass stock in my 6-jaw and putting a quick center drill 
+        hole there for the tailstock. Boy, I sure like having a keyless chuck 
+        and a <a href="CCLatheTailLock.htm">tailstock cam lock</a> to make stuff 
+        like this go really fast!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010416.JPG" width="1024" height="814"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">What the heck 
+        is going on here??? That rig is called a &quot;Constant Face Turning&quot; 
+        setting. Sometimes just &quot;Face Turning&quot;. The stock is held by 
+        my favorite Royal live center in the tailstock, and driven by a special 
+        center on the spindle that is hydraulically sprung against the stock and 
+        is equipped with teeth that give it traction on the stock. I found it 
+        on eBay for $75, a cheap Asian knock off of a type of tooling that costs 
+        big bucks for the pro stuff and is regularly used with CNC. You know me: 
+        I love gadgets! This one is really much nicer than fooling around with 
+        lathe dogs to drive the work. You get access to the full length this way. 
+        Here's another view of the face turning rig stopped from my vise stop 
+        project:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/KurtViseStop/P6293503.JPG" width="800" height="518"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Another view 
+        of the constant face turning head...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010419.JPG" width="1024" height="556"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I'm doing several 
+        experiments on the project. For example, I start out turning with my CCMT 
+        turning tools until I get things into reasonable shape. Also, I wanted 
+        to see how close I could come to holding 1&quot; along the entire 8&quot; 
+        length of this brass cylinder by tuning up the lathe tailstock set over, 
+        and then by hand tuning the dial while the feed was in motion. Such accuracy 
+        is not needed for the flywheel, but these are experiments I like to do 
+        as I go to stay in practice or learn something new.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010418.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">What I'm doing 
+        here is cutting a bit, measuring the taper with a micrometer (I have both 
+        vernier and digital and make myself use the vernier for the first 5 or 
+        6 measurements on a project before I go to my Mitutoyo digitals. That's 
+        just to stay in practice), and tweaking the tailstock until I got the 
+        tailstock end to be smaller than the headstock end. That's as much as 
+        you can do adjusting the tailstock set over. When was the last time you 
+        adjusted yours?</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010420.JPG" width="1024" height="627"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Once I got happy 
+        with my taper adjustments, and I got the shaft a lot closer to 1&quot; 
+        in diameter (I was about 0.050&quot; over), I pulled out my HSS steel 
+        finishing cutter. It has a big radius and a sharp edge. Folks say it leaves 
+        a nicer surface finish. I think the latter is very slight compared to 
+        my CCMT's, but it is discernable, so why not use the HSS? Isn't it nice 
+        to cut brass? So shiny! So easy!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010423.JPG" width="1024" height="558"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Okay this one 
+        is tricky. Remember I said I would tweak the dial during the feed to offset 
+        the taper? I mic'd both ends after a shallow (0.005&quot;) cut. I determined 
+        that based on the taper I was seeing (0.003&quot; over 8&quot;), I could 
+        turn the dial by eye a little less than half a division each 1/4 of the 
+        shaft length. I performed my final pass while doing so, and then mic'd 
+        the resulting 1/4 sections of the shaft. You can see my results rounded 
+        to the nearest thousandth though my mic reads to 1/10 of tenth. Not too 
+        bad. The second quadrant I was a little too aggressive and it's 0.999&quot;. 
+        The leftmost quadrant I was a little late and was 0.001&quot; too big 
+        at the end. I know exactly how both happened. On the second quadrant, 
+        I got confused about diameter versus radius (move the dial 0.001&quot;, 
+        did diameter reduce 0.001&quot; or 0.002&quot;). Things were moving too 
+        fast and I'd never tried this. I knew as soon as I'd done it I went too 
+        far. So I slowed up to try to compensate on future turns. On that 4th 
+        quadrant (leftmost), I was lagging it and hence was 0.001&quot; over. 
+        All in all, I rate this as not bad for a first try. As I said up front, 
+        the little flywheel doesn't need even a thou of accuracy on its diameter. 
+        This was just a random exercise in precision to sharpen my skills and 
+        try a new technique. You'll notice also no use of calipers! I went back 
+        with my Mitutoyo calipers and it would be easy to conclude the whole shaft 
+        was dead nuts on with them. Calipers are not precision instruments, micrometers 
+        are!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Next up is to 
+        polish...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010424.JPG" width="1024" height="751"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I'm starting 
+        with 150 grit aluminum oxide paper. This grit is only slightly finer than 
+        the toolmarks, and should not be used for very long or you'll take off 
+        too much material...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010426.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here is the 
+        aftermath of 150 grit. </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010427.JPG" width="800" height="600"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Next up is some 
+        220. This is a lot nicer grit. In future, I'd be tempted to forget the 
+        150 and start here as it leaves a nicer finish. 220 is a good match for 
+        what a lot of folks call a &quot;satin&quot; finish...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010430.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">There's a 220 
+        grit finish. Note the cross hatch. Those are the marks left by the 220. 
+        Anything else is a scratch that has to be removed by the 220. Still a 
+        couple here, so I kept on going...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010422.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">My next grade 
+        of sand paper was 1500. That's pretty darned fine, but still not a mirror 
+        finish....</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Next up, Brasso 
+        Polish...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010421.JPG" width="1024" height="657"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">For the final 
+        &quot;mirror&quot; finish, many folks swear by Brasso. I thought I had 
+        a nifty idea. Lautard likes to run sandpaper up and over a file to use 
+        it on a lathe. I bought some cheap synthetic chamois to use with the brasso. 
+        Bad news: I got scratches and had to drop back to my 220!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010432.JPG" width="800" height="810"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I thought the 
+        file was messing me up, so I tried it with a piece of MIC-6 plate. Still 
+        got rude scratches! Back to 220 again and starting to loose confidence 
+        in Brasso...</font></p>
+      <p align="center">&nbsp;</p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010434.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Aha! When used 
+        with a paper towel, the Brasso finally shines it up! Seems my cheap chamois 
+        had grit in it. I would sure hate to use that on a car's paint job!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010435.JPG" width="640" height="785"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here's my project 
+        box where I keep everything I'm using on this project. I have the plans, 
+        the polished brass cylinder, and an extra piece of rough brass stock....</font></p>
+      <p align="left" class="BlogTitle">Stopped Here to Get Collet Chuck Installed</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Unfortunately, 
+        I needed to take a little detour at this point to make a <a href="CCColletChuck.htm">backplate 
+        for my collet chuck</a>. Important Collet Tip:</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Use your file 
+        to knock the shoulder burr off before removing the part from the collet. 
+        The part wont seat accurately in a collet with that shoulder burr there 
+        after facing! I can't tell you how many times I pulled the part out and 
+        had to put it right back in to take that burr off. Develop the habit!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010477.JPG" width="1024" height="854"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Using a small 
+        chalked file to knock the shoulder burr off before removing the part from 
+        the collet...</font></p>
+      <p align="left" class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Back 
+        On Track</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">For this batch 
+        of flywheels, I am following the plan and cutting slugs to length on saw, 
+        facing to exact length, drill, ream, add the little shoulders.</font></p>
+      <p align="left" class="BlogTitle">Drill and Ream the Bore</p>
+      <p align="center" class="BlogTitle"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010478.JPG" width="1024" height="976"></font></p>
+      <p align="center">I go in with the center drill, then the twist drill, and 
+        finally the reamer to clean up the hole. This is pretty fast with my camlock 
+        tailstock and keyless chuck...</p>
+      <p align="center"><img src="img/SteamEngines/VerburgRevOpenCol/P1010483.JPG" width="1024" height="723"></p>
+      <p align="center">First the center drill, then the twist drill...</p>
+      <p align="center"><img src="img/SteamEngines/VerburgRevOpenCol/P1010484.JPG" width="1024" height="826"></p>
+      <p align="center">...and the reamer finishes up the bore...</p>
+      <p align="left" class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Cutting 
+        the Shoulders</font></p>
+      <p align="center" class="BlogTitle"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010485.JPG" width="1024" height="863"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">To cut the shoulder, 
+        I zero the tool by touching it to the work face and zeroing this crude 
+        DRO. Then I crank the tool back out of the way and turn the compound dial 
+        until the DRO reads how much I want to take off...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010476.JPG" width="1024" height="871"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I then take 
+        that cut...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010487.JPG" width="1024" height="759"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I know how far 
+        to go because I used my calipers on the first one...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010488.JPG" width="1024" height="880"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Then I noted 
+        where the dial should wind up when I was done with the shoulder. Fast 
+        and easy!</font></p>
+      <p align="left" class="BlogTitle">What We Got</p>
+      <p align="center"><img src="img/SteamEngines/VerburgRevOpenCol/P1010489.JPG" width="1024" height="826"></p>
+      <p align="left" class="BlogTitle">Minor Rework on A Few Outliers With The 
+        Polishing Rig</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">To polish, I'm 
+        going to suspend the flywheels between two centers. The falderoll at the 
+        top of starting from finished stock was a losing proposition because the 
+        collets do mar the finish. Apparently you can purchase nylong 5C collets 
+        to avoid this. In my case, I simply switched over to a polishing rig that 
+        makes it pretty easy. That rig involves suspending the part between two 
+        centers. I use a dead center in the collet chuck to drive the part and 
+        a live center in the tailstock.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">As I was inspecting 
+        parts, I noticed a couple of outliers that had diameters more than 5 thousandths 
+        off the 1.000 spec, so I decided to see if the polishing rig would fix 
+        that up.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010498.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">You can turn 
+        off up to 0.002&quot; without slipping by using a sharp insert and reasonably 
+        tight pressure on the tailstock ram...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/SteamEngines/VerburgRevOpenCol/P1010500.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">This procedure 
+        is not only useful to rework small parts like this, but it leaves a pretty 
+        darned good finish to start from in the polishing process...</font></p>
+      <p align="left"><font size="+3" color="#339933"><a href="CCRevOpenCol2.htm">Page 
+        2: Connecting Rods...</a></font></p>
+      <p></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

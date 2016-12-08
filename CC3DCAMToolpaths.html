@@ -1,0 +1,825 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+
+<title>3D CAM Toolpath Fundamentals</title>
+
+<meta name="description" content="Overview of the different CAM package toolpaths used for 3D machining and how to choose the right one for your job.">
+
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <hr>
+      <p>&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" -->
+  
+<h1 id="dtoolpathfundamentals">3D CAM Toolpath Fundamentals</h1>
+
+<p><em>Please welcome Robert Grzesek, founder of <a href="http://www.grzsoftware.com/">GRZSoftware</a> and author of MeshCAM for this guest post on the fundamentals of 3D toolpaths in CAM.    Robert's forte, aside from creating wonderful software like MeshCAM, is making very complex topics easy to understand. In fact, that's one of the great strengths of his software too. He's gone out of his way to create super simple user interfaces that ensure his users succeed in their CNC projects. If you've never tried MeshCAM, give it a shot.</em></p>
+<p>The last post I wrote here covered a common support question I get for the <a href="http://www.grzsoftware.com">CNC Software (MeshCAM)</a> that I develop- <a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsStepover.htm">&#8220;How to choose a stepover value&#8221;</a>. In a roundabout way, that leads into another common support question- &#8220;Why are there so many toolpath types and which one do I pick?&#8221;</p>
+
+<p>There are a couple of ways to approach this question- the boring mathematical approach or just show some pictures and try to point out the characteristics of various toolpaths. We&#8217;ll do the latter and try to gain an intuitive understanding of the concepts involved. We&#8217;ll also simulate some toolpaths using the excellent <a href="http://www.grzsoftware.com/cutviewer">Cutviewer CNC simulator</a>.</p>
+
+<h2 id="differencesbetween2dand3dmachining">Differences Between 2D and 3D Machining</h2>
+
+<p>The first thing to discus are the ways 3D toolpaths differ from 2D toolpaths. 2D toolpaths are used almost exclusively to machine parts that are prismatic- that is, all of the surfaces of the part are horizontal or vertical. </p>
+
+<p>3D toolpaths are used to machine parts that are more freeform- they may have not have any perfectly vertical or horizontal surfaces.</p>
+
+<p>The image below shows a 3D part on the left and a prismatic part on the right.</p>
+
+<figure> 
+  <p align="center"><img src="img/CNCCookbook/3DPaths/prismatic-3d.png" alt="3D vs. Prismatic" /></p>
+  <p align="center">
+    <strong>
+    <figcaption><div align="center">3D vs. Prismatic</div></figcaption>
+    </strong></p>
+</figure>
+
+
+
+<h2 id="roughingvs.finishing">Roughing vs. Finishing</h2>
+
+<p>An important 2D/3D difference for CAM programs is that 3D machining is frequently divided into a very distinct roughing and finishing stage. The bulk of the stock material is removed by the roughing toolpath as quickly as possible, although it may leave a poor quality surface. Finishing toolpaths are used to remove a small amount of material and to give the part the desired surface quality in the least amount of time.</p>
+
+<p>2D toolpaths also use a roughing and finishing pass but they are often combined into a single operation. For instance, a pocket may be cut slightly undersize and then cut to the final dimension on a final full-depth pass.</p>
+
+<h2 id="roughing">Roughing</h2>
+
+<p>In many cases 3D roughing passes are very similar to the pocket toolpaths used in 2D machining. The model is divided into a number slices that are each pocket-machined to leave the model behind.</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/roughing-top-parallel.png" alt="Parallel Roughing" />
+</div>
+<figcaption>
+  <div align="center"><strong>Parallel Roughing</strong></div>
+</figcaption>
+</figure>
+
+
+
+<p>The image above shows a parallel roughing toolpath, also called a zig-zag toolpath. Like normal 2D pocketing toolpaths, you generally also have options like offset toolpaths:</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/roughing-top-offset.png" alt="Offset Roughing" />
+</div>
+<figcaption>
+  <div align="center"><strong>Offset Roughing</strong></div>
+</figcaption>
+</figure>
+
+
+
+<p>The parallel and offset toolpaths shown above are based on standard 2D pocket toolpaths where the Z level is locked on each slice. This leads to the problem below where lots of material remains uncut:</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/roughing-sim-flat.png" alt="Cut Simulation of Flat Roughing" />
+</div>
+<figcaption>
+  <div align="center"><strong>Cut Simulation of Flat Roughing</strong></div>
+</figcaption>
+</figure>
+
+
+
+<p>We can reduce this greatly if we project each slice down onto the model so that the Z level is allowed to follow the contours of the part.</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/roughing-side-3d.png" alt="Side View of 3D Roughing " />
+</div>
+<figcaption>
+  <div align="center"><strong>Side View of 3D Roughing </strong></div>
+</figcaption></figure>
+
+
+
+<p>When we look at the simulation we get:</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/roughing-sim-3d.png" alt="Cut Simulation of 3D Roughing" />
+</div>
+<figcaption>
+  <div align="center"><strong>Cut Simulation of 3D Roughing</strong></div>
+</figcaption>
+</figure>
+
+
+
+<p>Looking at the output it may not be immediately clear why you&#8217;d ever choose the flat version. There is, of course, one big reason that you might prefer a flat toolpath- it will often cut faster because the machine does not have to move the Z axis up and down as it cuts. The exact speed difference depends completly on your model, your machine, and your feedrates. </p>
+
+<p>My rule of thumb is this: if I&#8217;m cutting a soft material, like Renshape or foam, where I can use high feedrates and not load the machine, then I prefer a flat roughing toolpath. The extra stock leftover will not be a problem for the finishing pass to remove and I like the faster machining time.</p>
+
+<p>If, however, I&#8217;m cutting a hard material, like metal, then I prefer a 3D roughing toolpath. The odds are that my machining time will be limited by my feedrates and I prefer to have a small, even skin left behind for the finishing pass.</p>
+
+<p>After roughing, the stock should have the majority of the excess material removed. We can now move on to finishing toolpaths where the part will be cut to final dimensions with an acceptable surface finish. </p>
+
+<h2 id="threefundamental3dfinishingtoolpaths">Three Fundamental 3D Finishing Toolpaths</h2>
+
+<p>There are three bread-and-butter 3D toolpaths- parallel, waterline (sometimes called z-level) and pencil. </p>
+
+<p>We&#8217;ll apply those toolpaths to the model shown below:</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/sample.png" alt="Sample Part" />
+</div>
+<figcaption>
+  <div align="center"><strong>Sample Part</strong></div>
+</figcaption>
+</figure>
+
+
+
+<p>What may or may not be obvious from that image is that there are three distinct parts of a 3D model that need to be machined in different ways, the flat areas, the steep areas, and the corners.</p>
+
+<h2 id="parallelfinishing">Parallel Finishing</h2>
+
+<p>Parallel finishing is similar to a 2D zig-zag pocket toolpath that has been projected down on to a 3D part.</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/parallel-top.png" alt="Parallel Finishing Top View" />
+</div>
+<figcaption>
+  <div align="center"><strong>Parallel Finishing Top View</strong></div>
+</figcaption>
+</figure>
+
+
+
+<p>From above everything looks good but when we look at a side view the potential problems begin to appear.</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/parallel-side.png" alt="Side View of Parallel Finishing" />
+</div>
+<figcaption>
+  <div align="center"><strong>Side View of Parallel Finishing</strong></div>
+</figcaption>
+</figure>
+
+
+
+<p>Take a look at the part with the arrow- the stepover seems to get further apart relative to distance along the surface. If we load the gcode into a <a href="http://www.grzsoftware.com/cutviewer/">CNC simulator</a> then we get the following:</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/parallel-simulation.png" alt="Parallel Finishing Simulation" />
+</div>
+<figcaption>
+  <div align="center"><strong>Parallel Finishing Simulation</strong></div>
+</figcaption>
+</figure>
+
+
+
+<p>This gives us observation number one- parallel finishing is best used to machine the flat or shallow parts of a model but it does a relatively poor job on the steep parts.</p>
+
+<p>An obvious answer to this limitation is, &#8220;Well, just decrease the stepover to get better coverage on the steep part.&#8221; Certainly this will work but it leads to a much longer toolpath with a corresponding increase in machining time. There must be a better option&#8230;</p>
+
+<h2 id="waterlinefinishing">Waterline Finishing</h2>
+
+<p>Waterline machining slices the model into many horizontal slices and creates a toolpath that traces each one. The distance between the slices is called the stepdown, which is analogous to the stepover in parallel finishing. In many cases I use almost the same value for both.</p>
+
+<p>Lets take a look at the same model from above with a waterline path:</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/waterline-path.png" alt="Waterline Toolpath" />
+</div>
+<figcaption>
+  <div align="center"><strong>Waterline Toolpath</strong></div>
+</figcaption>
+</figure>
+
+
+
+<p>Now we&#8217;re definitely getting good coverage on the vertical part. What about the flat/shallow parts shown by the arrows? We&#8217;re getting very little coverage there- so little, in fact, that a simulation would be almost illegible with all of the uncut stock in the way. </p>
+
+<p>Based on this we can make another observation- waterline finishing is good for steep or vertical parts but bad for shallow parts.</p>
+
+<h2 id="combinationparallelwaterlinefinishing">Combination Parallel/Waterline Finishing</h2>
+
+<p>Many CAM programs that offer both parallel and waterline machining also have a way to limit their use to specific areas based on the surface angles. Below is a screenshot of a toolpath from MeshCAM with a threshold angle of 45 degrees. Anything below 45 is machined with parallel, anything steeper is waterline.</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/parallel-waterline.png" alt="Combined Parallel and Waterline Finishing" />
+</div>
+<figcaption>
+  <div align="center"><strong>Combined Parallel and Waterline Finishing</strong></div>
+</figcaption>
+</figure>
+
+
+
+<p>A simulation shows only one problem area:</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/parallel-waterline-simulation.png" alt="Parallel and Waterline Simulation" />
+</div>
+<figcaption>
+  <div align="center"><strong>Parallel and Waterline Simulation</strong></div>
+</figcaption>
+</figure>
+
+
+
+<p>The corners could use a little more cleanup and it would be easier to have the mill do it rather than us doing it manually. </p>
+
+<h2 id="pencilfinishing">Pencil Finishing</h2>
+
+<p>Pencil finishing has a single purpose- trace the cutter along sharp concave corners to clean them up. Outside corners, or convex corners, are machined just fine using a combination of parallel and waterline so the pencil finish doesn&#8217;t do much there.</p>
+
+<p>Generally there are no settings to configure for pencil machining; just set a feedrate, a tool, and turn it on. Here&#8217;s what it looks like:</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/pencil-toolpath.png" alt="Pencil Toolpath" />
+</div>
+<figcaption>
+  <div align="center"><strong>Pencil Toolpath</strong></div>
+</figcaption>
+</figure>
+
+
+
+<p>When we add the pencil path to the parallel-waterline combination above we get the following:</p>
+
+<figure>
+<div align="center"><img src="img/CNCCookbook/3DPaths/pencil-simulation.png" alt="Pencil Simulation" />
+</div>
+<figcaption>
+  <div align="center"><strong>Pencil Simulation</strong></div>
+</figcaption>
+</figure>
+
+
+
+<p>Because pencil paths a short compared to parallel or waterline it is almost always worth enabling them if you have a part with sharp concave corners.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>So here are the rules of thumb for 3D machining-</p>
+
+<ol>
+<li>If you want the best finish in the least amount of time, you likely want to use a combination of parallel finishing, waterline finishing, and pencil finishing.</li>
+<li>Machine all flat/shallow areas with parallel finishing.</li>
+<li>Machine all steep/vertical areas with waterline finishing.</li>
+<li>Start with the parallel stepover and waterline stepdown set to the same value.</li>
+<li>Clean up the corners with a pencil pass.</li>
+</ol>
+
+<p>One of the biggest mistakes that new MeshCAM users make, and I assume that this applies to most new CAM users, is to only use parallel machining to finish a part. While this will work, it almost always leads to excessive machining time or a substandard finish quality.</p>
+
+<h2 id="p.s.-high-endalternatives">P.S. - High-End Alternatives</h2>
+
+<p>Some of you are thinking that I&#8217;m leaving out the more exotic alternatives that combine characteristics of waterline and parallel into a single toolpath, namely the &#8220;constant scallop&#8221; toolpath and it&#8217;s derivatives. </p>
+
+<p align="center"><img src="img/CNCCookbook/3DPaths/constant-scallop.png" alt="Constant Scallop Toolpath" /></p>
+
+<p>The image above is from MasterCAM and it shows a toolpath with a more-or-less constat stepover across the model even as the surface transitions from flat to vertical. These toolpaths can be efficient but they are very difficult to develop and maintain so they exist only in CAM software costing several thousand dollars. </p>    
+  <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

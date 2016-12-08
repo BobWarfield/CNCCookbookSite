@@ -1,0 +1,1164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNC Cookbook: Astronomical Clock</title>
+
+<meta name="description" content="Notes for astronomical clock and orrery builders.">
+
+<style type="text/css">
+<!--
+.style2 {font-size: 36px}
+.style3 {color: #339933}
+.style4 {font-family: Arial, Helvetica, sans-serif}
+.style6 {font-size: large}
+.style7 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: large; }
+.style9 {
+	font-size: 24px;
+	font-weight: bold;
+}
+.style10 {
+	font-size: medium;
+	font-weight: bold;
+}
+.style11 {font-size: medium; }
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p class="style2 style3"><font color="#339933" size="+4">Notes on Constructing 
+        an Orrery / Antikythera Mechanism</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BodyText">I've always had a great interest 
+        in <a href="http://www.thewarfields.com/Astronomy1.htm">Astronomy</a>, and I read with great interest 
+        recent articles about the Antikythera Mechanism, which was apparently 
+        an ancient orrery or simulator of motions of the heavenly bodies. The 
+        machine, which was constructed circa 80 BC, could represent the motions 
+        of most heavenly bodies known in its time using a clockwork consisting 
+        of 37 gears.</font></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td> 
+            <div align="center"><object width="560" height="340">
+                <param name="movie" value="http://www.youtube.com/v/DiQSHiAYt98&hl=en&fs=1&rel=0">
+                <param name="allowFullScreen" value="true">
+                <param name="allowscriptaccess" value="always">
+                <embed src="http://www.youtube.com/v/DiQSHiAYt98&hl=en&fs=1&rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="560" height="340">
+                </embed>
+              </object></div>
+          </td>
+          <td> 
+            <div align="center"><object width="560" height="340">
+                <param name="movie" value="http://www.youtube.com/v/znM0-arQvHc&hl=en&fs=1&rel=0">
+                <param name="allowFullScreen" value="true">
+                <param name="allowscriptaccess" value="always">
+                <embed src="http://www.youtube.com/v/znM0-arQvHc&hl=en&fs=1&rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="560" height="340">
+                </embed>
+              </object></div>
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/Antikythera/antikythera_04.jpg" width="350" height="436"></font></p>
+      <p align="center"><img src="img/Antikythera/antikgears.gif" width="510" height="471"></p>
+      <p align="center"><img src="img/Antikythera/differ.gif" width="558" height="482"></p>
+      <p align="center" class="style4"><strong>Differential Gear Mechanism Was 
+        Way Ahead of Its Time... </strong></p>
+      <p class="style4">The front dial would show the progression of the Sun and 
+        Moon through the Zodiac according to the ancient Egyptian calendar. The 
+        lower back dial gives the Metonic cycle, the Synodic cycle, and the Lunar 
+        year of 12 Synodic months. Later researchers determined that the device 
+        could show the motion of the visible planets through the Zodiac, as well 
+        as predict Solar and Lunar eclipses using the Saros scale. It also displayed 
+        the Calippic scale. </p>
+      <p align="center" class="style4"><img src="img/Antikythera/antikythera_01.jpg" width="300" height="413"> 
+        <img src="img/Antikythera/antikythera_02.jpg" width="300" height="385"></p>
+      <p align="center" class="style4"><strong>Front and Back of a Reconstructed 
+        Model of the Antykthera Mechanism</strong></p>
+      <p align="center" class="style4"><strong><img src="img/Antikythera/AntikFront.jpg" width="335" height="448"></strong><img src="img/Antikythera/AntikSpiral.jpg" width="335" height="448"></p>
+      <p align="center" class="style4"><strong>This Model May Be Closer. Note 
+        the Spiral Tracks on the Back Dials</strong></p>
+      <p align="center" class="style4"><strong><img src="img/Antikythera/antikythera_03.jpg" width="300" height="295"></strong></p>
+      <p align="center" class="style4"><strong>The Sun and Moon Dials Tracking 
+        Against the Zodiac... </strong></p>
+      <p class="style4"><span class="style2 style3">My Own Astronomical Clock 
+        Design: Bobtikythera? </span></p>
+      <p class="style4">After reading some about the Antikythera Mechanism, I 
+        was inspired and got interested in designing an astronomical clock of 
+        my own. I don't know if I will ever finish the design, let alone build 
+        it, but it is an interesting and challenging exercise. I'm learning a 
+        lot about clockwork, as well as refreshing some old memories about astronomy 
+        and learning for the first time more about how the Ancients dealt with 
+        heavenly bodies. Fascinating stuff! </p>
+      <p class="style4">Let's consider the ratios needed to produce the outputs. 
+        We will assume the input crank is 1 Egyptian calendar day each revolution:</p>
+      <table width="80%" border="1" align="center">
+        <tr> 
+          <td class="style4">
+            <div align="center" class="style4 style6"><strong>Mechanism Feature 
+              </strong></div>
+          </td>
+          <td class="style4">
+            <div align="center" class="style7">Period</div>
+          </td>
+          <td class="style4">
+            <div align="center" class="style7">Purpose</div>
+          </td>
+        </tr>
+        <tr> 
+          <td class="style4">Input Crank </td>
+          <td class="style4">1 rpm = 1 <a href="http://en.wikipedia.org/wiki/Egyptian_calendar">Egyptian 
+            Day</a> = 1.0007 Solar Days </td>
+          <td class="style4">Moves all the other dials. In the Egyptian Calendar, 
+            a solar year is exactly 365 days, so the clockwork need not account 
+            for leap years. </td>
+        </tr>
+        <tr> 
+          <td class="style4">Sideral Month Dial </td>
+          <td class="style4">1 rpm = 27.3 Egyptian Days </td>
+          <td class="style4">Motion of Moon Around the Zodiac.</td>
+        </tr>
+        <tr> 
+          <td class="style4">Sidereal Year Dial </td>
+          <td class="style4">1 rpm = 365 Egyptian Days </td>
+          <td class="style4">Motion of Sun Around the Zodiac. This was the front 
+            dial of the Antikythera Mechanism. Also provided was a slip dial that 
+            could be used to correlate the Egyptian days back to regular calendar 
+            days incorporating the leap year. This second dial was set manually. 
+          </td>
+        </tr>
+        <tr> 
+          <td class="style4">Synodic Cycle or Month Dial </td>
+          <td class="style4">1 rpm = 29.5 Egyptian Days </td>
+          <td class="style4">1 rpm gives all the lunar phases </td>
+        </tr>
+        <tr> 
+          <td class="style4">Lunar Year Dial </td>
+          <td class="style4">1 rpm = 12 Synodic Cycles </td>
+          <td class="style4">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td class="style4"><a href="http://www.wikimirror.com/Metonic_cycle">Metonic 
+            Cycle </a></td>
+          <td class="style4">1 rpm = 235 Synodic Cycles = 19 Tropical Years </td>
+          <td class="style4">Can be used to relate lunar and solar calendars. 
+            For example, a Metonic cycle is 1:19 Tropical Years and 1:235 Synodic 
+            Cycles. </td>
+        </tr>
+        <tr> 
+          <td class="style4"><a href="http://www.wikimirror.com/Saros">Saros Cycle 
+            </a></td>
+          <td class="style4">1 rpm = 223 Synodic Cycles </td>
+          <td class="style4">Used to predict lunar and solar eclipses. If an eclipse 
+            occurs, another will occur exactly one Saros cycle later. By marking 
+            off relative positions of eclipses (both lunar and solar) on this 
+            wheel, and having the wheel turn at the Saros Cycle rate, we can show 
+            when eclipses will occur. </td>
+        </tr>
+        <tr> 
+          <td class="style4"><a href="http://en.wikipedia.org/wiki/Calippic_cycle">Calippic 
+            Cycle </a></td>
+          <td class="style4">1 rpm = 76 Tropical Years = 940 Synodic Cycles </td>
+          <td class="style4">A more accurate way to relate lunar and solar calendars 
+            than the Metonic Cycle. </td>
+        </tr>
+        <tr> 
+          <td class="style4">Mercury</td>
+          <td class="style4">&nbsp;</td>
+          <td class="style4">Motion of Mercury Around the Zodiac. </td>
+        </tr>
+        <tr> 
+          <td class="style4">Venus</td>
+          <td class="style4">&nbsp;</td>
+          <td class="style4">Motion of Venus Around the Zodiac. </td>
+        </tr>
+        <tr> 
+          <td class="style4">Mars</td>
+          <td class="style4">&nbsp;</td>
+          <td class="style4">Motion of Mars Around the Zodiac. </td>
+        </tr>
+        <tr> 
+          <td class="style4">Jupiter</td>
+          <td class="style4">&nbsp;</td>
+          <td class="style4">Motion of Jupiter Around the Zodiac. </td>
+        </tr>
+        <tr> 
+          <td class="style4">Saturn</td>
+          <td class="style4">&nbsp;</td>
+          <td class="style4">Motion of Saturn Around the Zodiac. </td>
+        </tr>
+      </table>
+      <p class="style4">&nbsp;</p>
+      <p class="BlogTitle"><strong>A Geartrain Schematic:</strong></p>
+      <p class="style4">Here is a schematic that I use to represent the inter-relationship 
+        between the various gears or wheels in the Mechanism I'm designing. I 
+        think it simplifies the understanding of how it would work:</p>
+      <p align="center" class="style4"><img src="img/Antikythera/AMGearSchematic.jpg" width="1024" height="752"> 
+      </p>
+      <p align="center" class="style4"><strong>Gear Mechanism Schematic...</strong></p>
+      <p align="left" class="style4">Each of the light blue circles represents 
+        a major gear and dial in the system. In other words, it is both a gear 
+        that others may engage as well as an output of some kind. For example, 
+        the Synodic Cycle is a dial showing the lunar phases as well as an important 
+        gear that is driven through a 29.5:1 ratio from the input shaft and goes 
+        on to drive7 subsequent major gear/dials and 4 auxilliary reduction gears.</p>
+      <p align="left" class="style4">The dark blue circles represent what I'm 
+        calling auxilliary reduction gears. In my more detailed design, I estimated 
+        the diameter of each gear in the system given a 20 tooth per inch gear 
+        pitch. Based on that estimate, I added auxilliary gearing to keep the 
+        largest gears from exceeding much more than 8&quot; in diameter. The largest 
+        gear/dial is that governing the motion of Mars through the Zodiac at 8.4&quot;. 
+        The smallest gear/dials (doesn't count the aux reduction gears) have 10 
+        teeth each and correspond to the Input in days and the Tropical Year.</p>
+      <p class="BlogTitle"><strong>Geartrain Details: </strong></p>
+      <p class="style4">To work out the details of the geartrain, I designed an 
+        Excel spreadsheet that tracked the following for each gear/dial:</p>
+      <p class="style4">- Name</p>
+      <p class="style4">- Input Source: What gear/dial or sub-gear on the same 
+        hub drives this gear/dial? </p>
+      <p class="style4">- Ratio: What is the ultimate reduction ratio we want 
+        to achieve from the input?</p>
+      <p class="style4">- Auxilliary Gear Ratio: The reduction ratio of any auxilliary 
+        gear that may be present. This ratio was hand tuned to keep gear diameters 
+        to 8&quot; or so and also to minimize the potential errors if the ratios 
+        dictated something other than an integer number of teeth.</p>
+      <p class="style4">- Teeth: The number of teeth around the circumference 
+        of the gear to achieve the desired ratio from the input.</p>
+      <p class="style4">- Circumference: Given the number of teeth divided by 
+        20 teeth per inch pitch, what would be the circumference of this gear?</p>
+      <p class="style4">- Diameter: Circumference/Pi gives diameter of the gear.</p>
+      <p class="style4">- Tooth Error: For gears that did not have an exact number 
+        of teeth due to the ratios (e.g. Mercury gear had 439.71 teeth), what 
+        would be the positioning error in inches? Simply divide the portion of 
+        the fractional number of teeth closest to the next integer number by 20 
+        teeth per inch to arrive a the maximum error in the dial. Most dials wound 
+        up with less than 0.001&quot; error, except for Mercury, which had right 
+        at 0.001&quot;. Given backlash and the likely precision with which the 
+        mechanism can be made, I judge that 0.001&quot; or less error will be 
+        inconsequential to the accuracy of the mechanism.</p>
+      <p class="style4">- Purpose: What is the dial used for or what does it represent? 
+      </p>
+      <p class="style4">- Calibration: How will the dial be calibrated? For example, 
+        the Metonic Cycle dial will be graduated into 19 divisions, each representing 
+        a normal year.</p>
+      <p class="style4">Here are the details I came up with:</p>
+      <table width="100%" border="1">
+        <tr> 
+          <td width="11%">
+            <div align="center" class="style10"><span class="style4">Name</span></div>
+          </td>
+          <td width="12%">
+            <div align="center" class="style10"><span class="style4">Input</span></div>
+          </td>
+          <td width="10%">
+            <div align="center" class="style10"><span class="style4">Ratio</span></div>
+          </td>
+          <td width="11%">
+            <div align="center" class="style10"><span class="style4">Aux. Gear 
+              Ratio </span></div>
+          </td>
+          <td width="10%">
+            <div align="center" class="style10"><span class="style4">Teeth</span></div>
+          </td>
+          <td width="11%">
+            <div align="center" class="style11"> 
+              <p><strong><span class="style4">Circum-</span></strong></p>
+              <p><strong><span class="style4">ference</span></strong></p>
+            </div>
+          </td>
+          <td width="11%">
+            <div align="center" class="style11"><strong><span class="style4">Diameter</span></strong></div>
+          </td>
+          <td width="10%">
+            <div align="center" class="style11"><strong><span class="style4">Purpose 
+              &amp; Calibration </span></strong></div>
+          </td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Sidereal Month </span></td>
+          <td><span class="style4">Input Crank </span></td>
+          <td><span class="style4">27.3</span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4">273</span></td>
+          <td><span class="style4">13.650&quot;</span></td>
+          <td><span class="style4">4.345&quot;</span></td>
+          <td><span class="style4">Lunar position on Zodiac </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Synodic Cycle </span></td>
+          <td><span class="style4">Input Crank </span></td>
+          <td><span class="style4">29.5</span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4">295</span></td>
+          <td><span class="style4">14.750</span></td>
+          <td><span class="style4">4.695</span></td>
+          <td><span class="style4">Lunar Phases </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Sidereal Year </span></td>
+          <td><span class="style4">Input Crank </span></td>
+          <td><span class="style4">365</span></td>
+          <td><span class="style4">10</span></td>
+          <td><span class="style4">365</span></td>
+          <td><span class="style4">18.250</span></td>
+          <td><span class="style4">5.809</span></td>
+          <td><span class="style4">Position of Sun in Zodiac </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Sidereal Year Sub-Wheel </span></td>
+          <td><span class="style4">On Sidereal Year Hub </span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4">10</span></td>
+          <td>
+            <p class="style4">0.500</p>
+          </td>
+          <td><span class="style4">0.159</span></td>
+          <td><span class="style4">Drives Sunspot Cycle </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Input (Days) </span></td>
+          <td><span class="style4">Input Crank </span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4">10</span></td>
+          <td><span class="style4">0.500</span></td>
+          <td><span class="style4">0.159</span></td>
+          <td><span class="style4">Input Crank. Calibrated into 24 hours w/ Egyptian 
+            sunrise/sunset </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Tropical Year </span></td>
+          <td><span class="style4">Metonic Cycle Sub-Wheel </span></td>
+          <td><span class="style4">1:19</span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4"></span>10</td>
+          <td><span class="style4">0.500</span></td>
+          <td><span class="style4">0.159</span></td>
+          <td><span class="style4">Standard Months &amp; Seasons </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Metonic Cycle Sub-Wheel </span></td>
+          <td><span class="style4">On Metonic Cycle Hub </span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4">190</span></td>
+          <td><span class="style4">9.500</span></td>
+          <td><span class="style4">3.024</span></td>
+          <td><span class="style4"></span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Synodic Cycle Sub-Wheel </span></td>
+          <td><span class="style4">On Synodic Cycle Hub </span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4">10</span></td>
+          <td><span class="style4">0.500</span></td>
+          <td><span class="style4">0.159</span></td>
+          <td><span class="style4"></span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Lunar Year </span></td>
+          <td><span class="style4">Synodic Cycle Sub-Wheel </span></td>
+          <td><span class="style4">12</span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4"></span>120</td>
+          <td><span class="style4">6.000</span></td>
+          <td><span class="style4"></span>1.910</td>
+          <td><span class="style4"></span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Saros Cycle </span></td>
+          <td><span class="style4">Synodic Cycle Sub-Wheel </span></td>
+          <td><span class="style4">223</span></td>
+          <td><span class="style4">5</span></td>
+          <td><span class="style4">446</span></td>
+          <td><span class="style4">22.300</span></td>
+          <td><span class="style4">7.098</span></td>
+          <td><span class="style4">Lunar &amp; Solar Eclipse Cycle. Calibrate 
+            w/ historical eclipses that will repeat. </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Metonic Cycle </span></td>
+          <td><span class="style4">Synodic Cycle Sub-Wheel </span></td>
+          <td><span class="style4">235</span></td>
+          <td><span class="style4">10</span></td>
+          <td><span class="style4"></span>235</td>
+          <td><span class="style4">11.750</span></td>
+          <td><span class="style4">3.740</span></td>
+          <td><span class="style4">Divide into 19 Solar Years per revolution, 
+            4 revolutions. </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Metonic Cycle Sub-Gear #2 </span></td>
+          <td><span class="style4">On Metonic Cycle Hub </span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4">10</span></td>
+          <td><span class="style4">0.500</span></td>
+          <td><span class="style4">0.159</span></td>
+          <td><span class="style4"></span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Calippic Cycle </span></td>
+          <td>
+            <table cellspacing="0" cellpadding="0">
+              <td height="51" width="107"><span class="style4">Metonic Cycle Sub-Wheel 
+                #2</span></td>
+            </table>
+            <span class="style4"></span></td>
+          <td><span class="style4">4</span></td>
+          <td><span class="style4"></span></td>
+          <td><span class="style4"></span>40</td>
+          <td><span class="style4">2.000</span></td>
+          <td><span class="style4"></span>0.637</td>
+          <td><span class="style4">Divide into 76 Solar Years per revolution. 
+            </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Mercury</span></td>
+          <td><span class="style4">Input Crank </span></td>
+          <td><span class="style4">87.94</span></td>
+          <td><span class="style4">2</span></td>
+          <td><span class="style4">439.71</span></td>
+          <td><span class="style4">21.986</span></td>
+          <td><span class="style4">6.998</span></td>
+          <td><span class="style4">Position of Mercury on Zodiac </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Venus</span></td>
+          <td><span class="style4">Input Crank </span></td>
+          <td><span class="style4">224.85</span></td>
+          <td><span class="style4">4</span></td>
+          <td><span class="style4">562.13</span></td>
+          <td><span class="style4">28.107</span></td>
+          <td><span class="style4">8.947</span></td>
+          <td><span class="style4">Position of Venus on Zodiac </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Mars</span></td>
+          <td><span class="style4">Input Crank </span></td>
+          <td><span class="style4">686.51</span></td>
+          <td><span class="style4">13</span></td>
+          <td><span class="style4">528.08</span></td>
+          <td><span class="style4">26.505</span></td>
+          <td><span class="style4">8.405</span></td>
+          <td><span class="style4">Position of Mars on Zodiac </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Jupiter</span></td>
+          <td><span class="style4">Synodic Cycle Sub-Wheel </span></td>
+          <td><span class="style4">93.03</span></td>
+          <td><span class="style4">2</span></td>
+          <td><span class="style4">465.16</span></td>
+          <td><span class="style4">23.258</span></td>
+          <td><span class="style4">7.403</span></td>
+          <td><span class="style4"></span><span class="style4">Position of Jupiter 
+            on Zodiac </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Saturn</span></td>
+          <td><span class="style4">Synodic Cycle Sub-Wheel </span></td>
+          <td><span class="style4">64.43</span></td>
+          <td><span class="style4">7</span></td>
+          <td><span class="style4">520.61327</span></td>
+          <td><span class="style4">26.031</span></td>
+          <td><span class="style4">8.286</span></td>
+          <td><span class="style4">Position of Saturn on Zodiac </span></td>
+        </tr>
+        <tr> 
+          <td><span class="style4">Sunspots</span></td>
+          <td><span class="style4">Sidereal Year </span></td>
+          <td><span class="style4">11</span></td>
+          <td><span class="style4"></span></td>
+          <td>
+            <p class="style4">110</p>
+          </td>
+          <td><span class="style4">5.500</span></td>
+          <td><span class="style4">1.751</span></td>
+          <td><span class="style4">Relative % of Sunspots, With 100% being maxima 
+            and 0% being minima </span></td>
+        </tr>
+      </table>
+      <p class="BlogTitle"><strong>Rhino Geartrain Layout</strong></p>
+      <p class="style4">Next, I tried laying out some of the gears using Rhino 
+        3D, just to get an idea of how things might fit together. This was my 
+        first attempt at a layout for the gears needed to drive the inner planets. 
+        It's everything in the gear schematic above that's tied directly to the 
+        input wheel except for the synodic wheel.</p>
+      <p align="center" class="style4"><img src="img/Antikythera/AntikyInnerGears.jpg" width="800" height="685"></p>
+      <p align="center" class="style4"><strong>A first attempt at gear layout 
+        in Rhino. The exact center is the Input Gear, and the various other gear 
+        trains are color coded. I'm thinking I'll want something a little more 
+        compact!</strong></p>
+      <p align="left" class="style4">I also sketched out an orrery hub mechanism 
+        in Rhino to see how that might work:</p>
+      <p align="center" class="style4"><img src="img/Antikythera/OrreryFront.jpg" width="800" height="492"></p>
+      <p align="center" class="style4"><strong>Orrery front view. That's Earth 
+        in the center, Moon, Mercury, Venus, Sun, Mars, Jupiter, and Saturn. That 
+        is the order the Ptolemaic universe worked in...</strong></p>
+      <p align="center" class="style4"><strong><img src="img/Antikythera/OrreryPersp.jpg" width="800" height="545"></strong></p>
+      <p align="center" class="style4"><strong>A closer perspective view of the 
+        Orrery mechanism... </strong></p>
+      <p align="left" class="style4">This orrery piece presents some real design 
+        issues. The drawing shows the heavenly bodies in the Ptolemaic perspective, 
+        with Earth at the center and all the other bodies revolving around it. 
+        As you recall, refuting this view is one of the things that put Gallileo 
+        (and others) in hot water with the Church. </p>
+      <p align="left" class="style4">The Ptolemaic perspective is more in keeping 
+        with the feel I'd like to have for the clock, which is a lot more astrological 
+        and Ancient-looking than a more modern orrery. Frankly, I'd like to do 
+        both at some point and have them sit next to one another. The problem 
+        is that the planets display retrograde motion. In other words, at certain 
+        times of the year, their apparent motion against the stars reverses for 
+        a time and the planet &quot;backs up&quot;. This happens as planets lap 
+        each other around the sun. In the Ancient view, this was accounted for 
+        by having the planets travel in little sub-circles called &quot;epicycles&quot; 
+        as they made their circuit around the big circle. You can imagine that 
+        this would make for complex motion to simulate with clockwork!</p>
+      <p align="left" class="style4">The easier way out is to have the orrery 
+        display the modern view, with Sun at center and planets circling around 
+        it. To determine where a planet appears in the Zodiac would require sighting 
+        along the line from the Earth to the planet and extending that line into 
+        the zodiac. Not quite so elegant, although physically more realistic and 
+        also easier to construct a clockwork for. </p>
+      <p align="center" class="style4"><img src="img/Antikythera/ZodiacTop.jpg" width="800" height="714"></p>
+      <p align="center" class="style4"><strong>A rendering of the baseplate for 
+        the orrery...</strong></p>
+      <p align="center" class="style4"><img src="img/Antikythera/ZodiacPerspective.jpg" width="800" height="452"> 
+      </p>
+      <p class="style4"><span class="style2 style3">Astronomical Theory Notes 
+        </span> </p>
+      <p class="BlogTitle"><strong>Ancient Astronomical Cycles</strong>:</p>
+      <p class="style4">A little extra explanation of some of these cycle sand 
+        why they are important. </p>
+      <p class="style4">- Metonic Cycle: Every 19.0 tropical years ( or 235 synodic 
+        months) from the precise date of full/new Moon, another full/new Moon 
+        occurs at approximately the same degree of the ecliptic and about the 
+        same date. the ancient Greeks called 19 the golden number as the same 
+        lunar phase repeates on the same date every 19.0 years. </p>
+      <p class="style4">- Ancient Egyptian Calendar: Also called a &quot;wandering 
+        calendar&quot; because it consists of 365 days and ignores leap years, 
+        hence it shifts one day in every four years. The Egyptian calendar day 
+        starts at sunrise and noon is defined as 6 diurnal hours later. Sunset 
+        occurs 12 diurnal hours after sunrise and midnight is 6 nocturnal hours 
+        later. The length of the hours depends on the observer's latitude as well 
+        as the season. Ptolemy adopted hours of equal length, known s equinoctial 
+        hours, and shift the epoch from sunrise to mean local noon (6 hours) at 
+        the meridian of Alexandria. Sunrise, measured in these hours, will on 
+        average occur 6 hours earlier and sunset 6 equal hours later (on average), 
+        but the exact value depends on the season. </p>
+      <p class="style4">- Zig Zag Functions: A unique technique developed by the 
+        Seleucian Babylonians to deal with the irregular motions of planets through 
+        the Zodiac. </p>
+      <p class="BlogTitle"><strong>Other Cycles</strong>:</p>
+      <p class="style4">Cycles not tracked by the original Antikythera Mechanism, 
+        but that would be interesting and straightforward to recreate. </p>
+      <p class="style4">- Sunspot Cycle: The sun goes through an 11 year cycle 
+        of sunspot minima to maxima. <a href="http://www.thewarfields.com/AuroraTrip.htm">The last high 
+        was in 2001, so the next one will be 2012</a>. It would not be hard to 
+        add a dial tracking the cycle, although the ancients had no idea there 
+        was such a cycle. Gallileo discovered sunspots, but <a href="http://www.phy6.org/stargaze/Sun3mag.htm">it 
+        wasn't until 1843 that an amateur astronomer named Heinrich Schwabe discovered 
+        the 11 year cycle</a>. </p>
+      <p class="style4">- Birthdays, Anniversaries, and Important Dates: A single 
+        revolution of the Calippic Cycle, the longest duration cycle tracked by 
+        this device, corresponds to 76 years. Given a &quot;starting date&quot; 
+        of 1900, each revolution of the Calippic cycle will take us from 1900 
+        to 1976 (the United States Bicentennial) to 2052 to 2128. So 4 revolutions 
+        is enough to record anyone living's birthdate and then some. Wouldn't 
+        it be interesting to turn the crank and see the configuration of the stars 
+        on the day you were born and every birthday thereafter? </p>
+      <p class="BlogTitle"><strong>Antikythera Links</strong></p>
+      <p class="style4"><a href="http://www.giant.net.au/users/rupert/kythera/kythera3.htm">Original 
+        1959 Scientific American Article on Antikythera Mechanism</a> </p>
+      <p class="style4"><a href="http://www.math.sunysb.edu/~tony/whatsnew/column/antikytheraI-0400/kyth1.html">Details 
+        of the Antikythera Mechanism's Construction</a></p>
+      <p class="style4"><a href="http://www.mlahanas.de/Greeks/Kythera.htm">The 
+        Antikythera Computing Device</a>: Excellent data on internal functioning, 
+        especially the differential gear system. </p>
+      <p class="style4"><a href="http://www.redicecreations.com/specialreports/2006/02feb/antikythera.html">The 
+        Wheels of Greek Astronomers</a>: Excellent description of the Antikythera 
+        Mechanism. </p>
+      <p class="style4"><a href="http://www.etl.uom.gr/mr/index.php?mypage=400x300">Antikythera 
+        Animations </a></p>
+      <p class="style4"><a href="http://acarol.woz.org/antikythera_mechanism.html">Lego Antikythera</a></p>
+      <p class="style4">&nbsp;</p>
+      <p class="BlogTitle"><strong>Astronomical Cycle Links</strong></p>
+      <p class="style4"><a href="http://www.davidmcminn.com/pages/gloss.htm">Moon-Sun 
+        Glossary </a></p>
+      <p class="style4"><a href="http://www.phys.uu.nl/~vgent/calendar/eclipsecycles.htm#An eclipse cycle calculator">Eclipse 
+        Cycle Calculator </a></p>
+      <p class="style4"><a href="http://www.phys.uu.nl/~vgent/astro/almagestephemeris.htm">Almagest 
+        Emphemeris Calculator</a>: Ptolemy's method. </p>
+      <p class="style4"><a href="http://www.csit.fsu.edu/~dduke/models">Ancient 
+        Planetary Model Animations </a></p>
+      <p class="style4"><a href="http://faculty.fullerton.edu/cmcconnell/Planets.html">Models 
+        of Planetary Motion from Antiquity to Renaissance </a></p>
+      <p class="style4"><a href="http://users.skynet.be/sky60754/hulpwetenschap/hulpwetkalhist.htm">Encyclopedia 
+        Brittanica Description of Ancient Calendars </a></p>
+      <p class="style4"><a href="http://www.dirpedia.com/monthly.html">Many different 
+        kinds of months defined </a></p>
+      <p class="style4"><a href="http://www.jqjacobs.net/astro/astrofor.html">Astronomy 
+        Formulas I</a>: Periodicity Formulas</p>
+      <p class="style4"><a href="http://www.jqjacobs.net/astro/astrofor.html">Astronomy 
+        Formulas II</a>: Illumination Geometry </p>
+      <p class="style4"><a href="http://www.spirasolaris.ca/sbb2c.html">Babylonian 
+        Astronomy</a>: Good info on how the Babylonians figured cycles for planets 
+        and such. </p>
+      <p class="style4"><a href="http://www.calstatela.edu/faculty/hmendel/Classwork/Phil380/11BasicConceptsAnc.Astron.pdf">Introduction 
+        to Ancient Astronomical Concepts</a>: Good info on synodic periods. </p>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle"><a href="CCOrreryGallery.html">See also the Orrery Gallery...</a></p>
+      <p class="style4">&nbsp;</p>
+      <p align="center" class="style4">&nbsp; </p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

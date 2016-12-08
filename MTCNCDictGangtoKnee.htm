@@ -1,0 +1,943 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>Gang Tooling to Knee Mill</title>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <table width="100%" border="0">
+        <tr> 
+          <td><font face="Times New Roman, Times, serif" size="7" color="#FF0000">G12/G13 
+            to Knee Mill</font></td>
+          <td> 
+            <div align="center"><font face="Times New Roman, Times, serif" size="7" color="#FF0000"><a href="MTCNCDictDeflecttoFollow.htm">Prev</a></font></div>
+          </td>
+          <td> 
+            <div align="center"><font face="Times New Roman, Times, serif" size="7" color="#FF0000"><a href="MTCNCDictLaptoMPG.htm">Next</a></font></div>
+          </td>
+        </tr>
+      </table>
+      <hr>
+      <h2>G12/G13 Circular Pocket Milling<o:p></o:p></h2>
+      <p class=MsoNormal>G12 and G13 are G-Codes (see also G-Codes) in the part 
+        program that specify a circular pocket be milled. G12 causes the pocket 
+        to be milled in a clockwise direction while G13 mills counterclockwise. 
+        The radius of the circle is typically specified with an &quot;I&quot; 
+        command. For example &quot;G12I5&quot; specifies a pocket with a radius 
+        of 5 be cut in the clockwise direction. The cutter should be positioned 
+        to the center of the circular pocket using a move in a prior block or 
+        an X and Y command in the same block. The tool will return to center when 
+        the pocket is finished. </p>
+      <p class=MsoNormal>Clockwise and counterclockwise variants are provided 
+        so that the user may select climb versus conventional (see also Climb 
+        Milling and Conventional Milling). For example, with clockwise spindle 
+        rotation, G12 (clockwise) results in conventional milling.</p>
+      <p class=MsoNormal>Note that with a suitable cutter, such as a woodruff 
+        key cutter (see also Woodruff Cutter), it is possible to use G12/G13 to 
+        cut grooves or slots in the pocket wall.</p>
+      <p class=MsoNormal>Circular pocket milling is how CNC'ers cut holes larger than their cutter.     It is sometimes called spiral interpolation and sometimes helical interpolation. True helical interpolation involves a helix, while spiral interpolation keeps the entire cut in the same plane.</p>
+      <h2>Gang Tooling<o:p></o:p></h2>
+      <p class=MsoNormal>A type of tooling arrangement on lathes where multiple 
+        cutters are mounted on the cross slide which is repositioned to allow 
+        each tool to access the part.<span style='mso-spacerun:yes'>  </span>For 
+        example, it is common to mount the cutoff tool behind the part (and usually 
+        upside down unless the spindle is reversed when the rear tool is in use).<span
+style='mso-spacerun:yes'>  </span><o:p></o:p></p>
+      <p class=MsoNormal>Gang tooling provides a simple way to employ multiple 
+        tools when a turret is not available.<o:p></o:p></p>
+      <p class=MsoNormal align="center"><o:p><img src="img/CNCCookbook/accuslide1.jpg" width="500" height="665"></o:p></p>
+      <p class=MsoNormal align="center"><o:p><b><i>Accuslide (now defunct) was 
+        a gang tooling option to retrofit a Hardinge manual lathe to CNC...</i></b></o:p></p>
+      <h2>Gantry Mill<o:p></o:p></h2>
+      <p class=MsoNormal>A gantry mill uses a bridge-like arrangement to support 
+        the Z-Axis, which travels across the bridge for Y-Axis motion.<span
+style='mso-spacerun:yes'>  </span>They are very common for router and plasma applications, 
+        and somewhat less so except for large configurations when milling steel.<o:p></o:p></p>
+      <h2>Gas Spring<o:p></o:p></h2>
+      <p class=MsoNormal>Similar to a gas strut, a gas spring may be used as a 
+        counterweight (See Also Counterweight) on a Z-Axis to improve performance.<o:p></o:p></p>
+      <h2>G-Code<o:p></o:p></h2>
+      <p class=MsoNormal><span class=GramE>The generic slang term for the program 
+        that controls a CNC machine.</span><span style='mso-spacerun:yes'>  </span>The 
+        more proper term would be “Part Program” (see also).<o:p></o:p></p>
+      <p class=MsoNormal>Literally, a G-Code is the type of word in those programs 
+        that determines the type of operation the machine will do next.<o:p> They 
+          were named &quot;G&quot; Codes for &quot;Geometric&quot; Code.</o:p> 
+      </p>
+      <p class=MsoNormal>Try the <strong><a href="CCCNCGCodeRef.html">CNCCookbook G-Code Reference</a></strong> for a sampling of g-codes.   We also offer an <a href="CCCNCGCodeCourse.htm"><strong>Online G-Code Tutorial</strong></a>.</p>
+      <p class=MsoNormal>Here are some online references describing g-code:</p>
+      <p class=MsoNormal><o:p><b><a href="http://www.cncezpro.com/cnc.cfm">There 
+        is a useful G-Code dictionary provided by CNC EZ Pro here.</a> </b></o:p></p>
+      <p class=MsoNormal><o:p><b><a href="http://www.isd.mel.nist.gov/personnel/kramer/pubs/RS274NGC_3.web/RS274NGC_33a.html#1002165">The 
+        NIST G-Code definition, RS274/NGC, may be found here.</a></b></o:p></p>
+      <p class=MsoNormal><strong><a href="http://stmach.com/catalog/fanucd/B-64304EN-2_01.pdf">Fanuc 0* G-Code</a></strong>      </p>
+      <p class=MsoNormal><strong><a href="http://www.google.com/url?sa=t&source=web&cd=5&ved=0CCgQFjAE&url=http%3A//www.machsupport.com/docs/Mach3Mill_1.84.pdf&ei=8TQHTKDjBIvsNMyrjM8P&usg=AFQjCNG1jhnc2EhvmXVV-0-QLBio8UJP9g&sig2=Sg8gZcPd6xOH4rYRAfHN2w">Mach3 G-Code</a></strong></p>
+      <p class=MsoNormal><a href="http://www.iticu.edu.tr/ogr/mckasapbasi/doc/elektronik/cim/34-7511-0001-spectraLIGHT0200-Mill-guide.pdf"><strong>The Light Machines Manual has some excellent g-code documentation</strong></a>.</p>
+      <p class=MsoNormal><strong><a href="http://www.gcodex.com/manuals/mitsubishi/BNP-B2210.PDF">Mitsubishi Controls G-Code Documentation</a></strong>.</p>
+      <p class=MsoNormal><a href="http://www.yaskawa.com/site/dmcontrol.nsf/link2/TKUR-5EKPZE/$file/TOE-C843-12.30.pdf"><strong>Yaskawa/Yasnac G-Code Docs</strong></a>.</p>
+      <p class=MsoNormal><o:p>The Europeans go by DIN 66025 as a G-Code standard. 
+        See also RS274 for a discussion of G-Code standards.</o:p></p>
+      <p class=MsoNormal>Peter Schmid's excellent, <a href="http://www.amazon.com/gp/search?index=books&linkCode=qs&keywords=0831131586">&quot;CNC programming handbook&quot;</a> is the reference many classrooms use.</p>
+      <p class=MsoNormal>Then there are some unique sources, such as <a href="http://www.google.com/url?sa=t&source=web&cd=1&ved=0CBcQFjAA&url=http%3A//www.haascnc.com/training/InfoMods/Unique G-Codes.ppt&ei=JiYHTJvzLo32McS37O4P&usg=AFQjCNG3Ts46h3xc7WfK2TRK3MQA8fwa_w&sig2=47K_YENZovjqkbg3OpyYOg">this PowerPoint slide show</a> describing some of the G-codes that are special to Haas mills.</p>
+      <h2>Gear Drive<o:p></o:p></h2>
+      <p class=MsoNormal>Gear drives may be used to drive spindles or drive motors.<span style='mso-spacerun:yes'>  
+        </span>They’re less common for drive motors because they typically involve 
+        backlash (See Also Backlash) unless very carefully designed.<span style='mso-spacerun:yes'>  
+        </span>They’re convenient for spindles because a transmission can usually 
+        be incorporated that allows several speed ranges.<o:p></o:p></p>
+      <h2>Gecko<o:p></o:p></h2>
+      <p class=MsoNormal><span class=GramE>A manufacturer of drive motor controllers 
+        or drivers or drivers for stepper motors and servos.</span><span
+style='mso-spacerun:yes'>  </span>Gecko also makes the G-Rex.<o:p></o:p></p>
+      <h2>Geometric Dimensioning &amp; Tolerancing (Abbreviated GD&amp;T)<o:p></o:p></h2>
+      <p class=MsoNormal><span class=GramE>GD&amp;T is a comprehensive set of 
+        conventions for efficiently and accurately communicating geometry requirements 
+        for features on components and assemblies. The appropriate standard defining 
+        GD&amp;T is ASME Y14.5M - 1994</span>.<o:p> Some of the advantages of 
+        using GD&amp;T include:</o:p></p>
+      <p class=MsoNormal><o:p>- It provides a clear and concise technique for 
+        defining a reference coordinate system and datums on a component or assembly 
+        that can be used throughout the manufacturing and inpsection processes.</o:p></p>
+      <p class=MsoNormal><o:p>- The practice closely parallels accepted practices 
+        used in the mechanical and manufacturing design disciplines.</o:p></p>
+      <p class=MsoNormal><o:p>- It reduces the need for drawing notes when describing 
+        complex geometries and does so in a standard way.</o:p></p>
+      <p class=MsoNormal><o:p>- GD&amp;T can facilitate the design of check gages, 
+        fixtures, and jigs.</o:p></p>
+      <h2>Gibs<o:p></o:p></h2>
+      <p class=MsoNormal>Gibs, usually pronounced with a hard “G” sound, are pieces 
+        that fit in ways (<st1:street><st1:address>See Also Dovetail Ways</st1:address></st1:street>).<span style='mso-spacerun:yes'>  
+        </span>They are used to provide adjustment for wear, tightness, and also 
+        as a means to lock an axis for greater rigidity while machining.<o:p> 
+        There are two types of gib, straight gibs and tapered gibs:</o:p></p>
+      <p class=MsoNormal align="center"><o:p><img src="img/CNCCookbook/GibTypes.jpg" width="640" height="485"></o:p></p>
+      <p class=MsoNormal align="center"><o:p><b><i>Tapered and Straight Gibs</i></b></o:p></p>
+      <p class=MsoNormal align="left"><o:p>See also <a href="MTCNCDictTangentoWork.htm">Tapered 
+        Gibs</a>.</o:p></p>
+      <h2>Gib Adjustment<o:p></o:p></h2>
+      <p class=MsoNormal>This is a collection of notes on how to adjust your machine's 
+        gibs that I've found all over the web. I've tried some, other's have tried 
+        them, and people tell me they work. Before talking about their adjustment, 
+        and assuming we're not talking about gibs meant to be locked and unlocked 
+        all the time, be sure you have some sort of locking mechanism so that 
+        you can maintain that adjustment despite machine vibration. My lathe has 
+        a jam nut that holds the gib adjustment, for example. Products like Loctite 
+        should also be considered.</p>
+      <p class=MsoNormal>The first question is, "How would I know whether I need 
+        to adjust my gibs?" Unfortunately, the best answer I have here is you 
+        won't know if you don't try. Be careful not to tighten them too much or 
+        you'll really lock down the axis and generally make things worse. For 
+        some kinds of cutting you may find it advantageous to lock an axis in 
+        this way. I have seen the practice recommended, but the one time I tried 
+        it on my lathe the result was no improvement and a badly adjusted gib 
+        so I steer clear unless the machine comes with tapered gibs (See Also 
+        Tapered Gibs) and locking handles. </p>
+      <p class=MsoNormal>Some folks limit gib adjustment entirely to a degree 
+        of tightness for the slide. They back off all screws and start on the 
+        centers, tightening just enough to create a slight drag on the slide when 
+        there are no leadscrews attached. A similar approach involves tightening 
+        that center screw until it is "just snug" and then following up with the 
+        ends. The latter is an approach I used with some success on my Lathemaster 
+        lathe. </p>
+      <p class=MsoNormal>I have seen one source that recommends lapping the gibs, 
+        as they are often of somewhat poor or rough finish. CNC machines make 
+        gib adjustment a little more difficult.</p>
+      <p class=MsoNormal> Without handwheels, you can't really feel how tight 
+        they are. Commercial CNC machines make the adjustment by measurement how 
+        much amperage is drawn by the motor during traversal. One account I read 
+        indicated the gibs should be adjusted until they are about 30% to 50% 
+        of the maximum rated amperage for the motor on the same axis as the gib. 
+      </p>
+      <p class=MsoNormal>An approach that is more analytical can be used for both 
+        manual and CNC machines. This is supposedly the factory procedure used 
+        by Bridgeport to set them. Use a 0.0001 reading indicator and measure 
+        the slop in the slide. Example: For the X axis, place the mag base on 
+        the end of the saddle and put the stylus on the table. At that end of 
+        the table push and release. Then pull and release. The differance is the 
+        amount of clearance in the slide. Repeat at the other end of the saddle. 
+        Adjust gib in a like new machine with little wear to give a reading of 
+        0.0005. A machine with more wear will have to be checked with the table 
+        closer to the end of travel. The same procedure is used to set the saddle 
+        to knee gib. There must be some clearance for the oil film and that film 
+        also helps dampen vibration. On a machine with hardened and ground box 
+        ways and turcite on the moving member the procedure is to set the clearance 
+        to almost nil. 0.0001 is a good number. </p>
+      <p class=MsoNormal>Another approach was based on trying to minimize backlash 
+        by making the gibs as tight as possible. In this case, it was advocated 
+        to overtighten the gibs until backlash due to flexure against a locked 
+        table was measurable, and then gradually back off in ¼ turn increments 
+        until that backlash was minimized. <o:p></o:p></p>
+      <h2>G-Rex or GRex or G101<o:p></o:p></h2>
+      <p class=MsoNormal>The G-Rex is sort of a super breakout board (See Also 
+        Breakout Board) that uses a LAN or USB connection back to the computer.<span
+style='mso-spacerun:yes'>  </span>It provides a large number of inputs and outputs 
+        as well as control of up to 6 axes.<span style='mso-spacerun:yes'>  </span>The 
+        G-Rex incorporates a dedicated microprocessor to run the innermost motion 
+        control loops.<span style='mso-spacerun:yes'>  </span>This tremendously 
+        lightens the load on the PC running the CNC control software and allows 
+        for much higher performance.<o:p></o:p></p>
+      <h2>Hall Effect Sensor or Switch</h2>
+      <o:p></o:p> Hall Effect sensor works by detecting the presence of a small 
+      magnet or moving ferrous metal nearby.<span style='mso-spacerun:yes'>  </span>They’re 
+      often used as home or limit switches and as spindle index sensors.<span style='mso-spacerun:yes'>  
+      </span>See Also “Home Switch”, “Limit Switch”, and “Spindle Index Sensor”.<o:p></o:p> 
+      <h2>Handwheels<o:p></o:p></h2>
+      <p class=MsoNormal>Handwheels are used to manually operate the axis of a 
+        CNC machine.<span style='mso-spacerun:yes'>  </span>They are generally 
+        connected to an electronic device called an MPG (See Also MPG) that sends 
+        signals through the CNC controller to the drive motors rather than directly 
+        moving the machinery via a leadscrew.<o:p></o:p><o:p></o:p></p>
+      <h2>Hardness<o:p></o:p></h2>
+      <p class=MsoNormal>Hardness is a material's resistance to plastic deformation 
+        and scratching. It is a measure of how difficult it is for the cutting 
+        tool to cut the material. Knowing the hardness of a material is helpful 
+        in deciding how to go about machining it, particularly for materials like 
+        steel where there are many different alloys and heat treatments (See Also 
+        Heat Treatment) that lead to a wide range of hardnesses.</p>
+      <p class=MsoNormal>There are a variety of scales used to measure hardness, 
+        including Rockwell, Brinell, Vickers, and Knoop. Testers are also available 
+        that can determine the hardness of a material in various ways. If you 
+        know what allow you are using, Machinery's Handbook and other reference 
+        sources will have hardness information.</p>
+      <h2>Harmonic Drive<o:p></o:p></h2>
+      <p class=MsoNormal>A harmonic drive is a gear drive of novel design that 
+        offers minimal backlash.<span style='mso-spacerun:yes'>  </span>As such 
+        they are ideal reduction drives to go between stepper or servo motors 
+        and the machine axis.<o:p></o:p></p>
+      <h2>Heat Treatment<o:p></o:p></h2>
+      <p class=MsoNormal>Heat Treatment is the process of using heat in very controlled 
+        ways to change the properties of a material. For example, heat treatment 
+        may be used to harden certain alloys of steel.</p>
+      <h2>Helical Beam Coupler<o:p></o:p></h2>
+      <p class=MsoNormal>A type of shaft coupler that has a helical slot cut through 
+        the middle.<span style='mso-spacerun:yes'>  </span>This allows the coupler 
+        to flex which enables coupling of shafts that are not quite true to one 
+        another.<span style='mso-spacerun:yes'>  </span>Helical Beam Couplers 
+        are a popular way to couple stepper and servo shafts to the reduction 
+        drive.<o:p></o:p></p>
+      <p class=MsoNormal align="center"><o:p><img src="img/LatheStuff/CNCConversion/HelicalBeam.jpg" width="282" height="324"></o:p></p>
+      <p class=MsoNormal align="center"><o:p><b><i>A Helical Beam Coupler...</i></b></o:p></p>
+      <h2>Helical Interpolation<o:p></o:p></h2>
+      <p class=MsoNormal>A coordinated motion in x, y, and z axes that causes 
+        the tool to follow a helix. Helical interpolation is useful for a variety 
+        of operations, including ramping and thread milling. See also &quot;Ramping&quot; 
+        and &quot;Thread Milling&quot;.</p>
+      <h2>Helix Angle<o:p></o:p></h2>
+      <p class=MsoNormal>The helix angle is a characteristic of an endmill that 
+        is the angle from the vertical of the helical flutes. The most common 
+        helix angle is 30 degrees because it offers the broadest range of usability. 
+        Increased machine rigidity and solid carbide endmills argue that a 45 
+        degree helix angle may be a better choice. The greater the angle, the 
+        faster the helix.</p>
+      <h2>High Speed Machining or HSM<o:p></o:p></h2>
+      <p class=MsoNormal>Using smaller cutters at much faster spindle speeds and 
+        feed rates to make many lighter cuts that take the place of deeper slower 
+        cuts with larger cutters in conventional machining.<span style='mso-spacerun:yes'>  
+        </span></p>
+      <p class=MsoNormal>If the speed is high enough, and the chips are evacuated 
+        well enough due to the high speeds and perhaps an air jet, coolant may 
+        not be necessary or may even be detrimental as the chips carry away most 
+        of the heat.<span
+style='mso-spacerun:yes'>  </span>Higher feed rates really facilitate this.</p>
+      <p class=MsoNormal>The advantages of HSM include higher accuracy, faster 
+        cycle times, and more accurate parts.<span style='mso-spacerun:yes'>  
+        </span>Cutting forces are diminished in HSM, which can even result in 
+        greater tool life.<span
+style='mso-spacerun:yes'>  </span>Positive rake tooling also reduces cutting forces, 
+        and is desirable for HSM.</p>
+      <p class=MsoNormal>HSM requires the ability for the CNC machine axes to 
+        accelerate, decelerate, and move very quickly in order to make up for 
+        the time lost in making much lighter cuts.</p>
+      <p class=MsoNormal>The easiest way <o:p>for the Home Shop Machinist to embrace 
+        high speed machining is often to attach a small high speed spindle such 
+        as a die grinder or laminate router to their existing mill head. Such 
+        spindles are self-contained with motor and run at speeds of 20,000 rpm 
+        and up. With a 1/8&quot; or smaller endmill, they are well into the realm 
+        of HSM, especially for aluminum.</o:p></p>
+      <h2>High Speed Steel or HSS<o:p></o:p></h2>
+      <p class=MsoNormal>High Speed Steel, abbreviated HSS, refers to steel used 
+        to make cutters. It is called &quot;high speed&quot; because it is an 
+        alloy designed to withstand the heat of cutting better than milder steels. 
+        In the pantheon of cutter materials, HSS is one of the more common and 
+        plebian varieties. Carbide (See Also Carbide) is harder, more rigid, and 
+        withstands higher temperatures, although it is also more costly and more 
+        brittle on the downside.<span style='mso-spacerun:yes'> </span></p>
+      <h2>HMC: See &quot;Horizontal Machining Center&quot;<o:p></o:p></h2>
+      <h2>Holding Torque (see also &quot;Torque&quot;)<o:p></o:p></h2>
+      <p class=MsoNormal><span class=GramE>The maximum torque that can be applied 
+        to an energized but stopped motor (especially a stepper motor) without 
+        moving it.</span><o:p></o:p></p>
+      <h2>Home Position: See Machine Zero<o:p></o:p></h2>
+      <h2>Home Switch<o:p></o:p></h2>
+      <p class=MsoNormal><span class=GramE>A position sensor that is used to establish 
+        a reference position for an axis.</span><span
+style='mso-spacerun:yes'>  </span>There is typically one per axis.<span
+style='mso-spacerun:yes'>  </span>On many CNC machines, one of the two limit switches 
+        serves double duty as a home switch.<span style='mso-spacerun:yes'>  </span>When 
+        the machine is commanded to home, it simply moves in the defined direction 
+        until the limit switch is triggered.</p>
+      <p class=MsoNormal>See also “Limit Switch”<o:p></o:p></p>
+      <h2>Horizontal Machining Center<o:p></o:p></h2>
+      <p class=MsoNormal><span class=GramE>A machining center (</span><st1:place><st1:placename><span
+  class=GramE>See</span></st1:placename><span class=GramE> </span><st1:placename><span
+  class=GramE>Also</span></st1:placename><span class=GramE> </span><st1:placename><span
+  class=GramE>Machining</span></st1:placename><span class=GramE> </span><st1:placetype><span
+  class=GramE>Center</span></st1:placetype></st1:place><span class=GramE>) whose 
+        spindle is horizontal.</span><span style='mso-spacerun:yes'>  </span><span
+class=GramE>Roughly analogous to a very sophisticated horizontal mill.</span><o:p></o:p></p>
+      <h2>HSM: See High Speed Machining, also, an abbreviation for &quot;Home 
+        Shop Machinist&quot;</h2>
+      <h2>HSS: See High Speed Steel</h2>
+      <h2>Hybrid Stepper Motor<o:p></o:p></h2>
+      <p class=MsoNormal>A hybrid stepper motor is a DC brushless permanent magnet 
+        motor with a wound stator.<span style='mso-spacerun:yes'>  </span>It is 
+        designed to move discrete increments or steps by sequencing the current 
+        to the windings.<span
+style='background:yellow;mso-highlight:yellow'><o:p></o:p></span></p>
+      <h2>Idle Current Reduction<o:p></o:p></h2>
+      <p class=MsoNormal><span class=GramE>A driver feature that reduces current 
+        to the motor when it is not turning in order to reduce heating and conserve 
+        power.</span><o:p></o:p></p>
+      <h2>IGES or Initial Graphic Exchange Specification<o:p></o:p></h2>
+      <p class=MsoNormal><span class=GramE>A vendor independent standard for exchanging 
+        CAD information or files.</span><span style='mso-spacerun:yes'>  </span>A 
+        CAD program file format.<o:p></o:p></p>
+      <h2>IGS (see also &quot;IGES&quot;): The file extension for IGES files.<o:p></o:p></h2>
+      <h2>Inches <span class=GramE>Per</span> Minute</h2>
+      <p class=MsoNormal><span class=GramE>A measure of feedrate.</span><span
+style='mso-spacerun:yes'>  </span>See Also Feedrate.<o:p></o:p></p>
+      <h2>Inches <span class=GramE>Per</span> Tooth (see also Chip Load)<o:p></o:p></h2>
+      <p class=MsoNormal>The distance covered (feed rate) as each tooth engages 
+        the workpiece.<span style='mso-spacerun:yes'>  </span><span class=GramE>A 
+        measurement of Chip Load.</span><o:p></o:p></p>
+      <h2>Incremental Coordinates &amp; Positioning: See Relative Coordinates<o:p></o:p><o:p></o:p></h2>
+      <h2>Index Pulse<o:p></o:p></h2>
+      <p class=MsoNormal>A pulse usually associated with spindle indexing that 
+        determines when a point on a rotating shaft has been passed.<span
+style='mso-spacerun:yes'>  </span>See also Spindle Indexing.<o:p></o:p></p>
+      <h2>Indexable Tooling<o:p></o:p></h2>
+      <p class=MsoNormal>Indexable tooling uses carbide inserts (See Also Carbide 
+        Insert) as the cutting edges.<span style='mso-spacerun:yes'>  </span>When 
+        the insert dulls or chips, it can easily be replaced with a new one for 
+        a fraction of the cost of replacing the whole tool.<o:p></o:p></p>
+      <h2>Insert<o:p></o:p></h2>
+      <p class=MsoNormal><span class=GramE>An easily changeable cutting surface 
+        that may be used with <span class=SpellE>indexable</span> tooling (See 
+        Also <span
+class=SpellE>Indexable</span> Tooling).</span><span style='mso-spacerun:yes'>  
+        </span>Inserts are generally very cheap compared to the cost of replacing 
+        the entire cutting tool, and so provide an economical way to use carbide 
+        (See Also Carbide or Carbide Insert) for high performance cutting in machine 
+        tools.<o:p></o:p></p>
+      <p class=MsoNormal><o:p>Inserts can be carbide, diamond, ceramic, or various 
+        other materials.</o:p></p>
+      <p class=MsoNormal align="center"><o:p><img src="img/CCMTThumb.jpg" width="256" height="149"></o:p></p>
+      <p class=MsoNormal align="center"><o:p><b><i>A typical insert...</i></b></o:p></p>
+      <p class=MsoNormal align="center"><o:p><img src="img/LatheStuff/PA192597.JPG" width="640" height="462"></o:p></p>
+      <p class=MsoNormal align="center"><o:p><b><i>Indexable Tooling for a Lathe 
+        Uses Carbide Inserts...</i></b></o:p></p>
+      <p class=MsoNormal align="center"><o:p><img src="img/MillStuff/TPGBDovetail/P6143491.JPG" width="800" height="673"></o:p></p>
+      <p class=MsoNormal align="center"><o:p><b><i><a href="MTMillDovetail.htm">Shop 
+        Made Indexable Dovetail Cutter</a> for Milling Dovetail Slots...</i></b></o:p></p>
+      <h2>Insert Drill<o:p></o:p></h2>
+      <p class=MsoNormal>A type of indexable tooling that uses a carbide insert 
+        to bore a hole. Each drill is designed for a specific size hole. Often, 
+        insert drills will have coolant passages to allow coolant to be pumped 
+        through the drill and down to the very bottom of the hole.</p>
+      <h2>Interpolation:<span style='mso-spacerun:yes'>  </span>See Linear Interpolation 
+        or Circular Interpolation<o:p></o:p></h2>
+      <h2>Inverter: See VFD</h2>
+      <h2>IPAC (see &quot;Keyboard Emulator&quot;)<o:p></o:p></h2>
+      <h2>IPM: See Inches <span class=GramE>Per</span> Minute<o:p></o:p></h2>
+      <h2>Jig<o:p></o:p></h2>
+      <p class=MsoNormal>Generically jigs and fixtures are used to guide and hold 
+        the workpiece.<span style='mso-spacerun:yes'>  </span>A jig may also guide 
+        the tool, while a fixture does not.<o:p></o:p></p>
+      <h2>Jog, Jogging, and Jog Mode<o:p></o:p></h2>
+      <p class=MsoNormal>Jogging is the operation of manually causing an axis 
+        to move under power.<span style='mso-spacerun:yes'>  </span>It is often 
+        convenient to jog using a handheld pendant control (See Also Pendant).<span
+style='mso-spacerun:yes'>  </span>A mechanism is usually provided to control the 
+        speed of jogging.<o:p></o:p></p>
+      <h2>Keyboard Emulator<o:p></o:p></h2>
+      <p class=MsoNormal>A keyboard emulator is an electronic circuit that accepts 
+        a number of inputs and converts them to keystrokes which are fed into 
+        the PC’s keyboard input.<span style='mso-spacerun:yes'>  </span>This is 
+        a convenient way to add additional control panel inputs on systems that 
+        use a parallel breakout board (See Also Breakout Board) because it conserves 
+        scarce input lines on the parallel port.<span style='mso-spacerun:yes'>  
+        </span>IPAC is one example of a keyboard emulator board.<o:p></o:p></p>
+      <h2>Knee Mill<o:p></o:p></h2>
+      <p class=MsoNormal>Knee mills support the table, X, and Y axes on a knee 
+        and raise the table up and down whereas a bed mill (See Also Bed Mill) 
+        moves the spindle up and down.<span style='mso-spacerun:yes'>  </span>The 
+        <st1:city><st1:place>Bridgeport</st1:place></st1:city> manual mills were 
+        classic knee mills, but most modern CNC vertical machining centers are 
+        bed mills.<o:p></o:p></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td><font face="Times New Roman, Times, serif" size="7" color="#FF0000">Gang 
+            Tooling to Knee Mill</font></td>
+          <td> 
+            <div align="center"><font face="Times New Roman, Times, serif" size="7" color="#FF0000"><a href="MTCNCDictDeflecttoFollow.htm">Prev</a></font></div>
+          </td>
+          <td> 
+            <div align="center"><font face="Times New Roman, Times, serif" size="7" color="#FF0000"><a href="MTCNCDictLaptoMPG.htm">Next</a></font></div>
+          </td>
+        </tr>
+      </table>
+      <hr>
+      <o:p></o:p> 
+      <h2><b><i><font size="+2"><a href="MTCNCDictionary.htm">Back to CNC Dictionary 
+        Home...</a></font></i></b></h2>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

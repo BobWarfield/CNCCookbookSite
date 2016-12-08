@@ -1,0 +1,2086 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNC Cookbook: Mill Belt Drive, Pt 1</title>
+
+<meta name="description" content="Research notes on a spindle belt drive conversion for RF45 mills.">
+
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+.style4 {color: #FF0000}
+.style7 {font-size: 36px}
+.style31 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.style11 {font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" --> 
+      <p>&nbsp;</p>
+      <p><font face="Arial, Helvetica, sans-serif"><b><a href="CCMillBeltDrive.html">Pt 
+        1: Design Notes</a></b></font></p>
+      <p><b><font face="Arial, Helvetica, sans-serif"><a href="CCMillBeltDrive2.html">Pt 
+        2: Construction Plan</a></font></b></p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p><font color="#339933" size="+4">Belt Drive for the Industrial Hobbies/Rong 
+        Fu Mill</font></p>
+      <p><font size="+4" color="#339933">Part 1: Design Notes</font></p>
+      <p><font color="#339933" size="+4">(aka &quot;A Mini-Blog About Bearings 
+        and Spindles&quot;) </font></p>
+      <p class="style3">This page is currently in blog format as it is just my 
+        research notes for the project. Spindles are hard to build properly, which 
+        is why they are so expensive. </p>
+      <p class="style3"><span class="style4">Use 
+        this information at your own risk!</span></p>
+      <p align="center" class="style11"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="img/GWizard/GWScreenRow.jpg" alt="" width="800" height="186"></a></p>
+      <p align="center" class="style11"><span class="style12"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+      <p align="center" class="style11"><a href="FeedSpeedsCalculator/CCGWizard.html">Be sure to check out G-Wizard, our Machinist's Software!</a></p>
+      <p class="style3">&nbsp;</p>
+      <p class="BlogTitle">Running a Three Phase VFD on Single Phase Power by Derating</p>
+      <p class="BodyText"><a href="http://www.cnc-arena.com/en/forum/more-hp-pcnc--261060-2.html">Via CNCArena Tormach Forums</a></p>
+      <p class="BodyText">You can use a 3 phase input VFD, and power it off of single phase. You just need to derate the VFD by a factor of 1.73 to account for only a single phase of power.<br>
+        <br>
+        Or to put it in more useful terms, you need to buy a more powerful VFD to accommodate your 5 HP motor, using the formula of (5 HP)* 1.73 = 8.7 HP.&nbsp;<br>
+        <br>
+        This doesn't mean you are drawing 8.7HP worth of current. The current max current draw off of 230 V single phase for this inverter is approx I=(5 HP)*(746W/HP)/(230V * 0.85 * 0.85)= 22A (last two 0.85 factors account for the inefficiency of the motor and the VFD). Powering 5 HP off a single phase 230V circuit is doable, and since the VFD is acting as a soft-starter, and limiting the starting surge, it is much less problematic than powering a 5HP cap start-run straight off the same circuit.<br>
+        <br>
+        <a rel="nofollow" href="http://www.dartcontrols.com/wp-content/uploads/2012/01/De-Rating-VFD-for-Single-Phase-Power.pdf" target="_blank">http://www.dartcontrols.com/wp-conte...hase-Power.pdf</a><br>
+        <br>
+        This is a common practice, and the VFD manufacturers usually provide instructions about doing this.</p>
+      <p class="BodyText">----------------</p>
+      <p class="BodyText">My newer inverter welding machine is connedted like that too, you just use the two 230 single phase leads and leave the third lead unconnected that would be used for three phase, it is derated some though.</p>
+      <p class="BodyText">----------------</p>
+      <p class="BlogTitle">Spindle Cut Away</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/SpindleCutaway.jpg" width="1025" height="643" alt="spindle drawing"></p>
+      <p class="BlogTitle">GD.Marsh's RF-45 Belt Drive</p>
+      <p class="style1">Some pix and comments from <a href="http://www.cnczone.com/forums/benchtop_machines/101638-bolton_zx45_conversion-3.html">his CNCZone thread</a>:</p>
+      <p align="center" class="BlogTitle"><img src="img/MillStuff/BeltDrive/gdmHead_breakdown0002.jpg" width="635" height="972"></p>
+      <p align="center" class="style1"><a href="http://www.grizzly.com/products/G0484/parts/1">Exploded view</a> of the mill head.  This conversion involves the part with the red arrow...</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/gdmP1030076.JPG" width="972" height="729"></p>
+      <p align="center" class="style1">The sleeve contains the splines that engage the spindle.   A gear had to be turned off the original...</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/gdmP1030069.JPG" width="972" height="729"></p>
+      <p align="center" class="style1">Components...</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/gdmP1030063.JPG" width="972" height="729"></p>
+      <p align="center" class="style1">Bearings will be used to support the sleeve...</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/gdmP1030062.JPG" width="972" height="729"></p>
+      <p align="center" class="style1">Here the stack is assembled with the bearings.  Motor pulley to the right...</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/gdmP1030080.JPG" width="972" height="729"></p>
+      <p align="center" class="style1">And here it is fitted to the top of the spindle case...</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/gdmP1030081.JPG" width="972" height="729"></p>
+      <p align="center" class="style1">Bottom view...</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/gdmP1030091.JPG" width="972" height="729"></p>
+      <p align="center" class="style1">Ready to receive the motor...</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/gdmP1030123.JPG" width="972" height="729"></p>
+      <p align="center" class="style1">Ready to run, save bolting rather than clamping the motor mounts.  The gizmo on top is so the power drawbar can squeeze instead of push and avoid damaging spindle bearings...</p>
+      <p align="left" class="style1">Here are the Nachi angular contact bearings he ordered from VXB:</p>
+      <p align="left" class="style1"> Kit10017 7207 Nachi A/C 35x72x17 - $20.46<br>
+      Kit10016 7206 Nachi A/C 30x62x16 - $16.11</p>
+      <p align="left" class="style1">He later upgraded to these:</p>
+      <p align="left" class="style1">7207CYP4 Abec-7 </p>
+      <p align="left" class="style1"> 7206CYP4 Abec-7</p>
+      <p align="left" class="BlogTitle">Great Source for V-Belts</p>
+      <p align="left" class="BlogTitle"> <a href="http://www.vbelts4less.com/">http://www.vbelts4less.com/</a></p>
+      <p align="left" class="BlogTitle">Bearing Greasing Factoid</p>
+      <p align="left" class="style1"> There's a formula to get the cc's of lube, it is the last to digits of the bearing number x 5 x .06. This will give you the amount of cc's per bearing.<br>
+        <br>
+        ex for bearing 7008:<br>
+        <br>
+      08 x 5 x .06 = 2.4 cc's of lube. </p>
+      <p class="BlogTitle">Teco Sensorless Vector VFD</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Saw the Teco 7300CV written up in <a href="http://www.cnczone.com/forums/benchtop_machines/104146-rf-45_cnc_advice_needed-19.html#post890983">a CNCZone thread</a>. Several of the long-time posters like the drive and it is a sensorless vector which is what I'd prefer (broad torque band to reduce the need for belt changing). They gave a link to <a href="http://www.factorymation.com/s.nl/it.A/id.5578/.f?category=15367">one with a pretty good price from Factorymation</a> too.</font></p>
+      <p class="BlogTitle">Kelling 3HP Brushless DC Motor Setup</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">This seemed like a <a href="http://www.kelinginc.net/CNCmillingcontroller.html">nice setup from Kelling</a> if 3HP is en<span class="style1">ough. </span></font><span class="style1">Unfortunately, the later threads I've read indicate the controller is not reliable and there are some questions about whether it really produces 3 HP.  I'll leave this in here so people can find it, but I've gone back to thinking about a more traditional VFD setup.</span></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">It's $229 for 3HP and 6000 rpm as I write th<span class="style1">is. </span></font><span class="style1"> Here is a video from cjdavis618 who also wrote <a href="http://www.cnczone.com/forums/benchtop_machines/108728-want_control_your_spindle_mach3_but_cant_maybe_helps.html">a CNCZone thread on the controller</a>:</span></p>
+      <p align="center"><object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/OO9x40I4QJo?fs=1&amp;hl=en_US"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/OO9x40I4QJo?fs=1&amp;hl=en_US" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385"></embed></object>&nbsp;</p>
+      <p align="left" class="style1">The rpm range is 400 - 6000 rpm.   The controller is PWM-ready, so is easily interfaced to Mach3.  There is also a charge pump/E-Stop input. The motor is a brushless DC, so it should last a good long time.   The power supply is integral so you can plug it into either 110 or 220, and there is even a nifty LCD tachometer that shows the RPM.</p>
+      <p align="left" class="style1">Judging from the video, it isn't real fast on acceleration, but it isn't terrible either--about 6 seconds to ramp the entire range from S400 to S6000.  You'll definitely want to think about using a G4 Dwell in your g-code though.</p>
+      <p align="left" class="style1">3HP is not too bad. I had to cannibalize my 3HP VFD I had bought for the mill so I could run my big bandsaw, so I will need to be in the market for something else.    This would definitely be another setup to consider instead of a VFD + AC motor.    It'd be cool to have one with both an &quot;Aluminum&quot; and a &quot;Steel&quot; speed range.   The Steel would gear down the 400-6000 rpm range to maybe 100-1500 rpm, while the Aluminum would go the other way for a range of maybe 550-8000 rpm.    That Steel range might be too low, so a 1:2 ratio would give 200-3000 rpm. I need to play with it on <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard</a> to see what ranges I'd favor.</p>
+      <p align="left" class="style1">There are some issues if you read on in the CNCZone thread. Also, it appears that $229 will not buy you both the motor and controller.  Maybe not as godo a setup as it seemed. Back to sensorless vector drives for me!</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Another Preload Measuring Setup</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Given a dial indicator to measure deflection, and a known preload that is to be established, here is a fixture to measure the deflection and hence the spacer required to create a given preload:</font></p>
+      <p align="center"><img src="img/MillStuff/BeltDrive/PreloadCell.jpg" width="510" height="329"></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">A Hydraulic Scale for Measuring Bearing Preload</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Here is a hydraulic scale for measuring preload on bearing pairs similar to what I describe near the bottom of this pa<span class="style1">ge:</span></font></p>
+      <p align="center" class="style1"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Tools/HydraulicScale.jpg" width="1024" height="768"></font></p>
+      <p align="left" class="style1">The idea is to use the scale with a test cell to measure the displacement of the bearing inner race when the appropriate preload is attained.  Once that has been determined, spacers can be machined that deliver the same displacement and hence the same preload.  There is some good discussion about this <a href="http://www.practicalmachinist.com/vb/general/spindle-bearing-preferences-204511/">on the PM boards</a>.</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">The Value of Spindle Wall Thickness </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The stiffness of the spindle goes up as the fourth power of the wall thickness according to some information I saw in one of the bearing catalogs. That means you want the largest possible bearings you can afford because a small increase in the thickness makes for a much stiffer spindle.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">How thick is thick enough?</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">A Mazak QT-20 lathe runs 120mm ID bearings on the spindle and has a spindle bore of 2.44&quot;.     That works out to a wall thickness of about 1.142&quot; or about 29mm.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Now let's say we want to build a lathe spindle with a spindle bore of 2&quot;.    Let's give it a 1&quot; wall thickness, so we need bearings with 4&quot; ID which is 101mm. Since bearings come in 5mm ID increments, we can look at a 100mm or 105mm ID, which would be a 7220 or a 7221 angular contact bearing.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Brand new Nachi 7220 CYDUP4 bearings are $1351 each and you need 2 of them.  Ouch!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I can see some others on eBay such as an  SKF 7221 BECCM for $24<span class="style1">9.99</span></font><span class="style1">.  Better, but still painful for an experimental spindle project.</span></p>
+<p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">The Holy Grail: Preload via Bearing Spacers </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I finally tracked down some real information on how to set angular contact bearing preload via spacers <a href="http://skf.us/portal/skf/home/products?maincatalogue=1&lang=en&newlink=9_1_30">on the SKF web site</a>.</font></p>
+      <p align="left" class="style1">Consider two bearings with spacers connecting their respective inner and outer races.   By making these spacers slightly different lengths we displace the bearings in such a way as to preload them.   The configuration looks like this:</p>
+      <p align="center" class="style1"><img src="img/CNCCookbook/PreloadSpacerRings.jpg" width="150" height="211"></p>
+      <p align="left" class="style1">As we grind away at the spacer faces, we achieve the following:</p>
+      <div align="center">
+        <table cellspacing="0" cellpadding="0">
+          <tr>
+            <td colspan="4">Necessary spacer ring width reduction </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>Preload change</td>
+            <td colspan="3"><div align="center">Width reduction</div></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>Value</td>
+            <td colspan="2">Spacer ring between bearings arranged </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>back-to-back</td>
+            <td>face-to-face</td>
+          </tr>
+          <tr>
+            <td colspan="4"><img src="http://skf.us/images/cat/common/bold.jpg" alt="" width="100%" height="2" border="0"></td>
+          </tr>
+          <tr>
+            <td colspan="4">Increasing the preload</td>
+          </tr>
+          <tr>
+            <td>A to B</td>
+            <td>a</td>
+            <td>inside</td>
+            <td>outside</td>
+          </tr>
+          <tr>
+            <td>B to C</td>
+            <td>b</td>
+            <td>inside</td>
+            <td>outside</td>
+          </tr>
+          <tr>
+            <td>A to C</td>
+            <td>a + b</td>
+            <td>inside</td>
+            <td>outside</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="4">Decreasing the preload</td>
+          </tr>
+          <tr>
+            <td>B to A</td>
+            <td>a</td>
+            <td>outside</td>
+            <td>inside</td>
+          </tr>
+          <tr>
+            <td>C to B</td>
+            <td>b</td>
+            <td>outside</td>
+            <td>inside</td>
+          </tr>
+          <tr>
+            <td>C to A</td>
+            <td>a + b</td>
+            <td>outside</td>
+            <td>inside</td>
+          </tr>
+        </table>
+      </div>
+      <p align="left" class="style1">So, for example, suppose we have a pair of AC bearings arranged in a back-to-back configuration.    If we want to increase the preload we need to reduce the width of the inner race spacer.  Note that A, B, and C refer to bearing preload classes. So if we wanted to increase the preload from class A to class B, we would reduce the width of the inner spacer by amount a.  Here are the a and b amounts:</p>
+      <p align="center" class="style1"><img src="img/CNCCookbook/BearingSpacerSizes.jpg" width="558" height="977"></p>
+      <p align="center" class="style1"><img src="img/CNCCookbook/BearingSpacerSizes2.jpg" width="734" height="1244"></p>
+      <p align="left" class="style1">Okay, let's work an example.  Let's say I have a pair of 7207 CD bearings that I want to preload.   The minimum spacer size difference I might use is a, which is 9 micrometers.   That's 0.009 mm or 0.00035&quot;. The largest displacement I might use would be<span class="style1"> a+b = 21 micrometers = 0.00083&quot;.  Pretty small spacer size difference!</span></p>
+      <p class="style1">Bear in mind that these differences are used to step of from preload class A to B or C.  Those preloads for the 7207 CD series are 60, 120, and 240N for class A, B, and C respectively.      Let's compare:</p>
+      <p class="style1">- Going from A to B increases preload 60N, and requires a 0.00035&quot; spacer.</p>
+      <p class="style1">- Going from B to C increases preload 120N, and requires a 0.00047&quot; spacer.</p>
+      <p class="style1">- Going from A to C increases preload 180N, and requires a  0.00083&quot; spacer.</p>
+      <p class="style1">We can extrapolate that to go from no-preload (i.e. we bought raw bearings that are not ground for preload) to the class C preload (i.e. 240N preload) might take something on the order of 0.00118&quot; or a tiny bit more.</p>
+      <p class="style1">In terms of the spacer rings themselves, SKF had this to say:</p>
+      <blockquote>
+        <p class="style1">The spacer rings should be made of highgrade steel that can   be hardened to between 45 and 60&nbsp;HRC, depending on the application. Particular   importance must be given to the plane parallelism of the face surfaces, where   the permissible shape deviation must not exceed 1 to 2&nbsp;&micro;m. The overall width of   the inner and outer spacer rings should be identical.</p>
+        <p class="style1">The most accurate way to do this is to process the width of   the concentric inner and outer spacer rings in one operation.</p>
+      </blockquote>
+      <p class="style1">Making the rings to the requisite accuracy is definitely a grinding operation since we're measuring progress in tenths.  These rings are not going to be very wide either.  Let's say not more than the width of the bearing itself.</p>
+      <p class="style1">We will mount the pair of bearings on the spindle nose against a shoulder on the spindle. The inner race spacer will go between the bearings as will the outer race spacer.     A precision nut will thread onto the spindle nose and down onto the inner race of the bearing stack to hold it in place.   The nut is precision simply because it has been faced so that the surface against the bearings is flat.</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Getting the Good Grease </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">If you scan way down this page you'll see my write up about oil lubrication of spindle bearings and the chart that shows bearing rpms versus the dN.     Really good bearing grease can achieve a much higher dN than the wheel bearing grease you were tempted to use from the auto part store around the corner. The best spindle greases come from a company called Kluber.  The trick is finding the stuff in small quantities without breaking the bank.  There are a variety of grades available.  </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">One good one is Kluber Isoflex NBU 15</font> available from:</p>
+      <p align="left">- <a href="https://woodtechtooling.com/Wanner_Grease_Guns_Tubes/Grease_Tubes/grease_tubes.html#Kluber">Woodtechtooling</a>: $34.50 for 50g tube</p>
+      <p align="left">-<a href="https://www.klubershop.com/search.aspx"> Kluber NA</a>:  $22.45 (You have to register to access the online store)      </p>
+      <p align="left" class="style1">Update: Ordered a tube of my own from Kluber NA on April 27.</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Delta Inverters </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The inverter is the thing I'm researching quite a bit at the moment. I want one I can use to effectively make the spindle a big servo drive. At the very least, it needs to do spindle positioning for tool change, and at the most, it should accomodate rigid tapping.    The Hitachi mentioned below would work, but it's expensive.  Looking around at what other machine tool builders have used, a couple using <a href="http://www.delta.com.tw/product/em/drive/ac_motor/ac_motor_main.asp">Delta drives</a>.   The drive that Dave DeCa<span class="style1">ussin (</span></font><span class="style1">the &quot;D&quot; in &quot;Fadal&quot;, so he knows a thing or two about CNC) uses in his video below is almost certainly a Delta VFD-M:      </span></p>
+      <p align="center" class="style31">
+        <object width="480" height="385">
+          <param name="movie" value="http://www.youtube.com/v/Qv-0Cjj0S-o&hl=en_US&fs=1&">
+          </param>
+          <param name="allowFullScreen" value="true">
+          </param>
+          <param name="allowscriptaccess" value="always">
+          </param>
+          <embed src="http://www.youtube.com/v/Qv-0Cjj0S-o&hl=en_US&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed>
+        </object>
+      </p>
+      <p align="left" class="style31">Interesting, if true, because that's a pretty cheap sensorless vector drive.  Looking through the manual, it does have provision for a PID feedback loop and an index sensor. </p>
+      <p align="left" class="style31"><a href="http://www.atrump.com/support.php?lang=2&a_id=130">Atrump is using Delta drives too</a>, although they use the more expensive closed loop VFD-VE series.   A nice 3 HP is going to be <a href="http://www.wolfautomation.com/Configure2.aspx?ProductID=23773&x=78&y=17">$553.80 from one supplier I found</a>.  Looks pretty easy to set one up to index for a toolchanger.  <a href="http://www.atrump.com/support.php?lang=2&a_id=222">According to the Atrump site</a>, you just enter the encoder count in the VFD when things are lined up right.</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Hitachi SJ300 + SJ-FD Board = Spindle Servo Drive? </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Suppose you want 
+        to build a toolchanger that requires spindle orientation.  While we're add it, let's do rigid tapping.  And let's require an extremely broad torque range for the spindle to minimize the need for any gear changes. That's a hard task, but I'm starting to think the Hitachi SJ300 with the optional <a href="http://www.hitachi-america.us/supportingdocs/forbus/inverters/Support/NB616XB_SJ-FB_Manual.pdf">SJ-FD encoder board</a> might do the trick. The SJ-FD, in particular, looks like it provides something called &quot;pulse train mode&quot;, which looks suspiciously like step/dir con<span class="style1">trol.</span></font></p>
+      <p align="left" class="style1">The whole thing is not cheap, and requires 3 phase power input to boot.  </p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Spindle Orientation 
+        for Drive Tangs </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Suppose you want 
+        to run a 30 taper. It has drive tangs, so you need to be able to line 
+        up your spindle properly with the tangs to build an automatic tool changer. 
+        Most of the commercial VMC's are using a servo to drive the spindle (even 
+        if it is a fairly ordinary motor with a fancy drive). That's one approach, 
+        but not cheap. Try looking for a 2 or 3 HP servo drive and motor!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Another thought 
+        is to use a smaller stepper that can be disengaged to index the spindle 
+        for tool changes. You want to disengage it because if it's driven all 
+        the time it wears out the stepper and it generates back EMF that will 
+        fry the servo drive. At the least you need to electronically disengage 
+        it.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">But there is yet 
+        <a href="http://www.cnczone.com/forums/showthread.php?t=87884">another 
+        way that I just saw on CNCZone</a>. NEATMan suggests using a cam action. 
+        Imagine a cam that looks like this and is clamped to the top of the spindle:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/ATCspindlecam.jpg" width="1025" height="678"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Now let's say 
+        we have an impact wrench style powered drawbar or an air cylinder that 
+        compresses a Belleville spring stack. Either way, there is a downward 
+        motion. We use that downward motion to push a roller equipped assembly 
+        against the cam. The roller will then turn the spindle until the roller 
+        is at its lower point, which should line up the indexing for the drive 
+        tangs.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Clever!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Vector Drive 
+        Magic </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I've been keeping 
+        an eye on vector drives for a little while now. Essentially, they are 
+        a &quot;better VFD&quot; to drive an AC motor with variable speed. Why 
+        better? Because they enable a wider speed range without loss of torque. 
+        I read a <a href="http://www.reliance.com/pdf/drives/whitepapers/D7161.pdf">white 
+        paper by Reliance Electric</a> that indicated you could expect a 2:1 range 
+        for a regular VFD, and a 4:1 range with a vector drive. In other words, 
+        run your motor at up to half speed without losing torque with a normal 
+        VFD, and 1/4 speed with a vector drive. Why does this matter? Because 
+        the speed range you need to cover the gamut of machining tough steels 
+        all the way up to aluminum and soft materials is huge. To span a range 
+        of 100 rpm all the way to 8000 rpm (still nowhere close to what a lot 
+        of CNC's run today) takes an 80:1 range!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">That's why you 
+        need gear changes, back gears, step pulleys, variable pitch pulleys, or 
+        a host of other mechanical transmissions used on different machine tools. 
+        But those transmissions are a hassle to deal with too, especially if you 
+        want to build your own machine, or <a href="CCMillBeltDrive.html">radically 
+        alter the performance envelope of you spindle</a>.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">So it was with 
+        some interest that I came across a <a href="http://www.smcyclo.com/products/ac/hf430.shtml">Sumitomo 
+        Vector Drive spec</a>. I guess a good vector drive these days has more 
+        range than Reliance gives them credit for. A sensorless drive is one you 
+        could just hook up like any VFD, and Sumitomo claims a range of 120:1 
+        for their HF-430 unit in sensorless mode and that with a speed accuracy 
+        of 0.5%. But it gets even better. Add the encoder board and put a suitable 
+        encoder on the motor and now they're claiming a range of 1000:1 and speed 
+        accuracy of 0.05%! That's starting to be quite a range, and these drives 
+        have gotten a lot cheaper over time. I came across this particular one 
+        in an eBay buy it now for $249 for a 3 HP unit.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The only thing 
+        missing from it seems to be true servo operation, or at least a means 
+        of parking the spindle at a known location. True servo operation would 
+        allow the spindle to be indexed to any arbitrary position. You can imagine 
+        that would be handy if you wanted to set up your lathe spindle with a 
+        3 HP motor (or more) and treat it as a C-axis. Index to a location, put 
+        an air powered spindle on your CNC gang slide, and you can suddenly drill 
+        a bolt circle for a flange under CNC power. A parking position would make 
+        implementing a tool changer for a mill a lot more feasible. Park the spindle 
+        in a known location and the &quot;dogs&quot; on the toolholder are properly 
+        lined up.</font></p>
+      <p class="BlogTitle">Principles of a Spindle Oil Mister</p>
+      <p><font face="Arial, Helvetica, sans-serif">Commerical VMC's running at 
+        higher speeds (10K and up) use an air-oil mist to keep the bearings lubricated 
+        and cool. It works along these lines:</font></p>
+      <p align="center"><img src="img/OthersProjects/Machines/SpindleOilMist.gif" width="300" height="216"></p>
+      <p class="BlogTitle">Snowmobiles Use Variable Pitch Sheaves</p>
+      <p><font face="Arial, Helvetica, sans-serif">Could be a source of cheap 
+        parts. Check <a href="http://www.gates.com/brochure.cfm?brochure=1033&amp;location_id=3850">this 
+        Gates article</a>.</font></p>
+      <p class="BlogTitle">Fadal's Spindle Transmission Using Ribbed Belts and 
+        Idler Pulleys</p>
+      <p><font face="Arial, Helvetica, sans-serif">Downloaded a <a href="http://www.compumachine.com/Support/DL-Fadal.htm">set 
+        of manuals for a Fadal 4020</a>. It's amazing what you can learn from 
+        these. There are exploded diagrams and detailed maintenance procedures. 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The two things that interested 
+        me most were the details of how the toolchanger works, and the details 
+        of how the 2-speed transmission for the spindle works. The latter is particularly 
+        intriguing for this belt driven spindle project<a href="CCMillBeltDrive.html"></a>. 
+        I can't quite fathom all the details from the drawings and pictures, so 
+        I <a href="http://www.cnczone.com/forums/showthread.php?p=390756#post390756">posted 
+        a question on CNCZone</a> on a likely Fadal thread I found. If what I 
+        suspect is true, it would be a slick way of building a 2-speed transmission 
+        to extend the speed range beyond what a VFD will comfortably deliver. 
+        Hopefully the gang on the 'Zone will fill in my blanks.</font></p>
+      <p class="style1">Here is a picture of the idler assembly, $800 to buy one!</p>
+      <p class="style1" align="center"><img src="img/MillStuff/BeltDrive/FadalIdler.jpg" width="500" height="375"></p>
+      <p class="style1" align="center">Fadal Idler Pulleys...</p>
+      <p class="style1" align="left">The system has 2:1 pulleys on the motor and 
+        the spindle. There is a ribbed belt on each, a 315K10 if that matters. 
+        To engage one of the speeds, the idler pulley is triggered to apply tension 
+        to the belt being engaged by an air cylinder, visible in the picture above. A belt guide keeps the belt that isn't engaged from getting tangled up:</p>
+      <p class="style1" align="center"><img src="img/MillStuff/BeltDrive/FadalSpindleBeltGuide.jpg" width="500" height="375" alt="Fadal Spindle Belt Guide"></p>
+      <p class="style1" align="center">Fadal Spindle Belt Guide...</p>
+      <p class="style1" align="left">Node the ridges, and the way the top belt has a shelf to support it. The ridges allow a little bit of belt slippage without too much surface area for the belt that is disengaged. Not too hard to imagine the bottom belt 
+        just sitting there quietly. If tension is removed, it will flex out and 
+        not be driven. In addition, it is held slightly out of the way by gravity.        </p>
+<p class="style1" align="left">Given the ratios available, the &quot;hi&quot; 
+  gear will drive the spindle at 2x motor speed and the &quot;lo&quot; gear 
+  will drive it at 1/2 motor speed. Couple that with a 3600 rpm motor and 
+  you should have a range that extends from a hundred rpm all the way to 
+  7,200 rpm. If you can overspeed the motor safely, you can get to the magic 
+  10,000 rpm number. The Fadal-style transmission is also relatively compact. 
+  It seems an ideal addition to the project if I can figure it out. I might 
+  even build a manually operated prototype and look into air cylinders later.</p>
+      <p class="BlogTitle">Another Belt Drive for the IH Mill is in the Offing! 
+      </p>
+      <p class="style1">What ho! The game is afoot!</p>
+      <p class="style1">Cruiser is documenting his belt drive conversion experience 
+        <a href="http://www.cnczone.com/forums/showthread.php?t=35961">over on 
+        the CNCZone</a> as we speak. In the same thread he has also gotten jiggy 
+        with the idea of attaching some linear slides to the sides of the IH column 
+        to help facilitate the Z-axis and overcome some of the stick slip from 
+        the poor marriage of a heavy head and very average dovetail ways. That's 
+        also quite an interesting mod:</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Tools/IHLinearRails.jpg" width="640" height="853"> 
+      </p>
+      <p align="center" class="style1"><strong>Cruiser uses a router tied to the 
+        existing dovetail slide to cut a bed for his linear slides. Cool!</strong></p>
+      <p align="left" class="style1">Here is one &quot;teaser&quot; photo:</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Tools/IHBeltDrive.jpg" width="800" height="600"></p>
+      <p align="left" class="style1">Go check out the CNCZone thread for full 
+        details! </p>
+      <p align="left" class="style1"><strong>5/12/07</strong>: I thought I'd add 
+        a little progress update. Cruiser has completed his belt conversion. One 
+        thing Cruiser mentioned is that his belt drive is not working very well 
+        at slow speeds--torque falls off rapidly. I believe he's running a little 
+        under a 2:1 ratio on the motor to get it to not quite 6000 rpm. The motor 
+        seems to be good to half speed and then torque falls off rapidly. This 
+        may be a problem for cutting steel, although he has tried some passes 
+        at 3000 rpm with limited success (currently fighting a noise problem of 
+        some sort). </p>
+      <p align="left" class="style1">My conclusion on this is that a back gear 
+        of some kind is needed for low speed operation. There's just too much 
+        loss of torque at low speeds if you try to run belts directly with no 
+        ability to change gear ratios. One could use something as simple as cone 
+        pulleys to provide different rations, or something more complex like the 
+        variable pitch pulleys I have discussed below. Another idea is to use 
+        a much bigger motor, so that the torque drop off is less noticeable. For 
+        example, these mills start out at 2 HP. A 5HP motor should notionally 
+        be able to run at 1/4 rpm and have the torque of a 2 HP. </p>
+      <p align="left" class="style1">To get an idea, I did some rough back of 
+        envelope calculations. Let's say your motor is great down to 1/2 rpm, 
+        so a 3400 rpm motor is good at 1700 rpm. Let's further say you want to 
+        preserve torque to run at 100 rpm. I've worked out some possibilities 
+        in this spreadsheet:</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/SpindleRatios.jpg" width="634" height="507"> 
+      </p>
+      <p align="left" class="style1">The spreadsheet estimates horsepower available 
+        on the assumption that:</p>
+      <p align="left" class="style1">- The motor will deliver full horsepower 
+        down to 1/2 speed. </p>
+      <p align="left" class="style1">- Below 1/2 speed, HP falls of in direct 
+        proportion to how far the rpm is from rated speed.</p>
+      <p align="left" class="style1">- You can't run the motor over its rated 
+        speed. </p>
+      <p align="left" class="style1">I've experimented with drive ratios, which 
+        are listed along the top 2 rows, as well as motor horsepower, listed right 
+        below. The numbers in the sheet are &quot;estimated horsepower&quot;. 
+        They're likely bogus as exact horsepower figures, but helpful as a guideline. 
+        If I had less than 0.2 horsepower, I marked that off in pink as being 
+        unusable. If I had less than 0.5 horsepower, it is marked yellow--probably 
+        usable if you go slow with a cutter that won't take much horsepower. To 
+        give an idea of some high horsepower operations, I played with ME Consultant 
+        Pro and came up with big twist drills (always use lots of power) and a 
+        4&quot; indexable face mill. When cutting tool steel, they need 1.2HP. 
+        This just to give some &quot;worst case&quot; checks.</p>
+      <p align="left" class="style1">My conclusion from all of this:</p>
+      <p align="left" class="style1">- Bumping up to 5 horsepower doesn't buy 
+        you a lot more speed range. It's pretty similar (not surprisingly) to 
+        a 2:1 back gear.</p>
+      <p align="left" class="style1">- A 2:1 back gear is essential for lower 
+        horsepower motors just to survive with steel. 5 HP with a 2:1 back gear 
+        gets you all the way down to 100 rpm.</p>
+      <p align="left" class="style1">- 5:1 back gear is too wide a spread with 
+        a 2 HP motor. You'd have a dead zone from 800 - 1500 rpm. </p>
+      <p align="left" class="style1">- 3:1 back gear 2HP looks about right to 
+        me. </p>
+      <p align="left" class="style1">I like the use of a variable pitch pulley 
+        for system for back gear. Hey, if it was good enough for Bridgeport, its 
+        good enough for me!</p>
+      <p align="left" class="style1">You can use the variable pitch as your hi/lo 
+        shift mechanism. That means the vari pulley needs enough total ratio to 
+        cover the back gear + high speed. So, using the numbers above, for a 6000 
+        rpm spindle that's 2 * 1.8 = at least a 3.5:1 vari pulley setup. For an 
+        8K spindle (which I'm aiming for), you'd need 4.8:1. I'd run the system 
+        with preset stops. Probably 3 stops on the range is good, and use the 
+        VFD to fine control speeds within a stop.</p>
+      <p align="left" class="style1">A 2-stage system could use a 2:1 back gear 
+        and a 3:1 varispeed to get up to a 6:1 advantage, for real power down 
+        low. Some kind of tumbler system like the lathe guys use could work for 
+        the back gear shift. </p>
+      <p align="left" class="style1">An alternate gear train option would be a 
+        planetary gear set for low speed operation. </p>
+      <p class="BlogTitle">1964 Patent on Grinding Duplex Bearings </p>
+      <p class="style1">Available on Google, search for patent #<a href="http://www.google.com/patents?vid=USPAT3330634&id=VMBoAAAAEBAJ&dq=duplex+bearing+grinding+fixture">3330634</a>. 
+      </p>
+      <p class="BlogTitle">Another Thought on Making Up Duplex Bearing Sets </p>
+      <p class="style1">It seems most of the time that preload is going to be 
+        specified as pounds. For example, NCCams claims that 150lbs for a pair 
+        (75 lbs each) is the proper minimum loading for angular contact bearings 
+        holding a ballscrew. I keep trying to envision how to go about getting 
+        the bearings ground for that sort of preload. I presented my load cell 
+        idea below, but here is another idea. </p>
+      <p class="style1">Let's build a little fixture that uses some Belleville 
+        washer springs to come up with 75 lbs of preload. I can get 40lb Belleville 
+        springs from <a href="http://www.mcmaster.com/">McMaster-Carr</a> very 
+        cheaply. These springs are 0.312&quot; in diameter, 0.025&quot; thick 
+        uncompressed, and they reach their desired load after 0.004&quot; of travel. 
+        So let's design a preload fixture:</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/BearingPreloader.jpg" width="1024" height="630"></p>
+      <p align="left" class="style1">The preloader works by applying compressing 
+        the Belleville washers (red) with a 1/4-20 socket head cap screw (blue) 
+        from the bottom. This compression is transferred by an anvil (green) that 
+        meets up with the bearing's inner races (bearing is purple) and forces 
+        them up by whatever amount the 75 lbs manages. Before use, the fixture 
+        is calibrated by placing the desired preload weight atop the anvil and 
+        screwing in the cap screw until the weight is just lifted up.</p>
+      <p align="left" class="style1">Once calibrated, a bearing is placed on the 
+        anvil, and the slotted top piece is bolted down onto the fixture to hold 
+        the outer races flat against the surface of the fixture. A small section 
+        of the bearing's inner races will protrude. The fixture with bearing needs 
+        to be run through a surface grinder until it &quot;sparks out&quot; against 
+        the outer races, indicating that the inner races are now flush despite 
+        the preload.</p>
+      <p align="left" class="style1">If the fixture were to be used a lot, various 
+        sizes of cap and top anvil could be made up to suit different bearing 
+        sizes. The only requirement is that the anvil not contact the area very 
+        much outside the inner races, and the cap be made to only hold down the 
+        outer races and provide access to the inners.</p>
+      <p align="left" class="style1">I designed this fixture to be largely made 
+        on the lathe because that's where I think most will get their greatest 
+        accuracy. For best precision it seems to me the top and bottom of the 
+        cap as well as the top and bottom of the fixture's main barrel should 
+        also be ground flat and parallel. The slot in the cap need not be precision, 
+        and can simply be milled out. </p>
+      <p align="left" class="style1"><b>Addendum (12/9/08)</b></p>
+      <p align="left" class="style1">Slocum's Precision Machine Design book describes 
+        <a href="http://tinyurl.com/6pd7uu">a method very similar to this</a> 
+        for grinding angular contact bearings for preload. </p>
+      <p class="BlogTitle">On the Matter of Cheap vs Expensive Angular Contact 
+        Bearings for Ballscrews and Spindles </p>
+      <p class="style1">Without ball bearings of various types, machine tools 
+        would be impossible. Their most critical applications involve ballscrew 
+        mounting and spindles. Unfortunately, these very same critical applications 
+        often call out for very expensive bearings that are out of reach for hobby 
+        class machine work. I have a confession to make:<strong> I harbor a deep 
+        resentment for those expensive &quot;machine tool quality&quot; angular 
+        contact bearings. </strong></p>
+      <p class="style1">It may be an unreasonable resentment from some perspectives. 
+        NCCams over on CNCZone will tell you all day long that you get what you 
+        pay for and you have to buy the most expensive bearings you can't afford, 
+        but my resentment leads me to wonder whether it is all really necessary. 
+        Yes, if I'm building a vertical machining center with micron accuracy 
+        that's capable of 600 ipm rapids, I'm sure they're necessary. NCCams has 
+        built a precision machine used to make camshafts for NASCAR winning seems, 
+        surely a very exacting application, and one that needed great bearings. 
+        But do I really need those costly bearings to do an <a href="CCMillBeltDrive.html">6K 
+        rpm spindle for a hobby mill</a>? Do I need them for a ballscrew bearing 
+        block on a machine I hope will be repeatable to a thousandth? I feel the 
+        resentment is reasonable for the hobby machines. Someone needs to speak 
+        for them! </p>
+      <p class="style1">There are tantalizing clues about this conundrum that 
+        I run across from time to time, and it always perks up my interest. Some 
+        examples:</p>
+      <p class="style1">- I am told by various sources that garden variety bearings 
+        of today are every bit as accurate as the machine tool quality bearings 
+        of the 40's and 50's.</p>
+      <p class="style1">- Many Asian-built machines such as the Tormach mills 
+        do not use ABEC7 bearings, they get by on lesser grades. </p>
+      <p class="style1">- See my blog post below &quot;When the wrong bearings&quot; 
+        wherein I explore the use of multiple deep groove bearings to achieve 
+        levels of stiffness comparable to angular contact bearings. I can't see 
+        why 4 of these dirt cheap bearings couldn't be made to perform like $400-600 
+        worth of expensive AC bearings. This article is also copied on the <a href="CCMillBeltDrive.html">belt 
+        drive page</a>. </p>
+      <p class="style1">- See my notes on the <a href="CCMillBeltDrive.html">belt 
+        drive page</a> about how to go about hand fitting unmatched bearing pairs 
+        to be preloaded duplex pairs. </p>
+      <p class="style1">- I constantly see examples where machinists are able 
+        to get superior performance from worn out or inferior machinery because 
+        they know the right tricks. Why can't that be true here too? </p>
+      <p class="style1">All of this will sound like a lot of sour grapes belly 
+        aching on costs and snake oil selling to those professionals who think 
+        nothing of just specing the expensive bearings designed to do the job. 
+        They may be right, but I have a sneaking suspicion there is more to it 
+        than this. Why might the professionals use expensive bearings if cheaper 
+        ones would do? I can think of several reasons.</p>
+      <p class="style1">First, look at it from the standpoint of manufacturing 
+        repeatability. Machine tools have to be warranted to certain performance 
+        levels despite variations in their construction and component parts. Tightening 
+        up the specs on the components makes it less likely the tolerances will 
+        stack up poorly and a machine will leave the line that isn't up to specs. 
+        The science of Six Sigmas and quality control will tell you it is cheaper 
+        to set up the manufacturing process to avoid these mistakes in the first 
+        place rather than find them after the machines are built and have to rework 
+        the out of spec machines. So the overall cost to mass produce a machine 
+        may be less while the individual cost of a single machine may be more.</p>
+      <p class="style1">Second, consider the warranty aspects and especially durability 
+        and wear considerations. An expensive machine tool sold for production 
+        business use will be expected to run tirelessly around the clock day after 
+        day in order to justify its cost. A hobby or light use machine need not 
+        be so durable in order to fulfill its purpose. Also, for many manufacturers, 
+        the warranty cost of a failure is very expensive to cure. The cost to 
+        an individual to fix their hobby machine themselves may be so much lower 
+        they're much more willing to risk it. I read somewhere on CNCZone of a 
+        fellow running a CNC router shop that uses hardware store routers and 
+        buys crates of bearings for them. He says it costs about $2.50 to replace 
+        each bearing and he gets 100 hours of continuous routing from a bearing. 
+        To him it is worth it to keep on replacing cheap bearings. To Haas, who 
+        sold you a very much more expensive gantry router and a warranty that 
+        causes them to have to send someone out to fix your bearings if they break, 
+        it isn't worth it.</p>
+      <p class="style1">Third, commercial machines have a radically different 
+        performance envelope than hobby machines. We kid ourselves we can do what 
+        they do, but we can't. We may be able to get a part made that is very 
+        close, but it will take us much longer to do it. We don't run nearly the 
+        rapids, we often run steppers instead of servos, cutting loads are probably 
+        much less, we are babying our cutters and our machines, while the pros 
+        are cranking out 110% on the spindle load meters and creating so many 
+        chips our little home shops would be buried in no time if we tried it 
+        (not to mention all the other problems!). What we really care about most 
+        in these hobby class machines is accuracy and repeatability, and not all 
+        that much of that. Maybe someday the cutting speeds and efficiencies will 
+        matter to us, but for now, we'd just like to get the parts made reliably 
+        to a thousandth or so. I submit that this is a far simpler requirement 
+        than what most of these high end expensive bearings are being designed 
+        to deliver, and that we can therefore get by on less. The level of accuracy 
+        and performance needed to cut precision cams to be used in zillion dollar 
+        NASCAR racing may be a touch more than what we really need to build tabletop 
+        steam engines. </p>
+      <p class="style1">Lastly, there is a labor intensiveness factor that matters 
+        more to the manufacturer and less to the hobbyist (or to the Asian manufacturer 
+        for that matter!). If I am a hobbyist, I can take the time needed to take 
+        two relatively unmatched angular contact bearings and grind them for a 
+        desired preload. I can then hand fit them to the shafts and bores they'll 
+        live in, lapping, honing, or using whatever means is necessary to achieve 
+        a good result. If an experiment of this kind is marginal or fails, I can 
+        always try again and perhaps do better the second time. Most of the investment 
+        I have in is just time. OTOH, if I am a manufacturer, unless my labor 
+        is extremely cheap, I want no part of that process. I will spend quite 
+        a bit of premium to buy a matched pair of preloaded AC bearings off the 
+        shelf so I don't have to mess with grinding them and trial and error. 
+        A really fancy set of these bearings is maybe $800. It takes surprisingly 
+        little shop time for someone to run up $800 of labor, and they may screw 
+        it up! If I just buy the bearings, they're guaranteed and someone else 
+        takes the risk for the screw ups. Hence I just buy the bearings if I'm 
+        a manufacturer. Things were not always this way. Bridgeport used to hand 
+        fit spindle bearings, for example. Not because it made a better mill, 
+        but because it was cheaper than buying more expensive bearings at the 
+        labor rates in those days. </p>
+      <p class="style1">This piece has been more of a rant than anything else, 
+        so I understand if you arent' convinced, but let me leave you with the 
+        anecdote I read this morning that set me off. <a href="http://www.practicalmachinist.com/ubb/ultimatebb.php/topic/30/4158.html">A 
+        fellow on PM was asking about ballscrew bearings for his Bridgeport Series 
+        I CNC</a>. He got on the phone to Bridgeport at the suggestion of one 
+        member, and was told that each axis would cost $650 to $875 just for the 
+        bearings. OUCH!!! He probably paid less than the cost of the 3 sets of 
+        bearings for the whole machine! </p>
+      <p class="style1">Along comes another member with the same machine who bought 
+        a cheap pair of unmatched AC bearings off eBay for $35. He got after them 
+        with a surface grinder to grind the inner races to create a preload condition, 
+        installed them on his machine, and measured 0.0008&quot; play while still 
+        being able to turn the ballscrew relatively freely (too much preload will 
+        make the screw stiff and there will be a tradeoff between less play and 
+        too much stiffness). Backlash of 0.0008&quot; would be fine for hobbyists 
+        wanting to machine with 0.001&quot; accuracy. The price is right and a 
+        small amount of labor delivered this happy ending. Would a manufacturer 
+        do it this way? They probably would in China, but not from one of the 
+        &quot;big name&quot; machine builders they wouldn't! </p>
+      <p class="BlogTitle">When the Wrong Bearings May Work for a Spindle or Ballscrew 
+        or, How You Can Make A Mill from a Drillpress </p>
+      <p class="style1">Any casual reader of CNCZone will eventually run across 
+        one of the famous bearing rants for either spindles or ballscrew mounting. 
+        Closely allied are the drill press mill rants. <a href="http://www.cnczone.com/forums/showthread.php?t=34883">Some 
+        noob will inquire with much enthusiasm how to go about converting the 
+        Asian drill press they just got for $39.95 into a CNC mill</a> capable 
+        of slicing through solid green kyrptonite at 300 ipm with an accuracy 
+        of 10 microns and the old hands will just come unglued at the absurdity 
+        of it all. While this can be entirely entertaining to watch, one does 
+        feel a bit like the beginners are receiving an initiation flogging they 
+        don't really deserve and are ill-equipped to understand. </p>
+      <p class="style1">The bearing question is similar. Someone wants to mount 
+        a ballscrew or spindle in &quot;ABEC7&quot; skate bearings that were purchased 
+        cheaply on eBay and the ranting from the old hands starts in again. <a href="http://www.cnczone.com/forums/showthread.php?t=20748&highlight=20tac47">Pretty 
+        soon the fur is flying and we're talking about the need for $800 20TAC47 
+        bearings</a> on an Asian mill that didn't cost that much more than that 
+        and everyone wonders how we got there. </p>
+      <p class="style1">What's funny is that every now and again, someone actually 
+        manages to do what the experts have said is impossible. For example, there 
+        is a Mech E professor that has built a <a href="http://www.pathcom.com/~vhchan/cnc/cnc.html">pretty 
+        nice little milling machine from a drill press</a>: </p>
+      <p align="center" class="style1"><img src="img/OthersProjects/cnc_drill_press.jpg" width="119" height="200" align="absmiddle"><span class="style7">+<img src="img/OthersProjects/cnc_milling_table.jpg" width="200" height="145" align="absmiddle">=</span><img src="img/OthersProjects/cnc_iso1.jpg" width="200" height="239" align="absmiddle"></p>
+      <p align="center" class="style1"><strong>You too can build a milling machine 
+        from a drill press...</strong></p>
+      <p align="left" class="style1">Someone commented that this design was a 
+        nightmare and the guy obviously didn't know what he was doing because 
+        he had installed 5 deep groove ball bearings and a single tapered bearing 
+        that was in backwards of all things. You just can't do that--it ain't 
+        right!</p>
+      <p align="left" class="style1">&quot;Hmmm,&quot; says I. When I hear that 
+        you can't do something, I kind of want to know why the guy did it anyway 
+        and how well it worked. It occured to me that perhaps this guy was clever 
+        like a fox. I sniffed around his site a bit more and learned he was a 
+        Professor of Mechanical Engineering with full Piled Higher and Deeper 
+        credentials. Now I am nto one who is intimidated by credentials having 
+        attended graduate school and met many of these sort of fellows. At the 
+        same time I do not immediately assume any PhD is an idiot either. This 
+        guy piled on 5 deep groove and 1 upside down tapered roller bearing for 
+        a reason, and it became my mission to figure it out.</p>
+      <p align="left" class="style1">It didn't take me too long to decide that 
+        maybe he was just stacking the bearings to make up for their inherent 
+        weaknesses. One often hears about stacking 3 or even 4 angular contact 
+        bearings to increase rigidity. So I dragged out my bearing catalogs and 
+        had a look at what this might mean.</p>
+      <p align="left" class="style1">From the NSK bearing catalog I found a nice 
+        comparison of the strengths of various kinds of bearings. We can see that 
+        deep groove bearings are primarily limited in that their load capacity 
+        is not as good as angular contact bearings:</p>
+      <h1>From the NSK Bearing Catalog:&nbsp; e1102c.pdf</h1>
+      <table border="1" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="148" valign="top"> 
+            <p align="center"><strong>Features</strong></p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center"><strong>Deep Groove Ball Bearings</strong></p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center"><strong>Angular Contact Ball Bearings</strong></p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center"><strong>Tapered Roller Bearings</strong></p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="148" valign="top"> 
+            <p><strong>Radial Load Capacity</strong></p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center">Fair</p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center">Good</p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center">Good</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="148" valign="top"> 
+            <p><strong>Axial Load Capacity</strong></p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center">Fair in Both Directions</p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center">Good in One Direction; Takes 2 bearings for 2 directions</p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center">Good in One Direction; Takes 2 bearings for 2 directions</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="148" valign="top"> 
+            <p><strong>High Speeds</strong></p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center">Excellent</p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center">Excellent</p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center">Fair</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="148" valign="top"> 
+            <p><strong>Accuracy</strong></p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center">Excellent:&nbsp; All tolerance classes available</p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center">Excellent:&nbsp; All tolerance classes available</p>
+          </td>
+          <td width="148" valign="top"> 
+            <p align="center">Good</p>
+          </td>
+        </tr>
+      </table>
+      <p align="left" class="style1">So I decided to try to set up a comparison 
+        of the radial and axial load capacities for similar sized bearings of 
+        different types. There are formulas in the NSK catalog that may be used 
+        to compute the load capacity of up to 4 stacked bearings:</p>
+      <ul>
+        <li>Double:&nbsp; 1.62x Radial, 2xAxial</li>
+        <li> Triple:&nbsp; 2.15xRadial, 3xAxial</li>
+        <li> Quadruple:&nbsp; 2.64xRadial, 4xAxial</li>
+      </ul>
+      <p align="left" class="style1">You can see that axial loads are additive 
+        but radial loads don't get 4x the value when you stack 4 bearings. In 
+        fact they aren't even 3x as strong radially when 4 bearings are stacked. 
+        That's going to be the weakpoint I suspect. The results are interesting. 
+      </p>
+      <p><strong>Multiple 6204&rsquo;s Back to Back</strong></p>
+      <p class="style1">6204's are standard deep groove ball bearings, typically 
+        considered wholly unsuitable for spindle and ballscrew use. You can buy 
+        plain vanilla 6204's for $7.69 apiece while ABEC7 quality 6204's are $77. 
+        Here's what you can get by stacking them: </p>
+      <table border="0" cellspacing="0" cellpadding="0" width="192">
+        <tr> 
+          <td width="64" nowrap valign="bottom"> 
+            <p>&nbsp;</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p>Radial</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p>Axial</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="64" nowrap valign="bottom"> 
+            <p>Single</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">12800</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">6600</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="64" nowrap valign="bottom"> 
+            <p>Double</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">20736</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">13200</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="64" nowrap valign="bottom"> 
+            <p>Triple</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">27520</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">19800</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="64" nowrap valign="bottom"> 
+            <p>Quadruple</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">33792</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">26400</p>
+          </td>
+        </tr>
+      </table>
+      <p align="left" class="style1">Consider that for the ballscrew application 
+        the load is going to be largely axial as we are trying to prevent the 
+        screw moving along its axis and introducing backlash. </p>
+      <p align="left" class="style1">So how do they compare to equivalent angular 
+        contact bearings?</p>
+      <p><strong>7204&rsquo;s</strong></p>
+      <p class="style1"> The plain vanilla angular contact equivalent of a 6204 
+        is simply a 7204. Your basic 7204 costs $23.88 so already we could have 
+        bought 3 6204's for the price of a single 7204 and for two 7204's we can 
+        surely stack up our 4 6204's. A matched duplex pair of ABEC7 7204's are 
+        a cool $200. </p>
+      <p class="style1">Here are the specs on stacked 7204's: </p>
+      <table border="0" cellspacing="0" cellpadding="0" width="192">
+        <tr> 
+          <td width="64" nowrap valign="bottom"> 
+            <p>&nbsp;</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p>Radial</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p>Axial</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="64" nowrap valign="bottom"> 
+            <p>Single</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">14500</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">8300</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="64" nowrap valign="bottom"> 
+            <p>Double</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">23490</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">16600</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="64" nowrap valign="bottom"> 
+            <p>Triple</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">31175</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">24900</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="64" nowrap valign="bottom"> 
+            <p>Quadruple</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">38280</p>
+          </td>
+          <td width="64" nowrap valign="bottom"> 
+            <p align="right">33200</p>
+          </td>
+        </tr>
+      </table>
+      <p align="left" class="style1">Guess what? The double AC bearing configuration 
+        is bested by a triple 6204 bearing arrangement! Now if we want ABEC7's, 
+        the duplex AC bearings are still a bit cheaper, but if we're fooling with 
+        more &quot;stock&quot; bearings, it seems like we can get a more rigid 
+        arrangement for less money using the deep groove bearings.</p>
+      <p align="left" class="style1">I'm sure it is probably not quite so easy, 
+        but it is certainly intriguing. It wouldn't cost much to build a test 
+        rig and see how well the deep grooves perform when stacked. Now I'm sure 
+        the bearing gurus are spinning up to full whirling dervish speed to jump 
+        all over this concept, but I remain unrepentant until I see someone hook 
+        them up and make them play.</p>
+      <p align="left" class="style1"><strong>What about the really expensive bearings?</strong></p>
+      <p align="left" class="style1">A duplex pair of the much vaunted 20TAC47B 
+        purpose-built for ballscrews angular contact bearings turns in an axial 
+        load value of 26,600N. That's better than 3 stacked 7204's! However, note 
+        that the quadruple 6204's begins to approach this value at 26,400N. Also 
+        note that 20TAC47B's cost $800 the pair. </p>
+      <p align="left" class="style1">Can 4 of these cheap bearings do ballscrew 
+        duty as well as the $800 TAC's? That's a scary thing to spring on the 
+        bearing gurus. </p>
+      <p align="left" class="style1">It remains to be seen, but I would sure love 
+        to try the experiment someday! </p>
+      <p class="BlogTitle">Variable Pitch Pulleys </p>
+      <p class="style1">I worry about the effective operating range of a belt 
+        driven spindle that has only one drive ratio. The differences in speeds 
+        when going from steel to aluminum are extremely large. While we can make 
+        the motor run slowly for steel with a VFD, it will lose a tremendous amount 
+        of torque in the process. For this reason, most machines have at least 
+        2 drive ratios. A low or back gear is used for cutting steel, while the 
+        high gear is used for aluminum and other materials requiring higher spindle 
+        rpms. One of the mechanisms used to effect these differing ratios is the 
+        classic cone pulley arrangement. This is painful because it requires a 
+        manual operation to swap the belt over to a different ratio. </p>
+      <p class="style1">A little better is a back gear arrangement, which could 
+        be done similar to the &quot;tumbler&quot; reverse arrangement that is 
+        so popular for lathes. If this is done, one would thing the ideal thing 
+        is to have the gears driven directly from the motor such that the output 
+        of the tumbler gears is either 1:1 the motor's speed or 1/2 the motor's 
+        speed. This would then be multiplied via belt pulleys to get to the desired 
+        maximum spindle rpm. For example, let's say we have a 1500 rpm motor and 
+        we want to run at a maximum of 8000 rpm on the spindle. This calls for 
+        a 5.3:1 pulley ratio driving the spindle. If the back gear runs the motor 
+        at 1/2 speed, we would have 2 ranges: 0 to 4000 rpm and 4000 to 8000 rpm. 
+        So even when we run the spindle at 100 rpm, our motor is running at 100/5.3 
+        * 2 or about 38 rpm. If the back gear had a 3:1 ratio, at 100 rpm we'd 
+        be running 56 rpm whereas at 8000 rpm we'd still be running 1500 rpm on 
+        our motor.</p>
+      <p class="style1">This is not bad, but back gears are going to be noisy, 
+        and we will have to fabricate a tumbler mechanism. Another approach to 
+        consider is a variable pitch pulley. In this arrangement, the pulley sheave 
+        is constructed of two halves that can separate and allow the belt to move 
+        in and out to various diameters. It's a really flexible system found in 
+        a lot of &quot;pro&quot; machine tools. Here is the variable pitch pulley 
+        still attached to the motor for a Bridgeport 2J head:</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/BridgeVariPulley.jpg" width="375" height="500"></p>
+      <p align="center" class="style1"><strong>Bridgeport Variable Pitch Pulley... 
+        </strong></p>
+      <p align="left" class="style1">And a couple of other pictures of the Bridgeport 
+        variable disc assembly:</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/VariDisc1.jpg" width="500" height="375"> 
+        <img src="img/MillStuff/BeltDrive/VariDisc2.jpg" width="500" height="375"></p>
+      <p align="center" class="style1"><strong>Bridgeport variable disc...</strong></p>
+      <p align="left" class="style1">These pieces almost look simple enough to 
+        build from scratch. My main issue with that is I don't understand them 
+        well enough to be sure my design would work well or to debug it if it 
+        didn't. I am probably better off to try to acquire one. </p>
+      <p class="style1">Variable pitch pulleys are available commercially from 
+        places like <a href="http://www.lovejoy-inc.com/variablespeeddrives.htm">Lovejoy</a>, 
+        but they do not look cheap. Interestingly, they are also available from 
+        the go kart industry where they're referred to as &quot;<a href="http://www.gokartsupply.com/asymapp.htm">torque 
+        converters</a>&quot; and are much cheaper. The go kart variety cost circa 
+        $60 to 70 for a 3-5 HP capable pulley system capable of giving a 3:1 range. 
+        One difference is that the go kart system changes its ratio based on the 
+        speed the motor is turning at using a centrifigul weight system. I don't 
+        know that you'd want that in a machine tool (although you might), but 
+        it seems like it ought to be possible to replace the centrifigul mechanism 
+        with a manually adjustable system. </p>
+      <p class="style1">For comparison a Bridgeport has a back gear and a vari-speed 
+        (variable pitch pulley) system. The back gear delivers 2 speed ranges: 
+        60 to 500 rpm and 500 rpm to 4200 rpm. From this, we can see that the 
+        back gear has a range of 500/60 = 8.3:1--quite a stout back gear ratio! 
+        The vari-speed system provides a further 8:1 variability range. Meanwhile, 
+        because this was all done mechanically, the motor is free to run at all 
+        times at its designed rpm, ensuring that maximum power is being delivered 
+        to the spindle. </p>
+      <p class="style1">By contrast, most VFD based systems are going to produce 
+        less power as the spindle slows down almost in direct proportion to how 
+        slowly the spindle is run. So the 8:1 range offered by the vari-speed 
+        system on the Bridgie means a reduction to 1/8th the power because the 
+        motor is running so slowly at the lower speeds. With the capability of 
+        maintaining the power supplied by the motor at constant levels due to 
+        infinitely variable pulley ratios, it is no wonder the Bridgeports and 
+        other commerical mills can outperform simpler amateur designs! A VFD can 
+        do a little better than this. According to a <a href="http://www.reliance.com/pdf/drives/whitepapers/D7161.pdf">white 
+        paper by Reliance Electric</a>, they can hold constant horsepower over 
+        a 2:1 speed range. If you have the cash for a fancy vector drive, you 
+        can expand that ratio to 4:1, which is why the big VMC makers like Haas 
+        use vector drives to run their spindles. </p>
+      <p class="style1">If we add a go kart torque converter to our VFD only system, 
+        it has a 3:1 range. Let's say that rather than running from say 100 to 
+        3000 rpm on the motor, this lets us run the motor at 300 to 3000 rpm. 
+        At the bottom end we're getting 3x as much torque as the VFD-only system. 
+        That seems a decent improvement. Of course the Bridgeport is generating 
+        8x as much power at the lower end of its range, and the ranges are chosen 
+        to be an 8x spread of rpm for that reason so that the motor always delivers 
+        full power. For our example, 300 to 3000 rpm is a 10:1 range that the 
+        VFD has to span. Better than the original 30:1 range, but it means we 
+        may be looking at 1/10th the power at the bottom end. The trouble is the 
+        low end may be precisely where we want more power because we're cutting 
+        some really tough material.</p>
+      <p class="style1">Let's say we add a Hi/Lo back gear system to our go kart 
+        vari-speed system. Further, let's say we're doing so for a 100 to 8000 
+        rpm spindle range, such as we're trying to design for this belt driven 
+        mill head. We have a motor that runs at 3000 rpm. With a 3:1 vari-speed, 
+        if we want to keep the Bridgeport ideal of max motor power throughout 
+        the range, we can allow a 3x variation. So, the top gear would run 2600 
+        rpm to 8000 rpm, and the bottom gear would run 888 to 2600 rpm. Our back 
+        gear would be a matching 3:1 ratio. If we want to run more slowly than 
+        888 rpm in low gear, we're looking at running the range down further than 
+        the vari-speed can compensate for with the VFD. 100 = 1/8th, so we have 
+        1/8th the horsepower available at the slowest speed. Given the VFD allows 
+        a 2:1 range, we may have more like 1/4 the horsepower. If we tried to 
+        cover that whole range without a back gear or vari-speed, we would be 
+        looking at 100/8000 = 1/80th the horsepower at the lowest speed! </p>
+      <p class="style1">One issue that is going to develop from use of a vari-speed 
+        system is getting Mach 3 to understand what speed the spindle is really 
+        moving at. Imagine a system that mates a go kart &quot;torque converter&quot; 
+        to a VFD equipped motor. Let's leave the centrifigul feature in place 
+        so that the torque multiplication at lower rpms is automatic. One wonders 
+        how repeatable speeds will be. Mach is built without a closed loop to 
+        a spindle tachometer, so the assumption is that response to a given Mach 
+        3 voltage level will always produce the same rpm. There is a provision 
+        for a &quot;pulley&quot; setting to allow Mach 3 to take back gears and 
+        the like into account, but this is discrete and not continuously variable. 
+      </p>
+      <p class="style1">This concept needs more thought and research, but some 
+        sort of back gearing mechanism or variable speed pulley seems a must for 
+        this project. </p>
+      <p class="BlogTitle">How Warm Should Spindle Bearings Run? </p>
+      <p class="style1">The answer is at their design temperature, of course, 
+        but since we are designing this spindle, it is worth looking around to 
+        see what other spindles are recommended to run at. Below are some references, 
+        but it looks like one should shoot for a range of 100 to 140 degrees F. 
+        Keep in mind that we want to avoid a thermal runaway situation where the 
+        heat expands the spindle, which creates more friction, more heat, more 
+        expansion, etc., etc.</p>
+      <ul class="style1">
+        <li><a href="http://www.elettromeccanicagcolombo.com/guida_tecnica_en.htm">Colombo 
+          electric spindles are designed to run at 100 to 140 degrees F as measured 
+          at the bearing support.</a> </li>
+        <li><a href="http://pergatory.mit.edu/2.75/2_75 Lectures/PMD Topic 7 Mapping errors.pdf">A 
+          CNC lathe spindle runs at 80 to 85 degrees F in this research paper</a>. 
+        </li>
+        <li><a href="http://www.setcousa.com/index.cfm?fuseaction=home.download&folder_file_id=9240C1C6-9D68-4EFF-6EABCEC7DEECD2EB">Setco 
+          spindles may operate at up to 140 degrees F as measured at the bearings.</a> 
+        </li>
+        <li><a href="http://www.excelgear.com/spindles.html">Excel Gear's spindles 
+          are designed to run with the bearings at 110 degrees F or less.</a> 
+        </li>
+        <li>The Fafnir Superprecision Machine Tool Bearing catalog suggests that 
+          with optimal design, bearings running synthetic low friction grease 
+          ought to be able to run about 20 degrees C over ambient or about 40 
+          degrees F. In fact, they suggest a proper break-in procedure involves 
+          running the spindle until it reaches 150 degrees F, turning it off to 
+          cool, and repeating the cycle until the spindle stabilizes at 130 degrees 
+          F or lower operating temp. The ideal equilibrium operating temperature 
+          is 95 to 115 degrees F. Maximum temperatures should not exceed 170 degrees 
+          F. Timken's published specs for tapered roller bearings, including bearing 
+          life specs, assume an operating temperature of 130 degrees F. </li>
+      </ul>
+      <p class="BlogTitle">Belt Speeder Design Sketch </p>
+      <p class="style1">Below is a sketch of what <a href="http://www.cnczone.com/forums/showthread.php?p=245048#post245048">Barry 
+        Ward called a &quot;belt speeder&quot;</a>:</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/BeltSpeederSketch.jpg" width="1024" height="714"></p>
+      <p align="center" class="style1"><strong>A belt speeder...</strong></p>
+      <p align="left" class="style1">The belt speeder is designed to plug into 
+        your existing R8 taper and clamp around the quill. Internally, it uses 
+        timing belts and pulleys to multiply the speed of the spindle. A compact 
+        spindle cartridge to the right contains another R8 taper which will now 
+        be travelling at 2.5x whatever the main spindle is doing. You could define 
+        the timing pulleys to create larger ratios if desired. I just did a quick 
+        sketch after hearing Barry mention it to get an idea of what one might 
+        be like. </p>
+      <p align="left" class="style1">Some of my thoughts about this setup:</p>
+      <p align="left" class="style1">- I'm not real happy with how bulky it seems. 
+        This makes me wonder about rigidity. Serious thought would need to be 
+        given to getting it well clamped to the mill.</p>
+      <p align="left" class="style1">- The offset allows access to a short drawbar 
+        for the new taper from the top. If I were to build one of these, I'd want 
+        a power drawbar arrangement there, I've sworn off hand wrenching drawbars 
+        for life since <a href="CCMillDrawbar.html">building my power drawbar</a>!</p>
+      <p align="left" class="style1">- Since the spindle cartridge is so short, 
+        it may be possible to build it with just 2 angular contact bearings (one 
+        at either end). Need to consider thermal expansion when doing so.</p>
+      <p align="left" class="style1">In the end of the day, I am still convinced 
+        a new mill head is the best bet for me, but for a lot of other folks, 
+        a removable spindle speeder may be a nicer idea. Certainly if you have 
+        a big mill like Barry's Shizuoka CNC mill, it's probably hard to consider 
+        building a new head for it. </p>
+      <p align="left" class="style1">One other thing that goes through my head 
+        is whether a planetary gear arrangement couldn't be built. I have purchased 
+        on eBay a 4x spindle speeder to look at (it was cheap):</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/YuasaSpeeder.jpg" width="400" height="300"></p>
+      <p align="center" class="style1"><strong>Yuasa Spindle Speeder</strong></p>
+      <p align="left" class="style1">My thought is whether one couldn't use the 
+        planetary gearset from an automatic transmission to do this job. They 
+        are available very cheaply from many sources, including eBay. In fact, 
+        I purchased a set to build a fancy collet chuck (another project I still 
+        haven't gotten to!):</p>
+      <p align="center" class="style1"><i><b><img src="img/OthersProjects/Tools/5CChuck6.jpg" width="483" height="362"></b></i></p>
+      <p align="center" class="style1"><strong>Collet chuck with planetary gears 
+        from an automatic transmission...</strong></p>
+      <p align="left" class="style1">For more on the chuck, <a href="CCBlogJune2006.htm">see 
+        the appropriate blog pages and search for &quot;5C&quot;</a>.</p>
+      <p class="BlogTitle">Bearing Speed Factor (dN) and Bearing Lubrication = 
+        Oil Mist or Oil Lubrication </p>
+      <p class="style1">Bearing speed factor is calculated as follows:</p>
+      <p class="style1">dN = N x (ID + OD) / 2 where N = spindle rpm, ID = bearing 
+        inner diameter, and OD = bearing outer diameter.</p>
+      <p class="style1">So, for the example of this spindle, we're looking at 
+        7207 bearings and 8000 rpm, so we get a dN value of:</p>
+      <p class="style1">8000 x (35 + 72) / 2 = 428,000</p>
+      <p class="style1">What does this tell us? It gives us an idea of what kind 
+        of lubrication we need to consider. Assuming we get the preload correct 
+        for the bearings, we must still get the lubrication right or the bearings 
+        will overheat and fail. If we are even marginally off on preload, we're 
+        going to need some safety margin on the lubrication front as well, so 
+        we don't want to flirt with the theoretical maximums. </p>
+      <p class="style1">The theoretical maximum for grease lubricated AC bearings 
+        is a dN of 850,000. However, if we <a href="http://www.mmsonline.com/articles/hsm9802.html">consult 
+        the literature from Barden bearing</a>, we will see that this requires 
+        a pretty specialized grease to achieve, and that more typical values for 
+        dN are 400,000 to 600,000. My conclusion looking at that information is 
+        that we ought to consider oil mist lubrication for this spindle project. 
+        It has a theoretical limit of 1,500,000 dN, which seems like it gives 
+        a much better margin for error. Oil misters are inexpensive and readily 
+        available, so it seems like it would be straightforward to add oil mist 
+        cooling to a cartridge spindle such as the one we are contemplating here. 
+        Below is a graph showing spindle speed versus bearing speed factor for 
+        the 7202 bearings that will be used for this spindle project. </p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/BearingSpeedGraph.jpg" width="705" height="502"></p>
+      <p align="center" class="style1"><strong>Bearing Speed Factor for 7207 AC 
+        Bearings Showing Grease vs Oil Lubrication Regimes </strong></p>
+      <p class="style1">It is interesting to note that your basic modern CNC milling 
+        machine spindle, such as a Haas, typically uses oil mist lubrication. 
+        I don't know if I will go to the trouble of an oil mist or not, but it 
+        seems worth considering at least. What's needed is to test the spindle 
+        and monitor temperatures and preloads. If they do okay, there is no need 
+        for the added complexity. If they are marginal, its worth looking into. 
+        The other thought is that it is easy to see why 8000 rpm is a difficult 
+        number for this project as it sits right on the cusp. 6500 rpm or 7000 
+        rpm (if you are feeling luck) would be a slam dunk for greased bearings. 
+        And that's just where a lot of commercial knee mills wind up. </p>
+      <p class="style1">HuFlungDung, who has rebuilt the spindle on his Haas VF3, 
+        mentioned that the oil mist system on the Haas is dead simple:</p>
+      <blockquote> 
+        <p class="style1">&quot;FWIW, when I overhauled my Haas spindle cartridge, 
+          which has oil mist, I was expecting some kind of high faluting thingy 
+          inside for the oil mist, but it is dead simple. Basically, the air/oil 
+          line feeds into a sintered bronze filter above the top bearing. That 
+          is it! No special passages, no nothing, just gravity Air comes out the 
+          bottom of the spindle around a close fitting labyrinth end cap. The 
+          oil volume required is very low.&quot;</p>
+      </blockquote>
+      <p class="BlogTitle">Thoughts About Preload and Duplex Bearings </p>
+      <p class="style1">Anyone researching the problem of building a spindle quickly 
+        discovers that the majority of cost and difficulty has to do with the 
+        bearings. Quality spindles benefit from angular contact bearings fitted 
+        in opposing configurations that maximize their axial and radial stiffness 
+        while providing as little turning resistance (and likely heating) as possible 
+        in the desired operating envelope. The traditional commercial approach 
+        to the problem is to fit two or more angular contact bearings to the spindle 
+        in matched duplex configuration and to use extremely accurate ABEC7 bearings. 
+        This is where the cost enters the equation. There is a high premium paid 
+        for the ABEC7 accuracy, as well as a high cost paid for the duplex pairs 
+        versus just buying two bearings. The reason is that both require additional 
+        manufacturing cost, and also limit the applicability of the bearings so 
+        there are fewer available in the surplus markets. One does scare up the 
+        odd bargain, but it can't be counted on.</p>
+      <p class="style1">It has seemed to me that I can dispense with ABEC7. The 
+        difference in precision between ABEC7 and the next lower grade, which 
+        is ABEC5, is only 0.2 ten thousands of an inch of runout. For any concievable 
+        HSM project, this is not a meaningful difference, provided the rest of 
+        the operating parameters such as desired RPM range can be met by the lower 
+        precision bearings.</p>
+      <p class="style1">What's more difficult is the requirement for duplex bearings. 
+        Duplexing is the process of modifying a set of bearings by grinding the 
+        edge of either the inner and outer races so that when the bearings are 
+        butted up against one another, there is a precise gap. When the gap is 
+        eliminated, it results in a precise amount of preload being applied in 
+        a very controlled way to the interior of the bearings. This is simple, 
+        repeatable, and performs very well in commercial applications, but these 
+        matched pairs are much more expensive than individual angular contact 
+        bearings that do not have to be matched. With individual bearings, one 
+        can create the preload either using springs, or by fabricating a spacer 
+        that forces just the inner (or outer) races apart by an amount that is 
+        similar to the result of the duplex machining operation. </p>
+      <p class="style1">I will leave the spring approach aside as I have doubts 
+        about its stability for a spindle application like this, but I will also 
+        readily admit it needs more research. The problem with the spacer approach 
+        is twofold. First, that spacer has to be accurately machined to very tight 
+        tolerances measured in tenths. Typically they would be ground, though 
+        it is possible also to do most of the work on a lathe. In any event, achieving 
+        these tolerances is hard in a home shop. Second, one does not know what 
+        the thickness of the spacer or shim needs to be to generate the optimal 
+        preload. </p>
+      <p class="style1">My thought on determining the right shim thickness for 
+        a given preload would be to create a special load cell that simulates 
+        the bearing application and use that load cell to measure the effective 
+        preload as various shim thicknesses are experimented with. For a DB configuration, 
+        which is most desireable for a spindle (its the stiffest), the inner rings 
+        would be ground. This is simulated by shimming the outer ring. Now the 
+        load cell has to measure the amount of force needed to bring the inner 
+        rings into contact for a given amount of shim between the outer rings. 
+        The load cell preload testing rig looks like this:</p>
+      <p align="center" class="style1"><img src="img/CADDrawings/NMTB30/PreloadLoadCell.jpg" width="705" height="800"></p>
+      <p align="center" class="style1"><strong>Load Cell Testing Rig for Bearing 
+        Preload...</strong></p>
+      <p align="left" class="style1">The load cell (Red), is a simple cylinder 
+        filled with mineral oil and equipped with a pressure gauge. The piston 
+        has a little tool (Light Blue) attached to it that bears against the bearing 
+        inner race (Dark Blue) while a similar tool bears against the second bearing's 
+        inner race. The two bearings are installed in a model spindle (Purple), 
+        complete with shaft, and are separated by a precision spacer. The outer 
+        races are held by another piece of tooling (Gray/White) as well as by 
+        their press fit in the model spindle. </p>
+      <p align="left" class="style1">To use the test rig, stand it up in an arbor 
+        press and apply force to the top inner race tool. Force could also be 
+        applied using weights or by tightening a screw. It should be possible 
+        to increase this force until the inner races of the two bearings are tight 
+        against one another. Since force is applied to the top bearing, no load 
+        will register on the lower bearing until the two races are in contact. 
+        At that point, further increases in force are passed through, so we need 
+        to look for the minimum force that will register on the test rig, and 
+        this will be the preload that is generated by the spacer between the bearings. 
+        A thinner spacer will result in less preload, while a thicker spacer results 
+        in more preload. It will be necessary to follow a test regimen that involves 
+        several spacers being tested until the appropriate preload is achieved. 
+        Unfortunately, we need to work our way from thinner to thicker spacers, 
+        which will necessitate making more than one spacer in order to perform 
+        the tests. In this way, it should be possible to create a desired preload 
+        by substituting some labor in this testing and in the creation of spacers 
+        for the purchase of more expensive duplex bearings. </p>
+      <p align="left" class="style1">I note from a <a href="http://www.cnczone.com/forums/showthread.php?t=31832">CNCZone 
+        thread</a> that Misumi will sell you a custom bearing spacer for $7.00. 
+        I'd like to know more about the specs and tolerances, but that might be 
+        just the ticket to preload bearings. </p>
+      <p class="BlogTitle">Fitting the Bearings </p>
+      <p class="style1">Fitting bearings is a ticklish business, both from the 
+        standpoint of the levels of accuracy required (measured in 10ths or 1/10,000 
+        of an inch) and from the standpoint that the bearing is delicate, and 
+        the application of too much force while installing can ruin it, while 
+        too little force on the preload limits the accuracy and performance of 
+        the spindle.</p>
+      <p class="style1">Let's start by determining how much precision is required. 
+        I consulted the Fafnir Super Precision Bearing catalog as a good source 
+        for this kind of information. The tolerances on the 2MM series of bearings 
+        in the '07 size we are concerned with are as follows for ABEC-7:</p>
+      <p class="style1">- ID Bore: +0.0000&quot; / -0.00025&quot;</p>
+      <p class="style1">- OD: +0.0000&quot; / -0.0003&quot;</p>
+      <p class="style1">- Seat Width: +0.0000&quot; / -0.0047&quot;</p>
+      <p class="style1">- OD Square With Side: +0.0000&quot; / -0.00025&quot; 
+      </p>
+      <p class="style1">- Recommended Shaft Diameter: 1.3778&quot; to 1.3780&quot;</p>
+      <p class="style1">- Housing Bore Diameter: 2.1654&quot; to 2.1657&quot; 
+        (fixed end), 2.1659&quot; to 2.1657&quot; (floating end) </p>
+      <p class="style1">Clearly we're talking just a couple of tenths of tolerances 
+        here!</p>
+      <p class="style1">I had read on 5Bears site of <a href="http://www.5bears.com/cnc16.htm">some 
+        techniques which looked like one approach for an HSM</a> to achieve such 
+        tolerances. One must take into account that Swede (who runs the site) 
+        is an exceptional machinist, and that he is doing the work on a Hardinge 
+        lathe (or clone), which was designed for precision from the start. Nevertheless, 
+        I intend to give these techniques a try. What's lacking at present is 
+        sufficient time spend improving my HSS tool grinding skills to get the 
+        geometry that Sweded recommends for a fine shaving cutting tool:</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Tools/5BearsSecretTool1.jpg" width="216" height="211"> 
+        <img src="img/OthersProjects/Tools/5BearsSecretTool2.jpg" width="288" height="253"></p>
+      <p align="center" class="style1">5Bears tool for making very fine cuts in 
+        steel... </p>
+      <p align="left" class="style1">Swede comments that you can make cuts no 
+        greater than 0.004&quot; with the tool, but that by using your compound 
+        at an angle for infeed you can cut as little as 0.0002&quot; or less! 
+        That would be handy for sneaking up on tight dimensions.</p>
+      <p class="style1"><a href="http://www.practicalmachinist.com/ubb/ultimatebb.php/topic/1/28023.html">Forrest 
+        Addy has suggested in various posts that a Sunnen-style hone may be the 
+        best bet for precision work like this in an HSM's shop</a>. Forrest says 
+        he takes the bore to within a thousandth and then uses a hone to finish 
+        it the rest of the way. References include:</p>
+      <p class="style1">- <a href="http://www.practicalmachinist.com/ubb/ultimatebb.php/topic/1/28023.html">Zumba's 
+        PM thread on buying a lathe suitable for bearing bores</a></p>
+      <p class="style1">- <a href="http://www.practicalmachinist.com/ubb/ultimatebb.php/topic/1/28023.html">HSM 
+        thread on adding a tenths DTI to a boring head for close work</a></p>
+      <p class="style1">- <a href="http://www.practicalmachinist.com/ubb/ultimatebb.php/topic/1/28023.html">HSM 
+        thread on reaming deep holes </a></p>
+      <p class="style1">If one were going to do a lot of this kind of work, purchase 
+        of a used Sunnen honing machine might make good sense. <a href="http://sunnen.net/product.jsp?id=83&par=56">Looking 
+        at Sunnen's site, they are only promising 0.0005&quot; tolerance with 
+        a portable hone</a>, which is about twice what we are really looking for 
+        here. Since most folks aren't going to have a full on Sunnen hone, the 
+        alternative is lapping or using a brake cylinder or Flex-Hone to do the 
+        final tune up. Flex-Hones are also referred to as &quot;chicken pluckers&quot; 
+        or ball hones. I ordered one in the appropriate size (they cover about 
+        a 1/4&quot; range) for the OD of my 7207 bearings off eBay for $35:</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/FlexHone.jpg" width="200" height="200"> 
+      </p>
+      <p align="center" class="style1"><strong>Flex-hones are useful for fine 
+        tuning and fine finish of bearing bores... </strong></p>
+      <p class="style1">I have also heard of <a href="http://www.practicalmachinist.com/ubb/ultimatebb.php/topic/13/4683.html">using 
+        reamers in floating holders (works great, but not sure about the 3&quot; 
+        size for these kind of bearings!) as well as using a special roller burnishing 
+        tool. </a>The latter seems worth more investigation. If one wants to ream, 
+        Forrest Addy suggests boring to 0.005&quot; undersize at least for the 
+        first part of the hole before applying the reamer. </p>
+      <p class="style1"><span class="BlogTitle">Accurately Checking the Spindle 
+        Measurements </span></p>
+      <p class="style1">Another question that arises is how to measure one's progress 
+        to tenths while performing these machining operations? For the shaft OD, 
+        a micrometer would certainly suffice. I'm a bit more concerned about miking 
+        the bearing bore with any accuracy. It seems like one of the three point 
+        Intrimik bore mikes would be the ticket, albeit an expensive ticket at 
+        that. Something else to look out for on eBay! The trouble with three point 
+        mikes is that they can't measure out of roundness--the error is spread 
+        over the three points. </p>
+      <p class="style1">For that reason, the crowd 
+        over on Practical Machinist</a> (not to mention Widgitmaster on CNCZone) 
+        seem to feel a dial bore gage is in many ways a better bet than the Intrimik. 
+        Forrest Addy, in another PM thread, concurs</a>. Forrest also suggest you will 
+        need to lap them to final size and finish to get reliable results. If 
+        you can obtain a dial bore gage with sufficient sensitivity, I think this 
+        is the way to go. The PM crowd also favor the Mitutoyo dial bore gages, 
+        but feel Sunnen have the best, albeit at great cost. Still others argue 
+        that Standard makes the best bore gages. Enco has the Fowler digital bore 
+        gages on sale as I write this for under $200. I am seriously tempted to 
+        order one to cover this base:</p>
+      <p align="center" class="style1"><img src="img/MillStuff/BeltDrive/FowlerBore.jpg" width="250" height="290"></p>
+      <p align="center" class="style1"><strong>Fowler digital bore gage w/ ring 
+        gage for calibration... </strong></p>
+      <p class="style1">Your dial bore gage has to be calibrated for maximum accuracy 
+        as you are using it. The recommendation there is to calibrate it with 
+        gage blocks. You stack them to get to the measurement you are looking 
+        for, but a top and bottom on the stack, and then measure that distance 
+        with the dial bore gage. The last comment I will make on this is that 
+        NSK suggests a dial bore gage be used to check fits in their Super Precision 
+        Machine Tool Bearing Catalog. They note that it is important to check 
+        that the temperature of the components all be the same, an important tip 
+        when measuring to tenths! </p>
+      <p class="style1">Another interesting alternative is the use of pin gages. 
+        <a href="http://www.myvirtualnetwork.com/mklotz/">Marv Klotz has a piece 
+        of software called &quot;PLUG&quot; that will figure how to use 3 pins 
+        to measure 1 larger hole</a>. Evan amplifies on this by saying he makes 
+        special plug gages. They taper 0.001&quot; per inch and he just measures 
+        how far they will go in and then use a little math to figure the hole 
+        size. </p>
+      <p class="style1">In a pinch, telescoping gages with a micrometer are probably 
+        the cheapest method, and a lot of the machinists swear by them. Forrest 
+        Addy suggests the following technique:</p>
+      <blockquote> 
+        <p class="style1">As for measuring bores to close tolarences I reccommend 
+          telescope gages. They are self aligning. Insert the tool in the bore, 
+          adjsut it a trifle oversize and snug the clamp, and sweep the handle 
+          through a radial plane until the gage pops loose. One sweep and you're 
+          done. Takes a couple of seconds. Quickly mike the gage without &quot;mashing 
+          the reading&quot; between spindle and anvil. You should be able to hold 
+          0.0002&quot; consistancy in size. Be careful of heat. If the bore seems 
+          to be getting a trifle smaller with subsequent checks, chances are your 
+          mike is picking up heat from your hands, expanding, and making your 
+          appear reading small. </p>
+      </blockquote>
+      <p class="style1">HuFlungDung adds the following useful hint with telescoping 
+        gages: </p>
+      <blockquote> 
+        <p class="style1">Hint for using telescoping guages: oil the ends of the 
+          gage, or oil the bore before sweeping the gage through. Part of the 
+          skill is learning how tight to adjust the clamp so it will yield enough 
+          to let the gage tips move in without excessive force.</p>
+      </blockquote>
+      <p class="style1">&nbsp;</p>
+      <p class="BlogTitle">Mounting the Spindle Cartridge </p>
+      <p class="style1">Commercial units, such as the <a href="http://www.setcousa.com/files/files/S-0001-2 ProMetrix-HS.pdf">Setco 
+        belt drive cartridge spindles</a>, are typically mounted using a flange 
+        and machined cylindrical surfaces. Adding a flange either requires completely 
+        boring solid stock or welding a flange to the DOM tubing and machining 
+        both back to trueness. Another approach also found in Setco's line is 
+        a rectangular block for the cartridge. This still requires considerable 
+        machining effort. The likely material for such a block would be aluminum, 
+        although Setco uses gray iron, which is also a possibility. Either a flange 
+        or rectangular block simplifies the task of mounting the spindle cartridge 
+        to the case considerably. </p>
+      <p class="style1">For what it's worth, the Setco cartridge spindles run 
+        with two angular contact bearings up front and two roller bearings in 
+        back. The angular contact bearings are duplex but are not in contact, 
+        and are separated from one another by an inch or two, and are run in a 
+        &quot;DB&quot; (back to back) orientation, not &quot;DF&quot;. They offer 
+        an optional 3 bearing nose system for even more rigidity. The design accomodates 
+        swap in of the additional bearing simply by installing a new, shorter 
+        spacer between the original two, which creates a DT-DB combination. Yet 
+        another swap also a quad DT-DB combination to be installed for even higher 
+        performance. </p>
+      <p class="style1">Their F040-030M model is an NMTB #30 taper spindle cartridge. 
+      </p>
+      <p class="BlogTitle">Mill Head Sketches </p>
+      <p class="style1">Here are some quick sketches in Rhino 3D of the mill head. 
+        It is based on a 3 bearing design, with the duplex ABEC 7 <a href="http://bearingsdirect.com/products/index.php?action=item&id=292&prevaction=category&previd=4&prevstart=25">7207CTDULP4</a>'s 
+        at the bottom and an ABEC 3 7206 BEP at top. I really think the duplexed 
+        bearings that surround the toolholder will add tremendous rigidity. This 
+        design is based on a couple of off-the-shelf timing pulleys, and on the 
+        Leeson 192074 motor upgrade that Aaron recommends and that is sitting 
+        in my garage as we speak. Based on a top speed of 3000 rpm from that motor, 
+        and the 2.4:1 ratio'd set of pulleys, this yields a top spindle speed 
+        of 7200 rpm, which is right what I am shooting at. McMaster Carr also 
+        lists one larger pulley size, and these sketches will accomodate that 
+        pulley as well. If one uses such a pulley, a spindle speed of 9000 rpm 
+        would be generated at the top end. That seemed a bit much for me, but 
+        the pulley is not that expensive to order and experiment with.</p>
+      <p class="style1">There is a lot that is not considered by the sketches. 
+        For example, how do you go about changing the timing belts or adjusting 
+        their tension? The exact mechanism by which the cartridge spindle is clamped 
+        in place and aligned for precision and rigidity is not detailed here. 
+        I'm wondering if a split clamp arrangement like what one finds on engine 
+        crankshaft bearings wouldn't work. Yet another issue is how the bearings 
+        will be protected from swarf and coolant. This is not detailed. One thought 
+        I have is whether to feed compressed air to the spindle cartridge. This 
+        would have two benefits. First, there is a cooling benefit. Second, it 
+        would provide a positive pressure system that would help blow swarf back 
+        out of the spindle. Ideally it would be arranged so the air only flows 
+        while the motor is running, by using a solenoid valve in the air line. 
+        Cosmetics could be greatly improved with judicious chamfering and rounding 
+        of edges, and I have not specified fasteners at all. I need to make sure 
+        there is the potential for thermal expansion without damaging the bearings. 
+        The list goes on. It's a sketch, not a finished design! </p>
+      <p class="style1">Materials are pretty straightforward. The spindle cartridge 
+        is 3 1/2&quot; OD x 5/8&quot; wall thickness steel DOM tubing. I've checked 
+        and it can be machined to the specs desired for the bearings. The rest 
+        of the mill head is made from 1&quot; aluminum plate. Ideally one should 
+        do a Finite Elements Analysis to optimize and quantify the design. Perhaps 
+        someone on one of the web sites will offer to take a 3D model from me 
+        and perform that analysis. It is tempting to fill the big chamber behind 
+        the spindle cartridge with concrete in order to further dampen any vibration 
+        in the head. With all of the aluminum, it seems unlikely this will make 
+        the head much heavier than the stock gear drive head. </p>
+      <p class="style1">One last thought is that the IH spindle clearly protrudes 
+        considerably above the top of the head. This is due to elimination of 
+        a quill. It would be my thought to cut this off and fit a shortened drawbar 
+        with power changer up there. </p>
+      <p class="style1">On the face of it, this does not look like all that difficult 
+        a project, although it must be completed with some precision. Here are 
+        the sketches:</p>
+      <p align="center" class="style1"><img src="img/CADDrawings/NMTB30/MillHeadGhost.jpg" width="471" height="800"></p>
+      <p align="center" class="style1"><strong>Overall transparent view of the 
+        head...</strong></p>
+      <p align="center" class="style3"><img src="img/CADDrawings/NMTB30/MillHeadGhost2.jpg" width="800" height="796"></p>
+      <p align="center" class="style3"><img src="img/CADDrawings/NMTB30/MillHeadCartPullMot.jpg" width="800" height="696"></p>
+      <p align="center" class="style3">The Spindle Cartridge, Timing Pulleys, 
+        and Motor...</p>
+      <p align="center" class="style3"><img src="img/CADDrawings/NMTB30/MillHeadSpindCart.jpg" width="800" height="536"></p>
+      <p align="center" class="style3">Some Detail on the Spindle Cartridge... 
+      </p>
+      <p class="BlogTitle">Souping Up This Spindle With Duplex AC Bearings </p>
+      <p class="style1">Aaron called out 2 bearings to mount the spindle in the 
+        IH mill as designed, a 7206 BEP at top and a 7207 BEP at bottom. A duplex 
+        pair of 7207's at the bottom would really increase the rigidity of this 
+        spindle setup, although not cheaply. It looks like there is enough bearing 
+        area on these spindles to accomodate a duplex pair, although I would need 
+        to measure it to be sure. One source for such a pair in ABEC 7 accuracy 
+        (very good!) is <a href="http://bearingsdirect.com/products/index.php?action=item&id=292&prevaction=category&previd=4&prevstart=25">Bearings 
+        Direct, which will sell a matched pair of 7207CTDULP4 for $347.89.</a> 
+        This would provide a significant step up in rigidity for this mill. Given 
+        that I plan on machining a new head to house the spindle, it would be 
+        straightforward to make provision for a duplex pair. It's mighty tempting, 
+        I have to say! </p>
+      <p class="style1">I was reading another <a href="http://www.cnczone.com/forums/showthread.php?t=10695&page=6">thread 
+        on spindle design on CNCZone</a> and Mike Aber opined that having looked 
+        at 3 different Asian mills, they were all using deep groove ball bearings 
+        and not angular contact bearings. He chose to use that as an excuse to 
+        save the cost of the expensive AC bearings. I choose to look at it as 
+        reason to believe the performance with a nice set of bearings could be 
+        a lot better than the old mill head. </p>
+      <p class="BlogTitle">New #30 Taper Mill Spindle Came Today!</p>
+      <p class="style1">I got the spindle from Industrial Hobbies and the bearings 
+        from McMaster-Carr. Nice combo. The finish on the spindle is nicer than 
+        what IH pictures on their web site. Now I'm champing at the bit to turn 
+        it into a mill head! Just have to wait until I finish my other projects 
+        though. I need to research carefully how the bearings needed to be fitted 
+        to both the spindle and the bores in the mill head I will fabricate. The 
+        bearings are SKF's, a 7206 and 7207 angular contacts. Their specs indicate 
+        a pretty high speed is possible, so hopefully my goal of 6000-8000 rpm 
+        will be doable. I should think so in this application which is pretty 
+        lightweight. </p>
+      <p class="style1">Building the mill head will largely be a matter of fabricating 
+        a box. I need to build a box that will properly house the spindle, bolt 
+        to the existing dovetail assembly that the current head bolts to, and 
+        that will be nice and rigid. I'm thinking of making it out of some pretty 
+        substantial aluminum, perhaps some 1&quot; thick stock or even thicker 
+        at top and bottom. I'm thinking of aluminum because it doesn't have the 
+        problem of internal stresses moving it after it is machined, so it will 
+        stay true. While I'm at it, I think I'll set up this head so it gets trammed 
+        in once, and then stays put. There's no need to have a swivel head on 
+        a CNC machine, as well as no need for a quill which just reduces the accuracy 
+        and rigidity of the head anyway. </p>
+      <p class="style1">By taking this approach, I also avoid having to turn down 
+        the shaft of my larger motor to fit the IH gearhead. I can just specify 
+        a pulley for the timing belt that fits the motor as is. </p>
+      <p class="BlogTitle">NMTB 30 Spindle for the IH Mill! </p>
+      <p class="style1"><a href="http://www.industrialhobbies.com/">Industrial 
+        Hobbies is having a going out of business sale</a>, and one of the things 
+        they are offering is an ISO 30 or NMTB 30 spindle for the <a href="CCMillHome.html">IH 
+        Mill</a>. At $65, how could I resist? This is a better spindle taper than 
+        the classic Bridgeport R8, and is really the preferred taper for building 
+        a toolchanger for this mill. Aaron also recommended a set of angular contact 
+        bearings from McMaster-Carr that cost another $100, so I ordered those 
+        too. What I'd really like to do is take these goodies and create a belt 
+        driven head for my mill that's capable of higher rpm's than the current 
+        geared head. The more rpm's the merrier so far as I am concerned. I can 
+        always use a VFD to cut down on the rpm's if need be.</p>
+      <p class="style1">Anyway, this will be one of those very long term projects. 
+        I had to act now to get my hands on one as they were in limited supply 
+        and he is going out of business. We'll see what comes of it.</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/spindle30taper.jpg" width="300" height="109"></p>
+      <p align="center" class="style1"><img src="img/OthersProjects/spindle_nose30taper.jpg" width="300" height="275"></p>
+      <p align="center" class="style1"><img src="img/OthersProjects/tool_holder30taper.jpg" width="300" height="507"></p>
+      <p align="center" class="style1"><img src="img/CADDrawings/NMTB30/NMTB30R8Comp.jpg" width="800" height="609"></p>
+      <p align="center" class="style1"><strong>NMTB 30 vs R8 Comparison of Scale... 
+        </strong></p>
+      <p class="BlogTitle">NMTB 30 Spindle for the IH Mill! </p>
+      <p class="style1"><a href="http://www.industrialhobbies.com/">Industrial 
+        Hobbies is having a going out of business sale</a>, and one of the things 
+        they are offering is an ISO 30 or NMTB 30 spindle for the <a href="CCMillHome.html">IH 
+        Mill</a>. At $65, how could I resist? This is a better spindle taper than 
+        the classic Bridgeport R8, and is really the preferred taper for building 
+        a toolchanger for this mill. Aaron also recommended a set of angular contact 
+        bearings from McMaster-Carr that cost another $100, so I ordered those 
+        too. What I'd really like to do is take these goodies and create a b</p>
+      <p class="BlogTitle">Spindle Related Links </p>
+      <p align="center" class="BlogTitle"><img src="img/OthersProjects/h3ndrixSpindle.gif" width="760" height="611"></p>
+      <p align="center" class="style1"><a href="http://www.cnczone.com/forums/showthread.php?t=16975"><strong>h3ndrix 
+        Spindle Project: Smaller than a 30 taper, designed for 10K-20K rpm...</strong></a></p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Kara_koottuna1.jpg" width="1024" height="768"></p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Kara_koottuna1Drawing.jpg" width="985" height="485"></p>
+      <p align="center" class="style1"><a href="http://www.diy600.net/"><strong>Finnish 
+        Spindle Project: 30 Taper...</strong></a></p>
+      <p align="left" class="style1">- <a href="http://www.practicalmachinist.com/cgi-bin/ubbcgi/ultimatebb.cgi?ubb=get_topic;f=1;t=018413;p=0"><strong>Forrest 
+        Addy writes about AC bearings and milling machine spindles</strong></a>. 
+      </p>
+      <p class="BlogTitle"><a href="CCMillBeltDrive2.html">Part 2: Construction 
+        Plan</a></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

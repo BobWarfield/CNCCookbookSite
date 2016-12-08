@@ -1,0 +1,975 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPageNoSlide.dwt" --><!-- DW6 -->
+
+<head>
+
+<!-- #BeginEditable "doctitle" --> 
+<title>GWizard: A CNC Machinist's Calculator for Feeds and Speeds</title>
+<meta name="description" content="Want the latest feeds and speeds technology?  Times have changed with HSM, new coatings, new geometries and new techniques.  Try the software that thousands of machinists from over 500 companies have found offers the latest technology.">
+
+<meta name="keywords" content="cnc,cnc programming,g-code,machining,machinist,cnc editor,cnc editing,cncedit,computer numerical control,NC,nc,nc editor,machine shop,metric conversions,trigonometry,speeds and feed,bolt circles">
+
+<style type="text/css">
+
+.style2 {
+	font-size: 28px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #795352;
+}
+.style3 {color: #339933}
+.style4 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style5 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+	color: #000;
+}
+.style31 {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.Title2 {
+	font-size: 24pt;
+	color: #339933;
+}
+SignupTitle {
+}
+.style51 {font-family: Arial, Helvetica, sans-serif}
+.style31 div a {
+}
+PrivacyNotice {
+}
+privacynotice2 {
+}
+.privacynotice3 {
+}
+.FormBkgd {
+}
+.Title2 strong {
+}
+.style5 {
+	color: #FFF;
+}
+.style52 {	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+}
+.style52 {	font-weight: bold;
+}
+.style511 {font-family: Arial, Helvetica, sans-serif;
+color:#FFF}
+.style53 {	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+}
+.green_button{
+	width:214px;
+	height:54px;
+	background:url(GWizard/StartFreeTrial.png) no-repeat;
+	color:#00BF30;
+	font-size:0%;
+	font-weight:bold;
+	border:none;
+	margin-top:10px;
+}
+.style6 {font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+	color: #FFF;
+}
+.style53 {
+}
+.WhiteOnBlack {
+}
+
+</style>
+
+<!-- Google Website Optimizer Tracking Script -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['gwo._setAccount', 'UA-1060932-4']);
+  _gaq.push(['gwo._trackPageview', '/3987847993/test']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- End of Google Website Optimizer Tracking Script -->
+
+
+
+<script type="text/javascript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script> 
+
+<script type="text/javascript">
+
+// <![CDATA[
+
+function registerUserSuccess(data) {
+    var response = data;
+    if (typeof(response.status) == 'number' &&
+       response.status == 0 &&
+	typeof(response.email) == 'string' &&
+	typeof(response.provision) == 'string') {
+	var email = response.email;
+	var provision = response.provision;
+	//
+	// cookie saving disabled for now
+	//
+	//$.cookie("cnccookbook_register_email", email);
+	//$.cookie("cnccookbook_register_provision", provision);
+    }
+
+    var formName = "joinform"; 
+    var theForm = document.forms[formName];
+    theForm.onsubmit = "return true";
+    document.forms[formName]._submit(); 
+}
+
+function registerUser(userNameVal, emailVal, provisionVal) {
+    var serverHost = "http://184.72.62.67";
+    var urlParams = "&user_name=" + encodeURIComponent(userNameVal) + 
+                   "&user_email=" + encodeURIComponent(emailVal) +
+                   "&provision=" + encodeURIComponent(provisionVal);
+    jQuery.getJSON(serverHost + "/api/v2/register_trial?callback=?" + urlParams,
+		  registerUserSuccess);
+ }
+
+function registerSubmit() {
+    HTMLFormElement.prototype._submit = HTMLFormElement.prototype.submit;
+    var userNameVal = $('#name-field')[0].value;
+    var emailVal = $('#email-field')[0].value;
+    if (typeof(userNameVal) != 'undefined' &&
+	userNameVal.length > 0 &&
+	typeof(emailVal) != 'undefined' &&
+	emailVal.length > 0) {
+	registerUser(userNameVal, emailVal, "GWC");
+    } else {
+	alert('Name and email fields must have valid values');
+    }
+
+    return false;
+}
+
+// ]]>
+
+</script>
+
+<!-- Google Code for VIsitedGWHomePage Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1027617985;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "AhpNCNOnxQIQwemA6gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1027617985/?label=AhpNCNOnxQIQwemA6gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- #EndEditable -->
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="file:///D|/My%20WebSites/Templates/img/CNCFavIcon.ico" />
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+<style type="text/css">
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 14pt}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.Tagline {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #0;
+	font-size: medium;
+	vertical-align: middle;
+}
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" />
+
+<!-- Kissmetrics tracking snippet -->
+<script type="text/javascript">var _kmq = _kmq || [];
+var _kmk = _kmk || '2b958799075c725d4ce95572a0b6e967ecafd184';
+function _kms(u){
+  setTimeout(function(){
+    var d = document, f = d.getElementsByTagName('script')[0],
+    s = d.createElement('script');
+    s.type = 'text/javascript'; s.async = true; s.src = u;
+    f.parentNode.insertBefore(s, f);
+  }, 1);
+}
+_kms('//i.kissmetrics.com/i.js');
+_kms('//scripts.kissmetrics.com/' + _kmk + '.2.js');
+</script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" />
+<style type="text/css">
+.BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">
+  multitouch();
+</script>
+
+<!-- SumoMe Listbuilder Email Exit Intent -->
+<script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr></tr>
+<tr>
+  <td height="68" colspan="4" valign="middle" bordercolor="0" class="Tagline">
+  
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/LogoBitmap30High.jpg" alt="CNCCookbook: Software and Information for Macihnists" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="32" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+  
+  </td>
+</tr>
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0"><table width="65%"  border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><div align="center">
+        <p><a href="http://www.cnccookbook.com/CCGWizard.html"><img src="img/Ads/GWAd05152011.gif" width="120" height="90" alt="G-Wizard Machinist's Calculator" longdesc="http://www.cnccookbook.com/CCGWizard.html"></a></p>
+        <p><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm"> <img src="img/Ads/FeedsSpeedsAd.jpg" width="120" height="69" alt="Feeds and Speeds Cookbook"></a></p>
+      </div></td>
+    </tr>
+  </table>
+    <!-- #BeginEditable "PageNav" -->
+      <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="CCGWizLite.html">G-Wizard Lite:<br>
+        For Hobbyists
+      </a></font></b>      </p>
+      <p align="center">&nbsp;</p>
+	  <p align="center"><a href="CCManufacturers.html" class="BodyText"><strong>Customers</strong></a><br>
+      </p>
+<p align="center"><strong><a href="CCPartners.html">Partners</a></strong></p>
+      <p align="center">&nbsp;</p>
+      <p align="center"><strong><a href="FeedSpeedsCalculator/CCGWizard.html">Pricing &amp; FAQ</a></strong>    </p>
+    <!-- #EndEditable -->
+    <p>
+  <!-- Place this tag where you want the +1 button to render -->
+  <p>
+  <g:plusone></g:plusone>
+  </p>
+ </p>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    gaTrack: true,
+    gaId: 'UA-1060932-2'
+  }, 'google_translate_element');
+}
+  </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</p>
+</td>
+</tr>
+<tr>
+  <td width="10" bgcolor="#f0f0f0" ></td>
+  <td width="1200" colspan="7" align="left" valign="top" bgcolor="#FFFFFF">
+  <div id="centerContainer">
+  <!-- #BeginEditable "Body" -->
+    <table width="100%" border="0">
+      <tr>
+        <td width="47%" bgcolor="#000000"><p align="center"><font color="#ffffff" size="+4"><strong>Want the Latest Feeds and Speeds Technology?</strong></font></p>
+          <p align="center"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style5">Times Have Changed. HSM, new coatings, new geometries, new techniques.</font></p>
+          <p align="center"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style5">Thousands of machinists from over 500 companies have used G-Wizard to save time. </font></p>
+          <p align="center"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style5">Get Some New Technology for Your Shop.</font></p>
+          <p align="center"><div align="center"><a href="http://www.cnccookbook.com/GWSignup.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></div><br>
+          </p></td>
+        <td width="53%" bgcolor="#000000"><div align="center"><img src="img/CNCCookbook/Biz/Ads/OldSchoolLathe.jpg" width="500" height="400" alt="old school lathe"></div></td>
+      </tr>
+    </table>
+    <table width="100%" border="0">
+      <tr>
+          <td colspan="4"><div align="center" class="Title2"></div></td>
+        </tr>
+        <tr>
+          <td height="59" colspan="4" bgcolor="#e9f1f5"><div align="center" class="style2"><strong>Powerful for Experts, Simple for Beginners</strong></div></td>
+          </tr>
+        <tr>
+          <td width="2%" height="59" valign="top"><div align="right"><img src="img/GWizard/bullet-arrow-green_original.png" alt="" width="32" height="26"></div></td>
+          <td width="44%" class="style31"><p align="left"><strong>Get Better  Feeds and Speeds With Less Effort<br>
+          </strong>Chip Thinning, Ballnose Compensation, HSM, Drilling, Turning, Milling, Tool Engagement Angle, Materials DB, Micro-Milling, and More.  Maximize Material Removal Rates (MRR).</p>
+          <p align="right">&nbsp;&nbsp;&nbsp;&nbsp;</p></td>
+          <td colspan="2" rowspan="5" align="center" valign="top" bgcolor="#e8e8e8"><table width="100%" border="0">
+            <tr>
+                <td bgcolor="#000000"><p align="center">&nbsp;</p>
+                  <p align="center"><a href="CCGWizardFeatPrice.html"><img src="GWizard/Thumbs/CutOptimizer.jpg" alt="" width="256" height="196"></a> <a href="CCGWizardFeatPrice.html">&nbsp;<img src="GWizard/Thumbs/Geometry.jpg" alt="" width="256" height="196"></a><a href="CCGWizardFeatPrice.html"> &nbsp;<img src="GWizard/Thumbs/QuickRef.jpg" alt="" width="256" height="196"></a></p>
+                  <p>&nbsp; </p>
+                  <p align="center" class="style53"><span class="style53"><span class="style5">Subscriptions Include  G-Wizard Lite Free<span class="style6"><img src="img/CNCCookbook/NewOnBlack.png" alt="" width="48" height="41"></span></span></span></p>
+                  <p align="center" class="style511">Perfect for smaller machines and home shops.</p>
+                  <p align="center" class="style511">All the features of G-Wizard, but limited to maximum of 1 HP / 735W cuts.</p>
+                <p align="center" class="style511"><a href="CCGWizLite.html"><img src="img/CNCCookbook/Biz/MoreInformation.png" width="234" height="45" alt="More Information"></a></p></td>
+              </tr>
+            </table>
+            <p align="center"><strong>Our Guarantee</strong></p>
+<p align="center">After purchase, if you're not completely satisfied, tell us within 30 days for a full refund.</p></td>
+        </tr>
+        <tr>
+          <td height="39" valign="top"><div align="right"><img src="img/GWizard/bullet-arrow-green_original.png" alt="" width="32" height="26"></div></td>
+          <td><div align="right" class="style31">
+            <p align="left"><strong>Improve Surface Finish, Accuracy, and Tool Life with Cut Optimizer<br>
+            </strong>Cut Optimizer chooses stepover and level depths for pocketing and profiling that minimize deflection to improve surface finish, increase tool life, and produce more accurate cuts.<strong>&nbsp;&nbsp;</strong> &nbsp;</p>
+            <p align="left">&nbsp;</p>
+          </div></td>
+        </tr>
+        <tr>
+          <td height="42" valign="top"><div align="right"><img src="img/GWizard/bullet-arrow-green_original.png" alt="" width="32" height="26"></div></td>
+          <td class="style31"><div align="right">
+            <p align="left" class="style31"><strong>Capture  Best Practices With the Feeds &amp; Speeds Knowledge Base<br>
+            </strong>Knowledge-Based Machining via Cut KB gives you a custom feeds and speeds database, online access to Manufacturer's recommended surface speed and chipload, data import/export, and integration API's for other software.</p>
+            <p align="right">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          </div></td>
+        </tr>
+        <tr>
+          <td height="42" valign="top"><div align="right"><img src="img/GWizard/bullet-arrow-green_original.png" alt="" width="32" height="26"></div></td>
+          <td class="style31"><div align="right">
+            <p align="left" class="style31"><strong>Save Time Figuring Shop Geometry Problems</strong><br>
+              Trig, chamfers, countersinking, dovetails, tapers, bolt circles, and circle chords</p>
+            <p align="right">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          </div></td>
+        </tr>
+        <tr>
+          <td height="44" valign="top"><div align="right"><img src="img/GWizard/bullet-arrow-green_original.png" alt="" width="32" height="26"></div></td>
+          <td valign="top" class="style31"><div align="right">
+            <p align="left"><strong>Find Important Quick Reference Information Quickly</strong><br>
+              Fasteners, Threads, G-Codes, Weights and Volumes, and Thermal Expansion at your fingertips</p>
+</div></td>
+        </tr>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="4" bgcolor="#000000"><div align="center"><span class="Title2"><strong>What the Machinists Using G-Wizard Say</strong></span></div></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#000000"><p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">Your product already paid for itself the first time I used it.</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">G-Wizard does a better job than lots of packages including OneCNC and Mastercam. </font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">I installed the Gwizard, Its a cool tool! </font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">Great job!&nbsp;This is the all in one kind of solution that I was looking for.&nbsp;</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">That is one slick looking program. </font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">Thanks &amp; keep up the good work.</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">It looks great. I like the layout and it's pretty easy to navigate.&nbsp;Again, great job.</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">Thanks for the nice tool!&nbsp;This is handy to say the least.</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">Looks like this is exactly the program I've been looking for!</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">I used a similar program but yours has more options, and overall a better look!</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">Nice application, great work!</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">Wow this thing is TOO COOL!&nbsp;It's a really really slick program</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51"> You've literally taken all the annoying little calculations and figured them out from every single angle, just brilliant.&nbsp;</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">Every time I run your app, I find something new. </font></p></td>
+          <td colspan="2" bgcolor="#000000"><p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">Awesome tool Bob.</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">Wow! This is really quite a piece of work you&rsquo;ve accomplished. Kudos!</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">I&rsquo;m truly impressed with your software. Keep up the great work!</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">Bob, thanks for the software i really like it!!</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">Very nice package, sure make speeds and feeds much easier.&nbsp;</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">I love what you have done, it has been a good resource for me.</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">G-Wizard is indispensable, I'll be following its progress.</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">G-Wizard is great!&nbsp;</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">I just surfed thru some of the pages and all I can say is FANTASTIC.&nbsp;Thanks again for all the hard work.</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51"> It is the single most useful thing I have added to my shop since the mill! I go to G-wizard first for all the feeds, speeds, tapping info and I also used the geometry page!</font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">It will be a valuable asset for many shops. </font></p>
+            <p align="left"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style51">The program is very nice, and will be a real boon, to both beginners and experienced folk.&nbsp;</font></p></td>
+        </tr>
+      </table>
+      <table width="100%" border="0">
+        <tr>
+          <td width="25%" height="46" bgcolor="#e9f1f5">&nbsp;</td>
+          <td width="1%" height="46" bgcolor="#e9f1f5"><p>&nbsp;</p></td>
+          <td width="84%" height="46" bgcolor="#e9f1f5"><p align="right"><span class="style2">Improve Your Feeds and Speeds Today!</span></p>
+            <p align="right" class="style31">Join the G-Wizard 30-day trial, no credit card required.</p></td>
+          <td width="14%" bgcolor="#e9f1f5"><div align="center"><a href="http://www.cnccookbook.com/GWSignup.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></div></td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="15" bgcolor="#CCCCCC"><div align="center">
+            <p class="style52"><strong><strong>Feeds and Speeds</strong></strong></p>
+            <p class="style52">Calculator</p>
+            <p><strong><a href="CCGWizardFeatPrice.html"><img src="GWizard/Thumbs/FeedsSpeeds.jpg" alt="" width="256" height="199"></a></strong></p>
+          </div></td>
+          <td width="84%" colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><p align="left"><font face="Arial, Helvetica, sans-serif" class="TblText"><a href="GWCalcFeedsSpeeds.htm"></a></font><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="" width="32" height="31"><span class="style511">Compensation for </span><span style="color: #FFF">r</span><span class="style511">adial chip 
+            thinning, lead angle, depth of cut, v-bits, and ballnosed cutters.</span></font></p></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>&quot;Gas Pedal&quot; slider specifies how conservative or aggressive to make the cut. Emphasize surface finish and tool life or material removal rate.</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Chatter calculator identifies optimal spindle rpm ranges to minimize chatter.</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>HSM Feeds and Speeds + Tool Engagement Angle Calculator</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31">Deep hole drilling recommendations 
+            including support for parabolic drills, when to peck, and when to drill a pilot hole.</font></span></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31">Reamer hole size recommendations.  RA and RMS surface finish (scallop height) calculator for turning and ballnose endmills.</font></span></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31">Conventional vs Climb 
+            milling recommendations.  Endmill plunge rate and plunge milling feeds and speeds.</font></span></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31">Micro-cutter Feed and 
+            Speed compensation for cutters less than 1/16&quot; in diameter.</font></span></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Compensation for small machines (Rigidity compensation).</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Integrated with the Tool Crib and Machine Profiles. Customize for your tools and machine HP, spindle rpm, and feedrates.</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Integrated with G-Wizard G-Code Editor.  Calculate feeds and speeds and directly output g-codes. </span></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Tooling: End mills, turning tools, indexable, face mill, reamers, spot drills, twist drills, gun drills, spade drills, spot drills, slitting saws, woodruff cutters, v-bit engravers, and taps</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Material Database: Aluminum, Steel, Stainless, Titanium, Plastics, &amp; Wood, Alloys and Material Conditions</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="9" bgcolor="#CCCCCC"><div align="center">
+            <p class="style52"><strong> Cut Optimizer</strong></p>
+            <p><a href="CCGWizardFeatPrice.html"><img src="GWizard/Thumbs/CutOptimizer.jpg" alt="" width="256" height="196"></a></p>
+          </div></td>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><strong><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Optimize Speeds and Feeds Using G-Wizard's Cut Optimizer</strong></span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Optimize your depth and width of cut</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Optimize stepover and level depth when pocketing and profiling</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Analyze Tool Deflection</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Optimize tool stickout from the holder</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Minimize deflection to increase accuracy and improve surface finish</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Settings for roughing and finishing</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC"><span class="style511"><a href="GWCutOptimizer.html"></a></span></td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="10" bgcolor="#CCCCCC"><div align="center">
+            <p class="style52"><strong>Knowledge-Based<br>
+            </strong><strong>Machining</strong></p>
+            <p><a href="CCGWizardFeatPrice.html"><img src="img/GWizard/GWCutKBThumb.jpg" alt="" width="256" height="211"></a></p>
+          </div></td>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><div align="center">
+            <p align="left" class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Cut Knowledge Base (Cut KB) documents and improves your shop's Best Practices</p>
+          </div></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Capture a running feeds and speeds database of your different cuts</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Categorize by cut type: Peripheral, pocket, 3D contour, helical, and more</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Rate cuts by overall stars, finish, cutter wear, and chatter</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Create tool tables with the Tool Crib</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Import or download manufacturer's recommended surface speeds and chiploads from our Cloud Knowledge Base</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Import and Export Cut KB and Tool Tables via Excel and other Spreadsheets</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Coming soon: CAM software integration!</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="12" bgcolor="#CCCCCC"><div align="center">
+            <p><span class="style52"><strong>Helical Interpolation<br>
+            </strong></span><span class="style52"><strong>and Ramping</strong></span></p>
+            <p><a href="CCGWizardFeatPrice.html"><img src="img/GWizard/GWInterpMCThumb.jpg" alt="" width="256" height="226"></a></p>
+          </div></td>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC"><p>&nbsp;</p></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Figure how much to slow down due to geometry, plunge, and accuracy.</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Determine your machine's acceleration capabilities based on interpolation accuracy.</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><div align="left"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Adjust circular and helical interpolations to increase interpolated hole accuracy.</span></div></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><div align="left"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Save time and tool changes by making accurate interpolated holes instead of drilling.</span></div></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="10" bgcolor="#CCCCCC"><div align="center">
+            <p><span class="style52"><strong>Geometry Calculators</strong></span></p>
+            <p><a href="CCGWizardFeatPrice.html"><img src="GWizard/Thumbs/Geometry.jpg" alt="" width="256" height="196"></a></p>
+          </div></td>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Right and Oblique Triangles</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31">Bolt circles</font></span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31">Dovetails</font></span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31">Tapers</font></span><span style="color: #FFF"><font face="Arial, Helvetica, sans-serif">: Custom or Standard Taper sizes (e.g. MT, JT, Brown &amp; Sharpe, etc.)</font></span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31">Chamfers w/ Center Drill, Spot Drill</font></span><span style="color: #FFF"><font face="Arial, Helvetica, sans-serif">, Twist Drill, or Countersink</font></span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31">Chords</font></span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31">True Position for Geometric Dimensioning and Tolerancing</font></span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Even a Turner's Cube Calculator!</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td height="225" colspan="2" rowspan="8" bgcolor="#CCCCCC"><div align="center">
+            <p class="style52">Thread Reference</p>
+            <p><a href="CCGWizardFeatPrice.html"><img src="GWizard/Thumbs/Threads.jpg" alt="" width="256" height="196"></a></p>
+          </div></td>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><div align="center">
+            <p align="left" class="style511"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Unified, ISO Metric, and NPT Pipe Threads</p>
+          </div></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Dimensions Shown on Drawings</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Internal and External Threads</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Tapping with  Cutting and Form Taps</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Tapping Drill Sizes with % of Thread</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="11" bgcolor="#CCCCCC" class="style52"><div align="center">
+            <p>Quick Reference Tables</p>
+            <p><a href="CCGWizardFeatPrice.html"><img src="GWizard/Thumbs/QuickRef.jpg" alt="" width="256" height="196"></a></p>
+          </div></td>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Drill Index</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Socket Head and Flat Head Cap Screws</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Weights, Volumes, and Costs based on Material and Shape</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Standard Fabrication Sizes (e.g. I-Beam in W8x28)</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>G and M-Code Reference for CNC'ers</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Hardness Conversion Charts</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Rigidity Calculator to Compare Rigidity of Different Tooling</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Electrical  Calculator: Ohm's Law, Resistor Color Codes, etc.</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Thermal Expansion Calculator</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td height="228" colspan="2" rowspan="9" bgcolor="#CCCCCC" class="style52"><div align="center">
+            <p>Customizable</p>
+            <p><a href="CCGWizardFeatPrice.html"><img src="GWizard/Thumbs/Setup.jpg" alt="" width="256" height="196"></a></p>
+          </div></td>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><div align="center">
+            <p align="left" class="style31"><span class="style511"><strong><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font></strong>Setup Customizes G-Wizard for Your Machines and Tooling:</span></p>
+          </div></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Create Machine Profiles</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Imperial and Metric Units Throughout G-Wizard</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Create custom Tool Cribs for machines, tool changers, tool carts, and other tooling inventory.</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Create or Import Manufacturer's and Custom Data</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" rowspan="9" bgcolor="#CCCCCC" class="style52"><div align="center">
+            <p>Scientific Calculator</p>
+            <p><a href="CCGWizardFeatPrice.html"><img src="GWizard/Thumbs/Calculator.jpg" alt="" width="256" height="199"></a></p>
+          </div></td>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><strong><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font></strong>Full Featured Scientific Calculator</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Fractions</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Trig functions</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Unit conversions</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Angles in degrees, radians, or degrees/minutes/seconds</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Round to Thousandths or Tenths</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#666666"><span class="style511"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Biz/check.png" alt="check" width="32" height="31"></font>Taper per inch and Taper per foot</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="middle" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td height="46" bgcolor="#e9f1f5">&nbsp;</td>
+          <td height="46" bgcolor="#e9f1f5"><p>&nbsp;</p></td>
+          <td height="46" bgcolor="#e9f1f5"><p align="right"><span class="style2">Improve Your Feeds and Speeds Today!</span></p>
+            <p align="right" class="style31">Join the G-Wizard 30-day trial, no credit card required.</p></td>
+          <td bgcolor="#e9f1f5"><div align="center"><a href="http://www.cnccookbook.com/GWSignup.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></div></td>
+        </tr>
+        <tr>
+          <td width="25%" colspan="2">&nbsp;</td>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+      </table>
+      <p><span class="style31">G-Wizard works on PC's, Macs, and Linux machines.  It requires an Internet connection once every 2 weeks. Detailed System Requirements available <a href="GWTrouble.htm">here</a>, but for most people it just works.</span> </p>
+    <!-- #EndEditable -->
+  </div>
+</tr>
+<tr>
+  <td bgcolor="#f0f0f0" >&nbsp;</td>
+  <td bgcolor="#f0f0f0" >&nbsp;</td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html"></a></strong><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p class="BodyText1">&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong> </p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a> </p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> </p>
+    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></p></td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+    </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+    <p class="BodyText1">&nbsp;&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"><strong></strong></p>
+    <p class="BodyText"></p>
+    <p>&nbsp;</p></td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Cookbooks</a></strong> </p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a> </p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a></p>    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong></p></td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+    <p class="BodyText1">&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+    </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a></p>
+    <p><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> </p>
+    <p class="BodyText">&nbsp;</p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p></td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>    <p class="BodyText">&nbsp;</p></td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText">&nbsp;</p></td>
+  <td valign="top" bgcolor="#f0f0f0" >&nbsp;</td>
+  </tr>
+<tr>
+  <td width="146" bgcolor="#f0f0f0" >&nbsp;</td>
+  <td width="10" bgcolor="#f0f0f0" >&nbsp;</td>
+  <td colspan="7" bgcolor="#f0f0f0" ><div align="left">
+    <table width="100%" border="0">
+      <tr>
+        <td><strong><!-- Place this tag where you want the badge to render -->
+<a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;"/></a></strong></td>
+        <td><div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a></div></td>
+      </tr>
+    </table>
+  </div></td>
+</tr>
+</table>
+</body>
+
+<!-- #EndTemplate --></html>
+

@@ -1,0 +1,1455 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNC Cookbook: Blog posts for Dec 2008 thru Jan 2009</title>
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.style4 {color: #FFFFFF}
+.style6 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+.style7 {font-size: 36px}
+.style10 {font-size: 24px}
+.style11 {font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" --> 
+      <hr>
+      <p align="center"><span class="PageNav"><b><font size="+2">Blog Archives</font></b></span></p>
+      <p class="style1" align="center"><a href="CCBlogIndex.htm"><strong>Index</strong></a></p>
+      <p class="style1" align="center"><b><a href="index.htm">Current</a></b></p>
+      <p>&nbsp;</p>
+      <p class="style1">&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p><font size="+2" face="Arial, Helvetica, sans-serif" color="#339933"><b>December 
+      2008 Through January 2009 CNC Blog Archive</b></font></p>
+      <p align="center" class="style11"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="img/GWizard/GWScreenRow.jpg" alt="" width="1024" height="238"></a></p>
+      <p align="center" class="style11"><span class="style12"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+      <p align="center" class="style11"><a href="FeedSpeedsCalculator/CCGWizard.html">Be sure to check out G-Wizard, our Machinist's Software!</a></p>
+      <p>&nbsp; </p>
+      <p class="BlogDate">1/31/09</p>
+      <p class="BlogTitle">It Lives! (Got my X and Y axes running on the mill 
+        this morning)</p>
+      <p><font face="Arial, Helvetica, sans-serif">Between the wee hours Friday 
+        night and the morning today I've gotten the X and Y axis servos mounted 
+        and running. The servos are really not tuned yet, but even in their rough 
+        state I was able to move the table at 180 IPM! I am not suggesting that 
+        is something that will be accurate or even usable, it was just play, but 
+        it was fun! I tried for 200 IPM, but the servos started faulting again 
+        and I didn't want to spend too much time tuning for a scenario that isn't 
+        real anyway.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Meanwhile, I added <a href="CCMillCNCServos.html">a 
+        new page</a> that gathers up all the stuff I had to do to adapt the HomeshopCNC 
+        servos to the IH Mill CNC Kit.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011009.JPG" width="1024" height="885"></font></p>
+      <p align="center"><img src="img/MillStuff/CNC/Servos/P1011008.JPG" width="1024" height="810"></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">My next problem 
+        is to adapt the servo for the Z-axis, which is going to require a little 
+        stronger medicine:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011010.JPG" width="1024" height="768"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I love the performance 
+        of the HomeshopCNC servos, but the shafts are really short for this IH 
+        kit!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">The Many 
+        Uses of an Indexable Spotting Drill</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I love this YouTube video I 
+        first heard about <a href="http://www.practicalmachinist.com/vb/showthread.php?t=173575">on 
+        the PM boards</a>:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><object width="425" height="344">
+          <param name="movie" value="http://www.youtube.com/v/wO65mdsSC3Y&hl=en&fs=1">
+          <param name="allowFullScreen" value="true">
+          <param name="allowscriptaccess" value="always">
+          <embed src="http://www.youtube.com/v/wO65mdsSC3Y&hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344">
+          </embed> 
+        </object></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">It shows this 
+        little indexable spotting drill being used on a mill to spot (a spotting 
+        drill is the right tool for spotting, not a center drill which has a delicate 
+        point to break off!), chamfer, and engrave. They then turn around and 
+        spot, center drill, face, external, and internal turn on a lathe. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">What a Jack of 
+        all trades!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I first saw an 
+        indexable K-Tool spotting drill being used for chamfering on <a href="http://www.tormach.com/MfgDatabase/AN20108_MultipleToolMilling.pdf">the 
+        Tormach web site</a>, and as a result bought one. I haven't used it yet 
+        as they don't really get to full versatility without CNC. But I expect 
+        to start as soon as my <a href="CCMillCNCConversionHome.html">CNC mill conversion</a> 
+        is done. More news on that this weekend I'm sure.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">There's also <a href="http://www.practicalmachinist.com/vb/showthread.php?t=167815&amp;highlight=chamfer">another 
+        PM thread here</a> about combined spotting/chamfering tools.</font></p>
+      <p class="BlogDate">1/25/09</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Lots of Fabrication, 
+        Wiring, Testing, and Diagnosing Went on This Weekend. Result? 3 Servos 
+        a-Spinning!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">My goal for this weekend was 
+        to have the enclosure mounted on the rolling tool cabinet and be able 
+        to spin all three servo motors. Easier said than done!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Mounting the enclosure was 
+        pretty easy, as was installing the electronics and axis modules. Here 
+        are some shots of how things looked just now when I was downstairs in 
+        the garage:</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/Enclosure/P1010993.jpg" width="1024" height="902"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Messy! It sure 
+        is nice that I can use a laptop with the Smoothstepepr...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Enclosure/P1010990.JPG" width="1024" height="768"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Very messy wiring. 
+        After I get everything working, I'll be milling new panels (using this 
+        CNC mill of course) and I'll take that opportunity to build some real 
+        wiring harnesses that clean this up!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The wiring is 
+        pretty messy, but I'll be rejiggering it to make some real wiring harnesses 
+        and clean it up on a future pass. Right now I just want to make it work. 
+        Most of my difficulties have been with the C17 card and getting it to 
+        reliably deal with servo faults. I haven't yet decided whether the board 
+        is flaky, or whether I'm just using it wrong. I do know I have seen it 
+        do some pretty odd things. When I got everything into this cabinet, for 
+        example, it completely quit closing the relay during the startup sequence. 
+        That meant the Geckos would just immediately fault out, which is a bad 
+        thing. If you read my diagnosis page, you'll see I keep having this problem 
+        over and over. Each time the fix is a little different. This time I got 
+        things going again by connecting the switched side of the Start button 
+        to the DC supply relay. That ensures it gets closed during the Start cycle 
+        regardless of what the C17 chooses to do. As is usual for me, I didn't 
+        think of this solution until after I'd slept overnight from a frustrating 
+        earlier session. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Now I've got all 
+        3 servos spinning. X tends to fault out, but that's just because I don't 
+        have the servos in a very good state of tune. There's liittle point in 
+        it until I can get them mounted on the machine anyway because they'll 
+        just need returning. Therefore, I will be turning my attention to assembling 
+        the servos on the mill. I plan to mount the timing pulleys onto the servo 
+        shafts using 1/8&quot; roll pins. This is how IH does it on their turnkey 
+        systems and it'll be a lot more solid than trying to use setscrews on 
+        the powerful motors I've got. Towards that end, I was researching the 
+        proper hole sizes to drill and came across a page from SDP-SI on it <a href="http://www.sdp-si.com/D790/PDF/D790C10060.pdf">here</a>.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">It's been a busy, 
+        but fruitfull weekend!</font></p>
+      <p class="BlogDate">1/12/09</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Axis Modules 
+        Are Done Pending 2 Cables</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">All three axis modules are 
+        now assembled and tested. As I was finalizing the last of the three modules, 
+        I decided I wanted a quick disconnect on the signal wires, so I made up 
+        a cable out of a male and female DB9, and that looks like it will work 
+        well. I just need to make 2 more of those cables for use with the other 
+        2 axis modules.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Here is what a finished module 
+        looks like with the quick disconnect:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Enclosure/P1010988.jpg" width="1024" height="657"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">To install an 
+        axis module in the enclosure requires 2 connections--the quick connect 
+        is all the signal level stuff, and then there are the main DC power supply 
+        + and - that go to bus bars. It should be pretty quick and easy to install 
+        one or switch one with another to clear up some issue. I could've skipped 
+        the quick connect, but I got to thinking about poking and prodding inside 
+        that enclosure on my hands and knees and wanted to make it easier.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">What's next?</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">1. I need to finish 
+        making the other 2 quick connect cables. That'll be easy to do during 
+        the week, I hope.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">2. I need to clean 
+        up the enclosure itself, get it mounted on the side of the rolling chest, 
+        and get the electronics mounted inside and tested.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">3. Last step is 
+        I need to install the servos on the mill and then see the axes move.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">We're getting 
+        closer!</font></p>
+      <p class="BlogDate">1/4/09</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Planning 
+        Two More Axis Modules</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I got the last issue figured 
+        out with the prototype <a href="CCMillCNCAxisModule.htm">axis module</a>. 
+        I had been manually reseting the startup fault on the Geckodrive. They 
+        start in a faulted state until you bring the Err/Res line high. So I was 
+        just touching a jumper to the Enc+ terminal to do that. For the finished 
+        system, the CNC4PC Master Control Board is supposed to handle that function. 
+        Initially, I was having a problem getting it to work properly, but it 
+        turned out to be due to the fact I hadn't grounded the Enc- to the same 
+        ground the CNC4PC board was expecting to use as its reference. As soon 
+        as I did that, I started to get reliable behavior.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Following that troubleshooting 
+        effort, I spent some time reviewing where the prototype stood and making 
+        a wiring diagram to use as a guide with the other axis modules. I want 
+        to clean up the wiring from the current cat's cradle to something a little 
+        more manageable. I also wanted to make sure I was grounding all the cable 
+        shields to keep noise out of the system. Servo systems are extremely sensitive 
+        to noise.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I now have a plan for how to 
+        wire the remaining two modules. I will also make some very minor changes 
+        in the original module to bring it to the same spec as the two additional 
+        modules. I can't do the wiring tonight, so hopefully I'll get a free evening 
+        next week and then I can be spinning all three servo motors at once!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">After that I still have a fair 
+        amount of work to do, but the path to getting the mill up and running 
+        will look something like this:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Finish wiring and testing 
+        3 axis modules.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Drill mounting holes for 
+        the axis modules and front and rear panels in the enclosure. Clean up 
+        the enclosure of all remaining chips and other debris.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Drill the mounting holes 
+        to mount the enclosure on the rolling cart.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Paint the enclosure IH blue.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Install the electronics in 
+        the enclosure, button up, and test again.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Install 3 servos on the mill. 
+        Note that this involves a little machine work on the X and Y timing pulleys 
+        for set screws.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Final cleanup and testing 
+        of the CNC electronics and servos. Includes servo tuning and other parameter 
+        fine tuning.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Install head on the mill</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Done!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">It's getting close, but there's 
+        still a lot of work to be done. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Why CNC for 
+        a Home Shop?</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">There is a good discussion 
+        over on HMEM where someone asks why anyone would want CNC for a home shop. 
+        Their shop instructor told them that for less than 3 identical parts, 
+        manual machining could do it faster and cheaper. Here was my response:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">First, I would not want to 
+        undertake CNC unless:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"> - I had a decent knowledge 
+        of manual machining. How to measure, what the cutting should sound like, 
+        how to judge if I'm going too fast and so on. You lose all &quot;touch&quot; 
+        with CNC and have to be able to rely on your experience more IMHO. As 
+        a home machinist, you can't just be the &quot;button presser&quot; on 
+        your CNC. You are the designer, the one who comes up with the fixtures, 
+        and all the rest. Solid manual machining experience is a good background 
+        for that.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"> - I was comfortable with computers 
+        being a lot bigger part of my shop experience. This is inescapable when 
+        you go to CNC. In particular, you will have to deal with CAD, certainly 
+        the machine control (Mach3, for example), and possibly CAM software or 
+        g-code programming.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"> - I was comfortable poking 
+        and prodding my way through making the electricals work. There are a lot 
+        of electricals with CNC, and if you have a hard time changing a light 
+        bulb, you don't want to be dealing with the frustrations of a CNC system. 
+        This doesn't mean you need to be able to do component-level diagnosis 
+        of circuit boards, but you should be handy with a voltmeter and reading 
+        a circuit diagram. Like any machine, the CNC will break sooner or later 
+        and you'll have to fix it. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif"> Second, I don't buy the instructor's 
+        notion that CNC doesn't &quot;break even&quot; until you need to make 
+        several copies of a part. There are a lot of advantages of CNC that are 
+        apparent very quickly if you have even a little bit of proficiency:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"> - It requires less tooling. 
+        By the time you pay for a nice DRO and power feeds on all three axes you 
+        can just about pay for CNC. Not quite, but close. Add up all the other 
+        tooling you may have that is no longer required for CNC and CNC will be 
+        cheaper. But, you'd need to pay that bill up front, so it may not matter. 
+        Also, to take full advantage, you may need to buy a CAM program so you 
+        don't have to g-code it all by hand. That gets REALLY expensive and will 
+        eliminate most of the cost savings if not all.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"> - You can do things that just 
+        aren't possible or would be very hard with manual machining. Complex flowing 
+        curves and engraving are two examples. We have ball turners for lathes, 
+        but profiling such shapes and much more complex ones is trivial with CNC. 
+        Also, there are operations that a really talented manual machinist can 
+        do that I can't do manually, but can easily do with CNC. There is less 
+        of a burden on you, the machinist, to develop that fine art, but you will 
+        be called on to develop other fine arts.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"> - CNC can be faster. The CNC 
+        can whip out operations a lot faster than I can, at any rate. A big part 
+        of my impetus is this productivity. I simply can't build everything I 
+        want to build in my shop fast enough eith the hours available to me. If 
+        I invest some of those hours up front in a CNC conversion, I can get more 
+        projects done later.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"> - Surface finish and precision 
+        can go way up with CNC. Did you experience an immediate improvement in 
+        surface finish when you got a power feed for your mill? I did. Can you 
+        hand feed on your lathe and get as good a finish as with the power feed? 
+        It's really hard for me, and the results are not always reliable. Now 
+        imagine if you could dial in the perfect speeds and feeds for every operation 
+        via CNC. In fact, through features like CSS, the machine will even vary 
+        the lathe spindle speed as you move towards the axis to ensure that perfect 
+        cutting speed.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"> Let's end my post by considering 
+        some photos. Here is a set of CNC'd pulleys hot of the machine: </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/croppedpulleys.jpg" width="800" height="533"></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"> Note the surface finish. How 
+        easily can you get that manually? Sure, some part of it is the radically 
+        better rigidity of the machine used, but some part is also the perfect 
+        feeds and speeds concept I mentioned. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Now consider a more typical 
+        HSM project, an upright marine style multiple expansion steam engine. 
+        This one was done in a home shop with CNC by jimmibondi (Frank) that won 
+        the <a href="http://www.homemodelenginemachinist.com/index.php?topic=3289.0">HMEM 
+        November Engine of the Month</a>:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Steam/MachineFinal.jpg" width="800" height="600"></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I will venture to say that 
+        it wouldn't take me three copies of it for this masterpiece to get done 
+        a lot faster and better with CNC than manual machining. Not that you couldn't 
+        do it manually, and not that it didn't require incredible craftsmanship 
+        to do with CNC, but it would just take a lot longer manually.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">With all that said, manual 
+        machining is tremendous fun and CNC is not for everyone. It's a hobby, 
+        do what you like!</font></p>
+      <p class="BlogDate">1/3/09</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Major Milestone: 
+        Spinning a Servo! (When Debugging, Whatever Can Go Wrong Will Go Wrong)</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I just now got 1 servo spinning 
+        on the bench after 2 1/2 days of trial and error debugging. If you want 
+        the full story of how I debugged this silling thing, I captured it <a href="CCMillCNCDebugging.htm">on 
+        a page</a> so you can see how I went about it. It's a painful process 
+        as not all of the relevant information you will need is captured in one 
+        single place. Some of it was out there, but a lot of it I just had to 
+        figure out on my own.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Here is a concise list of all 
+        the things I had to change from my original attempt to run:</font></p>
+      <p> 
+      <ol>
+        <li><font face="Arial, Helvetica, sans-serif">Set CNC4PC Master Control 
+          Board DIP switches for G320. It acts funny on the other board types 
+          whether or not Err/Res is connected.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Discovered I had mislabeled 
+          the leads from my front panel for the &quot;Start&quot; and &quot;E-stop&quot;, 
+          so they were connected backwards.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Reverse the motor connections 
+          because they were backwards compared to what the encoder indicated, 
+          causing an immediate servo fault.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">In doing #3, I reversed 
+          the wrong leads and had to replace the power supply rectifier. I don't 
+          think I blew the Gecko, amazingly!</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Connect a 47K ohm resistor 
+          across pins 1 and 3 of the G320 to ensure the bridge initializes properly. 
+          This was buried in a hard to find Mariss note on CNCZone.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Now I was getting the servo 
+          to hold position, so I played with the tuning trimpots a bit.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">In Mach3, set Step/Dir to 
+          ActiveLo. Set pulse width to 5 (the pulse width may be ignored for Smoothstepper).</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Connect &quot;Common&quot; 
+          on G320 to +5V on breakout card instead of Ground. Another one that's 
+          easy to miss unless you read a lot of posts on various boards!</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Set up the proper motor 
+          tuning parameters on Mach3. IH says 115 IPM speed and 0.15g of acceleration, 
+          according to another post I found. I also needed 28,240 steps to move 
+          1&quot;.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Set the Smoothstepper jumpers 
+          to actually provide +5V to the breakout board. Otherwise, the terminals 
+          marked &quot;+5V&quot; are 0V!</font></li>
+      </ol>
+      <p><font face="Arial, Helvetica, sans-serif">Now I can spin the servo this 
+        way and that with Mach3. It can still fault if I rapidly change directions 
+        at full jog, but that's just tuning and I need to set it properly on the 
+        actual machine instead of with servos flopping around on the floor.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I must admit that per the discussion 
+        on the Cookbook Blog on the Eternal Servo vs Stepper Jihad, it was a lot 
+        harder to spin a servo than a stepper. In general, I encountered a lot 
+        of less than obvious things including the CNC4PC DIP switch settings, 
+        need for the 47K ohm resistor (that's going to be built into the next 
+        generation Gecko servo drives), and bizarre experiences with &quot;Common&quot;, 
+        which has to be +5V, and which didn't get +5V until the Smoothstepper 
+        jumpers were enabled.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Here are some photos of my 
+        CNC electronics testing lab on the dining room table (my wife is glad 
+        it seems to be working and I'm cursing a lot less!):</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/Enclosure/P1010986.JPG" width="1024" height="768"></p>
+      <p></p>
+      <p class="BlogDate">12/31/08</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">The Eternal 
+        Servo vs Stepper Jihad Continues</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">There are a number of &quot;Jihads&quot; 
+        in the machinist's world including the indexable carbide tooling versus 
+        hand ground HSS tooling debate, and this debate over the value of servos 
+        versus steppers in small CNC machines. I have used both and wrote a response 
+        when this subject came up <a href="http://www.homemodelenginemachinist.com/index.php?topic=3558.msg37926;topicseen#new">over 
+        on the HMEM board</a> recently. I thought I would pass along that response 
+        here so the points would be preserved:</font></p>
+      <p> 
+      <font face="Arial, Helvetica, sans-serif"> 
+      <blockquote> 
+        <p>Aha, the sacred Servo/Stepper/Open Loop/Closed Loop Jihad has made 
+          it here! </p>
+        <p><font face="Arial, Helvetica, sans-serif">I have both. There are good 
+          arguments for both. In the end, I have a hard time not going for the 
+          servos if I can afford it. Just as we can say NASA used stepper-based 
+          systems back in the day so therefore steppers are good, we can also 
+          say there are almost no stepper-based VMC's made today, so therefore 
+          servos are better. In fact, the servos way outperform steppers in most 
+          cases, they just cost more, and you may not need (or be able to take 
+          advantage of) that extra performance. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">We can argue that we don't 
+          care about that extra performance, and we may not, but let's not kid 
+          ourselves that there isn't even the <i>potential</i> for the performance 
+          or that it won't matter to <i>anyone</i>. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">I agree with most of what 
+          kf2qd says, but I don't agree on the cost point. A servo-based system 
+          is more expensive, but it isn't $1000 per axis!</font></p>
+        <p><font face="Arial, Helvetica, sans-serif">For example, my IH Mill runs 
+          homeshopcnc servo motors at a cost of $235 (I got the fancier ones, 
+          but they have one with encoder for $199 if you're pinching pennies) 
+          for 850 oz in motors, which are pretty stout. Equivalent stepper motor 
+          might be $130 from the same place, so you save circa $69, the cost of 
+          the encoder. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">Add a Gecko servo drive 320 
+          at $114, which is the same price as a Gecko 201 stepper drive, so no 
+          incremental cost there. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">The last servo specific piece 
+          I use is a board from CNC4PC called the "Master Control Board". It manages 
+          the servo fault signals from the Geckodrive and costs $48. You wouldn't 
+          really need one with a stepper system, although it could be used to 
+          manage your E-stop and limit switches. The nice thing it does for servo 
+          users is it manages servo fault signals so that a servo fault looks 
+          like an E-stop. What does that mean? </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">A servo fault happens when 
+          the encoder indicates that the motor hasn't been keeping up with the 
+          commands issued by Mach 3. On a Gecko 320, the fault is triggered if 
+          the encoder falls more than 128 steps behind the commanded position. 
+          For my IH mill, each step is 0.7 of a tenth, so an error of 128 means 
+          that axis is off by about 9 thousandths. Note that this will differ 
+          based on the leadscrew pitch, encoder counts, and belt drive ratios 
+          for your machine, but it gives you an idea. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">In practice what happens 
+          is, I run the CNC program, and if the servos don't fault, I know I was 
+          within 9 thousands, and probably a lot better, of what the program intended. 
+          Equally as important if not more so, the program may have gotten off 
+          by nearly 9 thousandths at some point, but with a servo system, it can 
+          "catch back up", so the error is localized and doesn't carry through 
+          all subsequent moves. If I was running a stepper system, I might be 
+          off by a lot more, and the errors become cumulative. Once I'm off, the 
+          system never catches back up again. In fact, if I start a whole new 
+          part without rezeroing, the error lives on for the new part too! </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">With the servo fault, I can 
+          see by where the machine stopped what it was doing when the error added 
+          up to too much. It's pretty easy to turn down the feedrate (potentially 
+          just for that part of the program and not the whole program too), restart 
+          the program, and try again. If the same happens for the stepper, I have 
+          to start measuring the part to find where the error begins manually. 
+          I may not even be able to measure the beginnings, because they may have 
+          been machined off. In fact, with the stepper, I have no idea if there 
+          error is due to lost steps or some other source of error in the machine. 
+          This makes tuning up your programs a lot harder with a stepper system 
+          than a servo system.</font></p>
+        <p><font face="Arial, Helvetica, sans-serif">It would be ideal if the 
+          controller could actually log where the errors occurred, how far off 
+          things got, and even let me set in software the servo fault limit (maybe 
+          I want to fault if its off by more than a thou, or perhaps I'd like 
+          to be able to change that tolerance at different places in the program). 
+          It's be even better if the position signal made the control dynamically 
+          slow down or otherwise take steps to "do better". I can't really do 
+          that with the rig I describe. I can do a little better with the Rogers 
+          board, but it isn't clear to me how to make that board work without 
+          even more encoders. It's more of an add on to a stepper system. It's 
+          probably not possible at this stage in Mach 3 development to do what 
+          I describe at all, but what I do get seems pretty good to me. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">In practice, I suspect steppers 
+          lose steps a lot more often than most stepper users think. Many people 
+          complain that the Gecko 320 is "too sensitive" to servo fault. Given 
+          that the fault doesn't happen until they are off a few thou at least 
+          and maybe more, those same people are obviously used to running stepper 
+          systems that silently get off by that much and keep going. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">It can get a lot worse too. 
+          Servo faults can be caused because the program runs awry and the cutter 
+          is plowing into vises, clamps, tables, and whatever else gets in the 
+          way. The stepper will keep chugging through it even after the cutter 
+          breaks and there is a smoking ruin. It isn't going to take too much 
+          of that sort of thing before the servo will fault and things stop. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">So to conclude this rather 
+          long essay, do I insist only on servos? No, not at all. I have two machines 
+          set up for steppers and one for servos. I'm happy with each. I'm just 
+          saying that if I can afford the added expense of servos, I think they're 
+          better in every way. I don't see a down side to them other than the 
+          cost. That cost is quantifiable. On my mill, it has cost me an extra 
+          $210 to buy 3 servos instead of 3 stepper motors, and another $48 for 
+          the Master Control Board. I think the extra $258 was well worth it on 
+          t</font>his mill. Your mileage may vary! </p>
+      </blockquote>
+      </font> 
+      <p><font face="Arial, Helvetica, sans-serif">In response, John Stevenson 
+        makes some excellent points that are a good addition to my post:</font></p>
+      <p> 
+      <font face="Arial, Helvetica, sans-serif"> 
+      <blockquote> 
+        <p>First a couple of clarifications. </p>
+        <p><font face="Arial, Helvetica, sans-serif">Yes the Bridgeport's did 
+          have massive steppers on them, got loads lying about here and they were 
+          only 850 to 1200 oz in on a type 42 motor. Modern type 34 can piss all 
+          over these so it's not the motors. the Bridgy controller / driver unit 
+          was absolute crap. This is the reason why there are so many good mills 
+          out there, they never wore out because they spent more time broken down, 
+          crash one into something and it burnt the output transistors out - full 
+          stop. They were only full stepping and could hold 0,001" but even in 
+          those days 1 thou to NASA was still the same thou it is today. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">Bob put some good points 
+          about the difference between steppers and servo's and I have no beef 
+          with his explanations, they are 100%. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">One point that has been missed 
+          though and lets face it this IS a hobby forum is the skills needed to 
+          built both systems. Steppers are cheap and simple easy to mount usually 
+          on existing hardware as they develop maximum torque at low revs. Servo's 
+          develop max torque at high revs meaning you have to gear an axis down 
+          to get any sort of power out of it. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">Quoting max feed rates isn't 
+          everything in CNC as any G00 moves are not cutting and only costing 
+          you. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">The main difference for a 
+          beginner is the complexity of the servo system. There are not many good 
+          servo drivers out there for one and all rely on encoder feedback, to 
+          a beginner this often also translates to noise. Read the CAD_CAM_DRO 
+          list, Gecko list and CNC Zone and most of the beginners problems are 
+          caused by electrical noise. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">There is also a missing link 
+          at the moment in that the larger servo motors require analogue inputs 
+          but affordable controllers use step and direction, Gecko drives can't 
+          power the big servo's like the BOSS 2's and Mach can't power the larger 
+          Fanuc, Baldor and Siemens servo's drives. Rutex tried and failed, the 
+          Pixie convertor card whist seeming to work was withdrawn so there is 
+          a gap. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">CNC like any new venture 
+          is a steep learning curve and the sooner it flattens out the sooner 
+          you actually start learning and enjoying. Doing a simple stepper system 
+          to cut your teeth on and then progress if far better than throwing yourself 
+          into the top end, never getting a grasp of it and then feeling let down. 
+          </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">Incidentally my big mill, 
+          a Beaver, the same size as a BOSS 2 and built with the same stepper 
+          motors as the BOSS 1's at 850 ox in direct onto 0.2" pitch ballscrews 
+          has been running all day today drilling circular hole patterns with 
+          a 2.5mm drill. These holes are virtually touching and any errors show 
+          up immediately, add to this the machine has graduated dials on as it 
+          shared some components with it's manual stablemate so when it goes home 
+          it's easily checked. Todays run was 11,208 holes and it's parked back 
+          on 0,0,0 two drill used, tomorrow it will be doing the same but different 
+          job and on 3.12mm holes.</font></p>
+      </blockquote>
+      </font> 
+      <p><font face="Arial, Helvetica, sans-serif">I think my personal conclusion 
+        on John's comments, which I stated on the board, is that it may be better 
+        for first time CNC'ers to try steppers and avoid the complexities that 
+        John is worried about. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">In any event, I thought the 
+        discussion was excellent and the points were worth repeating here.</font> 
+      </p>
+      <p class="BlogDate">12/29/08      </p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Clamping 
+        German Style With a Tooling Plate</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">From the same German site as 
+        the flycutter above comes this method of clamping very irregular parts:</font></p>
+      <p align="center"><img src="img/OthersProjects/Tools/IrregularClamping.jpg" width="600" height="600"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The clamps go 
+        down the tooling holes...</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">German Steam 
+        Engine: Wunderbar!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">All that fly cutting and other 
+        work (check out the article, it's really good!) results in this absolutely 
+        gorgeous steam engine model with working water injector pump and flyball 
+        governor:</font></p>
+      <p align="center"><img src="img/OthersProjects/Engines/Bild120a.jpg" width="500" height="850"> 
+        <img src="img/OthersProjects/Engines/Bild121a.jpg" width="500" height="850"> 
+      </p>
+      <p align="center"><img src="img/OthersProjects/Engines/Bild122a.jpg" width="500" height="850"> 
+      </p>
+      <p align="center"><img src="img/OthersProjects/Engines/Bild118.jpg" width="600" height="600"> 
+        <img src="img/OthersProjects/Engines/Bild117.jpg" width="600" height="600"> 
+      </p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Governor connects 
+        via linkage to valve below...</font></p>
+      <p align="left">&nbsp;</p>
+      <p class="BlogDate">12/27/08</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Wiring the 
+        Mill Enclosure Continues, and Powder Coat is On Order</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I have been busily making cables 
+        and wiring up the enclosure. There are a lot of connections here! I have 
+        my wiring diagram and I am coloring in each connection as I finish making 
+        it. Everything is point to point, so I am making little wiring harnesses 
+        and trying to keep it neat.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">At the moment I'm just trying 
+        to get to the point where I can make one axis module active and spin a 
+        single servo motor. If that all works, I will assemble and test the other 
+        2 axis modules. After that it will be time to finish up the enclosure. 
+        I got a neat powder coating kit from my brother for Christmas, and I just 
+        ordered some Ocean Blue powder coat from Caswell Plating. I think the 
+        Ocean Blue will match the IH mill blue pretty good. Powder coat is very 
+        durable. Not really necessary for this application, but I thought it would 
+        be fun to try it out!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Tormach vs 
+        IH Base Castings</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Interesting to compare the 
+        two. Here is Tormach:</font></p>
+      <p align="center"><img src="img/OthersProjects/Machines/Base-TableReassembly.jpg" width="843" height="882"></p>
+      <p><font face="Arial, Helvetica, sans-serif">Here is Industrial Hobbies:</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010290.JPG" width="1024" height="690"></p>
+      <p><font face="Arial, Helvetica, sans-serif">Looks to me like the Tormach 
+        is a little beefier. I'm glad I did an Epoxy Granite fill on my IH; I'll 
+        bet it's beefier still! I'm also glad I've got those big ole hockey puck 
+        leveling feet to help me adjust. OTOH, I may just find my base is so stiff 
+        that shimming it won't adjust a twist out at all and I'll need to shim 
+        the column instead!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Shim or No 
+        Shim for Twist on Lathes and Mills</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">One sure way to ignite a controversy 
+        is to bring up the topic of leveling as it relates to out of square lathes 
+        and mills. There is a school that says you level the lathe's bed and the 
+        rest is a function of the machine itself. There is another school that 
+        wants to use level as &quot;close to correct&quot; and then run a test 
+        bar with further adjustment of the leveling until the lathe cuts without 
+        taper. The first school sees this as adding a twist to the bed and is 
+        horrified. The second school sees it as a practical solution to a problem 
+        and wonders whether the first school realizes that.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Recently the same sort of argument 
+        broke out around milling machines, specifically the Tormach. <a href="http://groups.yahoo.com/group/tormach1100/message/3604">It's 
+        an interesting thread</a>, with both sides weighing in. Philbur addresses 
+        the purest camp clearly with this remark:</font></p>
+      <p> 
+      <font face="Arial, Helvetica, sans-serif"> 
+      <blockquote>I think that shimming the bed must be the last resort, not the 
+        first, for correcting a tram error. Tramming the table tells you that 
+        the spindle is not perpendicular to the table surface (assuming the surface 
+        is flat!), it doesn't tell you why. The column may not be square to the 
+        table, or the spindle may not be square to the column, or both. Twisting 
+        the bed will most probably mask one error by introducing a second error. 
+        The correct method is to identify each error individually and correct 
+        it without influencing any other alignments. </blockquote>
+      </font> 
+      <p></p>
+      <p><font face="Arial, Helvetica, sans-serif">OTOH, no less an authority 
+        than Tormach's Greg Jackson himself says to shim the base instead of the 
+        column:</font></p>
+      <p> 
+      <blockquote> 
+        <p><font face="Arial, Helvetica, sans-serif">When working to optimize 
+          the left/right tram, shimming the front left or right feet under the 
+          base is always the first thing to do. The natural assumption is that 
+          the stand should be flat and rigid, then you put the machine on it and 
+          everything is perfect. The reality of the world is that everything is 
+          flexible, even those things that appear rigid. The stand is less rigid 
+          than the base of the mill itself and when the 1100 lb mill is placed 
+          on the stand, the stand moves a few thousandths of an inch in reaction 
+          to the weight of the mill. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">Machine geometry can seem 
+          straightforward, but it becomes complex when you start to understand 
+          the fine details. If you take a perfect machine an put it on a stand 
+          which flexes in a non linear fashion under the weight of the machine, 
+          then there will be some left/right tram error due to a small twist force 
+          on the base. Countering that twist force by shimming the base/column 
+          connection point is possible but shimming between the base/stand is 
+          easier and probably a more accurate way to correct. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">The iron base of the mill 
+          goes through both a heat soak stress relief and a vibration stress relief 
+          process so residual stresses are unlikely. The stand is a welded fabrication 
+          and will always have some residual internal stresses. If some alignment 
+          issues show up over time it could be the result of a crash, motion in 
+          the iron, or motion in the steel stand. We believe the stand is the 
+          most likely source. In the actual manufacturing process each machine 
+          base is checked on a large surface plate before the machine is assembled. 
+          Assembly and test is not done on a surface plate, but the rather on 
+          a three point stance. Instead of sitting on the four corners of the 
+          iron base, the machine rests on the back two corners and a round bar 
+          in the center front. Since three points determine a plane, this approach 
+          ensures that there are no stresses introduced in the machine base during 
+          the final test. </font></p>
+      </blockquote>
+      <p></p>
+      <p><font face="Arial, Helvetica, sans-serif">I'm with Jackson on this one 
+        from a practical standpoint, although he has sent me correspondence claiming 
+        that all problems with out of squareness can be traced to a stand that 
+        is not level, something I don't agree with. It may be that the base is 
+        fine and the column could be shimmed, but if you can do it from the base, 
+        that seems an easier/better approach. If nothing else, try it that way 
+        first and take some measurements with your DTI to see how close you're 
+        coming. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Also note that for this to 
+        work out well, you can't bolt the machine to the stand. What you're doing 
+        is using leveling feet on the base to jack one corner or another, so the 
+        base has to be able to rise and fall relative to the stand.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Some Random 
+        Surface Finish Tips When Milling</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif">Keep a fine finish pass. 
+          Use a different cutter than you roughed with for best finish.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Keep your finish and rouging 
+          cutters separated. If you use the same type of cutter for both, start 
+          new cutters as finish cutters and move them to roughing after a little 
+          while. </font></li>
+        <li><font face="Arial, Helvetica, sans-serif">If the finish is down a 
+          hole, relieve the upper cutting surface so it won't be in contact with 
+          the hole and just cut at the bottom. This will reduce chatter, and works 
+          well when profiling with ball nosed end mills as well.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Use a larger diameter cutter, 
+          if possible, as it will flex less.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Keep the gibs tighter for 
+          less chatter.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif"><a href="http://www.cnczone.com/forums/showthread.php?t=70499">Make 
+          sure the z gib is tight</a> by lowering the spindle on a aluminum block 
+          on the table to put a bit of upward pressure on the head and tighten 
+          the gib on my x4 i was able to turn the screw of the z gib by a turn 
+          and a half this will reduce most if not all the chatter you might get 
+          from the head assembly. </font></li>
+        <li><font face="Arial, Helvetica, sans-serif">I've seen Widgitmaster use 
+          a spacer to lock the quill on his Bridgeport. I try to cut with the 
+          quill locked on my Industrial Hobbies machine whenever possible.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Try a 4 flute on aluminum 
+          for the finish pass. By the time you're ready to finish, there should 
+          be ample room for chips to fly and the extra flutes and light depth 
+          of cut will make for a nicer finish (the equivalent of more spindle 
+          rpm with a 2 flute).</font></li>
+        <li><font face="Arial, Helvetica, sans-serif"> Lots of folks swear by 
+          3 flute cutters on aluminum.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Balance the diameter of 
+          a ball end cutter versus the rigidity. Remember, the part of the ball 
+          near the axis moves slowly. A smaller ball interpolated exposes more 
+          of the surface to a faster moving cutter, leading to a better finish. 
+          But, the smaller cutter can flex more. Hence the need to balance these 
+          two factors.</font></li>
+      </ul>
+      <p><font face="Arial, Helvetica, sans-serif">A couple notes on improving 
+        boring accuracy in a CNC mill:</font></p>
+      <p><i><b>More Boring Accuracy</b></i></p>
+      <p> 
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif"><a href="http://www.practicalmachinist.com/vb/showthread.php?t=165432">Reduce 
+          the flex</a> in deep holes on a 2 flute cutter by grinding down one 
+          flute. Now the cutter acts like a boring bar.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Interpolate the hole with 
+          the largest endmill that fits (to reduce flex) and leave a small amount 
+          for a finish pass with a reamer.</font></li>
+      </ul>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Stabilizing 
+        a Round Column Mill Drill</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I have not been a fan of the 
+        round column mill drills because every time you raise or lower the head, 
+        it can rotate a little on the column. This means you lose your position 
+        every time you move the head. When I think about how often I crank the 
+        head up and down on my Industrial Hobbies mill, the idea of this seems 
+        extremely painful. I'd be tempted to go with one of the little Sieg mills 
+        of less capacity rather than deal with it. Nevertheless, these mills are 
+        quite popular, they are cheap, and a lot of very fine work has been done 
+        with them. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">There are some potential solutions 
+        to the weakness of head rotation. First, I have seen cases of fixing a 
+        laser to the head and using it to align. If you can align the spot on 
+        a wall 20 feet away to a precision of 0.100&quot;, your head will be accurately 
+        positioned to just under a thousandth. Mind you, I'd be tempted to use 
+        a wall 10 feet away and a reflector to put the laser spot somewhere close 
+        to the mill, but it could be done.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Another approach involves physically 
+        changing the mill's structure to hold the alignment. I recently came across 
+        <a href="http://www.cnczone.com/forums/showthread.php?t=70099">a fascinating 
+        thread in CNCZone </a>where a fellow has built a wishbone stabilizer for 
+        just this purpose. Here are some photos:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/wishboneStabiliserMill-drill.jpg" width="640" height="510"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/wishboneCloseUp.jpg" width="640" height="602"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/wishbones1tn.jpg" width="640" height="853"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/wishboneStabiliserMill-drillFitted.jpg" width="640" height="486"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/WishboneTestattop.jpg" width="640" height="853"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The last photo 
+        shows an indicator in the chuck being run up and down a straightedge to 
+        test how accurately the head is held by the wishbone stabilizer. He says 
+        it swings as much as 10 thousandths while cranking but settles back down 
+        to 3 or 4 thousandths at the end. That's not bad. I'll bet there is a 
+        lot of play in the ball joints and there should be a way to build a little 
+        stronger wishbone that would be even more accurate. Nice write up!</font></p>
+      <p class="BlogDate">12/22/08</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Getting Parts 
+        Indicated in the Lathe Chuck</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I liked this little video (other 
+        than leaving the key in the chuck, don't do that!):</font></p>
+      <p align="center"><object width="425" height="344">
+          <param name="movie" value="http://www.youtube.com/v/tn7A9PqNftY&hl=en&fs=1">
+          <param name="allowFullScreen" value="true">
+          <param name="allowscriptaccess" value="always">
+          <embed src="http://www.youtube.com/v/tn7A9PqNftY&hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344">
+          </embed> 
+        </object></p>
+      <p><font face="Arial, Helvetica, sans-serif">There are a couple of great 
+        tips here. Aside from aligning the part in the chuck with the ball bearing, 
+        the use of circular pieces instead of a dovetail on the QCTP is also quite 
+        interesting. It also looks like he keeps that indicator on a permanent 
+        holder on the lathe's backsplash where it is handy to get to.</font></p>
+      <p class="BlogDate">12/21/08</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Automatic 
+        Tool Change for a Small Sieg Mill Using a Compressed Air Kwik Change</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://groups.yahoo.com/group/GrizHFMinimill/message/13854">This 
+        fellow</a> had a stroke of brilliance. Follow on these pictures screen 
+        captured from his video:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/GrizzDB1.jpg" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Straightforward 
+        looking tool changer uses a Bimba cylinder that cost about $4 surplus. 
+        The lever gives it mechanical advantage over the die spring...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/GrizzDB2.jpg" width="800" height="791"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Size of the 
+        top of an R8 taper...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/GrizzDB3.jpg" width="800" height="619"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Size of a compressed 
+        air Kwik Change. An idea is born!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/GrizzDB4.jpg" width="1024" height="763"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The top of the 
+        R8 taper is sawn off. This style taper is probably only suitable for small 
+        mills. That part we're sawing off is probably a good thing on a bigger 
+        mill. Nevertheless, by cannibalizing an R8, he guarantees a huge selection 
+        of tools to modify...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/GrizzDB5.jpg" width="1024" height="769"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Now clean up 
+        the taper on the lathe...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/GrizzDB6.jpg" width="1024" height="770"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Tap it for a 
+        retention knob...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/GrizzDB7.jpg" width="1024" height="767"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Knobs are made 
+        by turning the head of a bolt into a retention knob. This would be painful 
+        without CNC on the lathe I think!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/GrizzDB8.jpg" width="1024" height="762"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">A couple of 
+        modified tool holders for comparison. Wonder why he didn't just use the 
+        air couplings? Probably that brass is just too weak compared to a bolt...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/GrizzDB9.jpg" width="1024" height="772"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Drawbar and 
+        retention ring. </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/GrizzDB10.jpg" width="1024" height="763"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here is a shot 
+        looking up the spindle. The retention ring is what forces the release 
+        when the drawbar presses down on the Kwik Change...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/GrizzDB11.jpg" width="1024" height="676"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Die spring end 
+        of the drawbar...</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Progress: 
+        Wiring Diagram, Board Mounting, et al</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">You can be forgiven if you 
+        don't think I've been doing anything for 3 weeks. Reallity is I've actually 
+        been pretty busy. It takes a ridiculous amount of research to figure out 
+        how to wire up one of these CNC projects right, so that's a big part of 
+        what I've been doing. Ordering various ancillary parts and mounting my 
+        various little sub-circuit boards to a big mounting plate that goes in 
+        the enclosure would be the other part. Today I got started wiring up. 
+        I want to do just enough wiring to verify I can spin one servo sitting 
+        on the bench before I do too much else. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Meanwhile, here are some tidbits:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Smoothstepper wiring (<a href="CCMillCNCElectronics.html">more 
+        detail on the electronics page</a>):</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/Enclosure/SmoothstepperWiring.jpg" width="565" height="1024"></p>
+      <p align="center"><img src="img/MillStuff/CNC/Enclosure/P1010944.jpg" width="1024" height="820"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Compare this 
+        to the diagram directly below. Notice I am reversed. That's intentional, 
+        I decided to mount the NEMA enclosure on the side of the rolling cabinet 
+        that will be closest to the mill...</font></p>
+      <p class="BlogDate">12/8/08</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Hossmachine 
+        Sharpens Endmills With a 4th Axis on a Benchtop Mill</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">If you've never come across 
+        Hoss, you owe it to yourself to check out <a href="http://www.hossmachine.info/">his 
+        web site</a> and <a href="http://www.cnczone.com/forums/showthread.php?t=30385&amp;page=53">postings 
+        on CNCZone</a>. He is one of the most inspirational (if not THE most inspirational) 
+        CNC &quot;hobbyists&quot; I've come across. Aside from the guys that build 
+        cool machines from scratch, there isn't much that Hoss hasn't done. His 
+        Sieg X2 has been transformed into a hobbyist vertical machining center. 
+        He built a rotary tool changer, flood coolant enclosure, and many other 
+        add-ons until it has become an incredible little machine. When I need 
+        a fresh shot of inspiration to get off the video games and get back into 
+        machine work, I just watch a few of <a href="http://www.youtube.com/user/hossmachine">his 
+        YouTube videos</a> and I am fired up and ready to go.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The latest thing he has done 
+        that caught my eye is this endmill sharpening rig:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><object width="425" height="344">
+          <param name="movie" value="http://www.youtube.com/v/s5l_GpfUqCo&hl=en&fs=1">
+          <param name="allowFullScreen" value="true">
+          <param name="allowscriptaccess" value="always">
+          <embed src="http://www.youtube.com/v/s5l_GpfUqCo&hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344">
+          </embed> 
+        </object></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Sharpening an 
+        endmill on a 4th axis milling machine...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">He's got a DeWalt 
+        Laminate cutter attached to the regular X2 spindle to provide a high speed 
+        spindle option, and he has placed a Dremel grinding point in the collet 
+        for this test. The 4th axis guides the cutter along the endmill's helix 
+        perfectly. Looks like it got real sharp too!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Home Shop Machinists 
+        are always interested in tool and cutter grinding for some reason. I agree 
+        T&amp;C cutters are interesting, but it is kind of a big expense to have 
+        one sitting around and seldom used. This rig Hoss put together leverages 
+        things like the 4th axis and laminate cutter that are useful for a lot 
+        of other purposes. Looks to me like the hardest thing about it would be 
+        the g-code. We need someone to write a Mach 3 wizard to generate it for 
+        any size endmill and then we'd really be in business!</font></p>
+      <p class="BlogDate">12/2/08</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Getting Geared 
+        Up to Wire the Box</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I've been getting in a plethora 
+        of odds and ends to start wiring up the enclosure. I've now got everything 
+        except a relay I will use for the E-stop circuit and the master AC on/off 
+        switch for the front panel. I also did a number of versions of the overall 
+        schematic. The latest is on the <a href="CCMillCNCElectronics.html">enclosure 
+        page</a>. Based on my latest schematics, I've done a layout for how I'll 
+        go about mounting the various sub-boards in the enclosure:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Enclosure/EnclosureBoards.jpg" width="1024" height="719"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">My goal this weekend 
+        would be to get the enclosure to the point I can actually mount the boards 
+        and begin the wiring process next weekend, and hopefully try spinning 
+        some servos (though not on the machine) next weekend as well. There's 
+        quite a bit of work to do there, but if I get enough hours I should reach 
+        that stage. Fingers crossed!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I still need to 
+        make an arm to support the keyboard and monitor, I need to mount the enclosure 
+        to the rolling cabinet, and I also need to paint it.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">There's still 
+        a lot of fussing. I haven't spec'd or ordered any of the auxilliary panel 
+        connectors, for example. I have some sitting around the parts bin that 
+        will hopefully work. Have to look at them as well. If need be, I can delay 
+        VFD and coolant wiring until after the servos are running and it would 
+        be no big deal.</font></p>
+      <p align="center" class="style11"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="img/GWizard/GWScreenRow.jpg" alt="" width="1024" height="238"></a></p>
+      <p align="center" class="style11"><span class="style12"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+      <p align="center" class="style11"><a href="FeedSpeedsCalculator/CCGWizard.html">Be sure to check out G-Wizard, our Machinist's Software!</a></p>
+      <p class="BlogDate">&nbsp;</p>
+      <p class="BlogDate"><b><i><font size="+2"><a href="CCBlogNov2008.htm">Earlier 
+        Entries in the Blog...</a></font></i></b></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

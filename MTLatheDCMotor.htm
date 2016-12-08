@@ -1,0 +1,972 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>Lathe Modification:  Variable Speed DC Treadmill Motor</title>
+<style type="text/css">
+<!--
+.style1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style2 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="10%"><img src="img/GearsIcon.jpg" width="88" height="77"></td>
+          <td width="90%"><font face="Times New Roman, Times, serif" size="7" color="#FF0000"> 
+            Lathe Modification: Variable Speed DC Motor</font></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif">Reading over the various 
+        potential modifications, I decided the DC motor needed to come fairly 
+        early in the process for several reasons. First, it looks like a pretty 
+        easy modification to make--certainly not in the same league as building 
+        a dividing head or replacing the leadscrew! Second, there is a lot of 
+        bang for the buck. I really think getting fine rpm control at the twist 
+        of a know will make it easier to <a href="MTLoveTheAsianTools.htm">get 
+        the most out of my Asian lathe</a>. Having now completed the modification, 
+        I have to say that it is fabulous! Being able to change speed at the twist 
+        of the dial is a dream come true. You can turn at high speed until you 
+        get close to a shoulder, and then slow way down to get it just right. 
+        If chatter sets in, change speeds and it goes away. Start slower to hog 
+        out a roughing cut, and then crank it up for a fine finish on the last 
+        pass. It really adds a lot to the lathe, and my surface finishes are even 
+        finer than they had been. Highly recommended!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Before I get too much further, 
+        let me say I was really inspired by all the<a href="MTLatheMods.htm"> 
+        lathe modification articles </a>I read. I didn't invent this mod, I've 
+        largely copied the work of others. Be sure to read their web articles 
+        too and you'll learn a lot. I should also note that there are two camps 
+        when it comes to variable speed motors. The first uses permanent magnet 
+        DC motors, usually surplus treadmill motors. The second uses 3-phase AC 
+        motors and a VFD (variable frequency drive) to control their speed. It's 
+        fair to say the latter is closer to industry practice. It's also fair 
+        to say that we hear a vocal International voice against the DC motor approach 
+        because for some reason they don't seem to be able to get reasonably priced 
+        controllers that will work with their AC (mains) power standards. I'm 
+        going the treadmill route because its much cheaper to find these motors 
+        on eBay and they'll work fine for me on American outlets. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">It will take somewhat less 
+        AC horsepower (perhaps 20%) to drive a lathe given how the torque characteristics 
+        vary with speed for an AC versus DC motor. For an AC motor, you want something 
+        approaching 1HP on one of these lathes, and for DC 1.2 would be ideal. 
+        Note that while my motor is rated at &quot;2.5 HP&quot;, it is not an 
+        industrial rating and the motor probably makes closer to 1HP or a little 
+        more. Also note the speed range on the motor you're looking at. Most of 
+        these lathes get down close to 1:1 (usually 1:1.2) on their pulley arrangements. 
+        Figure your <a href="CCLatheSurfaceFinish.html">max desired spindle rpm</a> 
+        and divide it by 1.2 for a decent estimate of what maximum speed you'll 
+        need from your motor. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">This is a pretty cheap mod 
+        when you buy the parts from surplus or eBay. Take a look at what I'm using:</font></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><b><font face="Arial, Helvetica, sans-serif">Raw 
+            Materials</font></b></td>
+        </tr>
+      </table>
+      <p align="left">&nbsp;</p>
+      <p align="center"><img src="img/LatheStuff/DCMotor/DCController.jpg" width="400" height="300"></p>
+      <p align="center" class="style1">Reliable Electric DC-2 Variable Speed Motor Controller. 
+        1/2-2HP. 90-180V 10A. Model #DC-92U. New, unused, with manual.<br>
+        eBay: $50.00</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">There are plenty 
+        of DC controllers available on eBay. I did a search on &quot;(variable, 
+        controller, controler) motor&quot; and bid on this one. Check the specs 
+        to be sure they're compatible with your motor. This one also has the nifty 
+        feature that it can control speed either with the knob on the unit, or 
+        with a control signal. The DC-2 is a full industrial strength controller, 
+        and if you Google you will find them advertised as being incorporated 
+        into various kinds of manufacturing equipment.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">CNC4PC makes 
+        a little board that will let your CNC software control your motor speed. 
+        How cool is that? Not sure I'll ever take advantage of it. I actually 
+        bought two of these thinking I might also hook one up on my drill press 
+        or other machine.</font></p>
+      <p align="center"><img src="img/LatheStuff/DCMotor/DCMotor.jpg" width="400" height="212"></p>
+      <p align="center" class="style1"><b>New 2.5 HP 130VDC 10A 4500RPM CW rotation Treadmill 
+        Replacement Motor. This is a permanent magnet continuous duty motor. <br>
+        eBay: $35.00</b></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">DC motors are 
+        also easy to find on eBay. I didn't even bother searching for &quot;treadmill 
+        motor&quot;, although a lot of machine tool enthusiasts have used that 
+        kind of motor. You want something with this kind of horsepower and voltage 
+        ratings. Go through until you find a winner. Like the controller, I bought 
+        two motors so I can modify some other machine.</font></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><b><font face="Arial, Helvetica, sans-serif">Planning 
+            the Modification and Understanding the Controller </font></b></td>
+        </tr>
+      </table>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">This modification 
+        requires the following steps:</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">1. Interface 
+        the DC Controller to the DC Motor. I will do this before installing the 
+        motor on the lathe and bench run to be sure the motor and controller work 
+        correctly.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">2. Fabricate 
+        a mounting bracket to attach the motor to the lathe.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">3. Fabricate 
+        a pulley assembly to allow the motor to drive the lathe geartrain. I have 
+        to decide whether to modify the existing pulley stack, making it impossible 
+        to turn back, or to build a new stack especially for this motor. Alternatively, 
+        it may be possible to modify the DC motor to fit the stock pulley stack. 
+        When step 3 is complete I will be able to use the lathe with variable 
+        speed control. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">4. Fabricate 
+        a custom control panel to fit the lathe. </font></p>
+      <p align="center"><img src="img/LatheStuff/DCMotor/PB252764.JPG" width="512" height="790"></p>
+      <p align="center" class="style1"><b><i>Front panel about to be removed...</i></b></p>
+      <p><font face="Arial, Helvetica, sans-serif">Fortunately, I have a manual 
+        to go with mine, but I still wanted to go through it carefully and decide 
+        what features to use and how to use them. When all is said and done, I 
+        want a control panel with the following functions:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+        On/off: This controller uses a three position switch whose positions Start 
+        the motor (momentary contact), let it run (middle neutral position), and 
+        Stop the motor (full down and off).</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+        Speed Dial: A continuously variable potentiometer.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+        Jog: A momentary contact that just bumps the spindle while held down. 
+        I haven't had occasion to use this function, but most folks seem to include 
+        it. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 
+        Reverse: A switch to reverse the contacts so the motor runs in reverse. 
+        Note: Some controls have a fancy electronically braked version of this. 
+        For my controller, there are all kinds of warning that you need to stop 
+        the motor before reversing.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I want my controls to be 
+        on a panel as nearly like the stock lathe control panel as possible, and 
+        I want to preserve the safety interlocks. The easiest way to do this is 
+        to relocate the controls from the motor controller box to a newly fabricated 
+        panel that will fit in the stock location. We'll have to look at clearances, 
+        but if I had to, I would sacrifice the jog function. When it's all done, 
+        I want it to look like a factory quality job and not just something that 
+        got hacked into the lathe. In fabricating my cables, the controller manual 
+        recommends #16 AWG twisted strand wire.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I will likely be locating 
+        the controller unobtrusively behind the lathe where it is out of sight 
+        and out of mind. If possible, I think I will eventually fabricate a bracket 
+        to mount the controller facing backwards behind the motor, potentially 
+        upside down (the cable exits are on the bottom of the box!). The same 
+        bracket will be set up to eventually accomodate a <a href="MTLatheDROTach.htm">DRO</a>. 
+        Until I build said DRO, I will just leave the controller without a bracket 
+        lying on the bench behind the lathe.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">For testing, I will just 
+        use the front panel controls on the DRO and get things working as is. 
+        This way I can use the lathe to machine the pulley to fit the motor.</font></p>
+      <p align="center"><img src="img/LatheStuff/DCMotor/PB252762.JPG" width="512" height="650"></p>
+      <p align="center" class="style1"><b>DC-2 Innards...</b></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Let's review 
+        the internal connections on the DC-2. There is a big black terminal black 
+        near the center of the circuit board, and a series of three smaller brown 
+        blocks along the bottom:</font></p>
+      <table width="100%" border="1">
+        <tr> 
+          <td colspan="2"> 
+            <div align="center"> 
+              <p><b><font size="+1">Black Terminal Block</font></b></p>
+              <p><b><font size="+1">Left to Right</font></b></p>
+            </div>          </td>
+        </tr>
+        <tr> 
+          <td width="11%" bgcolor="#99FF99"><b>A1</b></td>
+          <td width="89%"><i><b>DC Out</b></i></td>
+        </tr>
+        <tr> 
+          <td width="11%" bgcolor="#99FF99"><b>A2/F2</b></td>
+          <td width="89%"><i><b>DC Out</b></i></td>
+        </tr>
+        <tr> 
+          <td width="11%"><b>51</b></td>
+          <td width="89%"><i><b>Unused</b></i></td>
+        </tr>
+        <tr> 
+          <td width="11%" bgcolor="#99FF99"><b>L1</b></td>
+          <td width="89%"><i><b>AC In</b></i></td>
+        </tr>
+        <tr> 
+          <td width="11%" bgcolor="#99FF99"><b>L2/F1</b></td>
+          <td width="89%"><i><b>AC In</b></i></td>
+        </tr>
+      </table>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"></font></p>
+      <table width="100%" border="1">
+        <tr> 
+          <td colspan="3"> 
+            <div align="center"> 
+              <p><b><font size="+1">Brown Terminal Block</font></b></p>
+              <p><b><font size="+1">Left to Right, Middle Block</font></b></p>
+            </div>          </td>
+        </tr>
+        <tr> 
+          <td width="11%" bgcolor="#99FF99"><b>32</b></td>
+          <td width="89%" colspan="2"><i><b>Motor Thermostat: Jumper to 132 as 
+            we have no thermostat.</b></i></td>
+        </tr>
+        <tr> 
+          <td width="11%" bgcolor="#99FF99"><b>132</b></td>
+          <td rowspan="3" colspan="2" width="89%"> 
+            <p><i><b>Wiring for Start/Stop/Jog uses these three:</b></i></p>
+            <p align="center"><img src="img/LatheStuff/DCMotor/PB252765.JPG" width="400" height="228">            </p>
+            <div align="center"></div>          </td>
+        </tr>
+        <tr> 
+          <td width="11%" bgcolor="#99FF99"><b>35</b></td>
+        </tr>
+        <tr> 
+          <td width="11%" bgcolor="#99FF99"><b>38</b></td>
+        </tr>
+        <tr> 
+          <td width="11%"><b>419</b></td>
+          <td width="89%" colspan="2">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="11%"><b>519</b></td>
+          <td width="89%" colspan="2">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="11%" bgcolor="#99FF99"><b>326</b></td>
+          <td rowspan="4" colspan="2" width="89%"><b><i>5K Ohm speed control potentiometer: 
+            Left = 156, Right = 157, Wiper = 326.</i></b></td>
+        </tr>
+        <tr> 
+          <td width="11%" bgcolor="#99FF99"><b>156</b></td>
+        </tr>
+        <tr> 
+          <td width="11%" bgcolor="#99FF99"><b>157</b></td>
+        </tr>
+        <tr> 
+          <td width="11%"><b>126</b></td>
+        </tr>
+      </table>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Once the various 
+        power in/out and control connections are made, there are a number of jumpers 
+        to consider in order to configure the controller properly to our application. 
+        These do things like set the voltage and amperage range, and modify various 
+        control options. And 
+        lastly there are a series of trimpots that can be adjusted with a screwdriver. 
+        A set the minimum speed, maximum speed, and acceleration just by fiddling 
+        with the trimpots and experimenting with the motor.</font></p>
+      <p align="center"><img src="img/LatheStuff/DCMotor/PB262770.JPG" width="640" height="540"></p>
+      <p align="center" class="style1"><b>In case I ever need to put the AC Motor back, here 
+        are the connections...</b></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><b><font face="Arial, Helvetica, sans-serif">Interface 
+            DC Controller to DC Motor and Test</font></b></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif"><b>AC Power Cord:</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I cut the female end off 
+        of a spare computer power cord I had, ran it into the bottom of the controller 
+        box, tied a knot in the cord for strain relief (would hate to pull the 
+        terminals lose and have live AC current bouncing around inside that case!), 
+        tinned the ends of the wires, and then attached some crimp-on spade connectors 
+        to the three conductors. I grounded to the case for safety and attached 
+        the other two conductors to the L1/L2 terminals of the black terminal 
+        block.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b>DC Motor Connection:</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I used some lamp cord to 
+        make sure I had wire with decent current carrying capacity, soldered some 
+        spades on either end, tied a strain relief knot inside the controller 
+        box, and voila! I was connected.</font></p>
+      <p><b><font face="Arial, Helvetica, sans-serif">Test Run:</font></b></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Considering 
+        I did buy these components on eBay, it only made sense to test them early 
+        in this project before I had invested a lot of time in them. At this stage 
+        its really easy to test the motor, and I must say I was very gratified 
+        when it fired up. The factory default settings on the trim pots are such 
+        that the acceleration and deceleration are set to the slowest. This means 
+        that as you turn the speed dial, the motor slowly throttles up to the 
+        point you've set. I tweaked the pots a bit to make it slightly more responsive. 
+        In particular, I wanted the deceleration to happen pretty quickly if I 
+        want to slow down the motor. I also fiddled with the minimum and maximum 
+        speeds. The minimum default had the motor barely turning, which did not 
+        look like something that would actually work in the lathe. I dialed it 
+        up to 30 or 40 rpm at the minimum. Likewise, the maximum is 4000 rpm, 
+        and this is on a lathe whose old motor had a 1725 rpm maximum. 4000 seemed 
+        a bit much, so I scaled that back a bit too. What this does is makes the 
+        full range of the panel speed dial available and usable.</font></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><b><font face="Arial, Helvetica, sans-serif">Fabricate 
+            Motor Mounting Bracket</font></b></td>
+        </tr>
+      </table>
+      <p></p>
+      <p><font face="Arial, Helvetica, sans-serif">This was a straightforward 
+        task involving some aluminum stock, my horizontal bandsaw, my drill press, 
+        and trips to the hardware store to purchase appropriately sized nuts, 
+        bolts, and washers.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b>Remove Factory Motor 
+        and Measure:</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Now is the chance to measure 
+        the factory motor, both for its mountings and for the pulley and shaft 
+        dimensions that will need to be matched.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>Fabricate 
+        Mounting Bracket:</b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I had some 
+        1/4&quot; thick aluminum plate together with some 3/16&quot; that I used 
+        to fabricate a motor brack. I basically cut a 5 1/2&quot; square piece 
+        of the thick material, drilled two holes for the motor mounting holes 
+        in the middle, and four holes to match the lathe on the corners. I then 
+        took the thinner material and made a couple of side plates that are held 
+        on by the corner holes in the big plate at top and bottom. This was quick 
+        and easy. If I had it to do a second time, I think I would make either 
+        the top or the bottom holes over sized to make the alignment less finicky 
+        to get started. You can see what it looks like (partially at least) down 
+        below. </font></p>
+      <p align="left" class="style2"><strong>Note</strong>: Be sure to read the update below on how I remade the motor mounts so they were stronger and easier to install and uninstall. </p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">Fabricate 
+        Dust Cover:</font></b></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Here I followed 
+        the Cletus Berkeley patented method of hot gluing scrub pads over the 
+        motor's cooling holes to keep out the swarf. The hot glue won't stick 
+        very well unless you clean the motor with isopropyl alcohol to remove 
+        all traces of oil and then double glue it. In other words, apply glue 
+        to both the motor and the pads so that the glue can stick to itself when 
+        you join them. You can see what it looks like down below.</font></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><b><font face="Arial, Helvetica, sans-serif">Adapt 
+            Pulley Assembly to DC Motor</font></b></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif">This was slightly touchy. 
+        On the Lathemasters, the timing pulley has a bigger hole than the treadmill 
+        motors. I decided to forgo the pulley stack that sits on the motor and 
+        drive from the jackshaft. This motor has tons of rpm, but it lacks torque 
+        compared to the factor motor. The jackshaft gives it a 2:1 ratio to help 
+        that out. That meant I only had to mount the timing pulley.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I decided to sleeve the 
+        timing pulley with some copper pipe I had sitting around so it would be 
+        more nearly concentric on the shaft:</font></p>
+      <p align="center"><img src="img/LatheStuff/DCMotor/PB262768.JPG" width="640" height="542"></p>
+      <p align="center" class="style1"><b>Sleeve and shortened key...</b></p>
+      <p><font face="Arial, Helvetica, sans-serif">I also shortened the key 
+        so it only runs under the timing pulley. Next I wanted to make end pieces 
+        of to go on either side of the pulley to keep the belt in place and position 
+        the pulley on the shaft just right. As a temporary measure, I machined 
+        these pieces using just a set of washers and an ordinary shaft collar 
+        to hold the timing pulley in place:</font></p>
+      <p align="center"><img src="img/LatheStuff/DCMotor/PB262766.JPG" width="640" height="516"></p>
+      <p align="center" class="style1"><b>Temporary rig to machine the pulley spacers with. 
+        You can also see the mounting plates...</b></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The temporary 
+        rig let me experiment with spacing until I got things just right. Certain 
+        configurations seemed to make the belt want to walk off the end. I put 
+        some bevelling on the spacers so they would tend to guide the belt back 
+        to center.</font></p>
+      <p align="center"><img src="img/LatheStuff/DCMotor/PB272772.JPG" width="640" height="573"></p>
+      <p align="center" class="style1"><b>Spacer with beveling...</b></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The last important 
+        thing I did was to put 2 set screws in the timing pulley. I put these 
+        at 90 degrees to one another. Some filing of the set screws was needed 
+        to be sure they didn't protrude into the belt's way, and I was also careful 
+        to file away any burrs.</font></p>
+      <p align="center"><img src="img/LatheStuff/DCMotor/PC012773.JPG" width="640" height="496"></p>
+      <p align="center" class="style1"><b>Center drilling for the pulley set screw. You do 
+        center drill all of your holes, don't you?</b></p>
+      <p align="center"><img src="img/LatheStuff/DCMotor/PC012774.JPG" width="640" height="572"></p>
+      <p align="center" class="style1"><b>Drilled with a #7 prior to tapping the 1/4-20 threads 
+        with my piloted tap...</b></p>
+      <p align="center"><img src="img/LatheStuff/DCMotor/PC012775.JPG" width="640" height="584"></p>
+      <p align="center" class="style1"><b>Finished motor with machined pulley spacers and 
+        dust covers...</b></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">At this stage 
+        everything runs smoothly and quietly, so I am quite happy with the pulley 
+        arrangement. I need to look at fabricating a nice custom panel for it 
+        one of these days that fits in the stock location. For now I just want 
+        to put a few miles on it to be sure it works well. I'll probably worry 
+        about the panel when it comes time for me to install the <a href="MTLatheDROTach.htm">DRO</a> 
+        and tachometer.</font></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><b><font face="Arial, Helvetica, sans-serif">Update: Broken Motor Mounts </font></b></td>
+        </tr>
+      </table>
+      <p align="center"><img src="img/LatheStuff/DCMotor/P4293946.JPG" width="800" height="490"></p>
+      <p align="center" class="style1">Okay, who has been running my lathe backwards! </p>
+      <p><font face="Arial, Helvetica, sans-serif">Well, this mod lasted me for a solid 2 years, but eventually I broke the motor mount. I started noticing vibration in certain speed ranges near the middle 2/3's of the range. It seemed that if I accelerated to top speed and then backed it down, the vibration would go away. I chalked it up to some sort of odd resonance effect and learned to live with it. Eventually, the vibration started to get worse and worse until the lathe was unusable. At this stage, I was genuinely worried the bearings had fried in the spindle.</font></p>
+      <p align="center"><img src="img/LatheStuff/DCMotor/P5013951.JPG" width="784" height="800"></p>
+      <p align="center" class="style1">There's a lot to clear away to get at the motor mounts very easily... </p>
+      <p><font face="Arial, Helvetica, sans-serif">So, I started looking at it and eventually noticed that the toothed timing belt seemed a little too loose. Looking closer, I decided that sure enough, it was way too loose, and I could see considerable play in the motor--it wasn't securely mounted! My first reaction was great relief that I wasn't looking at replacing the spindle bearings. My second was a touch of annoyance. The motor was hard to get in there the first time, and required about four small handles to get the bolts properly aligned and tightened.</font></p>
+      <p align="center"><img src="img/LatheStuff/DCMotor/P4293947.JPG" width="800" height="605"></p>
+      <p align="center" class="style1">Broken mounting bolt. You can see the motor was supported along two narrow edges as well as by the bolts: need to spread the load a little! </p>
+      <p><font face="Arial, Helvetica, sans-serif">When I got the whole thing apart, I discovered that it wasn't just a case of bolts working loose due to vibration. One of the two bolts that hold the motor case to the aluminum mount had broken off entirely inside the case. Aha, says I! I'm going to need to make a better motor mount so this doesn't happen again. At the same time, I wanted it to be easier to get the motor on and off the la</font><span class="style2">the as well. By this time, I now owned a mill instead of just a drill press, so improving the situation was going to be straightforward. </span></p>
+      <p class="style2">The first thing I did, which I should have done when I first tackled this mod, was to convert from bolting into the lathe frame to using studs. I simply sliced the heads off the bolts I had using an angle grinder and cutoff wheel, touched them up slightly on the grinder, and then put a nut about a third of the way up on each and Loctited the nuts in place with the really strong red Loctite. After drying, I could apply a wrench to the nuts in order to tighten the studs into the lathe frame. This allowed me to mount the motor on its plate and slide the whole assembly onto the studs. Much easier to install the motor now!</p>
+      <p align="center" class="style2"><img src="img/LatheStuff/DCMotor/P5013948.JPG" width="715" height="800"></p>
+      <p align="center" class="style2"><strong>To make a stud, first cut the head off...</strong></p>
+      <p align="center" class="style1"><img src="img/LatheStuff/DCMotor/P5013950.JPG" width="541" height="800"></p>
+      <p align="center" class="style1">Then Loctite the nuts so you have a way to tighten the stud...</p>
+      <p align="center" class="style1"><img src="img/LatheStuff/DCMotor/P5013953.JPG" width="800" height="600"> </p>
+      <p align="center" class="style1">Studs make it easier to drop the motor on its mounting plate into place... </p>
+      <p class="style2">The second improvement was I made a couple of side blocks with a 45 degree angle milled on them to hold the motor so it couldn't rock laterally. I think such rocking is likely how the original motor mount got broken. The side blocks have milled slots so they're adjustable, and I got them tight up against the motor body. </p>
+      <p class="style2">I bolted the whole assembly back together and it runs smooth as silk! </p>
+      <p class="style2">Hopefully good for at least another 2 years of operation, this time <a href="CCLatheCNCHome.htm">under CNC power</a>. </p>
+      <p><b><i><font size="+2"><a href="MTLatheHome.htm">Back to Lathe Home...</a></font></i></b></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

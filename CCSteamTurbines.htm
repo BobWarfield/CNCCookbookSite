@@ -1,0 +1,934 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNC Cookbook:  Project Wish List : Engine Projects: Steam Turbines</title>
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-style: italic; }
+.style6 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p>&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p>&nbsp;</p>
+      <p align="left"><font face="Times New Roman, Times, serif" size="7" color="#339933">Model 
+        Steam Turbines</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">This page has 
+        my notes on model steam turbines. I haven't built one yet, but plan to 
+        someday. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>Warning</b>: 
+        Be careful with steam and especially steam turbine engines. Engines operate 
+        off energy and can generate significant forces. Steam explosions, bearing 
+        failures, and other maladies can be extremely hazardous!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">A full on gas turbine is on 
+        my list as well, but model steam turbines are much simpler to build. I 
+        believe Bogstandard was to first to make me aware they even existed through 
+        his posts on the HMEM board, so I dedicate this page as a tribute to him 
+        and his wonderful &quot;blingy&quot; projects.</font></p>
+      <p class="BlogTitle">Steam Turbine Reference Material</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The first modern 
+        steam turbine was invented in 1884 by Englishman <a href="http://www.history.rochester.edu/steam/parsons/part1.html">Charles 
+        A. Parsons</a>:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/Fig_5.gif" width="369" height="315"></font></p>
+      <p align="center">Parson's First Turbine...</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">There are two 
+        kinds of turbine, the impulse and reaction varieties:</font></p>
+      <p class="BlogTitle" align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/501px-Turbines_impulse_v_reaction.png" width="501" height="599"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Two kinds of 
+        Steam Turbine. Most models will be &quot;impulse&quot; turbines...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Most models will 
+        be of the impulse variety due to the difficulties of producing the complex 
+        curves for a reaction turbine. Most commercial turbines are reaction. 
+        With an impulse turbine, steam velocity is everything, but there are tradeoffs. 
+        An air powered engine will generate the most velocity with a converging 
+        nozzle such as is described on the three rotor turbine below. However, 
+        steam is heated and can expand. In that case, providing more volume just 
+        before injection to the rotor blades converts as much heat as possible 
+        to velocity. So, a diverging nozzle (such as the &quot;trumpet&quot; nozzle 
+        on de Laval's turbine below) works better there. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Another issue 
+        is operating efficiency versus RPM. One of Parson's essential insights 
+        was to use successive stages that each expanded the steam a bit more to 
+        extract maximum energy from the steam expansion as well as designing a 
+        turbine that could run at a little slower rpm's than his predecessor's 
+        turbine Dr de Laval:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/Fig_4.gif" width="210" height="229"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The de Laval 
+        turbine used trumpet shaped nozzles to extract most of the expansion energy 
+        from the steam, but it ran at velocities that were too high for the materials 
+        of the time except in very small applications. Might make for an interesting 
+        model though!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">In fact, it is 
+        the use of multiple stages and more gradual steam expansion among the 
+        stages that leads to the greater efficiency at slower speeds of Parson's 
+        design. The different diameters at each stage are what allow for expansion 
+        on this 70,000 HP steam turbine rotor:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/70000hpturbine.jpg" width="640" height="480"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Increasing rotor 
+        diameters allow for steam expansion...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Here is a rotor 
+        from Parson's first turbine:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/Fig_6.gif" width="151" height="171"> 
+        <img src="img/OthersProjects/Engines/BogTurbines/Fig_7-11.gif" width="212" height="86"> 
+        <img src="img/OthersProjects/Engines/BogTurbines/Fig_16-17.gif" width="205" height="66"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Straight bladed 
+        rotor must have been difficult to construct without CNC!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The blades were 
+        made of drawn brass. Each blade was fitted into a groove with a wedge, 
+        called a &quot;distance&quot; piece in the drawing. Here is some more 
+        on the labyrinth passages that connect each stage:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/Fig_12-15.gif" width="367" height="109"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Guide blades 
+        redirect the steam direction for the next stage... </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">In modern times 
+        I'm sure the shape of the blades is carefully predicated on aerodynamics 
+        similar to those used to design airplane wings, but in Parson's time, 
+        no such understanding was available. His shapes were trial and error combined 
+        with intuition. Nevertheless, they were not bereft of sophisticated knowledge 
+        in other ways. For example, they determined that the optimal velocity 
+        of the blade was 1/2 to 3/4 of the velocity of the steam, hence the very 
+        high operating speeds of these turbines. Parson's first model ran at 18,000 
+        rpm.</font></p>
+      <p align="center"><img src="img/OthersProjects/Engines/BogTurbines/Fig_29.gif" width="360" height="267"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Isn't this a 
+        lovely curvaceous Parsons' turbine?</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The model steam 
+        turbines I've seen are not Parson's turbines, they are impulse turbines, 
+        and hence the wind up to ridiculously high velocities. Enough to blow 
+        the bearings, so be careful! It would be fascinating to see a model Parsons, 
+        but the issue would be in the much increased complexity of many rotors 
+        for gradual expansion as well as complex shapes to machine on the rotor 
+        and stator blades. Certainly not impossible, as we see model gas turbines, 
+        just not easy.</font></p>
+      <p class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Bogstandard's 
+        Single Rotor Impulse Steam Turbine</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Bogstandard is (was, he may 
+        have left the forum) one of the real geniuses on the HMEM board. I learned 
+        a lot of things from him and always admired the fine craftsmanship of 
+        his model engines.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Here are photos from <a href="http://www.homemodelenginemachinist.com/index.php?topic=244.0;topicseen">the 
+        first thread</a>, a single rotor turbine that's really cool. </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/1Turbineroughmaterials.jpg" width="576" height="432"> 
+        <img src="img/OthersProjects/Engines/BogTurbines/2Turbinerotormachining.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Raw materials, 
+        and machining the &quot;buckets&quot; on the rotor...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/3turbinerotorfinished.jpg" width="601" height="432"> 
+        <img src="img/OthersProjects/Engines/BogTurbines/4Almostfinished.jpg" width="1024" height="768"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Parts. Note 
+        the steam ports on the housing. The first version had perspex on both 
+        sides...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/Finishedturbine1.jpg" width="577" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I like the final 
+        version better. The back side is perspex. There is a little Swiss motor 
+        set up as a generator, and as the rpm increases, you see the LEDs light 
+        up one by one. The model is beautiful, and shows Bogstandard's trademark 
+        &quot;bling&quot; touches to make it more decorative.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here is a video:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><object width="425" height="344">
+          <param name="movie" value="http://www.youtube.com/v/KW6V7JWbQwk&color1=0xb1b1b1&color2=0xcfcfcf&fs=1">
+          <param name="allowFullScreen" value="true">
+          <embed src="http://www.youtube.com/v/KW6V7JWbQwk&color1=0xb1b1b1&color2=0xcfcfcf&fs=1" type="application/x-shockwave-flash" allowfullscreen="true" width="425" height="344">
+          </embed> 
+        </object></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.homemodelenginemachinist.com/index.php?topic=1500.0" class="BlogTitle">Bogstandard's 
+        Three Rotor Turbine</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">This one was made &quot;on 
+        spec&quot; for a model boater. Ultimately they concluded that the space 
+        available on the boat and the power characteristics made it impractical. 
+        These turbines don't make much power until they get over 10K rpm, and 
+        the more rpm you give them, the more prone to runaway they are. A 15 or 
+        20:1 gear reduction would be needed as well as some form of speed governor 
+        to prevent the turbine from blowing up its bearings. Here is what it looks 
+        like when a model turbine blows:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/Stumpf_Turbine.jpg" width="515" height="231"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Note the shredded 
+        housing as the rotor blew. Excercise care running these little engines 
+        to avoid exceeding their limits!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Getting back to 
+        the three rotor, here are some photos (many more on this one!):</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/3Roturbrotorsketch.jpg" width="696" height="1024"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Sketch. Note 
+        how the leftmost rotor is a reversing rotor, so the &quot;buckets&quot; 
+        go the other way?</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/3RotorTurbine2.jpg" width="576" height="432"> 
+        <img src="img/OthersProjects/Engines/BogTurbines/3RotorTurbine3.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Turning the 
+        basic shape in phosphor bronze</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/3RotorTurbine5.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/3RotorTurbine6.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Rotor stack 
+        is drilled to lighten it...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/3RotorTurbine7.jpg" width="576" height="432"> 
+        <img src="img/OthersProjects/Engines/BogTurbines/3RotorTurbine8.jpg" width="576" height="432"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Areas in green 
+        on the shaft are knurled to hold the shaft and rotor together...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/3RotorTurbine11.jpg" width="576" height="432"> 
+        <img src="img/OthersProjects/Engines/BogTurbines/3RotorTurbine12.jpg" width="576" height="432"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">With the shaft 
+        press fitted, skim cuts are taken to ensure balance relative to the shaft...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/3RotorTurbine15.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/3RotorTurbine17.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Now the buckets 
+        are being cut. It comes out looking quite exotic and beautiful, no?</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/rotbore5.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/rotbore6.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">A squared block 
+        is placed in the lathe and aligned with the pump center...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/rotbore7.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/rotbore8.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">First the big 
+        drill bits, then boring. Here is a trick if you don't keep your boring 
+        bars all in holders. Use a regular tool that is known to be set correctly 
+        to center to mark the workpiece...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/rotbore9.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/rotbore10.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Now line up 
+        your bar on that mark. Clever!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/rotbore12.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/rotbore13.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Rotor assembly 
+        fits just right after boring. Note the balancing holes on that rotor.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/inex3.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/inex5.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Nozzle holes 
+        are 1/8&quot; followed by a 3/16&quot; endmill to countersink an area 
+        for the connector to seat in. Next is the dividing head work. The face 
+        marked &quot;top&quot; was aligned along the rotational axis with a machinists 
+        square. The dial indicator is swept to be sure the axis is parallel to 
+        the mill's X-axis...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/inex6.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/inex7.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Now the mill 
+        is lined up on the original holes, the table is moved 3/8&quot;, and the 
+        head is rotated 20 degrees to achieve the correct tangential angle for 
+        the inlet port....</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/inex8.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/inex9.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here are the 
+        exhaust ports, which are much larger than the inlets to keep back pressure 
+        down...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/endcap1.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/endcap2.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Next up are 
+        the endcaps. The housing is scribed to the endcap material and then a 
+        circle is drawn around with a dividers...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/endcap3.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/endcap3-1.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The endcaps 
+        are trimmed close to the outline on the bandsaw to save too much interrupted 
+        cutting on the lathe...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/endcap4.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/endcap5.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Watch this interesting 
+        trick to secure the workpiece. First, masking tape on the back side of 
+        the workpieces provides some friction with the chuck. Put a piece of stock 
+        in the jaws large enough so that when the jaws are tightened on it they 
+        are slightly smaller than the OD of the workpiece...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/endcap6.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/endcap7.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Now trap the 
+        workpiece against the chuck with a live center and you're ready to go! 
+        This is another reason Bog avoided a nasty interrupted cut: that masking 
+        tape only provides so much friction!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/endcap9.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/endcap5-1.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">End pieces are 
+        close. About 1/8&quot; too thick. Next up is machining the bearing pockets. 
+        This is done with softjaws on the 4-jaw chuck (this one is self-centering, 
+        an independent jaw wouldn't need the soft jaws) to make it as accurate 
+        as possible.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/endcap6-1.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/endcap7-1.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Bearing fit 
+        is good, so the workpiece is flipped and now a spigot is turned that will 
+        be a &quot;wringing&quot; fit to the bore...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/endcap8-1.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/endcap9-1.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The wringing 
+        fit is good and things are starting to take shape...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/bearcap1.jpg" width="576" height="432"> 
+        <img src="img/OthersProjects/Engines/BogTurbines/bearcap2.jpg" width="576" height="432"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Next step are 
+        the bearing caps. Round insert tool makes a pretty radius...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/bearcap3.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/bearcap4.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Parted off and 
+        you can see how they look...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/bearcap5.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/bearcap6.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">They need to 
+        be the same thickness, so the difference is measured on the surface plate...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/bearcap7.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/bearcap8.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">And they're 
+        faced off in the collet chuck...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/bearcap9.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/bearcap10.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Bearing pockets 
+        cut...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/bearcap11.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/bearcap12.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Trial fit looks 
+        good. Here is the hardware to mount the end caps and bearing caps...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/bearcap13.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/bearcap14.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/bearcap15.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/bearcap16.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/bearcap17.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/bearcap18.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/bearcap19.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/bearcap20.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">It's quite sophisticated 
+        looking, isn't it? I'd hate to try to carry one past airport security!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/bearcap21.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Just think: 
+        all that painstaking layout and setup would be trivial with a CNC...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/spacer1.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/spacer2.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/spacer3.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/spacer4.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/spacer5.jpg" width="572" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">These are the 
+        rotor spacers. These are set up with 0.002&quot; clearance at either end 
+        to allow for thermal expansion...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/nozzlesketch.jpg" width="394" height="576"><img src="img/OthersProjects/Engines/BogTurbines/nozzle.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here is Bog's 
+        converging nozzle, which increases the velocity of air or steam entering 
+        the turbine. The actual nozzle is tiny!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/turblock15.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/turblock16.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Time to modify 
+        the end plates some more. First they're marked off on the inside (where 
+        it won't show!). Then the outside gets a final facing to get rid of the 
+        old scribe marks and leave a nice blingey finish. This creates a nifty 
+        boss for appearance sake.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/turblock17.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/turblock18.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The Bogstandard 
+        wacks off the sides in the bandsaw. I keep thinking, why didn't he do 
+        more work in the mill and start out with a square piece, but I suppose 
+        he wanted the accuracy and finer finish of the lathe...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/turblock19.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/turblock20.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">A nice flycut 
+        makes it look all better. In fact, it very nearly looks like a single 
+        block of metal there...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/turblock21.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/turblock23.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">More cleanup, 
+        and a slightly radiused end mill result in mounting blocks...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/turblock24.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/turblock25.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Doesn't the 
+        result look sweet? Needs a shot of brake cleaner to get rid of the remaining 
+        blue in the holes...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/exhaust1.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/exhaust2.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Now the exhaust 
+        manifold is a somewhat complex part...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/exhaust3.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/exhaust4.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/exhaust5.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/exhaust6.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Plunge cuts 
+        for the pocket. Bog was at pains to machine without damaging the parallels. 
+        A better solution would be a set of softjaws with a step in the vise...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/exhaust7.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/turbo1.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Woohoo, looking 
+        good with those big exhaust pipes! The blued piece is a brass plate: more 
+        bling!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/turbo2.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/turbo3.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Holes are carefully 
+        drilled while the plate is held in place with double sided tape...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/turbo4.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/turbo5.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Ooooohhhhh, 
+        Shiiiiinnnnnnyyyyyy!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/controlsketch1.jpg" width="576" height="811"><img src="img/OthersProjects/Engines/BogTurbines/controlsketch2.jpg" width="576" height="890"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/controlsketch3.jpg" width="576" height="780"><img src="img/OthersProjects/Engines/BogTurbines/controlsketch4.jpg" width="576" height="722"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Sketches for 
+        the control valve...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/control2.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/control3.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Housing is turned 
+        to size, parted, and inserted in the collet block for edge finding...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/control4.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/control5.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">3 Holes are 
+        drilled and then it's back to the lathe for boring. Hmmm, why not bore 
+        first? I guess it keeps burrs out of the bore...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/control8.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/control9.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The two end 
+        caps are being cut...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/control10.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/control11.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Last piccy shows 
+        how an o-ring groove will be cut...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/control12.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/control13.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Shaft fits and 
+        all looks well...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/control15.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/control17.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Checking the 
+        spool fit.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/control21.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/control23.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">A precision 
+        drill blank rod held in place with a wooden wedge allows indication relative 
+        to the holes. A straight piece in the drill chuck locates the center hole 
+        to 0.002&quot; under the lathe axis. I'd be using my Blake Coax for that, 
+        but I don't think Bog's mill has that much Z room...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/control24.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/control25.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Final dial in 
+        to clean up that 0.002 and the mounting holes can be drilled...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/control26.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/finish5.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Spool valve 
+        is a sharp little piece of plumbing, no?</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/finish6.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/finish7.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">But useless 
+        without the spool! </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/finish8.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/finish9.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Groove on either 
+        side to join passages....</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/finish10.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/finish11.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/finish12.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/finish16.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">A bit of dry 
+        fit up and it's time for the silver solder...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/finish17.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/finish18.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Comes out all 
+        blotchy, but it can be cleaned up quickly with a little Scotchbrite pad...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/finish19.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/finish20.jpg" width="576" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">A marble makes 
+        an excellent control knob for the valve!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Engines/BogTurbines/finish21.jpg" width="576" height="432"><img src="img/OthersProjects/Engines/BogTurbines/finish22.jpg" width="580" height="432"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The finished 
+        steam turbine...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><object width="425" height="344">
+          <param name="movie" value="http://www.youtube.com/v/1_Ey8v7fgig&color1=0xb1b1b1&color2=0xcfcfcf&fs=1">
+          <param name="allowFullScreen" value="true">
+          <embed src="http://www.youtube.com/v/1_Ey8v7fgig&color1=0xb1b1b1&color2=0xcfcfcf&fs=1" type="application/x-shockwave-flash" allowfullscreen="true" width="425" height="344">
+          </embed> 
+        </object></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Watch it go!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b><i><font size="+2"><a href="CCProjects.htm">Back 
+        to Projects Home...</a></font></i></b></font></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

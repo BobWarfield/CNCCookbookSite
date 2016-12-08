@@ -1,0 +1,1313 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>Machine Tools: CNC Tips &amp; Techniques</title>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="10%"><img src="img/GearsIcon.jpg" width="88" height="77"></td>
+          <td width="90%"><font face="Times New Roman, Times, serif" size="7" color="#FF0000">CNC 
+            Tips &amp; Techniques</font></td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif" size="+2"><b></b></font><font face="Arial, Helvetica, sans-serif">Herein 
+        are my notes on various techniques that are specific to CNC, but not necessarily 
+        a particular type of machine. They are to date a rather disorganized collection 
+        of anecdotes found elsewhere. Over time I will organize these and test 
+        each one, discarding those that don't work so well and emphasizing those 
+        that do. For now, I am using a font convention to differentiate the tips:</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">If I have written a tip 
+        in this font, I have personally verified it.</font> </i></p>
+      <p><i>If it is written like this, I found it on the Internet and am awaiting 
+        verification. These are the ones to take with a grain of salt.</i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">If you want machine specific 
+        tips not related to CNC (i.e. applicable to CNC or manual machining), 
+        there are several pages for the <a href="CCLatheSurfaceFinish.html">lathe</a> 
+        and <a href="CCMillTipsTechniques.htm">mill</a>.</font></i></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><font face="Arial, Helvetica, sans-serif"><b><font size="+1">I 
+            Have A CNC Mill and Some G-Code, What Next?</font></b></font></i></td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif">First, see my tip below 
+        about starting out with just 2 axes. </font></i></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>If you want to plunge in, 
+        here is a rough play by play for how it should go in 3 axes. When you 
+        draw your part in your cad system, you should place one corner of it so 
+        that the top of that corner is at X0Y0Z0. This is the datum, or reference 
+        point for that part, and is called <b><a href="MTCNCDictTangentoWork.htm">Work 
+        Zero</a></b>.</i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>When you power up your machine 
+        and it homes, all the axis are in certain positions which the machine 
+        calls home, and typically these would all be zero, or they might be assigned 
+        particular values. This location is called Machine Zero, or just the Home 
+        Position. Often the home position will be the position where the machine 
+        can access the toolchanger if there is one, or perhaps it will be the 
+        maximum positive values for all axes. A switch is often located there 
+        so the machine can positively find it again.</i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Clamp your stock down on 
+        the table. You want to reconcile the origin of the stock relative to the 
+        machine zero. So, pick a corner of your stock and say, &quot;This is my 
+        datum point or Work Zero&quot;. This should correspond with the position 
+        of your stock in the cad screen. Through a series of jog movements, and 
+        use of an edge finder (precise method) or a sharp point held in the spindle 
+        (crude method) you move the spindle to where the Work Zero datum on the 
+        stock lies. At this time, the machine's axis displays show your jog amounts 
+        from machine zero, so these X and Y values are entered into your G54 work 
+        offset. These values represent how far the datum on the part is from the 
+        machine zero. There is no need to enter a Z G54 work offset at this time, 
+        because the tools have not been loaded as you are just working with an 
+        edge finder or point probe.</i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Now, load the tool and jog 
+        in Z from machine home down to the top of the part. Whatever this distance 
+        is, you could use for your tool length offset for that tool (see below 
+        for more info on tool length offsets!). All the tools could be measured 
+        in this manner. Thus, because the tool length offset sets all the tools 
+        to the same Z level, you are done, there is nothing to set in the Z G54 
+        work offset, which should be zero.</i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Your program needs a T1 
+        M6 command to load a tool from the toolchanger and an G43 H1 command to 
+        load the length offset for that tool. It is simplist if you use H1 with 
+        T1, H2 with T2. Even if you do not have a toolchanger, the T number in 
+        your program is really only for your reference, because the H number will 
+        execute the length offset.</i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Now if it bugs you to set 
+        (and reset) all the tools to the top of the work, then you can set the 
+        tools to the table, or to a reference block that is sitting on the table. 
+        In such an instance, then you set all your tool length offsets to that 
+        reference, each and every time. This is the preferred method.</i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>But, this introduces one 
+        more step, and you do make use of the G54 Z work offset for this. After 
+        any of your tool length offsets are set to the reference, you then need 
+        to measure the height from the reference to the top of the stock. If you 
+        zero the display temporarily when the tool is touching the top of the 
+        reference, then you can jog up or down as required to touch the top of 
+        the stock. This will give you a direct measurement which will be inserted 
+        in the G54 Z register.</i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Near the very start of your 
+        program, you need to call for the machine to use the G54 work offset. 
+        Just insert G54 into your program.</i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>For trial, after you call 
+        G54, then call G00 X0 Y0 and the table should move to position the tool 
+        over the corner reference of the part. Note, in some systems, like Mach 
+        3, G54 is the default, and you need not call G54 explicitly.</i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Then G43 H1 G00 Z1. should 
+        position the tool 1&quot; above the corner of the part. If you are cautious, 
+        turn your rapid override down real slow, and watch the motion happen. 
+        Or you could use G01 in place of G00 and use a slow feedrate to make sure 
+        stuff is happening as you expect. Be ready to hit the feedhold or E stop 
+        if you see a collision coming </i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>You can return the machine 
+        to home with a G53 X0 Y0 Z0 command, if Z0 is the homed position of the 
+        Z axis. G53 is the name of the machine coordinate system. Some say that 
+        it &quot;cancels the work offset&quot; but really, you are just dropping 
+        back into the 'real' coordinate system that the machine works in. The 
+        work offsets are just an imaginary shift of the coordinate system zero 
+        for convenience sake.</i></font></p>
+      <p class=MsoNormal><o:p><i><font face="Arial, Helvetica, sans-serif">An 
+        important relationship to keep in mind is:</font></i></o:p></p>
+      <p class=MsoNormal><font face="Arial, Helvetica, sans-serif"><i><o:p>Total 
+        Height = fixture height + work height + tool height </o:p></i></font><i><o:p></o:p></i><o:p></o:p></p>
+      <p class=MsoNormal><o:p><i><font face="Arial, Helvetica, sans-serif">Much 
+        of the work we've been discussing here involves setting offsets so that 
+        we don't have to think about this relationship in our part program. We 
+        can simply program relative to Work Zero (that datum in our CAD drawing) 
+        and it all works out regardless of how high our vise sits on the table, 
+        how thickness of the material varies, and how long the tool is.</font></i></o:p></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>At this point, you've got 
+        your offsets all set, you've tried the program out &quot;cutting air&quot; 
+        in slow motion. It's probably time to try it out for real. You might cut 
+        a little more slowly on something cheap (like a block of wood) until you 
+        build confidence, but eventually, you'll get it all right and be making 
+        parts!</i></font></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">What about shortcuts? Well, 
+        you could dispense with the edgefinder to find the X, Y work offsets and 
+        just job to a suitable point that's &quot;close&quot; by eyeball but within 
+        the material and cut the machine loose. This assumes you can do all of 
+        the machining in one setup. If, for some reason, you need multiple setups, 
+        then you have to be able to precisely locate the Work Zero setup on subsequent 
+        setups or the machine won't be aligned properly and nothing will come 
+        out right.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">It is also possible that 
+        you have a fixture that enables you to swap to the next setup while preserving 
+        orientation to Work Zero. One can certainly imagine a fixture where you 
+        are essentially just flipping the part upside down and registering it 
+        with a pin or some such to cut the back side. This is something to think 
+        about for a complex part requiring multiple setups.</font></i></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Tip 
+            for Beginners: Start Out In X,Y With A Sharpie &quot;Cutting Tool&quot;</font></b></font></i></td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif">A good place to get started 
+        is 2D CNC programming with a mill. In this mode, you manually control 
+        Z, and just run the program in X and Y. You'll have to write your program 
+        with that in mind, but the idea is to see whether you can get your machine 
+        to draw a circle in a particular place without going off track. You can 
+        put the Sharpie into your keyless chuck (you do have a keyless chuck, 
+        right? &lt;G&gt;) and jog it down until it makes contact with a sheet 
+        of paper taped down on a flat surface. Jog to the point you want to use 
+        as your Work Zero, and go from there. Experiment with your machine and 
+        program until you can draw a circle or other simple shape exactly where 
+        you want it. Move on to something more complex. The Mach 3 gang likes 
+        to use a g-code program that draws a roadrunner, so check their site for 
+        that.</font></i></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Once you have 2D programming 
+        down, you'll be ready to tackle 3D. BTW, more than one CNC mill project 
+        built the X and Y axes with manual machining and then used this 2D technique 
+        to build the Z-Axis parts under CNC control. Not a bad way to bootstrap!</i></font></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Managing 
+            Tool Length Offsets &amp; Automatic Tool Height Setting / Tool Touchsetting</font></b></font></i></td>
+        </tr>
+      </table>
+      <p><b><i><font face="Arial, Helvetica, sans-serif">What is it and why do 
+        I care?</font></i></b></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">As we saw above, getting 
+        all the offsets right can make writing the CNC program a lot simpler. 
+        It just needs to keep track of where the cutter is relative to the Work 
+        Zero datum point, which is part of the CAD drawing (the 0,0,0 origin there) 
+        we started from. All that fussing with edgefinders and such can be a bit 
+        of a nuisance, particularly when you get into tool length offsets, which 
+        could be different for each and every tool. Your CNC control program (such 
+        as Mach 3) needs to know how long each cutting tool is and in the worst 
+        case, you'll have to go through a process of telling it </font></i><i><font face="Arial, Helvetica, sans-serif">every 
+        time you change tools. </font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">Yuck!</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">This is a tedious and time 
+        consuming process that doesn't make a lot of sense if you can avoid it. 
+        There are two approaches to avoiding it. First, you can use an organized 
+        manual system of some kind to manage the problem. Second, you can use 
+        an automated system that measures the tool length under CNC control.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif"><b>Manual Tool Length Offset 
+        Management</b></font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">The simplst manual system 
+        involves measuring the tool length offset once for each tool (assuming 
+        you can change them on the machine and maintain repeatability of these 
+        offsets) and entering all of them into your control program's tool table. 
+        A height gage and surface plate will greatly facilitate this operation, 
+        as will a rack that lets you keep track of which is which:</font></i></p>
+      <p align="center"><img src="img/OthersProjects/ToolStorage.jpg" width="576" height="384"></p>
+      <p align="center"><b><i>Tools organized by their Tool Table entry in Mach 
+        3. The offsets were pre-set and entered into the table...</i></b></p>
+      <p align="center"><img src="img/OthersProjects/SoManyTools.jpg" width="720" height="960"></p>
+      <p align="center"><b><i>Then again maybe you can fill that tool table! Geez 
+        those toolholders must have cost a pretty penny...</i></b></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">Mach 3 supports up to 253 
+        entries in its tool table, so you'll likely go broke purchasing tool holders 
+        before you run out of slots in Mach! It certainly pays to keep your most 
+        common tooling in the table at the very least. For example, you might 
+        have:</font></i></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td> 
+            <div align="center"><b>Large Carbide Insert Facing Mill</b></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><b>Large Carbide Insert Roughing Mill</b></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><b>Big &quot;Corncob&quot; Rougher</b></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><i><b>3&quot; Fly Cutter</b></i></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><i><b>1/2&quot; Roughing End Mill (2 and 4 flute)</b></i></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><i><b>1/2&quot; Finishing End Mill (2 and 4 flute)</b></i></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><i><b>3/8&quot; Finishing End Mill (2 and 4 flute)</b></i></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><i><b>1/8&quot; Finishing End Mill (2 and 4 flute)</b></i></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><i><b>1/16&quot; Finishing End Mill</b></i></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><i><b>Drill Chuck w/ Bit (How many common hole 
+              sizes do you need? Should you standardize your shop on just a few 
+              hardware sizes? You'll want a chuck for each one. You may need the 
+              hole size for tapping, for clearance, and probably a counterbore 
+              as well.)</b></i></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><i><b>Drill Chuck w/ Center or Spot Drill</b></i></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><i><b>Deburr or Chamfer Tool</b></i></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><b><i>Special purpose cutters: Dovetail mills, 
+              keyway cutters, slitting saws, etc.</i></b></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><i><b>etc.</b></i></div>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif">Given the flexibility of 
+        CNC to do things like interpolating holes with smaller end mills, a surprisingly 
+        small collection will cover a lot of ground. You can always tee up a few 
+        special purpose cutters if you need them for a job.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">Assuming you have this level 
+        of organization, you can even write your CNC program so that the operator 
+        can see which tool to pop in (by a # that is also on the tool rack). He 
+        pops it in, pushes the button to go, and the program knows exactly which 
+        tool entry to select and move on with. Having available a power drawbar 
+        or quickchange tooling system can make this go surprisingly quickly on 
+        machines that don't have an automatic toolchanger.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">You are going to need to 
+        make sure you can re-register a tool in its holder to exactly the same 
+        offset each time you insert it. This probably means the tool holder needs 
+        a shoulder of some kind that registers on the spindle nose. If you are 
+        running R8 or MT tooling, take care that you don't assume the collet or 
+        R8/MT shank will always tighten to the same position as the drawbar pulls 
+        it in--it won't unless there is a shoulder to reference the tool to the 
+        spindle nose.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif"><b>Fixed Offset Tooling 
+        Systems</b></font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">The next level of sophistication 
+        for this problem involves creating a system whereby every tool is set 
+        to the same length. Companies like <a href="http://www.tormach.com/">Tormach</a> 
+        sell these kinds of tooling systems, or you could consider building such 
+        tooling yourself. Tormach's is based on an ER collet system. You need 
+        a separate Tormach tool with collet for each cutter, and they also offer 
+        drill chucks.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">It seems to me that given 
+        a surface plate and height gage, you might do something similar to Tormach's 
+        system with normal mill holders. At the least you might segregate your 
+        tools into standard length offsets. Again, you need a way to reliably 
+        reference the holder to the spindle nose without relying on consistent 
+        pull-in by the drawbar. The latter will not be repeatable!</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif"><b>Automatic Tool Length 
+        Sensing</b></font></i></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>The peak of sophistication 
+        is a mechanism whereby tool offsets are automatically determined by having 
+        the tool contact a switch or close a circuit at a fixed location on the 
+        table. If every tool is measured against the same device, they will all 
+        be in the same position relative to one another once the tool offset is 
+        applied. At this point, you would then be able to apply multiple tools 
+        against the workpiece using only a Work Zero touch off, which can save 
+        a lot of time and effort on a CNC job. </i></font></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">If you don't have automatic 
+        tool height setting, you'll need a manual mechanism to deal with the problem. 
+        Some use a gage block and just eyeball it, and there are also various 
+        arrangements using dial indicators and the like. You can do a touch off 
+        with cigarette paper in classic fashion. You can also create or buy a 
+        tooling system where all of the cutters are precision set to a particular 
+        height, such as the one sold by Tormach. If you've got a surface plate 
+        and height gage, this is very easy to do for yourself, and a lot of pro 
+        shops have the Tool Crib doing this work so that when a tool is checked 
+        out it comes with a slip that tells the proper tool offset. Lastly, there 
+        are a variety of switches that light an LED (ala LED edgefinders) also 
+        available. </font></i></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Many professional CNC shops 
+        also use this method to allow for insert wear, and to stop a continuous 
+        production job if an insert breaks. In this mode, the toolsetter captures 
+        the initial offset, and if it varies by more than the amount of wear expected 
+        (usually less than 0.005&quot;), the insert is assumed to have broken 
+        and the program is halted until an operator can look at it.</i></font></p>
+      <p><i><font face="Arial, Helvetica, sans-serif"><b>What Kind of Sensor Can 
+        I Use?</b></font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">The switch used can take 
+        a lot of formats. I have heard of one fellow who closed a circuit between 
+        the QCTP and the chuck on his lathe. This method of just letting contact 
+        do the job of closing a circuit works pretty well, and is certainly easy 
+        enough to build. A CNC touch plate is a device that can be dropped atop 
+        the workpiece. It is of known thickness, and has a contact with the spindle, 
+        and hence the end mill. The Z-Axis lowers until the circuit is completed, 
+        at which point the cutter is a known height above Work Zero (i.e. the 
+        thickness of the touch plate). The plate is simply a metal plate with 
+        a wire that is backed with some sort of insulating material such as Delrin. 
+        The Delrin insulates the connection from the workpiece, which presumably 
+        would otherwise have a closed circuit through the frame of the machine 
+        and all the way back to the spindle.</font></i></p>
+      <p align="center"><img src="img/OthersProjects/TouchPlate.jpg" width="640" height="480"></p>
+      <p align="center"><b><i>Insulation is not neccesary for a touch plate that 
+        sits on wood workpieces!</i></b></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">Here is a switch mounted 
+        off to the side that finds a zero for the top of the spoil board (the 
+        table) of a router setup:</font></i></p>
+      <p align="center"><img src="img/OthersProjects/CNCTouchsetter.jpg" width="315" height="420"></p>
+      <p align="center"><b><i>Touchsetter relatively to table zero on a router--top 
+        of spoilboard...</i></b></p>
+      <p align="center"><img src="img/OthersProjects/JFettigTouchsetter.JPG" width="800" height="600"></p>
+      <p align="center"><b><i>Another homebrew touchsetter switch. This one is 
+        pretty tall!</i></b></p>
+      <p align="center"><img src="img/OthersProjects/Tools/BlumNanoTouchsetter.jpg" width="216" height="288"></p>
+      <p align="center"><b><i>A commerical Blum Nano touchsetter...</i></b></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">If you want 
+        to build a probe that works along the principles of commercial devices, 
+        <a href="http://www.indoor.flyer.co.uk/probe.htm">Indoor Flyer</a> has 
+        an excellent article on one. It's intended for digitizing, but could be 
+        used for this purpose as well. Why not make 2 so you have one for each 
+        purpose?</font></i></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">If you want 
+        to buy a probe, try <a href="http://www.cadcamcadcam.com/index.asp">IMServices</a>. 
+        The reviews I've heard on their probes have been great!</font></i></p>
+      <p align="center"><a href="http://www.cadcamcadcam.com/index.asp"><img src="img/OthersProjects/IMServicesprobesetter2a.jpg" width="305" height="419" border="0"></a></p>
+      <p align="center"><a href="http://www.cadcamcadcam.com/index.asp"><b><i>IMServices 
+        probe for touchsetting (top) and scanning (bottom)... </i></b></a> </p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">How about using 
+        an optical limit switch? Industrial Hobbies used to sell these, but now 
+        only offer them as part of their CNC kit. <a href="MTLatheCNCOpticalLimits.htm">I've 
+        been working on a design for one</a>. They're pretty simple:</font></i></p>
+      <p align="center"><a href="MTLatheCNCOpticalLimits.htm"><img src="img/LatheStuff/CNCConversion/OpticalLimits/OLimitTopDims.jpg" width="800" height="542" border="0"></a></p>
+      <p align="center"><b><i>An <a href="MTLatheCNCOpticalLimits.htm">optical 
+        limit switch</a> could be made into a touchsetter switch...</i></b></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">After I determine 
+        how accurate my design is in the limit switch application, it wouldn't 
+        be hard to re-engineer it for this application where it could be mounted 
+        vertically near the home position. The neat thing about the optical limit 
+        is the contact closure is completely &quot;soft&quot; as a flag blocks 
+        the beam of light to the sensor. As such, over travel is easy to arrange 
+        so you can slam into the limit pretty fast, apply minimal back pressure 
+        to your cutting tool, and if the axis has a bit of over travel before 
+        the switch cuts in, you haven't ruined anything.</font></i></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">Finally, Mariss 
+        Freimaniss (Mr Gecko Drive) had an interesting suggestion for those into 
+        building probes:</font></i></p>
+      <p align="left"> 
+      <blockquote><font face="Arial, Helvetica, sans-serif"><i>How about a probe 
+        rod attached directly (superglued) to a pizeoelectric crystal? Any contact 
+        would generate an easy to detect voltage. Take apart a clicker type butane 
+        lighter and attach a voltmeter to the wires; it takes the faintest pressure 
+        on the crystal to generate a voltage. Nothing moves so the contact/no-contact 
+        point hysterisis is negligable. </i></font></blockquote>
+      <p></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><i>Another fellow 
+        mentioned the availability of small "bimorph" piezoelectric devices to 
+        be used as Mariss suggests. He says they put out 4v with 10 micrometers 
+        of deflection. That's pretty darned sensitive! Not sure this sensor is 
+        ideal for this application, however. It is simple, but the problem is 
+        it only sends a brief signal at the point of contact and then stops signalling. 
+        It might be necessary to &quot;latch&quot; that signal in some way. Anyway, 
+        mechanical switches are cheap and easy.</i></font></p>
+      <p><i><font face="Arial, Helvetica, sans-serif"><b>Setting up Mach 3 for 
+        Touchsetting: Basic Script</b></font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">Okay, let's take a look 
+        at the software component of creating an automatic touchsetter for use 
+        with Mach 3 on a mill.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">First, you need a sensor, 
+        which we covered just above. Next, you'll need a macro to position the 
+        tool over the sensor and drive down in the Z-axis until contact is made, 
+        at which point the Z-position may be used to calculate an appropriate 
+        offset. </font></i><i><font face="Arial, Helvetica, sans-serif">Before 
+        going to a lot of trouble to write a custom macro for this purpose, be 
+        sure to experiment with the &quot;Set Tool Offset&quot; command on the 
+        control panel. This is the manual approach to setting these offsets, and 
+        you'll want to be comfortable that your automated approach does something 
+        similar without as much manual intervention from you. Basically, you just 
+        touch-off the tool, enter any additional offset in the DRO next to the 
+        button, and click the button. For example, if you touch down on a gage 
+        block, enter the thickness of the block in the additional offset DRO. 
+        You want to be very comfortable with all the offsets available in Mach 
+        3 before tackling this job!</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">On the sensor, you need 
+        to tell Mach 3 what input pin to use as a probe sensor contact. Use the 
+        &quot;Input Pins&quot; dialog to do this. From what I can read in my travels, 
+        a Z-axis feed rate on the order of 10&quot;/minute is slow enough to work 
+        well without damaging the tool or the sensor. </font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">Now about those Mach 3 macros. 
+        Here are some samples, use at your own risk until I get my own written 
+        (my own comments are after the &quot;//&quot;, ignore those!):</font></i></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="17%"> 
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>code "g31 z-10 
+              f10" </b></i></font></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>While IsMoving() 
+              </b></i></font></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>Wend </b></i></font></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>code "G92 Z0" </b></i></font></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>code "G0Z3" </b></i></font></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>While IsMoving() 
+              </b></i></font></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>Wend code </b></i></font></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>"g92z0" </b></i></font></p>
+          </td>
+          <td width="83%" valign="top"> 
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>// Retract Z, set 
+              feedrate of 10&quot;/min</b></i></font></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>// Wait for the 
+              move to finish</b></i></font></p>
+            <p>&nbsp;</p>
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>// Zero the Z-Axis 
+              DRO</b></i></font></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>// Move to Z 3&quot;</b></i></font></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>// Try moving down 
+              until the probe touches</b></i></font></p>
+            <p>&nbsp;</p>
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>// Zero the Z-Axis 
+              DRO again after the probe touches</b></i></font></p>
+          </td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Again, ignore everything 
+        from &quot;//&quot; on, inclusive, those are my notes about what is happening 
+        and don't go into the macro. Now you need to determine exactly what it 
+        is that's being zeroed. Do you want to just find the tool offset? If so, 
+        you probably want to measure from the table height or some fixed position. 
+        Do you want work zero as the top of the workpiece? If so, you want something 
+        that sits atop the workpiece and is repeatable. Either way the macro shown 
+        above has no provision to deal with any offset between Z0 and the thickness 
+        of the switch or other calculations you may want to do to get exactly 
+        the offset you are looking for.</i></font></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">Here is another sample macro 
+        (written for the router switch shown above) with my &quot;//&quot; comments 
+        (as usual, they'd have to be removed before use):</font></i></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="32%" valign="top"> 
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>if IsSuchSignal 
+              (22) t</b></i></font><b><font face="Arial, Helvetica, sans-serif"><i>hen 
+              </i></font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif"><i>code "g0 x10 y1"</i></font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif"><i>code "g0 z-30" 
+              </i></font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif"><i>code "g31 z-3 f20" 
+              </i></font></b></p>
+            <p>&nbsp;</p>
+            <p><b><font face="Arial, Helvetica, sans-serif"><i>While IsMoving()</i></font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif"><i>Wend </i></font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif">call SetDRO( 2, .125 
+              ) </font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif">"G0 Z2.5 F60" </font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif">While IsMoving() </font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif">Wend end iF </font></b></p>
+          </td>
+          <td width="68%" valign="top"> 
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>// Check whether 
+              a probe input is defined</b></i></font></p>
+            <p><b><font face="Arial, Helvetica, sans-serif"><i>// Move to the 
+              location of the touchsetter switch: X=10&quot;, Y=1&quot;</i></font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif"><i>// Raise Z 30&quot;</i></font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif"><i>// Start moving 
+              Z down at 20&quot;/min after dropping Z 3&quot;.</i></font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif"><i>// G31 is Mach3's 
+              &quot;straight down probe&quot; function.</i></font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif"><i> // Move until 
+              the contact closes...</i></font></b></p>
+            <p>&nbsp;</p>
+            <p><b><font face="Arial, Helvetica, sans-serif">// Set DRO2, the Z, 
+              to the thickness oF the touch plate code </font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif">// g-code to quickly 
+              go up 2.5” to get out of the way (is 2.5&quot; enough?)</font></b></p>
+            <p><b><font face="Arial, Helvetica, sans-serif">// do nothing while 
+              the motor is moving up </font></b></p>
+          </td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif">Again, I'm not endorsing 
+        these macros, just trying to understand them before working on my own 
+        version. Here is another sample that is a bit more complex than the first 
+        two: </font></i></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td valign="top" width="56%"> 
+            <p><b><i>if IsSuchSignal (22) Then </i></b></p>
+            <p><i><b>Fixture_Num = GetOEMDRO(46)</b></i></p>
+            <p><i><b>Call SetOEMDRO (46, 202) </b></i></p>
+            <p><i><b>Code "G00 G53 Z00." </b></i></p>
+            <p><i><b>'Code "G53 X0. Y0." 'Move into Probe Pos ***EDIT HERE*** 
+              </b></i></p>
+            <p><i><b>Tool_Number = GetDRO(24) </b></i></p>
+            <p><i><b>code "G91 g31 z-4. f10" </b></i></p>
+            <p><i><b>While IsMoving() </b></i></p>
+            <p><i><b>Wend </b></i></p>
+            <p><i><b>If Tool_Number = 0 Then </b></i></p>
+            <p><i><b>z = GetOEMDRO(85)</b></i></p>
+            <p><i><b>Call SetOEMDRO(49,z) </b></i></p>
+            <p><i><b>Else Call SetDRO(24,0)</b></i></p>
+            <p><i><b>Height = GetDRO(2) </b></i></p>
+            <p><i><b>Call SetDRO(24,Tool_Number) </b></i></p>
+            <p><i><b>Call SetoemDRO(42,Height) </b></i></p>
+            <p><i><b>End if </b></i></p>
+            <p><i><b>Call SetOEMDRO(46,Fixture_Num) </b></i></p>
+            <p><i><b>code "G91 G0 Z0.25" </b></i></p>
+            <p><i><b>code "G90" </b></i></p>
+            <p><i><b>While IsMoving() Wend end if </b></i></p>
+          </td>
+          <td width="44%" valign="top"> 
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>// Check whether 
+              a probe input is defined</b></i></font></p>
+            <p>&nbsp;</p>
+            <p><b><i><font face="Arial, Helvetica, sans-serif">// Set to fixture 
+              number 202</font></i></b></p>
+            <p><b><i><font face="Arial, Helvetica, sans-serif">// Height to move 
+              into probe pos </font></i></b></p>
+            <p><b><i><font face="Arial, Helvetica, sans-serif">// Needs editing 
+              for use, but how?</font></i></b></p>
+            <p>&nbsp;</p>
+            <p><b><i><font face="Arial, Helvetica, sans-serif">// Move Z to -4&quot; 
+              at 10&quot;/min</font></i></b></p>
+            <p><b><i><font face="Arial, Helvetica, sans-serif">// Wait for move 
+              to complete</font></i></b></p>
+            <p>&nbsp;</p>
+            <p><b><i><font face="Arial, Helvetica, sans-serif">// Tool_Number 
+              0 means master tool Cal </font></i></b></p>
+            <p><b><i><font face="Arial, Helvetica, sans-serif">// Get Machine 
+              ZPos </font></i></b></p>
+            <p><b><i><font face="Arial, Helvetica, sans-serif">// Set fixture 
+              offset </font></i></b></p>
+            <p><b><i><font face="Arial, Helvetica, sans-serif">// Turn off the 
+              tool offset by loading tool #0 </font></i></b></p>
+            <p><b><i><font face="Arial, Helvetica, sans-serif">// Get the pos 
+              of the Z axis without the Tool comp on </font></i></b></p>
+            <p><b><i><font face="Arial, Helvetica, sans-serif">// 'Turn the tool 
+              Back on so the offset will go to the </font></i></b></p>
+            <p><b><i><font face="Arial, Helvetica, sans-serif">// Set the Tool 
+              Height offset </font></i></b></p>
+            <p>&nbsp;</p>
+            <p><b><i><font face="Arial, Helvetica, sans-serif">// Set the Fixture 
+              back to what it was </font></i></b></p>
+          </td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif">This macro is designed with 
+        the idea that all of the tool offsets are relative to the offset of a 
+        master tool, which is tool 0. Hmmm, this guy went to a lot of trouble 
+        to do that, but I don't yet understand why. Perhaps he establishes Work 
+        Zero with tool 0 and then keeps the other offsets relative to that. The 
+        answer is probably obvious, but I'm not there yet.</font> </i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">And yet another, even more 
+        elaborate macro from the Mach 3 support forum. It is interesting in that 
+        it simply keeps track of the difference between the current tool and the 
+        newly inserted tool rather than bothering with the tool table. It also 
+        shows how to prompt the operator to insert the new tool:</font></i></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td valign="top" width="49%"> 
+            <p><i><b>ChX = GetUserDRO( 1200 ) </b></i></p>
+            <p><i><b>ChY = GetUserDRO( 1201 ) </b></i></p>
+            <p><i><b>ChZ = GetUserDRO( 1202 ) </b></i></p>
+            <p><i><b>Code "G53 G00 Z-1" </b></i></p>
+            <p><i><b>While IsMoving() </b></i></p>
+            <p><i><b>Wend </b></i></p>
+            <p><i><b>ZOld = Getdro(2) </b></i></p>
+            <p><i><b>Code "G53 G00 X" & ChX & "Y" & ChY 'Move to the probe position 
+              </b></i></p>
+            <p><i><b>While IsMoving() </b></i></p>
+            <p><i><b>Wend </b></i></p>
+            <p><i><b>Code "G31 Z-230 F450" </b></i></p>
+            <p><i><b>While IsMoving() </b></i></p>
+            <p><i><b>Wend Hit</b></i></p>
+            <p><i><b>Old = GetVar(2002) </b></i></p>
+            <p><i><b>Code "G53 G00 Z-1"</b></i></p>
+            <p><i><b>Code "G53 G00 X65 Y-200"</b></i></p>
+            <p><i><b>While IsMoving() </b></i></p>
+            <p><i><b>Wend </b></i></p>
+            <p><i><b>MsgBox ("Insert the new tool") </b></i></p>
+            <p><i><b>Code "G53 G00 X" & ChX & "Y" & ChY</b></i></p>
+            <p><i><b>While IsMoving() </b></i></p>
+            <p><i><b>Wend </b></i></p>
+            <p><i><b>Code "G31 Z-230 F450" </b></i></p>
+            <p><i><b>While IsMoving() </b></i></p>
+            <p><i><b>Wend </b></i></p>
+            <p><i><b>HitNew = GetVar(2002) </b></i></p>
+            <p><i><b>Diff = HitOld - HitNew </b></i></p>
+            <p><i><b>DiffABS =Abs(Diff) </b></i></p>
+            <p><i><b>If DiffABS=0 Then End </b></i></p>
+            <p><i><b>ZNew=0 </b></i></p>
+            <p><i><b>If HitOld < HitNew Then </b></i></p>
+            <p><i><b>ZNew = ZOld - DiffABS :A=1 </b></i></p>
+            <p><i><b>If HitOld > HitNew Then </b></i></p>
+            <p><i><b>ZNew = ZOld + DiffABS :A=2 </b></i></p>
+            <p><i><b>Code "G53 G00 Z-1" </b></i></p>
+            <p><i><b>While IsMoving() </b></i></p>
+            <p><i><b>Wend </b></i></p>
+            <p><i><b>Call setdro(2,ZNew) </b></i></p>
+            <p><i><b>'FxModel Creation </b></i></p>
+            <p><i><b>End </b></i></p>
+          </td>
+          <td valign="top" width="51%"> 
+            <p><i><b>// Get X, Y, Z where the touchsetter probe is located from 
+              user defined DRO's..</b></i></p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p><i><b>// Move the tool all the way up = 1&quot; above Work Zero</b></i></p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p><i><b>// Record this Z-position after the move up. Should change 
+              to an OEM DRO, which?</b></i></p>
+            <p><i><b>// Move to the touchsetter X, Y position</b></i></p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p><i><b>// Move down in Z until we hit the probe. That F450 looks 
+              too fast! Is it metric?</b></i></p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p><i><b>// Get the position where the probe hit on the old tool</b></i></p>
+            <p><i><b>// Z move all way up</b></i></p>
+            <p><i><b>// Move to change tool position </b></i></p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p><i><b>// Tell the operator to insert the new tool</b></i></p>
+            <p><i><b>// Move to the probe position</b></i></p>
+            <p>&nbsp;</p>
+            <p><i><b>// Z move down untill hit, F too fast? Metric?</b></i></p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p><i><b>// Get the Position that the Probe hit at on the new tool</b></i></p>
+            <p><i><b>// Offset difference in the two tools</b></i></p>
+            <p><i><b>// Absolute difference</b></i></p>
+            <p><i><b>// If no difference, don't bother</b></i></p>
+            <p>&nbsp;</p>
+            <p><i><b>// If new tool is longer, calculate new Z DRO setting by 
+              subtracting</b></i></p>
+            <p>&nbsp;</p>
+            <p><i><b>// If new tool is shorter, calculate by adding</b></i></p>
+            <p>&nbsp;</p>
+            <p><i><b>// Select new coordinate system and move Z -1&quot;</b></i></p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p><i><b>// Set Z to the new value, adjusted by tool length</b></i></p>
+          </td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif">Everyone says this works 
+        great, but I wish it would use the real tool length offsets as intended 
+        by the g-code language. Also, it makes use of a lot of deprecated functions 
+        that are being discouraged in Mach 3. Note also that it is likely working 
+        in metric, so the specified feedrate is not 450 inches/minute but rather 
+        450 mm/minute, which is about 18&quot;/minute, much safer! You will need 
+        to deal with that difference on your system. As I write this, the macro 
+        works reliably for some, but not others. Still searching for nirvana!</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif"><b>Setting Up Mach 3 for 
+        Touchsetting: Interface Niceties...</b></font></i></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Okay, let's say we have 
+        the basic script up and running. How do we access it from within our g-code 
+        part program so that we can set the tool length offsets either at the 
+        beginning of the program, or in a program that let's you go through your 
+        whole rack and set up the table, or for some other application such as 
+        after each tool change?</i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>One easy approach is to 
+        make use of Mach's capacity to create custom M-codes. Let's say you wanted 
+        to trigger your macro with an M450. Simply place the following at the 
+        top of the macro:</i></font></p>
+      <p> 
+      <font face="Arial, Helvetica, sans-serif"><i> 
+      <blockquote>SetTriggerMacro (450) would set it to M450</blockquote>
+      </i></font> 
+      <p></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">That's pretty cool. We've 
+        just added our own canned cycle to Mach to set the tool height!</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif"><b>I Wish I Could Say This 
+        Is All Done And Easy, But...</b></font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">Despite all the research, 
+        I still do not have a definitive macro and touchsetter design that is 
+        confirmed working. I have a lot of &quot;almost there&quot; prototypes 
+        where an individual got it to work well enough and moved on. It's a pity, 
+        but that will give me some challenge working out the bugs when it comes 
+        time to build my own!</font></i></p>
+      <p></p>
+      <p></p>
+      <p><b><i><font size="+2"><a href="index.htm">Back to Machine Shop Home...</a></font></i></b></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

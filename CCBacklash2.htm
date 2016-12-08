@@ -1,0 +1,793 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNC Cookbook: Eliminating Backlash</title>
+
+<meta name="description" content="Methods for eliminating backlash in CNC machines, part 2 of a 2-part article." />
+
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p>&nbsp;</p>
+      <p><font face="Arial, Helvetica, sans-serif"><b><i>See Also <a href="CCBacklash1.htm">Eliminating 
+        Backlash, Part 1</a></i></b></font></p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p><font face="Times New Roman, Times, serif" size="7" color="#339933">Eliminating 
+        Backlash, Part 2: Refinements</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">If you're looking over this 
+        page, I'll assume you have a machine already converted that has the &quot;good&quot; 
+        parts (like ballscrews), you've gotten rid of most of your backlash (let's 
+        say you're down to 0.005&quot; or less), but you still have too much backlash. 
+        If instead you either, wonder why you should eliminate backlash (or how 
+        much can your stand), you want to build a CNC machine from scratch, or 
+        you are converting a manual machine that has measurable backlash, try 
+        <a href="CCBacklash1.htm">Part 1</a>.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><span class="BlogTitle">I Installed 
+        &lt;Insert &quot;Good Part&quot; Here&gt;, And Still Have Backlash. What 
+        Should I Do?</span></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">First, make sure you do in 
+        fact have the Good Parts on your machine and that they are installed in 
+        the most advantageous way. If you have any doubt, you might just quickly 
+        peruse <a href="CCBacklash1.htm">Part 1</a>.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Okay, so you have the good 
+        parts and still have backlash. How to go about diagnosing? Simply put, 
+        there are just a few areas that can be sources of the backlash on a given 
+        axis:</font></p>
+      <p> 
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif">Leadscrew &amp; Nut<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Leadscrew and/or Nut Mounting<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif"> Motor Drive Mechanism<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Slideways and or Gibs<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Machine Flexure and Rigidity</font></li>
+      </ul>
+      <p></p>
+      <p><font face="Arial, Helvetica, sans-serif">Let's look at each one, describe 
+        how backlash can develop there, and discuss what you might do to eliminate 
+        that cause if you diagnose it as a problem.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><span class="BlogTitle">Gibs</span></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Let's start here because it 
+        is the easiest to work with and likely the source of a fair amount of 
+        your problem. I'm assuming you're not running commercial ball bearing 
+        linear slides, but have conventional ways of one kind or another with 
+        adjustable gibs. Start by making sure the slideways are properly lubricated. 
+        I hate to leave out that essential point, but while we're on it, be sure 
+        your ballscrew, ballnut, and angular contact bearings have proper lube 
+        as well. Remember, any unnecessary friction can translate into forces 
+        that want to bend or deflect something and can lead to backlash.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Unfortunately, adjusting your 
+        gibs is a matter of art coupled with much trial and error. I will try 
+        to provide some insights. The recommendation is to run the gibs as tightly 
+        as possible but no tighter. Easier said than done. If they are too tight, 
+        that yields the unnecesary friction that then leads to flexure or stick/slip 
+        which leads to backlash. If too loose, there can be slop in the system 
+        which translates to backlash and in the worst case, binding and more backlash. 
+        In the end, you need to creep up on it by gradually tightening the gibs 
+        and taking backlash measurements at each tightening. The backlash should 
+        gradually reduce until you've gone too far, at which point it'll jump 
+        back up. Back off in small increments and try again to find the sweet 
+        spot, being better informed about when to stop the next time around. I 
+        have often wondered if measuring the torque applied to the adjusting screws 
+        wouldn't be a way to make this a little more systematic and scientific. 
+        It can take you literally hours to get this right the first time, but 
+        it's worth it if you're chasing out the last increment of backlash. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Of critical importance is balancing 
+        the forces if you don't have tapered gibs. Tapered gibs have a single 
+        adjustment screw that varies tension along the whole length of the gib. 
+        Non-tapered gibs use multiple adjusting screws along the length of the 
+        gib, and the challenge is to get them all about even. Again, I wonder 
+        whether a digital torque wrench wouldn't be a God send to balance that 
+        all out properly.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b>Trial and Error: Tighten, 
+        Measure Backlash, Rinse and Repeat</b></font></p>
+      <p class="style1">In terms of more analytical approaches, I have two suggestions. 
+        First, you can simply adjust your gibs while systematically measuring 
+        backlash and quit when you have as little backlash as possible and it 
+        is still possible to turn the leadscrew. Note that minimum backlash may 
+        not turn out to be at maximum gib tightness, so that's why we're measuring 
+        backlash each time we tighten the gibs. </p>
+      <p class="style1"><b>Set Gibs Based on Slop Perpendicular to the Axis</b></p>
+      <p><span class="style1">A second analytical approach is one I was told is 
+        the Bridgeport factory procedure (and is also recommended by Fadal) for 
+        setting up the gibs. Use a 0.0001 reading indicator and measure the slop 
+        in the slide. Example: For the X axis, place the mag base on the end of 
+        the saddle and put the stylus on the table. At that end of the table push 
+        and release. Then pull and release. The differance is the amount of clearance 
+        in the slide. Repeat at the other end of the saddle. Adjust gib in a like 
+        new machine with little wear to give a reading of 0.0005 (note, Fadal 
+        recommends 0.0003&quot;, while <a href="http://www.pyramidrebuilders.com/index.html">Pyramid, 
+        a rebuilder, recommends 0.0004&quot;</a>). A machine with more wear will 
+        have to be checked with the table closer to the end of travel. The same 
+        procedure is used to set the saddle to knee gib. There must be some clearance 
+        for the oil film and that film also helps dampen vibration. On a machine 
+        with hardened and ground box ways and turcite on the moving member the 
+        procedure is to set the clearance to almost nil. 0.0001 is a good number. 
+        This is again a practice of checking backlash while setting the gibs, 
+        the difference is the Bridgeport factory knew what backlash to expect 
+        on a newly manufactured machine.</span> </p>
+      <p><font face="Arial, Helvetica, sans-serif">Prototrak wants you to adjust 
+        their lathes so the cross slide has not more than 0.001&quot; of slop 
+        perpendicular to the axis.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b>Use Your Load Meters</b></font></p>
+      <p class="style1">Now suppose you have a CNC machine. Are there load meters 
+        on each axis? If so, you have a shortcut to consistent gib adjustment 
+        because the load meter will tell you how tight you have them. I plan to 
+        install load meters on my upcoming IH mill CNC conversion for this and 
+        other reasons. The load meter is just an ammeter on the axis DC supply 
+        before it gets to the driver board, so it wouldn't be hard to add these. 
+        One account I read suggests setting the gibs so that your axis load is 
+        about 30%. </p>
+      <p class="style1">Use a Torque Wrench</p>
+      <p class="style1">Southwestern Industries (ProtoTrak) sets the gib tightness 
+        on their CNC lathes using a torque wrench. They recommend 15 in/lbs of 
+        torque be all it takes to turn the ballscrews.</p>
+      <p class="BlogTitle">Linear Slide Adjustments</p>
+      <p><font face="Arial, Helvetica, sans-serif">If you are running ball bearing 
+        linear slides, and you have two of them on an axis, are they truly parallel, 
+        or are they binding up because they're not? The latter will result in 
+        flexure if you overpower it with a strong motor and leadscrew combination. 
+        You've got to get them parallel to an acceptible standard,</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><span class="BlogTitle">Leadscrew 
+        &amp; Nut</span></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The gibs are adjusted to best 
+        effect, and you're still on the hunt for backlash. What's next?</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Is everything bolted up tight 
+        with no play or flexure back to the machine? Just check it out carefully, 
+        perhaps even disassembling and reassembling to make sure everything is 
+        torqued well. Make sure the leadscrew runs parallel to the direction of 
+        axis travel, or you're going to get binding at some point that may force 
+        flexure and therefore backlash into the system. If you have access to 
+        do so, try to place your indicator against the mounting points of the 
+        ballscrew and ballnut in order to check for small amounts of flexure where 
+        there should be none. If you find some, you either need a beefier bracket, 
+        beefier mounting method, or less friction in the system (gibs too tight? 
+        everything lubed properly? ways in good shape?).</font></p>
+      <p class="style1">You can also try setting the indicator's magnetic base on the table, and the indicator tip on the ball groove of the screw. Try to move the table by hand. You should not be able to move it far at all (&lt;0.0005&quot; on a commercial CNC machine). If you have too much play here the ballnut to ballscrew connection isn't tight enough (need preload? ballscrews or nut too worn?) or the nut mounting may be loose. </p>
+      <p><font face="Arial, Helvetica, sans-serif">Do you have a beefy enough 
+        leadscrew? This is largely a function of diameter. Check out what companies 
+        like Hiwin are using in their Bridgeport conversions. Did you buy a little 
+        wimpy ballscrew intended for a much lighter application? If so, it is 
+        probably flexing when you try to generate too much force with it.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I'm hoping you find nothing 
+        of value here, because if you do, and you change anything, you have to 
+        go back and re-adjust those darned gibs. Doh! </font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><span class="BlogTitle">Leadscrew 
+        and/or Nut Mounting (aka OMG those bearings are expensive!)</span></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Okay, we spent a lot of time 
+        on this in <a href="CCBacklash1.htm">Part 1</a>. But maybe you bought 
+        cheaper bearings than will suffice for your application. You might want 
+        to save this for last, because if all else fails, you will face the expensive 
+        proposition of upgrading the (probably already expensive bearings) to 
+        some better (even more, possibly much more) expensive bearings. Try to 
+        come up with a way to measure just the play in the ballscrew versus the 
+        bearings. Disconnect the nut from it's mounting, position a dial indicator 
+        to read the end of the bearing end of the ballscrew, and try to push and 
+        pull on the far end. Can you read any play there? Given some of the preload 
+        numbers we've talked about (125 lbs to 500 lbs), you might need a fair 
+        amount of push/pull force to tell. Do the be<span class="style1">st you can.</span></font><span class="style1"> If there is too much play here, you may have a problem with the ballscrew mounting, very likely the bearings.</span> </p>
+      <p class="style1">You can also run a test with the ballscrew turning. Most ballscrews with have an indentation in the end. You can rely on the end to be true, but you can place a ball bearing in the indentation and then indicate off the ball bearing. The ball bearing can be held in place with a little dab of grease or superglue. This is one of the best ways to measure the motion of the ballscrew in its bearings. </p>
+      <p><font face="Arial, Helvetica, sans-serif">Make sure the bearings are 
+        installed properly. Are they facing each other properly in the DF configuration 
+        or is one flipped? Check the torque on the lock nut for proper preload. 
+        What about the mounting block for the bearings? Are they tight in there, 
+        or can they move around? Check the spacers, shims, and fits of it all. 
+        Remember we talked about how in the most precise designs a lot of this 
+        requires ground precision?</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">How about the ballscrew and 
+        ballnut? Is there play there? Try the opposite of the prior measurement. 
+        Leave the ballnut mounted, but remove the bearings supporting either end. 
+        What kind of play is there? Is the ballscrew used? Could it be worn? If 
+        so, consider reloading some oversized balls, but start in small increments. 
+        BTW, there are outfits that will do this for you at a nominal charge and 
+        it is a pain, so consider using one. If you have double ballnuts, how 
+        about adjusting the preload?</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><span class="BlogTitle">Motor 
+        Drive Mechanism</span></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Spring couplers have a bad 
+        reputation where backlash is concerned, especially if a lot of torque 
+        is required. Oldhams are better if you are direct driving, but a timing 
+        belt drive is the best. Make sure your belts are not overly worn and are 
+        tensioned properly. Are both pulleys mounted well on their shafts? Commercial 
+        CNC machines will use very tight keys and a taper lock onto the shaft.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Are we talking about an exotic 
+        drive using gears? Fraught with peril from a backlash standpoint. Is it 
+        at least a harmonic drive? </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Rack and pinion? Very low precision. 
+        Try to preload the pinion on the rack and hope for the best.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">If you have a servo related 
+        system, don't overlook the possibility that the tuning needs tweaking 
+        or that the encoder has some degree of mechanical backlash relative to 
+        the motor for some reason even though the motor has no backlash with respect 
+        to the screw itself. Perhaps the mounting for the encoder is loose in 
+        some way</font><span class="style1">.</span><span class="style1"> If the encoder mounting can move or flex, it will affect the feedback it is giving about what the motor is doing, and this can be a phantom source of backlash even when all else is working well! </span></p>
+      <p class="BlogTitle">Machine Flexure and Rigidity</p>
+      <p><font face="Arial, Helvetica, sans-serif">If you are feeding too much 
+        force in for the machine, something is going to flex. It could be your 
+        ballscrew, the mounting for the angular contact bearings, the ball not 
+        mountings, or some essential part of the machine that is supporting things. 
+        If you get hunting backlash below a thousandth, all this has to be considered. 
+        Try some lower speeds for your axis travel and see what effect that has--less 
+        force is fed into the system at lower speeds. Try to devise some ways 
+        to measure flexure with your dial indicator. There's a weak link somewhere 
+        there and you need to find it and beef it up.</font></p>
+      <p class="style1">I read an account one time of a machine that had a cracked ballscrew mount. The suspicion was the riggers cracked it moving the machine. It took a lot of force to make the crack flex, so this fellow took quite a while to track down his backlash, but he eventually did find it. </p>
+      <p class="BlogTitle">Best of Luck on this Part!</p>
+      <p><font face="Arial, Helvetica, sans-serif">I know, it's a finicky and 
+        painstaking business, and a bit of a black art. Try to follow the path 
+        of the forces: the motor turns the ballscrew, which is held in position 
+        by its bearings. The ballscrews moves the ballnut, which is held by it's 
+        mounting bracket. Said mounting bracket transfers force to the axis to 
+        be moved, and that axis is travelling in ways that apply forces to keep 
+        it aligned along a proper and true direction of travel. If all of those 
+        things are happily working in concert with the minimum required forces, 
+        life is good. If they're fighting amongst one another, that fight is force 
+        applied to no good end, and it could well result in backlash. Your job 
+        is to track down those little fights and put a stop to them. Approach 
+        it as a systematic program of tests and experimentation. Keep a notebook. 
+        Measure everything. Try it as many ways as you can think of. Try to think 
+        logically about what it all means and how it all fits together. At some 
+        point, you will decide things are good enough. Be happy at that stage!</font></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

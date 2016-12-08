@@ -1,0 +1,656 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNC Cookbook:  The Widgitmaster's Travelling CNC Medicine Show</title>
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" -->
+      <p><font color="#339933" size="+4">The Widgitmaster's Travelling CNC Medicine Show </font></p>
+      <p class="BlogTitle">Are you into CNC Mini Routers?   Be sure to check out our <a href="http://www.cnccookbook.com/CNCRouterFeedsSpeedsCalculator.html">G-Wizard CNC Router Speeds and Feeds Calculator</a>.  It's the first Calculator designed especially for CNC Routers, and the link will tell you why.</p>
+      <p><font face="Arial, Helvetica, sans-serif">Recently I purchased one of the immaculately constructed mini-routers that <a href="http://www.cnczone.com/forums/showthread.php?t=21872">Widgitmaster from CNCZone has been selling on eBay</a>. The little bugger was so adorable I just couldn't resist. I have no idea what I will do with it, but then people tell me that's true of most of the tools I buy!</font></p>
+      <p class="style1">This little router has 8&quot; of X travel, 4&quot; of Y travel, and just a scosh under 2&quot; of Z travel. </p>
+      <p class="BlogTitle">In Praise of Xylotex </p>
+      <p><font face="Arial, Helvetica, sans-serif">My first challenge was to figure out what to do about electronics for the thing. Having just read a write up on Xylotex, i decided to give them a try. Their <a href="http://www.xylotex.com/3AxSysKit.htm">3-axis complete kit </a>is very reasonable, and is perfect for the mi<span class="style1">ni-router. </span></font><span class="style1"> This kit has all the electronics and step motors you need to run a 3-axis machine</span>:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/XyloSysKitSetUp.jpg" width="754" height="800"> </p>
+      <p align="center" class="style1"><strong>Xylotex complete 3-axis kit is simple and inexpensive...</strong></p>
+      <p align="left" class="style1">I needed an enclosure for these electronics, and I wanted something cute to match the router. Somehow, I also thought it would be cool if I could easily drag the router off somewhere to demonstrate it, perhaps for a club or some friends. I hit on the idea of using a small Craftsman toolbox:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/Toolbox.jpg" width="250" height="250"> </p>
+      <p align="left" class="style1">Hence the &quot;travelling medicine show&quot; aspect of the project was born. I must say that once I had fabricated a mounting tray for the electronics, I had the whole Xylotex arrangement up and running with Mach 3 and spinning the shafts in about an hour and a half. I would definitely use the Xylotex kit again for a small machine!</p>
+      <p align="left" class="BlogTitle">Mounting the Electronics in the Toolbox: A Tale of Polyboard, Taps, and Mystery Metal </p>
+      <p align="left" class="style1">Having decided to put the electronics into a toolbox, my next thought was to create some sort of a mounting plate on which to attach the power supply and the Xylotex board. My original thought was a piece of aluminum, but I happened to spy a half forgotten package sitting in a corner of my office that needed to be dragged down to the shop. Based on a write up on the Industrial Hobbies site called &quot;<a href="http://www.industrialhobbies.com/howto/tips/saving_the_table.htm">Saving Your Table</a>&quot;, I had ordered some cheap poly cutting boards off the Internet. I got like 6 boards for $24 or something. This material looked like a good thing to make my mounting plate out of, and it would be fun to work with a new material. I had never messed with plastics much save for some experiments with plexiglass associated with <a href="http://www.thewarfields.com/ExoticPC.htm">my old PC modding activities</a>--pre-machineshop to be sure!</p>
+      <p align="left" class="style1">The polyboard worked out well. It mills beautifully, without melting onto the endmills. It drills and countersinks as well. I set the board up with holes drilled for power supply, Xylotex board, and 4 mounting standoffs. The latter I turned from some &quot;mystery metal&quot; that I thought was 12L14, but it became obvious it was something tougher once I got to working with it. Here is what the board wound up looking like before I mounted anything on it or cleaned it up. You can see the standoffs underneath:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/P3023852.JPG" width="800" height="283"></p>
+      <p align="center" class="style1"><strong>Top of board. Stand-offs are mounted using countersunk 1/4-20 flathead cap screws. The little cutout at lower left is a handle cutout--this piece of poly was originally a kitchen cutting board! </strong></p>
+      <p align="center" class="style1"><img src="img/MiniRouter/P3023854.JPG" width="800" height="303"></p>
+      <p align="center" class="style1"><strong>Underside with standoffs... </strong></p>
+      <p align="left" class="style1">The standoffs were just turned quickly on my lathe. I got them to approximately the same length, faced them, drilled them for a 1/4-20 tap, and the ran the parting off tool. That last step was my first hint they weren't 12L14 as they chattered something fierce! </p>
+      <p align="center" class="style1"><img src="img/MiniRouter/P3023855.JPG" width="640" height="411"></p>
+      <p align="center" class="style1"><strong>Stand-off. The gunk is some tape adhesive. When I finish I will clean everything up with brake cleaner so you won't see that stuff... </strong></p>
+      <p align="left" class="style1">This was my first experience with countersunk flat head cap screws, and I have to say, I like them better than the socket head cap screws I had been using for everything. I ordered several boxes of them with my last Enco order, so you'll see them cropping up more often in my projects. FWIW, when you countersink, you just need to countersink to a depth of 1/2 the diameter of the flat head. You can take my tip and use a spot drill to do the countersinking and combine the spotting and countersinking chores in one operation too.</p>
+      <p align="left" class="style1">Next it was time to tap the standoffs. I decided to try power tapping, which I had read about in various places. Basically, I stuck the tap in an Albrecht chuck on the mill, dialed in the slowest speed, made sure the quill could feed freely, and loosley feed it in. The first one worked pretty well, albeit taking several tries and backing off. The tap seemed to be having some difficulty cutting, but I assumed it was my inexperience at power tapping. I did not put together the chattering cutoffs with the difficult tapping to realize I had something other than 12L14 quite yet.</p>
+      <p align="left" class="style1">The second standoff was a write-off--the tap broke off before I was a quarter of the way into the hole. Doh! ?!@#$%!!! It was getting late, so I shut down the shop and went to bed. The next morning, as I was turning and parting a new stand off to try again with, it dawned on me that what I was cutting was something a lot tougher than 12L14. I decided to leave the power tapping aside and hand tap in the interest of moving through the project and because I wasn't too sure what I was dealing with.</p>
+      <p align="left" class="style1">I also took the opportunity to try some upgraded taps I had bought from Enco along with the flat head cap screws:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/P3023853.JPG" width="640" height="409"> </p>
+      <p align="center" class="style1"><strong>Left to right: 3 flute 45 degree spiral flute plug tap, thread forming plug tap, thread forming bottoming tap... </strong></p>
+      <p align="left" class="style1">Having broken my Craftsman tap, it seemed as good a time as any to try out these new &quot;professional&quot; taps. Like me, I am sure you've read in many places that hardware store taps are junk and shouldn't be used. Perhaps you are also like me in thinking, &quot;Yeah, but hardware store taps are what I've got and they've worked for me so far.&quot; In fairness, I did buy the new taps with a thought I would try them and see how much better they are. I just hand't gotten around to it until the mystery steel and broken tap forced my hand.</p>
+      <p align="left" class="style1">Since I was dealing with brand new (and somewhat expensive) taps, I decided not to try power tapping. Too much experimentation can be a bad thing for progress. So I had 3 spacers to thread, and 3 new taps to try. I stuck each spacer into my Kurt vise and locked it down against a V-block and then went at it. </p>
+      <p align="left" class="style1">I first tried the bottoming thread forming tap. These are usually recommended for aluminum and mild steel, but I thought it worth a try here too from a learning standpoint if nothing else. I found it pretty tough going, but manageable. I used Tap Magic with all 3 of these taps.</p>
+      <p align="left" class="style1">Next I tried the thread forming plug tap. It was easier, but still took a fair amount of effort. Evidently the tapered end gives things an easier start compared to the bottoming tap.</p>
+      <p align="left" class="style1">Lastly, I fired up the spiral point tap. It's a Cleveland 45 degree spiral flute tap. This was the hands down winner by far! Turning effort was the lowest I've ever felt while tapping. Control was excellent. The 3 flutes sent up some wicked steel splinters out the top of hole, so you'd want to be careful around those. All in all, I was amazed at how much better this tap worked than anything I have used in the past. Cost from Enco was $8.86. You can bet I'll be on the lookout for more of these and will want to eventually round up a full set. I wanted to try power tapping these because it was so easy to do by hand, but I had finished all the spacers, so that must wait for another day. </p>
+      <p align="left" class="BlogTitle">Final Toolbox Assembly </p>
+      <p align="left" class="style1">Here are the power supply and Xylotex board bolted onto the tray and wired up:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/P3033857.JPG" width="800" height="700"></p>
+      <p align="left" class="style1">As you can see, there are very few connections required. The documentation was about 3 sheets of photocopy. Each axis has a color coded cable, and all the connectors and cables are made up for you, so you don't even have to fire up a soldering iron!</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/P3033859.JPG" width="800" height="562"></p>
+      <p align="left" class="style1">It fits in the toolbox real nice. I just drop the stepper and AC cables on top, then the toolbox tray goes on top of those, and we are ready to travel! </p>
+      <p align="left" class="BlogTitle">Installing the Step Motors on the Mini-Router</p>
+      <p align="left" class="style1"> I didn't have any couplers handy, so I thought I'd have to wait for some to arrive by mail. By the next morning, I just couldn't stand waiting, so I went down to the shop and promptly turned some couplers on the lathe. They're just simple cylinders with a 1/4&quot; through hole and 2 1/4-20 set screws. They seem to work just dandy on the mini-router. I'm not sure why I am not in need of helical beam or oldham style couplers, but I suppose the shafts just happen to mate up close enough. OTOH, maybe I will develop a problem at a later date, we will see. </p>
+      <p align="center" class="style1"><img src="img/MiniRouter/P3033862.JPG" width="800" height="624">  </p>
+      <p align="center" class="style1"><strong>They Make a Nice Pair, Don't They? </strong></p>
+      <p align="left" class="style1">Having installed the motors on the mini-router, I got busy configuring Mach 3. Not much to do there either. Biggest issue was to turn off the E-Stop input, as I have no E-Stop on this system (not ideal, I know). After that, I went through the motor tuning procedure described in the Mach documentation and was able to get it all running within about an hour. The combination of the Xylotex kit and Mach 3 really made this a plug and play process.</p>
+      <p align="left" class="BlogTitle">Making the First Cuts</p>
+      <p align="left" class="style1">Now its time to actually make some cuts with this mini-router. The first step is to design the carving in Rhino 3d. I did a Hawaiian Turtle Glyph:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/RhinoGlyph.jpg" width="800" height="496"></p>
+      <p align="center" class="style1"><strong>Turtle Glyph design in Rhino 3D...</strong></p>
+      <p align="left" class="style1">Next, I exported the glyph as an IGES file. I don't know why, but OneCNC (my CAM program) seems to like that format better than Rhino3D. It's probably because I'm running the newly released Rhino 4.0. And then we import the glyph into OneCNC:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/OneCNCGlyph.jpg" width="800" height="496"></p>
+      <p align="center" class="style1"><strong>Turtle Glyph imported to OneCNC...</strong></p>
+      <p align="left" class="style1">Now we're ready to create a toolpath to trace the glyph. I use OneCNC's Engraving Toolpath option:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/OneCNCPickPath.jpg" width="447" height="386"></p>
+      <p align="center" class="style1"><strong>Using the Engraving Toolpath option...</strong></p>
+      <p align="left" class="style1">Next we select the cutting tool. In this case I'm calling for a 1/8&quot; ball end mill. Actually, I had a little ball end burr on the Dremel, but this is close enough. It's going to recommend spindle speed, but I can't really control that. You can see it works out quite a few things including the feedrate and plunge rate too: </p>
+      <p align="center" class="style1"><img src="img/MiniRouter/OneCNCSelectTool.jpg" width="447" height="387"> </p>
+      <p align="center" class="style1"><strong>Tool selection...</strong></p>
+      <p align="left" class="style1">Then we set the clearances. Rapid Z is how far above the workpiece (top of workpiece is at Z = 0) to move before trying to move rapidly. Final Z is how deep we want to cut the final engraving path. Rough depths is how deep each roughing pass should be: </p>
+      <p align="center" class="style1"><img src="img/MiniRouter/OneCNCSetClearances.jpg" width="447" height="387"> </p>
+      <p align="center" class="style1"><strong>Set clearances...</strong></p>
+      <p align="left" class="style1">The toolpath has now been created, and you can see it on the screen. This display is called a &quot;backplot&quot;. Green lines are cutting lines, while the red dotted lines are positioning the cutter by moving above the workpiece. You can see there are 2 sets of green lines, so it has to trace the figure twice at successively deeper cutting depths: </p>
+      <p align="center" class="style1"><img src="img/MiniRouter/OneCNCBackplot.jpg" width="800" height="496"> </p>
+      <p align="center" class="style1"><strong>Turtle Glyph Backplot...</strong></p>
+      <p align="left" class="style1">The last step is called &quot;Posting&quot;. Posting simply means writing out the g-code so you can then load it and run it. This particular turtle glyph program is 635 lines. It is just text, and you can <a href="img/MiniRouter/TurtleGlyph.TAP">click here</a> to look at it.  </p>
+      <p align="left" class="style1">Okay, now I move from my office down to the shop, where I have just installed a new wireless router so I can reach back to my desktop. There, I load that g-code program into Mach 3, where it looks kinda like this:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/Mach3Glyph.jpg" width="800" height="606"></p>
+      <p align="center" class="style1"><strong>Turtle g-code program is loaded into Mach 3...</strong></p>
+      <p align="left" class="style1">Now how do we cut? First, we have to position the cutter at the right starting position. I do my drawings so that X = 0, Y = 0, and Z = 0 at the lower left corner, top of the material. I've bolted the wooden block down to the table, and I manually job Mach 3 over to that 0, 0, 0 point. Then I hit &quot;Cycle Start&quot;. Assuming you've done everything right (oh, oh), you will get a turtle back not long after!</p>
+      <p align="left" class="style1">Here's what they look like:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/P3063863.JPG" width="600" height="800">  </p>
+      <p align="center" class="style1"><img src="img/MiniRouter/P3063864.JPG" width="800" height="600"></p>
+      <p align="center" class="style1"><img src="img/MiniRouter/P3063865.JPG" width="800" height="449"></p>
+      <p align="center" class="style1"><strong>Flock o' turtles! </strong></p>
+      <p align="left" class="style1">These are not too bad considering all I had to cut with was the cheezy ball burr that came with the Dremel. I have some real 1/8&quot; and 1/16&quot; ball end mills on order that should produce a nicer result. </p>
+      <p align="left" class="style1">Meanwhile, this has been the world's fastest and easiest router to get to first chips. </p>
+      <p align="left" class="BlogTitle">EZClamps</p>
+      <p align="left" class="style1">This is the second thing I tackled with the mini-router. I didn't know if it would cut aluminum or not, but it seems to do just fine. I wanted some clamps to make it easy to hold stuff on the table, so I whipped up this design in Rhino 3D:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/EZClamp/EZClamp.jpg" width="800" height="558"></p>
+      <p align="left" class="style1">I loaded a 1/16&quot; ball mill into the Dremel and had at it:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/EZClamp/P3243875.JPG" width="800" height="741"></p>
+      <p align="center" class="style1"><img src="img/MiniRouter/EZClamp/P3243879.JPG" width="800" height="641"></p>
+      <p align="center" class="style1"><img src="img/MiniRouter/EZClamp/P3243884.JPG" width="600" height="800"></p>
+      <p align="left" class="style1">I didn't let it finish, because it would have taken several hours. Feedrate was 9 ipm, but had to be slowed to 5 ipm at the very beginning of each depth pass. Like the turtle, I used OneCNC to generate the G-codes. to hold the aluminum block I just superglued it to a piece of poly board which was then held to the router table with T-nuts. Very cool!</p>
+      <p align="left" class="style1">The finish is actually a bit nicer than it looks in the picture. I'm sure there's a lot that could be done through experimentation to improve finish and speed up the overall operation of it.  Click here to download a <a href="img/MiniRouter/EZClamp/P3243877.MOV">short video clip of the router cutting the aluminum</a>. </p>
+      <p align="left" class="style1">One peculiarity of the whole process. OneCNC, my CAM program, has a feature to simulate what will happen if you run the g-code. It accurately predicted some &quot;islands&quot; would be left behind:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/EZClamp/OneCNCIslands.jpg" width="800" height="507"></p>
+      <p align="center" class="style1"><strong>See the little blips that stick up around the clamp?</strong></p>
+      <p align="left" class="style1">These same islands are visible in the photo above of the real thing. The islands are due to the stepover having been set to 75%. This just means that adjoining cutter paths only have 25% overlap which left some gaps.</p>
+      <p align="left" class="BlogTitle">Plunge Milling</p>
+      <p align="left" class="style1">I'm going to try an experiment in plunge milling next to try to make the EZClamps go faster. The idea is to drill a chain of holes in the outline and then to use the milling operation to smooth that ragged series of holes into a nice smooth path. OneCNC makes this extremely easy because it has a feature called &quot;hole recognition&quot; which finds all the holes of each size in the drawing and figures out how to drill them all at once. </p>
+      <p align="left" class="style1">So, I made a Rhino model that had a chain of 1/8&quot; diameter holes and imported that into OneCNC like this:</p>
+      <p align="center" class="style1"><img src="img/MiniRouter/EZClamp/EZClampPlungeMill1CNC.jpg" width="800" height="496"></p>
+      <p align="left" class="style1">OneCnc predicts it will take 9 minutes to drill the holes and then 16 minutes to mill out the chain for a total of 25 minutes. If it produces a decent result without breaking the endmills that would be a big improvement over the predicted 1 hour and 40 minutes that pocketing it out with a 1/16&quot; end mill would take. </p>
+      <p align="center" class="style1">&nbsp; </p>
+    <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

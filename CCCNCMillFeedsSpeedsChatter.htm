@@ -1,0 +1,753 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNC Milling Chatter and Stable Milling Speeds</title>
+<style type="text/css">
+<!--
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.WarningText {
+}
+.WarningText {
+}
+.Warning {
+}
+.Warning {
+}
+.Bozon {
+	font-size: large;
+	color: #F00;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+.BodyText11 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p align="center" class="style1 style4"><strong><font face="Arial, Helvetica, sans-serif" size="+1"><a href="CCCNCMillFeedsSpeeds.htm">CNC Milling Feeds and Speeds</a></font></strong><a href="CCCNCMillFeedsSpeeds.htm"><strong><font size="+1" face="Arial, Helvetica, sans-serif">Contents</font></strong></a></p>
+<p align="center" class="style1">&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="6%"><img src="img/GearsIcon.jpg" width="88" height="77"></td>
+          <td width="94%"><p><font face="Times New Roman, Times, serif" size="7" color="#FF0000">Dealing With Chatter When Turning or Milling</font></p>
+          <p><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="BlogTitle"><strong>CNC  Feeds and Speeds Cookbook</strong></font></p></td>
+        </tr>
+      </table>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle">I Need to Solve a Chatter Problem Right Now!</p>
+      <p class="BodyText">If you found this page because you have a problem with chatter right now and not because you're reading through our Cookbook or are just curious to learn, scroll down the page.  We'll tell you what to do!</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">What is Chatter?</p>
+      <p class="BodyText">Chatter is a resonant phenomenon where the machine or workpiece vibrate.  It can become quite violent and generate a distinctive loud noise.  It's almost never a good idea to keep machine in the face of strong chatter--chatter is very bad for your tool life, interferes with the accuracy of the machining operation, and will shorten the life of your machine too.  On the other hand, many jobs run just fine with a little touch of chatter here or there. We've all seen milling jobs that have a little chatter at certain points in the toolpath--often you'll hear a little squeak as the cutter makes its way through a corner, for example.</p>
+      <p class="BodyText">Chatter can feed on itself, much like the feedback on a loudspeaker PA system that creates those terrible screeching noises. For that reason, it is sometimes called &quot;regenerative chatter.&quot;   The regenerative phenomenon is key to understanding how chatter works.   A vibration in the tool leads to a wave in the workpiece, constant vibration creates a steady series of these waves.   </p>
+      <p class="BodyText">Now imagine what happens if you make a second pass over a surface that is already wavy from chatter--the forces on your cutter vary with the peaks and troughs of the waves.  This is the feedback phenomenon which intensifies chatter by making more waves of the same frequency on your workpiece.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Two Kinds of Chatter:  Tool Chatter and Workpiece Chatter</p>
+      <p class="BodyText">There are two kinds of chatter to be aware of--tool chatter and workpiece chatter. With Tool Chatter, your machine and tool are doing the vibrating, which is then transmitted to the workpiece.   With Workpiece Chatter, the wall of the workpiece is vibrating.  The latter usually only happens when dealing with thin walls, but it can be just as much or more of a problem than Tool Chatter.    We'll be focusing on Tool Chatter for this article, but you can try these same techniques to reduce Workpiece Chatter.    Before we move on, there are two good tips for Workpiece Chatter.</p>
+      <p class="BodyText">First, maximize the beef in the workpiece through toolpaths that don't strip away too much material too soon. We'll have more detail on that on the Long Reach and Thin Wall article.  Second, you may have to change the frequency of the workpiece through various measures. One way to increase its rigidity is to support the walls with a filling material that's easy to remove when you're done machining.   Wax, low melting point tooling materials (both <a href="http://www.tormach.com/blog/?p=1954">special plastics</a> and metal alloys are available for this purpose), and even the strategy of filling the void with a mixture of vaseline and lead shot have been suggested.  For the latter, melt the vaseline over low heat, add the lead shot, pour it in, and let cool.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Minimizing Chatter by Reducing Tool Deflection</p>
+      <p class="BodyText">Let's say you're not trying to eek out the maximum material removal rate to shave some pennies off a job.  How can you avoid even getting started with chatter?</p>
+      <p class="BodyText">Imagine that your spindle is pumping horsepower into the tool, and in the process of making chips, that horsepower creates forces that act on the tool and the workpiece.  With enough force, the tool deflects.  Remember, chatter is a resonance phenomenon.  Imagine applying force to one tine of a tuning fork, thus deflecting it.  If you release that force, the tine vibrates at its resonant frequency.  Same thing with your tool.   When the flute on the cutter hits air, the force on that &quot;tine&quot; is released.</p>
+      <p class="BodyText">Now let's say you minimized the deflection on the tine.  Below some critical value, you'd hardly hear it vibrate at all.  That's the point of controlling tool deflection.   The big tooling manufacturer's tell us that chatter can start to cause problems when tool deflection exceeds 0.001&quot;.  That's not to say you won't have a few problems with deflection short of that, but the more you exceed 0.001&quot;, the more chatter becomes a certainty.  </p>
+      <p class="BodyText">Using our <a href="GWCutOptimizer.html">G-Wizard software's</a> Cut Optimizer, you can optimize your cut width or depth of cut to keep deflection below that critical 0.001&quot; value.</p>
+      <p align="center" class="BodyText"><img src="img/GWizard/GWCutOptRough.jpg" width="1024" height="778" alt="G-Wizard Cut Optimizer minimizes deflection"></p>
+      <p align="center" class="BodyText">G-Wizard's Cut Optimizer minimizes tool deflection, which will cut chatter way down...</p>
+      <p align="left" class="BodyText">If you're curious, <span class="BodyText1"><a href="FeedSpeedsCalculator/CCGWizard.html">sign up for our free 30-day trial</a> right now</span> and give <span class="BodyText1">G-Wizard a try.</span></p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Minimizing Chatter via Spindle Speed and Other Tricks</p>
+<p class="BodyText">Most machinist's first reaction to chatter is to slow down (which reduces deflection and hence chatter as well as changing the spindle frequency), followed by looking for ways of increasing rigidity.   Nothing wrong with increasing rigidity, but if you're an experienced machinist and you know you have a good setup, there are better approaches than just slowing down to minimize chatter.</p>
+<p class="BodyText">Since chatter is a resonant phenomenon that is excited by the tool flutes striking the workpiece, it only makes sense that certain spindle speeds will beat on the workpiece at exactly the right frequency to maximize chatter. It's like that old trick where you rub your moistened finger around the rim of a wine glass until it starts to hum.</p>
+<p class="BodyText">In order to minimize chatter, we need to find out which frequencies to avoid, or we can reverse that problem and look for frequencies where we can push hard without exciting chatter.  This is why slowing down may work, but <em>speeding up</em> may work just as well or even better.  When chatter hits, play with your spindle RPM's a bit to see whether you can make it stop.   Try <em>increasing</em> the speed first, and then try slowing down.  It may be that just twisting the knob solves your problem.</p>
+<p class="BodyText">Assuming a little knob twisting won't work and you have maximized rigidity, look for other things that change the frequency:</p>
+<p class="BodyText">- Change the number of flutes on your cutter.   This changes the frequency quite a lot. Unless you're running a 2 flute, you can always go to one or more fewer flutes. Actually, you can even by single flute cutters which I've heard of machinists taking advantage of for really bad chatter circumstances on a part they make frequently.   With indexable tooling, try removing an insert or two, assuming you have multiples to spare.   Remember to <a href="CCCNCMillFeedsSpeedsCalculating.htm">recalculate your feeds and speeds</a> if you start monkeying with flutes!</p>
+<p class="BodyText">-  Fiddle with tool stickout.  This is a practice called &quot;Tool Tuning&quot;. Changing stickout as little as 0.100&quot; can change the chatter frequency.  As well as trying shorter stickout (which increases rigidity), don't be afraid to try longer stickout. Even though it will reduce rigidity, it will change the chatter frequency, hopefully to some place where it isn't bothering your job.  Be sure to <a href="CCCNCMillFeedsSpeedsDeflect.htm">recheck your tool deflection</a> if you change stickout.  And speaking of tool deflection, you can reduce the deflection and that will minimize the chances of exciting chatter. A good guideline when roughing is to keep it below 0.001&quot;.  As you go above that number, chatter and tool breakage are more and more likely.</p>
+<p class="BodyText"><strong>Chatter and Tool Nose Radius when Turning</strong></p>
+<p class="BodyText">If you experience chatter in the corners, try reducing Tool Nose Radius. A smaller TNR will reduce cutting pressures.  Always use a TNR smaller than the radius you're cutting.</p>
+<p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle">What Happens if We Make Chatter a Science?</p>
+      <p class="BodyText">What do you do when twisting the RPM knob, increasing rigidity, and the other tricks don't solve the problem?  What if you want to really push your Material Removal Rates as high as possible, or you need to remove every last vibration you can for surface finish?  This is when you need to make Chatter a Science and get serious about understanding how to get rid of it.</p>
+      <p class="BodyText">It turns out that we can make a pictorial representation of the likelihood of chatter for a certain combination of machine, tooling, spindle rpm, and so forth.  This representation is called a &quot;Stability Lobe Diagram&quot;.  Here is <a href="http://highspeedmachining.mae.ufl.edu/htmlsite/faq.html#rcsa">a schematic representation of a Stability Lobe Diagram</a> showing regions where chatter occurs:</p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/MillFeedsSpeeds/StabilityLobeDiagram.gif" width="401" height="260" alt="stability lobe diagram"></p>
+      <p align="left" class="BodyText">Think of the chip width as a measure of how hard we can push the machine at a given spindle speed.  Note how narrow the stable zones are.  This diagram is telling you that the machinist that understands their machine's stable zones has found the profitable high performance &quot;sweet spots&quot; for machining.    The official term for a sweet spot is that it is a &quot;Stable Milling Speed.&quot; Imagine the poor machinist that fires up their machine at a set of feeds and speeds that correspond to one of the troughs, but is still in the unstable zone. That poor machinist is having to run many times slower than his competitor who has made chatter a science and he probably doesn't even understand why. You better believe the big successful machining operations have figured this stuff out and built it into their daily productivity.  For everyone else, it is the luck of the draw whether your particular combination hits a peak or a valley based on the feeds and speeds you've chosen.</p>
+      <p align="left" class="BodyText">Consider that &quot;faster&quot; isn't always, well, faster.    Take that last trough.    Suppose our feeds and speeds calculator tells us to run at a spindle speed right in that trough.   We've bought the ultimate killer solid green unobtanium coated endmills, we stuck them in our bad-mamma-jamma model 2000XL 26-axis machining center, and we turned the loud knobs all the way up to 11. We are gonna make us some big time chips now, right?</p>
+      <p align="left" class="BodyText">Nope. </p>
+      <p align="left" class="BodyText">You're gonna be in that unhappy chatter trough taking light cuts and cursing all the way.   But, if you knew where that peak was just to the left or right of the trough, man you could kick it up about 5 or 6 notches and then you'd be making some chips.</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p align="left" class="BlogTitle">Where Can I Get a Stability Lobe Diagram for My Machine?</p>
+      <p align="left" class="BodyText">Okay, now where the heck do you get your Stability Lobe Diagram?   Your BMJ Model 2000XL VMC didn't come with one. There's not one in tooling catalog either.   What now?</p>
+      <p align="left" class="BodyText">Well, there are two paths to getting together a Stability Lobe Diagram--you can map one out by hand or you can invest in a service or equipment that can measure it analytically.  There are various companies in the analytical business, and they usually follow one of two approaches.  In one approach, you load your tool in the machine and they strike it with a special instrumented mallet.  The instrumentation measures the frequency of the &quot;ringing&quot; and out pops your diagram.  Cool beans! The second approach involves the ability to listen to the chatter as it is happening and produce an analysis.</p>
+      <p align="left" class="BodyText">Both of these methods will work, but the equipment and services are not particularly cheap.  Chalk up one more advantage for a big operation over the little guy. They can buy that stuff and amortize over a lot of jobs.</p>
+      <p align="left" class="BodyText">There's still hope though, because it isn't that hard to get it together and map out your chatter by hand for a small shop or even a home shop machinist.  Before we get into that, we need to talk a bit about the repeatability of chatter.</p>
+<p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle">The Repeatability of Chatter: You Can Map Out Chatter Zones</p>
+      <p class="BodyText">Chatter is not some random thing that is unpredictable, it is actually reasonably well behaved.  We're not very good at predicting it purely using math and no empirical data, but the number of variables involved is small, and you should be aware of them.  Here is a list of conditions that if you repeat them, you'll get pretty close to the same chatter every time:</p>
+      <table width="100%" border="0">
+        <tr>
+          <td colspan="2" bgcolor="#CCFFFF"><div align="center" class="BlogTitle"><strong>Chatter Repeatability Factors</strong></div></td>
+        </tr>
+        <tr>
+          <td bgcolor="#CCFFCC">&nbsp;</td>
+          <td valign="middle" bgcolor="#CCFFCC">&nbsp;</td>
+        </tr>
+        <tr>
+          <td width="21%" bgcolor="#CCFFFF"><div align="center"><strong><span class="style12">Machine</span></strong></div></td>
+          <td width="79%" valign="middle" bgcolor="#CCFFFF"><p class="style12">Each machine will have its own distinctive chatter frequencies.  Even machines from the same maker with consecutive serial numbers can differ enough that you shouldn't assume they are the same.</p></td>
+        </tr>
+        <tr>
+          <td bgcolor="#CCFFCC">&nbsp;</td>
+          <td valign="middle" bgcolor="#CCFFCC" class="BodyText">&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#CCFFFF"><div align="center" class="BodyText11"><strong>Toolholder Make and Model</strong></div></td>
+          <td valign="middle" bgcolor="#CCFFFF" class="BodyText"><p>The toolholder matters, but it doesn't literally have to be the same toolholder.  Chatter frequencies are only good for one type, brand, and assembly style of toolholder.  So, if you have a Parlec ER32 chuck and a MariTool, that's two different frequencies.  But if you have all MariTool ER32 collet chucks, unless they have physical differences (different reach or other obvious dimensional difference), they should all behave the same.  Ideally, you are torquing the collet nut to the same torque, etc., but it shouldn't be too far out even if you're not using a torque wrench on your collet chucks.</p></td>
+        </tr>
+        <tr>
+          <td bgcolor="#CCFFCC"><div align="center"></div></td>
+          <td valign="middle" bgcolor="#CCFFCC" class="BodyText">&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#CCFFFF"><div align="center" class="BodyText11"><strong>Cutter Make and Model</strong></div></td>
+          <td valign="middle" bgcolor="#CCFFFF" class="BodyText">Cutters are just like the toolholders.  Select the same make and model, but it doesn't literally have to be the same cutter.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#CCFFCC"><div align="center"></div></td>
+          <td valign="middle" bgcolor="#CCFFCC" class="BodyText">&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#CCFFFF"><div align="center" class="BodyText11"><strong>Stickout</strong></div></td>
+          <td valign="middle" bgcolor="#CCFFFF" class="BodyText">This is very important.  If you change the stickout at all, the freqs will change.   A lot of shops just stick the cutter in the holder and go on down the road.  It is worth standardizing your stickouts so you can repeat them.  A change of 0.100&quot; is enough to change the frequencies.  As mentioned above, sometimes you can use this to your advantage through &quot;tool tuning&quot;.  Don't be afraid to try both shorter and longer stickout.  Even though longer is less rigid, the goal is to move the frequency away from where your spindle rpm needs to be for best material removal.  If you find that stickout + cutter + toolholder combo for a machine, write it down.  That information is money in your bank account.</td>
+        </tr>
+        <tr>
+          <td bgcolor="#CCFFCC"><div align="center"></div></td>
+          <td valign="middle" bgcolor="#CCFFCC" class="BodyText">&nbsp;</td>
+        </tr>
+      </table>
+      <p class="BodyText">Just four variables need to be controlled to make chatter reproducible:  Machine, Toolholder, Cutter, and Stickout.  That's not so bad, is it?</p>
+      <p class="BodyText">There is a little bit of bad news: each combination of those variables is a different stability lobe configuration.  </p>
+      <p class="BodyText">&quot;Whoa!&quot;, you say. How the heck am I going to deal with all those combinations?</p>
+      <p class="BodyText">The answer is that you'll be dealing with them over time, and for those few combinations that you use often enough that it matters for your shop.    Start out with the tooling you most commonly use for roughing.  That's where the hogging really matters.  If you have to slow down a finish pass or some tooling combination that you only use very seldom, put that on hold or ignore it entirely.</p>
+      <p class="BodyText">By now, you're wondering:</p>
+      <p class="BodyText">- What about workholding?</p>
+      <p class="BodyText">- What about material?</p>
+      <p class="BodyText">- What about the specific toolpath or nature of the part?</p>
+      <p class="BodyText">The good news is that regenerative chatter is at its worst when the machine and tool are doing the vibrating.  Yes, workpiece chatter is a problem to as we have discussed, but you care about the machine chatter first.  In those cases, you don't have to worry so much about the workholding, material, or the other specifics. These four variables control repeatability.  Use the same 4 choices for the variables, and your chatter frequencies will be the same.  Make a cut that chattered at some point with those variables, and if you apply enough force through enough feedrate, you'll get chatter again.  Likewise, if you avoided chatter, then up to the amount of force you were good to will be good again.  And if you were lucky enough to be in a chatter sweet spot (stable zone) on the lobe diagram, you might even be able to run a lot more force.</p>
+      <p class="BlogTitle"></p>
+      <p class="BlogTitle">Using G-Wizard's Chatter Pitch Calculator for Stable Milling Speeds</p>
+      <p class="BodyText1">Let's put all that Chatter Mapping and Stability Lobe Diagram stuff on hold for a minute.  You have a chatter problem right now and you don't have time to go doing a lot of research.  You're in luck, because our <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard CNC Calculator</a> has a Chatter  Calculator that can help out.  Let's go through a typical example of its use:</p>
+      <p class="BodyText1">You just ran a cut on a job and the whole shop was holding their ears from all the squealing.  You need to know three things:</p>
+      <p class="BodyText1">1. Your surface speed.</p>
+      <p class="BodyText1">2. The number of flutes on the cutter.</p>
+      <p class="BodyText1">3. The chatter pitch, which is the separation, peak to peak, of the &quot;wave marks&quot; or chatter marks on the workpiece.</p>
+      <p class="BodyText1">Let's say you had 200 SFM surface speed, a 4 flute cutter, and 0.005&quot; separation of marks.  Here is what G-Wizard's Chatter Calculator would show:</p>
+      <p align="center" class="BodyText1"><img src="img/CNCCookbook/MillFeedsSpeeds/ChatterPitch.jpg" width="800" height="722" alt="Chatter Calculator"></p>
+      <p align="center" class="BodyText1">G-Wizard Chatter Calculator...</p>
+      <p align="left" class="BodyText1">Note the table labeled &quot;Chatter Minimizing Spindle Speeds&quot;.  Those are the rpms that minimize the chatter frequency that caused the chatter you just experienced.  In other words, those numbers represent the spindle rpm that is least likely to excite the chatter.  Those speeds will actually interfere with the chatter and break it up to minimize it. They're the tips of the peaks on the stability lobe diagram.  The chatter experts call them Stable Milling Speeds.</p>
+      <p align="left" class="BodyText1">Pick the one that is closest to the speed G-Wizard recommends on the feeds and speeds calculator.  You'll have to make a determination if the best one is faster than GW's recommended rpm--if it isn't too far above and you have confidence in your tooling, go for it.  Remember that the higher rpms can reduce tool life if you get going too fast.</p>
+      <p align="left" class="BodyText1">That's all there is to it!</p>
+      <p align="left" class="BodyText1">If you've never played with G-Wizard, <a href="FeedSpeedsCalculator/CCGWizard.html">sign up for our free 30-day trial</a> right now: you'll be glad you did.</p>
+      <p align="left" class="BodyText1">&nbsp;</p>
+      <p align="left" class="BlogTitle">Tips for Measuring the Chatter Pitch</p>
+      <p align="left" class="BodyText1">It tends to be harder than it looks.    In the worst case, you can try to use a digital calipers. That's not very accurate, and the marks can be hard to see.   The best tool for the job is an optical comparator or some other optical device that is well lit and can overlay a measurement reticle on the marks.  I find that if you have a digital camera that can take close up shots with decent magnification, you can get pretty good results from that.</p>
+      <p align="left" class="BodyText1">Programs like Photoshop have the ability to measure features on images.    You'll need to have some reference in the photo.  If you've got chatter along an edge, the reference can be the total thickness of the edge.  Try to take the photo look dead onto the chatter--angles will distort your ability to measure accurately.</p>
+      <p class="BodyText1"></p>
+      <p class="BlogTitle">Creating a Chatter Map via Cutting Knowledge Base</p>
+      <p class="style1">Any time you find a combination that chatters, your first reaction is to be unhappy. It interrupts your work and it is a problem to deal with.  Try thinking about it another way--when you get a combination that chatters, you have found something valuable.  You've plotted a point on your stability lobe diagram.   If you're able to run the G-Wizard Chatter Calculator, you even have a list of spindle speeds that will minimize chatter for that combination.  </p>
+      <p class="style1">The trick with all that is getting organized and having the information at your fingertips when you need it. If it's written on the back of a greasy napkin that used to sit in a particular corner of the shop or your desk, chances are you'll be starting over from scratch and you'll soon be cursing chatter again.  What you need is some kind of organized database for the information.   The machining world has such a thing--it's called a &quot;Knowledge Base&quot; and is part of the discipline of &quot;Knowledge Based Machining.&quot;  Some high end CAM packages like Esprit have it and some shops have built their own Knowledge Bases using everything from pencil and paper to simple databases like Microsoft Access.</p>
+      <p class="style1">At CNCCookbook, we've built an easy-to-use Cutting KB (KB is short for &quot;Knowledge Base&quot;) into our <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard Feeds and Speeds Calculator</a>.  Using it is pretty simple.  Dial up the parameters for a cut, and then press the &quot;Search KB&quot; button.   Up will pop a list of similar cuts stored in the Knowledge Base.  You'll be able to see if you've already been able to do better than the cut you just dialed up, so you can use the better cut instead.  You'll also see whether you've just selected a combination that chattered, delivered a poor surface finish, or was bad for tool life in the past.   The Cut KB stores your shop's Best Practices that are based on how you operate so that the information will be right for you.</p>
+      <p class="style1">Here's what the Cut KB search screen looks like:</p>
+      <p align="center" class="style1"><img src="img/GWizard/GWCutKBSearch.jpg" width="800" height="620" alt="Cutting Knowledge Base Search"></p>
+      <p align="center" class="style1">G-Wizard Cut KB Search Results: Right down to a rating system by stars...</p>
+      <p class="style1">Suppose there is nothing in the Cut KB, or you're trying to push the envelope?</p>
+      <p class="style1">No worries. Go back to your parameters in G-Wizard and either punch them up a bit or use them as is.  After you make the cut on the machine, remember to go back to G-Wizard and record the result. Just bring up the cutting parameters you used and press &quot;Add to Cut KB&quot;.   Now the data is recorded for the next time.  And remember, it is a good thing when you can add chatter data, broken tool entries, and anything else that helps you find the edge of the envelope.  </p>
+      <p class="style1">For more on the Cut KB, check the following links:</p>
+      <p class="style1"><a href="CCCNCMillFeedsSpeedsToolroom.htm">Toolroom vs Manufacturing Feeds and Speeds</a></p>
+      <p class="style1"><a href="GWCalcCutKB.html">G-Wizard Cutting KB</a>:  Quite a few other links about Knowledge Based Machining on this page too.</p>
+      <p>&nbsp;</p>
+      <p class="BlogTitle">Systematically Measuring the Edge of the Envelope</p>
+      <p class="BodyText">One of the best articles I've seen on this subject was a piece called, &quot;Chatter Control for the Rest of Us,&quot; by Peter Zelinski. It's been reprinted in a lot of places and you can even buy it on Amazon, but it started in Modern Machine Shop.  Just Google for that title to track it down.</p>
+      <p class="BodyText">This piece was created by Siemens/UGS, and describes a very simple methodology for mapping out the sort of information you'd want to put into the Cut KB so you know the Stable Milling Speeds for your best combinations.  The idea is to create a test for your machine + tooling combo that produces a test piece like this one:</p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/MillFeedsSpeeds/StableSpeedTest.jpg" width="718" height="456" alt="Stable Milling Speed Test for Chatter"></p>
+      <p align="center" class="BodyText">Stable Milling Speed Test for Chatter...</p>
+      <p align="left" class="BodyText">It's readily apparent by inspection that some passes have a lot more chatter than others.   From this, you can determine the best speeds.  This particular test they called out 7000 rpm and 9500 rpm as Stable Milling Speeds that minimized the chatter.  The successive passes for the test were laid out like this:</p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/MillFeedsSpeeds/ChatterTestSeries.jpg" width="718" height="439" alt="Chatter Testing"></p>
+      <p align="left" class="BodyText">As you can see, they hold chip load and depth of cut constant.    The feedrate is based on the rate needed to maintain the desired chipload.   Since too much chipload breaks tools quickly, choose one that is at the high end of what you're generally successful with for the exercise.    They then proceed to vary the spindle speed and the cutting width (side stepover).   The colors indicate how much chatter they encounterd. You get the idea how to do the experiment.  In a few hours you can build a pretty good map of a machine and tooling combination for your shop.   </p>
+      <p align="left" class="BodyText">At some point, I'll put together g-code to run one of these tests, and we'll also be adding the ability to create and track charts in this format to the G-Wizard Cut KB.</p>
+      <p align="left">&nbsp;</p>
+      <p class="BlogTitle">More Anti- Chatter Tips      </p>
+      <p class="BodyText1">-  Try variable flute angles.  You can buy cutters whose flutes are not evenly spaced--this helps reduce the tendency to chatter by breaking up the frequency the flutes can excite. They don't all hit at exact intervals.</p>
+      <p class="BodyText1">- Try a Rougher.  For whatever reason, &quot;corncob&quot; roughers seem to be a little less prone to chatter than regular endmills by many accounts.   Might be good to keep one handy in your toolbox even if you've moved on to high performance standard endmills and quit using the corncobs.</p>
+      <p class="BodyText">From time to time we'll be adding any additional tips we come across to this section. Stay tuned!</p>
+<p class="BodyText">&nbsp;</p>
+<p class="BlogTitle">Next Article:  <span class="BodyText1"><a href="CCCNCMillFeedsSpeedsMicroMachining.htm">Micromachining</a></span></p>
+<p class="BodyText">&nbsp;</p>
+<p align="center" class="BodyText1"><b><i><font size="+2"><a href="MTLatheHome.htm">Try the Free Trial Version of G-Wizard Speeds and Feeds Calculator...</a></font></i></b></p>
+<p align="center" class="BodyText1"><span class="style12"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+<p align="center" class="BodyText1">No credit card required--just your name and email.</p>
+<p align="center" class="BodyText">&nbsp;</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

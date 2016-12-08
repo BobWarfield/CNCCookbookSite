@@ -1,0 +1,963 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNCCookbook:  IH Mill CNC Servos</title>
+<style type="text/css">
+<!--
+.style1 {color: #339933}
+.style2 {font-family: Arial, Helvetica, sans-serif}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+.style5 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-style: italic; }
+.style11 {font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" --> 
+      <p class="style2">&nbsp;</p>
+      <p class="style2"><a href="CCMillCNCConversionHome.html"><strong>CNC Mill Conversion: 
+        </strong></a></p>
+      <p class="style2"><em><strong><a href="CCMillCNCToDo.html">To Do List</a></strong></em></p>
+      <p class="style2"><em><strong><a href="CCMillZAxisMod.htm">Z-Axis Mod</a></strong></em></p>
+      <p class="style2"><em><strong><a href="CCMilllOneShot.htm">One Shot Oiler</a></strong></em></p>
+      <p class="style2"><em><strong><a href="CCMillEpoxyFill.htm">Epoxy Granite 
+        Fill</a></strong></em></p>
+      <p class="style5"><a href="CCMillCNCElectronics.html">Electronics </a></p>
+      <p class="style5">&nbsp;&nbsp;&nbsp;&nbsp;<a href="CCMillCNCAxisModule.htm">Axis 
+        Modules</a></p>
+      <p class="style5"> &nbsp;&nbsp;&nbsp;&nbsp;<a href="CCMillCNCVFD.htm">VFD 
+        Spindle</a></p>
+      <p class="style5">&nbsp;&nbsp;&nbsp;&nbsp;<a href="CCMillCNCDebugging.htm">Debugging</a></p>
+      <p class="style5">Servos</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p class="style1"><font face="Times New Roman, Times, serif" size="7">Adapting 
+        HomeshopCNC Servos to the IH Mill CNC Kit</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">This page describes what I 
+        had to do to adapt a set of HomeshopCNC servos to my IH Mill CNC Kit. 
+        I bought a &quot;mechanicals only&quot; kit that did not include servos. 
+        I'm not sure Gene and Tommy are even offering that option any more, but 
+        I got mine on sale when Aaron Moss owned the business.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I've written this in reverse 
+        chronological order (most recent is at the top) because its been unfolding 
+        for a while and I didn't start out with a dedicated page for it.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Mounting 
+        Timing Pulleys on the Servo</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I'm going to use 1/8&quot; 
+        roll pins to mount the timing pulleys to the servos. This is the method 
+        Gene told me is used by Industrial Hobbies on their turnkey systems, and 
+        it will provide a very solid mounting--much more so than a couple of set 
+        screws. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">First, I did some careful measuring 
+        with my surface plate and height gage:</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/Servos/P1010994.JPG" width="1024" height="768"></p>
+      <p align="center">The gage block lets me set the pulley where it needs to 
+        be on the shaft easily to take measurements...</p>
+      <p><font face="Arial, Helvetica, sans-serif">Here is where the hole needs 
+        to go on the X and Y axes when the timing pulley is oriented properly 
+        to mesh up with the pulley on the ballscrew:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/PulleyMount3D.jpg" width="1024" height="635"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I can use the 
+        shoulder of the pulley and the end of the motor shaft as my datum reference 
+        points. I need an identical offset of 0.220&quot; from either point to 
+        locate the hole in the shaft and the pulley.</font> </p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The next order 
+        of business was workholding. I needed a solution to accurately position 
+        and support both the pulley and the motor shaft. I settled on using my 
+        Spindexer with 5C collets. First tep was dialing in the spindexer so it 
+        was trammed true to the mill. I used a 1/2&quot; drill blank (accurate 
+        and pretty cheap standard to have on hand) and my Indicol on the mill 
+        spindle. Just stick the blank into a collet and tram accordingly. Very 
+        similar to tramming a vise.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011000.JPG" width="1024" height="768"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">After tramming 
+        the Spindexer, I lined up the tip of the 1/8&quot; drill bit with the 
+        tip of my &quot;positioning spud&quot;. It's not dead accurate, but if 
+        you use a magnifier its pretty good and it's really fast to do. Now I 
+        know the center of the bit is on the centerline of the spindexer axis.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011001.JPG" width="1024" height="768"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I hold the shoulder 
+        of the pulley in the collet and touch off the inside of the rim with an 
+        electronic edge finder. Then I crank the correct amount on the X-axis 
+        to position the bit in the right place along the axis.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011002.JPG" width="1024" height="986"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Drilling was easy. 
+        One thing to note: drill all the way through both sides of the pulley 
+        even though your roll pin won't be that long. It gives you a way to drive 
+        the pin back out if you need to later! </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Next step was 
+        to drill the hole in the motor shaft. The collets work fine here too, 
+        although I could only grip about 0.100&quot; with the hole out near the 
+        end of the shaft. In the photo below, I am using the edge finder to reference 
+        the plate on the motor flange to find the exact spot along the axis to 
+        locate the hole.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">BTW, edgefinders 
+        like this one make it easy to account for backlash when changing direction. 
+        Move one direction until the edge finder lights. Reverse direction and 
+        as soon as the edgefinder goes dark you've taken up the backlash and you're 
+        at &quot;0&quot; for your next move. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011004.JPG" width="1024" height="768"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The motor was 
+        supported on 1-2-3 blocks. No need to clamp the motor as the shaft is 
+        held firmly. Just make sure you have everything lined up properly. That 
+        collet won't &quot;pull&quot; the shaft into alignment because there is 
+        too much leverage from the motor.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011005.JPG" width="1024" height="768"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Having drilled 
+        the first hole, I measured the distance from flange to spindexer plate 
+        so make it easy to position the second motor exactly where the first one 
+        was. I never tear down a setup until I've made sure to get everything 
+        I can from it!</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/Servos/P1011006.JPG" width="1024" height="768"></p>
+      <p align="center"><img src="img/MillStuff/CNC/Servos/P1011008.JPG" width="1024" height="810"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Y-Axis is all 
+        mounted and working good!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011009.JPG" width="1024" height="885"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">X-axis is mounted 
+        too!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Aside from machining 
+        the pulleys and shafts, I had to do two other things to make this conversion 
+        work. First, a little slotting of the mounting plates really helps. I'd 
+        say I put on 1/4&quot; of slotting or less on the holes. Of course that 
+        meant I couldn't use the threaded holes, so I have socket head cap screws 
+        with nylocks and washers holding the motors. Second, the spacers between 
+        the plates were a tad too long. I shaved 0.200&quot; of of each one on 
+        both X and Y.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Next comes the 
+        Z-axis:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011011.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">. I used my 
+        height gage to take some measurements...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011013.JPG" width="1024" height="718"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Then I whipped 
+        up a quick little adapter.coupler on the lathe...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011014.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">In the interest 
+        of expediency (I'm impatient!) I'm using set screws, so I cut a flat on 
+        the adapter...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011016.JPG" width="1024" height="768"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">And there is 
+        the servo mounted with belt...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">It's not quite 
+        running true, and makes a funny noise as the belt teeth engage. It's close, 
+        but I will likely have to machine a new adapter. But I'm going to cut 
+        a few chips with it first!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Soldered 
+        the Cables on the Servo Motors</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The servo motors come from 
+        Homeshopcnc with just a short tail on them, so you'll need to attach a 
+        longer cable back to you electronics cabinet. I decided to use IES-style 
+        power cords for mine. These are the same power cables a PC uses. I chose 
+        them becaues they're cheap, the servo only has 3 conductors like a power 
+        cord, and they're designed to carry current. My one reservation would 
+        be that they're not shielded, so the noise from the servos will escape. 
+        That means I need to take care the rest of the cables, for example the 
+        limit switch and encoder cables, are properly shielded for noise and the 
+        shields are grounded.</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/P1010920.JPG" width="1024" height="538"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I put 10 foot 
+        power cords from <a href="http://www.cablewholesale.com/">CableWholesale</a> 
+        on the motors...</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Homeshopcnc 
+        Servo Encoder Pinout</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Got a note back from my query 
+        to Homeshopcnc on pinout for the encoders. They say the 5 pins on the 
+        encoder correspond to the top 5 pins on the DB connector. <a href="http://www.usdigital.com/assets/general/87_e5_datasheet_0.pdf">According 
+        to US Digital</a>, that pinout would be:</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/Servos/ServoEncoderPinout.jpg" width="401" height="443"></p>
+      <p><font face="Arial, Helvetica, sans-serif">Also worth noting is that I 
+        have specified 500 CPR encoders on these servos. With quadrature, that 
+        means 2000 steps per revolution.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Timing Belts 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I discovered some time back 
+        that the 72 tooth timing belts I ordered for the X and Y axes were too 
+        small. Doh! Turns out I made a minor miscalculation in the geometry involved. 
+        I was very concerned I would discover the timing pulleys I had ordered 
+        were also not going to work as you can only get belts in certain sizes. 
+        Fortunately, luck shined on me and I found that a 75 tooth belt works 
+        fine. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Ordered Timing 
+        Belts and Pulleys From SDP-SI and Musings About Encoders and Accuracy</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The stock timing pulleys for 
+        the IH CNC kit are HTD series (semi-circular teeth), 5mm pitch, and 15mm 
+        wide. But, the pulleys that came with the kit have a tiny little 8mm bore 
+        designed for the servos IH sells. As I am using HomeShopCNC servos that 
+        have a 1/2&quot; bore, they just won't work. There isn't enough meat on 
+        them to bore out that much. So, I had to figure out a new plan. After 
+        some fooling around to measure the shaft center distance on the bracket 
+        (it doesn't adjust, so you had better get it right!), I came up with a 
+        distance of 3.769&quot;. I plugged this into a Rhino3D drawing as a sanity 
+        check along with pulley diameters and actually drew up the stock arrangement. 
+        I came up with the small pulley having 12 teeth and the bigger one having 
+        48 teeth for a 4:1 reduction ratio.</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/Kit/P1010872.JPG" width="1024" height="768"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Measuring shaft 
+        to shaft with my 850 oz in HomeShopCNC servos. I knew there was a reason 
+        I had those big giant calipers!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Okay, so what's the closest 
+        pulley for the motor that will fit my shaft and work with an off-the-shelf 
+        timing belt without having to change the shaft to shaft distance or modify 
+        the bracket? Turns out SDP-SI has <a href="http://www.sdp-si.com/Cd/default.htm">a 
+        nifty little calculator</a> for this purpose. It didn't take too much 
+        fooling around before I figured out that a 72 tooth belt (instead of the 
+        stock 70 tooth belts) and a 17 tooth motor pulley would do the job. I 
+        ordered these from SDP-SI at a total cost of about $40. Not cheap, but 
+        the belts were half that and making 2 timing pulleys would consume a lot 
+        of time that I could not spend elsewhere.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b>Note after the fact (10/30/08):</b> 
+        The 72 tooth belts don't fit but a 75 tooth works great with this pulley 
+        combination. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">My reduction ratio on the X 
+        and Y axis will now be 48/17 or about 2.824:1 instead of 4:1. The stock 
+        IH kit comes with 410 oz/in servos but I'm running 850 oz/in, so I doubt 
+        I'll run short of torque. I'm running the 500 resolution encoders, but 
+        they're on the motor instead of on the ballscrew like the IH kit. So, 
+        IH gears down 4000 cpr encoders (I deduce given their 50 millionths resolution 
+        figure, hmmm) by 4:1 getting a resolution of 4000/4 = 1000 counts per 
+        motor revolution and 4000 counts per ballscrew resolution. </font><font face="Arial, Helvetica, sans-serif">Here 
+        is a thing about this 50 millionths figure from IH: none of the likely 
+        encoders from <a href="http://www.usdigital.com/products/encoders/incremental/">US 
+        Digital </a>come anywhere near 4000 counts per revolution. 1000 was the 
+        highest I could find. How can they get to the 50 millionths figure then? 
+        The answer is not so hard, we use quadrature inputs which give us 4x the 
+        resolution for the encoder. So, if IH uses an expensive 1000 count per 
+        revolution encoder in quadrature mode, they get 4000 counts per revolution.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Let's assume I run my 500 count 
+        encoders in quadrature mode. I'm running the equivalent of 2000 * 2.824 
+        = 2824 counts per ballscrew revolution and 2000 counts per motor revolution. 
+        So I appear to have about 70% of the resolution of the IH kit. Instead 
+        of 50 millionths, I'll be at 0.7 of a tenth. That's still pretty good! 
+        And note that this is actual resolution an encoder can see and a servo 
+        drive can do something about.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Steppers, by comparison, are 
+        commanded to move a step and have to just assume the proper motion occured. 
+        </font><font face="Arial, Helvetica, sans-serif">For comparison, let's 
+        look at the Tormach, which uses stepper motors instead of servos. I'm 
+        not claiming one mill is more accurate than the other, I'm just taking 
+        a look at how the numbers work out. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Tormach claims resolution of 
+        a tenth. That is defined as, &quot;The minimum discrete position move 
+        is 0.0001&quot;, this is the resolution of motion.&quot;</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">What can this mean if we investigate 
+        closely? Given their definition, it means that 0.0001&quot; corresponds 
+        to one step on their stepper motor. A typical stepper has 200 steps in 
+        a rotation, so that implies the gear train from step to table motion is 
+        1.000&quot; / (200 * 0.0001&quot;) = 50:1. That's a very big reduction, 
+        in fact it sounds too big. The IH reduction is 4:1 via pulleys and another 
+        5:1 via the ballscrew, or 20:1</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Tormach says their rapids speed 
+        is 65 ipm. Let's plug these numbers backwards and see what we get:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">65 inches / 0.0001&quot; = 
+        650,000 ten thousandths = 650,000 steps per minute</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">650,000 steps per minute / 
+        200 steps per revolution = 3250 rpm </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Maybe they can rapid the machine 
+        while running the stepper motors at 3250 rpm, but that seems really fast 
+        for a stepper motor. Most of them in this kind of size range have a torque 
+        peak much lower than that. <a href="http://www.tormach.com/document_library/TD30204_DesignAnalysis.pdf">Tormach's 
+        Design Analysis</a> talks about torque falling off rapidly in just a few 
+        hundred rpm. My assumption would be that the 0.0001&quot; resolution is 
+        not realizable in practice and is based on something such as microstepping 
+        (the Tordrive has 10x microstepping, for example which would mean divide 
+        everything by 10 if we're talking microsteps). If I am right about the 
+        microstepping, the real resolution is more like 0.001&quot;, which is 
+        fine, and completely in keeping with the mill's stated performance. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Why doesn't microstepping count? 
+        Because you can't maintain full torque on a microstep unless it corresponds 
+        to a full step. They're largely about smoother acceleration and motion 
+        more than they are about accuracy.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I like the Tormach mill, BTW, 
+        I was just curious to work through the figures and see what I could learn.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b>Update on Tormach</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I confirmed a few things from 
+        <a href="http://www.cnczone.com/forums/showthread.php?p=509974#post509974">some 
+        Tormach owners on CNCZone</a>. The Tormach direct drives the ballscrews 
+        with no reduction, and the lead on the ballscrews is the same as IH: 5 
+        turns to the inch. So, at full rapids, the Tormach is doing 325 rpm as 
+        suspected. And also as suspected, you have to assume 10x microstepping 
+        to get to the 50 millionths resolution. My understanding was that you 
+        shouldn't count on microsteps for increased resolution because the torque 
+        was very low. That turns out to have been wrong. There is <a href="http://www.cnczone.com/forums/showthread.php?t=13678">a 
+        great series of posts by Mariss F.</a> on CNCZone that lay it all out. 
+        The long and the short of it is that you can take advantage of up to 10x 
+        microstepping and still have about 70% of the torque and full positional 
+        accuracy. Therefore Tormachs 50 millionths resolution claim is quite defensible.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Now of course there are other 
+        issues that prevent the machine from being that accurate in general, but 
+        Tormach only claims about 0.001&quot; precision, which is very plausible 
+        provided you run the system in a way that loses no steps. A servo system 
+        still have the potential to be more accurate because it can get back on 
+        track after the fact. Whether that's acceptible or not to your application 
+        is a whole other question I won't delve into here.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">It was gratifying to see that 
+        my math all worked out properly with the real data on the Tormach that 
+        I didn't have access to!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Bought a 
+        Set of Servos and Gecko Drives from HomeShopCNC</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">After reading 
+        a note sent to me by <a href="http://www.ptengineeringllc.com/">Peter 
+        Tsukamoto</a>, I got inspired to take a step of some kind on the mill 
+        to move this conversion forward. Peter started with a Unimat lathe 30 
+        years ago and today he owns a full machine shop in Hawaii. Guys like that 
+        are always an inspiration to me, so I try to listen carefully when they 
+        have some advice for me. In Peter's words:</font></p>
+      <p align="left"> 
+      <blockquote><font face="Arial, Helvetica, sans-serif"><b>See if you can 
+        get your CNC mill going as a priority. It will open up new vistas in a 
+        way you cannot believe. It will accelerate any project you work on. Make 
+        them way more enjoyable too. </b></font></blockquote>
+      <p></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">He makes a lot 
+        of sense there. Every time I perform a manual machining operation on my 
+        lathe or mill I think about what the CNC equivalent would be. In almost 
+        every case I could do the job much faster, more easily, and often better 
+        with CNC. There's a reason it took the industry by storm years ago!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">A couple things 
+        have been holding up my progress. First, I've been spending a ton of time 
+        lately on a <a href="CCRevOpenCol.htm">Steam Engine Team Build</a> that 
+        has involved creating some tooling and a number of other things. The other 
+        problem that was distressing me was that I had misplaced the <a href="http://www.industrialhobbies.com/">Industrial 
+        Hobbies CNC conversion kit</a> somewhere in my house. I'd been looking 
+        for it off and on for days, and the number of places it could be was dwindling. 
+        After spending 45 minutes in the garage shifting things around and checking 
+        every last possible hiding place underneath all the junk, real panic set 
+        in. Paraphrasing Conan Doyle's Sherlock Holmes, when you've eliminated 
+        all the possibles, you have to start considering the impossibles. Eventually 
+        I discovered that my kids had pressed the two boxes into service to create 
+        a stand for their Karaoke machine. They were hidden underneath a black 
+        table cloth to make it even harder. I heaved a mighty sigh of relief after 
+        making that discovery!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">So, having located 
+        the components, I decided to take another step and ordered up a set of 
+        servos and drives from <a href="http://www.homeshopcnc.com/page3.html">HomeShopCNC</a>. 
+        I also looked at <a href="http://www.kelinginc.net/">Keling</a> as another 
+        source. HomeShopCNC was just slightly cheaper on Gecko drives, and I liked 
+        the nifty anodized housings for the encoders:</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/Servos/ServoMotor.jpg" width="792" height="537"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I like the nifty 
+        anodized housing for the encoder...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">These are 850 
+        oz in servos, and Keling had a bigger model at a whopping 1125 oz in. 
+        Why not just buy the bigger-is-better plan? Well, because there are trade 
+        offs. It's worth noting that the standard IH CNC kit comes with 410 oz 
+        in on the X/Y axes and 648 on the Z--that mill head is heavy! Their heavy 
+        duty kit looks to me like is substitutes the bigger Z servo on the X/Y 
+        axes. Either way, I should be fine with 850 oz in. Now here is the rub. 
+        The big Kelling 1125 oz in servo peaks out at 3200 rpm whereas the 850's 
+        I got are spec'd for 4200 rpm. I don't know if I'll ever get to use the 
+        extra rpm to increase my rapids or not, but bigger servos are often slower 
+        and the same is true of stepper motors. I think these 850's will be a 
+        decent compromise and they'll give me some room to experiment on my feeds 
+        and speeds. If the Z gives me any trouble I figure I can build a counterweighting 
+        system with some gas springs and radically reduce the force needed there 
+        too.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">While I'm talking 
+        about alternatives, I should mention that I did some serious looking around 
+        for an alternative to the Gecko drives. Why? Customer Service. That's 
+        got to come as a surprise because Gecko has some of the best customer 
+        service reputation in the industry. The trouble is, I ran afoul of one 
+        of the counter examples of that. My GRex for my <a href="CCLatheCNCHome.htm">CNC 
+        lathe project</a> has been a disaster. The good news: it was very easy 
+        to get it working, and I like the idea of not relying on the parallel 
+        port. In theory, it could save me a lot of trouble, especially since I 
+        had envisioned a fancy control panel for it. The reality? The device has 
+        never lived up to its original promises. It has had teething troubles 
+        since the beginning, and most of it has never gotten fixed. There are 
+        problems with 3D profiling on the mill that make it a questionable solution 
+        there, and the device doesn't support spindle indexing on the lathe, which 
+        is a requirement for threading. What good is a lathe that can't thread? 
+        Many promises were made over time about this being fixed, and we're talking 
+        a span of years. Unfortunately, it has never panned out. Gecko blames 
+        it on the firmware and says it isn't their fault. I think that's silly, 
+        and it certainly was not the story at the outset. I sent Mariss a note 
+        offering to trade my perfectly good GRex for a set of 3 of his cheapest 
+        servo drives (which combined were less than the GRex cost), and explained 
+        my problem with the GRex. I never even got a response back from Gecko. 
+        That's just not good customer service in my book, despite their stellar 
+        reputation.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">So how did I wind 
+        up buying another set of Gecko drives anyway? Here's the rub--who else 
+        is there? Rutex is in an odd state. The parent is Australian, and the 
+        designer has gone missing there last I heard. Reports vary on whether 
+        the boards can be gotten here though the US distributor says yes. Last 
+        thing I want to deal with is another strange situation with one of these 
+        boards though the Rutex has a lot of advantages over the Geckos on paper, 
+        and there are certainly those who swear by them. I also looked at the 
+        <a href="http://www.cnczone.com/forums/showthread.php?t=14217&amp;highlight=uhu+servo+drive+kit">UHU 
+        family of servo drives</a>. These look to be excellent, but so far they 
+        are either awfully expensive if you buy one already built, or you deal 
+        with cobbling together a kit. Frankly, I was tempted to go the kit route 
+        anyway, just to avoid Gecko. I enjoy building electronics and I'm pretty 
+        good at it. The trouble is, Peter's words kept nagging at me. How much 
+        would it set back my conversion to have to build and debug 3 servo controller 
+        boards? So I got the Geckos. They were cheap when bought with the servos 
+        anyway. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Still, it wouldn't 
+        have taken much to get me to buy something from someone else. I guess 
+        that's the power of customer service. Given his reputation, I can't understand 
+        why Mariss wouldn't do something for me. Oh well, I sure hope these new 
+        drivers are flawless or I will build the UHU boards.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I'm going to update 
+        my <a href="CCMillCNCToDo.html">To Do list for the mill </a>to a finer 
+        level of detail, finish that Team Build, and then try to see how much 
+        progress I can make on the mill conversion.</font></p>
+      <p align="center" class="style11"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="img/GWizard/GWScreenRow.jpg" alt="" width="1024" height="238"></a></p>
+      <p align="center" class="style11"><span class="style12"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+      <p align="center" class="style11"><a href="FeedSpeedsCalculator/CCGWizard.html">Be sure to check out G-Wizard, our Machinist's Software!</a></p>
+      <p align="left">&nbsp;</p>
+      <p class="BlogDate">&nbsp;</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

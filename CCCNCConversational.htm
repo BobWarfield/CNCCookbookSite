@@ -1,0 +1,730 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>G-Code Tutorial:  Conversational CNC</title>
+
+<meta name="description" content="An introduction to basic g-code for CNC Machinists.">
+
+<link rel="canonical" href="http://www.cnccookbook.com/CCCNCGCodeBasics.htm" />
+
+<style type="text/css">
+<!--
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.WarningText {
+}
+.WarningText {
+}
+.Warning {
+}
+.Warning {
+}
+.Bozon {
+	font-size: large;
+	color: #F00;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText3 {}
+.BodyText3 {font-family: Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<style type="text/css">
+.BodyText4 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText4 {}
+.BodyText4 {	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<style type="text/css">
+.BodyText11 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText11 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText11 {font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p align="center" class="style1 style4"><strong><font face="Arial, Helvetica, sans-serif" size="+1"><a href="CCCNCMillFeedsSpeeds.htm">CNC</a><a href="CCCNCGCodeCourse.htm">Cookbook's G-Code Course</a></font></strong></p>
+<p align="center" class="style1">&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="6%"><img src="img/GearsIcon.jpg" width="88" height="77"></td>
+          <td width="94%"><p><font face="Times New Roman, Times, serif" size="7" color="#FF0000">Conversational CNC</font></p>
+          <p><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="BlogTitle"><strong><a href="CCCNCGCodeCourse.htm">CNCCookbook's G-Code Tutorial</a></strong></font></p></td>
+        </tr>
+      </table>
+      <p class="BlogTitle"><strong>Introduction</strong></p>
+      <p class="BodyText11">Before there was CNC, we had Manual Machining (actually, we had hydraulic tracers and other limited automation, but bear with me) and a lot of very good parts got made fairly quickly.   Even today the subject of whether CNC'ers need to learn Manual Machining will often provoke a strong debate back and forth.  Many believe that CNC is only good for making many parts or complex parts.  They maintain that manual machining will be faster any time you're just making one relatively simple part. </p>
+      <p class="BodyText11">If you drill down on the argument and ask why manual machining would be faster, the two most common answers I get are:</p>
+      <p class="BodyText11">#1 Because our CNC isn't tooled like a manual machine, it's tooled to make lots of identical parts quickly. </p>
+      <p class="BodyText11">This, of course, is a matter of choice and I don't see it as a particularly good argument in favor of the manual machines. There are plenty of excellent toolroom CNC machines such as the Haas TL series lathes. You don't have to tool your CNC in that way.</p>
+      <p class="BodyText11">#2 Because you have to stop and make a CAD drawing and then do CAM work to get the g-code for the CNC.  With Manual Machining, you can often work directly from the print.</p>
+      <p class="BodyText11">This one is much closer to the mark.   It can be a lot of trouble to produce a CAD drawing and run a CAM program for some simple part, particularly on lathes where simple spacers and bushings are so easy to run off quickly on a good manual lathe. </p>
+      <p class="BodyText11">We've seen in our last chapter that <a href="CCCNCGCodeMDI.htm">with MDI, you can treat your CNC like a Manual Machine</a>. For many, that's the end of the argument--with the same tooling a CNC is just as fast or maybe even faster than the Manual Machine.  But, we can go even a step further and be substantially ahead of the Manual Machine if we have Conversational CNC.</p>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle"><strong>What is Conversational CNC?</strong></p>
+      <p class="BodyText1"><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html" target="_blank">Conversational CNC&nbsp;</a>is a quick way to do simple jobs without resorting to creating a CAD drawing or running a CAM program. &nbsp;For all those times when you would turn to a manual machine instead of a CNC because the overhead of the CADCAM cycle was going to mean you could do it faster manually, this is a better way. &nbsp;Now you can stick with the CNC and do the job even faster than the manual, even for one-off parts. &nbsp;The key is simplicity. &nbsp;Lathes are particularly well suited to Conversational CNC, because many round parts are fairly simple. &nbsp;But there are many applications for Conversational CNC on Milling Machines too.</p>
+      <p class="BodyText1">Think of Conversational CNC whenever you have a relatively simple part that doesn't have a lot of features or features that involve complex curves and shapes.   Brackets, bushings, spacers, and the like are common examples.   Another great application for Conversational CNC is secondary operations.  Rather than go all the way back through the CADCAM cycle to pick up a hole that was missed or to move some holes, try using Conversational CNC.    It's quick and easy.</p>
+      <p class="BodyText1">If you want to see some examples of how to program certain features in g-code, Conversational CNC is a quick way to turn them out. </p>
+      <p class="BodyText1">Let's run through some Conversational CNC examples for both Turning or Milling.</p>
+      <p class="BlogTitle"><strong><strong>Conversational CNC for Milling</strong></strong></p>
+      <p class="BodyText">First, here is the graphical menu showing the various Conversational CNC operations available in G-Wizard Editor:</p>
+      <p align="center" class="BlogText"><img src="img/GWizardE/ConvCNCMenu.jpg" width="700" height="523" alt=""></p>
+      <p align="center" class="BodyText">Conversational CNC Operations in G-Wizard Editor...</p>
+      <p align="left" class="BodyText">What you have to do is break your part down into these basic operations:</p>
+      <p align="left" class="BodyText">- Hole:  Drill or Interpolate a hole.   </p>
+      <p align="left" class="BodyText">- Face Mill: Surface the top of the workpiece</p>
+      <p align="left" class="BodyText">-  Slot: Cut a slot at any angle.</p>
+      <p align="left" class="BodyText">- Pocket: Cut a rectangular or round pocket.</p>
+      <p align="left" class="BodyText">-  Boss: Cut a rectangular or round boss.</p>
+      <p align="left" class="BodyText">- Tap: Tap a hole</p>
+      <p align="left" class="BodyText">- Thread Mill: Thread Mill internal or external threads</p>
+      <p align="left" class="BodyText">- Engrave: Do simple engraving</p>
+      <p align="left" class="BodyText">As you can see, quite a lot is possible with these basic options.  If you click one, you'll get a popup Wizard like this one for the Hole Operation:</p>
+      <p align="center" class="BlogText"><img src="img/GWizardE/Posts/ConversationalCNCHoleWizard.jpg" width="700" height="524" alt=""/></p>
+      <p align="center" class="BodyText">The Conversational CNC Hole Wizard</p>
+      <p align="left" class="BodyText">Now it's just a matter of filling in the blanks. You've got some basics at the top:</p>
+      <p align="left" class="BodyText">-  Work Offset: Let's you use <a href="http://www.cnccookbook.com/CCCNCGCodeG54G92WorkOffsets.htm">work offsets</a>, you won't need them at first, so just leave it set to 54.</p>
+      <p align="left" class="BodyText">- Safe Z: This is the Z where the cutter can move freely without hitting anything. If 0 is the top of the workpiece, I usually make Safe Z 1&quot; above.</p>
+      <p align="left" class="BodyText">-  Rapid to Z: This is the height where we can rapid down to there, but XY motions must be at feed speeds.   I make this 0.2&quot; above the Material Top.</p>
+      <p align="left" class="BodyText">- Material Top Z: Cutting begins here and most CNC'ers like to make that value 0.</p>
+      <p align="left" class="BodyText">-  Roughing/Finishing Tools and Coolant. You need to tell the Wizard which tools to use and whether to turn on Coolant.</p>
+      <p align="left" class="BodyText">Next is a set of options for positioning multiple holes:</p>
+      <p align="left" class="BodyText">- Put the hole at the Current Position</p>
+      <p align="left" class="BodyText">- Give a list of hole coordinates</p>
+      <p align="left" class="BodyText">-  Make a circle of holes</p>
+      <p align="left" class="BodyText">-  Place the holes on an arc</p>
+      <p align="left" class="BodyText">- Place the holes in a grid</p>
+      <p align="left" class="BodyText">- Place the holes in a line</p>
+      <p align="left" class="BodyText">Lastly, we get into the details of how the hole will be programmed:</p>
+      <p align="left" class="BodyText">- Via canned cycle</p>
+      <p align="left" class="BodyText">-  Custom cycle: A powerful deep hole drilling capability is provided here</p>
+      <p align="left" class="BodyText">- Interpolated: Where an endmill is used to make holes potentially much larger than the diameter of the endmill.  This is a powerful technique not available on Manual Machines!</p>
+      <p align="left" class="BodyText">Having answered the questions, you click the &quot;Insert&quot; button and finished g-code is placed in the file you're editing.    It will be fully documented with comments and ready to run.</p>
+      <p class="BlogTitle"><strong>Conversational CNC for Turning</strong></p>
+      <p class="BodyText">Conversational CNC for a Lathe is very similar.  Here is the graphical menu of lathe operations:</p>
+      <p align="center" class="BlogTitle"><img src="img/GWizardE/ConversationalCNCLatheMenu.jpg" width="700" height="520" alt=""/></p>
+      <p align="center" class="BodyText">Conversational Operations for Lathe</p>
+      <p align="left" class="BodyText">The lathe has its own basic operations:</p>
+      <p align="left" class="BodyText">- Facing</p>
+      <p align="left" class="BodyText">- OD Turning and Tapers</p>
+      <p align="left" class="BodyText">- ID Turning and Tapers</p>
+      <p align="left" class="BodyText">- Drilling</p>
+      <p align="left" class="BodyText">- Tapping</p>
+      <p align="left" class="BodyText">- Grooving</p>
+      <p align="left" class="BodyText">- Parting</p>
+      <p align="left" class="BodyText">- Chamfer</p>
+      <p align="left" class="BodyText">- Radius</p>
+      <p align="left" class="BodyText">- Threading: ID and OD</p>
+      <p align="left" class="BodyText">It's so much easier to perform many of these operations using Conversational CNC than to try to use a Manual Lathe. You'd never get the taper attachment set up or threading dialed in before the CNC was done. For some of these things you'd need special tooling such as a ball turning fixture.</p>
+      <p class="BodyText1">Using the Wizards is much like with the Mill Wizards. Here is the OD Turning Wizard for example:</p>
+      <p align="center" class="BodyText1"><img src="img/GWizardE/Posts/ODTurnConvCNC.jpg" width="700" height="440" alt=""/></p>
+      <p align="center" class="BodyText1">The OD Turning Wizard...</p>
+      <p align="left" class="BodyText1">The OD Turning Wizard enables you to specify multiple diameters, the length of each section of that diameter, and a treatment of the corner so that it can be left alone, chamfered, or radiused.   You can fill all this in directly while looking at a print and save a lot of CADCAM time!</p>
+      <p align="left" class="BodyText1">Here is a quick video tutorial on using the OD Turning Wizard:</p>
+      <p align="center"><span class="BlogTitle">
+        <object width="853" height="480">
+          <param name="movie" value="http://www.youtube.com/v/fJhcoS5YTxQ?version=3&amp;hl=en_US&amp;rel=0">
+          </param>
+          <param name="allowFullScreen" value="true">
+          </param>
+          <param name="allowscriptaccess" value="always">
+          </param>
+          <embed src="http://www.youtube.com/v/fJhcoS5YTxQ?version=3&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" width="853" height="480" allowscriptaccess="always" allowfullscreen="true"></embed>
+        </object>
+      </span></p>
+      <p align="center" class="BodyText">A quick walkthrough of how to use the Lathe OD Turning Conversational CNC Wizard.</p>
+      <p align="left" class="BodyText1">&nbsp;</p>
+      <p class="BlogTitle"><strong>Where Can I Find Conversational CNC?</strong></p>
+      <p class="BodyText1">Conversational CNC is available from a lot of sources.  It is an option for many machine tools, though it can seem expensive at the time until you think about the cost savings of not having to run through CADCAM. Here is a great video showing how to use the Conversational CNC capabilities of the Tormach Lathe:</p>
+      <p align="center" class="BodyText1"><span class="BlogTitle">
+        <object width="853" height="480">
+          <param name="movie" value="http://www.youtube.com/v/VFSy0RoFyGM?version=3&amp;hl=en_US&amp;rel=0">
+          </param>
+          <param name="allowFullScreen" value="true">
+          </param>
+          <param name="allowscriptaccess" value="always">
+          </param>
+          <embed src="http://www.youtube.com/v/VFSy0RoFyGM?version=3&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" width="853" height="480" allowscriptaccess="always" allowfullscreen="true"></embed>
+        </object>
+      </span></p>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BodyText1">&nbsp;</p>
+      <p class="BlogTitle">Exercises</p>
+      <p class="BodyText1">1.  Give Conversational CNC a try.  Fire up G-Wizard Editor's Conversational CNC Wizards and see if you can create g-code for some simple part. You may find the videos in our <a href="CCHelpDesk.html">G-Wizard University</a> helpful to getting started.</p>
+      <p class="BodyText1">&nbsp;</p>
+      <p align="center" class="BodyText1"><b><i><font size="+2"><a href="CCGWizardE.html">Try the Free Trial Version of G-Wizard G-Code Editor...</a></font></i></b></p>
+      <p align="center" class="BodyText1"><span class="style12"><a href="CCGWizardE.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" id="Image21" border="0"></a>&nbsp;</span></p>
+      <p align="center" class="BodyText1">No credit card required--just your name and email.      </p>
+      <p class="BodyText1">&nbsp;</p>
+<p class="BlogTitle"><strong>Next Article: <span class="BodyText11"><a href="CCCNCGCodeOneShotModal.htm">One Shot and Modal G-Codes</a></span></strong></p>
+<p class="BodyText">&nbsp;</p>
+<p align="center" class="BodyText1">&nbsp;</p>
+<p align="center" class="BodyText">&nbsp;</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

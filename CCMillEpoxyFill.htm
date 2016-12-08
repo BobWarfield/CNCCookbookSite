@@ -1,0 +1,1054 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNCCookbook: Epoxy Granite Fill</title>
+
+<meta name="description" content="How to fill your CNC machine's castings with epoxy granite to dampen vibrations.">
+
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" --> 
+      <p class="style2">&nbsp;</p>
+      <p class="style2"><a href="CCMillCNCConversionHome.html"><strong><b><font face="Arial, Helvetica, sans-serif">CNC 
+        Mill Conversion: </font></b></strong></a></p>
+      <p class="style2"><b><font face="Arial, Helvetica, sans-serif"><em><strong><a href="CCMillCNCToDo.html">To 
+        Do List</a></strong></em></font></b></p>
+      <p class="style2"><b><font face="Arial, Helvetica, sans-serif"><em><strong><a href="CCMillZAxisMod.htm">Z-Axis 
+        Mod</a></strong></em></font></b></p>
+      <p class="style2"><b><font face="Arial, Helvetica, sans-serif"><em><strong><a href="CCMilllOneShot.htm">One 
+        Shot Oiler</a></strong></em></font></b></p>
+      <p class="style2"><b><font face="Arial, Helvetica, sans-serif"><em><strong><a href="CCMillEpoxyFill.htm">Epoxy 
+        Granite Fill</a></strong></em></font></b></p>
+      <p class="style5"><b><font face="Arial, Helvetica, sans-serif"><a href="CCMillCNCElectronics.html">Electronics 
+        </a></font></b></p>
+      <p class="style5"><b><font face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;<a href="CCMillCNCAxisModule.htm">Axis 
+        Modules</a></font></b></p>
+      <p>&nbsp;</p><p>&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p><font size="+4" color="#339933">Epoxy Granite Filling an Industrial Hobbies 
+        RF-45 Mill for Vibration Dampening and Rigidity</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Filling the machine castings 
+        with Epoxy Granite (sometimes also called &quot;Polymer Concrete&quot;) 
+        has been a time-honored tradition of some of the finest machine tool manufacturers 
+        such as <a href="http://hardingeus.com/usr/pdf/hardturn/ASME.pdf">Hardinge 
+        with their proprietary &quot;Harcrete&quot;</a> and others. Hardinge as 
+        well as many of these others are quick to point out that the damping properties 
+        of epoxy granite are about 8x those of cast iron. Combining the strength 
+        of the existing cast iron with the additional damping properties of epoxy 
+        granite seems very attractive. The procedure can make your machine significantly 
+        more rigid and less prone to chatter. When you consider that even a heavy 
+        &quot;bench&quot; mill like the IH still weighs just under 1,000 pounds, 
+        while a really small commercial CNC mill such as the Haas TM-1 weighs 
+        in at about 3,000 pounds, you can see we hobbyists are challenged to do 
+        whatever we can to increase machine rigidity!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Since I've got one of my two 
+        IH mills down for extensive modifications and ultimately CNC conversion, 
+        I decided to go ahead and take this step as well. Be sure to read the 
+        &quot;Inspirations&quot; section below for the experiences of Davo727, 
+        whom I credit with giving me the impetus to go forward.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">First, Build 
+        a Containment System</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">It'll be necessary to create 
+        a containment system so the epoxy grantie goes where you want it too and 
+        where you don't. That's been a real easy project for me using a combination 
+        of my <a href="CCMiniBandsaw.htm">Harbor Freight band saw</a> and the 
+        <a href="CCDiscSander.htm">12&quot; disc sander I built</a>. Here are 
+        a few photos showing what I'm up to:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010287.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Mark your stock 
+        with a Sharpie to fit between the webs. Rough cut on the bandsaw...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010288.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Fine tune on 
+        the disc sander. It's a perfect tool for the task and made it real quick 
+        and easy...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010289.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I'm using 1&quot; 
+        thin wall to protect bolt holes from the epoxy. These are the holes needed 
+        to secure the column, as well as the 4 leveling bolt holes for the base. 
+        I plan to tape the side holes from the inside, but I don't think I'll 
+        extend them further inside the epoxy casting...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010290.JPG" width="1024" height="690"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">And so we have 
+        6 flat plates between the webs, and 8 short sections of tubing...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I used GE silicone 
+        cement to secure the plates and pipes. I just put a fillet of silicone 
+        around each edge. It fills gaps very nicely to make a watertight seal:</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010297.JPG" width="1024" height="768"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Silicone fillets 
+        are designed to keep epoxy in the designated areas... </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">A thought for 
+        future generations: you could get all hardcore about trying to fill across 
+        that webbing while still keeping enough room for the leadscrew. There's 
+        probably room for maybe 1&quot; of epoxy granite all the way across the 
+        base of the machine. I'm not going to bother, but it is a thought.</font></p>
+      <p class="BlogTitle">Mixture Ratios and Aggregates</p>
+      <p><font face="Arial, Helvetica, sans-serif">There is much complex mathematics, 
+        computer simulations, and good old fashioned experimentation taking place 
+        over on the <a href="http://www.cnczone.com/forums/showthread.php?t=30155">CNCZone 
+        Epoxy Granite thread</a> around the issue of mixture ratios. Their goal 
+        is somewhat different than mine. They want to cast machine frames entirely 
+        out of Epoxy Granite. That's doable, but a more demanding task. Their 
+        working assumption is that finding the optimal mix of various sizes of 
+        aggregates that minimizes the amount of epoxy needed to fill the holes 
+        and that will hang together as a homogeneous mixture is the secret to 
+        maximum performance. Other than Walter, who cast major portions of a CNC 
+        gantry machine and Davo727, who followed his own guidelines for mixing 
+        the material, not too much has yet been built although there are literally 
+        hundreds of pages of postings. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Their optimal mix by computer 
+        simulation so far is as follows:</font></p>
+      <p> 
+      <blockquote> 
+        <p><font face="Arial, Helvetica, sans-serif">20% Agsco #6 Aluminum Oxide 
+          </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">20% Agsco #4 Quartz </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">20% Agsco #2 Quartz </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">20% Agsco #2/0 Quartz </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">20% 3M #800 Zeeospheres </font></p>
+      </blockquote>
+      <p></p>
+      <p><font face="Arial, Helvetica, sans-serif">These quantities are by weight. 
+        The problem is that you have to order from an industrial aggregate supplier 
+        to get these materials. There are minimum orders, you have to call and 
+        can't just order online, yada, yada. It's a pain, in other words.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Another formula, by a commercial 
+        producer of Epoxy Granite in the UK, is as follows:</font></p>
+      <p> 
+      <blockquote> 
+        <p><font face="Arial, Helvetica, sans-serif">500 micron and less 10% </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">silicon powder 5% </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">1mm 20% </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">3-4mm 10% </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">6mm 10% </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">10mm 15% </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">14mm 30% </font></p>
+      </blockquote>
+      <p></p>
+      <p><font face="Arial, Helvetica, sans-serif">Take that aggregate mix by 
+        weights, and you should need just 7% epoxy. Interesting, but again, it 
+        requires a lot of different sizes of aggregates.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Walter's last empirical formula 
+        I found was as follows. Mix equal portions by volume of each of these 
+        components:</font></p>
+      <p> 
+      <blockquote> 
+        <p><font face="Arial, Helvetica, sans-serif">#6 Agsco Brown</font></p>
+        <p><font face="Arial, Helvetica, sans-serif"> #4 Agsco Quartz </font></p>
+        <p><font face="Arial, Helvetica, sans-serif"> #2 Agsco Quartz</font></p>
+        <p><font face="Arial, Helvetica, sans-serif"> #2/0 Agsco Quartz</font></p>
+        <p><font face="Arial, Helvetica, sans-serif"> G800 Zeeospheres</font></p>
+        <p><font face="Arial, Helvetica, sans-serif">G200 Zeeospheres </font></p>
+      </blockquote>
+      <font face="Arial, Helvetica, sans-serif">This will yield an aggregate that 
+      needs about 10% epoxy. </font> 
+      <p></p>
+      <p><font face="Arial, Helvetica, sans-serif">Both Walter and the UK guy 
+        suggest evaluating the consistency. For example, the UK guy says if you 
+        try to make a &quot;snowball&quot; of the mixture with epoxy. When you 
+        open your hands if it's too dry, it breaks down into clumps and if it's 
+        too wet, it'll run through your fingers. Walter suggests that if the mixture 
+        is too clumpy, just add a little more resin.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">From what I can see after reading 
+        through literally hundreds of pages, I want to shoot for 10-15% epoxy, 
+        and if I want a mixture that is perhaps slightly less strong, but that 
+        pours and molds well, add more epoxy resin. So I figure I'll just shoot 
+        for 20% resin and call it a day. Moreover, I don't want to have to search 
+        high and low for special components. I'm going to use granite gravel and 
+        play sand (supposedly the cleanest grade according to the long thread) 
+        purchased at the local Home Depot. I have a &quot;secret Weapon&quot; 
+        in the form of glass beads from my blast cabinet. These are much smaller 
+        than the play sand granules, and if I add a little of it to the aggregate, 
+        it will displace a little epoxy. That's my fine tuning approach, at any 
+        rate.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Rather than fuss with complicated 
+        math (the equations are all in the thread!), I'm going empirical. So, 
+        I got out my postage scale, measuring cups, and media, and started conducting 
+        some experiments. My goal was just to find an easy mixture that got me 
+        in the 20% range for the epoxy. My method was to mix media, and then top 
+        off the cup with water to measure how much epoxy would be needed to fill 
+        voids. Since the epoxy will be more dense, I figure shooting for a little 
+        less than 20% water by weight will get me a slightly lower epoxy ratio 
+        plus air bubbles. The latter I will try to minimize with a vacuum rig 
+        I will describe later.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The mixture I arrived at wound 
+        up using these proportions by weight with epoxy resin:</font></p>
+      <p> 
+      <font face="Arial, Helvetica, sans-serif"> 
+      <blockquote> 
+        <p><font face="Arial, Helvetica, sans-serif">62% gravel</font></p>
+        <p><font face="Arial, Helvetica, sans-serif">23% sand</font></p>
+        <p><font face="Arial, Helvetica, sans-serif">14% epoxy resin</font></p>
+      </blockquote>
+      </font> 
+      <p></p>
+      <p><font face="Arial, Helvetica, sans-serif">That worked out pretty darned 
+        well if I do say so myself. In terms of volumes, this was 1/8+1/4+1/3 
+        cup of gravel, 1/4 cup of sand, and 1 1/2 pumps each of resin and hardener. 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">The Test 
+        Batch</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Okay, having worked out trial 
+        consistencies, the next step was to mix up a test batch and evaluate it. 
+        First thing is that epoxy resin generates a cumulative allergic reaction. 
+        You don't want it on your skin, so wear rubber gloves! Here's what my 
+        West Marine resin looks like along with some odds and ends to help out:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010298.JPG" width="1024" height="869"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Resin, Hardener, 
+        Metering Pumps, Disposable Mixing Cups, Postal Scale, etc. We're making 
+        toxic mud pies here people.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010299.JPG" width="800" height="1085"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The West Marine 
+        pumps are cool. Each pump meters the right proportion of the critical 
+        fluid so you don't have to worry about it. The instructions say you can 
+        leave the pumps on even in storage and worst case is you may have to clear 
+        a nozzle of gummy liquid. The pumps worked great: wouldn't want to be 
+        without!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The consistency came out great. 
+        I started with the epoxy in the cup and then folded in the aggregate (already 
+        mixed) a little at a time. At one point I thought it would be too dry, 
+        but I kept right on stirring until everything was coated and it came out 
+        looking pretty decent:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010300.JPG" width="1024" height="987"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">It looks like 
+        it may even be a little wetter than needed at 14% epoxy resin. The easy 
+        answer is to add sand or bead blast media, probably just a little bit. 
+        This is not critical for my application. If I wanted a real smooth optimal 
+        casting, I would play with it some more. Meanwhile, I have to wait until 
+        tomorrow to see how it sets up. Visually, I'm thinking I have a bit more 
+        sand than Davo727 did, but I can't be sure of that.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Here's what we 
+        got the next morning:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010301.JPG" width="512" height="605"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010302.JPG" width="512" height="605"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Test was successful!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The test was successful. 
+        The aggregate is embeded in the epoxy. The slug took a very accurate impression 
+        from the cup--you can even see scratches made in the plastic by the gravel's 
+        sharp edges are faitfully reproduced. I suspect creating a precision surface 
+        in this material is easy if you have a precision mold. The material released 
+        easily from the plastic cup--just a couple sharp raps on workbench and 
+        it dropped right out. The ugly parts are at the air-epoxy interface from 
+        the top of cup. There are various approaches to eliminating the air bubbles, 
+        but it doesn't seem like there were many bubbles trapped in the material 
+        from the mixing process--they're all at the top. A quick pass with a heat 
+        gun is rumored to be the quick trick to get rid of those.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">At this point, 
+        I can't see much point in monkeying with success. It may be that a 10% 
+        epoxy formula would be better, but this will work just fine for this project. 
+        I plan to keep Epoxy Granite in mind for other projects. I understand 
+        it sets up with an accuracy of 0.001&quot; on top if you get rid of bubbles, 
+        so you could make a surface plate from it. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Filling 
+        the IH Base</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Okay, let's begin 
+        filling the base. We've got all the dams built. Here's how I go about 
+        it:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010316.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">First, I mix 
+        up a little batch of epoxy. Those pumps make it dead simple: 2 pumps resin, 
+        2 pumps hardener, mix well with the chip brush. Note the two bays already 
+        filled have cured overnight and are lookin' good! </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010317.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Next I like 
+        to paint all the surfaces with the first batch of epoxy. I want the epoxy 
+        to bind really well to the metal. Cross linkages from this layer back 
+        into the aggregate will ensure things are really tied together well...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Now I quite taking 
+        pictures because I was juggling! You can do the work in layers, so long 
+        as the layer you pour on top of hasn't set up the epoxy can still form 
+        good cross linkages. According to West Marine, you're good even after 
+        things appear to be hard so long as you can still get an impression from 
+        your thumbnail on the epoxy. I don't let it get even close to that. The 
+        way I work is I mix aggregate and epoxy in the little cup, but too wet. 
+        I stir it well with the chip brush to make sure everything is well coated. 
+        Then I pour that into the base. Next I put on a layer of dry material 
+        without additional epoxy. I know my ratios, so I'm not just doing this 
+        by eye. When I stir that into the wet layer, I get a consistency like 
+        peanut butter and everything is well coated. I'll go like this for a couple 
+        cup fulls, and then watch it for two or three minutes. Usually some liquid 
+        epoxy rises to the surface. That's when I add a layer of glass bead media 
+        on top:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010319.JPG" width="1024" height="1048"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The glass beads 
+        are very fine, so they'll fit into the holes between the sand and gravel. 
+        More stirring until it's all well coated, and I will have a lot less epoxy 
+        on top. So I go to another layer. Eventually, I get to the top of the 
+        bay:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010320.JPG" width="1024" height="840"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">See all those 
+        nasty air bubbles? I like to get rid of them...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010321.JPG" width="800" height="554"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">This lousy out-of-focus 
+        pic is of a little push to light butane torch that is perfect for bubble 
+        busting. Play it slowly over the surface and the bubbles disappear quickly!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010322.JPG" width="1024" height="926"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Leaving me with 
+        something more like this. I could've add more sand or glass beads, but 
+        I'm concerned about overflowing, so I stopped. Another bay is complete!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010336.JPG" width="1024" height="560"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Working like 
+        this, I made it all the way around, and filled all the bays except the 
+        center column hole and the 2 bays where the 4 column bolts come in. The 
+        whole casting is considerably heavier, and when tapped with a hammer, 
+        sounds a lot more solid and less &quot;ringey&quot;...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010338.JPG" width="1024" height="637"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">My concern at 
+        this stage is whether the pipes that protect the column bolt holes from 
+        epoxy are really epoxy tight. I had a couple leaks in the rest of the 
+        bays. Nothing major, but it would have been enough to gum up the works 
+        terribly if even a little epoxy ran down those column bolt holes!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010339.JPG" width="1024" height="713"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Accordingly, 
+        I am going to insert the bolts into each hole just a short ways...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010340.JPG" width="1024" height="548"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">And then I will 
+        fill until I am above the casting line with wax from a candle. The wax 
+        will harden and keep the epoxy out. When the epoxy has set, I can heat 
+        up the wax and melt most of it out. The bolts can cut any remaining wax 
+        that gets in the way very easily. At least that's the theory. We'll see!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010376.JPG" width="1024" height="829"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Next I made 
+        a plate to fit the center column hole which goes all the way through. 
+        I've got a piece of PVC pipe that will serve as the channel for my big 
+        1 1/8&quot; column bolt. I've just applied copious amounts of epoxy to 
+        the edges to seal it up. Thicker epoxy would've been better for the purpose, 
+        but this is what I had on hand...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010377.JPG" width="1024" height="758"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Just finished 
+        filling and still need to go over it with the blowtorch to pop the bubbles...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010379.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">A view of the 
+        whole thing. Column hole is still drying but the other wells are set...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010388.JPG" width="1024" height="898"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Once that had 
+        set, I flipped the base over with help from my brother and poured the 
+        small top cavity above the metal plate. The base now weighs close to 200 
+        lbs! It is markedly &quot;deader&quot;.</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010471.JPG" width="1024" height="768"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here you can 
+        see I trimmed the PVC liner for the big central bolt hole that will help 
+        anchor the column...</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010470.JPG" width="1024" height="768"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Looking good! 
+        Next step for the base is a set of leveling feet...</font> </p>
+      <p class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Vibration 
+        Dampening &quot;Hockey Puck&quot; Leveling Feet</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Borrowing an idea I first saw 
+        Aaron Moss put up on the old IH site (probably still there), I made a 
+        set of leveling vibration dampening feet for the mill from hockey pucks. 
+        Somewhere along the way I bought a crate of used pucks for almost nothing 
+        on eBay. They machine very nicely!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010382.JPG" width="1024" height="990"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010384.JPG" width="1024" height="912"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Speed is fairly 
+        slow, about 1/4 of my lathe's capacity or maybe 300-400 rpm. Wish I had 
+        a tachometer. The Silver &amp; Deming bit goes right through it like butter...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010386.JPG" width="1024" height="981"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I bore a little 
+        pocket for the bolt head with a CCMT boring bar. Note the Kant-Twist &quot;carriage 
+        stop&quot; so I get the same depth each time. I used a pair of calipers 
+        to monitor the diameter of the bore, which was not critical...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010387.JPG" width="1024" height="1023"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Weird locking 
+        swarf, no?</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010389.JPG" width="800" height="925"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">There's my machine 
+        leveling feet. Came out pretty neat!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010472.JPG" width="1024" height="881"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The bolts I'm 
+        using are much larger than the holes provided. My brother and I are using 
+        a 1/2&quot; drill with Silver &amp; Deming bits to enlarge the holes. 
+        This was a painful process! By the end, we agreed we should have carried 
+        the heavy base in and set it on the other mill to do the drilling...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010473.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here they are 
+        from the bottom...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010475.JPG" width="1024" height="635"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">And the base 
+        is now upright!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010474.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Got hockey pucks?</font></p>
+      <p class="BlogTitle">On to the Column Fill: First We Need a Column for the 
+        Central Bolt</p>
+      <p><font face="Arial, Helvetica, sans-serif">First step was to epoxy a thin 
+        metal plate into the opening in the base so it would seal. The casting 
+        was really rough, so I used epoxy with sand to fill in the edges until 
+        I got the plate solidly mounted and with no discernible leakage. This 
+        was a big improvement over the silicone cement I had used earlier. </font></p>
+      <p align="center"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010787.JPG" width="1024" height="768"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">After the epoxy 
+        for the plate had dried I took a hole saw for the pipe the bolt will pass 
+        through. Note that I used a pipe quite a bit larger than the PVC on the 
+        base so there is plenty of clearance. This greatly simplifies alignment 
+        and there's still plenty of beef. The pipe was kind of an off-size, so 
+        I used a 1 5/8&quot; hole saw and then a drum sanding cartridge to make 
+        it a nice sliding fit.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010788.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">To hold the 
+        pipe in position I used a punch to dimple the edges in 3 places. That's 
+        how close the fit was. I made sure to level the pipe so it was vertical 
+        and then I applied some more epixy around the edges. </font></p>
+      <p  align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010790.JPG" width="1024" height="709"></font></p>
+      <p  align="left"><font face="Arial, Helvetica, sans-serif">The surface tension 
+        works nicely to let me apply a fair amount of epoxy. I just want enough 
+        to hold the pipe solidly so that when I flip the column over start adding 
+        the E/G mixture from above it won't break loose. I'll let this cure all 
+        week and then tackle the fill next weekend. I've decided not to fill the 
+        column all the way up. This arrangement will fill the bottom 10&quot; 
+        or so and should add considerable dampening without in any way being a 
+        clearance problem. I would think this will really help the mill to perform 
+        better to have this much added dampening mass in the critical junction 
+        between the base and the column. More would be better, but I'm anxious 
+        to get on with the rest of the CNC conversion and there is a lot of work 
+        to do!</font></p>
+      <p  align="center"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010791.JPG" width="1024" height="768"></p>
+      <p  align="center"><font face="Arial, Helvetica, sans-serif">With the pipe 
+        and bottom plate secured, I flipped the column up on end and masked off 
+        the top of the pipe...</font></p>
+      <p  align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010792.JPG" width="1024" height="768"></font></p>
+      <p  align="center"><font face="Arial, Helvetica, sans-serif">Filling the 
+        cavity through the narrow slot was easiest with a cheap ice cream scoop 
+        I bought at the hardware store for $4...</font></p>
+      <p  align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/P1010794.JPG" width="1024" height="814"></font></p>
+      <p  align="center"><font face="Arial, Helvetica, sans-serif">I filled up 
+        to about 1/2&quot; from the top of the pipe, and then I switched to a 
+        pure sand mixture to make sure the top was free of rock edges sticking 
+        up...</font></p>
+      <p class="BlogTitle" >Inspirations</p>
+      <p class="style1"><font face="Arial, Helvetica, sans-serif">I have to say 
+        that Davo727 has been the biggest inspiration for me to make this mod. 
+        I first read about his efforts through a nice couple of posts in the <a href="http://www.cnczone.com/forums/showthread.php?p=274123#post274123">CNCZone 
+        Epoxy Granite thread</a>. His mill is an RF-45, similar to the Industrial 
+        Hobbies mill I have, but you will note some minor differences such as 
+        the fact there is a little less webbing in the base casting.</font></p>
+      <p class="style1"><font face="Arial, Helvetica, sans-serif">He used West 
+        Marine 105 epoxy, West 206 slow hardener, and a mixture of river rock 
+        and sand as the aggregate. He fabricated a welded steel partition from 
+        1/4&quot; plate to manage where the epoxy is going:</font></p>
+      <p align="center" class="style1"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/EGIHbase9.jpg" width="720" height="540"></font></p>
+      <p align="center" class="style1"><font face="Arial, Helvetica, sans-serif"><strong>Partitioning 
+        system is secured by bolts at the front and rear of the base... </strong></font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">Before 
+        pouring the epoxy, he also plumbed in a one shot oiling system. Here is 
+        the first pour he did to get started:</font></p>
+      <p align="center" class="style1"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/EGIHbase10.jpg" width="720" height="540"></font></p>
+      <p align="center" class="style1"><font face="Arial, Helvetica, sans-serif"><strong>First 
+        EG pour in the base...</strong></font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">davo727 
+        plans to pour his base, and the lower part of his column for this project. 
+        In addition, he has fabricated a much more solid assembly to bolt the 
+        column to the base:</font></p>
+      <p align="center" class="style1"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/EGIHbase4.jpg" width="720" height="540"></font></p>
+      <p align="center" class="style1"><font face="Arial, Helvetica, sans-serif"><strong>3/4&quot; 
+        Plate Bars Add Beef Below for the Column Bolts...</strong></font></p>
+      <p align="center" class="style6"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/EGIHbase2.jpg" width="720" height="540"></font></p>
+      <p align="center" class="style6"><font face="Arial, Helvetica, sans-serif">Column 
+        Backing Plates are Also Secured From Above... </font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">The 
+        column support system is also being augmented by a central large diameter 
+        bolt that goes from the base all the way up to the top of the epoxy fill 
+        in the column. Steel plate above the epoxy and below in the base provide 
+        a solid sandwich for the bolt to latch on to. It occurs to me it may be 
+        pretty hard to tram in the column with that arrangement as the central 
+        bolt will be capable of considerable compression force. As in many things, 
+        a little care and time spent should get it done. </font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">Here 
+        is the finished result, which added circa 65 lbs to the 100 lb base:</font></p>
+      <p align="center" class="style1"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/EGIHbase14.jpg" width="1025" height="833"> 
+        </font></p>
+      <p align="center" class="style1"><font face="Arial, Helvetica, sans-serif"><strong>That 
+        came out looking very professional! </strong></font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">I 
+        checked back some time later with Davo727 via PM, and he is still very 
+        pleased with this mod on his mill.</font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">FYI, 
+        his mix consisted of:</font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">17 
+        lb Sand = 26%</font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">38 
+        lb Gravel = 58%</font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">10 
+        lb Epoxy = 15%</font></p>
+      <p class="BlogTitle">Other Fills</p>
+      <p><font face="Arial, Helvetica, sans-serif">Since having done my E/G work, 
+        some others have come along to provide further inspiration.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.cnczone.com/forums/showthread.php?p=625331#post625331"><b>Guldberg's 
+        Scratch-Built Slant Bed Lathe</b></a></font></p>
+      <p align="center"><img src="img/MillStuff/CNC/EpoxyGraniteFill/IMG_6389.JPG" width="800" height="600"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Welded frame 
+        coming home freshly machined on a big HMC...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/IMG_6396.JPG" width="800" height="600"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Trial fitted 
+        linear rails...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/IMG_6414.JPG" width="800" height="600"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Raw materials...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/IMG_6433.JPG" width="800" height="600"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Just poured...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/EpoxyGraniteFill/IMG_6474.jpg" width="800" height="600"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Pour finished. 
+        The base is now 40kg heavier, and I'll bet a lot more rigid and vibration 
+        dampened...</font></p>
+      <p align="center">&nbsp;</p>
+      <p align="center" class="style1"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="img/GWizard/GWScreenRow.jpg" alt="" width="1024" height="238"></a></p>
+      <p align="center" class="style1"><span class="style12"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+      <p align="center" class="style1"><a href="FeedSpeedsCalculator/CCGWizard.html">Be sure to check out G-Wizard, our Machinist's Software!</a></p>
+      <p align="center">&nbsp;</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

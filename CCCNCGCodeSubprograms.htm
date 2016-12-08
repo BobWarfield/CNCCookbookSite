@@ -1,0 +1,802 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>G-Code Tutorial: Subprogram and Macro Calls</title>
+
+<meta name="description" content="CNC G-Code subprogram and macro programming for CNC Machinists.">
+
+<link rel="canonical" href="http://www.cnccookbook.com/CCCNCGCodeSubprograms.htm" />
+
+<style type="text/css">
+<!--
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.WarningText {
+}
+.WarningText {
+}
+.Warning {
+}
+.Warning {
+}
+.Bozon {
+	font-size: large;
+	color: #F00;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText3 {}
+.BodyText3 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText11 {font-family: Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p align="center" class="style1 style4"><strong><font face="Arial, Helvetica, sans-serif" size="+1"><a href="CCCNCMillFeedsSpeeds.htm">CNC</a><a href="CCCNCGCodeCourse.htm">Cookbook's G-Code Course</a></font></strong></p>
+<p align="center" class="style1">&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr>
+          <td width="6%"><img src="img/GearsIcon.jpg" width="88" height="77"></td>
+          <td width="94%"><p><font face="Times New Roman, Times, serif" size="7" color="#FF0000">Subprogram and Macro Calls</font></p>
+            <p><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="BlogTitle"><strong><a href="CCCNCGCodeCourse.htm">CNCCookbook's G-Code Tutorial</a></strong></font></p></td>
+        </tr>
+      </table>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle"><strong> Subprograms and Macro Calls for Code Building Blocks</strong></p>
+      <p class="BodyText">In the article on <a href="CCCNCGCodeParameterized.htm">Parameterized Programming</a>, we learned how to modify g-code so it can be used in many different situations through the use of variables.  You could try copying and pasting your code everywhere to reuse it, but that's a mess.  First thing that happens is you need to change the code, perhaps to fix a bug, but you have copies of it scattered everywhere. </p>
+      <p class="BodyText">To make g-code convenient for re-use, we need some way of centralizing it and then accessing it from the part program.  The G-Code language provides two different methods for doing this: subprogram calls and macro calls.  Think of each as a way to access code sequestered in its own little mini-program.  You &quot;call&quot; that code, it does its thing, and then it &quot;returns&quot; to your main program to continue executing right after the call.   It's kind of like delegating responsibility to that code snippet.  </p>
+      <p class="BodyText">If you have a big library of powerful snippets, you've got the potential for some real productivity enhancement.  Even if you're not trying to reuse code, using calls can make your existing code much smaller and easier to understand.  Consider the process of milling a pocket by stepping down several levels and cutting the same toolpath.  Why repeat the same path for each level?  GibbsCAM generates g-code that generates the path for a level once as a subprogram and then calls it multiple times after setting the z-level deeper each time.  Makes for much smaller programs.   Pretty cool trick!</p>
+      <p class="BlogTitle"><strong>Subprogram Calls</strong></p>
+      <p class="BodyText">Let's start out with Subprogram Calls, because they're a little simpler to understand than Macro Calls, albeit less powerful.  A subprogram call is pretty straightforward.  First, stick the g-code for the subprogram under its own subprogram number--its own &quot;O&quot; number.  Your program might look like this:</p>
+      <blockquote>
+        <p class="BodyText">%</p>
+        <p class="BodyText">O1000</p>
+        <p class="BodyText">N100 (Main program)</p>
+        <p class="BodyText">...</p>
+        <p class="BodyText">N330 (Call Subprogram) M98 P2000</p>
+        <p class="BodyText">...</p>
+        <p class="BodyText">N1000 M2 (Program Stop)</p>
+        <p class="BodyText">O2000 (Subprogram)</p>
+        <p class="BodyText">N2000 ...</p>
+        <p class="BodyText">...</p>
+        <p class="BodyText">N2130 M99 (Return to Main program)</p>
+      </blockquote>
+      <p class="BodyText">As you can see, the main program and the subprogram each have their own &quot;O&quot; number. The call to the subprogram is &quot;M98&quot;, which takes a parameter telling it the &quot;O&quot; number where it can find the subprogram. When it hits M98, execution jumps over to the subprogram. When it hits an &quot;M99&quot; in the subprogram, that causes it to return to the main program right where it left off and keep going.</p>
+      <p class="BodyText"><strong>Subprogram Call Syntax</strong></p>
+      <p class="BodyText">Depending on your controller, there are a number of different syntaxes available for Subprogram calls.  Here is <a href="CCGWECNCSimulator.html">G-Wizard CNC Simulator and Editor's</a> screen for setting up your controller's syntax:</p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/Docs/SubprogramPost.jpg" width="800" height="436" alt="Subprogram Styles"></p>
+      <p align="center" class="BodyText">Subprogram and Macro Call Syntax...</p>
+      <p align="left" class="BodyText">While there are a lot of different styles, they're mostly just slightly different ways of saying the same things:</p>
+      <p align="left" class="BodyText">-  Where do I find the subprogram?   There is a word (most often the &quot;P&quot; word) that provides the address.  That address is typically an &quot;O&quot; word, but many controllers have the option of looking for an &quot;N&quot; word if the O# is not found.</p>
+      <p align="left" class="BodyText">-  What about a repeat?   It is often convenient to code a repeat on the subprogram in the same line using a different word.   For example &quot;L&quot; may tell how many times to call the subprogram before finally continuing to the next line.</p>
+      <p align="left" class="BodyText">-  How deeply can I nest subprograms and macros?  Your program can call a subprogram, which can call another subprogram, yada, yada.  How many levels deep are allowed? Controllers have a limit to this.</p>
+      <p align="left" class="BodyText">- G65 is a Macro Call, whereas M98 is a Subprogram Call. More on macro calls in a minute.</p>
+      <p align="left" class="BodyText">- Some controllers allow the M99 return to return to a particular line instead of just returning to where the subprogram was called.    I don't find this to be a good practice because it is confusing. If you wanted to &quot;goto&quot; a line there is a macro &quot;GOTO&quot; for that purpose, but not all controllers have it.</p>
+      <p align="left" class="BodyText">That's about it.  Not so bad. For now, just focus on calling subprograms and returning from them.</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p align="left" class="BlogTitle"><strong>Haas Special Subprogram Goodies</strong></p>
+      <p align="left" class="BodyText">It's not uncommon for a controller manufacturer to have their own &quot;Special Sauce&quot; features that make their controller special.  So it is with the Haas Local Subroutine, M97.   M97 is a quick and dirty subprogram because you don't have to bother setting up &quot;O&quot; numbers.  You can just call any &quot;N&quot; number with M97 and &quot;poof&quot; it's a subprogram.   Convenient, although other controllers have that option to look for an &quot;N&quot; if the &quot;O&quot; is missing, which takes a little of the wind out of the quick-n-dirty M97's sails.</p>
+      <p align="left" class="BodyText">Note that Haas will do M98 too, it just has M97 for the quick and dirty calls.  </p>
+      <p align="left" class="BodyText">M97 is enabled in GWE by default.  If your controller doesn't support it, go to Setup Post G/M-Codes and disable M97.</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p align="left" class="BlogTitle"><strong>Macro Calls</strong></p>
+      <p align="left" class="BodyText">A lot of cool things can be accomplished with M98-style subprogram calls.   Once you start using them, one of the first things you'll notice is you need to pass information to the subprogram.  You want to give it parameters, in other words.   With what you've learned so far, you're probably ready to do this by plugging values into Common Variables before calling the subprogram.   But, if your controller supports Macro Calls, there is a better way.</p>
+      <p align="left" class="BodyText">Macro Calls are initiated with G65 instead of M98 (or M97 on a Haas).  Macro Calls have what are called &quot;arguments&quot;.    Silly word, nobody is arguing about anything, but all programming languages that have this capability refer to it as &quot;arguments&quot;. Arguments let you use <a href="CCCNCGCodeBlocks.htm">word address format</a> to send information to your macro. Let's say we have a special custom deep hole drilling cycle we have created.   We want to pass it the X and Y coordinates where the hole goes as well as a Z coordinate for how deep to drill.   With a custom Subprogram Call, it might look like this:</p>
+      <blockquote>
+        <p align="left" class="BodyText">...</p>
+        <p align="left" class="BodyText">N100 (Custom Deep Hole Cycle Subprogram Call) </p>
+        <p align="left" class="BodyText">N110 #1 = 2.5 (Load X into #1)</p>
+        <p align="left" class="BodyText">N120 #2 = 3.0<span class="BodyText1"> (Load Y into #2)</span></p>
+        <p align="left" class="BodyText">N130 #3 = 5.4<span class="BodyText1"> (Load Z into #3)</span></p>
+        <p align="left" class="BodyText">N140 M98 P1000 (Call the Deep Hole Cycle)</p>
+        <p align="left" class="BodyText">...</p>
+      </blockquote>
+      <p align="left" class="BodyText">As you can see, we loaded X, Y, and Z into Local Variables.  The subprogram knows which local variables contain which information and can go on about its business after retrieving those values. Now here is what it might look like for a macro call:</p>
+      <blockquote>
+        <p align="left" class="BodyText">...</p>
+        <p align="left" class="BodyText">N100 (Custom Deep Hole Cycle Macro Call)</p>
+        <p align="left" class="BodyText">N120 G65 X2.5 Y3.0 Z5.4</p>
+        <p align="left" class="BodyText">...</p>
+      </blockquote>
+      <p align="left" class="BodyText">That's a whole lot easier on the eyes, isn't it?  Easier to remember too.  How does the macro get access to X, Y, and Z?</p>
+      <p align="left" class="BodyText">This happens by a special process where the local variables #1..#33 are kept in what are called &quot;levels&quot;. When I call G65, the current values of all those locals are copied to a level, and any words I use in calling G65 are transferred into the local variables. This table shows how the words are mapped to local variables:</p>
+      <div align="center">
+        <table width="50%" border="1">
+          <tr class="BodyText">
+            <td bgcolor="#CCFF99"><div align="center"><strong>Argument Word</strong></div></td>
+            <td bgcolor="#CCFF99"><div align="center"><strong>Local Variable</strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">A</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#1</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">B</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#2</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">C</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#3</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">D</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#7</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">E</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#8</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">F</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#9</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">H</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#11</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">I</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#4</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">J</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#5</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">K</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#6</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">M</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#13</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">Q</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#17</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">R</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#18</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">S</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#19</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">T</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#20</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">U</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#21</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">V</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#22</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">W</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#23</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">X</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#24</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">Y</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#25</span></strong></div></td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">Z</span></strong></div></td>
+            <td bgcolor="#CCFFFF"><div align="center"><strong><span class="style1">#26</span></strong></div></td>
+          </tr>
+        </table>
+        <p class="BodyText">Argument Words and Which Local Variable They're Transferred to in a Macro Call...      </p>
+      </div>
+      <p align="left" class="BodyText">As you can see, each possible argument word has a pre-assigned local variable.  If you use X, Y, and Z as we did in our example, their values will be transferred to #24, #25, and #26.   Pretty simple to use and very convenient.</p>
+      <p align="left" class="BodyText">Now what about those levels? </p>
+      <p align="left" class="BodyText">Well, as we mentioned above, subprograms and macros can be nested.  One can call another.  Each time a macro is called, its Local Variables are saved in a level. That way, when execution returns to that macro, the local variables have been saved in a level and they can be restored unchanged. Even though other macro calls may use the same word arguments which map to the same local variables, they have their own copy of those local variables in their own level, so the two don't interfere.  In practice, it takes longer to explain what's happening with levels than to just use the macro arguments and not have to worry about whether a local variable is getting overwritten by another macro--it's not.  </p>
+      <p align="left" class="BodyText">But, and this is an important &quot;but&quot;, it could be overwritten by a subprogram call.  The answer is simply to quit using subprogram calls when you have macros available, or at the least, use variables outside the local variable range and realize they can be overwritten.</p>
+      <p align="left" class="BodyText"><strong>Note: A lot of Controllers Don't Have Macro Calls</strong></p>
+      <p align="left" class="BodyText">Not every controller has the convenience of macro calls.  Mach3 doesn't, for example.  But, they are just that--a convenience.  You can accomplish everything you really need with ordinary subprogram calls, it'll just take a little more work is all. Sorry!</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p align="left" class="BlogTitle"><strong>Macro and Subprogram &quot;O&quot; Numbers</strong></p>
+      <p align="left" class="BodyText">First thing to know is that &quot;O&quot; numbers don't have to appear in any particular order in your program file--they just have to be unique. You can't have two &quot;O1000&quot; entries.  </p>
+      <p align="left" class="BodyText">The second thing to note is that on some controllers it is possible to provide protection for some ranges of O numbers.  This makes it possible to put standard macros onto a machine that can't be tampered with.  For example, maybe you made a big investment in a set of probing macros and don't want them to get changed or overwritten.   You'll need to consult your controller manual to see whether it offers protection and if so how it works.  For now, just assume that protected macros have &quot;O&quot; numbers up in the higher ranges.  For Fanuc, O0001 to O7999 are unprotected, and that's where you should put your macros.</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p class="BlogTitle"><strong>A Stack Trace for Fanuc Macro Subprograms when G-Code Programming</strong></p>
+      <p align="left" class="BodyText11">Recently, I was working through a complex g-code program to find and fix some bugs in <a href="CCGWizardE.html">G-Wizard Editor</a>. Trying to understand what the heck somebody else's program is doing and whether or not my own g-code simulator was properly simulating the program often leads to helpful ideas for tools that make G-Code programming easier for everyone.  For example, it got me to add the ability to make the simulator run until it hits the next macro command that would cause a branch to some location other than the next line of g-code.  This is a really handy way to buzz through programs going from one subprogram to the next, and it corresponds to similar commands in debuggers and simulators for other computer languages. </p>
+      <p align="left" class="BodyText11">This time around, I had a program that had lots of subprograms all madly calling around to make a bunch of holes and then thread mill them with NPT threads using helical interpretation.  The subprograms were quite clever in how they used the &quot;L&quot; word to repeat the helix 4 times for 90 degree moves to complete each turn, and then 9 more times to get 9 threads milled.   But man, there sure were a lot of different little subprograms all calling each other, sometimes with &quot;L&quot; repeats and sometimes not.  I was getting lost and found myself wishing for another tool that's commonly available for other computer languages besides g-code.  That tool is called a &quot;stack trace&quot;.  It basically shows &quot;who called who&quot;.  Here is the newly implemented stack trace for GWE:</p>
+      <p align="center" class="BodyText11"><img src="img/GWizardE/Docs/StackTrace.jpg" width="572" height="157" alt="G-Code Stack Trace"></p>
+      <p align="center" class="BodyText11">Stack trace is underlined in red...</p>
+      <p align="left" class="BodyText11">It's a simple little tool.   The list of numbers are the line numbers of the different callers.  So we can see the following:</p>
+      <p align="left" class="BodyText11">-  At line 35, the first subprogram was called.</p>
+      <p align="left" class="BodyText11">- Within that subprogram, at line 176, another subprogram was called.</p>
+      <p align="left" class="BodyText11">- Within that subprogram, at line 183, a third subprogram was called, and this one has a repeat factor of &quot;4&quot;.</p>
+      <p align="left" class="BodyText11">This particular g-code part program nested down 4 levels and at one point had two different repeat counts going.  I told you it was complicated.  This little display made it tremendously easier to keep track of what was going on. The &quot;L&quot; numbers count down as each repeat cycle is executed as well. </p>
+      <p align="left" class="BodyText11">If you like to write these sorts of macro subprograms in your g-code, you'll want to have this tool in your arsenal to help you follow what the part program is doing when you simulate it.</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p align="left" class="BlogTitle"><strong>Conclusion</strong></p>
+      <p align="left" class="BodyText">You now have some powerful tools for packing your g-code up as building blocks that can be recombined.  Think of it as the ability to create your own custom canned cycles to perform various tasks.  With our next chapter, we will introduce Conditions and Looping, which makes it possible for the g-code to make decisions on its own about what to do, and to execute a list of instructions a variable number of times based on those decisions.  </p>
+      <p align="left" class="BodyText">Next up we'll put parameterized programming and subprogram/macro calls together with an example.</p>
+<p class="BodyText">&nbsp;</p>
+<p align="left" class="BlogTitle"><strong>Exercises</strong></p>
+<p align="left" class="BodyText">1.                         Pull out your CNC controller manual and configure G-Wizard Editor for how your controller does subprograms and macros.   </p>
+<p align="left" class="BodyText">2. Write a subprogram call that performs a useful task, such as a custom deep hole cycle.      Use variables to pass information into the subprogram.</p>
+<p align="left" class="BodyText">3.  Rewrite the same subprogram from Exercise #2 to be a macro call.  Use arguments to pass information into the macro call.</p>
+<p align="left" class="BodyText">&nbsp;</p>
+<p class="BodyText1">&nbsp;</p>
+      <p align="center" class="BodyText1"><b><i><font size="+2"><a href="CCGWizardE.html">Try the Free Trial Version of G-Wizard G-Code Editor...</a></font></i></b></p>
+      <p align="center" class="BodyText1"><span class="style12"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+      <p align="center" class="BodyText1">No credit card required--just your name and email.      </p>
+      <p class="BodyText1">&nbsp;</p>
+<p class="BlogTitle"><strong>Next Article: <a href="CCCNCGCodeIFGOTOWHEN.htm">Conditions and Looping</a></strong></p>
+<p class="BodyText">&nbsp;</p>
+<p align="center" class="BodyText1">&nbsp;</p>
+<p align="center" class="BodyText">&nbsp;</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

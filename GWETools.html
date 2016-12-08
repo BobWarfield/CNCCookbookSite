@@ -1,0 +1,399 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCGWEDocPage.dwt" --><!-- DW6 -->
+
+<head>
+
+<!-- #BeginEditable "doctitle" --> 
+
+<title>G-Wizard Editor:  Tool Data Management and Tool Crib</title>
+
+<style type="text/css">
+<!--
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<!-- #EndEditable -->
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+<style type="text/css">
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 14pt}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+<!-- SumoMe Listbuilder Email Exit Intent -->
+<script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" />
+<style type="text/css">
+.BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">
+  multitouch();
+</script>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr></tr>
+<tr>
+  <td height="68" colspan="4" valign="middle" bordercolor="0" class="Tagline">
+  
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/LogoBitmap30High.jpg" alt="CNCCookbook: Software and Information for Macihnists" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="32" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+  
+  </td>
+</tr>
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+<tr class="LeftNav">
+  <td width="231" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0"><table width="65%"  border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><div align="center">
+        <p><a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"><img src="img/Ads/GWAd05152011.gif" width="120" height="90" alt="G-Wizard Machinist's Calculator" longdesc="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"></a></p>
+        <p><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm"> <img src="img/Ads/FeedsSpeedsAd.jpg" width="120" height="69" alt="Feeds and Speeds Cookbook"></a></p>
+      </div></td>
+    </tr>
+  </table>
+    <p>
+      <!-- Place this tag where you want the +1 button to render -->
+        <g:plusone></g:plusone>
+    </p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="+1" color="#66CC00">GW Editor 
+      User Guide</font></b></p>
+    <p align="center" class="Tagline1"><a href="GWEUIntro.html" class="BodyText"><strong>GWE Video University</strong></a>    </p>
+    <p align="center" class="BodyText"><strong><a href="GWEOverview.html">Getting Started</a></strong></p>
+    <p align="center" class="BodyText"><a href="GWEHowToArticles.html"><strong>How-To Articles</strong></a></p>
+    <p align="center" class="BodyText"><strong><a href="GWESetup.html">Setup</a></strong></p>
+    <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWECommands.html"><strong>Commands</strong></a></p>
+    <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWEKeyboard.html"><strong>Keyboard</strong></a></p>
+    <p align="center" class="BodyText"><strong><a href="GWERevisions.html">Revisions</a></strong></p>
+    <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWECNCSimulator.html"><strong>CNC Simulator</strong></a></p>
+    <p align="center" class="BodyText"><strong><a href="GWEWizards.html">Wizards</a></strong></p>
+    <p align="center" class="BodyText"><strong><a href="GWETools.html">Tool Data</a></strong></p>
+    <p align="center" class="BodyText"><a href="GWETips.html"><strong>Tips</strong></a></p>
+    <p align="center" class="BodyText"><a href="GWEPostList.html"><strong>Post List</strong></a></p>
+    <p align="center" class="BodyText"><a href="GWECustomPosts.html"><strong>Customizing Posts</strong></a></p>
+    <p align="center" class="Tagline1">&nbsp;</p>
+    <p align="center" class="Tagline1"><strong><a href="GWCCOverview.html">GW Conversational CNC</a></strong></p>
+    <p align="center" class="Tagline1">&nbsp;</p>
+    <p align="center" class="Tagline1"><a href="http://www.cnccookbook.com/CCCNCGCodeRef.html"><strong>Mill G-Codes</strong></a></p>
+    <p align="center" class="Tagline1"><a href="http://www.cnccookbook.com/CCCNCGCodeRefTurn.html"><strong>Lathe G-Codes</strong></a></p>
+    <p align="center" class="Tagline1">&nbsp;</p>
+    <p align="center" class="Tagline1"><a href="GWESampleFiles.html"><strong>Sample G-Code Files</strong></a></p>
+    <p align="center" class="Tagline1">&nbsp;</p>
+    <p align="center" class="Tagline1"><strong><a href="http://www.cnccookbook.com/GWETips.html">GWE Tips</a></strong></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><strong><a href="GWEChangeLog.html" class="BodyText">GWE Change Log</a></strong></p>
+    <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWizard/GWEInstall.html"><strong>GWE Install</strong></a></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="GWTrouble.htm">Troubleshooting</a></font></b></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><a href="http://www.cnccookbook.proboards.com/index.cgi" class="BodyText"><strong>User's Club</strong></a></p>
+<p>
+  <!-- Place this tag where you want the +1 button to render -->
+  <p>
+  <g:plusone></g:plusone>
+  </p>
+    <!-- AddThis Button BEGIN -->
+    <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+    <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=cnccookbook"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=cnccookbook"></script>
+    <!-- AddThis Button END -->
+</p>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    gaTrack: true,
+    gaId: 'UA-1060932-2'
+  }, 'google_translate_element');
+}
+  </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</p>
+</td>
+</tr>
+<tr>
+  <td colspan="7" align="left" valign="top" bgcolor="#FFFFFF">
+  <div id="centerContainer">
+  <!-- #BeginEditable "Body" -->
+      <p><font color="#339933" size="+4">G-Wizard 
+      Editor: Tool Data Management and Tool Crib</font></p>
+      <p class="BodyText">Tool Data is very important to CNC.  The controller has to be told which tool to load from the changer, and what the tool length and diameter wear offsets are in order to know exactly where the tip of each tool is located.   In addition, there is a lot of other information that makes it far easier for machinist's to deal with and understand their g-code programs--things like human readable names instead of just T numbers.  Lastly, there is the task of coordinating what the design office thinks the tools are when they're running their CAM program, and what the shop floor thinks the tools are when it comes time to run the job.  Facilitating these tasks is the job of the Tool Data Management features in GWE.</p>
+      <p class="BodyText">For a good grounding in Tool Offsets and Tool Data Management, try the two-part CNCCookbook series <a href="CCCNCToolManagement.html">here</a>.  The first part is basic, and the second part is more advanced.  This page is all about how to do some of the things being talked about within GWE.</p>
+      <p class="BodyText">GWE's TDM features are primarily associated with 3 views--the &quot;Tools&quot; View, the &quot;Tool Crib&quot;, and the &quot;Tool Comp&quot; macro variables.  Let's consider each and then talk about how they work together.</p>
+      <p class="BlogTitle">Tools View</p>
+      <p> <span class="BodyText">On the lefthand side, where the g-code is, there is a &quot;Tools&quot; tab that brings up the Tools View.    The purpose of the Tools View is to tell you which tools are referenced by the g-code program.  Here is a typical example:</span></p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/Docs/ToolsTab.jpg" width="640" height="703"></p>
+      <p align="center" class="BodyText">The Tools View...</p>
+      <p align="left" class="BodyText">There's lots of handy stuff going on here.  GWE has gone out and found all the tool changes in the part program and cataloged them here.  You can double click on one to go to the tool change.   At the top, you can ask to see just a list of tools, one tool per line, so that tools used more than once on the Tool Change list only appear once.   That's a good place to start if you don't have a Job Sheet telling you what tools to load. It's also a good place to start if you want to check the accuracy of your Job Sheet.</p>
+      <p align="left" class="BodyText">The Tools View tracks the g-code's notion of a tool, which turns out to be pretty limited. It knows which slot is involved.  If you thought to put a comment above the tool change, GWE will capture it to give you a better idea what the tool is.   And, it knows which H# is used for the Length Comp and which D# is used for the Cutter Comp.  To learn more about tools, we have to go to the Tool Crib, which has a fuller description of tools organized more around the way people like to think of them.</p>
+      <p align="left" class="BodyText">Before we look at the Tool Crib, let's consider how the two tables are connected.  We use a process called &quot;mapping&quot; to determine which entry in the Tool Crib corresponds to each entery in the Tools View.   Mapping can happen in two ways:</p>
+      <p align="left" class="BodyText">1.   You can map by slot. Those are the T#'s, and you can specify that T# &quot;1&quot; in the Tools View represents slot T# &quot;1&quot; in the Tool Crib too.</p>
+      <p align="left" class="BodyText">2.  You can map by comment. Suppose you have standardized your comments within your CAM program and the G-Wizard Tool Crib.     Then the CAM program will insert the comments into your programs, they'll map properly, and life will be good.  This is the recommended approach.</p>
+      <p align="left" class="BodyText">Of course for any mapping you must specify which crib to map to, which is done with the &quot;Use Crib&quot; dropdown menu.</p>
+      <p align="left" class="BodyText">Note the &quot;Gen Crib&quot; button.   This button may be used to create a special new Tool Crib with entries that correspond to what's in the Tools View.     The Tool View information is incomplete, so GWE has to make some assumptions when it creates the Crib.   This option is handy if you want a fresh crib that you plan to assign tools to from other Cribs, sort of the software equivalent of loading your Tool Changer.</p>
+      <p align="left" class="BodyText">Note: Gen Crib is coming soon!</p>
+      <p align="left" class="BlogTitle">Tool Crib</p>
+      <p align="left" class="BodyText">If the Tools View is the g-code program's idea of tools, then the Tool Crib is the machinist's idea of tools.   As you can imagine, that's a much richer and more detailed version that applies to more than just one single program. The Tool Crib is one of the tabs on the Setup tool, accessed via the Setup button on the far right of the toolbar:</p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/Docs/ToolCrib.jpg" width="900" height="460"></p>
+      <p align="center" class="BodyText">The Tool Crib...</p>
+      <p align="left" class="BodyText">GWE allows you to create as many Cribs, or &quot;Tables&quot; as you like, using the functions along the top row.    I'm going to revisit all the Tool Crib functionality here, because the same app is used by G-Wizard Calculator and its already <a href="GWCalcSetup.htm">documented there</a>.   Let's just focus on what's important for CNC work and Tool Data Management.    In this case, there are a couple of buttons and some fields to focus on.  First the fields:</p>
+      <p align="left" class="BodyText">-  Slot is the T# for a crib entry.   It controls the order the tools are listed in by default.    It can be used for mapping Tools View lines to particular Crib tools.   </p>
+      <p align="left" class="BodyText">-   The Description can also be used for mapping via comments. In this case, the first Tool Crib Description that matches a Tools View Comment in slot order is the winner.  If you plan to map via comments, you should avoid<span class="BodyText"> the confusion and make all the comments and descriptions uniquely identify one and only one tool.  This brings us to Serial #.</span></p>
+      <p align="left" class="BodyText">-  A Serial # is a good way to uniquely identify a tool.  If you copy the serial number into the comment and description, it works even better.  There are <a href="CCCNCToolManagement.html">various ways to tag or mark your tools</a> with their serial number.</p>
+      <p align="left" class="BodyText">- X Wear Comp is for Tool Diameter Wear Compensation. </p>
+      <p align="left" class="BodyText">- Z Comp is for Tool Length Compensation.</p>
+      <p align="left" class="BodyText">In addition to these fields, there are two buttons:</p>
+      <p align="left" class="BodyText">- G10 causes GWE to create a g-code program that captures the X and / or the Z comp values for a crib. This is how you export the information in a format that your controller can import easily. The g-code program is filled with G10 operations that load the information into your controller.</p>
+      <p align="left" class="BodyText">- Use Sim Data is how you can import a G10 program's offset information into the Tool Crib.  Such a program would have been exported via a <a href="CCCNCToolManagement2.html">Tool Presetter</a>, for example.  To import offset information, simply load the G10 program into GWE and it will automatically run and load its information into the # variables of the simulator.   What the &quot;Use Sim Data&quot; button does is pull the information out of the # variables and place it into the Tool Crib entries based on which slot numbers the crib has.    That means you'll have to make sure there is a slot number for every tool accessed by the G10 program!</p>
+      <p align="left" class="BodyText">This talk of # variables brings us to the &quot;Tool Comp&quot; macro variables.</p>
+      <p align="left" class="BlogTitle">Tool Comp Macro Variables</p>
+      <p align="left" class="BodyText">As I mentioned above, when you run a G10 program full of tool offsets, they get loaded into the GWE g-code simulators # variables.  These are easily accessible for viewing or editing in the Macro Variable Viewer, which may be accessed as the &quot;Variables&quot; tab from the Setup button on the far right of the toolbar:</p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/Docs/ToolCompMacVars.jpg" width="900" height="461"></p>
+      <p align="center" class="BodyText">Macro Variable Viewer after pressing &quot;Tool Comp Button&quot;...</p>
+      <p align="left" class="BodyText">After bringing up the Variables tab, just press &quot;Tool Comp&quot; to see the Tool Compensation values.   You can edit them by double clicking the value.</p>
+      <p align="left" class="BlogTitle">How Do I Use GWE for Tool Data Management?</p>
+      <p align="left" class="BodyText">Okay, now you've got the basics.  How do you actually use this stuff to do something useful?</p>
+      <p align="left" class="BodyText">Let's consider some scenarios.</p>
+      <p align="left" class="BodyText"><strong>Putting Together a Job Sheet from a Part Program</strong></p>
+      <p align="left" class="BodyText">So, the design office sent down a part program, or worse, maybe your boss just handed you one that hasn't been used in 5 years and he wants you to set up and run it.     First thing's first--you need to know what tools to put in the changer.</p>
+      <p align="left" class="BodyText">So, you load the part program into GWE and click over to the Tools View.  Now you can at least see what the tools accessed by the program are.   Now let's get a crib going that matches the program.  Either use Gen Crib or pick an existing Crib and do some mapping. You'll have to decide whether to map via slots or descriptions.</p>
+      <p align="left" class="BodyText">Once done, you've got all the information you need to at least fill out the Tools section of your job sheet.  The next step is to get some Tool Offset information together, so you can run the program.</p>
+      <p align="left" class="BodyText"><strong>Offline Tool Presetting  and GWE</strong></p>
+      <p align="left" class="BodyText">If you've got a tool setter on the machine, you may not care about Tool Presetting.   You load the changed and have the machine deal with using the Tool Setter to figure out the offsets.  There are good reasons to want to use a presetter even if you ahve a tool setter on the machine, but I won't go into them here. For now, let's just assume you want to use a tool presetter so you don't have to laboriously touch off each tool.</p>
+      <p align="left" class="BodyText">Instead, you have measured your tool height offsets in the presetter.  A tool presetter can be as simple as a height gage, or as complex as a high end laser and digital vision-based system.   Let's take it easy and suppose you have a height gage.   You take each toolholder with tool, and use the height gage to measure the tool tip from some fixed <em>gage line</em>, where you have zeroed your height gage.  For each tool, key that height gage measurement into the GWE Tool Crib under the Z Comp value.      Now so long as that length doesn't change, GWE can serve as the record of the information.</p>
+      <p align="left" class="BodyText">Now, when you're making up the Tool Crib for your particular job, do that by moving tools that have the offset information already recorded from another crib into the crib you're using for your part program. Alternately, just assign the slots on the Tool Crib entries to match the appropriate slots from the Tools View.  Punch the G10 button and you get back a g-code program with your presetter offsets.   BTW, if you punch G10 while your part program is loaded into GWE, your G10 program will be whatever the name of your part program is with the G10 appended. So if it is &quot;MyPart.ncc&quot;, you'll get &quot;MyPart_G10.ncc&quot;.</p>
+      <p align="left" class="BodyText">Load and run &quot;MyPart_G10.ncc&quot; on your controller. Your offsets are now set for all tools and you're ready to load and run the part program with the right offsets all tee'd up.</p>
+      <p align="left" class="BodyText">If you've got a decent library of preset tools in holders, and you've standardized that library on your CAM program too, this can all go really fast with very few keystrokes.</p>
+      <p align="left" class="BlogTitle">What to read next</p>
+      <p align="left" class="BodyText">You're pretty much done reading about what GWE can do, but we do still have a <a href="GWETips.html">Tips and Techniques page</a>.</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p align="left">&nbsp;</p>
+    <!-- #EndEditable -->
+  </div>
+  </td>
+</tr>
+<!-- Begin Site Map -->
+<tr>
+  <td width="231" valign="top" bgcolor="#f0f0f0" ><p class="BodyText">&nbsp;</p></td>
+  <td width="312" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html"></a></strong><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p class="BodyText1">&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong> </p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a> </p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> </p>
+    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong></p></td>
+  <td width="245" valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+    </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+    <p class="BodyText1">&nbsp;&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+    <p class="BodyText1"><strong></strong> </p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"></p>
+    <p>&nbsp;</p></td>
+  <td width="378" valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Cookbooks</a></strong> </p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a> </p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a> </p>    <p class="BodyText">&nbsp;</p></td>
+  <td width="268" valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+    <p class="BodyText1">&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+    </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a></p>
+    <p><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+    <p class="BodyText">&nbsp;</p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p></td>
+  <td width="284" valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>    <p class="BodyText">&nbsp;</p></td>
+  <td width="658" valign="top" bgcolor="#f0f0f0" ><p class="BodyText">&nbsp;</p></td>
+  </tr>
+<tr>
+  <td colspan="5" bgcolor="#f0f0f0" >
+      <!-- Place this tag where you want the badge to render -->
+    <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;"/></a></strong></td>
+  <td colspan="2" bgcolor="#f0f0f0" ><div align="left">
+    <table width="100%" border="0">
+      <tr>
+        <td>&nbsp;</td>
+        <td><div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a></div></td>
+        </tr>
+      </table>
+  </div></td>
+</tr>
+<!-- End Site Map -->
+
+</table>
+</body>
+
+<!-- #EndTemplate --></html>
+

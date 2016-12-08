@@ -1,0 +1,642 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+
+<title>CNC Cookbook:  Tool Length Offsets and Tool Data Management Part 1</title>
+
+<style type="text/css">
+<!--
+.PageTitle {
+	font-size: x-large;
+	color: #339933;
+}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" -->
+      <p class="PageTitle">Tool Length Offsets for CNC</p>
+      <p class="BodyText">CNC depends a lot on accurate tool data. By tool data, I mean length and diameter information, which is critical to any CNC machine.   The controller needs to know how long your tool is relative to some standard such as the &quot;gage line&quot;, and it is often nice to know exactly what the tool's diameter is as well, since tool diameters fall within a certain tolerance that may affect the accuracy of your parts.</p>
+      <p class="BodyText">There are lots of ways to manage this data ranging from ad hoc just-in-time methods to more elaborate systems that involve tool presetters, tool setters on the machine, and potentially even tool management software.   If you're running a shop, you'd obviously like to minimize the cost of managing the tool data as well as minimizing the chances the wrong data is in use when a part program is run.  Just imagine what happens if the tool is actually an inch longer than what the controller thinks it is--CRASH!!!!</p>
+      <p class="BodyText">In shops with more than one machinist, it's also vitally important that the whole shop be on the same page with respect to how this information is managed. Otherwise, one machinist will do things one way, and the next machinist to try to run the job on the machine will do things another, and we may once again have a CRASH!!!!</p>
+      <p class="BlogTitle">Picking Up the Tool Length Offset</p>
+      <p class="BodyText">Let's focus on tool length data, and moreover, let's start out on the dead simple end of the spectrum.   How do we go about getting the length offset?</p>
+      <p class="BodyText">The simplest way is to take a gage block of known dimensions, put the tool in the spindle, and start to lower the tool until you can no longer slide your gage block under the tool. Note that you don't want to just lower the tool onto the gage block--bad for tool and gage block alike!     Instead pull the gage block out of the way each time, lower the tool, and then attempt to slide it back under. With this method you can determine exactly how far the tip of the tool is from whatever your gage block is resting on--vise jaw, machine table, or top of the part.  You would then use this information to determine your tool length relative to some standard, and you'd enter that into the tool table on your controller.</p>
+      <p class="BodyText">Another method is the paper touch off.    Originally this was done with cigarette rolling papers, because they're very thin.   I find it is convenient to use post-its, because they're in a pad that's about the right size. You want to stick the paper down between the touch off point and the whirling cutter using a little bit of oil. Lower the cutter until it makes the paper move.    You'll be 0.002 - 0.005&quot; or so above the touch off point, depending on your paper thickness. You want to use the same kind of paper every time so you can determine its thickness by experiment and thereby know how to correct the touch off for paper thickness. Let me state the obvious: the paper touch off and the automatic tool setter mentioned below are the only cases I know where the touch off is performed while the cutter is moving. In all other cases the spindle should be stopped!</p>
+      <p class="BodyText">There are endless variations on this method</p>
+      <p class="BodyText">Okay, the next step up is to use some form of measuring device or touch setter instead of a gage block.      With this method, you're going to put an indicator of some kind down, and lower the tool onto the measuring pad or tip of the indicator until the indicator needle goes to zero. There are also electronic indicators that light up at the right point.  Here is a typical inexpensive touch setter:</p>
+      <p align="center" class="BodyText"><img src="img/MillStuff/ZAxisPresetter.jpg" width="640" height="480"></p>
+      <p align="center" class="BodyText">A typical inexpensive Z-Axis touch setter...</p>
+      <p class="BodyText">You can make a very nice touch setter by making a little stand that lets you set a dial indicator (plunger type) upside down. Bring the tool down to engage the plunger tip until you get to zero.     Here is a typical video of a dial indicator touch off gage in use:</p>
+      <p align="center" class="BodyText">
+      <iframe width="640" height="360" src="https://www.youtube.com/embed/qXGJqMiF31w?feature=player_embedded" frameborder="0" allowfullscreen></iframe>
+      &nbsp;</p>
+      <p align="center" class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Positive or Negative Length Offsets?</p>
+      <p class="BodyText">You can set things up to work either way, but pick one and stick to it as your standard for your shop.    Negative length offsets mean you're working &quot;backward&quot; from some reference on the table, fixturing (like a vise jaw) or part. Positive length offsets mean you're working &quot;forward&quot; from a fixed feature relative to your spindle.     Positive offsets are often referred to as being relative to the &quot;gage line&quot;.  Gage line is a little more independent across machines, and is better suited to situations where the offsets will be preset, meaning they're determined off the machine before the tool is installed in the machine.  The term &quot;gage line&quot; refers to a specific spot on the taper where tool zero is located by convention.  For example, on a CAT40 taper, the maximum diameter of the taper is 1.75&quot;. On a CAT50, it's 2.75&quot;.         It's straightforward to locate that spot and use it as tool zero on a tool holder.    </p>
+      <p class="BodyText">The thing to standardize in a shop is where tool length zero is, and from there, whether positive or negative offsets will be used.  BTW, there are pros and cons to positives and negatives and whether to reference relative to the longest or the shortest tool.  For example, some people like negative offsets because if the offset table is cleared, then every offset is 0, you won't crash a tool.  In other words, the negatives make the spindle move towards the work, less negative is further from the work.  Negatives are often more natural when referencing via touch off.   But there are some significant cons to using  a negative standard:</p>
+      <blockquote>
+        <p class="BodyText">1. It seems less &quot;logical&quot; to many because it works against the right hand rule coordinate system.      The actions required to touch off are simple.   But for anything more complex, you'll be scratching your head.</p>
+        <p class="BodyText">2.    The touch off becomes problematic with fixturing moving around the table.   Do you touch off the bare table?   Do you touch off the fixed vise jaw? What happens when you put a different set of vise jaws in the vise, let alone remove the vise and use some other fixture?      When that happens, all of your length offsets are now invalid because their reference has been moved.   Gage line (positive tool offsets) are referenced relative to the spindle, and so can't change like that.</p>
+        <p class="BodyText">3. The aforementioned safety feature. If the tool offsets are zeroed, the machine just cuts air. If a minus sign is inadvertently forgotten and a positive value is entered, you just cut even more air. With positive offsets, if you enter a spurious minus, you get a crash.</p>
+      </blockquote>
+      <p class="BodyText">People like gage line or positive offsets because:</p>
+      <DIV class="BodyText" id="post_message_1181139">
+        <blockquote>
+          <p>1. Gauge length offset is "logical" (a long tool has a bigger offset   value)</p>
+          <p>          2. Can be measured out of the machine with some sort of   presetter.</p>
+          <p>          3. Literally can be used unchanged for years if the tool is an   indexable face mill etc.</p>
+          <p>          4. How do you "touch-off" a curved surface?</p>
+          <p>5.  Is independent of fixturing on the table.  With negative offsets, if you change or remove the fixtures, you've lost the touch off measuring point.</p>
+          <p>6.  Let's you manage all the other offsets more intuitively, because they're not tied to the reference.  For example, you may have measured your workpiece height offline with a height gage and want to mess with the offsets around that without affecting your tool length offsets.  With negative offsets, you have to keep your calculator handy and really understand the interactions of the various offsets and part dimensions.  Note that if you like to measure parts and fixtures offline, it is often convenient to make Z=0 your table, and use the work offsets to account for the height of the top of the part above the table. You could even set a height gage on the table or touch off with a probe to measure and set that work offset.<br>
+            <br>
+          </p>
+        </blockquote>
+      </DIV>
+      <!-- / message -->
+      <p class="BodyText">Most of the <a href="http://www.practicalmachinist.com/vb/cnc-machining/tool-length-offsets-187207/">pros prefer gage line / positive length offsets</a> because they're more productive through use of presetters and because you can carry the tooling around to any machine in a multi-machine shop and the offsets are constant regardless of the machine or the fixtures. The time spent touching off is completely eliminated with gage line offsets (or to be precise, it is shifted to a presetter and done once), and you can perform other tricks more easily.</p>
+      <p class="BodyText">Beginners find negative length offsets are great because the touch off is easy to understand, if not very reusable, and the percieved safety features of making a crash less likely.</p>
+      <p class="BodyText">There are some methods to add a little more safety to positive offsets. For example, a subprogram can check for positive offsets that are shorter than some minimum and halt the part program if any are encountered. This will prevent operation with zeroed or negative values quite easily, for example.</p>
+      <p class="BodyText">There are methods to add flexibility to a negative offset system. For example, if you use a toolsetter (see below) on your machine table, you don't have to worry about losing the touch off point because you change fixturing.</p>
+      <p class="BodyText">Okay, one last bit of confusion. You can convert from one system to the other, at least in principle.    </p>
+      <p class="BlogTitle">Referencing Via Touch Off</p>
+      <p class="BodyText">Let's step away from gage line referencing for a minute and look at referencing via touch off.    In this case, you're using the DRO or Axis readouts from your controller to tell you the position of the tip. For this procedure to work, you need a reference  with which to zero the Axis readout. There are two approaches to this problem. One is to use an actual reference tool, the other is that the touch setter is precisely calibrated so that you know that when it zeros, you are exactly 2&quot; (or some other value) above the surface the touch setter is resting on.</p>
+<p class="BodyText">If you use a reference tool, set up your reference tool first and measure its tool length, and then zero the Z-axis.   Now when you zero your other tools, the Axis readout will give you the tool length.  For obvious reasons, you'd like your reference tool to be shorter than the other tools so that the tool length offsets come out positive.  Even if your reference tool is quite long, it's just a matter of checking its length and then setting the Z-axis indicator to the appropriate value so that &quot;zero&quot; is in a place such all other tools have a positive length.   For example, instead of zeroing with the reference tool, set a positive value that is always the same. </p>
+<p class="BodyText">It's important not to use an actual cutter as the reference tool. If you cut with it, your reference may change as the tool wears.    You might even consider using an empty toolholder (always the same one!) for that reason.</p>
+<p class="BodyText">If you use a touch setter of known precise height, you can touch set a short tool and decide where you want zero to be. You might also touch set an empty tool holder to make the determination.</p>
+<p class="BlogTitle">Positive Offset Touch Offs (aka Turn Your VMC into a Zillion Dollar Height Gage)</p>
+<p class="BodyText">Let's say you've decided to use positive offsets, but you don't have a tool presetter.  Or, you have the presetter and are using positive offsets, and you'd like to use your machine as a height gage to figure out the height of some feature on a fixture or part above your machine table.  Both are straightforward.</p>
+<p class="BodyText">There is some number that represents your gage line tool zero being on the table.  In other words, the distance from the table to the gage line, which if you've defined it as I did above for the CAT tapers, is the spindle face. The point is to standardize this number for all your machines.   Let's say you pick a value of 15&quot; so that when the spindle face is touching the table, you have Z set to read 15&quot;.    </p>
+<p class="BodyText">How can we use this?</p>
+<p class="BodyText">Start with measuring a positive tool table offset for a tool of unknown offset.   Mount the tool and do a touch off on the table.   The difference between your standard value for tool zero (15&quot;) and the touch off &quot;Z&quot; value is the tool table offset for that tool.</p>
+<p class="BodyText">To use the machine as a height gage, enable the tool height offset for the tool you're probing with. Now the machine's Z readout is the same as a height gage readout relative to that probe tip!</p>
+<p class="BodyText">Since you can now use your machine as a height gage, you can use it to measure the height of some feature, like a fixed vise jaw, that you want to use for tool length offset touchoffs because it is inconvenient o reach the table.  Given the height of the feature, its easy to adjust the touch off to once again wind up with a positive tool length offset.</p>
+<p class="BodyText">Are we getting too confusing yet?  Probably. The important thing is to pick a standard method and then use it constantly until it is second nature. Master the simple stuff before you try to get fancy.</p>
+<p class="BlogTitle">Work Offset Touch Off</p>
+<p class="BodyText">Okay, let's assume you've got your tool table filled out with a bunch of tool offsets.  Let's moreover assume you've used positive offsets.   You want to make sure your work offset for Z is also properly set.    One way to do this is to keep a &quot;tool&quot; that is an edge finder of some kind that can be used to find an exact position in Z. For example, you could mount a dial indicator in a tool holder, and make it your reference tool. Give it a position in the tool table. Give it a tool length offset that measures a positive offset when the dial is zeroed.  Stick it in the machine.   Select the reference tool's length offset. Bring it down until it zeros on the top of part, and then set your Z to whatever you want the top of part to be.  Z=0 for top of part is very common so that any positive Z is inside the part.  Z=height of part is also common. Either way, between having the correct work offset and the correct tool length offset, you machine can now precisely locate things in the Z dimension.</p>
+<p class="BodyText">Here is a good intro from Tormach on how to put all of these concepts together in Mach3:</p>
+<p align="center" class="BodyText">
+<iframe width="640" height="360" src="https://www.youtube.com/embed/_8apTgMTvjI?feature=player_embedded" frameborder="0" allowfullscreen></iframe>
+</p>
+<p align="center" class="BodyText">Be sure to pick up <a href="http://www.youtube.com/watch?v=0cM32grBMvo&feature=mfu_in_order&playnext=1&videos=9vG-4g95-pI">Part 2&nbsp;of the video</a> as well!</p>
+<p class="BlogTitle">Probe-Style Touch Setters (also called Toolsetters)</p>
+<p class="BodyText">The most sophisticated touch setters are based on probing-style technology, and are integrated with the machine's controller.   These touch setters let you press a button and have the machine automatically probe the tool's length (and sometimes diameter), and then the data is automatically entered into the controller's tool table.  Here is a typical tool setter:</p>
+<p align="center" class="BodyText"><img src="img/CNCCookbook/tool-setter-for-cnc-machining-centers-354486.jpg" width="494" height="600"></p>
+<p align="left" class="BodyText">Note how the probe is set up--we can both measure tool length by dropping down onto the probe tip, as well as diameter.   Typically, the tool is spun in reverse at a slow speed while the measurement is being made.   The reverse spin is so the tool doesn't cut the tool setter, and the rotation itself ensures the measurement of the lowest hanging insert or cutter tooth.</p>
+<p align="left" class="BodyText">Note that the probe software or the machine controller will usually have parameters that let you decide whether the probe sets up the tool length offsets in the table as positive or negative offsets.</p>
+<p align="left" class="BodyText">Are Touchsetters the Ultimate?</p>
+<p align="left" class="BodyText">At this point, you may be thinking Touchsetters are the ultimate in automation and productivity.  That may be true, but it really depends on whether your shop needs to optimize Cycle Time (the time the machine is running) or Setup Time (the time when the machine is idle).   If you have a lot of Machine idle time, you probably should focus on reducing Setup time.   A touchsetter is ideal because it takes Setup tasks and automates them.   On the other hand, if your machine is busy all the time and you need more production from it, while your operators have available idle time, you may want to try Tool Presetters to take this problem off the machine table and reclaim that time.   </p>
+<p align="left" class="BodyText">In Part 2, we'll talk about Tool Presetters among other things.  For more information about optimizing Cycle Time versus Setup Time, see our <a href="CCCNCMachiningManufacturing.htm">CNC Machining and Manufacturing Cookbook</a>, and especially our article on <a href="CCCNCCycleTimeSetupTime.htm">Cycle Time vs Setup Time</a>.</p>
+<p class="BlogTitle"><a href="CCCNCToolManagement2.html">Part 2: Tool Presetters, Tool Data Management, and the Importantance of Consistency of Tool Lengths for Chatter...</a></p>
+<p class="BodyText">&nbsp;</p>
+    <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

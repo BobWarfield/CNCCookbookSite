@@ -1,0 +1,1559 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNC Cookbook: Blog Posts for Jul thru Sep 2006</title>
+<style type="text/css">
+<!--
+.style1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" --> 
+      <hr>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p class="style1"></p>
+      <p><span class="PageNav"><b>Blog Archives</b></span></p>
+      <p class="style1"><a href="CCBlogIndex.htm"><strong>Index</strong></a></p>
+      <p class="style1"><a href="index.htm"><strong><font face="Arial, Helvetica, sans-serif">Current</font></strong></a></p>
+      <p class="style1">&nbsp;</p>
+      <p class="style1">&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p class="BlogTitle"><i><b><i><font size="+2"><a href="index.htm">More 
+        Recent Blog Entries...</a></font></i></b></i></p>
+      <p class="BlogTitle"><font size="+2">July Through September 2006 CNC Blog Archive</font></p>
+      <p align="left" class="BlogDate">9/28/06</p>
+      <p class="BlogTitle">Eliminating Backlash</p>
+      <p><font face="Arial, Helvetica, sans-serif">For the benefit of those trying 
+        to eliminate backlash, I spent the evening writing a couple of <a href="OnlineCNCTrainingCoursesGuides.htm">Cookbook 
+        recipes</a> that gather up as many ideas and thoughts as I could, based 
+        on my travels through the Internet. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="CCBacklash1.htm"><b><i>Eliminating 
+        Backlash Part 1: The Basics</i></b></a>. This is a basic treatise on ballscrews 
+        and using angular contact bearings to mount them. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="CCBacklash2.htm"><b><i>Eliminating 
+        Backlash Part 2: Refinements</i></b></a>. This assumes you've got your 
+        ballscrews installed and you are still not happy, which is the case here. 
+        There are some things I've run across that have not been mentioned often, 
+        and I hope that putting it all together in one place will be helpful as 
+        well. </font></p>
+      <p class="BlogDate">9/24/06</p>
+      <p class="BlogTitle">Gecko Drive Mounting Bracket for CNC Lathe</p>
+      <p><font face="Arial, Helvetica, sans-serif">After <a href="MTLatheCNCDrivers.htm">looking 
+        over what others had done to mount their Gecko drives</a>, I decided to 
+        use some heatsink extrusion to make a bracket. I mounted the fuses in 
+        the bracket right next to the appropriate drive:</font></p>
+      <p align="center"><img src="img/LatheStuff/CNCConversion/Drivers/P9243616.JPG" width="800" height="345"></p>
+      <p align="center"><img src="img/LatheStuff/CNCConversion/Drivers/P9243617.JPG" width="800" height="288"></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I need to put 
+        a label next to each drive so I can tell which axis is which. One more 
+        thing done building the <a href="MTLatheCNCDrivers.htm">driver electronics 
+        enclosure.</a> The next step is to build a sub-chassis that will carry 
+        the relays and other auxilliary components needed to control the spindle 
+        and coolant.</font></p>
+      <p class="BlogTitle">Tapping Arms</p>
+      <p><font face="Arial, Helvetica, sans-serif">I had occassion to drill and 
+        tap some holes on my <a href="CCLatheCNCHome.htm">CNC Lathe project</a> 
+        (making a heatsink/mounting bracket for the Gecko Drives), and got to 
+        thinking about Tapping Arms:</font></p>
+      <p align="center"><a href="http://www.flexarminc.com/"><img src="img/OthersProjects/TappingArm.jpg" width="640" height="427" border="0"></a></p>
+      <p align="center"><b><i><a href="http://www.flexarminc.com/">Flexarm Tapping 
+        Arm...</a></i></b></p>
+      <p align="center"><img src="img/OthersProjects/TappingArm3.jpg" width="361" height="290"></p>
+      <p align="center"><img src="img/OthersProjects/TappingArm4.jpg" width="354" height="455"></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">These gadgets 
+        are designed for production shops so that someone can rapidly tap a whole 
+        bunch of holes. They look extremely handy and easy to use, and I've heard 
+        lots of good about them on Practical Machinist (the owner of the site 
+        <a href="http://www.practicalmachinist.com/ubb/ultimatebb.php/topic/15/436.html">seems 
+        to have invented the darned things</a>!). I sure could have used one for 
+        my project! The subject comes up on Practical Machinist usually because 
+        someone can't do rigid tapping in their CNC. Someone else usually suggests 
+        they buy a tapping arm rather than a new CNC. This is relevant to amateurs 
+        because Mach 3 doesn't support rigid tapping at the moment. The only bad 
+        news is that they seem to cost $1200 to $5000 and up. Wow!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The interesting 
+        question is how hard would it be to make one of these gizmos? The arm 
+        itself is very simple. In a pinch, you could probably use a monitor arm 
+        designed for a PC, assuming you were willing to accept a little lower 
+        capacity and strength. What about the motor? I'm thinking an import butterfly 
+        impact wrench or something similar is about perfect. Failing that, it 
+        seems like you could adapt a Tapmatic or other tapping head to an air 
+        or electric motor. Whatever motor is used needs to be reversible. What 
+        I like about these things is they look like they would make tapping a 
+        snap and they also stay out of the way. I could imagine attaching one 
+        to the corner of the welding table and forgetting about it. Seems like 
+        a perfect small workshop project!</font></p>
+      <p align="left" class="BlogTitle">Nice Rail Design for Plasma and Router 
+        Tables</p>
+      <p align="center"><img src="img/OthersProjects/Skate-o-rail-1.jpg" width="1000" height="750"></p>
+      <p align="center"><b><i><a href="http://www.cnczone.com/forums/showthread.php?t=21579&amp;page=1&amp;pp=15">Skate-O-Rail!</a></i></b></p>
+      <p align="center"><img src="img/OthersProjects/SORexploded-bits.jpg" width="1000" height="750"></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">All in all, looks 
+        like a pretty decent railing system that would be easy to build.</font></p>
+      <p class="BlogDate">9/22/06</p>
+      <p class="BlogTitle">Big Doings for the Site</p>
+      <p><font face="Arial, Helvetica, sans-serif">After much head scratching 
+        and soul searching, I've decided to decouple the look and feel of the 
+        machine tool pages from the rest of TheWarfields.com. You have in your 
+        hands the result of that effort. I'm hoping the navigation makes a little 
+        more sense, the design is a little cleaner and crisper, but most of all, 
+        that it just makes these pages more useful and more fun. Before launching 
+        into this move, I spend quite a lot of time poking around the Internet 
+        to see what I liked in various sites. I'm pretty happy with the overall 
+        result.</font></p>
+      <p><b><font face="Arial, Helvetica, sans-serif" color="#999999" class="BlogDate">9/19/06</font></b></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="+1" color="#339933" class="BlogTitle">Cool 
+        5-axis Milling Head</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/DSTechnologieZ3.jpg" width="600" height="425"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i><a href="http://www.ds-technologie.de/v3/products/index_print.php?id=31&amp;group_id=9">DS 
+        Technologie Z3 5-Axis Head...</a></i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">It uses 3 sets 
+        of linear rails in a triangular configuration with pivots. I wonder if 
+        Mach 3 can handle the kinematic formulas for this kind of thing? Woo Hoo!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I like it because 
+        it looks easier to build than the typical 2-rotary-axis machines.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b><font face="Arial, Helvetica, sans-serif" color="#999999" class="BlogDate">9/17/06</font></b> 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogTitle">Finished 
+        the <a href="MTLatheCNCDrivers.htm">DC Power Supply</a> for my CNC Lathe 
+        project this weekend!</b></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><a href="MTLatheCNCDrivers.htm"><img src="img/LatheStuff/CNCConversion/Drivers/P9173614.JPG" width="800" height="516" border="0"></a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogTitle">Options 
+        for entry level CNC</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I was recently perusing a <a href="http://www.practicalmachinist.com/ubb/ultimatebb.php/topic/13/3755.html">thread 
+        on Practical Machinist</a>, and as I watched the feathers fly, what first 
+        seemed like total disagreement and conflicting evidence gradually coalesced 
+        into a stratified view of the options. It is basically a trade off between 
+        performance versus dollars and personal skill. You can offset dollars 
+        with a lot of personal skill to modify a machine and improve its performance, 
+        or you can use dollars to buy a higher performance machine. The pecking 
+        order for dollars/skill looks like this:</font></p>
+      <table width="80%" border="1" align="center">
+        <tr> 
+          <td> 
+            <div align="center"><b><i><font size="+1" color="#339933">Most Skill 
+              / Least Dollars</font></i></b></div>          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"> 
+              <p>- <b>Do your own conversion</b>. This is the path I am following 
+                on <a href="CCLatheCNCHome.htm">my CNC Lathe</a>, albeit slowly. 
+                One thread contributor, Dirt Rider, proved the lowest end can 
+                succeed brilliantly if you have the right skills. He did this 
+                even starting with a round column mill, thought to be the lowliest 
+                of lows by many. I'm not sure the Haas guys can show nicer parts, 
+                but they probably make more of them faster. With that said, this 
+                would clearly require a lot of time and personal skill to duplicate.              </p>
+              <p align="center"><img src="img/Workshop/GreatShops/DirtRider027.jpg" width="800" height="600"></p>
+              <p align="center"><b><i>Simple round column mill with flood coolant 
+                enclosure...</i></b></p>
+              <p align="center"><i><b><img src="img/Workshop/GreatShops/DirtRiderPolini50TripleClamp.jpg" width="800" height="600"></b></i></p>
+              <p align="center"><i><b>Gives spectacular results!</b></i></p>
+            </div>          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center">- <b>Modify or retrofit a machine</b>. This is 
+              very close in cost to "buy a kit" and also in the demands it places 
+              on your skills. One of the best examples here is our very own "Anvil". 
+              Track down his threads about his Tree 325. It's an older CNC knee 
+              mill, and he produces spectacular results with it: www.anvilbikes.com. 
+              There is a lot to be said for finding an older CNC mill whose controller 
+              is dead, and refitting it with a PC/Mach 3 controller. If you get 
+              lucky, the spindle, ways, ballscrews, motors, and power supply will 
+              all be good and you wind up with a fantastic mill for a good price. 
+              I've been watching the Tree 325 market myself, and it looks to be 
+              about a $3500 machine. One could also easily refit a Tormach with 
+              servos. Go find the right NEMA form factor servos, replace the stepper 
+              Geckos (2xx series) with servo Geckos (3xx series), and you are 
+              done. I would also upgrade from Mach 2 to Mach 3. This would be 
+              a trivial upgrade and should allow you to dial in much faster performance. 
+              I am surprised nobody has tried it yet. </div>          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center">- <b>Buy a kit</b>. Industrial Hobbies is probably 
+              the best example, and I bought their kit to eventually install on 
+              my <a href="CCMillHome.html">IH Mill</a> (gotta finish the lathe 
+              first!). A couple of things to note. They just revised their basic 
+              mill to use ground ways--no more lapping, which one thread fellow 
+              was on about. It also uses servos, which <a href="MTCNCStepperServoBacklash.htm">I 
+              agree are higher performance.</a> There are some movies up no on 
+              their site so you can see it in action. Take a look at "making a 
+              small part". Compare that to the videos on the Tormach site and 
+              you can see how much slower the Tormach is. Again, it may not matter 
+              to your application, don't get overly hung up on it, but it is a 
+              great demo of the servo vs stepper performance gap. </div>          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center">- <b>Buy a real VMC used, but working</b>: Cheaper 
+              than new, make sure you know how to evaluate one. </div>          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center">- <b>Buy a new low end VMC: </b>This is the Rolls 
+              Royce route, but if you have an immediate business opportunity making 
+              parts in any volume, it may be your best option to getting your 
+              business successful as quickly as possible.</div>          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"><b><i><font size="+1" color="#339933">Least Skill 
+              / Most Dollars</font></i></b></div>          </td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif"><b><font face="Arial, Helvetica, sans-serif" color="#999999" class="BlogDate">9/15/06</font></b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogTitle">Precision 
+        Linear Rail Support With Moglice for Gantry Machines</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I've been doing a lot of pondering 
+        lately after reading an MIT PhD MechE's thesis on designing and building 
+        CNC machines. To find your own copy of this 200+ page tome, Google for 
+        &quot;Principles of Rapid Machine Design.&quot; The fellow that wrote 
+        it is a Professor Bamberg, who injected a number of thought provoking 
+        ideas via his thesis into my consciousness as far as how to build machines 
+        that will be very accurate yet relatively inexpensive and straightforward 
+        to create for an advanced Home Shop Machinist. Once the juices got flowing, 
+        it resulted in the 5-Axis T&amp;C grinder doodle below. I wanted to set 
+        down here another application, which I've been discussing with JerryFlyGuy 
+        and others over on the CNCZone, and that is how to mount linear rails 
+        on a fabricated (likely welded) substructure with precision.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The salient idea is to make 
+        the precision structure on which the rails are mounted separate from the 
+        fabricated (often welded, but could be bolted together) structure needed 
+        for support and rigidity. The magic interface between the two is a special 
+        epoxy used by machine builders called <a href="http://www.moglice.com/">Moglice</a>. 
+        Note that this method is also useful when attaching two parts of a machine 
+        together that require a precise orientation to one another, for instance, 
+        when getting a column square with the base of a mill, or perhaps even 
+        getting headstock of a lathe square with the bed.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">In practice, one fabricates 
+        both pieces separately, and then bolts them together leaving the bolts 
+        loose enough so there is an approximately 1mm gap between the two. A system 
+        of setscrews (or leveling screws if you prefer) is used to achieve the 
+        precise alignment desired, and then Moglice is injected between the two. 
+        When it sets up, there will be a precision match between the two surfaces 
+        that retains the alignment achieved by the set screws. One can then remove 
+        the setscrews and torque down the final mounting screws against this precision 
+        surface, and all will be well.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">This approach appeals to me 
+        greatly for a few reasons. First, it's blessed by an MIT PhD, and was 
+        used in a commercial high peformance 5-Axis CNC Grinder he collaborated 
+        on--gotta love that! Second, it takes the art of precision machine construction 
+        out of the realm of laser interferometers and hand scraping and moves 
+        it closer to adjusting a 4-jaw chuck on your lathe. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Now to be sure, one does need 
+        a precision surface to mount the linear rails to--you can't just bolt 
+        it to any old wavy piece of metal. However, that precision is straightforward 
+        to achieve with a surface grinding operation. Used surface grinders are 
+        cheap, Asian import new surface grinders are cheap, and shops with grinders 
+        one could farm the work out to are plentiful. Moreover, it is only the 
+        shoulder and the floor surface immediately under the linear rail that 
+        needs this treatment. It is concievable that with enough care, perhaps 
+        one could even achieve decent results in aluminum finished with a fly 
+        cutter and skip the surface grinding stage. It's largely a question of 
+        the accuracy you want the machine to achieve. I would think a tenth (0.0001&quot;) 
+        would be straightforward with surface grinding.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Let's see how this looks in 
+        plan form:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Moglice2FramePersp.jpg" width="800" height="536"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>The precision 
+        plate (blue) sits atop the structural frame (red). Linear rail mounting 
+        holes not shown for clarity.</i></b></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b><img src="img/CNCCookbook/Moglice2FrameRight.jpg" width="640" height="607"></b></i></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b>A precision 
+        ground shoulder in the precision plate locates the linear rail straight, 
+        level, and true...</b></i></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">In practice, one 
+        would use a bead of silicone cement to &quot;o-ring&quot; the Mogliced 
+        gap so all the Moglice stayed in place until it hardened. Getting the 
+        plates straight, level, and true should not be too challenging with a 
+        tenths indicator, straightedge, and machinist's level as your tools. All 
+        it takes is a little patience and skill with these normal tools of the 
+        trade. No finicky scraping that requires &quot;touch&quot; and years of 
+        experience to do well. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">We apply a similar 
+        principle to mount the gantry and keep it true. The gantry uprights would 
+        have a flange at bottom accomodating the same mounting hole+set screw+Moglice 
+        port model shown here. Work step by step, use the leveling screws to get 
+        the gantry right where you want it, and inject the Moglice to lock that 
+        in.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">It is a tremendous 
+        advantage that the structural framework can be built, seasoned, set up 
+        and leveled in the place it is inteded to be used all before the precision 
+        work really gets under way. I have on my list of researches to understand 
+        what is needed to season such a frame. I understand there are approaches 
+        based both on temperature and vibrational techniques. Some passage of 
+        time would also seem to be advantageous. I wouldn't go injecting Moglice 
+        the same day I'd finished welding up said frame, for example. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogDate">9/14/06</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">What's this 
+        then?</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/CADDrawings/TCSketch.jpg" width="800" height="753"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Sketch 
+        of a 5-Axis T&amp;C Grinder Frame...</i></b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogDate">9/11/06</b></font></p>
+      <p class="BlogTitle">Tool Height Touchsetting/Presetting</p>
+      <p><font face="Arial, Helvetica, sans-serif"> Got interested in researching 
+        tool height touchsetting/presetting over the weekend and collected my 
+        notes on the new <a href="MTCNCTipsTechniques.htm">CNC Tips &amp; Techniques 
+        page</a>. Since I haven't yet got a machine converted, I'm not ready to 
+        put any of it into practice, but it was interesting reading.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Moglice and 
+        Sliding Bearings</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Ran into a query about using 
+        Moglice to fill gaps between column and base when squaring the mill. Did 
+        a routine web search and discovered the patent application for Moglice 
+        is #4,329,238. Also came across a <a href="http://pergatory.mit.edu/2.75/2_75%20Lectures/PMD%20Topic%2014%20Sliding%20bearings.pdf#search=%22moglice%22">fabulous 
+        MIT lecture notes on sliding bearings</a> (e.g. what we call &quot;Ways&quot;). 
+        It had some interesting information. Sliding bearings made with Moglice, 
+        may not require gibs, for example, because the fit is exact. Only the 
+        master need be accurately scraped, as the secondary bearing is cast in 
+        Moglice. This begs the question, if we have a precision straightedge of 
+        sufficient size, can we simply cast both sides of the bearing in Moglice, 
+        and do away with any scraping to build a precision machine tool? It would 
+        seem so.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">One serious negative with Moglice 
+        is that it wears pretty quickly compared to cast iron. Provision must 
+        be made to protect the ways from contaminants. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogDate">9/3/06</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle"> It's alive! 
+        Finally got the PC for my CNC lathe project assembled</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><a href="MTLatheCNCPC.htm"><img src="img/LatheStuff/CNCConversion/Enclosures/P9033592.JPG" width="800" height="600" border="0"></a></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><a href="MTLatheCNCPC.htm"><b><i>CNC 
+        Lathe PC having Windows XP installed...</i></b></a></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">It's a full on 
+        Athlon 64 system on a Micro-ATX motherboard. All the parts are brand new, 
+        and you can build a system like this for about $400 if you shop carefully, 
+        not including monitor, keyboard, or mouse. </font></p>
+      <p align="left" class="BlogTitle">Machine Table Covers</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Clever idea: how 
+        about taking some sheet metal and some felt to create some table covers 
+        to make it easy to clean up when doing vise jobs?</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/table_cover.jpg" width="640" height="480"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Sheet 
+        metal table covers make cleanup easy!</i></b></font></p>
+      <p align="left" class="BlogTitle">Bridgeport CNC Conversion with Single 
+        Shot Oiling</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Here is a great 
+        shot of a lot going on underneath a Bridgeport table:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/BPortTableMods.JPG" width="922" height="692"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Nice single 
+        shot oiling tubing all tied off and clamped down, &quot;groovy&quot; oil 
+        passage on the freshly scraped way, and a brand new HiWin ballscrew. This 
+        is a <a href="http://www.cnczone.com/forums/showthread.php?t=18178">very 
+        nice Bridgeport CNC conversion</a>...</i></b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogDate">8/29/06</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle"> Ever hear 
+        of a &quot;<a href="http://www.maxprotech.com/animpump.html">Maximator</a>&quot;? 
+        &lt;Hint: Think Waterjets&gt;</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Apparently this type of liquid 
+        pump is exactly the sort of thing needed to drive a water jet cutter. 
+        Those beasts are way cool! If you're not familiar with them, water jets 
+        use super high pressure (20,000 - 60,000 psi and up) streams of water 
+        to cut with. Usually, the water carries a garnet abrasive. The results 
+        are very precise and smoothly polished, so it is an extremely efficient 
+        process. The fellow that runs <a href="http://www.anvilbikes.com/">Anvil 
+        Bikes</a> says he reduced his machining costs 80% when he outsourced to 
+        a water jet shop to cut his workpieces so they required less machining 
+        to finish. That's quite a testimony! I've read in a number of places that 
+        rough cutting to within 0.1&quot; can really save on the cost to machine 
+        a part. A water jet would be the ultimate. Flow International, one of 
+        the premier supplies of these high-dollar machines, claims their machines 
+        will cut to within 0.003&quot;. They do so without heating the part, with 
+        little lateral force, and with very little kerf, which is extremely helpful 
+        in many cases.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Just one problem with all this--water 
+        jets are expensive! They also generally take some pretty industrial support--they 
+        don't just plug into 110V. Some folks talk about building one from time 
+        to time, but I have yet to see anything come of it. But how about this 
+        idea: <a href="http://www.wardjet.com/MSeries.asp">There is a waterjet 
+        rig built around an air powered maximator that could be attached to your 
+        CNC mill to do water jet cutting</a>. How about attaching one to a plasma 
+        table to really open up some possibilities? We know the tables can be 
+        built cheaply. Brand new, the 30HP version of this thing from WardJet, 
+        the M-30, supposedly costs about $35K. Now we can see how to produce a 
+        4' x 8' capacity waterjet for somewhere in the neighborhood of $50K. That's 
+        still a huge sum of money, but it's way less than a complete new machine.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">It's interesting to watch the 
+        videos on the WardJet site. I found it particularly interesting that they 
+        use a bed of ball bearings to hold the workpiece so that the water jet 
+        doesn't eat up the bed too quickly. The hourly costs are also interesting--not 
+        exactly cheap gadgets to run, but the productivity is awesome, so there 
+        is a good return. To learn more, I did find <a href="http://www.waterjets.org/">a 
+        really good web site that's all about water jets</a>.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">It turns out I have a lot of 
+        things in my house that were cut with a waterjet by these guys:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b>Creative Cutting Service 
+        </b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">65 Hangar Way <br>
+        Watsonville, CA 95076-2476 <br>
+        ( Monterey Bay Area ) <br>
+        phone: 831 728-5362 fax: 831 728-5364 <br>
+        email: lberk@redshift.com</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Thomas Powell 
+        has done some fantastic work on his IH Mill</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://imageevent.com/tppjr">His 
+        photo site details all of it</a>, but there are some choice pieces I particularly 
+        covet:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><a href="http://imageevent.com/tppjr/rf45dovetailmill/oneshotoiler"><img src="img/OthersProjects/IHOneShotOiler.jpg" width="482" height="576" border="0"></a></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i><a href="http://imageevent.com/tppjr/rf45dovetailmill/oneshotoiler">One 
+        shot oiler using Bijur manifold and orifices...</a></i></b></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/IHFloodCoolant.jpg" width="576" height="384"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><a href="http://imageevent.com/tppjr/rf45dovetailmill/oneshotoiler"><b><i>Spindle 
+        mounted flood coolant system and enclosure...</i></b></a></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><a href="http://imageevent.com/tppjr/rf45dovetailmill/zaxiscounterweight"><img src="img/OthersProjects/IHGasStrut.jpg" width="576" height="384" border="0"></a></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i><a href="http://imageevent.com/tppjr/rf45dovetailmill/zaxiscounterweight">Z-Axis 
+        counterweight system using gas struts...</a></i></b></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><a href="http://imageevent.com/tppjr/rf45dovetailmill/zaxiscounterweight"><img src="img/OthersProjects/IHPowerDrawbar.jpg" width="576" height="384" border="0"></a></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i><a href="http://imageevent.com/tppjr/rf45dovetailmill/zaxiscounterweight">Power 
+        Drawbar...</a></i></b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogDate">8/27/06</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">A Smithy 
+        mill-lathe converted for linear slides</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/SmithyLinearSlides.jpg" width="600" height="450"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Smithy 
+        with linear slides...</i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The way covers 
+        are just rectangles of aluminum flashing with adhesive tape between each 
+        segment...</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogDate">8/07/06</b></font></p>
+      <p class="BlogTitle">CNC Dictionary</p>
+      <p><font face="Arial, Helvetica, sans-serif">I've been busy on a number 
+        of fronts, not the least of which has been the creation of a <a href="MTCNCDictionary.htm"><b>CNC 
+        Dictionary</b></a> to help newcomers learn the newfangled terminology 
+        of this crazy technology as well as helping yours truly to stay organized 
+        in my own thinking and learning process. It's been great fun putting it 
+        together, but quite a lot of work. </font></p>
+      <p class="BlogTitle">Inexpensive DRO for the Mill</p>
+      <p><font face="Arial, Helvetica, sans-serif">I've also been spending time 
+        down in the shop, getting two axes of my<a href="MTMillDRO.htm"> <b>inexpensive 
+        DRO</b></a> up and running:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CheezyDRO/P7293563.JPG" width="800" height="586"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>X-Axis 
+        DRO...</i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">As I mention somewhere 
+        below, the scales are quite inexpensive, and they'll be very convenient 
+        to have in the interim before I convert to CNC. In fact, I plan to use 
+        them for a little while post CNC conversion to help me diagnose whether 
+        everything is working properly and to do some ballscrew error mapping 
+        to improve the accuracy of the machine.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Converting 
+        a Bridgeport Power Feed for the Industrial Hobbies Mill</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Speaking of the 
+        interim, I also have a project underway to convert a power feed intended 
+        for Bridgeports for use on my IH machine. If you want one that's done 
+        and works well (according to all reports), by all means, purchase the 
+        <a href="http://www.lathemaster.com/POWERFEEDFORMILLINGMACHINE.htm"><b>model 
+        sold by Lathemaster</b></a>. At $249, it's really not a bad deal, and 
+        after spinning the handwheels for a few projects, I've come to regard 
+        some kind of power feed as an eventual requirement. Here is the thing 
+        though. eBay seller &quot;DiscountMachine&quot; (aka Shars) will sell 
+        you a Bridgeport compatible power feed for $169, which is quite a good 
+        savings, and I have read some positive things about this unit over on 
+        <b> <a href="http://www.practicalmachinist.com/cgi-bin/ubbcgi/ultimatebb.cgi">Practical 
+        Machinist</a></b>. I'm viewing the power feed in the same way I did the 
+        DRO--it's an expendable project that will be useful for a time until I 
+        convert to CNC. So, I decided to spring for one, thinking it would be 
+        easier to sell a Bridgie-compatible unit when I was finished with it, 
+        and that it couldn't be all that hard to adapt it to the IH Mill. Time 
+        will tell on the former, but it does not look too hard to adapt now that 
+        I have it in hand. I'm partway through making the shaft adapter (Bridgie 
+        has different dimensions, of course), and that adapter coupled with a 
+        simple plate to adapt the Bridgie bolt patter to the IH Mill and I should 
+        be in bidness as we used to say in Texas. I'll write the whole thing up 
+        when it's done and working.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">And speaking of 
+        the CNC conversion for the mill, I got a note from Aaron today telling 
+        me they are shipping out my conversion kit. Yup, I broke down and ordered 
+        one last month. Considering how slowly the <a href="CCLatheCNCHome.htm"><b>lathe 
+        conversion</b></a> has gone, I thought it might speed things up a bit 
+        if I purchased a finished kit rather than engineering one myself. The 
+        mill is a more difficult project to get right anyway, and besides, Aaron 
+        had the darned things on sale. I ordered the mechanicals-only kit, and 
+        I'm thinking of using the Kelling Technology motors referred to below. 
+        These are 600 oz in motors at a great price, Mariss F. himself has blessed 
+        their usage in glowing terms, and I'd love to be able to compare and contrast 
+        a stepper system (my lathe) with a full closed loop servo system on the 
+        mill. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">I 
+        Want to Build a Pan and Box Brake</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I'll keep you 
+        posted on the mill progress, but frankly I do intend to build a few more 
+        projects using the mill manually before I dive into the conversion. For 
+        example, I need to <b><a href="MTWishListFuturesBigProjects.htm">build 
+        a pan and box brake</a></b> to be able to finish the chassis work for 
+        my lathe retrofit. I love the design that appeared in &quot;Projects in 
+        Metal&quot;, and have the book. They come out looking great:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Tools/BoxBrake3xx.jpg" width="800" height="600"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>I'm going 
+        to build a box brake just like this one...</i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I've got all the 
+        steel for it ordered and it is sitting in my garage. Just need to finish 
+        a few other projects (especially the mill power feed), DOH!</font></p>
+      <p align="left" class="BlogTitle">Centering Scope</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I've mentioned 
+        below (7/7/06) my desire to own a <i>Centering Scope. </i>Being a very 
+        visual person, this just seems a great way to line things up, whether 
+        that be a 4-jaw lathe chuck job or something in the mill. After losing 
+        out on something like 6 scopes that all sold on eBay for over $200, I 
+        lucked out and snagged a Heco for $115. Go figure. I don't have it in 
+        hand yet, but I'll let you know how it works out when I get it.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Ongoing 
+        CNC Lathe Conversion </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Lastly, I wanted 
+        to report that their continues to be some signs of glacial progress on 
+        the lathe conversion. As the duly appointed and solitary IT support person 
+        in our household, I was called to PC tinkering when the fan on my wife's 
+        PC went out. Having gotten my hands dirty fooling with a PC for the first 
+        time in a while, I thought it well if I got on with building the PC I 
+        want to use for the lathe. I've had the parts for some time, but needed 
+        to convert a 19&quot; rack mount enclosure I got off eBay (what would 
+        I do without eBay?). It turns out to be quite a lot of trouble to convert 
+        a generic enclosure to be a PC. All sorts of little holes and openings 
+        have to be engineered in. Lots of crazy little things have to be scrounged 
+        up, like the little speaker to play your motherboard's beeps at startup. 
+        At this stage, I think I've got most of it in hand, and hope to try to 
+        assemble it soon. Once I've got a working PC, it'll be time to start on 
+        the drive electronics enclosure. That's one of the things I need the box 
+        brake for, to make a little bracket to hold the Geckos in an efficient 
+        way. One thing certainly does often lead to another, doesn't it?</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Odds 
+        &amp; Ends</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">How about mechanically 
+        compensating for leadscrew error? I came across an <a href="http://www.lmwatts.com/index.html">interesting 
+        article wherein Les Watts uses a mechanical system to correct leadscrew 
+        error</a> to achieve 0.0005&quot; maximum error over 60&quot;, an improvement 
+        of 12x over the out of box leadscrew spec. His issue was that he needed 
+        to drive a big router gantry with a leadscrew on either side and wanted 
+        them to match. One could be mapped in software to correct the error, but 
+        what to do about the other? He devised a mechanism that uses a mechanical 
+        cam to advance or retard the ballnut in order to correct errors. The really 
+        interesting question is not considered in the article, which is, how did 
+        he produce the cam used to correct the error? This same fellow writes 
+        in great detail of how he produced the very flat surfaces needed for the 
+        router using an interesting twist on scraping. Rather than use a scraper, 
+        he knocked the high spots down with a hand grinder, and used the standard 
+        bluing techniques to test. All in all, a very interesting and unorthodox 
+        set of techniques.</font></p>
+      <p align="left" class="BlogTitle">Tool &amp; Cutter Grinders</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I've been keeping 
+        my nose to the ground looking for ideas on a tool and cutter grinder. 
+        It's ridiculously easy to dull a cutter, and while they're reasonably 
+        cheap on eBay (say $10 for a nice US Made 1/2&quot; endmill), it's even 
+        cheaper to sharpen them. Not to mention drill bits need constant sharpening, 
+        and custom cutters are easily made with the right grinder. I've looked 
+        a little bit at the Deckel's and their clones that come up on eBay, but 
+        they want an awful lot of money for one. Then there are a variety of cutter 
+        grinders that various HSM's have made over the years. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The Quorn is probably 
+        the most famous. It's a beautifully intricate little machine:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Quorn-1.jpg" width="640" height="480"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Quorn Cutter...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I have entertained 
+        the idea of CNC'ing up a Quorn out of bar stock after I get my machines 
+        converted, and I am sure it would be a fascinating project, but there 
+        are simpler ways to get the job done.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I recently came 
+        upon a tool grinder called the Tinker:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Tinker2.jpg" width="733" height="456"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i><a href="http://www.lautard.com/tinker-s.htm">The 
+        Tinker Tool and Cutter Grinder by Guy Lautard...</a></i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><a href="http://www.lautard.com/tinker-s.htm">This 
+        design is by the famous Guy Lautard, and he has plans and information 
+        about it on his site</a>. His Machinist's Bedside Reader series is excellent, 
+        so I know that what he is offering is likely of extremely high quality 
+        and would be worth the price of admission. I quite like the Tinker design. 
+        It looks much simpler to build than a Quorn, and I like the idea of harnessing 
+        it to an existing grinder rather than having to fabricate a whole new 
+        grinding spindle for the machine. It seems to me that doing double duty 
+        with the grinder not only saves fabrication time, but also saves space 
+        in what will be an already over-crowded workshop for most folks.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">There is also 
+        a simpler variant called a <a href="http://www.gadgetbuilder.com/Tinker.html">Mini-Tinker</a>, 
+        and supposedly a design known as the Raymac may be even more capable than 
+        the Tinker. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I've added this 
+        whole topic to my Projects Wish List page.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b class="BlogDate">7/28/06</b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b> <a href="https://www.nextengine.com/indexSecure.htm" class="BlogTitle">Unbelievably 
+        Cool Demo</a></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"> A desktop 3D 
+        laser scanner for $2500. Click &quot;Product&quot; and then &quot;Demo&quot;. 
+        I love that thing!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">High 
+        Speed Machining at Home</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Here is another 
+        <a href="http://www.kdntool.com/_sgt/m3m1sa_1.htm"><b>neat idea from KDN 
+        Tools</b></a>. These guys are attaching a Proxxon IB/E tool using a spindle 
+        clamp to get a high speed spindle for their small CNC. Here's what's cool 
+        about this. <b><a href="http://www.cnczone.com/forums/showthread.php?t=22709">According 
+        to a thread on CNCZone</a></b>, that spindle is powerful enough to cut 
+        through aluminum at 20,000 rpm with a 1/8&quot; end mill. This is also 
+        the same high speed spindle option offered by Tormach. This would enable 
+        the HSM (Home Shop Machinist) to try out HSM (High Speed Machining) at 
+        very low cost. I'll give it a whirl once I get my mill CNC'd!</font></p>
+      <p class="BlogTitle">Servos on the Cheap!</p>
+      <p><font face="Arial, Helvetica, sans-serif">Here's another tidbit. <a href="http://finance.groups.yahoo.com/group/geckodrive/message/9088">Mariss 
+        F. (Mr Gecko Himself) did a test</a> on <a href="http://www.kelinginc.net/">Kelling 
+        Technology's</a> NEMA 34 KL34_150_90 DC Motor. Kelling is a company I've 
+        seen recommended by John Stevenson and now Mariss, two highly respected 
+        names in the CNC world. This is a 600 oz in servo motor for $109. Apparently 
+        there is some pronounced cogging, but Mariss has a report on his site 
+        about the whole test. In the end, he felt it was quite a good deal. Something 
+        for me to keep in mind when I get ready to convert my <a href="CCMillHome.html">IH 
+        Mill</a>. I know Aaron uses 600 oz in servo motors in his kits.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Leveling 
+        Screws for Squaring Mill Columns </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I was reading some old posts 
+        on the IH Mill forum on CNCZone and came across some pictures of how Tormach 
+        squares their column and mill head using set screws:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/TormachColumn Adjustment 2.JPG" width="375" height="336"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Note the 
+        set screw between the rear and middle socket head bolts that hold the 
+        column to the base...</i></b></font></p>
+      <p align="center"><img src="img/OthersProjects/TormachSpindle Alignmet.JPG" width="346" height="425"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Similar 
+        set screws on the spindle head of the Tormach...</i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">It is interesting 
+        that the setscrews are offset diagonally on the spindle head. Presumbly 
+        there is a similar offset on the column, but we don't have a pic of the 
+        other side to tell. I wonder if the Tormach instructions detail how these 
+        set screws are used to square up the machine? Now much later, I read another 
+        post from a Tormach owner that says those are not set screws, they are 
+        dowel pins that lock the alignment in place. Hmmm. The set screw idea 
+        seemed so much better. I can't understand what the dowel pins are buying, 
+        though perhaps things are scraped in so carefully that we need only align 
+        the pins to get the mill reassembled perfectly square. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Recently, I came 
+        across someone who had done something similar to their IH Mill:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/IHMillSetscrews.jpg" width="640" height="480"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Set screws 
+        added to an IH Mill for squaring the column...<br>
+        </i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The author of 
+        this mod to the IH Mill had the following to say:</font></p>
+      <p align="left"> 
+      <blockquote><font face="Arial, Helvetica, sans-serif">I drilled and tapped 
+        mine for 5/8 fine set screws, works great, then find a feeler gauge to 
+        slip in next to bolt before torqueing it down and do so in stages. My 
+        collumn is within .0005 now and i figgure on checking it again after it 
+        gets shook in some. I got pics to show where i drilled. I have developed 
+        some proceedure/technique to get it righ. only back off bolt so spring 
+        washer has enough tension to hold collumn from tipping unwanted, then 
+        do tramming, if set gets too tight then back off bolt 1/8 turn or so and 
+        further adjust, lastly steal feeler of appropriate fit to jam into gap 
+        under bolt and then as you apply torque to bolt check tram and readdjust 
+        to complete. firstly tho set slides parralel to table axis as sets will 
+        get a bite into base not allowing rotation later on. if done correctly 
+        it'll be strong enough to take it all, and the feeler jammed under bolt 
+        area will aid in minimizing required readjustment as torque is applied. 
+        this is what i did. Also a not on drilling, go in steps starting with 
+        a small drill and use a drill guide for every step all the way up to tap 
+        drill size then use guide to start tap as well or it'll wander for sure. 
+        </font></blockquote>
+      <p></p>
+      <p><span class="BlogDate"><font face="Arial, Helvetica, sans-serif"><b>7/27/06</b></font></span></p>
+      <p><span class="BlogTitle">A <font face="Arial, Helvetica, sans-serif">Row 
+        O' Fixtures</font></span></p>
+      <p><font face="Arial, Helvetica, sans-serif"> How about the Row O' Fixtures 
+        for getting some production going on your CNC mill:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/RowOIndexers.jpg" width="640" height="480"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>A Row 
+        of Collet Fixtures, by HuFlungDung...</i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">This is from a 
+        series of shots by HuFlung, wherein he was describing a way to let your 
+        CNC machine assist with placing a part. In this case, the machine spindle 
+        held a locating pin that ensured the part would be properly indexed relative 
+        to the hole the pin was in and the collet. I added this pic for a couple 
+        of reasons. First, a fellow over on CNCZone was commenting on how the 
+        large table on IH mills might make possible multiple vises so you could 
+        tee up a whole lot of work. This represents that example with collets 
+        for holding round parts. Second, I had a thought. Since the part is round, 
+        the spin indexer doesn't need to be positioned radially with any accuracy, 
+        the bottom just needs to be flat with no chips between it and the table 
+        (assuming the index and table are properly made, of course!). That's a 
+        very cool thing when you think about the amount of trouble needed to tram 
+        in a vise or rotary table. I just can't help but think that if you can 
+        arrange for the part to just drop into a collet, you can machine the rest 
+        of it and the whole setup would be quick. Even if the part is not round, 
+        if it has a round boss to fit the collet, you could drop the rough stock 
+        in with a boss, and let the mill work out the rest of it under CNC. The 
+        boss could even be potentially milled off at the end.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogDate">7/21/06</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">A big box 
+        arrived in the mail--eBay again</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">It contained the scales I plan 
+        to use to make a <a href="MTMillDRO.htm">cheezy DRO</a> for my <a href="CCMillHome.html">IH Mill</a>. 
+        It'll be a little while before I'm ready to convert the mill to CNC (heck, 
+        it's taking forever to get done converting the lathe), so I thought it 
+        would be nice to have a simple DRO capability. I bought 3 scales on eBay 
+        for about $200. I'll need to fabricate the brackets, but heck, what else 
+        is a machine shop for? I'm about halfway through the z-axis quill DRO 
+        as we speak. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">A Quick Checkup 
+        on the Health of a Milling Machine</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I found this description somewhere 
+        for how to do a quick checkup on the health of a mill:</font></p>
+      <p> 
+      <blockquote><font face="Arial, Helvetica, sans-serif">Listen for excess 
+        spindle bearing noise or clatter, throughout the speed range. </font> 
+        <p><font face="Arial, Helvetica, sans-serif">Put a dial indicator on the 
+          inside of the spindle taper, rotate slowly by hand and look for run 
+          out. You would like to see less than 0.001&quot;, anywhere close to 
+          that or over means the spindle is either bent from a crash or worn or 
+          has worn bearings. If its not too bad (0.001&quot; to 0.003&quot; or 
+          so) it can be reground, but figure $300 to $500 plus some hassle for 
+          that.</font></p>
+        <p><font face="Arial, Helvetica, sans-serif">Put a dial indicator on the 
+          table indicating against the side of the quill and in the middle of 
+          travel of the table (the most worn position) issue commands to move 
+          the table back and forth back to the same position. Do this for X,Y 
+          and Z. The difference shown on the indicator when moving from opposite 
+          directions will show you how much backlash each axis has. When this 
+          machine was new it probably had less than 0.001&quot; backlash, it would 
+          be nice to see no more than 0.0015&quot; or so at this point. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">How much you can stand depends 
+          on how precise your planned work needs to be. My machine is at around 
+          0.0015&quot; on all axises and that's ok for what I do.</font></p>
+      </blockquote>
+      <p></p>
+      <p><font face="Arial, Helvetica, sans-serif">I'll have to try that on my 
+        IH Mill one of these days and see what the measurements are. Speaking 
+        of IH, <a href="http://www.industrialhobbies.com/">Aaron has finally gotten 
+        his web site sorted out</a> and all the old helpful how-tos are back up 
+        there along with some significant new how-tos on how to use the mills 
+        for production work. It's all very good information, worth a look see. 
+        One thing I noticed that I hadn't read before was a section on squaring 
+        the mill. I just got done spending quite a lot of time tramming the mill 
+        and here's another procedure that ought to be contemplated. It involves 
+        shimming the column base to make sure the z-axis is properly square. Good 
+        information!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Spring-Loaded 
+        Parallels Separator</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">How about this cool gizmo, 
+        a Kurt spring-loaded parallels separator:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/parallel_separator.jpg" width="640" height="480"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Kurt spring-loaded 
+        parallels separators...</i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">There is always 
+        some crazy little gizmo I haven't gotten around to buying yet! I think 
+        this particular gizmo is actually made by SPI, as Penn has it in their 
+        catalog for $39.95. It seems like the sort of thing that wouldn't be very 
+        hard to make.</font></p>
+      <p align="left">&nbsp;</p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogDate">7/18/06</b></font></p>
+      <p class="BlogTitle">Rotary Table Fun</p>
+      <p><font face="Arial, Helvetica, sans-serif"> I had a little fun with my 
+        new Phase II 8&quot; Rotary Table today:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/LatheStuff/CNCConversion/Enclosures/P7183550.JPG" width="640" height="276"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Fan cutout 
+        done with rotary table on the mill...</i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I just did it 
+        by eyeball and one end hung up on the handwheel so I couldn't do things 
+        as symmetrical as I would have liked, but all in all it turned out tolerably 
+        well. I think I'm going to like that table a whole lot too! At this stage 
+        I think I am within spitting distance of being ready to assemble the PC 
+        enclosure. Just a few more holes to drill, but hopefully I can get the 
+        PC up and running this weekend. That would be a satisfying step forward 
+        on the project.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Extremely 
+        Small CNC Machines</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">From the department 
+        of &quot;I have no idea why, but they sure are cool,&quot; I offer a series 
+        of extremely small CNC machines:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/SmCNC1.jpg" width="640" height="512"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Really 
+        slick looking design. Made of MDF, 80/20 extrusions, and UHMW plastic 
+        pads so things slide. The spindle is an air powered pencil die grinder.</i></b></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b><img src="img/OthersProjects/SmCNC2.jpg" width="640" height="512"></b></i></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b>A closer 
+        view of the table. You can see the UHMW pads. Motors are NEMA 17--tiny!</b></i></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b><img src="img/OthersProjects/SmCNC3.jpg" width="640" height="426"></b></i></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b>Extremely 
+        tiny--not sure what it could even be used for. Uses stepper motors salvaged 
+        from printers and a Dremel cable drive spindle...</b></i></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b><img src="img/OthersProjects/SmCNC4.jpg" width="640" height="635"></b></i></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b>The Fidgiting 
+        Widgitmaster's version is imaculate as always. He sure likes those T-slots!</b></i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogDate">7/17/06</b></font></p>
+      <p class="BlogTitle">CNC Lathe Conversion Status</p>
+      <p><font face="Arial, Helvetica, sans-serif"> By now, you must be wondering 
+        if I ever work on my <a href="CCLatheCNCHome.htm">CNC Lathe Conversion</a>, 
+        as progress reports have been few and far between. Let me give a quick 
+        status recap, because there has been some work, albeit slow. My current 
+        task is to complete the two rack mount enclosures and build a rack to 
+        put them in. One enclosure will contain the PC, while the other will contain 
+        the <a href="MTLatheCNCDrivers.htm">DC Power Supply, Geckos, and GRex, 
+        along with miscellaneous relays and other goodies</a>. I started with 
+        the PC enclosure, and I am just about done. There are a heck of a lot 
+        of holes to be drilled and small hardware to be located before you can 
+        turn a generic enclosure into a PC enclosure! You have to arrange for 
+        a power on momentary contact front panel switch, motherboard mounting 
+        on insulated stand offs, power supply mounting, hard disk mounting, DVD 
+        mounting, cooling fan mounting, and appropriate cutouts for all of this. 
+        I'm sure I've missed something, but I'll keep drilling holes until I've 
+        got a place for all the components and then I will connect them all up 
+        and try to bring the PC up. Once it is running Windows XP happily, I will 
+        move on to building the second enclosure, followed by the rack that will 
+        hold both enclosures, a keyboard tray, and a stalk for my ELO touch panel 
+        screen. Whew!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Along the way I have also managed 
+        to order a variety of components that will be needed, including:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- <a href="http://www.action-electronics.com/cabl-prc.htm#Shielded">Shielded 
+        cable from Action Electronics for the Step Motor (and potentially encoder) 
+        wiring</a>. I went ahead and bought a full spool as I may want to use 
+        it on a variety of projects over time.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Connectors. I decided on 
+        <a href="http://www.action-electronics.com/audcon.htm#Mic">6-pin microphone 
+        connectors, also from Action Electronics</a>.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- A lot of other miscellaneous 
+        odds and ends like a SPST switch with safety cover (see below) that will 
+        be used to control power to the driver electronics enclosure.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I am hoping that with the enclosures 
+        made, progress can pick up. Since the work of building these enclosures 
+        is relatively boring, I keep taking breaks to go do &quot;real&quot; machining, 
+        such as the <a href="MTMillKurtViseStop.htm">vise stop I recently made</a>.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogTitle">Odds &amp; 
+        Ends</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://bearingsdirect.com/products/index.php?action=item&amp;id=289&amp;prevaction=search&amp;previd=&amp;prevstart=0">7204CTDULP4</a> 
+        Universal Duplex pair of 15 degree angular contact bearings suitable for 
+        mounting ballscrews or perhaps spindles. These are ABEC-7's for $199.95 
+        from the reliable firm of Nachi. Not bad! Got the tip from a guy on <a href="http://www.homeshopmachinist.net/bbs/forumdisplay.php?f=3">HSM</a>. 
+        If I could find a set with a larger angle and designed for heavy preload 
+        (these are for &quot;light&quot;), they would be even better, but these 
+        are pretty nice for the price. If you don't want to spring for the ABEC-7's, 
+        you can get some <a href="http://bearingsdirect.com/products/index.php?action=item&amp;id=325&amp;prevaction=search&amp;previd=&amp;prevstart=0">really 
+        cheap &quot;B&quot; angle 7204's for only $23.88 in ABEC-3</a>. These 
+        latter are probably also not too bad for the HSM project.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Z-Axis for 
+        a Router</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">How about this for a nice little 
+        Z-axis for the router crowd:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/NiceLilZAxis1.JPG" width="997" height="748"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Interesting 
+        slide design, the round rails are embedded in the aluminum and held with 
+        bolts...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/NiceLilZAxis2.JPG" width="918" height="589"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Uses a RotoZip 
+        router...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/NiceLilZAxis3.JPG" width="997" height="748"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">This fellow (eBay 
+        seller yukonjasper) is selling these on eBay for $175 buy it now, without 
+        the Roto-Zip or stepper motor. Seems like a pretty nice deal.</font></p>
+      <p align="left" class="BlogTitle">Yuasa R8 Quick Change System</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I came across 
+        this nifty set of Yuasa Quick Change toolholders for R8 machines (like 
+        Bridgeports and my Industrial Hobbies mill):</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Tools/YuasaQuickChange.jpg" width="500" height="375"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>The Yuasa 
+        Quick Change Set...</i></b></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b><img src="img/OthersProjects/Tools/YuasaQuickChange4.jpg" width="500" height="375"></b></i></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b>Quick 
+        Change R8 Chuck...</b></i></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b><img src="img/OthersProjects/Tools/YuasaQuickChange2.jpg" width="500" height="375"></b></i></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b>A set 
+        of the holders...</b></i></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b><img src="img/OthersProjects/Tools/YuasaQuickChange3.jpg" width="500" height="375"></b></i></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><i><b>Aren't 
+        they Kewl?</b></i></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I'm not sure how 
+        the holders get locked into the chuck, but they sure are cool. The seller 
+        didn't know much about them, but thought they might have the brand name 
+        &quot;Kwik Switch&quot;. This set sold for about $320, and I kick myself 
+        for not stepping up to take them. Oh well. I did purchase plans to make 
+        a powered drawbar for my mill from a butterfly impact wrench. That would 
+        also speed tool changes up considerably.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b class="BlogTitle">Tip 
+        of the Day</b>: If you are getting long stringy chips, crank up the speed.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogDate">7/16/06</b></font></p>
+      <p class="BlogTitle">A New Asian CNC Mini-Lathe</p>
+      <p><font face="Arial, Helvetica, sans-serif"> I love the travelling chip 
+        guard on this CNC Mini Lathe:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/CNC-Mini-Lathe.jpg" width="486" height="329"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Nice travelling 
+        chip guard!</i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I'm thinking of 
+        making something similar for my lathe at some point. I think what I will 
+        do is get some sheet Lexan and bend it over a cylindrical form using a 
+        heat gun to soften it up. I might even make one up the full travel of 
+        my lathe so I don't have to fool around making a rail system so it moves.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">JerryFlyGuy's 
+        Flat Rail Installation for a Gantry Machine</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Many moons ago 
+        (4/9/2006, to be precise), a fellow named &quot;JerryFlyGuy&quot; set 
+        out to determine how best to install a set of linear ways in as true, 
+        flat, and square a fashion as possible. Many possibilities for it were 
+        discussed in quite a long thread over at the CNCZone. At last JerryFlyGuy 
+        settled on an approach, and a very interesting one it is too. He is using 
+        a very fine wire as a continuity test to tell when the rail is straight 
+        and a little jig (laser cut) that fits over the square tubing with screws 
+        that let him tweak the rail left or right:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/JerryFlyGuyJig.jpg" width="800" height="600"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Straightening 
+        jig used to position the linear rail onto the square tubing...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/JerryFlyGuyJig2.jpg" width="800" height="600"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Pliers 
+        are holding the continuity test wire while the allen head is used to tweak 
+        the rail left or right. Once it is in the correct position, Jerry then 
+        drills a mounting hole. He has started off with drill bushings to create 
+        pilot holes.</i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I believe once 
+        Jerry gets all of the holes drilled his next step will be to pour a Turcite 
+        like substance between &quot;dams&quot; to provide a flat surface to mount 
+        the linear ways on. More news as it develops.</font></p>
+      <p align="left">&nbsp;</p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogDate">7/9/06</b></font></p>
+      <p class="BlogTitle">Motor Electronics Safety Switch</p>
+      <p><font face="Arial, Helvetica, sans-serif">: I want to put a safety switch 
+        on my CNC Lathe motor electronics. I plan to wait on firing them up until 
+        the PC is booted and Mach 3 is up. I suspect it can also serve as an addition 
+        E-Stop. I'll wire the incoming power to everything in the box through 
+        this switch:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><a href="http://www.cyberguys.com/templates/searchdetail.asp?productID=4739&amp;ta=detail_img&amp;pi=Y&amp;st=3"><img src="img/LatheStuff/CNCConversion/Enclosures/SafetySwitch.jpg" width="400" height="400" border="0"></a></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i><a href="http://www.cyberguys.com/templates/searchdetail.asp?productID=4739&amp;ta=detail_img&amp;pi=Y&amp;st=3">Safety 
+        Switch for Motor Electronics Enclosure...</a></i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Action Electronics 
+        sells them too if you search on &quot;Safety Switch&quot;. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b><i class="BlogDate">7/8/06</i></b></font></p>
+      <p class="BlogTitle">Roh'lix?</p>
+      <p><font face="Arial, Helvetica, sans-serif">An interesting alternative 
+        to the ballscrew for CNC applications is called the &quot;<a href="http://www.zero-max.com/products/rohlix/rohlixmain.asp">Roh'lix</a>&quot;. 
+        They have virtually no backlash, and are much less susceptible to contamination 
+        than ballscrews. They have the ability to slip if overloaded, and I suspect 
+        this potential limits their thrust and may make them susceptible to losing 
+        steps in open loop systems. The Roh'lix runs on just a steel shaft, which 
+        are certainly available pretty cheaply. May be worth a look for certain 
+        applications. Given their low thrust capability, they are said to be excellent 
+        for CMM machines. I wonder how well they would work for a plasma table? 
+        They are also available with a quick disconnect option which would make 
+        manual positioning possible. The Roh'lix patent is 4947698. I wonder how 
+        hard it is to make them?</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">A similar idea is the <a href="http://www.amacoil.com/html/page3a.htm">&quot;rolling 
+        ring&quot;</a> drive, which definitely looks buildable.</font></p>
+      <p class="BlogTitle">Making Connecting Rods for a Model Engine</p>
+      <p><font face="Arial, Helvetica, sans-serif">I thought this was a very cool 
+        picture that explains a clever way to make connecting rods for the Model 
+        Engineer:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/MakingConRods.jpg" width="800" height="600"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>First 
+        turn them on the lathe, then finish with a mill. Note how the split portion 
+        already existed on the turned pistons. These are for a scale model of 
+        the <a href="http://modelenginenews.org/cirrus/index.html#0503">DeHavilland 
+        Cirrus</a> aircraft engine...</i></b></font></p>
+      <p align="left" class="BlogTitle">&nbsp;</p>
+      <p><font face="Arial, Helvetica, sans-serif"><b><i class="BlogDate">7/7/06</i></b></font></p>
+      <p class="BlogTitle">I Want a Centering Scope!</p>
+      <p><font face="Arial, Helvetica, sans-serif"> I really want a centering 
+        scope--I just think it would make it so much easier to line up precisely 
+        in the mill or even to use a 4-jaw chuck. They are expensive. I have missed 
+        out on them on eBay probably 6 or 8 times by just not being willing to 
+        bid enough. They usually go for about $120 or more. It occurs to me that 
+        it's a bit silly this function is not handled by a webcam-like approach, 
+        and then I got to looking at the Intel digital microscopes (QX3 and QX5). 
+        Well it seems there is a great piece of shareware called <a href="http://www.edhsw.com/mixscope/screenshots.html">miXscope</a> 
+        that really enhances these beauties and this just might be the ticket 
+        to use one as a centering scope. There's just the issue of mounting it 
+        accurately to make it work as such. I may look into this, or I may just 
+        deal with what a real scope costs.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/CenterScope.jpg" width="600" height="450"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Centering 
+        Scope Used to Precisely Position On Center of Part...</i></b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b class="BlogDate">7/03/06</b></font></p>
+      <p class="BlogTitle">&quot;Printing&quot; 3D Objects in Steel</p>
+      <p><font face="Arial, Helvetica, sans-serif"> Just came across one of the 
+        coolest things I have seen in a long time. How about the ability to &quot;print&quot; 
+        3D objects in steel:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><a href="http://www.bathsheba.com/"><img src="img/OthersProjects/3DPrinting.jpg" width="234" height="250" border="0"></a></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><a href="http://www.bathsheba.com/"><b><i>Some 
+        3D printed art by artist Bathsheba Grossman...</i></b></a></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">It's almost like 
+        the materializers in Star Trek! Artist Grossman starts from a Rhino 3D 
+        model and the machine can directly reproduce that model from metal powder 
+        in steel or bronze. Apparently its a laser lithography technique where 
+        the laser interacts with fine metal powder that is coated with a laser-sensitive 
+        binder. That binder solidifies the object layer by layer. Once it has 
+        been fully solidified, the object is placed in an oven that has just the 
+        right temperature to weld the metal into finished product with reducing 
+        it to a melted puddle. Very cool! </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Bathesda also 
+        provides a fascinating sculpture called &quot;Little Star&quot; that she's 
+        put into the public domain so others can build them:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/littlestar_left.jpg" width="350" height="334"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><a href="http://www.bathsheba.com/downloads/littlestar/littlestar.html"><b><i>Little 
+        Star...</i></b></a></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Little star is 
+        intended to be plasma cut from metal and then assembled with silver solder 
+        or welds. The plans she provides are for a 14&quot; tall model, but I 
+        would love to make one much larger. Will have to look at what my <a href="CCPlasmaCNCHome.htm">plasma 
+        table</a> is capable of when I get it built.</font></p>
+      <p align="left" class="BlogTitle">Cross Drilling Jig</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Came across the 
+        idea of a cross drilling jig over on Practical Machinist:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/crossdrilljig2.jpg" width="700" height="942"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i><a href="http://www.homeshopmachinist.net/bbs/showthread.php?t=19771">Cross 
+        drilling jig...</a></i></b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">These are handy 
+        when cross drilling shafts. You'll note it is build around a captive V-Block, 
+        and there is a gizmo to hold a drill bushing at the top that is on a couple 
+        of sliding rods. This one is store bought, but it seems like an ideal 
+        quick project for a machinist to build one. </font></p>
+      <p><b><i><font size="+2"><a href="CCBlogJune2006.htm">Earlier Entries in 
+        the Blog...</a></font></i></b></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

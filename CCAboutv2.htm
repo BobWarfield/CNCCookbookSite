@@ -1,0 +1,1060 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCLandingPage.dwt" --><!-- DW6 -->
+
+<head>
+
+<!-- #BeginEditable "doctitle" --> 
+<title>CNC Cookbook : Making it easier to be a better CNC'er</title>
+
+<meta name="description" content="CNCCookbook is dedicated making CNC easier. We provide software and information for all categories of CNC'ers." />
+
+<script>
+  _udn = 'cnccookbook.com'
+</script>
+
+<!-- Google Analytics Content Experiment code -->
+<script>function utmx_section(){}function utmx(){}(function(){var
+k='2217679-107',d=document,l=d.location,c=d.cookie;
+if(l.search.indexOf('utm_expid='+k)>0)return;
+function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+'<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+'://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+'" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+</script><script>utmx('url','A/B');</script>
+<!-- End of Google Analytics Content Experiment code -->
+
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.BodyText1 {	
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.BodyText1 {	
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.BlogTitleBrwn {
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 140%;
+	color:#0069b2;
+}
+
+.horzborder {
+	border-bottom: 1px solid #d0d0d0
+}
+
+.BodyTextWhite {
+	font-family: Arial, Helvetica, sans-serif;
+	color:#fff;
+	font-size:140%;
+}
+
+.customerBkgdNoLink {
+	background-color:#3297de;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+	color: #ffffff;
+	text-shadow: 0 1px rgba(0,0,0,0.15);
+	text-align:center;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size:100%
+}
+	.customerBkgdNoLink input {
+		border: medium none;
+		color: gray;
+		font-family: times new roman;
+		font-size: 16px;
+		font-style: italic;
+		margin-bottom: 10px;
+		padding: 8px 10px;
+		width: 300px;
+		border-radius: 20px;
+		-moz-border-radius: 20px;
+		-webkit-border-radius: 20px;
+	}
+		.customerBkgdNoLink input.email { background: #fff }
+		.customerBkgdNoLink input.name { background: #fff}
+		.customerBkgdNoLink input[type="submit"] {
+			background: #339933;
+			color: #fff;
+			cursor: pointer;
+			font-size: 24px;
+			width: 35%;
+			padding: 8px 0;
+
+		}
+			.customerBkgdNoLink input[type="submit"]:hover { 
+				text-decoration:underline;				
+			}
+
+
+
+-->
+</style>
+
+<!-- #EndEditable -->
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" >
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" >
+<!-- link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" -->
+
+<script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+<script async type="text/javascript" src="js/jquery.form.js"></script>
+<script async type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<!--script type="text/javascript" src="/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+<style type="text/css" >
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 140%}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+
+.Tagline {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #0;
+	font-size: 140%;
+	vertical-align: middle;
+}
+
+h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #fff;
+}
+
+.LogoCNCStyleBlackSerif {
+	font-family:"Times New Roman", Times, serif;
+	font-size: 140%;
+	color: #000000;
+	font-weight: bold;
+	line-height: 1.0;
+}
+
+.LogoCNCStyleBlack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 160%;
+	color: #000;
+	font-weight: bold;
+	line-height: 1.0;
+}
+	.LogoCNCStyleBlack:link {
+		border: medium none;
+		text-decoration:underline;
+		color: #000;
+		margin-bottom: 10px;
+		padding: 8px 10px;
+		width: 300px;
+		border-radius: 20px;
+		-moz-border-radius: 20px;
+		-webkit-border-radius: 20px;
+		background: #339933;
+		width:35%;
+	}
+	.LogoCNCStyleBlack:visited {
+		text-decoration:underline;
+		color: #000;
+	}
+	.LogoCNCStyleBlack:active {
+		text-decoration:underline;
+		color: #000;
+	}
+
+.LogoCNCStyleBlackWhiteLinks {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 160%;
+	color: #fff;
+	font-weight: bold;
+	line-height: 1.0;
+}
+	a.LogoCNCStyleBlackWhiteLinks:link {
+		text-decoration:underline;
+		color: #fff;
+		margin-bottom: 10px;
+		padding: 8px 10px;
+	}
+	a.LogoCNCStyleBlackWhiteLinks:visited {
+		text-decoration:underline;
+		color: #fff;
+	}
+	a.LogoCNCStyleBlackWhiteLinks:active {
+		text-decoration:underline;
+		color: #fff;
+	}
+
+#price_link {
+	background: #3297de;
+	color: #ffffff;
+	text-align:center;
+	text-decoration: underline;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+	#price_link h1 {
+		font-size: 160%;
+	}
+	
+#topSection {
+  padding-bottom: 0;
+  min-height: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color:#373737;
+  text-align: center;
+  min-height: 672px;
+  line-height: 0.5;
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align:baseline;
+  box-sizing: border-box;
+  display:block;
+}
+	#topSection input {
+		border: medium none;
+		color: gray;
+		font-family: times new roman;
+		font-size: 16px;
+		font-style: italic;
+		margin-bottom: 10px;
+		padding: 8px 10px;
+		width: 300px;
+		border-radius: 20px;
+		-moz-border-radius: 20px;
+		-webkit-border-radius: 20px;
+	}
+		#topSection input.email { background: #fff }
+		#topSection input.name { background: #fff}
+		#topSection input[type="submit"] {
+			background: #339933;
+			color: #fff;
+			cursor: pointer;
+			font-size: 24px;
+			width: 35%;
+			padding: 8px 0;
+
+		}
+			#topSection input[type="submit"]:hover { 
+				text-decoration:underline;				
+			}
+
+.greenBand {
+  color:#fff;
+  background-color:#55ac3a;
+  direction:ltr;
+  line-height:1.6;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align:baseline;
+  box-sizing: border-box;
+  display:block;
+  position:relative;
+  margin-left:auto;
+  margin-right:auto;
+}
+	
+.tourBkgd {
+	background-color: #3aa497;
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+	.tourBkgd:hover {
+		text-decoration:underline;	
+	}
+
+#tour_link {
+	background: #3aa497;
+	color: #ffffff;
+	text-align:center;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	padding: 25px, 25px, 25px, 25px;
+}
+	#tour_link h1 {
+		font-size: 160%;
+	}
+
+.testimonialBkgd {
+	background-color: #fff;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: #eb4d5c;
+	text-align:center;
+	text-decoration: none;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	font-size:160%;
+	font-weight:50;
+	line-height:1.6;
+}
+	.testimonialBkgd h1 {
+		font-size: 160%;
+	}
+	.testimonialBkgd a:link {
+		color: #eb4d5c;
+	}
+	.testimonialBkgd a:visited {
+		color: #eb4d5c;
+	}
+	.testimonialBkgd a:hover {
+		color: #eb4d5c;
+	}
+	.testimonialBkgd a:active {
+		color: #eb4d5c;
+	}
+
+.testimonialQuotes {
+	color:#635232;
+	max-width:96%;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	margin:auto;
+	line-height:1.6;
+}
+	
+.customerBkgd {
+	background-color: #439fe0;
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+	.customerBkgd:hover {
+		text-decoration:underline;	
+	}
+
+#customer_link {
+	background: #439fe0;
+	color: #ffffff;
+	text-align:center;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+	#customer_link h1 {
+		font-size: 160%;
+	}
+
+.LogoCNCStyleRed {	
+	color: #eb4d5c;
+	max-width:96%;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	font-size:180%;
+	font-weight:50;
+	text-align:center;
+	margin:auto;
+}
+	.LogoCNCStyleRed:link {
+		text-decoration:underline;
+		color: #eb4d5c;
+	}
+	.LogoCNCStyleRed:visited {
+		text-decoration:underline;
+		color: #eb4d5c;
+	}
+	.LogoCNCStyleRed:hover {
+		text-decoration:underline;
+		color: #eb4d5c;
+	}
+	.LogoCNCStyleRed:active {
+		text-decoration:underline;
+		color: #eb4d5c;
+	}
+
+.closingForm {
+  background-image: url("http://www.cnccookbook.com/img/Art/TBlurred.jpg");
+  padding-bottom: 0;
+  min-height: 0;
+  line-height:1.0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color:#000000;
+  text-align: center;
+  min-height: 672px;
+	color:#E0E0E0;
+	text-align:center;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+	.closingForm h1 {
+		font-size: 160%;
+	}
+	.closingForm input {
+		border: medium none;
+		color: gray;
+		font-family: times new roman;
+		font-size: 16px;
+		font-style: italic;
+		margin-bottom: 10px;
+		padding: 8px 10px;
+		width: 300px;
+		border-radius: 20px;
+		-moz-border-radius: 20px;
+		-webkit-border-radius: 20px;
+	}
+		.closingForm input.email { background: #fff }
+		.closingForm input.name { background: #fff}
+		.closingForm input[type="submit"] {
+			background: #339933;
+			color: #fff;
+			cursor: pointer;
+			font-size: 24px;
+			width: 35%;
+			padding: 8px 0;
+
+		}
+			.closingForm input[type="submit"]:hover { 
+				text-decoration:underline;				
+			}
+
+.smallCenter {
+	margin-left:auto;
+	margin-right:auto;
+	width: 118px;
+	text-align:center;
+	border-top-width: 2px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-color: #595959;
+}
+
+.center {
+	color: #b2b2b2;
+	text-align:center;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	font-size: 1em;
+	line-height: 1.6;
+	margin: 10px 0 0;
+}
+
+.LogoCNCStyleBlack1 {	font-family: Arial, Helvetica, sans-serif;
+	font-size: 140%;
+	color: #000000;
+	font-weight: bold;
+}
+#landing #centerContainer #topSection .LogoCNCStyleBlack {
+}
+
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+<script type="text/javascript" src="js/cncheader.js"></script>
+
+<!-- SumoMe Listbuilder Email Exit Intent -->
+<script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" >
+
+<!-- Google -->
+<meta name="google-site-verification" content="_7vbS5Ds4mm66MBoWsSBSZCLEM_WzxbIESh_gjqqLpQ" >
+
+</head>
+
+
+
+<body id="landing" bgcolor="#FFFFFF">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=377247162305545";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- script type="text/javascript">multitouch();</script-->
+
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+						</li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left; padding-left:1em;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.png" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" max-width="100%" height="auto" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+</tr>
+</table>
+  <div id="centerContainer">
+  <!-- #BeginEditable "Body" -->
+  
+  <div class="customerBkgdNoLink" align="center">
+      <p><font face="Times New Roman, Times, serif" size="7" color="#fff">About You</font></p>
+  </div>
+  <p class="BodyText1">&nbsp;</p>
+  <table width="100%" border="0">
+    <tbody>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">1</td>
+        <td class="BodyText"><p><strong>You take pride in your CNC work.</strong></p></td>
+      </tr>
+      <tr>
+      	<td></td>
+      	<td><p class="BodyText1">&nbsp;</p></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">2</td>
+        <td class="BodyText"><strong>You want to be a better CNC'er</strong></td>
+      </tr>
+      <tr>
+      	<td></td>
+      	<td><p class="BodyText1">&nbsp;</p></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">3</td>
+        <td class="BodyText"><strong>You are open to new ideas and techniques for CNC</strong></td>
+      </tr>
+      <tr>
+      	<td></td>
+      	<td><p class="BodyText1">&nbsp;</p></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">4</td>
+        <td class="BodyText"><strong>You are never satisfied with "Good Enough"</strong></td>
+      </tr>
+      <tr>
+      	<td></td>
+      	<td><p class="BodyText1">&nbsp;</p></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">5</td>
+        <td class="BodyText"><strong>You're willing to embrace that CNC involves computers and the digital world</strong></td>
+      </tr>
+      <tr>
+      	<td></td>
+      	<td><p class="BodyText1">&nbsp;</p></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">6</td>
+        <td class="BodyText"><strong>You want to know the shortcuts too</strong></td>
+      </tr>
+      <tr>
+      	<td></td>
+      	<td><p class="BodyText1">&nbsp;</p></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">7</td>
+        <td class="BodyText"><strong>You're a CNC'er.  You make things.  That's dead sexy.</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <p align="center" class="BodyText1"><span class="BlogTitleBrwn">Are We Pretty Close?</span></p>
+  <div class="customerBkgdNoLink" align="center">
+    <p><font face="Times New Roman, Times, serif" size="7" color="#fff">About Us</font></p>
+  </div>
+  <p class="BodyText1">&nbsp;</p>
+  <table width="100%" border="0">
+    <tbody>
+      <tr>
+        <td width="3%" align="center" bgcolor="#3297de" class="BodyTextWhite">1</td>
+        <td width="97%" class="BodyText"><p><strong>We take pride in CNCCookbook</strong></p></td>
+      </tr>
+      <tr>
+      	<td align="center"></td>
+      	<td><p class="BodyText1">&nbsp;</p></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">2</td>
+        <td class="BodyText"><strong>We want to be better CNC'ers ourselves</strong></td>
+      </tr>
+      <tr>
+      	<td align="center"></td>
+      	<td><p class="BodyText1">&nbsp;</p></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">3</td>
+        <td class="BodyText"><strong>We constantly research the latest new ideas and techniques for CNC</strong></td>
+      </tr>
+      <tr>
+      	<td align="center"></td>
+      	<td><p class="BodyText1">&nbsp;</p></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">4</td>
+        <td class="BodyText"><strong>We want to build the best CNC Software and be the best CNC Information Resource there is</strong></td>
+      </tr>
+      <tr>
+      	<td align="center"></td>
+      	<td><p class="BodyText1">&nbsp;</p></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">5</td>
+        <td class="BodyText"><strong>We're been at CNC, computers, and the digital world for a long time</strong></td>
+      </tr>
+      <tr>
+      	<td align="center"></td>
+      	<td><p class="BodyText1">&nbsp;</p></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">6</td>
+        <td class="BodyText"><strong>We want to make CNC easier</strong></td>
+      </tr>
+      <tr>
+      	<td align="center"></td>
+      	<td><p class="BodyText1">&nbsp;</p></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">7</td>
+        <td class="BodyText"><strong>We believe if we're genuinely helpful, more will come.</strong></td>
+      </tr>
+      <tr>
+      	<td align="center"></td>
+      	<td><p class="BodyText1">&nbsp;</p></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#3297de" class="BodyTextWhite">8</td>
+        <td class="BodyText"><strong>We like Making Things (software, CNC parts, and great knowledge resources) and being Social.</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <p align="center" class="BlogTitleBrwn">Seems Like We Have a Lot in Common!</p>
+  <div class="customerBkgdNoLink" align="center">
+      <p><font face="Times New Roman, Times, serif" size="7" color="#fff">What We Do</font></p>
+  </div>
+  <p align="center" class="BlogTitleBrwn" style="font-size:160%;"><strong>We Build CNC Software that Has Helped Many Like You</strong></p>
+  <table width="100%" border="0">
+    <tbody>
+          <tr>
+            <td width="10%" align="center"><p>&nbsp;</p></td>
+            <td align="center"><p class="BlogTitleBrwn">Over 60,000 Machinists from</p>
+            <p class="BlogTitleBrwn">Hundreds of Manufacturers, Schools, and Organizations</p>
+            <p class="BlogTitleBrwn">Have Used Our Software</p>
+            <p class="BlogTitleBrwn"><a href="CCManufacturers.html" id="customer_link2"><img src="img/Ads/GrayLogos.jpg" width="445" height="70" alt="G-Wizard Customers"></a></p></td>
+            <td width="10%" align="center">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <p align="center" class="BlogTitleBrwn"><strong>We are the Internet's most popular CNC Blog and Information Resource</strong></p>
+  <table width="100%" border="0">
+        <tbody>
+          <tr>
+            <td width="10%" align="center"><p>&nbsp;</p></td>
+            <td width="20%" align="center"><p class="BlogTitleBrwn">1800</p>
+              <p class="BlogTitleBrwn">Informative</p>
+            <p class="BlogTitleBrwn">Articles</p></td>
+            <td width="20%" align="center"><p class="BlogTitleBrwn">Over 2 Million</p>
+            <p class="BlogTitleBrwn">Visitors a Year to</p>
+            <p class="BlogTitleBrwn">CNCCookbook.com</p></td>
+            <td width="20%" align="center"><p class="BlogTitleBrwn">40,000</p>
+              <p class="BlogTitleBrwn">Newsletter</p>
+            <p class="BlogTitleBrwn">Subscribers</p></td>
+            <td width="10%" align="center">&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="center">&nbsp;</td>
+            <td align="center">&nbsp;</td>
+            <td align="center">&nbsp;</td>
+            <td align="center">&nbsp;</td>
+            <td align="center">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+  <div class="customerBkgdNoLink" align="center">
+      <p><font face="Times New Roman, Times, serif" size="7" color="#fff">Why Choose Us?</font></p>
+  </div>
+  <table width="100%" border="0">
+  <tbody>
+    <tr>
+      <td colspan="4"><div align="center">
+        <p class="BlogTitleBrwn">&nbsp;</p>
+        <p class="BlogTitleBrwn">At CNCCookbook we're only interested in building <br>
+          the <strong>best software</strong> in each area we tackle. <br>
+          We choose the areas carefully, based on <br>
+          where we can add the <strong>most <br>
+            value for our customers</strong>.</p>
+        <p class="BlogTitleBrwn">&nbsp;</p>
+      </div></td>
+      </tr>
+    <tr>
+      <td width="8%" align="center" valign="top"><img src="img/Art/ExperienceIcon.jpg" width="80" height="80" alt=""/></td>
+      <td width="38%" valign="top" class="BodyText"><p class="BlogTitleBrwn">Experience</p>
+        <p>We've been involved with CNC since the 80's. We've been building great software since the 70's.</p></td>
+      <td width="7%" align="center" valign="top" class="BodyText"><img src="img/Art/TrackRecordIcon.jpg" width="80" height="80" alt=""/></td>
+      <td width="47%" valign="top" class="BodyText"><p class="BlogTitleBrwn">Track Record</p>
+        <p>60,000 software users, 2 million site visits a year, hundreds of manufacturers, schools, and organizations.  This isn't our first rodeo either--CNCCookbook is the 8th software startup we've done.</p>
+        <p>&nbsp;</p></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top"><img src="img/Art/InnovationIcon.jpg" width="80" height="80" alt=""/></td>
+      <td valign="top" class="BodyText"><p class="BlogTitleBrwn">Innovation</p>
+        <p>We've done so many things first we lose track, and we're not nearly done innovating.  We are constantly on the prowl for new ideas and techniques we can add to our products.</p>
+        <p>&nbsp;</p></td>
+      <td align="center" valign="top" class="BodyText"><img src="img/Art/EasyIcon.jpg" width="80" height="80" alt=""/></td>
+      <td valign="top" class="BodyText"><p class="BlogTitleBrwn">Ease of Use</p>
+        <p class="BodyText">We've been making software easier for years.  Our Founder holds the patent on spreadsheet notebook tabs which he invented for Quattro Pro, one of the original easiest to use ground-breaking spreadsheets programs.</p></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top"><img src="img/Art/ValueIcon.jpg" width="80" height="80" alt=""/></td>
+      <td valign="top" class="BodyText"><p class="BlogTitleBrwn">Value</p>
+        <p>CNC can be a good business, but it's not cheap. We price our software for value and offer choices ranging from subscriptions to outright lifetime purchase to fit your cash flow needs.  There's no nickel and diming either--no maintenance, and all new releases are free during the term of your license.</p></td>
+      <td align="center" valign="top" class="BodyText"><img src="img/Art/TrustIcon.jpg" width="80" height="80" alt=""/></td>
+      <td valign="top" class="BodyText"><p class="BlogTitleBrwn">Commitment</p>
+        <p>We don't advertise and we're not spammers.  We depend on Fanatically Loyal Customers to get the word out about us.  We take every opportunity we can to listen to your feedback and act on it.  In fact, we've often said that having so many great customers gives us a distinct competitive advantage--it's the wisdom of our crowd of CNC'ers.</p></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td valign="top">&nbsp;</td>
+      <td valign="top">&nbsp;</td>
+      <td valign="top">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+  <div class="customerBkgdNoLink" align="center">
+    <p><font face="Times New Roman, Times, serif" size="7" color="#fff">Our Products</font></p>
+  </div>
+  <section class="horzborder"></section>
+      <p align="center" class="BlogTitleBrwn">We offer a family of unique CNC software</p>
+      <table align="center" width="80%" border="0">
+        <tbody>
+          <tr>
+            <td align="center" valign="middle"><p><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="GWizard/Thumbs/CutOptimizer.jpg" alt="" width="256" height="196"></a></p>
+            	<a href="http://www.cnccookbook.com/CCGWizard.html" id="price_link"><h1>G-Wizard Calculator: </h1>
+		      <h1>Feeds and Speeds for the 21st Century</h1>
+		      <p>&nbsp;</p>
+		      </a>
+            </td>
+            <td align="center" valign="middle"><a href="CCGWizardE.html"><img src="img/GWizardE/GWEThumb.jpg" width="256" height="196" alt="G-Wizard G-Code Editor and Simulator"></a>
+		      <a href="http://www.cnccookbook.com/CCGWizardE.html" id="price_link"><h1>G-Wizard Editor: </h1>
+		      <h1>Radically Easier GCode</h1>
+		      <p>&nbsp;</p>
+		      </a></td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle"><a href="http://www.cnccookbook.com/CCMeshCamEasyCAMSoftware.html"><img src="img/OthersProjects/CNC/MeshCAM/RoughTank.jpg" width="256" height="161" alt="Super Easy 3D CAM Software"></a>
+                  <a href="http://www.cnccookbook.com/CCMeshCamEasyCAMSoftware.html" id="price_link"><h1>MeshCAM: World's Easiest 3D CAM</h1></a>
+            </td>
+            <td align="center" valign="middle"><p><a href="CCGearoticGearDesignSoftware.html"><img src="img/Gearotic/GearoticThumb.jpg" width="256" height="192" alt="Gearotic Gear Design Software"></a></p>
+                  <a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html" id="price_link"><h1>Gearotic Gear Design: By Art Fenerty</h1></a>
+            <p>&nbsp;</p></td>
+          </tr>
+        </tbody>
+      </table>
+      <table width="100%" border="0" style="align="center">
+          <tbody>
+            <tr class="BlogTitleBrwn">
+              <td width="25%" valign="top"><p align="center">&nbsp;</p>
+                <p align="center" style="font-size:120%">233,000 </p>
+              <p align="center">Feeds and Speeds Calculated</p>
+              <p align="center">&nbsp;</p></td>
+              <td width="25%" valign="top"><div align="center">
+                <p>&nbsp;</p>
+                <p style="font-size:120%">82,000 </p>
+                <p>Tools Lived Longer</p>
+              </div></td>
+              <td width="25%" valign="top"><div align="center">
+                <p>&nbsp;</p>
+                <p style="font-size:120%">67,000 </p>
+                <p>Jobs Done Sooner</p>
+              </div></td>
+              <td width="25%" valign="top"><div align="center">
+                <p>&nbsp;</p>
+                <p style="font-size:120%">138,000 </p>
+                <p>Machinist's Tasks Made Easier</p>
+              </div></td>
+            </tr>
+          </tbody>
+    </table>
+  <div class="customerBkgdNoLink" align="center">
+      <p><font face="Times New Roman, Times, serif" size="7" color="#fff">Our Community</font></p>
+  </div>
+      <table width="100%" border="0" style="align="center">
+          <tbody>
+            <tr class="BlogTitleBrwn">
+              <td valign="top">&nbsp;</td>
+              <td valign="top">&nbsp;</td>
+              <td valign="top">&nbsp;</td>
+              <td valign="top">&nbsp;</td>
+            </tr>
+            <tr class="BlogTitleBrwn">
+              <td width="25%" valign="top"><p align="center">&nbsp;</p>
+                <p align="center" style="font-size:120%">&nbsp;</p>
+              <p align="center">&nbsp;</p></td>
+              <td width="25%" valign="top"><div align="center">
+                <p><a href="https://www.facebook.com/CNCCookbook"><img src="img/Art/FacebookIcon.png" width="66" height="66" alt=""/></a></p>
+				<div class="fb-like" data-href="https://www.facebook.com/CNCCookbook" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div>	
+                <p>Friends</p>
+              </div></td>
+              <td width="25%" valign="top"><div align="center">
+                <p><a href="https://twitter.com/cnccookbook"><img src="img/Art/TwitterIcon.jpg" width="69" height="71" alt=""/></a></p>
+                <a href="https://twitter.com/CNCCookbook" class="twitter-follow-button" data-show-count="true" data-size="large">Follow @CNCCookbook</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>                <p>Followers</p>
+              </div></td>
+              <td width="25%" valign="top"><div align="center">
+                <p>&nbsp;</p>
+                <p style="font-size:120%">&nbsp;</p>
+              </div></td>
+            </tr>
+            <tr class="BlogTitleBrwn">
+              <td valign="top">&nbsp;</td>
+              <td valign="top">&nbsp;</td>
+              <td valign="top">&nbsp;</td>
+              <td valign="top">&nbsp;</td>
+            </tr>
+          </tbody>
+    </table>
+  <div class="customerBkgdNoLink" align="center">
+      <p><font face="Times New Roman, Times, serif" size="7" color="#fff">From Our Founder</font></p>
+  </div>
+      <table width="100%" border="0">
+        <tbody>
+          <tr>
+            <td valign="top">
+            <div style="line-height:1.5;">
+              <p class="BodyText1">&nbsp;</p>
+              <p class="BodyText1">I've been in the software business since 1984 when I built a product called Quattro Pro and ran all the Engineering for Borland. My name is on a number of patents, including the one for the notebook tabs that are so prevalent in spreadsheets like Excel today.  Alonog the way, I learned a thing or two about Calculators, Programming Tools, and how to make powerful software easier to use.</p>
+              <p class="BodyText1">I had my first machining experience in the 1960's, when a machinist named Charlie Brown showed me how to machine a shaft for a telescope I was building on his Southbend lathe.  I was hooked from that point on.   I put myself through  school by consulting for the CAD software companies of the day, including Computervision and Intergraph.  I've been involved with CADCAM and machining applications for a long time.</p>
+              <p class="BodyText1">I'm a serial entrepreneur in Silicon Valley and CNCCookbook is my 8th startup.  It is by far my favorite and I plan for it to be my last and longest-running business venture--I don't ever plan to retire from it.</p>
+              <p class="BodyText1">The first thing I noticed looking at software for machinists was that it didn't follow the best practices of the broader software markets, and it didn't seem to recognize the needs of the machinist in many fundamental ways. </p>
+              <p class="BodyText1">Being a machinist is a tough business.&nbsp; Margins are thin and competition is  intense.&nbsp; Whether you're a Pro or Hobbyist, CNC is complicated. Mastering all the skills is never easy and is something you're never done with.  So much software is so focused on giving you more options that they forget to help you choose the best options. Not CNCCookbook--that's our special niche.</p>
+              <p class="BodyText1">CNCCookbook was created to help everyone become a better CNC'er, no matter what skill level you've reached.  Only great customers can help us create really great  software, and we depend on you for everything.&nbsp; </p>
+              <p class="BodyText1">Our customers are our only  investors, and we pay back that investment in every way we can.&nbsp; We answer to our customers, not some outside  investors.  Heck, we started out writing software for ourselves so we could get something that really worked well and did things the others couldn't.              </p>
+              <p><font face="Arial, Helvetica, sans-serif">Best Regards,</font></p>
+              <p><font face="Arial, Helvetica, sans-serif">Bob Warfield</font></p>
+              <p><font face="Arial, Helvetica, sans-serif">CEO and Founder</font></p>
+              <p><span class="BodyText1">PS  If you're in the Santa Cruz area and want to meet up, drop me a line.   I love to catch a cup of coffee with interesting folks.</span></p>
+              <p class="BodyText1"> </p>
+            </div>
+            </td>
+            <td width="200px" align="center" valign="top"><p>&nbsp;</p>
+              <p>&nbsp;</p>
+              <p><font face="Arial, Helvetica, sans-serif"><img src="img/BobCasualThumb.jpg" alt="" width="196" height="261"></font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Bob Warfield</font></p></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="BodyText1">&nbsp;</p>
+      <p class="BodyText1">&nbsp;</p>
+  <div class="customerBkgdNoLink" align="center">
+      <p><font face="Times New Roman, Times, serif" size="7" color="#fff">Contact Us</font></p>
+  </div>
+      <blockquote>
+        <p class="BodyText"><span class="BlogTitle">Email</span>:  bob@cnccookbook.com</p>
+        <p class="BodyText"><span class="BlogTitle">Address</span>:</p>
+        <p class="BodyText">CNCCookbook, Inc.</p>
+        <p class="BodyText">3470 Merrill Rd</p>
+        <p class="BodyText">Aptos, CA 95003</p>
+      </blockquote>
+    <!-- #EndEditable -->
+  </div>
+             
+    <!-- Mouseflow Heatmap snippet -->   
+    <script type="text/javascript">
+        var _mfq = _mfq || [];
+        (function () {
+        var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
+        mf.src = "//cdn.mouseflow.com/projects/b6a62468-145e-4624-950e-55a2afe8c7c5.js";
+        document.getElementsByTagName("head")[0].appendChild(mf);
+      })();
+    </script>                
+
+           
+</body>
+
+<!-- #EndTemplate --></html>
+

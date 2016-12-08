@@ -1,0 +1,2197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCGuidePage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>Comprehensive Guide to Feeds and Speeds for Wood plus Tips and Techniques</title>
+<style type="text/css">
+<!--
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.WarningText {
+}
+.WarningText {
+}
+.Warning {
+}
+.Warning {
+}
+.Bozon {
+	font-size: large;
+	color: #F00;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+.BodyText11 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<style type="text/css">
+<!--
+.BodyText111 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText111 {font-family: Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <!--script type="text/javascript" src="js/jquery.form.js"></script--><!-- Isn't this a duplicate of what google is giving us right above? -->
+    <script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageTitle {
+            font-family: Times New Roman, Times, serif;
+            color: #339933;
+            font-size: 30pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <script type="text/javascript">
+        multitouch();
+    </script>
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="http://www.cnccookbook.com/images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="http://www.cnccookbook.com/img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p align="center" class="style1 style4"><strong><font face="Arial, Helvetica, sans-serif" size="+1"><a href="CCCNCMillFeedsSpeeds.htm">CNC Milling Feeds and Speeds</a></font></strong><a href="CCCNCMillFeedsSpeeds.htm"><strong><font size="+1" face="Arial, Helvetica, sans-serif">Contents</font></strong></a></p>
+<p align="center" class="style1">&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="MakeCNCParts/HowToMakeCNCParts.html">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=hellobar&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2015/03/23/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=hellobar&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=hellobar&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                    <p class="BodyText"><strong><a href="CCCNCCutterFeedsSpeeds.htm">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText"><strong><a href="CCCNCMaterialFeedsSpeeds.htm">Feeds and Speeds By Material</a></strong></p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><img src="http://www.cnccookbook.com/GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="http://www.cnccookbook.com/img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                                                                <!-- Modernized Social Buttons -->
+                                <p align="center">
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" /></a><strong><span class="BodyText">THREE WAYS TO SHARE</span></strong></p>
+
+                            <div id="centerContainer" style="background-color:#d7dfc0">
+                                <!-- #BeginEditable "Body" -->
+                                <h1 align="center"><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="PageTitle">Feeds and Speeds for Wood</font></h1>
+                                <p align="center"><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="BlogTitle"><strong>CNC  Feeds and Speeds Cookbook</strong></font></p>
+                                <p align="center" class="BlogTitle"><img src="img/CNCCookbook/MillFeedsSpeeds/Italian-Olive-440x440.jpg" width="440" height="440" alt=""/></p>
+      <p align="center" class="BlogTitle">Italian Olive by <a href="http://www.cookwoods.com/">Cookwoods.com</a>...</p>
+      <p class="BodyText">Here's your comprehensive guide to Feeds and Speeds for Wood, together with Tips and Techniques that are specific to cutting wood on a CNC Machine.</p>
+      <p class="LogoCookbookStyle">Wood Types</p>
+      <p class="BodyText">When calculating feeds and speeds for wood, we generally look at 4 different famillies. You can see them in our <a href="http://www.cnccookbook.com/CCGWizard.html">G-Wizard Feed and Speed Calculator's</a> Material menu:</p>
+      <p align="center" class="BodyText"><img src="img/GWizard/Posts/WoodTypes.png" width="302" height="179" alt=""/></p>
+      <p align="center" class="BodyText">Just 4 wood types? Why not more?</p>
+      <p align="left" class="BodyText">To access the full variety of woods under each family, use the &quot;More...&quot; button on G-Wizard.</p>
+      <p align="left" class="BodyText">People wonder why we don&rsquo;t have a lot more categories and sub-categories.  After all, there are so many categories for steel, why not for wood too? The answer has to do with the size of the &ldquo;sweet spot&rdquo; that relates feeds and speeds to good results in a material, together with the relative hardness of the woods (or other materials) versus the cutters (HSS or Carbide). The Sweet Spot determines how the relationship between speed (spindle rpm) and feedrate need to come together for good cutting results.  A typical Sweet Spot looks like this schematically:</p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/MillFeedsSpeeds/SweetSpots.jpg" width="800" height="573" alt=""/></p>
+      <p align="left" class="BodyText">The green areas reflect ideal Sweet Spot matches for a material and cutting conditions.  You can optimize MRR (Material Removal Rate), Surface Finish, and to an extent a blend of all three.  Red reflects danger zones.  It&rsquo;s important to note you can get into just as much trouble running too slowly (due to rubbing) as running too quickly. </p>
+      <p align="left" class="BodyText">Tools usually fail for a couple of main reasons: </p>
+      <p align="left" class="BodyText">&ndash;  They get too hot, which softens the tool and results in a dull edge.  Tools have a certain maximum speed, called the &ldquo;Surface Speed&rdquo; that governs how fast they can run against a given material.  Running too slowly relative to feeds also generates a lot of heat due to Rubbing.  This destroys a tool gradually, though gradual can mean a matter of minutes if the tool is hot enough. </p>
+      <p align="left" class="BodyText">&ndash;  Tools can break because the flutes get too full, the chips have no place to go, and the tool jams and snaps off.  This destroys a tool suddenly and is more commonly what beginners see. </p>
+      <p align="left" class="BodyText">A lot else can shorten a tools life&ndash;chipped edges in some materials, materials like stainless steel can &ldquo;work harden&rdquo; and suddenly become much harder during the cutting process, and some materials like aluminum try to weld themselves to the cutting edge if lubricant or appropriate tool coatings are not used.  But, over heating and chip loading are the two main tool life enemies that are directly feeds and speeds related. </p>
+      <p align="left" class="BodyText">You can learn all this and much more from our free Feeds and Speeds Tutorial, but for now, let&rsquo;s stay with this idea of a Sweet Spot.  In general, the sweet spots for woods are much larger than for metals.  For harder steels and difficult materials like Titanium, the sweet spot gets very small indeed. Imagine there are actual numbers on our Sweet Spot diagram.  &ldquo;Size&rdquo; of Sweet Spot refers to how wide a range of numbers are safe. </p>
+      <p align="left" class="BodyText"><strong>What determines the &ldquo;Size&rdquo; of a Sweet Spot? </strong></p>
+      <p align="left" class="BodyText">A lot of this is all up to that relative difference in hardness between material and cutter.  Even Carbide is not all that much harder than hardened steel whereas it is phenomenally harder than even the hardest woods. Red Oak, for example, has a Brinell Hardness of about 3.7.  Mild steel is 120, hardened steel is 900, and tungsten carbide is 4000! </p>
+      <p align="left" class="BodyText">It turns out that the characteristics that affect the feeds and speeds for wood are different than hardness. They have to do for example with the behavior of the sap relative to the sawdust and how the chips are made.  Plastics, similarly, can behave differently&ndash;hard plastics as a name is a bit of a misnomer (though it is the industry standard in tooling catalogs).  It refers to the chipping characteristics of the plastic.  Hard Plastic turns to dust&ndash;it shatters.  Soft Plastics allow a nice clean chip to be sliced off, almost like you slice cheese with a knife.  Of course, the same is true for woods.  &ldquo;Hard&rdquo; Wood versus &ldquo;Soft&rdquo; Wood has more to do with the seeds of the Wood than the actual hardness.  Balsa seems soft but is technically a Hardwood.  Hardwood seeds have a covering&ndash;shell or fruit, while Softwood does not. </p>
+      <p align="left" class="BodyText">Another factor influencing all this has to do with manufacturing process for the material.  In the case of materials like MDF and Plywood, their manufacture can result in abrasive grit being embedded in the layers and that grit matters more than the wood in feeds and speeds.  This is why so much router work prefers Carbide tooling even though wood is relatively soft. HSS just doesn&rsquo;t stand up to that kind of grit very well. </p>
+      <p align="left" class="BodyText">With all that said, there are still differencs in hardness for various woods, and there is a standard scale, called the<a href="https://en.wikipedia.org/wiki/Janka_hardness_test"> &quot;Janka&quot; scale</a> that is used to rate the relative hardness of various woods.</p>
+      <p class="LogoCookbookStyle">Softwoods</p>
+      <p class="BodyText">Here are the various softwoods, sorted by Janka hardness, that one might attempt to CNC:</p>
+      <blockquote>
+        <table cellspacing="0" cellpadding="0">
+          <col width="235">
+          <col width="338">
+          <col width="55">
+          <col width="35">
+          <tr class="BodyText">
+            <td align="center">Common Name</td>
+            <td align="center">Scientific Name</td>
+            <td align="center"><p>Janka</p>
+              <p>Metric Hardness&nbsp;&nbsp;</p>
+              <p>K-N</p></td>
+            <td align="center"><p>Janka</p>
+              <p>Imperial Hardness</p>
+              <p>lb-feet</p></td>
+          </tr>
+          <tr>
+            <td width="235"><span class="BodyText">balsa</span></td>
+            <td width="338"><span class="BodyText">Ochroma pyramidale</span></td>
+            <td align="right" width="55"><span class="BodyText">0.4</span></td>
+            <td align="right" width="35"><span class="BodyText">90</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ceiba</span></td>
+            <td><span class="BodyText">Ceiba pentandra</span></td>
+            <td align="right"><span class="BodyText">1.1</span></td>
+            <td align="right"><span class="BodyText">240</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cottonwood - balsam poplar</span></td>
+            <td><span class="BodyText">Populus balsamifera</span></td>
+            <td align="right"><span class="BodyText">1.3</span></td>
+            <td align="right"><span class="BodyText">300</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">white-cedar, northern</span></td>
+            <td><span class="BodyText">Thuja occidentalis</span></td>
+            <td align="right"><span class="BodyText">1.4</span></td>
+            <td align="right"><span class="BodyText">320</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">aspen, quaking</span></td>
+            <td><span class="BodyText">Populus tremuloides</span></td>
+            <td align="right"><span class="BodyText">1.6</span></td>
+            <td align="right"><span class="BodyText">350</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">buckeye, yellow</span></td>
+            <td><span class="BodyText">Aesculus octandra</span></td>
+            <td align="right"><span class="BodyText">1.6</span></td>
+            <td align="right"><span class="BodyText">350</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cedar, atlantic white</span></td>
+            <td><span class="BodyText">Chamaecyparis thyoides</span></td>
+            <td align="right"><span class="BodyText">1.6</span></td>
+            <td align="right"><span class="BodyText">350</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cottonwood, black</span></td>
+            <td><span class="BodyText">Populus trichocarpa</span></td>
+            <td align="right"><span class="BodyText">1.6</span></td>
+            <td align="right"><span class="BodyText">350</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">fir, subalpine</span></td>
+            <td><span class="BodyText">Abies lasiocarpa</span></td>
+            <td align="right"><span class="BodyText">1.6</span></td>
+            <td align="right"><span class="BodyText">350</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">red cedar, western&nbsp;</span></td>
+            <td><span class="BodyText">Thuja plicata&nbsp;</span></td>
+            <td align="right"><span class="BodyText">1.6</span></td>
+            <td align="right"><span class="BodyText">350</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">willow, black</span></td>
+            <td><span class="BodyText">Salix nigra</span></td>
+            <td align="right"><span class="BodyText">1.6</span></td>
+            <td align="right"><span class="BodyText">360</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cuangare</span></td>
+            <td><span class="BodyText">Dialyanthera&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">1.7</span></td>
+            <td align="right"><span class="BodyText">380</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">okoume</span></td>
+            <td><span class="BodyText">Aucoumea klaineana</span></td>
+            <td align="right"><span class="BodyText">1.7</span></td>
+            <td align="right"><span class="BodyText">380</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, eastern white</span></td>
+            <td><span class="BodyText">Pinus strobus</span></td>
+            <td align="right"><span class="BodyText">1.7</span></td>
+            <td align="right"><span class="BodyText">380</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, sugar</span></td>
+            <td><span class="BodyText">Pinus lambertiana</span></td>
+            <td align="right"><span class="BodyText">1.7</span></td>
+            <td align="right"><span class="BodyText">380</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">jelutong</span></td>
+            <td><span class="BodyText">Dyera costulata</span></td>
+            <td align="right"><span class="BodyText">1.7</span></td>
+            <td align="right"><span class="BodyText">390</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">spruce, Engelmann</span></td>
+            <td><span class="BodyText">Picea engelmanni</span></td>
+            <td align="right"><span class="BodyText">1.7</span></td>
+            <td align="right"><span class="BodyText">390</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">fir, balsam</span></td>
+            <td><span class="BodyText">Abies balsamea</span></td>
+            <td align="right"><span class="BodyText">1.8</span></td>
+            <td align="right"><span class="BodyText">400</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">basswood, American</span></td>
+            <td><span class="BodyText">Tilia americana</span></td>
+            <td align="right"><span class="BodyText">1.8</span></td>
+            <td align="right"><span class="BodyText">410</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">basswood, Carolina</span></td>
+            <td><span class="BodyText">Tilia caroliniana</span></td>
+            <td align="right"><span class="BodyText">1.8</span></td>
+            <td align="right"><span class="BodyText">410</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">fir, noble</span></td>
+            <td><span class="BodyText">Abies procera</span></td>
+            <td align="right"><span class="BodyText">1.8</span></td>
+            <td align="right"><span class="BodyText">410</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">aspen, bigtooth</span></td>
+            <td><span class="BodyText">Populus grandidentata</span></td>
+            <td align="right"><span class="BodyText">1.9</span></td>
+            <td align="right"><span class="BodyText">420</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, western white</span></td>
+            <td><span class="BodyText">Pinus monticola</span></td>
+            <td align="right"><span class="BodyText">1.9</span></td>
+            <td align="right"><span class="BodyText">420</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">redwood, second growth</span></td>
+            <td><span class="BodyText">Sequoia sempervirens</span></td>
+            <td align="right"><span class="BodyText">1.9</span></td>
+            <td align="right"><span class="BodyText">420</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">sajo</span></td>
+            <td><span class="BodyText">Campnosperma panamensis</span></td>
+            <td align="right"><span class="BodyText">1.9</span></td>
+            <td align="right"><span class="BodyText">425</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cottonwood, eastern</span></td>
+            <td><span class="BodyText">Populus deltoides</span></td>
+            <td align="right"><span class="BodyText">1.9</span></td>
+            <td align="right"><span class="BodyText">430</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">fir, pacific silver</span></td>
+            <td><span class="BodyText">Abies amabilis</span></td>
+            <td align="right"><span class="BodyText">1.9</span></td>
+            <td align="right"><span class="BodyText">430</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">obeche</span></td>
+            <td><span class="BodyText">Triplochiton scleroxylon</span></td>
+            <td align="right"><span class="BodyText">1.9</span></td>
+            <td align="right"><span class="BodyText">430</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, limber</span></td>
+            <td><span class="BodyText">Pinus flexilis</span></td>
+            <td align="right"><span class="BodyText">1.9</span></td>
+            <td align="right"><span class="BodyText">430</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cypress, Mexican</span></td>
+            <td><span class="BodyText">Cupressus lustianica</span></td>
+            <td align="right"><span class="BodyText">2</span></td>
+            <td align="right"><span class="BodyText">460</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, ponderosa</span></td>
+            <td><span class="BodyText">Pinus ponderosa</span></td>
+            <td align="right"><span class="BodyText">2</span></td>
+            <td align="right"><span class="BodyText">460</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">shorea, light red meranti</span></td>
+            <td><span class="BodyText">Shorea&nbsp;spp., lauan-meranti group</span></td>
+            <td align="right"><span class="BodyText">2</span></td>
+            <td align="right"><span class="BodyText">460</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">incense-cedar</span></td>
+            <td><span class="BodyText">Libocedrus decurrens</span></td>
+            <td align="right"><span class="BodyText">2.1</span></td>
+            <td align="right"><span class="BodyText">470</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">fir, white</span></td>
+            <td><span class="BodyText">Abies&nbsp;concolor</span></td>
+            <td align="right"><span class="BodyText">2.1</span></td>
+            <td align="right"><span class="BodyText">480</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, lodgepole</span></td>
+            <td><span class="BodyText">Pinus contorta</span></td>
+            <td align="right"><span class="BodyText">2.1</span></td>
+            <td align="right"><span class="BodyText">480</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">redwood, old growth</span></td>
+            <td><span class="BodyText">Sequoia sempervirens</span></td>
+            <td align="right"><span class="BodyText">2.1</span></td>
+            <td align="right"><span class="BodyText">480</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">spruce, white</span></td>
+            <td><span class="BodyText">Picea glauca</span></td>
+            <td align="right"><span class="BodyText">2.1</span></td>
+            <td align="right"><span class="BodyText">480</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">chalviande</span></td>
+            <td><span class="BodyText">Virola&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">2.1</span></td>
+            <td align="right"><span class="BodyText">481</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">butternut</span></td>
+            <td><span class="BodyText">Juglans cinerea</span></td>
+            <td align="right"><span class="BodyText">2.2</span></td>
+            <td align="right"><span class="BodyText">490</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">fir, grand</span></td>
+            <td><span class="BodyText">Abies grandis</span></td>
+            <td align="right"><span class="BodyText">2.2</span></td>
+            <td align="right"><span class="BodyText">490</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">limba</span></td>
+            <td><span class="BodyText">Terminalia superba</span></td>
+            <td align="right"><span class="BodyText">2.2</span></td>
+            <td align="right"><span class="BodyText">490</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">spruce, red</span></td>
+            <td><span class="BodyText">Picea rubra</span></td>
+            <td align="right"><span class="BodyText">2.2</span></td>
+            <td align="right"><span class="BodyText">490</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">fir, California red</span></td>
+            <td><span class="BodyText">Abies magnifica</span></td>
+            <td align="right"><span class="BodyText">2.2</span></td>
+            <td align="right"><span class="BodyText">500</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hemlock, eastern</span></td>
+            <td><span class="BodyText">Tsuga canadensis</span></td>
+            <td align="right"><span class="BodyText">2.2</span></td>
+            <td align="right"><span class="BodyText">500</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, Jeffrey</span></td>
+            <td><span class="BodyText">Pinus jeffreyi</span></td>
+            <td align="right"><span class="BodyText">2.2</span></td>
+            <td align="right"><span class="BodyText">500</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">banak</span></td>
+            <td><span class="BodyText">Virola&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">2.3</span></td>
+            <td align="right"><span class="BodyText">510</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">Douglas-fir, interior south</span></td>
+            <td><span class="BodyText">Pseudotsuga menziesii</span></td>
+            <td align="right"><span class="BodyText">2.3</span></td>
+            <td align="right"><span class="BodyText">510</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">spruce, Sitka</span></td>
+            <td><span class="BodyText">Picea sitchensis</span></td>
+            <td align="right"><span class="BodyText">2.3</span></td>
+            <td align="right"><span class="BodyText">510</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">tulapueta</span></td>
+            <td><span class="BodyText">Osteophloeum platyspermum</span></td>
+            <td align="right"><span class="BodyText">2.3</span></td>
+            <td align="right"><span class="BodyText">512</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">spruce, black</span></td>
+            <td><span class="BodyText">Picea mariana</span></td>
+            <td align="right"><span class="BodyText">2.3</span></td>
+            <td align="right"><span class="BodyText">520</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">chestnut, American</span></td>
+            <td><span class="BodyText">Castenea dentata</span></td>
+            <td align="right"><span class="BodyText">2.4</span></td>
+            <td align="right"><span class="BodyText">540</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hemlock, western</span></td>
+            <td><span class="BodyText">Tsuga heterophylla</span></td>
+            <td align="right"><span class="BodyText">2.4</span></td>
+            <td align="right"><span class="BodyText">540</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">poplar</span></td>
+            <td><span class="BodyText">Liriodendron tulipifera</span></td>
+            <td align="right"><span class="BodyText">2.4</span></td>
+            <td align="right"><span class="BodyText">540</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">yellow poplar</span></td>
+            <td><span class="BodyText">Liriodendron tulipifera</span></td>
+            <td align="right"><span class="BodyText">2.4</span></td>
+            <td align="right"><span class="BodyText">540</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">catalpa, northern</span></td>
+            <td><span class="BodyText">Catalpa speciosa</span></td>
+            <td align="right"><span class="BodyText">2.4</span></td>
+            <td align="right"><span class="BodyText">550</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">catalpa, southern</span></td>
+            <td><span class="BodyText">Catalpa bignonioides</span></td>
+            <td align="right"><span class="BodyText">2.4</span></td>
+            <td align="right"><span class="BodyText">550</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hura</span></td>
+            <td><span class="BodyText">Hura crepitans</span></td>
+            <td align="right"><span class="BodyText">2.4</span></td>
+            <td align="right"><span class="BodyText">550</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine. red</span></td>
+            <td><span class="BodyText">Pinus resinosa</span></td>
+            <td align="right"><span class="BodyText">2.5</span></td>
+            <td align="right"><span class="BodyText">560</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">baldcypress</span></td>
+            <td><span class="BodyText">Taxcodium distichum</span></td>
+            <td align="right"><span class="BodyText">2.3</span></td>
+            <td align="right"><span class="BodyText">570</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, jack</span></td>
+            <td><span class="BodyText">Pinus banksiana</span></td>
+            <td align="right"><span class="BodyText">2.5</span></td>
+            <td align="right"><span class="BodyText">570</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cedar, Alaska</span></td>
+            <td><span class="BodyText">Chamaecyparis nootkatensis</span></td>
+            <td align="right"><span class="BodyText">2.6</span></td>
+            <td align="right"><span class="BodyText">580</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cedar, yellow</span></td>
+            <td><span class="BodyText">Cupressus nootkatensis</span></td>
+            <td align="right"><span class="BodyText">2.6</span></td>
+            <td align="right"><span class="BodyText">580</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">alder, red</span></td>
+            <td><span class="BodyText">Alnus rubra</span></td>
+            <td align="right"><span class="BodyText">2.6</span></td>
+            <td align="right"><span class="BodyText">590</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">silverbell, Carolina</span></td>
+            <td><span class="BodyText">Halesia carolina</span></td>
+            <td align="right"><span class="BodyText">2.6</span></td>
+            <td align="right"><span class="BodyText">590</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">tamarack</span></td>
+            <td><span class="BodyText">Larix laricina</span></td>
+            <td align="right"><span class="BodyText">2.6</span></td>
+            <td align="right"><span class="BodyText">590</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">Douglas-fir, interior north</span></td>
+            <td><span class="BodyText">Pseudotsuga menziesii</span></td>
+            <td align="right"><span class="BodyText">2.7</span></td>
+            <td align="right"><span class="BodyText">600</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">Spanish-cedar</span></td>
+            <td><span class="BodyText">Cedrela&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">2.7</span></td>
+            <td align="right"><span class="BodyText">600</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ilomba</span></td>
+            <td><span class="BodyText">Pycnanthus angolensis&nbsp;Exell</span></td>
+            <td align="right"><span class="BodyText">2.7</span></td>
+            <td align="right"><span class="BodyText">610</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">red cedar, southern</span></td>
+            <td><span class="BodyText">Juniperus silicicola</span></td>
+            <td align="right"><span class="BodyText">2.7</span></td>
+            <td align="right"><span class="BodyText">610</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, pitch</span></td>
+            <td><span class="BodyText">Pinus rigida</span></td>
+            <td align="right"><span class="BodyText">2.8</span></td>
+            <td align="right"><span class="BodyText">620</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cativo</span></td>
+            <td><span class="BodyText">Prioria copaifera</span></td>
+            <td align="right"><span class="BodyText">2.8</span></td>
+            <td align="right"><span class="BodyText">630</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">sassafras</span></td>
+            <td><span class="BodyText">Sassafras albidum</span></td>
+            <td align="right"><span class="BodyText">2.8</span></td>
+            <td align="right"><span class="BodyText">630</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">alder, European</span></td>
+            <td><span class="BodyText">Alnus glutinosa</span></td>
+            <td align="right"><span class="BodyText">2.9</span></td>
+            <td align="right"><span class="BodyText">650</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">determa</span></td>
+            <td><span class="BodyText">Ocotea rubra</span></td>
+            <td align="right"><span class="BodyText">2.9</span></td>
+            <td align="right"><span class="BodyText">660</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">Douglas-fir, interior west</span></td>
+            <td><span class="BodyText">Pseudotsuga menziesii</span></td>
+            <td align="right"><span class="BodyText">2.9</span></td>
+            <td align="right"><span class="BodyText">660</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, spruce</span></td>
+            <td><span class="BodyText">Pinus glabra</span></td>
+            <td align="right"><span class="BodyText">2.9</span></td>
+            <td align="right"><span class="BodyText">660</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, Table Mountain</span></td>
+            <td><span class="BodyText">Pinus pungens</span></td>
+            <td align="right"><span class="BodyText">2.9</span></td>
+            <td align="right"><span class="BodyText">660</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">primavera</span></td>
+            <td><span class="BodyText">Tabebula donnell-smithii</span></td>
+            <td align="right"><span class="BodyText">2.9</span></td>
+            <td align="right"><span class="BodyText">660</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pulgande</span></td>
+            <td><span class="BodyText">Dacryodes&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">3</span></td>
+            <td align="right"><span class="BodyText">666</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hemlock, mountain</span></td>
+            <td><span class="BodyText">Tsuga mertensiana</span></td>
+            <td align="right"><span class="BodyText">3</span></td>
+            <td align="right"><span class="BodyText">680</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">sumac, staghorn</span></td>
+            <td><span class="BodyText">Rhus typhina</span></td>
+            <td align="right"><span class="BodyText">3</span></td>
+            <td align="right"><span class="BodyText">680</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, loblolly</span></td>
+            <td><span class="BodyText">Pinus taeda</span></td>
+            <td align="right"><span class="BodyText">3.1</span></td>
+            <td align="right"><span class="BodyText">690</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, shortleaf</span></td>
+            <td><span class="BodyText">Pinus echinata</span></td>
+            <td align="right"><span class="BodyText">3.1</span></td>
+            <td align="right"><span class="BodyText">690</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">magnolia, cucumber tree</span></td>
+            <td><span class="BodyText">Magnolia acuminata</span></td>
+            <td align="right"><span class="BodyText">3.1</span></td>
+            <td align="right"><span class="BodyText">700</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">maple, silver</span></td>
+            <td><span class="BodyText">Acer saccharimum</span></td>
+            <td align="right"><span class="BodyText">3.1</span></td>
+            <td align="right"><span class="BodyText">700</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">Douglas-fir, coast</span></td>
+            <td><span class="BodyText">Pseudotsuga menziesii</span></td>
+            <td align="right"><span class="BodyText">3.2</span></td>
+            <td align="right"><span class="BodyText">710</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">boxelder</span></td>
+            <td><span class="BodyText">Acer negundo</span></td>
+            <td align="right"><span class="BodyText">3.2</span></td>
+            <td align="right"><span class="BodyText">720</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cedar, Port Orford</span></td>
+            <td><span class="BodyText">Chamaecyparis lawsoniana</span></td>
+            <td align="right"><span class="BodyText">3.2</span></td>
+            <td align="right"><span class="BodyText">720</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">chinkapin, giant</span></td>
+            <td><span class="BodyText">Castanopsis chrysophylla</span></td>
+            <td align="right"><span class="BodyText">3.2</span></td>
+            <td align="right"><span class="BodyText">730</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, sand</span></td>
+            <td><span class="BodyText">Pinus clausa</span></td>
+            <td align="right"><span class="BodyText">3.3</span></td>
+            <td align="right"><span class="BodyText">730</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, pond</span></td>
+            <td><span class="BodyText">Pinus serotina</span></td>
+            <td align="right"><span class="BodyText">3.3</span></td>
+            <td align="right"><span class="BodyText">740</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, virginia</span></td>
+            <td><span class="BodyText">Pinus virginiana</span></td>
+            <td align="right"><span class="BodyText">3.3</span></td>
+            <td align="right"><span class="BodyText">740</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">birch, gray</span></td>
+            <td><span class="BodyText">Betula populifolia</span></td>
+            <td align="right"><span class="BodyText">3.4</span></td>
+            <td align="right"><span class="BodyText">760</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, slash</span></td>
+            <td><span class="BodyText">Pinus elliotti</span></td>
+            <td align="right"><span class="BodyText">3.4</span></td>
+            <td align="right"><span class="BodyText">760</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">shorea, yellow meranti</span></td>
+            <td><span class="BodyText">Shorea&nbsp;spp., lauan-meranti group</span></td>
+            <td align="right"><span class="BodyText">3.4</span></td>
+            <td align="right"><span class="BodyText">770</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">sycamore, american</span></td>
+            <td><span class="BodyText">Platanus occidentalis</span></td>
+            <td align="right"><span class="BodyText">3.4</span></td>
+            <td align="right"><span class="BodyText">770</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">parana-pine</span></td>
+            <td><span class="BodyText">Araucaria augustifolia</span></td>
+            <td align="right"><span class="BodyText">3.5</span></td>
+            <td align="right"><span class="BodyText">780</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">shorea, dark red meranti</span></td>
+            <td><span class="BodyText">Shorea&nbsp;spp., lauan-meranti group</span></td>
+            <td align="right"><span class="BodyText">3.5</span></td>
+            <td align="right"><span class="BodyText">780</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">mahogany, true</span></td>
+            <td><span class="BodyText">Swietenia macrophylla</span></td>
+            <td align="right"><span class="BodyText">3.6</span></td>
+            <td align="right"><span class="BodyText">800</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">magnolia, sweetbay</span></td>
+            <td><span class="BodyText">Magnolia virginiana</span></td>
+            <td align="right"><span class="BodyText">3.6</span></td>
+            <td align="right"><span class="BodyText">810</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">tupelo, black</span></td>
+            <td><span class="BodyText">Nyssa sylvatica</span></td>
+            <td align="right"><span class="BodyText">3.6</span></td>
+            <td align="right"><span class="BodyText">810</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">elm, american</span></td>
+            <td><span class="BodyText">Ulmus americana</span></td>
+            <td align="right"><span class="BodyText">3.7</span></td>
+            <td align="right"><span class="BodyText">830</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">larch, western</span></td>
+            <td><span class="BodyText">Larix occidentalis</span></td>
+            <td align="right"><span class="BodyText">3.7</span></td>
+            <td align="right"><span class="BodyText">830</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">mahogany, African</span></td>
+            <td><span class="BodyText">Khaya&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">3.7</span></td>
+            <td align="right"><span class="BodyText">830</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">elder, blue</span></td>
+            <td><span class="BodyText">Sambucus cerulea</span></td>
+            <td align="right"><span class="BodyText">3.7</span></td>
+            <td align="right"><span class="BodyText">840</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ash, black</span></td>
+            <td><span class="BodyText">Fraxinus nigra</span></td>
+            <td align="right"><span class="BodyText">3.8</span></td>
+            <td align="right"><span class="BodyText">850</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">maple, bigleaf</span></td>
+            <td><span class="BodyText">Acer macrophyllum</span></td>
+            <td align="right"><span class="BodyText">3.8</span></td>
+            <td align="right"><span class="BodyText">850</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">sweetgum</span></td>
+            <td><span class="BodyText">Liquidambar styraciflua</span></td>
+            <td align="right"><span class="BodyText">3.8</span></td>
+            <td align="right"><span class="BodyText">850</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">elm, slippery</span></td>
+            <td><span class="BodyText">Ulmus rubra</span></td>
+            <td align="right"><span class="BodyText">3.8</span></td>
+            <td align="right"><span class="BodyText">860</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, pinyon</span></td>
+            <td><span class="BodyText">Pinus edulis</span></td>
+            <td align="right"><span class="BodyText">3.8</span></td>
+            <td align="right"><span class="BodyText">860</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, longleaf</span></td>
+            <td><span class="BodyText">Pinus palustris</span></td>
+            <td align="right"><span class="BodyText">3.9</span></td>
+            <td align="right"><span class="BodyText">870</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hackberry</span></td>
+            <td><span class="BodyText">Celtis occidentalis</span></td>
+            <td align="right"><span class="BodyText">3.9</span></td>
+            <td align="right"><span class="BodyText">880</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">tupelo. water</span></td>
+            <td><span class="BodyText">Nyssa aquatica</span></td>
+            <td align="right"><span class="BodyText">3.9</span></td>
+            <td align="right"><span class="BodyText">880</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">red cedar, eastern&nbsp;</span></td>
+            <td><span class="BodyText">Juniperus virginiana</span></td>
+            <td align="right"><span class="BodyText">4</span></td>
+            <td align="right"><span class="BodyText">900</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">sande</span></td>
+            <td><span class="BodyText">Brosimum&nbsp;spp., utile group</span></td>
+            <td align="right"><span class="BodyText">4</span></td>
+            <td align="right"><span class="BodyText">900</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">birch, paper</span></td>
+            <td><span class="BodyText">Betula papyrifera</span></td>
+            <td align="right"><span class="BodyText">4</span></td>
+            <td align="right"><span class="BodyText">910</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ekop</span></td>
+            <td><span class="BodyText">Tetraberlinia tubmaniana</span></td>
+            <td align="right"><span class="BodyText">4.1</span></td>
+            <td align="right"><span class="BodyText">910</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, ocote</span></td>
+            <td><span class="BodyText">Pinus oocarpa</span></td>
+            <td align="right"><span class="BodyText">4</span></td>
+            <td align="right"><span class="BodyText">910</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">anime</span></td>
+            <td><span class="BodyText">Protium&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">4.1</span></td>
+            <td align="right"><span class="BodyText">920</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">sourwood</span></td>
+            <td><span class="BodyText">Oxydendrum arboreum</span></td>
+            <td align="right"><span class="BodyText">4.2</span></td>
+            <td align="right"><span class="BodyText">940</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cherry, black, American</span></td>
+            <td><span class="BodyText">Prunus serotina</span></td>
+            <td align="right"><span class="BodyText">4.2</span></td>
+            <td align="right"><span class="BodyText">950</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">maple, red</span></td>
+            <td><span class="BodyText">Acer rubrum</span></td>
+            <td align="right"><span class="BodyText">4.2</span></td>
+            <td align="right"><span class="BodyText">950</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">robe</span></td>
+            <td><span class="BodyText">Tabebul&nbsp;spp., roble group</span></td>
+            <td align="right"><span class="BodyText">4.3</span></td>
+            <td align="right"><span class="BodyText">960</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ash, pumpkin</span></td>
+            <td><span class="BodyText">Fraxinus profunda</span></td>
+            <td align="right"><span class="BodyText">4.4</span></td>
+            <td align="right"><span class="BodyText">990</span></td>
+          </tr>
+        </table>
+        <p class="BodyText">&nbsp;</p>
+      </blockquote>
+      <p class="LogoCookbookStyle">Hardwoods</p>
+      <p class="BodyText">Here are the various hardwoods, sorted by Janka hardness, that one might attempt to CNC:</p>
+      <blockquote>
+        <table cellspacing="0" cellpadding="0">
+          <col width="235">
+          <col width="338">
+          <col width="55">
+          <col width="35">
+          <tr class="BodyText">
+            <td align="center">Common Name</td>
+            <td align="center">Scientific Name</td>
+            <td align="center"><p>Janka</p>
+              <p>Metric Hardness&nbsp;&nbsp;</p>
+              <p>K-N</p></td>
+            <td align="center"><p>Janka</p>
+              <p>Imperial Hardness</p>
+              <p>lb-feet</p></td>
+          </tr>
+          <tr>
+            <td width="235"><span class="BodyText">teak</span></td>
+            <td width="338"><span class="BodyText">Tectona grandis</span></td>
+            <td align="right" width="55"><span class="BodyText">4.4</span></td>
+            <td align="right" width="35"><span class="BodyText">1000</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">walnut, black</span></td>
+            <td><span class="BodyText">Juglans nigra</span></td>
+            <td align="right"><span class="BodyText">4.5</span></td>
+            <td align="right"><span class="BodyText">1010</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">albarco</span></td>
+            <td><span class="BodyText">Cariniana&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">4.5</span></td>
+            <td align="right"><span class="BodyText">1020</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">holly, American</span></td>
+            <td><span class="BodyText">Ilex opaca</span></td>
+            <td align="right"><span class="BodyText">4.5</span></td>
+            <td align="right"><span class="BodyText">1020</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">magnolia, southern</span></td>
+            <td><span class="BodyText">Magnolia grandiflora</span></td>
+            <td align="right"><span class="BodyText">4.5</span></td>
+            <td align="right"><span class="BodyText">1020</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">buckthorn, cascara</span></td>
+            <td><span class="BodyText">Rhamnus purshiana</span></td>
+            <td align="right"><span class="BodyText">4.6</span></td>
+            <td align="right"><span class="BodyText">1040</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, southern red</span></td>
+            <td><span class="BodyText">Quercus falcata</span></td>
+            <td align="right"><span class="BodyText">4.7</span></td>
+            <td align="right"><span class="BodyText">1060</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">avodire</span></td>
+            <td><span class="BodyText">Turraeanthus africanus</span></td>
+            <td align="right"><span class="BodyText">4.8</span></td>
+            <td align="right"><span class="BodyText">1080</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">manni</span></td>
+            <td><span class="BodyText">Symphonia globulifera</span></td>
+            <td align="right"><span class="BodyText">5</span></td>
+            <td align="right"><span class="BodyText">1120</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">andiroba</span></td>
+            <td><span class="BodyText">Carapa guianensis</span></td>
+            <td align="right"><span class="BodyText">5</span></td>
+            <td align="right"><span class="BodyText">1130</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, chestnut</span></td>
+            <td><span class="BodyText">Quercus prinus</span></td>
+            <td align="right"><span class="BodyText">5</span></td>
+            <td align="right"><span class="BodyText">1130</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">shorea, white meranti</span></td>
+            <td><span class="BodyText">Shorea javanica, lauan-meranti group</span></td>
+            <td align="right"><span class="BodyText">5.7</span></td>
+            <td align="right"><span class="BodyText">1140</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cherry, wild, European</span></td>
+            <td><span class="BodyText">Prunus avium</span></td>
+            <td align="right"><span class="BodyText">5.1</span></td>
+            <td align="right"><span class="BodyText">1150</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">santa maria</span></td>
+            <td><span class="BodyText">Calophyllum brasiliense</span></td>
+            <td align="right"><span class="BodyText">5.1</span></td>
+            <td align="right"><span class="BodyText">1150</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ash, oregon</span></td>
+            <td><span class="BodyText">Fraxinus latifolia</span></td>
+            <td align="right"><span class="BodyText">5.2</span></td>
+            <td align="right"><span class="BodyText">1160</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">juniper, alligator</span></td>
+            <td><span class="BodyText">Juniperus deppeana</span></td>
+            <td align="right"><span class="BodyText">5.2</span></td>
+            <td align="right"><span class="BodyText">1160</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">maple, black</span></td>
+            <td><span class="BodyText">Acer nigrum</span></td>
+            <td align="right"><span class="BodyText">5.2</span></td>
+            <td align="right"><span class="BodyText">1180</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, overcup</span></td>
+            <td><span class="BodyText">Quercus lyrata</span></td>
+            <td align="right"><span class="BodyText">5.3</span></td>
+            <td align="right"><span class="BodyText">1190</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, water</span></td>
+            <td><span class="BodyText">Quercus nigra</span></td>
+            <td align="right"><span class="BodyText">5.3</span></td>
+            <td align="right"><span class="BodyText">1190</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ash, green</span></td>
+            <td><span class="BodyText">Fraxinus pennsylvanica</span></td>
+            <td align="right"><span class="BodyText">5.3</span></td>
+            <td align="right"><span class="BodyText">1200</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, black</span></td>
+            <td><span class="BodyText">Quercus velutina</span></td>
+            <td align="right"><span class="BodyText">5.4</span></td>
+            <td align="right"><span class="BodyText">1210</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, laurel</span></td>
+            <td><span class="BodyText">Quercus laurifolia</span></td>
+            <td align="right"><span class="BodyText">5.4</span></td>
+            <td align="right"><span class="BodyText">1210</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, heart</span></td>
+            <td><span class="BodyText">Pinus resinosa</span></td>
+            <td align="right"><span class="BodyText">5.5</span></td>
+            <td align="right"><span class="BodyText">1225</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">kapur</span></td>
+            <td><span class="BodyText">Dryobalanops&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">5.5</span></td>
+            <td align="right"><span class="BodyText">1230</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, swamp chestnut</span></td>
+            <td><span class="BodyText">Quercus michauxii</span></td>
+            <td align="right"><span class="BodyText">5.5</span></td>
+            <td align="right"><span class="BodyText">1240</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pine, Caribbean</span></td>
+            <td><span class="BodyText">Pinus caribaea</span></td>
+            <td align="right"><span class="BodyText">5.5</span></td>
+            <td align="right"><span class="BodyText">1240</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">birch, river</span></td>
+            <td><span class="BodyText">Betula nigra</span></td>
+            <td align="right"><span class="BodyText">5.6</span></td>
+            <td align="right"><span class="BodyText">1260</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">birch, yellow</span></td>
+            <td><span class="BodyText">Betula alleghaniensis</span></td>
+            <td align="right"><span class="BodyText">5.6</span></td>
+            <td align="right"><span class="BodyText">1260</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">iroko</span></td>
+            <td><span class="BodyText">Chlorophora spp.</span></td>
+            <td align="right"><span class="BodyText">5.6</span></td>
+            <td align="right"><span class="BodyText">1260</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">keruing</span></td>
+            <td><span class="BodyText">Dipterocarpus&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">5.6</span></td>
+            <td align="right"><span class="BodyText">1270</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">laurel, California</span></td>
+            <td><span class="BodyText">Umbellularia californica</span></td>
+            <td align="right"><span class="BodyText">5.6</span></td>
+            <td align="right"><span class="BodyText">1270</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">myrtlewood</span></td>
+            <td><span class="BodyText">Umbellularia californica</span></td>
+            <td align="right"><span class="BodyText">5.65</span></td>
+            <td align="right"><span class="BodyText">1270</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">angelique</span></td>
+            <td><span class="BodyText">Dicorynia guianensis</span></td>
+            <td align="right"><span class="BodyText">5.7</span></td>
+            <td align="right"><span class="BodyText">1290</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">mersawa</span></td>
+            <td><span class="BodyText">Anisoptera&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">5.7</span></td>
+            <td align="right"><span class="BodyText">1290</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, northern red</span></td>
+            <td><span class="BodyText">Quercus rubra</span></td>
+            <td align="right"><span class="BodyText">5.7</span></td>
+            <td align="right"><span class="BodyText">1290</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, shumard</span></td>
+            <td><span class="BodyText">Quercus shumardii</span></td>
+            <td align="right"><span class="BodyText">5.8</span></td>
+            <td align="right"><span class="BodyText">1290</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">beech, American</span></td>
+            <td><span class="BodyText">Fagus grandifolia</span></td>
+            <td align="right"><span class="BodyText">5.8</span></td>
+            <td align="right"><span class="BodyText">1300</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ramin</span></td>
+            <td><span class="BodyText">Gonystylus bancanus</span></td>
+            <td align="right"><span class="BodyText">5.8</span></td>
+            <td align="right"><span class="BodyText">1300</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">alder, white</span></td>
+            <td><span class="BodyText">Alnus rhombifolia</span></td>
+            <td align="right"><span class="BodyText">5.9</span></td>
+            <td align="right"><span class="BodyText">1320</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ash, white</span></td>
+            <td><span class="BodyText">Fraxinus americana</span></td>
+            <td align="right"><span class="BodyText">5.9</span></td>
+            <td align="right"><span class="BodyText">1320</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">elm, cedar</span></td>
+            <td><span class="BodyText">Ulmus crassifolia</span></td>
+            <td align="right"><span class="BodyText">5.9</span></td>
+            <td align="right"><span class="BodyText">1320</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">elm, rock</span></td>
+            <td><span class="BodyText">Ulmus thomasii</span></td>
+            <td align="right"><span class="BodyText">5.9</span></td>
+            <td align="right"><span class="BodyText">1320</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ovangkol</span></td>
+            <td><span class="BodyText">Guibourtia ehie</span></td>
+            <td align="right"><span class="BodyText">5.9</span></td>
+            <td align="right"><span class="BodyText">1330</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, post</span></td>
+            <td><span class="BodyText">Quercus stellata</span></td>
+            <td align="right"><span class="BodyText">6</span></td>
+            <td align="right"><span class="BodyText">1360</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, white</span></td>
+            <td><span class="BodyText">Quercus alba</span></td>
+            <td align="right"><span class="BodyText">6</span></td>
+            <td align="right"><span class="BodyText">1360</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, bur</span></td>
+            <td><span class="BodyText">Quercus macrocarpa</span></td>
+            <td align="right"><span class="BodyText">6.1</span></td>
+            <td align="right"><span class="BodyText">1370</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cypress, Australian</span></td>
+            <td><span class="BodyText">Callitris glaucophylla</span></td>
+            <td align="right"><span class="BodyText">6</span></td>
+            <td align="right"><span class="BodyText">1375</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">coffeetree, Kentucky</span></td>
+            <td><span class="BodyText">Gymnocladus dioicus</span></td>
+            <td><span class="BodyText">6,2</span></td>
+            <td align="right"><span class="BodyText">1390</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, scarlet</span></td>
+            <td><span class="BodyText">Quercus coccinea</span></td>
+            <td align="right"><span class="BodyText">6.2</span></td>
+            <td align="right"><span class="BodyText">1400</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">sepetir</span></td>
+            <td><span class="BodyText">Pseudosindora palustris</span></td>
+            <td align="right"><span class="BodyText">6.3</span></td>
+            <td align="right"><span class="BodyText">1410</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">tanoak</span></td>
+            <td><span class="BodyText">Lithocarpus densiflorus</span></td>
+            <td align="right"><span class="BodyText">6.3</span></td>
+            <td align="right"><span class="BodyText">1420</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">maple, sugar (hard)</span></td>
+            <td><span class="BodyText">Acer saccharum</span></td>
+            <td align="right"><span class="BodyText">6.4</span></td>
+            <td align="right"><span class="BodyText">1450</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">madrone, Pacific</span></td>
+            <td><span class="BodyText">Arbutus menziesii</span></td>
+            <td align="right"><span class="BodyText">6.5</span></td>
+            <td align="right"><span class="BodyText">1460</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, willow</span></td>
+            <td><span class="BodyText">Quercus phellos</span></td>
+            <td align="right"><span class="BodyText">6.5</span></td>
+            <td align="right"><span class="BodyText">1460</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">birch, sweet</span></td>
+            <td><span class="BodyText">Betula lenta</span></td>
+            <td align="right"><span class="BodyText">6.5</span></td>
+            <td align="right"><span class="BodyText">1470</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, cherrybark</span></td>
+            <td><span class="BodyText">Quercus falcata&nbsp;varpagodifolia</span></td>
+            <td align="right"><span class="BodyText">6.6</span></td>
+            <td align="right"><span class="BodyText">1480</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hickory, bitternut</span></td>
+            <td><span class="BodyText">Carya cordiformis</span></td>
+            <td align="right"><span class="BodyText">6.7</span></td>
+            <td align="right"><span class="BodyText">1500</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">merbau</span></td>
+            <td><span class="BodyText">Intsia&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">6.7</span></td>
+            <td align="right"><span class="BodyText">1500</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pau marfim, Patagonian maple</span></td>
+            <td><span class="BodyText">Balfourodendron riedelianum</span></td>
+            <td align="right"><span class="BodyText">6.7</span></td>
+            <td align="right"><span class="BodyText">1500</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, pin</span></td>
+            <td><span class="BodyText">Quercus palustris</span></td>
+            <td align="right"><span class="BodyText">6.7</span></td>
+            <td align="right"><span class="BodyText">1510</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">sapele</span></td>
+            <td><span class="BodyText">Entandrophragma cylindricum</span></td>
+            <td align="right"><span class="BodyText">6.7</span></td>
+            <td align="right"><span class="BodyText">1510</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">witch hazel</span></td>
+            <td><span class="BodyText">Hamamelis virginica</span></td>
+            <td align="right"><span class="BodyText">6.8</span></td>
+            <td align="right"><span class="BodyText">1530</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">elm, winged</span></td>
+            <td><span class="BodyText">Ulmus alata</span></td>
+            <td align="right"><span class="BodyText">6.8</span></td>
+            <td align="right"><span class="BodyText">1540</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hickory, water</span></td>
+            <td><span class="BodyText">Carya aquatica</span></td>
+            <td align="right"><span class="BodyText">6.9</span></td>
+            <td align="right"><span class="BodyText">1550</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">afrormosia</span></td>
+            <td><span class="BodyText">Pericopsis elata</span></td>
+            <td align="right"><span class="BodyText">6.9</span></td>
+            <td align="right"><span class="BodyText">1560</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">honeylocust</span></td>
+            <td><span class="BodyText">Gleditsia triacanthos</span></td>
+            <td align="right"><span class="BodyText">7</span></td>
+            <td align="right"><span class="BodyText">1580</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">peroba de campos</span></td>
+            <td><span class="BodyText">Paratecoma peroba</span></td>
+            <td align="right"><span class="BodyText">7.1</span></td>
+            <td align="right"><span class="BodyText">1600</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">yew, Pacific</span></td>
+            <td><span class="BodyText">Taxus brevifolia</span></td>
+            <td align="right"><span class="BodyText">7.1</span></td>
+            <td align="right"><span class="BodyText">1600</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, swamp white</span></td>
+            <td><span class="BodyText">Quercus bicolor</span></td>
+            <td align="right"><span class="BodyText">7.2</span></td>
+            <td align="right"><span class="BodyText">1620</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">opepe</span></td>
+            <td><span class="BodyText">Nauclea diderrichii</span></td>
+            <td align="right"><span class="BodyText">7.3</span></td>
+            <td align="right"><span class="BodyText">1630</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">alder, Nepalese</span></td>
+            <td><span class="BodyText">Alnus nepalensis&nbsp;</span></td>
+            <td align="right"><span class="BodyText">7.4</span></td>
+            <td align="right"><span class="BodyText">1690</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">locust, black</span></td>
+            <td><span class="BodyText">Robinia pseudoacacia</span></td>
+            <td align="right"><span class="BodyText">7.6</span></td>
+            <td align="right"><span class="BodyText">1700</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pilon</span></td>
+            <td><span class="BodyText">Hyeronima&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">7.6</span></td>
+            <td align="right"><span class="BodyText">1700</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">kempas</span></td>
+            <td><span class="BodyText">Koompassia malaccensis</span></td>
+            <td align="right"><span class="BodyText">7.6</span></td>
+            <td align="right"><span class="BodyText">1710</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">para-angelim</span></td>
+            <td><span class="BodyText">Hymenolobium excelsum</span></td>
+            <td align="right"><span class="BodyText">7.7</span></td>
+            <td align="right"><span class="BodyText">1720</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">piquia</span></td>
+            <td><span class="BodyText">Caryocar&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">7.7</span></td>
+            <td align="right"><span class="BodyText">1720</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">apple</span></td>
+            <td><span class="BodyText">Malus sylvestris</span></td>
+            <td align="right"><span class="BodyText">7.7</span></td>
+            <td align="right"><span class="BodyText">1730</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">peroba rosa</span></td>
+            <td><span class="BodyText">Aspidosperma&nbsp;spp., peroba group</span></td>
+            <td align="right"><span class="BodyText">7.7</span></td>
+            <td align="right"><span class="BodyText">1730</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">tree-of-heaven</span></td>
+            <td><span class="BodyText">Ailanthus altissima</span></td>
+            <td align="right"><span class="BodyText">7.7</span></td>
+            <td align="right"><span class="BodyText">1731</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">angelin</span></td>
+            <td><span class="BodyText">Andira inermis</span></td>
+            <td align="right"><span class="BodyText">7.8</span></td>
+            <td align="right"><span class="BodyText">1750</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">benge</span></td>
+            <td><span class="BodyText">Guibourtia arnoldiana</span></td>
+            <td align="right"><span class="BodyText">7.8</span></td>
+            <td align="right"><span class="BodyText">1750</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hornbeam, American</span></td>
+            <td><span class="BodyText">Carpinus caroliniana</span></td>
+            <td align="right"><span class="BodyText">7.9</span></td>
+            <td align="right"><span class="BodyText">1780</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">shorea</span></td>
+            <td><span class="BodyText">Shorea&nbsp;spp., baulau group</span></td>
+            <td align="right"><span class="BodyText">7.9</span></td>
+            <td align="right"><span class="BodyText">1780</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ebony, black and white, pale moon</span></td>
+            <td><span class="BodyText">Diospyros malabarica</span></td>
+            <td align="right"><span class="BodyText">7.9</span></td>
+            <td align="right"><span class="BodyText">1790</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">laurel, mountain</span></td>
+            <td><span class="BodyText">Kalmia latifolia</span></td>
+            <td align="right"><span class="BodyText">8</span></td>
+            <td align="right"><span class="BodyText">1790</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">serviceberry</span></td>
+            <td><span class="BodyText">Amelanchier&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">8</span></td>
+            <td align="right"><span class="BodyText">1800</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hickory, shellbark</span></td>
+            <td><span class="BodyText">Carya lacinosa</span></td>
+            <td align="right"><span class="BodyText">8.1</span></td>
+            <td align="right"><span class="BodyText">1810</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hickory, pecan</span></td>
+            <td><span class="BodyText">Carya illinoensis</span></td>
+            <td align="right"><span class="BodyText">8.1</span></td>
+            <td align="right"><span class="BodyText">1820</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hophornbeam, eastern</span></td>
+            <td><span class="BodyText">Ostrya virginiana</span></td>
+            <td align="right"><span class="BodyText">8.3</span></td>
+            <td align="right"><span class="BodyText">1860</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">purpleheart</span></td>
+            <td><span class="BodyText">Peltogyne&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">8.3</span></td>
+            <td align="right"><span class="BodyText">1860</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hickory, shagbark</span></td>
+            <td><span class="BodyText">Carya ovata</span></td>
+            <td align="right"><span class="BodyText">8.4</span></td>
+            <td align="right"><span class="BodyText">1880</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">jarrah</span></td>
+            <td><span class="BodyText">Eucalyptus marginata</span></td>
+            <td align="right"><span class="BodyText">8.5</span></td>
+            <td align="right"><span class="BodyText">1910</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">wenge</span></td>
+            <td><span class="BodyText">Millettia laurentii</span></td>
+            <td align="right"><span class="BodyText">8.4</span></td>
+            <td align="right"><span class="BodyText">1930</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">degame</span></td>
+            <td><span class="BodyText">Calycophyllum candidissimum</span></td>
+            <td align="right"><span class="BodyText">8.6</span></td>
+            <td align="right"><span class="BodyText">1940</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hickory. mockernut</span></td>
+            <td><span class="BodyText">Carya tomentosa</span></td>
+            <td align="right"><span class="BodyText">8.8</span></td>
+            <td align="right"><span class="BodyText">1970</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">pedauk - African</span></td>
+            <td><span class="BodyText">Pterocarpus soyauxii</span></td>
+            <td align="right"><span class="BodyText">8.6</span></td>
+            <td align="right"><span class="BodyText">1970</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ash, blue</span></td>
+            <td><span class="BodyText">Fraxinus quadrangulata</span></td>
+            <td align="right"><span class="BodyText">9</span></td>
+            <td align="right"><span class="BodyText">2030</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">karri</span></td>
+            <td><span class="BodyText">Eucalyptus diversicolor</span></td>
+            <td align="right"><span class="BodyText">9.1</span></td>
+            <td align="right"><span class="BodyText">2040</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">wallaba</span></td>
+            <td><span class="BodyText">Eperua&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">9.1</span></td>
+            <td align="right"><span class="BodyText">2040</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">hickory, pignut</span></td>
+            <td><span class="BodyText">Carya glabra</span></td>
+            <td align="right"><span class="BodyText">9.5</span></td>
+            <td align="right"><span class="BodyText">2140</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">sucupira</span></td>
+            <td><span class="BodyText">Diplotropis purpurea</span></td>
+            <td align="right"><span class="BodyText">9.5</span></td>
+            <td align="right"><span class="BodyText">2140</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">dogwood, flowering</span></td>
+            <td><span class="BodyText">Cornus florida</span></td>
+            <td align="right"><span class="BodyText">9.6</span></td>
+            <td align="right"><span class="BodyText">2150</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">goncalo alves</span></td>
+            <td><span class="BodyText">Astronium graveolens</span></td>
+            <td align="right"><span class="BodyText">9.6</span></td>
+            <td align="right"><span class="BodyText">2160</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">mahogany, Santos, Cabreuva</span></td>
+            <td><span class="BodyText">Myroxylon balsamum</span></td>
+            <td align="right"><span class="BodyText">9.8</span></td>
+            <td align="right"><span class="BodyText">2200</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">tornillo</span></td>
+            <td><span class="BodyText">Cedrelinga cateniformis</span></td>
+            <td align="right"><span class="BodyText">10.2</span></td>
+            <td align="right"><span class="BodyText">2299</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ebony, persimmon, white</span></td>
+            <td><span class="BodyText">Diospyros virginiana</span></td>
+            <td align="right"><span class="BodyText">10.2</span></td>
+            <td align="right"><span class="BodyText">2300</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">mora</span></td>
+            <td><span class="BodyText">Mora&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">10.2</span></td>
+            <td align="right"><span class="BodyText">2300</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">persimmon, common</span></td>
+            <td><span class="BodyText">Diospyros virginiana</span></td>
+            <td align="right"><span class="BodyText">10.2</span></td>
+            <td align="right"><span class="BodyText">2300</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">mesquite</span></td>
+            <td><span class="BodyText">Prosopis&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">10.4</span></td>
+            <td align="right"><span class="BodyText">2345</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">cherry, Brazilian</span></td>
+            <td><span class="BodyText">Castenea dentata</span></td>
+            <td align="right"><span class="BodyText">10.4</span></td>
+            <td align="right"><span class="BodyText">2350</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">courbaril</span></td>
+            <td><span class="BodyText">Hymenaea courbaril</span></td>
+            <td align="right"><span class="BodyText">10.5</span></td>
+            <td align="right"><span class="BodyText">2350</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">greenheart</span></td>
+            <td><span class="BodyText">Chlorocardium rodiei</span></td>
+            <td align="right"><span class="BodyText">10.5</span></td>
+            <td align="right"><span class="BodyText">2350</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ebony, Ceylon, East Indian</span></td>
+            <td><span class="BodyText">Diospyros cebenum</span></td>
+            <td align="right"><span class="BodyText">10.8</span></td>
+            <td align="right"><span class="BodyText">2430</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">granadillo</span></td>
+            <td><span class="BodyText">Platymiscium yucatanum</span></td>
+            <td align="right"><span class="BodyText">10.9</span></td>
+            <td align="right"><span class="BodyText">2450</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">oak, live</span></td>
+            <td><span class="BodyText">Quercus virginiana</span></td>
+            <td align="right"><span class="BodyText">12.9</span></td>
+            <td align="right"><span class="BodyText">2680</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">bubinga</span></td>
+            <td><span class="BodyText">Guibourtia&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">12</span></td>
+            <td align="right"><span class="BodyText">2690</span></td>
+          </tr>
+          <tr class="BodyText">
+            <td>olive</td>
+            <td>Olea europaea, O. capensis</td>
+            <td align="right">&nbsp;</td>
+            <td align="right">2700</td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">rosewood, Brazilian</span></td>
+            <td><span class="BodyText">Dalbergia nigra</span></td>
+            <td align="right"><span class="BodyText">12.1</span></td>
+            <td align="right"><span class="BodyText">2720</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">sucupira</span></td>
+            <td><span class="BodyText">Bowdichia brasiliensis</span></td>
+            <td align="right"><span class="BodyText">12.2</span></td>
+            <td align="right"><span class="BodyText">2750</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">osage orange, horse apple</span></td>
+            <td><span class="BodyText">Maclura pomifera</span></td>
+            <td align="right"><span class="BodyText">12.3</span></td>
+            <td align="right"><span class="BodyText">2760</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">bloodwood, conduru, cardinal wood</span></td>
+            <td><span class="BodyText">Brosimum rubescens</span></td>
+            <td align="right"><span class="BodyText">14</span></td>
+            <td align="right"><span class="BodyText">2900</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">kaneelhart</span></td>
+            <td><span class="BodyText">Licaria&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">12.9</span></td>
+            <td align="right"><span class="BodyText">2900</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ebony, mun</span></td>
+            <td><span class="BodyText">Diospyros mun</span></td>
+            <td align="right"><span class="BodyText">13.4</span></td>
+            <td align="right"><span class="BodyText">3000</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">macawood</span></td>
+            <td><span class="BodyText">Platymiscium&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">14</span></td>
+            <td align="right"><span class="BodyText">3150</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">rosewood, Indian</span></td>
+            <td><span class="BodyText">Dalbergia latifolia</span></td>
+            <td align="right"><span class="BodyText">14.1</span></td>
+            <td align="right"><span class="BodyText">3170</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">bulletwood</span></td>
+            <td><span class="BodyText">Manilkara bidentata</span></td>
+            <td align="right"><span class="BodyText">14.2</span></td>
+            <td align="right"><span class="BodyText">3190</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ebony, African, Gaboon, Nigerian</span></td>
+            <td><span class="BodyText">Diospyros crassiflora</span></td>
+            <td align="right"><span class="BodyText">14.1</span></td>
+            <td align="right"><span class="BodyText">3220</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ebony, Macassar, striped</span></td>
+            <td><span class="BodyText">Diospyros celebica</span></td>
+            <td align="right"><span class="BodyText">14.1</span></td>
+            <td align="right"><span class="BodyText">3220</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">azobe</span></td>
+            <td><span class="BodyText">Lophira alata</span></td>
+            <td align="right"><span class="BodyText">14.9</span></td>
+            <td align="right"><span class="BodyText">3350</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">manbarklak</span></td>
+            <td><span class="BodyText">Eschweilera&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">15.5</span></td>
+            <td align="right"><span class="BodyText">3480</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">ipe</span></td>
+            <td><span class="BodyText">Handroanthus spp. (lapacho group), Brazilian walnut</span></td>
+            <td align="right"><span class="BodyText">15.6</span></td>
+            <td align="right"><span class="BodyText">3510</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">marishballi</span></td>
+            <td><span class="BodyText">Lincania&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">15.9</span></td>
+            <td align="right"><span class="BodyText">3570</span></td>
+          </tr>
+          <tr>
+            <td><span class="BodyText">lignumvitae</span></td>
+            <td><span class="BodyText">Guaiacum&nbsp;spp.</span></td>
+            <td align="right"><span class="BodyText">20</span></td>
+            <td align="right"><span class="BodyText">4500</span></td>
+          </tr>
+        </table>
+        <p class="BodyText">&nbsp;</p>
+      </blockquote>
+      <p class="LogoCookbookStyle">&nbsp;</p>
+      <p class="LogoCookbookStyle">Tips and Techniques for Cutting Wood on a CNC Machine</p>
+      <p class="BlogTitle">Carbide or HSS Cutters?</p>
+      <p class="BodyText">In most cases, you'll want to purchase carbide cutters.  First, a lot of wood products such as plywood and MDF can contain considerable amounts of highly abrasive grit due to the way they are manufactured. That grit radically shortens the life of HSS tools and you'll need carbide to stand up to it.  Second, the spindle speeds used in most CNC woodwork are very fast, and this is also advantageous for Carbide because it tolerates the higher temperatures associated with the fast speeds better. Lastly, carbide is much stiffer than HSS, and so tool deflection is less likely to be a problem.  Here is a great article: <a href="http://blog.cnccookbook.com/2016/03/21/every-cncer-know-tool-deflection/">What Every CNCer Ought to Know About Tool Deflection</a>.</p>
+      <p class="BlogTitle">Avoid Splintering the Surface with Special Router Bits</p>
+      <p class="BodyText">Specialize bits are available to help reduce the likelihood of splintering the surface of your wood (or laminated materials too):</p>
+      <p class="BodyText">- Upcut: This is the normal end mill style.  The spiral flute carries chips up and out of the hole as it cuts.   These are probably the worst about splintering, though with serious fine tuning and slower feeds and speeds you may be able to tame it a bit.</p>
+      <p class="BodyText">- Downcut:  With downcut geometry, the spiral is reversed so it pushes down instead of pulling up. This is great for reducing splintering of the top surface, but you do want to be careful the chips can go somewhere.   Cutting deep tight slots can be problematic for this type of cutter sometimes.</p>
+      <p class="BodyText">- Compression:  A compression cut is a combination of upcut and downcut.  It has the spiral set to pull up at the bottom of the material, then it reverses direction at the top.  It's name comes because it is pushing the chips to the center of the cutter, or &quot;comrpessing&quot; them, in other words. Compression cutters can avoid splintering both top and bottom, so are ideal for many applications where you're making one pass to cut all the way through the material.  </p>
+      <p class="BodyText">- Straight Flute: Straight flutes have no twist.  This reduces their likelihood of splintering, and it also makes the cutters cheaper.  However, their performance is not so hot in terms of ultimate feeds and speeds.</p>
+      <p class="BodyText">For much more on <a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them">Cutters for CNC Routers, see our specific article</a>.      </p>
+      <p align="center" class="BodyText"><img src="img/GWizard/Posts/UpCutDownCut.jpg" width="500" height="500" alt=""/></p>
+      <p class="BlogTitle">More Splintering and Tear-Out Tips</p>
+      <p class="BodyText">- The more porous the wood, the more likely it is to splinter.</p>
+      <p class="BodyText">- Slower, shallower cuts will reduce the splintering.</p>
+      <p class="BodyText">-  <a href="CCCNCMillFeedsSpeedsClimbConventional.htm">Climb Cutting</a> can make tear-out less like than Conventional Milling.</p>
+      <p class="BlogTitle">CNC Router or VMC?</p>
+      <p class="BodyText">Would you believe that for many CNC woodworking applications, a VMC (Vertical Machining Center) can make more sense than a CNC Router? <a href="http://blog.cnccookbook.com/2015/10/10/machining-wood-in-a-vertical-machining-center-like-taylor-guitars/">All sorts of companies like Taylor Guitars and Fender are using VMC's on a daily basis for woodwork</a>.  That link has the details, but here are some of the reasons why:</p>
+      <p class="BodyText">- Cost:  When high levels of precision are needed (guitar making is very precise), the VMC can achieve precision at a lower price point.</p>
+      <p class="BodyText">- Floor Space: Most of the gantries are set up to take 4&times;8 sheets. &nbsp;These custom shops are doing smaller runs and they&rsquo;re not machining plywood sheets. &nbsp;The desire to include climate control to keep the wood stable also means shop floor square footage is at a premium. &nbsp;Smaller machine footprints help keep this cost under control.      </p>
+      <p class="BodyText">- Dust Control: &nbsp;The full enclosure of a VMC really helps keep the dust down in the shop.</p>
+      <p class="BodyText">- Tool Changer: &nbsp;While they&rsquo;re certainly available for CNC Routers, they&rsquo;re standard on VMC&rsquo;s. &nbsp;Fender needs 21 tools for their application and keeps 20 in the changer and the 21st sits in a dedicated space on the table where the spindle can fetch it as needed.</p>
+      <p class="BlogTitle">Vacuum Table Tips</p>
+      <p class="BodyText">Vacuum Tables are often the preferred method of workholding for wood, and we have a huge page chock full of great information on <a href="CCCNCVacuumTable.html">how to use Vacuum Tables</a>.</p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/Vacuum_Table1.jpg" width="347" height="225" alt=""/></p>
+      <p align="center" class="BodyText">Check out our <a href="http://www.cnccookbook.com/CCCNCVacuumTable.html">Total Guide to Vacuum Tables</a>...</p>
+      <p class="LogoCookbookStyle">&nbsp;</p>
+      <p class="LogoCookbookStyle">Calculating Feeds and Speeds for Wood</p>
+      <p class="BlogTitle">Feeds and Speeds Calculator for Wood and CNC Routers</p>
+      <p class="BodyText1">For CNC Woodworking applications, a good Feeds and Speeds Calculator needs the following features:</p>
+      <p class="BodyText1">-  A detailed wood database to fine tune Feeds and Speeds by wood species.</p>
+      <p class="BodyText1">- Support for the special cutters used by CNC Routers such as downcut, compression, and straight flute.</p>
+      <p class="BodyText1">- If you have a hobby-class machine, it isn't as sturdy or rigid as a commercial machine. Feeds and Speeds will need to be adjusted.</p>
+      <p class="BodyText1">- Support to help you limit feeds and speeds to levels that won't pop the parts of your vacuum table.</p>
+      <p class="BodyText1">Our <a href="http://www.cnccookbook.com/CNCRouterFeedsSpeedsCalculator.html">G-Wizard Calculator is the world's first feeds and speeds calculator specifically designed for CNC Router use</a>, and it does all that and more.</p>
+      <p align="center" class="BodyText1"><a href="CNCRouterFeedsSpeedsCalculator.html"><img src="img/GWizard/FeedsSpeedsForWood.jpg" width="500" height="369" alt="Feeds and Speeds for Wood"/></a></p>
+      <p align="center" class="BodyText1">G-Wizard's Material Database has hundreds of wood species built-in...</p>
+      <p class="BlogTitle">My Cutter Gets Really Hot or the Wood is Being Burnt</p>
+      <p class="BodyText1">If the cutter is getting hot to the touch (careful!), and especially if there is any discoloration or the wood is being burnt, your feedrate relative to the proper feedrate is too slow, and the cutter is rubbing. For a full explanation of rubbing, <a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsBasics2.htm">see this article from our Feeds and Speeds Tutorials</a>.</p>
+      <p align="center" class="BodyText1"><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsBasics2.htm"><img src="img/CNCCookbook/CutEdgeRadius1.jpg" width="700" height="568" alt=""/></a></p>
+      <p align="center" class="BodyText1"><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsBasics2.htm">Geometry causes rubbing when we feed cutters too slowly</a>.  It heats everything up and will burn wood...</p>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="LogoCookbookStyle">More CNC Wood Resources</p>
+      <p class="BlogTitle"><a href="http://blog.cnccookbook.com/2015/10/10/machining-wood-in-a-vertical-machining-center-like-taylor-guitars/">Machining Wood in a Vertical Machining Center</a></p>
+      <p class="BlogTitle"><a href="http://www.mmsonline.com/articles/cnc-machining-fuels-guitar-innovations">CNC Machining Fuels Guitar Innovations</a></p>
+      <p class="BlogTitle"><a href="http://www.haas.co.uk/case_studies/fender-guitars.html">They Build Dreams: The Fender Custom Shop</a></p>
+      <p class="BlogTitle"><a href="http://www.onsrud.com/files/pdf/LMT-Onsrud-CNC-Prod-Routing-Guide.pdf">Onsrud CNC Production Routing Guide</a></p>
+      <p class="BlogTitle"><a href="http://blog.cnccookbook.com/2014/11/19/survive-first-cnc-router-fire/">How to Survive Your First CNC Router Fire</a></p>
+      <p class="BlogTitle"><a href="http://blog.cnccookbook.com/2016/07/08/big-2-x-4-hint-lumber-sizes-deceiving/">Lumber Size Information</a></p>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BodyText">&nbsp;</p>
+<p align="center" class="BodyText1"><b><i><font size="+2"><a href="FeedSpeedsCalculator/CCGWizard.html">Try the Free Trial Version of G-Wizard Speeds and Feeds Calculator...</a></font></i></b></p>
+<p align="center" class="BodyText1"><span class="style12"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+<p align="center" class="BodyText1">No credit card required--just your name and email.</p>
+<p align="center" class="BodyText">&nbsp;</p>
+      <!-- #EndEditable -->
+                          </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

@@ -1,0 +1,750 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNCCookbook: Stirling Engine Generator</title>
+
+<meta name="description" content="Solar powered Stirling generators.">
+
+<link rel="canonical" href="http://www.cnccookbook.com/CCStirlingGenerator.htm" />
+
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p><font face="Arial, Helvetica, sans-serif"><b><a href="CCStirlingModels.htm">Stirling 
+        Models</a></b></font></p>
+      <p><b><font face="Arial, Helvetica, sans-serif"><a href="CCJaxaStirling.htm">Jaxa 
+        LTD Stirling</a></font></b></p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p class="style2"><font size="+4" color="#339933">Solar Stirling Engine 
+        Power Generator</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">This is a page on Solar-powered 
+        Stirling engines that generate electricity. I also have <a href="CCStirlingModels.htm">a 
+        page on model Stirlings</a>.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Once upon a time, I came up 
+        with an idea that really started me thinking. Can Home Shop Machinists 
+        build a credible Solar Stirling Electric Generator? <a href="http://www.eetimes.com/news/latest/showArticle.jhtml;jsessionid=C5JRLUUF11NS0QSNDLOSKHSCJUNN2JVN?articleID=53700939&amp;_requestid=35972">According 
+        to Sandia Laboratories,</a> such a system is the most efficient way to 
+        translate the Sun's energy into electricity. Their system is about 30% 
+        efficient, which is roughly twice what a photovoltaic system can do. Sandia, 
+        in conjunction with Stirling Technologies, <a href="http://www.sprol.com/?p=265">has 
+        figured out</a> how to build a 37 foot dish that is supposed to generate 
+        enough power for 8 to 10 homes. Apparently this is about 25 kilowatts.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">My question is, how successful 
+        would a system be that was based on a concentrator the size of the &quot;old 
+        school&quot; C-band satellite dishes? These should be readily available 
+        as surplus, and they had technology to track the sun. Each one is about 
+        6 feet in diameter. If we take the 37 foot diameter figure above, that 
+        big dish had a surface area of 1,075 square feet. A 6-foot satellite dish 
+        has a surface area of 28 square feet, or about 3% of that. Accordingly, 
+        if it can operate at similar efficiency, such a dish ought to turn out 
+        5 or 6 hundred watts or so of electricity. Think of it as being the solar 
+        equivalent of a Honda power generator. Put up two of them, which still 
+        doesn't take that much space on your property, and you have 1 kilowatt. 
+        Starting to be a respectable amount of juice. Presumably there is a tax 
+        break on it as well, but I'm no expert on that! If you want more juice, 
+        it's going to take a bigger collector, I'm afraid, so the project may 
+        not be all that practical.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">What I am curious about is 
+        what sort of Stirling engine is needed to power such a beast? It may be 
+        that the Sandia version is too exotic to fabricate and one would have 
+        to settle for a lower efficiency. I'm not too concerned about that. Even 
+        half as efficient is still just as good as solar cells (photovoltaic) 
+        and I'll bet cheaper. Apparently they used a Scandinavian designed Stirling 
+        called a &quot;<a href="http://www.kockums.se/Products/products.html">Kockums 
+        4-95 Stirling engine</a>&quot;. </font></p>
+      <p align="center"><img src="img/StirlingEngines/mk3small.jpg" width="640" height="969"></p>
+      <p><font face="Arial, Helvetica, sans-serif">Apparently it was originally 
+        created to power submarines. It looks a bit imposing for the average home 
+        shop, but recall we only need on with 1/8 the capacity, so it will be 
+        considerably smaller. Considering what this one is capable of, it seems 
+        relatively compact. The one that was finally perfected for this solar 
+        application is even smaller than the picture above, and is apparently 
+        about the size of a 55-gallon oil drum. 1/8 of that is not small, but 
+        ought to be manageable for many home shop machinists.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">This is where I run out of 
+        steam, so to speak. I've no idea what's inside all of those intricate 
+        housings, and I haven't seen plans for any large scale Stirling's in the 
+        Model Engineering community. The best I was able to find is the Sunpower 
+        EG-1000 1 kilowatt Stirling generator, whose </font><font face="Arial, Helvetica, sans-serif">design 
+        looks simple, compact, and doable. The generator is an integral linear 
+        design, which is cool. A more detailed scientific paper is also available. 
+        Here is what a 1 KW version looks like:</font></p>
+      <p></p>
+      <p align="center"> 
+      <p align="center"><img src="img/StirlingEngines/EG-1000.jpg" width="489" height="597"> 
+        <img src="img/StirlingEngines/free_schem.jpg" width="230" height="393"> 
+      </p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">In practice, imagine 
+        flipping that drawing over so the focus of the parabolic reflector was 
+        the heat end. This particular unit is designed for water cooling. Just 
+        like the Sandia/Kockums unit, I would propose small (motorcycle?) radiators 
+        with a fan to cool the water on the side facing away from the solar collector. 
+        <a href="http://www.sunpower.com/lib/sitefiles/pdf/productlit/Engine%20Brochure.pdf">A 
+        few more factoids on the EG-1000</a>:</font></p>
+      <p align="left"> 
+        <ul>
+          <li><font face="Arial, Helvetica, sans-serif"> The piston and displacer 
+            are only moving about 9mm at peak efficiency.</font></li>
+          <li><font face="Arial, Helvetica, sans-serif">It operates using a planar 
+            spring.</font></li>
+          <li><font face="Arial, Helvetica, sans-serif">There are no linear bearings. 
+            Rather, gas bearings support the design and require no lubrication.</font></li>
+          <li><font face="Arial, Helvetica, sans-serif">It incorporates a linear 
+            generator based on moving permanent magnets and a specially wound 
+            coil.</font></li>
+        </ul>
+      <p></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I suspect it will 
+        require considerable experimentation to produce a workable Stirling for 
+        this application. It's my understanding that they can be finicky beasts 
+        to get running and are very sensitive to friction and other factors. Were 
+        I to undertake such research, I suspect it would make sense to build the 
+        dish, measure the heat available at its focus, and then build a testing 
+        rig that delivered that heat via electric or gas fire so I could fiddle 
+        with Stirling engines in the comfort of my own shop. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The Rhombic drive 
+        is similar in design, but converts the motion from linear to rotary:</font></p>
+      <p align="center"><img src="img/StirlingEngines/BetaStirlingTG4web.jpg" width="870" height="844"></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">It seems to me 
+        that a working rhombic drive design could be considerably simplified as 
+        a free-piston linear design. Free-piston Stirlings need a load that is 
+        provided by the linear alternator/generator.</font></p>
+      <p></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b><font color="#339933">Links</font></b></font></p>
+      <p><a href="http://www.cnczone.com/forums/showthread.php?t=22227"><font face="Arial, Helvetica, sans-serif">Big 
+        thread on CNCZone about Solar Stirling Power Generation</font></a> :<font face="Arial, Helvetica, sans-serif"> 
+        It has some interesting thoughts:</font></p>
+      <p> 
+        <ul>
+          <li><font face="Arial, Helvetica, sans-serif">Use discarded CD's for 
+            reflectors. I like it. These could easily be affixed to a surplus 
+            parabolic satellite dish.</font></li>
+          <li><font face="Arial, Helvetica, sans-serif">Alternatively, get hold 
+            of a "space blanket" - one of those survival sheets of aluminised/gold 
+            coated plastic sheets - and work out how to make a focusing mirror. 
+            I'm not sure how durable this material would be in the dish, but it 
+            certainly is cheap. Perhaps it would simply require laminating on 
+            a new layer every few years.</font></li>
+          <li><font face="Arial, Helvetica, sans-serif">&quot;The advantage with 
+            helium in a Stirling is that it has the highest heat conductivity 
+            of any gas except hydrogen. The Stirling cycle requires the operating 
+            gas to gain and lose heat to its surroundings and this is largely 
+            what limits how fasten a Stirling can run. The higher the heat conductivity 
+            of the gas the faster this process can occur.&quot; This is why the 
+            Kockums uses hydrogen as its working fluid--it contributes to efficiency. 
+            I know for a fact that hydrogen and helium are finicky to keep confined, 
+            especially if there are moving parts to consider. I wonder how much 
+            efficiency we're talking about here?</font></li>
+        </ul>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://pminmo.com/PMinMOwiki/index.php5?title=Stirling_Engines">PMinMo's 
+          Stirling Wiki</a>: A few useful links, but it never went very far.</font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.ent.ohiou.edu/%7Ethermo/me321/quiz.info/StirlCogen/StirlCogen.html">Very 
+          nice article on the Sunpower EG-1000 Stirling generator</a>. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.keveney.com/Vstirling.html">2-Cylinder 
+          &quot;V&quot; Stirling May Be A Good Bet for Power</a></font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.sesusa.org/StirlingPrimer.htm">Great 
+          Primer on How the Stirling Works</a> </font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.sesusa.org/SEDAF.htm">Nice 
+          spreadsheet walkthrough on how to design a Stirling engine</a></font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.sesusa.org/steele/steele.htm">Steel 
+          Stirling Engine Plans</a>: A 4-cylinder design capable of claimed 40 
+          watts. It's about the size of a big model airplane engine.</font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.ent.ohiou.edu/%7Eurieli/stirling/engines/engines.html">Excellent 
+          Schematic Overview of Various Stirling Configurations</a></font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.keveney.com/Engines.html">Wonderful 
+          Stirling Engine Animations</a></font></p>
+        <p><a href="http://www.stirlingengine.com/bboard/q-and-a-fetch-msg.tcl?msg_id=000019&amp;topic_id=Power-producing%20Stirling%20engines&amp;topic="><font face="Arial, Helvetica, sans-serif">Interesting 
+          Update on the 5HP Stirling by Merrick Lockwood</font></a> : <font face="Arial, Helvetica, sans-serif">The 
+          original 140 page book is available <a href="http://www.stirlingengine.com/ecommerce/product.tcl?usca_p=t&amp;product_id=84">here</a>.</font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.stirlingengine.com/bboard/">Stirling 
+          Engine Forums</a></font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.nmri.go.jp/eng/khirata/stirling/sfpse/fpse02/index_e.html">Stirling-powered 
+          Robot Fish</a> : Interesting Japanese project. Nice scale of Stirling.</font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.newtonworks.com/simulationx/application/pdf/App_PowerSystems_Stirling.pdf">Modeling 
+          and Simulation of a Free-Piston Solar Stirling</a></font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://stinet.dtic.mil/cgi-bin/GetTRDoc?AD=ADA113409&amp;Location=U2&amp;doc=GetTRDoc.pdf">Military 
+          3 kW Stirling Generator Set</a> : 218 page pdf report.</font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.grc.nasa.gov/WWW/tmsb/stirling/animation/animation_TDC_01_jeff.gif">Cool 
+          Nasa Animation of a free piston linear design</a></font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.unicopter.com/1311.pdf">Sunpower 
+          7 kW Free-Piston Natural Gas-Fired Generator</a></font></p>
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.physics.purdue.edu/outreach/INAAPT/2007/StirlingPower.pdf">Great 
+          Nasa Intro to Stirling Power Generation</a></font></p>
+        
+      <p><a href="http://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19780016056_1978016056.pdf"><font face="Arial, Helvetica, sans-serif">Nasa 
+        Guide to Stirling Engine Design</font></a><font face="Arial, Helvetica, sans-serif">: 
+        300+ pages. One interesting comment is that Stirling engines running on 
+        air are only 20-25% as efficient as those that use helium or hydrogen 
+        as their working gas. Lots of rhombic drive models are analyzed in this 
+        text. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.sunpower.com/index.php?pg=25">List 
+        of Sunpower Papers on Free-Piston Stirlings</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.starspin.com/stirlings/">DS 
+        Stirling Page: Amateur-built relatively large capacity Stirlings</a></font></p>
+      <p></p>
+      <p align="center" class="style1"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="img/GWizard/GWScreenRow.jpg" alt="" width="1024" height="238"></a></p>
+      <p align="center" class="style1"><span class="style12"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+      <p align="center" class="style1"><a href="FeedSpeedsCalculator/CCGWizard.html">Be sure to check out G-Wizard, our Machinist's Software!</a></p>
+      <p align="center">&nbsp;</p>
+      <p align="left"> 
+        <p align="left">&nbsp; </p>
+      <p></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

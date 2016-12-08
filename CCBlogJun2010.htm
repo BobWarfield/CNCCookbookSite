@@ -1,0 +1,984 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNC Cookbook: Blog Posts for Jun 2010 thru July 2010</title>
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.style4 {color: #FFFFFF}
+.style6 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+.style7 {font-size: 36px}
+.style10 {font-size: 24px}
+.BodyText {
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<script type="text/javascript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg','GWizard/TryIt_1.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <hr>
+      <p><span class="PageNav"></span></p>
+      <p align="center"><span class="PageNav"><b><font size="+2">Blog Archives</font></b></span></p>
+      <p class="style1" align="center"><a href="CCBlogIndex.htm"><strong>Index</strong></a></p>
+      <p class="style1" align="center"><b><a href="index.htm">Current</a></b></p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" -->
+      <p align="left">
+        <script src="http://gmodules.com/ig/ifr?url=http://www.google.com/coop/api/012884540460538401629/cse/1yqglgt_b1m/gadget&amp;synd=open&amp;w=320&amp;h=75&amp;title=CNCCookbook+Search&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js"></script>
+        <font size="+2" face="Arial, Helvetica, sans-serif" color="#339933"><b>June 
+      2010 Through July 2010 CNC Blog Archive</b></font>      </p>
+<p align="center"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="img/GWizard/GWScreenRow.jpg" alt="" width="1024" height="238"></a></p>
+      <p align="center" class="style3">Check out the <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard Machinist's Calculator</a>...      </p>
+      <p class="BlogDate">&nbsp;</p>
+<p class="BlogDate">7/28/10</p>
+      <p class="BlogTitle">Announcing the CNCCookbook User's Club </p>
+      <p align="left" class="style1">If you're in the <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard Beta Test</a>, you're eligile to join the <a href="http://cnccookbook.proboards.com/index.cgi">CNCCookbook User's Club</a>.  What the heck is a User's Club?    Well, it's my attempt at a friendly name for the online support forums and community that G-Wizard users have available to get help, interact with one another, and learn new things.   If you're not into G-Wizard, no worries, move along, these are not the droids you're looking for!</p>
+      <p align="left" class="style1">OTOH, if you are into G-Wizard, the User's Club is a great new resource for you.  It's only open for registered users.  To join, go <a href="http://cnccookbook.proboards.com/index.cgi">there</a> and click the Register button at the top right.   You'll receive email telling you what to do next.</p>
+      <p align="left" class="style1">G-Wizard even has a User's Club button, so you can head over if you think of a suggestion or hit a snag and want help:</p>
+      <p align="center" class="style1"><img src="img/GWizard/GWUsersClub.jpg" width="800" height="562"></p>
+      <p align="left" class="style1">Eventually, I'll set the button up to change colors if there are unread messages there.    User's Club is just the first of many Internet features the CNCCookbook software lineup will have.</p>
+      <p class="BlogDate">7/27/10</p>
+      <p class="BlogTitle">An iPad Mach3 Pendant      </p>
+      <p align="left" class="style1">This is pretty cool. </p>
+      <p align="left" class="style1"> <span class="BodyText1">How would you like to use it as a full-featured Mach3 pendant and even run <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard</a> too so you can check your feeds and speeds or do a quick calculation right at the machine?  All this when neither Mach3 nor G-Wizard can be run on the iPad. What gives?      Or, how would you like to make a quick tweak to your CAM program, but it's on a machine in another room from where your PC is located? Tweak and fire up the DNC right from your iPad. </span></p>
+      <p align="left" class="style1">Find out how to do it <a href="CCiPad2PC.html">here</a>, and you'll soon be able to do this:</p>
+      <p align="center" class="style1"><img src="img/CNCCookbook/iPad/Little.jpg" width="800" height="600"></p>
+      <p align="center" class="style1">The New Mach Standard Mill screen set running on my iPad...</p>
+      <p align="left" class="style1">More testing needed, but for circa $12, this is pretty cool.    A lot of folks don't like to run the Internet on their Mach3 machine. They want to keep the machine lean and mean and dedicated to Mach3 so there are no hiccups.  Here's your chance to access the Internet, G-Wizard (which wants an Internet connection), and get a fancy new pendant all at the same time.</p>
+      <p align="center" class="style1"><img src="img/CNCCookbook/iPad/GWiziPad.jpg" width="1024" height="776"></p>
+      <p align="center" class="style1"><a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard</a> works great on the iPad this way...</p>
+      <p class="BlogDate">7/25/10</p>
+      <p class="BlogTitle">The Fascinating World of Dry (and Near Dry) Machining</p>
+      <p align="left" class="style1">For many machinists its hard to imagine life without flood coolant.   For others, its a necessity because their machine may not be set up for flood, or there may be other factors at work.   Many sources indicate that coolant related costs are much higher than tooling--2 to 3x as much in fact.  In addition, we live in a world that is increasingly concerned with the environmental and health impacts of what we're doing.   Disposing of old coolant is problematic for most shops, and breathing in too much coolant mist is a huge potential health risk.     Shops in Europe, for example, already much more commonly use Dry or MQL (Minimum Quantity Lubricant) Machining Techniques than in the US because coolant disposal costs are much higher there.     Yet, countries like Germany are still forces to be reckoned with in terms of their manufacturing economies. There are new regulations already proposed that over time would make it harder to keep on with flood cooling here too.</p>
+      <p align="left" class="style1">Enter the world of Dry Machining.   Can we machine without flood coolant?       In many cases, the answer is, &quot;Yes!&quot;  But what does it entail?</p>
+      <p align="left" class="style1">First, recognize that coolant is performing a number of tasks:</p>
+      <p align="left" class="style1">- Cooling: That's why the call it coolant!</p>
+      <p align="left" class="style1">- Lubrication: So gummy materials like aluminum don't create built up edge, and to reduce friction, and therefore heat.</p>
+      <p align="left" class="style1">- Chip Clearing:      In many ways, this can be the most important function of all.   Recutting chips destroys surface finish and dulls tools much more quickly.  In the worst case, a cutter down in a slot or hole can get clogged with chips and get much hotter or even break.</p>
+      <p align="left" class="style1">When Dry Machining, we have to consider each of the functions of the coolant we hope to get rid of.</p>
+      <p align="left" class="style1"><strong>Lubrication and Built Up Edge</strong></p>
+      <p align="left" class="style1">Let's start with Lubrication. I have the least to say about it, but that doesn't mean it isn't important.  For starters, lubrication helps the tool to cut more easily and while generating less heat.  As the face of the tool slides across the workpiece, it rubs while cutting.  As the chip curls up, it also rubs on the tool, generating more heat.     All that rubbing will produce less heat with a little lube, just like any sliding fit would.   That's an important role for lubrication, but it's kind of a refinement of the cooling issue (generate less heat by reducing friction and we don't have as much to cool).    A much bigger deal is reducing the likelihood of Built Up Edge (BUE).   This is a big deal as anyone who has seen a big wad of aluminum get welded to their cutter will attest to. Things stop working pretty quickly when that happens!</p>
+      <p align="left" class="style1">Fortunately, BUE is pretty material-specific, and mostly applies to Aluminum and Steel that lacks much carbon or other alloying substances.   Use of really sharp cutters with very high rake angles (positive rake is your friend!) also help tremendously.      In the end, a little bit of mist can deal with this problem as well as flood coolant, so it isn't the end of the world. Just don't forget to do something before that wad of aluminum welds itself in all the wrong places.</p>
+      <p align="left" class="style1"><strong>Chip Clearing</strong></p>
+      <p align="left" class="style1">Next up is my personal fave to worry about when Dry Machining: Chip Clearing.   A good air blast can help tremendously with that.  But, certain operations, typically hole making, have a hard time getting by on air alone.    Deep hole boring and drilling are going to be the two operations you'll have the most trouble going dry on for that reason.   If you must, at the very least try to offset the lack of flood with through tool air and preferably through tool mist.  The trick is pumping enough of it through to blow the chips out.   It's easier with a liquid coolant because it is denser, and less of it will carry the chips away better, not to mention conducting heat better.  If you get it all right, with through tool mist, <a href="http://www.todaysmachiningworld.com/how-it-works-%E2%80%93-dry-and-near-%E2%80%93dry-machining/">you can even see longer tool life than with flood coolant</a>.  Note that the natural chip clearing advantage gravity gives to horizontal mills and lathes versus vertical mills is particularly helpful if you're making holes without flood coolant.</p>
+      <p align="left" class="style1"><strong>Cooling</strong></p>
+      <p align="left" class="style1">Which brings us to our next issue, Cooling.   The temperature of the tool is probably the biggest factor affecting too life.  A little heat is good, as it softens the work material, making it easier to cut.   A lot of heat is bad, as it softens the tool, which means it wears rapidly.    Note that the heat to be tolerated is hugely dependant on the tool material and coating.  Carbide takes a lot higher temperatures than HSS.    Some coatings, such as TiAlN really need the higher temperatures to do their job properly, and are often used without coolant.   There are lots of stories out there where turning the coolant off increased tool life under the right conditions. Carbide is susceptible to micro-cracking under the thermal shocks of uneven heating and cooling.   Sandvik, in their cutting tool study course, recommend either no coolant or copious amounts of coolant to avoid this problem.  It should also be note that too much heat is not helpful to accuracy, as it makes your workpiece change size.</p>
+      <p align="left" class="style1">How, then, can we keep things cool without flood?  Before we get into that, a word about coolant type.   There are water soluble coolants, and there are oil-based coolants.  From a cooling standpoint, the water soluble coolants win.     How much?  Consider this data:</p>
+      <div align="center">
+        <table width="90%" border="2">
+          <tr>
+            <td><div align="center"><strong>Coolant</strong></div></td>
+            <td><div align="center"><strong>Specific Heat of Coolant</strong></div></td>
+            <td><div align="center">
+              <p><strong>Steel A (tempered)</strong></p>
+              <p><strong>Temp Decrease %</strong></p>
+            </div></td>
+            <td><div align="center">
+              <p><strong>Steel B (annealed)</strong></p>
+              <p><strong>Temp Decrease %</strong></p>
+            </div></td>
+          </tr>
+          <tr>
+            <td><div align="center">Air</div></td>
+            <td><div align="center">0.25</div></td>
+            <td><div align="center"></div></td>
+            <td><div align="center"></div></td>
+          </tr>
+          <tr>
+            <td><div align="center">Compound oil, low viscosity</div></td>
+            <td><div align="center">0.489</div></td>
+            <td><div align="center">3.9</div></td>
+            <td><div align="center">4.7</div></td>
+          </tr>
+          <tr>
+            <td><div align="center">Compound oil, low viscosity</div></td>
+            <td><div align="center">0.556</div></td>
+            <td><div align="center">6</div></td>
+            <td><div align="center">6</div></td>
+          </tr>
+          <tr>
+            <td><p align="center">Aqueous solution of wetting agent</p></td>
+            <td><div align="center">0.872</div></td>
+            <td><div align="center">14.8</div></td>
+            <td><div align="center">8.4</div></td>
+          </tr>
+          <tr>
+            <td><div align="center">Aqueous &quot;soda product&quot; solution, 4%</div></td>
+            <td><div align="center">0.923</div></td>
+            <td><div align="center">-</div></td>
+            <td><div align="center">13</div></td>
+          </tr>
+          <tr>
+            <td><div align="center">Water</div></td>
+            <td><div align="center">1.00</div></td>
+            <td><div align="center">19</div></td>
+            <td><div align="center">15</div></td>
+          </tr>
+        </table>
+      </div>
+      <p align="left" class="style1">First thing to notice about the table, is that the efficiency of the various coolants at removing heat directly corresponds to the specific heat of the coolant.   Second thing to notice is that air is pretty lousy, about 1/4 as good as water.  It's interesting to note that the oil-based coolants are about half as effective as water-based in terms of their ability to cool the tool and workpiece.   Between that and the health considerations, its no wonder a lot of shops have gone to water-soluble coolants--they just cool better.  One last think about flood coolants--above a certain critical surface speed, they all start to work about the same, and the faster you go the less cooling effect they have.   One reason for this is that when things are going really fast, there isn't time for a big gout of coolant to make it's way into all the nooks and crannies.    Cooling becomes less and less consistent, and this also contributes to the shock cooling effects that make coolant hard on carbide life above certain speeds.</p>
+      <p align="left" class="style1">Well, putting aside that we may be using TiAlN coatings or other conditions that don't want the coolant, we're still not at a loss.   Plain old air provides cooling, but, it'll take quite a bit of it to keep up with the cooling we had from flood.  So, make sure you have plenty available. Mists also cool better than dry air, and can rapidly close the gap with flood where cooling is concerned.   A mist also gives us the opportunity to reintroduce some lubrication, which is very helpful with materials like aluminum.   Here's another of life's ironies--at higher speeds, mist does a better job getting into the nooks and crannies than flood coolant can.</p>
+      <p align="left" class="style1"> There is another answer, though, which is to use air that's already cold.  You certainly can refrigerate the air in various ways, and it cools all by itself as it expands coming out the nozzle, but, there is a nifty device called a Vortex Tube that will cool the air too.  The coolant data above, as well as a detailed study of cooling using plain air or a Vortex Tube may be found in Brian Boswell's fascinating PhD thesis, &quot;<a href="http://espace.library.curtin.edu.au/R?func=dbin-jump-full&local_base=gen01-era02&object_id=18869">Use of air cooling and its effectiveness in dry machining processes</a>.&quot; </p>
+      <p align="left" class="style1">This is quite a fascinating read, if you really want the nitty gritty.   Boswell goes through rigging up some fascinating lathe toolholders that have air passages for directing air streams onto the insert and the workpiece in all the right places, but he ultimately concludes the Vortex tube is a better mousetrap.  If you plan to use plain air, it has to be applied in just the right places to get the job done.  Boswell found the Vortext Tube was much easier to adjust because its nozzle can be further from the workpiece, and that in the end, it was capable of keeping the workpiece just as cool as flood coolant. </p>
+      <p align="left" class="style1">That sounds very promising.  As it happens, I've got a Vortex Tube set up for this purpose that I got cheaply on eBay. I had set it aside because they use quite a lot of air, but since installing the <a href="CCShopAir.html">big compressor</a>, I plan to bring it out and give it another try.  One of the things I wonder about is using it from one side and a little mist from the other for cutting materials like aluminum that are prone to sticking to the cutter.</p>
+      <p align="left" class="style1"><strong>Cutting Parameters for Dry Machining</strong></p>
+      <p align="left" class="style1">Okay, let's suppose you don't have anything as exotic as a Vortext Tube, but you're set up with air to blow the chips away, and perhaps some mist for lubrication.   What impact does this have on your cutting conditions (feeds and speeds) versus flood coolant?   Remember, I'm the <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard</a> guy, and wading through all sorts of PhD thesis and other information is what I do to put G-Wizard ahead of the pack.   So, I've been gathering the data on this, and am ready to start building it into G-Wizard.     Here are some preliminary results:</p>
+      <p align="left" class="style1">1.     Leave the chipload alone. The parameter to adjust based on coolant is your surface speed, which will result in somewhat lower feedrates for a given chipload.</p>
+      <p align="left" class="style1">2.   Above a certain surface speed, forget about adjusting for coolant.   Most of the time you'll want to turn coolant off at this speed anyway. Let's call this the critical surface speed.   It's a little lower, but one can assume that it is definitely the recommended speed for TiAlN coated tools.     TiN coatings can still benefit from coolant, so the number is at the high end of the TiN ratings and definitely below TiAlN.   Obviously this all varies by the material you're cutting, so I can't just trot out a number.</p>
+      <p align="left" class="style1">3.  Below the critical surface speed, there is a correction factor that can be applied.  Like the critical speed, the factor varies by material, but it ranges from a low of about 60% to a high of 85%.   In other words, for some materials you should run at 60% of the recommended speeds (manufacturer's recommendations almost always assume coolant), and for others, you could run at 85%.    The variations are a function of  factors like how well the material conducts heat (high temp alloys are tough to machine in part because they don't conduct heat so well, so it builds up right at the cut), how much it relies on the lubricating properties of the coolant, and so on.</p>
+      <p align="left" class="style1">I'll post another article when I get done building coolant correction into G-Wizard, which won't be too long because after several months of research, I finally collated all the results today.  Meanwhile, get signed up for the free Beta test (all it takes is name and email), and you'll hear about it directly:</p>
+      <p align="center" class="style1"><a href="GWSignup.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('TryIt1','','GWizard/TryIt_1.jpg',1)"><img src="GWizard/TryIt_0.jpg" alt="" name="TryIt1" width="140" height="30" border="0"></a></p>
+      <p align="left" class="style1"><strong>What About Surface Finish?</strong></p>
+      <p align="left" class="style1">There is one last Dry Machining issue to be shared.     When finish machining, the surface finish of Dry Machining is often not as good as with Flood Coolant.  There are many contributing factors, but a lot of it comes from the need to slow down the surface speed.   When that happens, its important to compensate with a larger tool radius (or the milling equivalents) to keep the finish up. The secondary factor is the lubrication effect makes for less tearing and more gentle burrs.   Mist can be helpful there.</p>
+      <p align="left" class="style1"><strong>Conclusion</strong></p>
+      <p align="left" class="style1">All right, so what's the conclusion here?</p>
+      <p align="left" class="style1">Clearly, flood coolant is superior to dry machining and mists if we can ignore the costs associated with the coolant, and if we have a machine capable of dealing with flood coolant.  But, the effects are perhaps not as extreme as some may have feared.   Mist is recommended for sticky materials, a Vortext Tube or other cooled air solution can work just as well as flood at the cooling part, and, if all else fails, at least make sure you've got an air blast to clear the chips.    Given all that, the difference between Dry and Flood Cooling is probably in the 20-25% range in terms of impact of Surface Speed and none at all on chiploads. </p>
+      <p align="left" class="style1">Some situations that are difficult without coolant:</p>
+      <p align="left" class="style1">-  High-temp &quot;Super Allows&quot; pretty well must have coolants unless you use tooling where coolant isn't recommended.</p>
+      <p align="left" class="style1">-    Materials that form a built up edge (some stainless and aluminum) want either coolant or at least mist to discourage it through lubrication.</p>
+      <p align="left" class="style1">- It's very hard to get the chips up out of deep holes without coolant.    Through the tool high pressure mist is a possibility. </p>
+      <p align="left" class="style1">Now consider:</p>
+      <p align="left" class="style1">-  If your spindle isn't the fastest in the land, you may have already detuned your surface speeds downward because your spindle won't go fast enough.  This will largely be true with aluminum (or soft materials like brass) and smaller cutters with carbide.  The net is no penalty for such machines for not having flood coolant.</p>
+      <p align="left" class="style1">-  You can often pick up the lost feedrate and more using chip thinning.    Try the <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard calculator</a> to see how that works or read <a href="CCChipThinning.htm">my article on chip thinning</a>.</p>
+      <p align="left" class="style1">Now, I can run plenty fast enough without flood, but I still want a darned enclosure on my mill to keep the chips inside and not all over the shop!</p>
+      <p align="left" class="style1">For more on Dry Machining, try these articles:</p>
+      <p align="left" class="style1"><a href="http://www.todaysmachiningworld.com/how-it-works-&ndash;-dry-and-near-&ndash;dry-machining/">How it Works -- Dry and new-dry machining</a></p>
+      <p align="left" class="style1"><a href="http://www.americanmachinist.com/304/Issue/Article/False/9131/Issue">The 10 commandments of dry high-speed machining</a></p>
+      <p class="BlogDate">7/23/10</p>
+      <p class="BlogTitle">Mach3: What a Difference a Screen Makes</p>
+      <p align="left" class="style1">They say beauty is only skin deep, but where software is concerned, I think the UI runs much deeper than that.    Without a great User Experience, an otherwise very powerful engine can lurk beneath unused.   </p>
+      <p align="left" class="style1">I've been using Mach3 for years, and love it.    It's a powerful engine, and it has had a decent UI, but not a great UI. By now you've probably seen it or even tried it:</p>
+      <p align="center" class="style1"><img src="img/CNCCookbook/Mach3Old.jpg" width="1024" height="783"></p>
+      <p align="center" class="style1">The Old Mach3 UI...</p>
+      <p align="left" class="style1">It's functional, but garish and things don't line up very well. There are deeper issues, but suffice it to say, I have been thankful that Mach3 allows alternate screens  (just one more aspect of the powerful engine), and I've been taking advantage of it for quite a while.  Tormach provides an alternate screen that's pretty and more functional to their users too.  It's written in Flash and deals with utilizing more screen resolution where available.</p>
+      <p align="left" class="style1">This is all fine and well, but unless Tormach or someone deals with setting up a turnkey system for you, many users will not go to the trouble of modifying or even changing their screen set for Mach3.  But, there is good news--Brian Barker and David Bagby are making available for Beta test a new Mach3 screen set that's excellent:</p>
+      <p align="center" class="style1"><img src="img/CNCCookbook/Mach3New.jpg" width="1054" height="806"></p>
+      <p align="left" class="style1">Isn't that a gorgeous screen?   Much calmer, though no less complex.  Because of the tasteful use of colors, and all the elements are properly aligned, they eye is less distracted by little imperfections and can focus on the task at hand.    There's a lot more to this screen set than just good looks, though. Dave Bagby invested a lot of time analyzing other popular Mach3 screen sets and talking to users about their likes and dislikes, and he built a whole lot of that into this screen set.    </p>
+      <p align="left" class="style1">Let's start with consistent navigation.  The bar along the bottom lists all the available screens.  And it stays put--no matter which screen you're on, the bar is in exactly the same place with exactly the same choices.  But that's not all. If we look at the &quot;User Exts&quot; screen, a place for you to put any extensions you've made to Mach3, you can see that the jogging and MDI clusters stay put as well:</p>
+      <p align="center" class="style1"><img src="img/CNCCookbook/Mach3New2.jpg" width="1024" height="783"></p>
+      <p align="left" class="style1">There's a lot going on in a CNC controller, and some of the screens you won't visit all that often. Always having the nav controls (your most commonly used controls) in one place is hugely valuable to productivity.   Note that the status information is right at the top and pretty well stays there too unless you're on a screen where it would make no sense.      Consistency is a real virtue for User Interface (or User Experience as it has come to be known) design.</p>
+      <p align="left" class="style1">I want to point out one more goodie, which is the ability to get at all the documentation, release notes, and reference material right from your Mach3 screen:</p>
+      <p align="center" class="style1"><img src="img/CNCCookbook/Mach3New3.jpg" width="1024" height="783"></p>
+      <p align="left" class="style1">It's very handy not to have to go dig up a printed document or fumble for a pdf or web browser.   There's a lot more to like about this screen set.     I think it'll be great that every Mach3 user can get it by default when they go to the new version.  That saves them the vagaries of learning how to install a new screen set (although Dave has built a nice installer program to go with these new screens as well).    I've found the Mach3 Standard Mill (the name of the screen set) to be quite stable and a wonderful improvement over the defaults.  Highly recommended.</p>
+      <p align="left" class="style1">The full scoop on how to get the new screen is <a href="http://www.machsupport.com/forum/index.php/board,85.0.html">here</a> on the new support forum for the screen set.  Be sure to go through the instruction before just installing.  The screen was an integrated effort with Mach3, meaning there is some new Mach3 functionality needed for it to work properly.   As a result, you'll need to download a new version of Mach3 (still a beta test) to use the new screen set.  I was part of the alpha test for the screen set, and have really enjoyed it. Dave is wonderful about trying to make the code as stable as possible, and especially about providing lots of great documentation.</p>
+      <p align="left" class="style1">BTW, for those of you who are into software (sorry, I am, ignore if you aren't) and want to know what makes it all tick, there are several threads full of fascinating info about what MSM (Mach Std Mill) does under the covers and how it is integrated with Mach3.  As Dave Bagby says more than once, &quot;this is not your father's screen set.&quot;   Many screen sets are just pretty pixels with a few added macros here and there.   MSM truly is an integrated effort with Mach3 that significantly extends the functionality.    There are some tantalizing details of that in <a href="http://www.machsupport.com/forum/index.php/topic,15378.0.html">this thread</a>, which responds to why one must install a new Mach3.</p>
+      <p class="BlogDate">7/17/10</p>
+      <p class="BlogTitle">Boring Big Holes With Small Boring Heads</p>
+      <p align="left" class="style1">Sometimes we need to bore a large diameter, but we only have a small boring head and it isn't practical to put the part in the lathe. What to do?</p>
+      <p align="left" class="style1">I like these <a href="http://www.practicalmachinist.com/vb/general/boring-head-diameter-vs-bore-diameter-206584/">ideas from Practical Machinist</a>:</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Tools/BigHoleSmallBoreHead1.jpg" width="480" height="353"></p>
+      <p align="center" class="style1">Check out the big bar.   It's rigged across a couple of the holes, I'll bet...</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Tools/BigHoleSmallBoreHead2.jpg" width="479" height="412"></p>
+      <p align="center" class="style1">Take it easy, light cuts, and the surface finish looks pretty decent. This was done on a Bridgeport.  Initial passes with quill, final pass with quill locked by cranking the knee...</p>
+      <p class="BlogTitle">Increasing the Rigidity of a Small Lathe</p>
+      <p align="left" class="style1">The compound slide on a lathe is convenient to have, but it does reduce rigidity a certain amount. For that reason, you'll often see cases where the compound is removed and the tool is mounted directly on the cross slide.   But <a href="http://www.chaski.org/homemachinist/viewtopic.php?f=42&t=87142">I came across</a> this clever method of increasing rigidity for a small lathe:</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Tools/RigidSmLathe1.jpg" width="640" height="480"></p>
+      <p align="center" class="style1">A typical compound slide arrangement...</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Tools/RigidSmLathe2.jpg" width="640" height="480"></p>
+      <p align="center" class="style1">Compound supported by a screw in post to reduce deflection.  I'll bet that helps quite a bit for a parting off tool such as is shown...</p>
+      <p class="BlogTitle">Anything Worth Doing is Worth Overdoing: Making a Boeing 737 in the Garage</p>
+      <p align="left" class="style1">Okay, the title does exaggerate, but <a href="http://www.737ngproject.be/throttle.htm">this project</a> deserves a little exaggeration.   What starts out as lowly particle board eventually becomes an amazing replica of a 737's center console to be used with a flight simulator:</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Toys/IMG_0908.jpg" width="800" height="600"></p>
+      <p align="center" class="style1">&nbsp;</p>
+      <div align="center">
+        <p><img src="img/OthersProjects/Toys/sm0923.jpg" width="354" height="266">
+          <img src="img/OthersProjects/Toys/sm1093.jpg" width="354" height="266">
+          <img src="img/OthersProjects/Toys/sm_1339.jpg" width="354" height="266">
+        </p>
+        <p><img src="img/OthersProjects/Toys/sm_1488.jpg" width="354" height="266"></p>
+        <p><img src="img/OthersProjects/Toys/IMG_19.jpg" width="800" height="600"></p>
+        <p class="style1">How real does it need to be?</p>
+        <p class="style1"><img src="img/OthersProjects/Toys/Throttlesmall.jpg" width="575" height="786"></p>
+        <p class="style1">This one is the real thing...</p>
+      </div>
+      <p class="BlogDate">7/7/10</p>
+      <p class="BlogTitle">How Can I Increase My Tool Life?</p>
+      <p align="left" class="style1">I see this question fairly commonly. Let's assume you're doing everything &quot;right&quot;--correct speeds and feeds, no chatter, good clearance so you're not recutting chips.  That's an important baseline.  Once you get there, suppose you still want to increase your tool life.   The usual answer, based on <a href="http://machine-tools.netfirms.com/18_Applying Taylors Equation.htm">Taylor's equation for tool life</a>, is to reduce your SFM.    Surface Speed (largely spindle rpm), is the major determinant of tool life, while chipload and depth of cut are much less significant.</p>
+      <p align="left" class="style1">Based on a discussion of this on the HSM board, I recently added the ability to calculate how much a reduction (or increase) in your SFM will impact your tool life.  G-Wizard has long had the ability to apply an override or correction factor to its recommended SFM.  The correction factor can be stored with a machine profile.  The new calculation looks like this:</p>
+      <p align="center" class="style1"><img src="img/GWizard/GWToolLife.jpg" width="1016" height="737"></p>
+      <p align="center" class="style1">Scan down to where it says, &quot;Tool life vs 100% SFM&quot;.  Reducing SFM 20% gets you 6x longer tool life!</p>
+      <p align="left" class="style1">As you can see, a little reduction in you SFM can dramatically add to tool life.   In the example screen shot, I am reducing SFM to 80% of recommended, so it runs 20% more slowly.     The predicted increase in tool life is 6x.  </p>
+      <p align="left" class="style1">As I write this I haven't yet released the update to G-Wizard for tool life in the wild, but it'll be out in the next release I make.</p>
+      <p class="BlogDate">7/5/10</p>
+      <p class="BlogTitle">Slick Tormach Toolchanger Video</p>
+      <p align="left" class="style1">One thing about Tormach: those guys are never sitting still!  I came across this video of their toolchanger prototype and thought it was very cool:</p>
+      <p align="center" class="style1"><object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/9X5AS4ohK4Q&amp;hl=en_US&amp;fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/9X5AS4ohK4Q&amp;hl=en_US&amp;fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
+      </p>
+      <p align="left" class="style1">&nbsp;A lot of folks are going to want to get their hands on that Bad Boy when Tormach finishes making it production-worthy.   They <a href="http://www.tormach.com/blog/?p=525#comments">showed a prototype in the past</a>, but it looks like this one is making some real progress forward.  Adding a toolchanger will really step up the capability of the Tormach mill.  This is one I'll be watching closely.</p>
+      <p class="BlogDate">7/3/10</p>
+      <p class="BlogTitle">BC: Before CNC at NACA/NASA</p>
+      <p align="left" class="style1">Thanks to <a href="http://bbs.homeshopmachinist.net/showthread.php?t=42240">an HSM thread</a>, I went out and found some cool pictures of how hydraulic tracer mills could be used with a 4th axis to make complex parts.        Yes Virginia, there was life BC (Before CNC)!</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Machines/OldMachines/1945_10126.jpg" width="800" height="640"></p>
+      <p align="center" class="style1">The date: 1945. Cutting an impellor for a turbocharger or centrifigul flow turbojet.    Twin hydraulic tracing probes, larger than life tracing models, 4th axis, and a Bridgeport headed mounted on that Cinci milling machine so they can get more rpms.</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Machines/OldMachines/Nasa1952.jpg" width="819" height="1024"></p>
+      <p align="center" class="style1">1952.   Could be the same machine, just a little bit older and with a few more modifications.   That's a more complex looking impellor.    The machinist has a T-shirt and jeans.  He'd feel right at home in a shop today!  Note the one tracer model is on the 4th axis, so  it drives the A-axis.  The Z-axis is controlled by the model that is just off the picture on the left.  The models look like they're made from plywood?</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Machines/OldMachines/Nasa1946.jpg" width="1024" height="819"></p>
+      <p align="center" class="style1">Making 4 simultaneous blades for a jet engine with a tracing mill...</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Machines/OldMachines/Nasa1951.jpg" width="1024" height="819"></p>
+      <p align="center" class="style1">Boring on a jet engine section.  Note the shopmade steady rest under the flange.   Just a couple of bearings to support the bottom.    That's a good sized boring bar he has there. Come to think of it, the compound on that lathe is nearly as big as my lathe!</p>
+      <p class="BlogDate">7/2/10</p>
+      <p class="BlogTitle">Free Local Advertising for Your Business on Google</p>
+      <p align="left" class="style1">A lot of machine shops rely on local business. It turns out you can get some free advertising help from Google.   They're trying to make Google Local and Google Maps more relevant, and they want your information to help.  In exchange, you can wind up with some free advertising.   To take advantage of it, you'll need:</p>
+      <p align="left" class="style1">- A description of your business.</p>
+      <p align="left" class="style1">- Your phone number, address, and any other contact information </p>
+      <p align="left" class="style1">- A logo or image you use with your business</p>
+      <p align="left" class="style1">- A coupon or special. This is optional, but Google will let you add one for free if you like.</p>
+      <p align="left" class="style1">To get hooked up, follow these steps:</p>
+      <p align="left" class="style1">1.   Go to <a href="http://www.google.com/local">Google Local</a> and search for your business.  You need to verify it is not yet listed with an ad.</p>
+      <p align="left" class="style1">2. Go back to the Google Local link and click Add/Edit Your Business (bottom left part of the page).</p>
+      <p align="left" class="style1">3.  Follow the steps provided by Google.</p>
+      <p align="left" class="style1">You can check back in a few weeks to verify what got listed.  </p>
+      <p align="left" class="style1">This idea comes from the <a href="http://blog.hubspot.com/blog/tabid/6307/bid/1612/Free-Advertising-on-Google.aspx">Hubspot blog</a>, which is a great source of online marketing ideas for small businesses.</p>
+      <p class="BlogDate">6/30/10</p>
+      <p class="BlogTitle">Pre-CNC Machine Tool Automation</p>
+      <p align="left" class="style1">Screw machines are fascinating devices. Programming is entirely mechanical.  Here's a venerable Brown and Sharpe 2G chugging away:</p>
+      <p align="center" class="style1"><object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/ot6_4R1oZpM&hl=en_US&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/ot6_4R1oZpM&hl=en_US&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>&nbsp;</p>
+      <p align="center" class="style1">Machine Vintage: 1942!</p>
+      <p class="BlogTitle">Handy Table Clamps from Pipe</p>
+      <p align="left" class="style1">These clamps from <a href="http://bbs.homeshopmachinist.net/showthread.php?t=40328&page=2">J Tiers</a> look handy and very easy to make:</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Tools/3x4table_fixtures.jpg" width="568" height="426"></p>
+      <p class="BlogDate">6/26/10</p>
+      <p class="BlogTitle">Thoughts on Tool Rigidity and Deflection</p>
+      <p align="left" class="style1">I was recently asked by a <a href="http://www.cnccookbook.com/CCGWizard.html">G-Wizard</a> customer how to determine their depth and width of cut.  This is a hard question, because there are many trade offs.   This customer's primary concern was that they not break a cutter.    For the most G-Wizard is set up to help avoid that for obvious reasons (!).    In general, cutters are broken when chiploads are exceeded.  G-Wizard will automatically scale back chiploads as you attempt more aggressive cuts that have either a great depth or width of cut.   Other than keeping the chipload within limits, the other issues I find involve various ways that the chips manage to jam up the cutter.  </p>
+      <p align="left" class="style1">You need to also be aware that for some sticky materials like aluminum, some for of lubrication helps.  Built up edge on your cutter dulls it and pretty soon you can wind up with a nasty blob of aluminum completely engulfing the cutter. Nothing good comes of that!</p>
+      <p align="left" class="style1">In addition, if your coolant or air blast is not clearing the chips well enough, chip recutting is going to jam things up and dull the cutter too.     Keep an eye on it, especially if you are putting your cutter down in some narrow canyon where the chips tend to accumulate.</p>
+      <p align="left" class="style1">But things often go to pot well before we break a cutter.   Deflection, for example, is a pretty common and can ruin the accuracy of the cut if nothing else.  I found <a href="http://www.kennametal.com/en-US/customer_support/metalworking/tech_tips/milling_solid_carbide_tech_tips.jhtml">an excellent Kennametal link</a> that has some interesting tips about deflection.  I didn't have to look at them for long before I had whipped up an Excel spreadsheet to compare the trade offs, and from there, it was a short trip to creating an experimental &quot;rigidity&quot; calculator for G-Wizard.  It looks something like this:</p>
+      <p align="center" class="style1"><img src="img/GWizard/GWRigidity.jpg" alt="" width="800" height="591"></p>
+      <p align="center" class="style1">A 1/8&quot;  endmill versus a 1/2&quot;  endmill...</p>
+      <p align="left" class="style1">The calculator breaks down how much each component, cutter diameter, cutter length, and cutter material, affects the overall rigidity. The length is measured from where the tool holder or collet ends to the deepest point where cutting occurs. So in this example, we're saying 1.25&quot; down from the tool holder on the 1/2&quot; endmil and 1/2&quot; down on the 1/8&quot; endmill.  The result is that the 1/8&quot; endmill is about 1/16 as rigid as the 1/2&quot;.</p>
+      <p align="left" class="style1">Consider some other scenarios we can analyze with the calculator:<span class="BodyText1"></span></p>
+      <ul>
+        <li class="BodyText1">A 1/2&quot; endmill at 1&quot; depth is twice as rigid as the one cutting 11/4&quot; deep.  Be careful with deep cuts and choke up on the tool as much as you can in the holder.</li>
+        <li class="BodyText1">A 1/4&quot; endmill at 1&quot; depth is almost 1/16 as rigid as the 1/2&quot; endmill at 1&quot; deep.  Use the largest diameter endmill that fits your internal radii.</li>
+        <li class="BodyText1">A 5/8&quot; endmill at 1&quot; depth is 2.4 times more rigid than a 1/2&quot; at 1&quot; depth.   I have a little 5/8&quot; Iscar Helimill indexable cutter. Even though it adds a mere 1/8&quot; in diameter, it is more than twice as rigid.   That's why I like to rough with it.</li>
+      </ul>
+      <p class="BodyText1">For turners, you can get a sense of the rigidity of different boring bars from the Calculator as well.  It's no wonder that using the biggest carbide bar that fits the hole makes such a difference!</p>
+      <p class="BodyText1">If you're having a problem with deflection, try this calculator.  I'd look at increasing rigidity 2-4x and seeing if the deflection problem doesn't go away or isn't greatly reduced. If it is still an issue, bump up another 2-4x in rigidity until you get rid of it.</p>
+      <p class="BodyText1">If you'd like to try the Rigidity Calculator, make sure you've signed up for the <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard Beta Test</a> and have downloaded the latest release.  </p>
+      <p class="BodyText1">BTW, this is kind of late-breaking as I already uploaded the latest which added all sorts of goodies before I wrote this calculator this morning.</p>
+<p class="BlogDate">6/25/10</p>
+      <p class="BlogTitle">ShopVac Parts Catcher for a CNC Lathe</p>
+      <p align="center" class="BlogDate"><object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/HRZoJVncwBk&hl=en_US&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/HRZoJVncwBk&hl=en_US&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385"></embed></object>&nbsp;</p>
+      <p align="left" class="style1">Watching that video made me think an excellent parts catcher for small parts could be put together from a shop vac for CNC lathes. Whether you choose to move the hose or leave it fixed near the chuck, it should be possible to control the vac with a relay and an M-code.   Might want to put some foam rubber in the bottom of the shop vac barrel so the parts don't fall down too far and get banged up.</p>
+      <p class="BlogTitle">Worried About Viruses on Your Computers?</p>
+      <p align="left" class="style1">Some machinists will not let the machines in their shops have Internet access because they're worried about viruses. It's important to be vigilant, but it's also important to be well-informed and to run appropriate anti-virus software. I couldn't do without Internet access in the shop--too many great resources I want to refer to.</p>
+      <p align="left" class="style1">Some things to think about that I practice as well as some from <a href="http://www.readwriteweb.com/enterprise/2010/06/antivirus-product-testing-changing.php">a recent article I came across</a>:</p>
+      <p align="left" class="style1">-  Maybe you don't want to run one of the market leading anti-virus programs.  After all, those are the ones most virus writers will try to get around first.  Symantec and McAfee score pretty poorly in the article I linked to, for example.</p>
+      <p align="left" class="style1">-  Viruses are much more likely to come to you via e-mail than web browsing according to the article.  What are you doing to prevent it? I run all my email through <a href="https://mail.google.com">Google G-mail</a>. Google is a company that does a great job blocking spam as well as detecting and eliminating viruses from incoming messages.   Plus, its much easier to use than Outlook, and I can access my mail from any computer with a web browser.</p>
+      <p align="left" class="style1">- Given that viruses are often passed around via email, what are your family members doing about virus protection?    Be sure their machines are protected and that they <a href="http://www.antiphishing.org/consumer_recs.html">understand not to click on any phishing notices</a>.  I hear from a lot of folks who were infected because a family member read an email from a friend that was infected and forwarded it.  Of course, if your whole family is on G-mail, that helps too!</p>
+      <p align="left" class="style1">- Keep your software up to date.   For example, if you use G-Wizard, there's <a href="http://get.adobe.com/flashplayer/">a new 10.1 Flash player</a> out that fixes various vulnerabilities and runs faster to boot.  I always take the latest updates for my web browser, operating system, Flash player, and so on.    </p>
+      <p align="left" class="style1">Just a few thoughts to stay safe in the online world!</p>
+      <p class="BlogDate">6/23/10</p>
+      <p class="BlogTitle">Wonderful Amateur Machinist's Board</p>
+      <p align="left" class="style1">I wanted to give a hat tip to <a href="http://madmodder.net/index.php">Mad Modder</a>, which is a wonderful board.  I had seen it before, but hadn't really got into the habit of checking in as often as I should. I think of it as sort of an offshoot of the <a href="http://www.homemodelenginemachinist.com/">HMEM Board</a>, but one with a more general focus than just the model engines.  Same really nice atmosphere (no trolls allowed), and as a result, many of the same really nice machinists that you meet around many other boards congregate here.     </p>
+      <p align="left" class="style1">Here is a little sampling of some projects that caught my eye this most recent visit:</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Tools/RWPinClamp.jpg" width="640" height="480"></p>
+      <p align="center" class="style1"><a href="http://madmodder.net/index.php?topic=3137.90">Talented machinist Rob Wilson's &quot;Pin Clamps&quot;</a> (my made up name)...</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Tools/RWPinClamp2.jpg" width="640" height="480"></p>
+      <p align="center" class="style1">It's so cool to be able to make castings!</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Tools/RWPinClamp3.jpg" width="640" height="480"></p>
+<p align="center" class="style1">Why a pin clamp? Because now he can facemill the bottom of the casting without the clamps being in the way...</p>
+<p align="center" class="style1"><img src="img/OthersProjects/JohnMorseKey.jpg" width="1023" height="590"></p>
+<p align="center" class="style1"><a href="http://madmodder.net/index.php?topic=3278.0;topicseen">John from the UK's absolutely gorgeous Morse key</a></p>
+<p align="center" class="style1"><img src="img/OthersProjects/Tools/tubingbender003.jpg" width="812" height="428"></p>
+<p align="center" class="style1"><a href="http://cgi.ebay.co.uk/Handmade-Morse-Key-/320551539401?cmd=ViewItem&pt=UK_Collectables_RadioTelevision_Telephony_SM&hash=item4aa25c52c9">Nice brass tubing bender</a> for small tubing ala G. Britnell's. Gotta make one of these some day!</p>
+<p align="left" class="style1">Wander over and check out the site. You really can't go wrong if you like such projects!</p>
+      <p class="BlogDate">6/20/10</p>
+      <p class="BlogTitle">Shiny Cubes</p>
+      <p align="left" class="style1">Here are some photos of some little (0.600&quot;) cubes I made. Eventually, they will be turned into some jewelry for my wife and daughter:</p>
+      <p align="center" class="style1"><img src="img/TurnersCubes/Jewelry/ActualSizeCube.jpg" width="338" height="248"></p>
+      <p align="center" class="style1">Actual size...</p>
+      <p align="center" class="style1"><img src="img/TurnersCubes/Jewelry/P1011928.JPG" width="1024" height="751"></p>
+      <p align="center" class="style1">Close-up</p>
+      <p align="left" class="style1">These were done with my Glacern 45 degree facemill.  They're 6061.   Feedrate was 20 IPM, spindle was 1600 rpm, and depth of cut was about 10 thousandths for the last pass. It's hard to photograph, but there is a slight &quot;rainbow&quot; diffraction effect when the grooves are close together. You can see it slightly on one of the lefthand cubes (diagonally up to the left from the bottom-most cube).    These would have come out better with full flood coolant (I don't have it), but they're not too bad considering they are straight off the mill.  I'm going to throw them into the vibratory polisher for a few days before I get on with the next step.   You can see a pretty good reflection in the one on the right, but as I've said before, you don't really get optical mirrors right off the mill.</p>
+      <p class="BlogDate">6/13/10</p>
+      <p class="BlogTitle">Kenneth Maxon's Crazy Cool 'Bots</p>
+      <p align="left" class="style1">Amateur robotics is a decidely high-brow hobby, although I like to think that my CNC conversions are just &quot;blue collar&quot; bots.</p>
+      <p align="left" class="style1">I've been following Kenneth's work for quite a while and he recently sent me some photos of a <a href="http://www.users.qwest.net/~kmaxon/page/side/robot110_137.htm">new project</a>:</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Robots/soj_rend3.jpg" width="1191" height="925"></p>
+      <p align="center" class="style1"><a href="http://www.users.qwest.net/~kmaxon/page/side/robot110_137.htm">Sojourner's</a> task is to autonomously circumnavigate a residential neighborhood...</p>
+      <p align="left" class="style1">One of the things I find intriguing about Kenneth's work is it is always so intricate.   These are not simple, knock-it-together designs.   The parts are quite complex and finely detailed:</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Robots/soj_nada_002185.jpg" width="868" height="730"></p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Robots/soj_nada_02217.jpg" width="868" height="506"></p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Robots/soj_nada_02260.jpg" width="868" height="521"></p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Robots/soj_nada_02450.jpg" width="928" height="632"></p>
+      <p align="left" class="style1">Be sure to head over to Kenneth's site, &quot;<a href="http://www.users.qwest.net/~kmaxon/index.html">Max's Little Robot Shop</a>,&quot; for more!</p>
+      <p class="BlogDate">6/12/10</p>
+      <p class="BlogTitle">Check out the G-Wizard G-code Editor</p>
+      <p align="left" class="style1">Hopefully you've had a chance to join the beta test and play with the G-Wizard Machinist's Calculator.  If not, <a href="FeedSpeedsCalculator/CCGWizard.html">check it out</a>, it's very cool!</p>
+      <p align="left" class="style1">Equally as cool is the G-Wizard G-Code Editor that will soon be joining the G-Wizard lineup.    I've been spending a lot of my programming time on it (though the Calculator continues to get new features too, watch for another one tomorrow!), and it is starting to bear fruit.   Here is a very grainey early demo video of it that shows off a few of the basic features working:</p>
+      <p align="center" class="style1"><object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/KPN-jN7CE3U&hl=en&fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/KPN-jN7CE3U&hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+      </p>
+      <p align="center" class="style1">G-Wizard G-Code Editor...</p>
+      <p align="left" class="style1">Sorry for the lousy quality of the video, I was having some problems matching the resolution of the screen capture against my machine and didn't have time to iron that all out.  The Editor is not ready to release for testing yet.  There are still too many bugs and not enough features.  I like to make my software at least a little bit useful before I turn it loose on the unsuspecting world.  But, I thought you might enjoy an early preview of what's coming!</p>
+      <p align="left" class="style1">The primary goal for the early version of the editor I will make available to testers will be basic g-code editing plus features that make it super easy for newcomers to learn G-Code. Towards that end, you can see things like the Hint view that translates the G-Code to simple English line by line.   After this early version is available with solid simulation and education features, I'll start to add the power user features.  I have some ideas for some very cool features that haven't been seen before that I think everyone will really like.</p>
+<p align="left" class="style1">If you want to be sure not to miss the opportunity to try the G-Code editor, be sure to sign up for the <a href="FeedSpeedsCalculator/CCGWizard.html">Calculator Beta Test</a>.  Everyone there will get email telling them when the Editor is available for test and how to go about installing it.</p>
+      <p class="BlogDate">6/8/10</p>
+      <p class="BlogTitle">CNCCookbook T-Shirts</p>
+      <p align="left" class="style1">I'm thinking of doing a T-Shirt design for CNCCookbook.   Let me know what you think of the <a href="CCTShirts.html">ideas</a>.</p>
+      <p align="center" class="style1"><a href="CCTShirts.html"><img src="img/CNCCookbook/T-Shirts/GitErDone.jpg" width="800" height="800"></a></p>
+      <p align="center" class="style1">More ideas on the <a href="CCTShirts.html">T-Shirt page</a>...</p>
+      <p class="BlogDate">6/6/10</p>
+      <p class="BlogTitle">Laser Fishmouthing (or Tube Scallops, if you prefer)</p>
+      <p align="left" class="style1"><a href="http://bbs.homeshopmachinist.net/showthread.php?p=556819&posted=1#post556819">Michael Moore</a> called my attention to this great video:</p>
+      <p align="center" class="style1"><object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/F_y_iCbKC74&hl=en_US&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/F_y_iCbKC74&hl=en_US&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
+      </p>
+      <p align="left" class="style1">&nbsp;Looks like a great advertisement for why I need a plasma table with 4th axis to me!  That laser really cooks, doesn't it?</p>
+      <p class="BlogTitle">Mill Fine Tramming Adjustment</p>
+      <p align="left" class="style1">Hold the presses, somehow I missed a really cool and very simple mod to the mill.<font face="Arial, Helvetica, sans-serif">I love this idea that <a href="http://www.cnczone.com/forums/showpost.php?p=745618&postcount=324">MachineChick published</a> on CNCZone:</font></p>
+<p align="center"><img src="img/OthersProjects/Machines/TrammingAdjScrew.jpg" alt="" width="800" height="600"></p>
+      <p align="left" class="style1">That little setscrew with locknut will apply pressure to the top of the head causing it to pivot smoothly.  Makes tramming the head faster, easier, and more precise. I would think it might help hold the head in place a little better too!  Mount one on either side so the head can be pushed either way.</p>
+      <p align="left" class="style1">This is now at the top of my <a href="CCWishListFutures.htm">projects page</a> (not that they're really in order). I gotta get me one of those!</p>
+      <p class="BlogTitle">How Well Must I Align My DRO?</p>
+      <p align="left" class="style1">When you mount a DRO, every effort should be made to ensure the DRO is tracking parallel to the axis.   A failure to do that can result in two problems:</p>
+      <p align="left" class="style1">First, the DRO is travelling the same distance as the axis, because it is not parallel. Hence there is some diagonal versus the shorter side of the triangle that the DRO reader head is moving.</p>
+      <p align="left" class="style1">Second, the potential exists for binding.          The DRO's components are made to a high accuracy, and they don't like to have to &quot;give&quot; too much. The reader head is rigidly attached to the machine axis.  If the scale itself isn't parallel to the axis, the reader head is going to be moving closer or further away from one end of travel to the other and could quite possibly be damaged.</p>
+      <p align="left" class="style1">Of the two, the second (potential for binding) consideration is by far the more important.   The actual geometric error in measurement of a non-parallel scale is slight and be calculated using <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard's</a> triangle calculator as follows:</p>
+      <p align="center" class="style1"><img src="img/GWizard/GWizDROError.jpg" width="800" height="586"></p>
+      <p align="center" class="style1">2 tenths error on a 30&quot; DRO scale that is misaligned by 0.100&quot;</p>
+      <p align="left" class="style1">Assume a scale length of 30&quot; that is out of alignment by being high relative to the axis travel 0.100&quot;. When the DRO has travelled 30&quot;, the axis has only travelled 29.9998&quot;, so it's out by 2 tenths.    Presumably, tenth accuracy therefore only requires alignment to 0.050&quot; for a relatively long 30&quot; scale. Even a long 60&quot; Z-axis on a big lathe still only takes alignment to 0.025&quot;.   But, most DRO manuals require you to align more much more closely. </p>
+      <p align="left" class="style1"> There are some exceptions based on the construction of the DRO.  Newall's excellent spherosyn DRO's use rods rather than glass scales.   Once you have the head level to 0.002&quot;, there merely have you insert the rod and use a transfer punch to locate the mounting brackets.  The head is only aligned so accurately because you have a relatively short baseline (length of the head) in which to determine that the rod is aligned with respect to the axis.  However, the rod itself can tolerate a little &quot;give&quot; much better than a delicate glass scale.</p>
+      <p class="BlogTitle">Fishmouth Templates for Welders Using CAD</p>
+      <p align="left" class="style1">A fellow on HSM reading about the CNC fishmouthing mentioned his firm would create templates and then torch cut 6&quot; pipe to make their fishmouths. He wanted to know if cheap CAD systems could make the templates by unrolling the surface.  No problem. Rhino3D did that task lickety split:</p>
+      <p align="center" class="style1"><img src="img/CNCCookbook/FishmouthUnroll.jpg" width="1024" height="715"></p>
+      <p align="left" class="style1">In fact, I deleted a lot of the templates, because unroll gives you one for every exposed surface. There is an inner, outer, top front fishmouth edge, bottom front fishmouth edge, and even the ring that is the rear edge of the pipe.  Print that out 1:1 and you've got your template.</p>
+      <p class="BlogDate">6/5/10</p>
+      <p class="BlogTitle">CNC Fishmouths for Welders</p>
+      <p align="left" class="style1">CNC machines are excellent in terms of precision, repeatability, and doing tasks that would otherwise be difficult to get right manually. Take the cutting of arbitrary &quot;fish mouths&quot; as needed when welding tubing together to make frameworks. Imagine you're welding a bicycle frame, for example.   Tubing of different sizes is coming together at various angles.   The &quot;fish mouth&quot; is the shape one piece of tubing must have to be fit closely to the curve of another before welding can commence.   Given the possibility of different angles, different diameters, and even different shapes (square tubing meets round tubing), these shapes can be odd. The name &quot;fish mouth&quot; (and I can't seem to decide if it is one word or two) comes from the shape's resemblance to a fish's mouth.</p>
+      <p align="left" class="style1">There are a variety of jigs and fixtures available to facilitate fishmouthing (if I may use that oddly contrived word). They hold the tubing in the desired configuration while an annular or other cutter comes down vertically.           I didn't have such an apparatus at hand and needed to make some fishmouths as part of my <a href="CCTappingArm.htm">tapping arm project</a>.  It seemed immediately obvious that <a href="CCMillCNCConversionHome.html">my CNC mill</a> would be a good choice for the job.  The first task was to make up the proper curves for the fishmouths so my CAM program could generate g-code.  That was also very easy in my favorite CAD program, Rhino3D.  I started by drawing the configuration that needed the fishmouths:</p>
+      <p align="center" class="BodyText1"><img src="img/TappingArm/FishMouth1.jpg" alt="" width="1024" height="806"></p>
+      <p align="center" class="BodyText1">Two 1&quot; diameter round pivot blocks with the 1&quot; square tubing between them...</p>
+      <p align="left" class="style1">Since Rhino3D is a solid modeller, we can &quot;subtract&quot; shapes from one another.  I merely drew up the configuration and then &quot;subtracted&quot; the two blue rounds from the red square tubing.  What was left is a perfect solid model of the desired fishmouth:</p>
+      <p align="center" class="BodyText1"><img src="img/TappingArm/FishMouth4.jpg" alt="" width="1024" height="778"></p>
+      <p align="center" class="BodyText1">The result after &quot;subtracting&quot; the blocks to create the fish mouth with the right curves and angles...</p>
+      <p align="left" class="style1">Now I made 2 g-code programs using OneCNC. The first was to cut the diagonal side profile.   &quot;Why use CNC for something that simple?&quot; you ask.  Because its fast and easy. I have been fixturing using my Kurt-style vise.  I set the part zero as being the left corner of the fixed rear jaw on the vise.  I insert the square tubing 1&quot; past that edge.  Close enough is good enough--so even a tape measure will do on the diagonal.      Insert tubing in vise, clamp, press green button, reverse tubing, repeat, done!  CNC is great for this kind of repetition.   Yes, you as easily set up a chop saw, but this was faster and more precise for me. In fact, I've seen a number of accounts of people using their CNC's largely just to saw pieces to size, especially lathes with bar feeds.</p>
+      <p align="left" class="style1">Okay, the second program cuts the upper and lower fishmouth.  Its a quick and easy program.  The curves are, in fact, elliptical and not circles, but that didn't phase OneCNC.   Here's what the toolpath looks like:</p>
+      <p align="center" class="BodyText1"><img src="img/TappingArm/FishMouthToolpathTop.jpg" alt="" width="1024" height="849"></p>
+      <p align="center" class="BodyText1">Imported into OneCNC XR4 and profile curves created for the upper and lower curve...</p>
+      <p align="left" class="style1">The whole process took maybe one hour.  If I'd had a fish-mouthing fixture, I could have done it faster, but probably not a lot faster.   For this approach, I needed no special tooling and I can run off as many of these tubes as I like very quickly.  The best news was not only that this was fast, but the fit was really nice.    A little deburring with a file and I was ready to Tig together the parts.</p>
+<p class="BlogDate">6/3/10</p>
+      <p class="BlogTitle">Learning G-Code</p>
+      <p align="left" class="style1">G-Code is what the programs you feed to a CNC machine are called. While many prefer to avoid it as much as possible and rely on their CAM programs to &quot;know&quot; the g-code, you will ultimately come to a point where you wish you had a deep understanding of g-code.     You will need such an understanding in order to do one or more of the following:</p>
+      <p align="left" class="style1">-  Understand what your CAM program's g-code is really doing.</p>
+      <p align="left" class="style1">- Modify or fix that CAM program g-code to get a better result.  I've seen bugs appear from time to time in every CAM program I've come across.  If you don't know any g-code, you're just stuck with trial and error and at the mercy of your CAM provider.  If you know some g-code, you can get into the CAM's program and fix the problem by hand in order to move ahead.   Many have found that CAM generated code can also be improved upon with a little judicious hand tweaking.</p>
+      <p align="left" class="style1">-  Lathe programs are often pretty simple and therefore not worth firing up the CAM program.  Perhaps you don't even want to spend the money for lathe CAM.</p>
+      <p align="left" class="style1">-   MDI.  You're at the machine.  Your CAM program is elsewhere.  You don't have a drawing.  You just want to make some chips quickly for a simple part, and the manual machinists are laughing at your inability to git 'er done.  But wait!  You've MDI and a notepad you can type code into.   If you know g-code you can git 'er done.</p>
+      <p align="left" class="style1">The long and the short of all this is that a knowledge of g-code can be a very handy thing indeed.  It's a skill that you add to your toolbox, and one that sets you apart from some of the other machinists who don't have it.  If you're a one man shop, or even a small shop, it helps you to stand on your own two feet.</p>
+      <p align="left" class="style1">How best to go about learning some g-code?      </p>
+      <p align="left" class="style1">Well that's what got me started writing this thing in the first place.  At the moment, I am engaged in learning g-code at a deeper level than what most machinists would ever contemplate as even being useful.   I know, that's a bold claim, but I don't make it lightly.   There are three ways to learn about g-code.  One is a warm up, and the other two are the real thing.</p>
+      <p align="left" class="style1">The warm-up is passive.  Read books like Smid's bible on the subject, &quot;<a href="http://www.amazon.com/Programming-Handbook-Third-Peter-Smid/dp/0831133473/ref=sr_1_1?ie=UTF8&s=books&qid=1275580360&sr=8-1">CNC Programming Handbook</a>.&quot;   Read your machine or controller's documentation on g-code.  Putting those two together, you are likely to start to feel some of the special pain I'm going through because as you will learn: g-code is not necessarily the same from one machine to the next.   That's why CAM programs have Posts. The role of the post processor is to take what the CAM program produces and tailor it to your specific machine. </p>
+      <p align="left" class="style1">  Read code too.  Go over the code that you CAM program puts out and figure out what it is doing and why.   You will discover, for example, that they all emit a ton of code at the beginning whose purpose is simply to put the machine into a known state so that every program starts out on the same page if you will.  For example, OneCNC (my CAM program) throws out a line like this near the beginning:</p>
+      <blockquote>
+        <p align="left" class="style1">N60 G0 G40 G49 G50 G80 G94</p>
+      </blockquote>
+<p align="left" class="style1">The <a href="CCGWizardE.html">G-Code Editor</a> I'm writing as part of my <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard software line</a> has a special &quot;Hints&quot; capability that will translate that to English:</p>
+      <blockquote>
+        <p align="left" class="style1">G-Code 0: Rapid positioning (moves at jog speed)<br>
+          G-Code 40: Tool radius compensation off<br>
+          G-Code 49: Tool offset compensation cancel<br>
+          G-Code 50: Reset all scale factors to 1.0<br>
+          G-Code 80: Cancel canned cycle</p>
+      </blockquote>
+<p align="left" class="style1">The &quot;Hints&quot; are to help people learn g-code faster.  Are they helping you to understand what line N60 was all about?      BTW, the editor isn't ready for public consumption yet, but if you want to be sure to be invited to try it, just join the <a href="GWSignup.html">G-Wizard Machinist's Calculator Beta Test</a> so you'll be on the mailing list.</p>
+<p align="left" class="style1">Okay, now let's say that you've looked at a fair bit of code, and you've now got some inkling of what those diabolical g-codes are doing inside your machine.  Your next step is to write some g-code of your own.  Try a simple program.   Even if you're not going to cut any chips, load it into your control and single step through it while cutting &quot;air&quot; to see that it does what you expect.   When you're comfortable with that, undertake a project that might be handy and something you'd use more than once.</p>
+<p align="left" class="style1">For example, you could write a macro program that engraves your shop's logo at various sizes.   In fact, you can even use your CAM program to create the logo (choose a 1&quot; height so that its easy to scale it using G51 to any size you want and easy to calculate the scale factor (multiply by 1&quot;, Duh!).   Use your new-found g-code programming skills to package that logo up as a reusable macro subroutine.   Now you can slap it into any program, feed it a location and scale, and your logo will appear at the desired location and size.  Cool beans!</p>
+<p align="left" class="style1">So what's the last step in becoming a true Jedi g-coder?    Well, in computer science, if you really want to learn a language inside and out, you have to recreate that language yourself.   There is a lot of pain associated with that, but it is a rewarding experience in terms of the learning.  If you happen to also need a g-code interpreter as I did for the G-Wizard Editor, then you have a happy coincidence. While it is hard to get good at writing g-code, there are a lot of times you can just bull your way through, trying various things until you get what you want.   This is not the case when writing a g-code interpreter.   The g-code interpreter has to understand anyone's g-code that happens to come in so it can do whatever it is going to do with the g-code--displaying a backplot of what your tool is doing in the case of my editor, or actually controlling that tool via steppers or servos in the case of Mach3 or a Fanuc controller.</p>
+<p align="left" class="style1">Understanding anyone's g-code is where the rub comes in.    The language itself seems simple, but it is not very well documented, and there are lots and lots of variations.       I was taking note of all the reference sources I keep open when I'm researching how a particular g-code is supposed to work.   Here is a partial list (perhaps you'll find some of it useful):</p><blockquote>
+      <p><a href="CCCNCGCodeRef.html"><strong>CNCCookbook's G-Code Reference</strong></a></p>
+      <p><strong><a href="CCCNCGCodeCourse.htm">CNCCookbook's Online G-Code Tutorial</a></strong></p>
+</blockquote>
+    <blockquote>
+      <p class="MsoNormal"><strong><a href="http://www.google.com/url?sa=t&source=web&cd=5&ved=0CCgQFjAE&url=http%3A//www.machsupport.com/docs/Mach3Mill_1.84.pdf&ei=8TQHTKDjBIvsNMyrjM8P&usg=AFQjCNG1jhnc2EhvmXVV-0-QLBio8UJP9g&sig2=Sg8gZcPd6xOH4rYRAfHN2w">Mach3 G-Code</a></strong>      </p>
+      <p class="MsoNormal"><strong><a href="http://www.gcodex.com/manuals/mitsubishi/BNP-B2210.PDF">Mitsubishi Controls G-Code Documentation</a></strong>.</p>
+      <p class="MsoNormal"><a href="http://www.yaskawa.com/site/dmcontrol.nsf/link2/TKUR-5EKPZE/$file/TOE-C843-12.30.pdf"><strong>Yaskawa/Yasnac G-Code Docs</strong></a>.</p>
+</blockquote>
+<p align="left" class="style1">And of course, I have a couple of the Smid books and whatever else is available along with Google searches to find examples and more data.  Some of it can be a bit obscure.  Haas offers <a href="http://www.google.com/url?sa=t&source=web&cd=1&ved=0CBcQFjAA&url=http%3A//www.haascnc.com/training/InfoMods/Unique G-Codes.ppt&ei=JiYHTJvzLo32McS37O4P&usg=AFQjCNG3Ts46h3xc7WfK2TRK3MQA8fwa_w&sig2=47K_YENZovjqkbg3OpyYOg">this PowerPoint slide show</a> on some of their non-standard g-code behavior.</p>
+<p align="left" class="style1">Do I really need to go through all of that stuff?    Well, consider the G51 scaling code that you may want to use for your logo.   First, there are a number of variations:</p>
+<p align="left" class="style1">-   X, Y, and Z may indicate the &quot;scaling center&quot; so that you can not only scale, but position relative to the original program.       </p>
+<p align="left" class="style1">- X, Y, and Z may instead indicate individual scale factors along each axis. X2Y1Z0.5 would make it twice as long in X, the same in Y, and half as long in Z, for example.   Or, some controls put these individual factors in IJK.</p>
+<p align="left" class="style1">- Some controls only allow one scale factor, to be contained in &quot;P&quot;.  P2 gives me an object twice the size while P0.5 is half the size.       </p>
+<p align="left" class="style1">You have to understand how the g-code interacts with the machine. For example, it may set or use some of the &quot;#&quot; variables that g-code programmers use. Many g-codes create modes that affect the behavior of other g-codes until the mode is cancelled. Certainly G51 scaling does that.       You have to be cognizant that g-codes need not execute in the order the appear on the line.     That's a bit mind boggling. There is a defined order in which the codes are executed, and that order is respected first, followed by the order on the line.  This is a good thing. For example, we select the tool then we change the tool and not vice versa despite how it looks on the line. </p>
+<p align="left" class="style1">There are other kinds of interactions too.   G51 scaling does not affect tool path compensation (G40, 41, and 42).         Depending on the control, it affects XYZ, IJK, and R.</p>
+<p align="left" class="style1">And then there are the concepts associated with each g-code.  For G51, the tricky concept is the &quot;scaling center&quot;.   To find the position of a scaled point, draw a line from the scaling center to the point in the program.   That distance is what we apply the scale factor to.  We then move the new scaled distance in exactly the same direction from the scaling center to find the newly scaled point.  Sounds really complicated, and you have to get it right.   Whereas if you are just writing the g-code, you can kind of eyeball the diagrams (if your doc has any) and try a couple of things until you get what you want.</p>
+<p align="left" class="style1">There's useful hints and kinks to think about too.    How about scaling by -1?      Hmmm, that mirrors the program without &quot;scaling&quot; it at all. Clever!</p>
+<p align="left" class="style1">I don't wish this business of learning g-code deeply enough to write your own g-code software on anyone, but I will tell you I'm enjoying it.  For the rest of you, go learn some g-code.  You may find you enjoy it quite a lot too!</p>
+<p class="BlogDate">&nbsp;</p>
+<p class="BlogDate"><b><i><font size="+2"><a href="CCBlogMay2010.htm">Earlier 
+        Entries in the Blog...</a></font></i></b></p>
+    <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

@@ -1,0 +1,688 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>Climb Milling vs Conventional Milling</title>
+
+<meta name="description" content="When should you use Climb vs Conventional Milling? What's the difference?">
+
+<style type="text/css">
+<!--
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.WarningText {
+}
+.WarningText {
+}
+.Warning {
+}
+.Warning {
+}
+.Bozon {
+	font-size: large;
+	color: #F00;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+.BodyText11 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <!--script type="text/javascript" src="js/jquery.form.js"></script--><!-- Isn't this a duplicate of what google is giving us right above? -->
+    <script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <script type="text/javascript">
+        multitouch();
+    </script>
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/CCCookbook.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p align="center" class="style1 style4"><strong><font face="Arial, Helvetica, sans-serif" size="+1"><a href="CCCNCMillFeedsSpeeds.htm">CNC Milling Feeds and Speeds</a></font></strong><a href="CCCNCMillFeedsSpeeds.htm"><strong><font size="+1" face="Arial, Helvetica, sans-serif">Contents</font></strong></a></p>
+<p align="center" class="style1">&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=hellobar&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2015/03/23/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=hellobar&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=hellobar&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Cookbook</a></strong></p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                                <div id=greenbox style="background-color:#000;">
+                                                    <p>&nbsp;</p>
+                                                    <p align="center">
+                                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                                        </a>
+                                                    </p>
+                                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                                      Made Easy.
+                                                    </p>
+                                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <!--div align="center" style=" background-color:#dfe8cd">
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCCNCSoftware.html"><img src="../img/Art/CheckSaleGreen.jpg" width="237" height="99" alt="Free CNC Software">
+                                        </a>
+                                    </p>
+                                    <p class="BodyText"><strong>Sale on software to make<br>
+                                    CNC faster and easier for you
+                                    </strong>
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%;">
+                                        <a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebartop" class="flat-button">Tell Me More</a>
+                                    </div>
+                                    <p>&nbsp;</p>
+                                </div-->
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="6%"><img src="img/GearsIcon.jpg" width="88" height="77"></td>
+          <td width="94%"><p><font face="Times New Roman, Times, serif" size="7" color="#FF0000">Climb Milling vs Conventional Milling</font></p>
+          <p><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="BlogTitle"><strong>CNC  Feeds and Speeds Cookbook</strong></font></p></td>
+        </tr>
+      </table>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle">Climb vs Conventional Milling</p>
+      <p class="BodyText1">While many CNC'ers have gotten in the habit of always specifying climb milling, there are times to climb mill and there are times where conventional milling is preferred.  Before we get into when to use each, let's have a quick definition of the differences. </p>
+      <p><font face="Arial, Helvetica, sans-serif">Climb milling 
+        is when the direction of cut and rotation of the cutter combine to try 
+        to &quot;suck&quot; the mill up over (hence it's called &quot;climb&quot; 
+        milling) or away from the work. It produces the best surface finish. Here 
+        is a diagram showing climb versus conventional milling for a number of 
+        orientations:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/ClimbMilling.jpg" alt="" width="800" height="324"></font></p>
+      <p align="center" class="BodyText">Arrows show workpiece motion, not spindle motion!</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Keep in mind that 
+        for this illustration, it is the workpiece that moves, not the spindle. 
+        On some machines, like a gantry router, the spindle moves, so the labels 
+        would reverse. I keep it straight by thinking of the spindle as a pinch 
+        roller that can either help move the workpiece in the direction it was 
+        already going (climb milling), or that might fight that movement (standard 
+        or conventional milling).</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Try the experiment 
+        on your mill of cutting both ways and you'll see that climb milling is 
+        a lot smoother and produces a better surface finish (most of the time, there are times when conventional gives a better finish, see below). Note that depending 
+        on which way you are milling, you will need to make sure your workpiece 
+        is supported well in that direction.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Characteristics of Conventional Milling:</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif">The width of the chip starts 
+          from zero and increases as the cutter finishes slicing.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">The tooth meets the workpiece 
+          at the bottom of the cut.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Upward forces are created 
+          that tend to lift the workpiece during face milling.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">More power is required to 
+          conventional mill than climb mill.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Surface finish is worse 
+          because chips are carried upward by teeth and dropped in front of cutter. 
+          There's a lot of chip recutting. Flood cooling can help!</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Tools wear faster than with 
+          climb milling.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Conventional milling is 
+          preferred for rough surfaces.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Tool deflection during Conventional 
+          milling will tend to be parallel to the cut (see the <a href="CCCNCMillFeedsSpeedsDeflect.htm">section on Tool Deflection</a> for more).</font></li>
+      </ul>
+      <p><font face="Arial, Helvetica, sans-serif">Characteristics of climb 
+        milling:</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif">The width of the chip starts 
+          at maximum and decreases.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">The tooth meets the workpiece 
+          at the top of the cut.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Chips are dropped behind 
+          the cutter--less recutting.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Less wear, with tools lasting 
+          up to 50% longer.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Improved surface finish 
+          because of less recutting.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Less power required.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">Climb milling exerts a down 
+          force during face milling, which makes workholding and f<span class="BodyText1">ixtures simpler.</span></font> <span class="BodyText1">The down force may also help reduce chatter in thin floors because it helps brace them against the surface beneath.</span></li>
+        <li><font face="Arial, Helvetica, sans-serif">Climb milling reduces work 
+          hardening.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif">It can, however, cause chipping 
+          when milling hot rolled materials due to the hardened layer on the surface.</font></li>
+        <li><font face="Arial, Helvetica, sans-serif"> Tool deflection during 
+          Climb milling will tend to be perpendicular to the cut, so it may increase or decrease the width of cut and affect accuracy.</font></li>
+      </ul>
+      <p class="BodyText1"><strong>Backlash and Climb Milling</strong></p>
+      <p><font face="Arial, Helvetica, sans-serif">There is a problem with climb 
+        milling, which is that it can get into trouble with backlash if cutter 
+        forces are great enough. The issue is that the table will tend to be pulled 
+        into the cutter when climb milling. If there is any backlash, this allows 
+        leeway for the pulling, in the amount of the backlash. If there is enough 
+        backlash, and the cutter is operating at capacity, this can lead to breakage 
+        and potentially injury due to flying shrapnel. For this reason, many shops 
+        simply prohibit climb milling at all on any manual machines that have 
+        backlash. Some machines even came equipped with a &quot;backlash eliminator&quot; 
+        whose primary purpose was to enable climb milling and its attendant advantages.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">One way to think of it is to 
+        consider the concept of chip load. This is a measure of how much material 
+        each tooth of the endmill is trying to cut. Typical values for finish 
+        work would be 0.001 to 0.002&quot; per tooth. For roughing work, that 
+        might increase to 0.005&quot;. Now in the worst case, climb milling may 
+        grab the table and slam the work into the cutter by the full amount of 
+        backlash during the instant when a single tooth is cutting. You can therefore 
+        add the backlash to the chip load to see what your new effective chip 
+        load might be in this worst case. Suppose you are roughing 0.005&quot; 
+        per tooth and have 0.003&quot; backlash. In the worst case, your chipload 
+        will soar to 0.008&quot;. That's probably not the end of the world, but 
+        it is a strain. Now suppose you have an older machine with 0.020&quot; 
+        of backlash and are running an 0.005&quot; chipload. If the worst happens 
+        there your chipload will soar to 0.025&quot;, which is probably going 
+        to break the endmill and is very dangerous.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The second thing to consider 
+        is whether cutting forces are strong enough to pull the table through 
+        the backlash in the first place. A lot will depend on the exact cutting 
+        scenario together with your machine. If you've got a fancy low friction 
+        linear way machine, it can grab easily. If you've got a lot of iron in 
+        the table, and maybe you're running with the gibs tightened a bit, it'll 
+        be harder. There are ways to calculate the cutter force, but in general, 
+        smaller end mills, less depth of cut, lower feeds, and lower spindle speed 
+        will all reduce the cutting force and make it less likely the cutter can 
+        drag the backlash out of your table and create a problem.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">In general, CNC machines shouldn't have any noticeable backlash, so these are more concerns on manual machines.</font></p>
+      <p class="BodyText1"><strong>Under Certain Conditions Climb Milling Produces Negative Cutting Geometry</strong></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">So far, you've probably gotten the idea that maybe you should always climb mill. After all,  it 
+        leaves a better surface finish, requires less energy, and is less likely 
+        to deflect the cutter. Conversely, manual machinists are often taught 
+        never to climb mill because it's dangerous to do on a machine that has 
+        backlash. The truth is somewhere in the middle. ABTools, makers of the 
+        popular AlumaHog and ShearHog cutters, point out <a href="http://www.abtoolsinc.com/metalcuttingmyths/metalcuttingmyths.htm">some 
+          worthwhile rules of thumb</a>:</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- When cutting 
+        half the cutter diameter or less, you should definitely climb mill (assuming 
+        your machine has low or no backlash and it is safe to do so!).</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- Up to 3/4 of 
+        the cutter diameter, it doesn't matter which way you cut.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- When cutting 
+        from 3/4 to 1x the cutter diameter, you should prefer conventional milling.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The reason is 
+        that cutter geometry forces the equivalent of negative rake cutting for 
+        those heavy 3/4 to 1x diameter cuts. It seems that Dapra corporation first 
+        discussed this phenomenon way back in 1971. <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard</a> now reminds you with 
+        a little hint which one you should prefer:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/GWizard/GWizClimbHint.jpg" alt="" width="512" height="148"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Just to the 
+        right of Radial Engagement it says, &quot;Use Climb Milling&quot;...<span class="BodyText"></span></font></p>
+      <p align="left" class="BodyText">If you've never played with our G-Wizard Speeds and Feeds software, take a moment right now to <a href="FeedSpeedsCalculator/CCGWizard.html">sign up for the 30-day trial</a>.</p>
+      <p class="BlogTitle">Tool Deflection and Cut Accuracy in Climb vs Conventional Milling</p>
+      <p class="BodyText1">How does climb vs conventional milling affect tool deflection and accuracy?. The following illustration contains small arrows (often called vectors) showing the direction of tool deflection as the cutter moves along the toolpath:</p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/ClimbConventionalForces.jpg" alt="" width="345" height="236"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The arrows show 
+        where the cutting force is attempting to deflect the cutter.  Conventional cut at top, climb cut at bottom.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Note how the deflection force vector is more nearly parallel to the cut with conventional milling (albeit the arrows are longer, showing there are higher cutting forces).  With climb milling, the arrow is nearly perpendicular to the cut.   If your cutter deflects 0.001&quot;, wouldn't you prefer it to be nearly in the direction of travel?  The alternative is for the cutter to plow deeper into the wall or pull away from the wall.  Either case will introduce more error in the part being machined.</font>  <span class="BodyText">The counterpoint is that the lengths of the vectors are longer when conventional milling. That's telling you that the cutting forces are heavier and the tool is more likely to deflect.</span></p>
+<p align="left" class="style1">Try climb for roughing, because you can rough faster and the tool deflection effects on accuracy don't matter--the finish pass will deliver the accuracy.  You can rough faster because cutting forces are lighter and the thick-to-thin chip profile carries the heat away on the chip. That thick-to-thin + carrying the heat away is particularly crucial for tough work-hardening materials like stainless. It also results in a nicer surface finish if you can afford to climb for the finish pass.</p>
+<p align="left" class="BlogTitle">Consider Conventional Milling for Finish Passes</p>
+      <p align="left" class="style1">This one is counterintuitive for a lot of machinists who are trained for most of their careers that climb produces a better finish than conventional.  All other things being equal, that's true, but all other things are seldom equal!</p>
+      <p align="left" class="style1">The problem is that deflection affects surface finish too.  If the vector is nearly parallel to the path, you can consider that the portion of the vector that pushes it &quot;off parallel&quot; is very small.   Therefore, the tool will have little tendency to deflect and put waves on the wall you're finishing.  Note that this may be particularly important in thin wall work where the walls are weak!</p>
+      <p align="left" class="style1">Therefore, you should switch to conventional milling for the finish pass if you're at all deflection challenged (use <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard</a> to see if your tool diameter and stickout result in small enough deflection for your finish pass). <font face="Arial, Helvetica, sans-serif">At the very least, one should avoid 
+        too much depth of cut when climb milling lest it invite deflection. The same article suggests that 
+        when deflection is to be minimized, use no more than 30% of the diameter 
+        of the cutter for conventional milling and 5% for climb milling.</font> Of course here again, if you have G-Wizard, you'll know what kind of deflection to expect and whether it's a worry.</p>
+      <p align="left" class="style1">Climbing to rough and conventional to finish is inline with <a href="http://www.practicalmachinist.com/vb/cnc-machining/climp-vs-conventional-cutting-speed-feed-finish-life-154888/">the consensus over at Practical Machinist</a> as well.</p>
+      <p align="left" class="style1">Properly managing deflection can help you avoid the need for an extra spring cut, which saves time and money.</p>
+      <p align="left" class="BlogTitle">Consider Conventional Milling When Micromachining</p>
+      <p align="left" class="style1">For all the same reasons, but considering deflection is much worse micro-milling, you should prefer conventional over climb milling most of the time when micro-milling.  Check out our <a href="CCCNCMillFeedsSpeedsMicroMachining.htm">Micromachining page</a> for more information.</p>
+      <p class="BodyText">&nbsp;</p>
+<p class="BlogTitle">Next Article:  <a href="CCCNCMillFeedsSpeedsToolpath.htm">Toolpath Considerations</a></p>
+<p class="BodyText">&nbsp;</p>
+<p align="center" class="BodyText1"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="GWizard/Thumbs/CutOptimizer.jpg" alt="" width="256" height="196"></a> <a href="FeedSpeedsCalculator/CCGWizard.html"><img src="GWizard/Thumbs/Geometry.jpg" alt="" width="256" height="196"></a><a href="FeedSpeedsCalculator/CCGWizard.html"> <img src="GWizard/Thumbs/QuickRef.jpg" alt="" width="256" height="196"></a></p>
+<p align="center" class="BodyText1"><b><i><font size="+2"><a href="FeedSpeedsCalculator/CCGWizard.html">Try the Free Trial Version of G-Wizard Speeds and Feeds Calculator...</a></font></i></b></p>
+<p align="center" class="BodyText1"><span class="style12"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+<p align="center" class="BodyText1">No credit card required--just your name and email.</p>
+<p align="center" class="BodyText">&nbsp;</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCookbook.htm">Cookbooks</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

@@ -1,0 +1,713 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>Calculating and Minimizing Tool Deflection for CNC Milling</title>
+<style type="text/css">
+<!--
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.WarningText {
+}
+.WarningText {
+}
+.Warning {
+}
+.Warning {
+}
+.Bozon {
+	font-size: large;
+	color: #F00;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+.BodyText11 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p align="center" class="style1 style4"><strong><font face="Arial, Helvetica, sans-serif" size="+1"><a href="CCCNCMillFeedsSpeeds.htm">CNC Milling Feeds and Speeds</a></font></strong><a href="CCCNCMillFeedsSpeeds.htm"><strong><font size="+1" face="Arial, Helvetica, sans-serif">Contents</font></strong></a></p>
+<p align="center" class="style1">&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="6%"><img src="img/GearsIcon.jpg" width="88" height="77"></td>
+          <td width="94%"><p><font face="Times New Roman, Times, serif" size="7" color="#FF0000">Tool Deflection Control: Critical to Your Success</font></p>
+          <p><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="BlogTitle"><strong>CNC Milling Feeds and Speeds Cookbook</strong></font></p></td>
+        </tr>
+      </table>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle">Bad Things Happen When Tools Deflect</p>
+      <table width="100%" border="0">
+        <tr>
+          <td width="55%" valign="top"><p class="BodyText">The machine's spindle is powered by a motor of a certain amount of horsepower.  Think of that motor as pumping energy into the workpiece.  The only thing connecting the motor to the workpiece is your cutter, so it potentially has to conduct a lot of force.  Hopefully, most of the force is converted into cutting and results in chips.  Inevitably, some of the force will be converted into less desirable by products such as heat, tool deflection, distortions in the workpiece, or vibration (ultimately leading to chatter if it's bad enough).</p>
+          <p class="BodyText">Given the dimensions of a typical cutter, especially smaller ones, and their rigidity, machinists need to be concerned with tool deflection.  This should come as no surprise as machinists learn early on that everything bends, it's only a matter of how much force it takes and what scale we're talking about.  For microscopic forces, the amount of bending may be measured in ten thousandths or less.   For large forces, bending can start to be a problem during machining.   </p>
+          <p class="BodyText">This article is all about understanding what sorts of problems tool deflection contributes to, using the <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard Calculator</a> to figure and optimize cutting parameters for tool deflection, and tips for how to avoid those deflection problems.</p></td>
+          <td width="45%"><img src="img/CNCCookbook/MillFeedsSpeeds/MillDeflect.jpg" width="188" height="256" alt="Tool deflection"></td>
+        </tr>
+      </table>
+      <p class="BlogTitle">Tool Deflection and Accuracy</p>
+      <p class="BodyText">The first thing you're probably thinking is that if the tool deflects it's going to lead to some accuracy problems, and it sure will.   Consider a 3 flute 1/8&quot; carbide endmill.    Let's say we're cutting 1/2&quot; deep and we've left 5/8&quot; of cutter sticking out of our collet chuck.  Further, we're using it to cut pockets in 6061 aluminum and we're running the spindle at 7500 rpm.  How wide can we make our cut each pass and keep tool deflection below 0.001&quot;?  The answer may seem surprising, but G-Wizard calculates a maximum cut width (stepover) of 0.0766&quot; will yield 0.001&quot; of tool deflection.  That's  about 60% of the cutter diameter. </p>
+      <p class="BodyText">That's what's needed to keep cutter deflection within 0.001&quot;.   Most would consider that suitable for roughing, but way off the mark for finish passes where accuracy matters.  If you're trying to hold half a thou, you'd probably like your tool deflection to be half of that.  Let's call it 2 tenths (0.0002&quot;) to keep it simple.  Now you can only afford a finish pass with a stepover of 0.0016&quot;--mighty thin indeed.</p>
+      <p class="BodyText"><strong>Effects of Climb vs Conventional Milling on Tool Deflection</strong></p>
+      <p class="BodyText">While we're on the subject of tool deflection and accuracy, let's consider the effects of climb vs conventional milling. The following illustration contains small arrows (often called vectors) showing the direction of tool deflection as the cutter moves along the toolpath:</p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/ClimbConventionalForces.jpg" alt="" width="345" height="236"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The arrows show 
+        where the cutting force is attempting to deflect the cutter.  Conventional cut at top, climb cut at bottom.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Note how the deflection force vector is more nearly parallel to the cut with conventional milling (albeit the arrows are longer, showing there are higher cutting forces).  With climb milling, the arrow is nearly perpendicular to the cut.   If your cutter deflects 0.001&quot;, wouldn't you prefer it to be nearly in the direction of travel?  The alternative is for the cutter to plow deeper into the wall or pull away from the wall.  Either case will introduce more error in the part being machined.</font></p>
+      <p align="left" class="style1">Try climb for roughing, because you can rough faster and the tool deflection effects on accuracy don't matter--the finish pass will deliver the accuracy.  You can rough faster because cutting forces are lighter and the thick-to-thin chip profile carries the heat away on the chip. That thick-to-thin + carrying the heat away is particularly crucial for touch work-hardening materials like stainless. It also results in a nicer surface finish if you can afford to climb for the finish pass.</p>
+      <p align="left" class="style1">But, you should switch to conventional milling for the finish pass if you're at all deflection challenged (use <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard</a> to see if your tool diameter and stickout result in small enough deflection for your finish pass). <font face="Arial, Helvetica, sans-serif">At the very least, one should avoid 
+        too much depth of cut when climb milling lest it invite deflection. The same article suggests that 
+        when deflection is to be minimized, use no more than 30% of the diameter 
+        of the cutter for conventional milling and 5% for climb milling.</font> Of course here again, if you have G-Wizard, you'll know what kind of deflection to expect and whether it's a worry.</p>
+      <p align="left" class="style1">Climbing to rough and conventional to finish is inline with <a href="http://www.practicalmachinist.com/vb/cnc-machining/climp-vs-conventional-cutting-speed-feed-finish-life-154888/">the consensus over at Practical Machinist</a> as well.</p>
+      <p align="left" class="style1">Properly factoring deflection can help you avoid the need for an extra spring cut, which saves time and money.</p>
+      <p class="BlogTitle">Tool Deflection and Tool Life</p>
+<p class="BodyText">Okay, let's say we have to start that cut we've been talking about by ramping down in a full slot. How much depth of cut can we afford?  G-Wizard says 0.1296&quot;--quite a bit less than the 1/2&quot; deep we're aiming for. It'll take a zig zag ramp or helical interpolation to avoid exceeding our allowance.  Do we care? After all, this is just a ramp or entry move, the actual pocket or profile is yet to be machined.</p>
+<p class="BodyText">In the end of the day we do care, because of tool life.     Carbide is a very brittle material.   Too much flexing and you'll break the cutter.   Think of your tool deflection as being akin to runout.    Suppose I told you your machine spindle had 0.001&quot; of runout?  You'd be wanting to have that spindle rebuilt and would consider that unacceptible.  Yet you can get the same thing geometrically by pushing the tooling too hard through cut deflection.  We just saw how little it takes to deflect our 1/8&quot; carbide endmill in aluminum by 0.001&quot;.  </p>
+<p class="BodyText">There are no end of <a href="http://www.ctemag.com/aa_pages/2010/100705_Runout.html">writeups about the evils of spindle runout for tool life</a>, particularly in demanding applications or when using smaller diameter tools where runout starts to be a significant portion of the tool's diameter. Runout causes uneven work for the flutes of the cutter instead of spreading the load evening around all the flutes. Imagine how much worse it must be if the poor tool is flexing in the same direction (remember those deflection vectors from the diagram above) by almost 0.001&quot; while spinning at 7500 rpm!</p>
+<p class="BodyText">For best tool life, try to keep tool deflection below 0.001&quot;, even when roughing, and much less for small tools. Again, think of it as runout.</p>
+<p class="BlogTitle">Tool Deflection and Chatter</p>
+<p class="style1">Chatter is a resonant phenomenon, like ringing a bell.  The combination of your machine, tooling, and feeds/speeds yields certain frequencies that the combination  is particularly suspecptible to.</p>
+<p class="style1">Now imagine that deflected cutter as it spins. The deflection makes it act almost like a hammer swinging against the bell. The flexing combined with the flutes and the spindle rpm create a rhythmic pulsing, which is exactly what excites chatter.   <span class="BodyText1">If you do a little research, the major tooling companies will tell you that a tool deflection of more than 0.001&quot; starts to be enough that chatter can set in.  </span></p>
+<p class="BlogTitle">Calculating Tool Deflection</p>
+<p class="BodyText1">You've probably been wondering for most of this article how you're actually supposed to go about dealing with tool deflection.   Is it something you can calculate?  Do you measure it somehow? Or do you simply have to be paranoid about it and maximize tool rigidity every way possible.   The answers are yes, yes, and yes. Okay, if we're going to be paranoid anyway, why bother trying to determine deflection? Because of the flip side of the deflection coin, which is cutting force.  More cutting force equals more deflection, but it also equals more material removal.  The reason to be paranoid is so that we can use as much force as possible and thereby gain as much productivity as possible.  Knowing how much force can be used is why we want to calculate or measure tool deflection.</p>
+<p class="BodyText1">Let's dispense with the measuring piece up front.  In theory, you could measure tool deflection with the right instrumentation, but outside of a research lab &quot;that ain't happenin'.&quot;   You could also measure it through its effect on the workpiece.  If a vertical was has a draft angle, tool deflection is a likely culprit.  However, as we have seen above, the direction of the deflection is very hard to predict without complex analytical models, and it changes throughout the cut.  Other than noticing the draft and concluding you may have a problem, this is not a very productive line.</p>
+<p class="BodyText1">That brings us to calculating tool deflection.   This is something that is actually possible to do in the shop, and relatively easily.   One of the unique capabilities of the <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard Machinist's Calculator</a> ist that it computes tool deflection as one of the many pieces of information it offers for feeds and speeds.  Tool Deflection is shown right below the calculation of spindle power used in the cut:</p>
+<p align="center" class="BodyText1"><img src="img/CNCCookbook/MillFeedsSpeeds/GWDeflect.jpg" width="800" height="746" alt="Calculating tool deflection"></p>
+<p align="center" class="BodyText1">Calculating tool deflection...</p>
+<p align="left" class="BodyText1">This is our old friend the 1/8&quot; carbide EM in 6061 aluminum.  Note that the deflection is shown in orange, which G-Wizard uses in a number of places to indicate a limit has been reached or exceeded and there may be a  danger zone.  To move out of the danger zone, you can use G-Wizard's Cut Optimizer (see below) to calculate the exact depth or width of cut (or if necessary reduction in feedrate) that keeps the deflection within the limits you choose to set.</p>
+<p class="BlogTitle">Are There Rules of Thumb for Tool Deflection?</p>
+<p class="BodyText1">What if you don't have a calculator like G-Wizard? Are there any rules of thumb for estimating or avoiding tool deflection?</p>
+<p class="BodyText1">Unfortunately, the math involved is really complex and not very intuitive. It also involves a lot of variables.  Tool deflection is affected by number of flutes.  It changes as the third power of length and the fourth power of diameter.  Et cetera, et cetera.     Simple rules like, &quot;Don't use a depth of cut greater than 2x the cutter's diameter&quot;, just can't capture the complexities of the math.</p>
+<p class="BodyText1">If you don't have a deflection calculator, you're left with making the most rigid possible tool holding and keeping an eye on the cut.  If accuracy, surface finish, chatter, or tool life become a problem, tool deflection is one thing to consider looking into.</p>
+<p class="BlogTitle">Cutter Rigidity: Resisting Deflection</p>
+<p class="BodyText">There are only two ways to reduce tool deflection--either reduce the forces acting on the cutter or increase the cutter's rigidity.  We can always reduce the forces, but that will compromise our productivity, so let's focus on increasing rigidity by considering the following factors:</p>
+      <p class="BodyText"><strong>Use Carbide</strong></p>
+      <p class="BodyText">Carbide tooling is 3x more rigid than HSS. When rigidity is an issue, use carbide.  This is particularly important for smaller diameter tools and cases where a lot of stickout is needed for longer reach.</p>
+<p class="BodyText"><strong>Minimize Stickout</strong></p>
+<p class="BodyText1">On our 1/8&quot; endmill example, consider what happens if we didn't carefully minimize the stickout of the cutter. Let's say we left it at 3/4&quot; stickout instead of 5/8&quot;. In that case, we will find we can now only cut 0.0429&quot; stepover. That's only about 30% of diameter. We sure lost a lot of stepover for only having increased the cutter stickout from 5/8&quot; to 3/4&quot;!</p>
+<p class="BodyText1">That's because rigidity decreases as the third power of length.   Twice as much length is 8x less rigid.  Therefore, very small changes in length cause third power changes in rigidity, so always use the minimum amount of stickout that still leaves clearance for the job.  Some CAM programs and simulators will report how much stickout is needed to clear the work, fixtures and other obstacles.  If your thinking of maximizing your tooling flexibility by leaving a bunch of stickout, you'll be maximizing the bad kind of flexibility which ultimately leads to fewer options.</p>
+<p class="BodyText">In the article on chatter, we'll learn that there are strong arguments for standardizing stickout in order to make chatter more predictable.  If your shop chooses to do that, be sure to have multiple standards so that there is tooling set up with less stickout as well as tooling with a lot of stickout.</p>
+      <p class="BodyText"><strong>Number of Flutes and Flute Length</strong></p>
+      <p class="BodyText">Flutes weaken the cutter's rigidity--the more flutes, the weaker the cutter will be, all things considered.  You may want to use a 2 flute in aluminum instead of a 3 flute just to pick up some rigidity.   In addition, the length of the cutter that is fluted also matters.  Stub length flute cutters are more rigid.</p>
+      <p class="BodyText"><strong>Increase Tool Diameter</strong></p>
+      <p class="BodyText">Diameter is an even stronger determinant of rigidity than length.  Length decreases rigidity as the third power but diameter increases rigidity as the fourth power.  A cutter with twice the diameter is therefore 16x more rigid.      It may sound glib to suggest increasing the tool diameter when you've been handed a print and told to make that part, but consider:</p>
+      <p class="BodyText">-  Will the designer increase the limiting radii even a little bit?  </p>
+      <p class="BodyText">- Can you get a metric dimension tool in that's a little bigger than the largest Imperial that fits or vice versa?</p>
+      <p class="BodyText">-  Can you add a toolchange and do more than one pass, perhaps starting with a much larger roughing tool?</p>
+      <p class="BodyText">When rigidity increases as the fourth power, even a little more diameter can make a big difference.</p>
+      <p class="BlogTitle">Optimizing Cuts for Tool Deflection</p>
+      <p class="BodyText">Did you ever wonder if there was some combination of cut depth and cut width that might be optimal for your machining operation?   It turns out there is, provided your satisfied that the term &quot;optimal&quot; relates to maximizing the depth or width of cut while keeping tool deflection within bounds that you've set.   As we've discussed, a reasonable bound while roughing might be 0.001&quot;.  For finishing passes, much less, perhaps 0.0002&quot; is good.  </p>
+      <p class="BodyText">G-Wizard contains a facility called the &quot;<a href="GWCutOptimizer.html">Cut Optimizer</a>&quot; that is expressly designed to help solve these kinds of problems:</p>
+      <p align="center" class="BodyText"><span class="BodyText1"><img src="img/GWizard/GWCutOptRough.jpg" alt="G-Wizard Cut Optimizer minimizes tool deflection" width="700" height="529"></span></p>
+      <p align="center" class="BodyText">G-Wizard's Cut Optimizer maximizes MRR while keeping tool deflection within limits you've set...</p>
+      <p align="left" class="BodyText">Using Cut Optimizer, you can master the interplay between Cut Depth, Cut Width, Tool Deflection, Feedrate, and Tool Stickout.</p>
+      <p class="BlogTitle">Deciding on Best Depth and Width of Cut Using the Cut Optimizer</p>
+      <p align="left" class="style1">I got a note recently from a <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard</a> user who wanted to know how to decide on best depth and width of cut when milling.   It's a great question.  Most machinists, use rules of thumb and habit more than anything else unless the situation dictates something in particular based on the dimensions of the feature being machined.  They're used to using some fraction of the cutter's diameter or some figure that they got to some other way through habit (40 thousandths or some such is what they've always used).  Perhaps their CAM program has a hardwired default that is a percentage of the cutter's diameter.</p>
+      <p align="left" class="style1">But these values, while they have worked over time, are not necessarily optimal figures with respect to material removal rates, tool deflection allowances, or a host of other variables we might choose to consider.  What's a more systematic way to approach the problem?</p>
+      <p align="left" class="style1">First thing is we have two variables (width and depth of cut), so it's hard to make progress unless we can nail one of the two variables down and focus on the relationship of the other. It's usually pretty easy to nail down one of the variables based on the situation.  Let's divide our work into two categories:</p>
+      <p align="left" class="style1">- Slotting: I'll generalize this to be any situation where the material to be removed is very close to the cutter's diameter.   It may be a slot, or it may involve interpolating a hole or pocket that's only a little bit larger than the endmill's diameter.</p>
+      <p align="left" class="style1">- Pocketing:  Here again, I will generalize this to be any situation where the cutter's diameter is quite a bit smaller than the dimensions of the material to be removed. That doesn't mean there isn't some inside radius or other feature that isn't more like the slotting example, but for the most part, we have some room to work in. Note that profiling will be considered to be the same as pocketing for this discussion.</p>
+      <p align="left" class="style1">Okay, so now we have to take the task before us and decide whether it is closer to slotting or pocketing.     The reason I've defined these two the way I have is that it informs our choice of which variable to work on first.  If we are slotting, the cutting width is the first variable.  If we are pocketing, the cutting depth is the first variable.  Why?</p>
+      <p align="left" class="style1">When slotting, the feature is very close to the cutter's diameter in size.     We can't take a 1/2&quot; endmill and use it to make a 1/4&quot; slot.   In general, we want to use the largest diameter endmill that fits the feature, and then we pretty much have to make at least one cut that is full width.  Once we're cleared that cut, anything remaining is handled the way we would under pocketing.   So, when slotting, we focus first on cut width and make that the cutter's width to get started.</p>
+      <p align="left" class="style1">When pocketing, our limitation will be the smallest inside radius we have to deal with as well as the depth of the pocket.  Remember, it may be advantageous to make two passes.  The first with a cutter that has a diameter too large for the smallest inside radii we have to deal with. That's a roughing pass that uses a larger cutter just to get done faster.   The second pass is a finishing pass, and must use a cutter whose diameter is less than or equal to that required to reach into the smallest internal radius the pocket holds.    Note that we can go around an outside radius (a boss) with any diameter cutter, it is the inside radius that limits us.</p>
+      <p align="left" class="style1">So, we pick a cutter that is either as big as the smallest radius, or we choose to go two passes and go with a larger cutter.    Let's leave the two pass issue aside for the moment, because figuring out when that is optimal can take a bit of trial and error.  Its similar to think of one pass.  Given that the cutter is chosen, we can choose just about any width of cut we want.        So how do we nail down a variable when pocketing?    On the slotting case, I like to nail down cut width.  On the pocketing case, I prefer to nail down cut depth.</p>
+      <p align="left" class="style1">In general, we get a nicer finish if we cut the pocket in as few layers as possible.  CAM programs are good at layering down into the pocket, so we can pick arbitrary depths of cut.     If I can, I like to do it in one layer for a pocket that isn't two deep.  If not, I prefer the depths of the layers to be equal.  In other words, I wouldn't go down 1/4&quot;, 1/4&quot;, and then 0.19&quot; on the third layer.   So pick a layer depth that satisfies that criterion.</p>
+      <p align="left" class="style1">Now, in both cases we have locked one of the two variables--slotting locks width, pocketing locks depth.    We need to determine the best value for the variable we left floating based on the value of the one we locked.    This is where the G-Wizard Cut Optimizer makes it easy.   Enter the values you know for the cut and let the Optimizer figure the value for the floating variable.</p>
+      <p align="left" class="style1">For example, let's suppose we need to cut a pocket that is 3/4&quot; deep in 6061 aluminum.   The smallest internal radius is 1/4&quot;, so we've decided to use a 1/4&quot; 3 flute carbide endmill. Here is the problem set up in G-Wizard:</p>
+      <p align="center" class="style1"><img src="img/GWizard/GWPocket1.jpg" alt="" width="700" height="605"></p>
+      <p align="center" class="style1">Material, Tool, Tool Diameter, Flutes, and 3/4&quot; Cut Depth Entered...</p>
+      <p align="left" class="style1">Now we can invoke the Cut Optimizer just by pressing the &quot;Rough&quot; button:</p>
+      <p align="center" class="style1"><img src="img/GWizard/GWPocket2.jpg" alt="" width="700" height="659"></p>
+      <p align="left" class="style1">As  you can see from the red arrows I added, for a 3/4&quot; depth of cut, this endmill can handle no more than 0.1799&quot; width of cut when roughing.   Let's round that down and go with 0.170&quot;</p>
+      <p align="left" class="style1">Press the finish button to see what sort of finish allowance we should have the CAM leave for our finish path and we get 0.0052&quot;.   That's a pretty light pass, but 3/4&quot; is deep for this 1/4&quot; endmill.    Here's an interesting thought: if we reduce tool holder to tip length to 0.9&quot; instead of 1&quot;, we can increase that cut to 0.0095&quot;.     That gives you an idea of how important it is to keep the tool stick out as little as possible.    I'd be inclined to go with choking up on the tool and a finish width of cut of 0.009&quot; were this my job.  The other thing to consider is two levels of finish pass.  If we don't mind taking two levels and still choke up on the tool, we can get 0.015&quot; width of cut for the finish. That's about as much as I like to take on a finish pass.</p>
+      <p align="left" class="style1">The problem with this cut is its a little bit deep for our 1/4&quot; endmill.    That's a 3:1 ratio of diameter to depth.  We can tell its straining because the max recommended widths of cut are so light.    If I had a CAM program that made it easy to make the roughing pass with a bigger cutter, I would be tempted to jump in with a 1/2&quot; endmill (or maybe even larger) for the roughing pass and then go to the 1/4&quot; for finishing, but you get the idea.</p>
+      <p align="left" class="style1">The slotting case is pretty similar, except for that case, instead of trying to compute the width of cut, we want to use the optimizer to figure out the depth.  For example, if we continue with our 1/4&quot; 3 flute, let's say we need to cut a slot 0.300&quot; wide to a depth of 3/4&quot;. Our plan is to cut a full slot 0.250&quot; wide down the middle, and then finish it up by cutting the remainder on each side.     How deep can we make our full slot passes?    Once again, dial up the initial parameters, and this time, hit the &quot;Slot&quot; button. For roughing, the Cut Optimizer tells us we can cut to a depth of 0.3466&quot; before we get too much deflection.    Two passes at that depth will get us to 0.6932&quot; deep.    That leaves 0.0568&quot; on the bottom for us to finish and 0.0259&quot; on either side for the finish pass.  Remember, we're not cutting a full slot for the finish pass, so we treat it just like we did our pocket to figure out the width and depth of cut.</p>
+      <p align="left" class="style1">That's all there is to it.  To summarize:</p>
+      <p align="left" class="style1">1. Decide whether you are slotting or pocketing.</p>
+      <p align="left" class="style1">2.  When slotting, pick a value for width, and use Cut Optimizer to decide depth.</p>
+      <p align="left" class="style1">3.  When pocketing, pick a value for depth, and use Cut Optimizer to decide the width.</p>
+      <p align="left" class="style1">If you approach the problem this way, you'll maximize your MRR's while minimizing your tool deflection as appropriate for either roughing or finishing.  That's a much more optimal approach than the old wet finger in the wind!</p>
+      <p class="BlogTitle">Breaking Cutters With Tool Deflection: An Anecdote</p>
+<p class="BodyText">Not long ago I got a call to go visit a shop and check out their new <a href="http://www.gibbscam.com/solutions/index.php?so=94">Volumill HSM module for GibbsCAM</a>. Being a fan of HSM techniques, I couldn't resist.    Volumill is indeed very slick, though we noticed it was leaving some pretty severe nicks <span class="BodyText2"> in the walls and rough spots in the floor of a pocket</span>.   My friend commented that the dealer had suggested Volumill was focused on roughing, and so not having a smooth finish was really not an issue.  It certainly did radically increase the MRR's on his job, which I think he said went from 26 minutes to 8 minutes or something similar. </p>
+<p class="BodyText">I asked to see the job run, and while he was teeing up the tool in the changer, I remarked that it seemed like he had a lot of stickout for the 3/16&quot; EM he was using.     Perhaps tool deflection was the reason for the rough finish?    So, not only did we change the stickout, but we went to a more rigid collet chuck while we were at it and fired up the job.     We couldn't see much through all the coolant, but we distinctly heard the tool break near the end of the job.  Darn!</p>
+<p align="center" class="BodyText"><img src="img/CNCCookbook/MillFeedsSpeeds/DeflectWall.JPG" width="800" height="769" alt="Wall from tool deflection"></p>
+<p align="center" class="BodyText">Note the little wall caused by tool deflection (red arrow)...</p>
+<p align="left" class="BodyText">After pulling the part out of the machine it was pretty easy to see what had happened.   The program for the pocket contained two passes.  First was a pass using VoluMill to rough out the interior of the pocket.  The machinist had then programmed a second pass that was a standard constant stepover that would work from the outside inward to clean up the rough finish of Volumill. The immediate cause of the failure is the thin wall I've pointed to in the photo with the red arrow. That wall turned a partial stepover cut into a full slot which reduced chip clearance and likely shrouded the cutter from getting enough coolant.  The cutter didn't get very far along the wall before built up edge caused the aluminum to start welding onto the cutter.  You can see the typical debris from that all along the left side--it looks like mud, but it's aluminum.   Most machinists have had this happen before and they know it doesn't go on very long before a tool breaks.</p>
+<p align="left" class="BodyText">The key question: Why was that little wall there?  At first I blamed Volumill because the thickness of the wall seemed on par with some of the other little dips and divots of the toolpath.   However, that blame turned out to be misplaced. After I got home with the g-code, I plugged the parameters into G-Wizard and  determined that the toolpath had been severely deflecting.  The cutter was climb milling, so as we mention above, the deflection would tend to be perpendicular to the direction of cut.  In this case, the cutter deflected deeper into the cut and left the wall. If it had deflected away, we never would have seen a problem.</p>
+<p align="left" class="BodyText">In retrospect, a lot less stepover probably would've improved the performance and finish of the HSM path as well as eliminating the deflection that eventually took out the cutter.</p>
+<p align="left" class="BodyText">It pays to be aware of and control your tool deflection!</p>
+<p align="left" class="BodyText">&nbsp;</p>
+<p align="left" class="BlogTitle">Wait: I Really Need Every Last Ounce of MRR--How Far Can I Bend the Rules of Tool Deflection?</p>
+<p class="BodyText">We've written a whole article to try to pin down this issue once and for all on our blog.  It's called, &quot;<a href="http://blog.cnccookbook.com/2016/03/21/every-cncer-know-tool-deflection/"><strong>What every CNC'er ought to know about Tool Deflection</strong></a>.&quot;  It's a good read if you want to push the envelope as safely as possible.</p>
+<p class="BodyText">&nbsp;</p>
+<p class="BlogTitle">Next Article:  <span class="BodyText1"><a href="CCCNCMillFeedsSpeedsToolpath.htm">Toolpath Considerations</a></span></p>
+<p class="BodyText">&nbsp;</p>
+<p align="center" class="BodyText1"><b><i><font size="+2"><a href="MTLatheHome.htm">Try the Free Trial Version of G-Wizard Speeds and Feeds Calculator...</a></font></i></b></p>
+<p align="center" class="BodyText1"><span class="style12"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+<p align="center" class="BodyText1">No credit card required--just your name and email.</p>
+<p align="center" class="BodyText">&nbsp;</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

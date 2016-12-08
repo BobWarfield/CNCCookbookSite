@@ -1,0 +1,966 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCGWCDocPage.dwt" --><!-- DW6 -->
+
+<head>
+
+<!-- #BeginEditable "doctitle" --> 
+<title>Feed and Speed Calculator for CNC Machinists</title>
+<style type="text/css">
+<!--
+.SectionTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: #339933;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.style1 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+
+
+<meta name="description" content="Want the latest feeds and speeds technology?  Times have changed with HSM, new coatings, new geometries and new techniques.  See how easily the G-Wizard feed and speed calculator can give you more productive feeds and speeds.">
+
+<style type="text/css">
+.BodyText {	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<!-- #EndEditable -->
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+<style type="text/css">
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 14pt}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.Tagline {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #0;
+	font-size: medium;
+	vertical-align: middle;
+}
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+<!-- SumoMe Listbuilder Email Exit Intent -->
+<script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" />
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">
+  multitouch();
+</script>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr></tr>
+<tr>
+  <td height="68" colspan="4" valign="middle" bordercolor="0" class="Tagline">
+  
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/LogoBitmap30High.jpg" alt="CNCCookbook: Software and Information for Macihnists" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="32" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+  
+  </td>
+</tr>
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+<tr class="LeftNav">
+  <td width="232" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0"><table width="65%"  border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><div align="center">
+        <p><a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"><img src="img/Ads/GWAd05152011.gif" width="120" height="90" alt="G-Wizard Machinist's Calculator" longdesc="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"></a></p>
+        <p><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm"> <img src="img/Ads/FeedsSpeedsAd.jpg" width="120" height="69" alt="Feeds and Speeds Cookbook"></a></p>
+      </div></td>
+    </tr>
+  </table>
+    <p>
+      <!-- Place this tag where you want the +1 button to render -->
+        <g:plusone></g:plusone>
+    </p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="+1" color="#66CC00">G-Wizard 
+      User Guide</font></b></p>
+    <p align="center" class="BodyText"><a href="GWCUIntro.html"><strong>GW Calc Video University</strong></a></p>
+    <p align="center" class="BodyText"><strong><a href="GWCalcGettingStarted.htm">Getting Started</a></strong></p>
+    <p align="center" class="BodyText"><strong><a href="GWCalcHowToArticles.html">How-To Articles</a></strong></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalculator.htm">Calculator</a></b></font></p>
+    <p align="center" class="BodyText"><a href="GWCalcCADCAMWizard.htm"><strong>CADCAM Wizard</strong></a></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcFeedsSpeeds.htm">Feeds 
+      and Speeds</a></b></font></p>
+    <p align="center" class="BodyText"><a href="GWCalcBeginnerFeedsSpeedsExamples.htm"><strong>Examples for Beginners</strong></a></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCutOptimizer.html">Cut Optimizer</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcMiniCalcs.htm">Mini-Calcs</a></b></font></p>
+    <p align="center" class="BodyText"><strong><a href="GWCalcCutKB.html">Cut KB</a></strong></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcGeometry.htm">Geometry</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcThreads.htm">Threads</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcQuickRef.htm">Quick 
+      Reference</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcSetup.htm">Setup</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWTips.html">Tips and Goodies</a></b></font></p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="GWTrouble.htm">Troubleshooting</a></font></b>    </p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="GWCustTools.html">Download Tool Data</a></font></b></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><a href="http://www.cnccookbook.proboards.com/index.cgi" class="BodyText"><strong>User's Club</strong></a></p>
+    <p align="center"><a href="CCGWizardChangeLog.htm"><font face="Arial, Helvetica, sans-serif"><b>G-Wizard 
+      Change Log</b></font></a></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWizard/GWizardInstall1SC.html">G-Wizard 
+      Install</a></b></font></p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="CCGWizardE.html">GWizard G-Code Editor</a></font></b></p>
+<p>
+  <!-- Place this tag where you want the +1 button to render -->
+<p>
+  <g:plusone></g:plusone>
+  </p>
+    <!-- AddThis Button BEGIN -->
+    <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+    <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=cnccookbook"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=cnccookbook"></script>
+    <!-- AddThis Button END -->
+</p>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    gaTrack: true,
+    gaId: 'UA-1060932-2'
+  }, 'google_translate_element');
+}
+  </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</p>
+</td>
+</tr>
+<tr>
+  <td colspan="7" align="left" valign="top" bgcolor="#FFFFFF">
+  <div id="centerContainer">
+  <!-- #BeginEditable "Body" --> 
+      <p><font size="+4" color="#339933">G-Wizard CNC Feed and Speed Calculator</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard's feed and speed 
+        calculator</a> is designed to help you determine<span class="BodyText"> the best feeds and speeds 
+        for particular machining operations. </span></font><span class="BodyText">Getting the best feed and speed for your particular tooling and cutting situation is one of the most important steps to ensure maximum material removal rates, <a href="MTMillSurfaceFinish.htm">best surface finishes</a>, and better tool life.  The Feeds and Speeds calculator considers many additional variables that simple lookup tables and the SFM and chipload math every machinist knows by heart don't.     Considerations such as radial chip thinning, and when it's better to climb versus conventional mill are very important to getting the best results.</span>      </p>
+      <p class="BodyText">If you're wondering why you'd care about all that, here is a quick course in Feeds and Speeds that fills in the blanks:</p>
+      <p align="center" class="style3">
+        <span class="BodyText">
+        <object width="640" height="505">
+          <param name="movie" value="http://www.youtube.com/v/drdBBvWIFNo?hl=en&fs=1">
+          </param>
+          <param name="allowFullScreen" value="true">
+          </param>
+          <param name="allowscriptaccess" value="always">
+          </param>
+          <embed src="http://www.youtube.com/v/drdBBvWIFNo?hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed>
+        </object>
+      </span></p>
+      <p align="left" class="BodyText">It's a 10 minute video that covers things like chip thinning, relationship of cutter edge radius to chip thickness for best tool life, ballnose cutter compensation, and a number of other topics associated with feed and speed calculation. And, in the spirit that a picture is worth 1000 words, here is an in-depth demonstration of the G-Wizard Feed and Speed Calculator:</p>
+      <p align="center">
+        <iframe width="800" height="450" src="//www.youtube.com/embed/We5_M7xiShk" frameborder="0" allowfullscreen></iframe>
+      </p>
+      <p align="center" class="BodyText"><strong>Everything you need to get started with G-Wizard including how to install, login, and <br>
+        start using Feeds and Speeds.</strong></p>
+      <p align="center" class="BodyText">&nbsp;</p>
+      <p align="left" class="BodyText">More quick videos are available from the <a href="GWCUIntro.html">G-Wizard Calculator Video University</a>.</p>
+      <p><span class="BodyText"><font face="Arial, Helvetica, sans-serif">To use the Feed and Speed calculator is</font><font face="Arial, Helvetica, sans-serif"></font></span><font face="Arial, Helvetica, sans-serif"> simple. Just  start filling in the form from  left to right, top to bottom and your answer comes out at the bottom:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/GWizard/FeedsSpeeds.jpg" alt="G-Wizard CNC Feed and Speed Calculator" width="800" height="624"></font></p>
+      <p align="center" class="BodyText">This is the Advanced view showing all the cutting parameters for Feeds and Speeds...</p>
+      <p align="left" class="BlogTitle">Machine</p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">First, you select 
+        your machine, the material, and the tool. </font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">You can set up each machine in your shop with information such 
+        as the type of machine, machine's rpm limit, maximum feedrate, horsepower 
+        of the spindle, and even what tooling is set up with the machine in the Tool Crib. If you haven't already done so, it's worth your time to set up the basic machine parameters using the <a href="GWCalcSetup.htm">Setup tab</a>.  This will ensure the G-Wizard Feeds and Speeds Calculator doesn't suggest a spindle speed or feedrate that are faster than your machine can handle, or a cut that takes more horsepower than your machine has available.     Save creating a custom Tool Crib for later, after you're familiar with the basics of G-Wizard.</font> </p>
+<p align="left"><span class="BlogTitle"> Material</span></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The next choice 
+        is the type of material you will be cutting. G-Wizard supports the following 
+        materials:</font></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="20%"> 
+            <div align="center"><font face="Arial, Helvetica, sans-serif"><b>Material</b></font></div>
+          </td>
+          <td width="80%"> 
+            <div align="center"><font face="Arial, Helvetica, sans-serif"><b>Description</b></font></div>
+          </td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Aluminum -- 
+            Cast</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Aluminum -- 
+            Wrought (6061)</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Free machining 
+            aluminum alloys, Hardness of 50-150 BHN. 1000, 1100, 1200, 1300 series. 
+            2011 through 2024 series. 300 series. High-silicon aluminum: 4000, 
+            5000, 6000, and 7000 series.</font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Brass</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Hardness 50-150 
+            BHN</font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Cast Iron 
+            -- Ductile</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Ductile and 
+            malleable cast irons, Hardness 140-260 BHN: Nodular/ductile, ferritic/pearlitic, 
+            and pearlitic martenistic.</font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Cast Iron 
+            -- Gray</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Gray cast 
+            irons, Hardness 135-340 BHN.</font></td>
+        </tr>
+        <tr>
+          <td class="BodyText">Composite: Fiberglass/PC Board </td>
+          <td class="BodyText">Use this for any resin impregnated glass cloth, e.g. fiberglass or PC boards. Won't work for carbon fiber or exotic stuff like Kevlar though!</td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Copper Alloy 
+            -- Wrought</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Hardness 50-150 
+            BHN</font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">High Temp 
+            Nickel Alloy</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Nickel-based 
+            heat-resistant alloys, Hardness 125-250 BHN: Monel, Inconel, Waspalloy.</font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Magnesium 
+            Alloy</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Hardness 50-90 
+            BHN</font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Nickel Alloy</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Nickel-based 
+            heat-resistant alloys, Hardness 200-450 BHN: Inconel 718, Hastelloy 
+            C, Rene 95, Waspalloy.</font></td>
+        </tr>
+        <tr>
+          <td><table cellspacing="0" cellpadding="0">
+  <td width="113"><span class="BodyText">Plastic: Hard</span></td>
+          </table></td>
+          <td><span class="BodyText">Hard plastics such as HIS (High Impact Styrene), Nylon, Polypropylene, ABS (Acrylonitrate-butadiene-styrene), Composite Acrylic-PVC, PVC, Polyethylene, Acetal, Acrylic, ECTFE, PET-G, PET-P, Polyester, HD Cutting Board, Nylon, PBT (Polybutylene Terephthalate), Polycarbonate, and Polyurethane</span></td>
+        </tr>
+        <tr>
+          <td><table cellspacing="0" cellpadding="0">
+  <td width="113"><span class="BodyText">Plastic: Soft</span></td>
+          </table></td>
+          <td><span class="BodyText">Soft plastics such as Acetal, Delrin, Cellulose Acetate Butyrate, APET (Amorphous Poly Ethylene Terphthalate), Polyetherimide, HDPE (High Density Polyethylene), Composite Foam Board, and PEEK (Polyetheretherketone)</span></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Stainless 
+            -- 300 Series (316)</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Austenitic 
+            series stainless steels, Hardness 135-275 BHN</font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Stainless 
+            -- 400 Series (420)</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Ferritic-Martenistic 
+            stainless steels, Hardness 135-300 BHN: 410, 416, 416F, 420, 430, 
+            440, and 440C</font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Stainless 
+            -- PH Series (17-4)</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Ferritic-Martenistic 
+            stainless steels, Hardness 300-450 BHN</font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Steel -- Low 
+            Carbon (1020)</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Free machining 
+            and low carbon steels with a hardness range of 100-225 BHN. AISI 1008, 
+            1010, 1020, 1026, 1108, 1117, 1141 ,1151, 10L18, 10L45, 10L50, 11L44, 
+            12L14.</font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Steel -- Low 
+            Carbon Alloy (8620)</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Alloy steels, 
+            Hardness 200-325 BHN: 1300 series, 2000 series, 3000 series, 4012, 
+            4023, 4140, 4150, 4320, 4422, 5120</font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Steel -- Medium 
+            Carbon (1045)</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Medium carbon 
+            steels, Hardness of 180-250 BHN. 1040, 1045, 1085.</font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Steel -- Medium 
+            Carbon Alloy (4130)</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Medium carbon 
+            alloyed steels, Hardness of 250-325 BHN.</font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Steel -- High 
+            Carbon (1090)</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">High carbon 
+            steels, Hardness of 250-330 BHN. </font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Steel -- High 
+            Carbon Alloy (52100)</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Hardened and 
+            heat treated alloy steel. Hardness 325-480 BHN. </font></td>
+        </tr>
+        <tr> 
+          <td width="20%"><font face="Arial, Helvetica, sans-serif">Steel -- Tool 
+            (H13)</font></td>
+          <td width="80%"><font face="Arial, Helvetica, sans-serif">Tool steels. 
+            Hardness 480-750 BHN.</font></td>
+        </tr>
+        <tr>
+          <td><font face="Arial, Helvetica, sans-serif">Titanium Alloy</font></td>
+          <td><font face="Arial, Helvetica, sans-serif">Titanium alloys, 
+            Hardness 250-450 BHN. Pure, alpha, alpha-beta, and beta titanium.</font></td>
+        </tr>
+        <tr>
+          <td class="BodyText">Wood: Hardwood<br>            <br></td>
+          <td class="BodyText">Harder woods such as Maple, Wenge, African Pedauk, Hickory/Pecan, Purpleheart, Jarrah, Merbau, Santos Mahogany, Mesquite, Brazillian Cherry, Brazillian Ebony</td>
+        </tr>
+        <tr>
+          <td class="BodyText">Wood: MDF<br></td>
+          <td class="BodyText">Particle board and similar materials</td>
+        </tr>
+        <tr>
+          <td class="BodyText">Wood: Plywood<br></td>
+          <td class="BodyText">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="BodyText">Wood: Softwood</td>
+          <td class="BodyText">Softer woods such as Douglas Fir, So. Yellow Pine, Black Cherry, Teak, Black Walnut, Heart Pine, Yellow Birch, Red Oak, American Beech, Ash, White Oak, Australian Cypress</td>
+        </tr>
+      </table>
+      <p align="left" class="BodyText">For a more detailed list, consult the product.   </p>
+      <p align="left" class="BodyText">There are two ways to enter a material. First is to use the Material list. Second is to use the Material Database, which is accessed via the &quot;More&quot; button next to the Material list.     The Material DB brings up a much more detailed list of materials that includes alloy and condition.   Here is a typical example after selecting low carbon steel from the  Materials list:</p>
+      <p align="center" class="BodyText"><img src="img/GWizard/MaterialsDB.jpg" width="800" height="579"></p>
+      <p align="center" class="BodyText">Materials Database is organized by Family, Alloy, and Condition...</p>
+      <p align="left" class="BodyText">You can access any family from within the Materials Database with the &quot;Family&quot; pulldown.      Pick the alloy you want and its condition.      This determines the Hardness that G-Wizard will use to adjust the cutting parameters.  If you know the hardness of your material, all you need is the correct family and enter your own hardness.</p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">When in doubt about which material to select (because you don't see your particular alloy on the list), choose one from the same family and similar hardness. By family, I mean Aluminum, Cast Iron, Stainless, Steel, etc.   Use the Hardness conversion table in the <a href="GWCalcQuickRef.htm">Quick Reference</a> if your hardness units are different than the BHN units listed above.  While the match is not exact, most tooling manufacturers make recommendations exactly this way and don't list recommendations for the thousands of different possible alloys that are out there.</font>  G-Wizard lists the hardness range for the current material right under the material selection menu.</p>
+      <p align="left" class="BodyText">If you don't make a choice from the Materials DB, G-Wizard will assume an alloy and condition that falls in the middle of the range.     This works most of the time and there is enough conservatism built into GW that you're unlikely to damage a tool unless you're working on very hard material.  The purpose of the Materials DB is twofold. First, it is to help you in identifying the material more precisely.  Maybe you're not sure which family to choose, but if you can find it on the list, then you know.  Second, it provides a little fine tuning of the surface speed which may increase your performance if the material is softer than the average or decrease and thereby increase tool life if the material is harder.</p>
+      <p align="left" class="BodyText">If you're working with a material that isn't on the list, send us an email or bring it up on the User's Club.   We'll be happy to add your material.</p>
+      <p align="left"><span class="BlogTitle"> Tool</span></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The last choice 
+          <span class="BodyText">on the top row is the type of tool you will be using:</span></font></p>
+      <p align="center" class="BodyText"><font face="Arial, Helvetica, sans-serif"><img src="img/GWizard/ToolSelection.jpg" width="308" height="54" alt=""/></font></p>
+      <p align="center" class="BodyText">Tool Selector...</p>
+      <p align="left" class="BodyText">There are 3 options to select a tool:</p>
+      <p align="left" class="BodyText">- Use the down arrow to get a quick list of tools:</p>
+      <p align="center" class="BodyText"><img src="img/GWizard/QuickToolList.jpg" width="394" height="538" alt=""/></p>
+      <p align="center" class="BodyText">Click the down arrow on the Tool Selector for a quick list of tools...</p>
+      <p align="left" class="BodyText">Note that G-Wizard supports a huge variety of tooling. The list will change to reflect lathe tooling if a lathe is selected.</p>
+      <p align="left" class="BodyText">- Click the &quot;...&quot; button to see the expanded graphical tool selector:</p>
+      <p align="center" class="BodyText"><img src="img/GWizard/GraphicalToolSelector.jpg" width="800" height="624" alt=""/></p>
+      <p align="center" class="BodyText">Click the &quot;...&quot; button to see the Graphical Tool Selector...</p>
+      <p align="left" class="BodyText">- Lastly, to select a Tool from the <font face="Arial, Helvetica, sans-serif"><a href="GWCalcSetup.htm">Tool Crib</a></font>, first select the crib with the crib menu and then the Tool Selectors will be updated to showing only the tools within that particular Tool Crib.</p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Note that when you select from the Tool Crib, the Tool Size and Shape Options will be greyed out.  You can see what they are for the selected tool, but to change them you will have to go to the Tool Crib.</font></p>
+      <p align="left" class="BlogTitle">Tool Size and Shape Options</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Some of the most common Tool Size and Shape options are called out in the &quot;Tool&quot; row:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/GWizard/ToolRow.jpg" width="800" height="42" alt=""/></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">On the Tool Row, you can specify (sometimes depending on tool type):</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- C</font><font face="Arial, Helvetica, sans-serif">utter 
+        diameter and number of flutes. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- The drill chart 
+        will let you enter a standard twist drill size for the cutter diameter. 
+        </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- &quot;Geometry&quot; button tells you the currently selected geometry (e.g. &quot;Ballnose&quot;) and will bring up the Graphical Tool Selector so you can change geometries. </font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- </font>Stickout is important for Tool Deflection calculations. It is the distance from the tip of the tool to where it goes into the toolholder.</p>
+      <p align="left" class="BlogTitle">Manufacturer's Data<span class="BodyText"></span></p>
+      <p align="center" class="BlogTitle"><img src="img/GWizard/MfgsData.jpg" width="800" height="41" alt=""/></p>
+      <p align="center" class="BodyText">Using Mfg's Data is entirely optional...</p>
+      <p align="left" class="BodyText">Using Manufacturer's Data is entirely optional.  G-Wizard's default values, which are shown in these fields, are conservative. The reason to add Manufacturer's Data is to up your performance when using premium cutters or inserts.  To learn more about how to do that, read our <a href="http://blog.cnccookbook.com/2012/05/24/using-manufacturers-data-in-g-wizard-for-feeds-and-speeds/">article on using manufacturer's data</a>.</p>
+      <p align="left" class="BlogTitle">Cut Specifications</p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Now you've fully 
+        specified what sort of cutter you're using, and it is time to specify 
+        the cut. Parameters relating to the cut appear on the next row down:</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- Enter the cut 
+        depth and the cut width. </font></p>
+      <p align="left"><span class="BodyText"><font face="Arial, Helvetica, sans-serif">- Cut Width and 
+        Cut Depth are also expressed as a percentage of tool diameter: Axial Engagement 
+        is lengthwise along the cutter. Radial Engagement is hole diameter or 
+        slot width.</font></span> </p>
+      <p align="left" class="BlogTitle">Optimizer</p>
+      <p align="left"><span class="BodyText">If you're wondering how to choose the best Cut Width and Cut Depth, welcome to the party.  Many machinists are brought up on rules of thumb, trial and error, and what has worked in the past.    G-Wizard introduces the Cut Optimizer to help calculate more optimal depths and widths of cut based on an analysis of tool deflection.  It's possible to get much more scientific about your choice of width and depth of cut, and hence way better at choosing.   But h<font face="Arial, Helvetica, sans-serif">old th</font><font face="Arial, Helvetica, sans-serif"></font></span><font face="Arial, Helvetica, sans-serif">at thought. We're going to describe the <a href="GWCutOptimizer.html">Cut Optimizer on its own page</a>. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Check out the Cut Optimizer after you've read through the basics of the Feeds and Speeds calculator.</font></p>
+<p align="left" class="BlogTitle">The &quot;Gas Pedal&quot; or &quot;Tortoise-Hare&quot; Slider</p>
+<p align="left" class="BodyText">The Gas Pedal gives you finer control over what you want to accomplish with a cut:</p>
+<p align="center" class="style1"><img src="img/GWizard/GasPedal.jpg" width="800" height="558" alt="G-Wizard Gas Pedal"></p>
+<p align="center" class="style1">The Gas Pedal is at the bottom, marked in red...</p>
+<p align="left" class="BodyText">The Gas Pedal is calibrated from Conservative to Aggressive in multiple steps.  The conservative end emphasizes Tool Life and Surface Finish. It lowers the feedrate to just a little above where the rubbing warning would be given in the Tips area to the left of the Gas Pedal. If you go much slower, you start risking rubbing, which can shorten tool life. In the Full Tortoise conservative position, not only is feedrate limited, but the deflection allowance is reduced to be that of a finish cut. The aggressive end emphasizes Material Removal Rates.   The Gas Pedal always comes up in the far right &quot;Full Hare&quot; roughing position.</p>
+<p align="left" class="BodyText">If you're a beginner, crank the Gas Pedal over to the conservative side until you're comfortable you've come up to speed. As you get comfortable, try coming up a notch at a time when roughing.</p>
+<p align="left" class="BodyText">If you're experienced, use the Gas Pedal to emphasize the difference between roughing and finishing.  Or, to give a job a little more safety margin.  For example, if you're down to your last cutter of a certain size and the job has to get done that day, be a little more conservative. If you want to emphasize a finer surface finish, be a little more conservative. If you are working on a job that's been going on for 2 weeks and would be expensive to start over on, be a little more conservative.</p>
+<p align="left" class="BlogTitle">G-Wizard's Tips</p>
+<p align="left" class="BodyText">People are always passing along tips: &quot;Use a parabolic drill if your length to hole diameter ratio is more than X.&quot;  G-Wizard has a lot of tips too, and it presents them in the Tips are near the bottom of the screen so you don't have to try to remember them.    Here are a few of the tips G-Wizard can dispense (there are many more):</p>
+<div align="center">
+  <table width="80%" border="0">
+    <tr>
+      <th width="40%" scope="col">Tip</th>
+      <th width="60%" scope="col">Notes</th>
+    </tr>
+    <tr>
+      <td><span class="BodyText">Hole Too Deep: Not Recommended!</span></td>
+      <td><span class="BodyText">The length to diameter ratio is too great. Drilling a hole that deep in that diameter is not recommended.</span></td>
+    </tr>
+    <tr>
+      <td><span class="BodyText">Need Parabolic</span></td>
+      <td><span class="BodyText">Use a parabolic flute drill for best results.  Parabolics are more effective at chip evacuation in deep holes.</span></td>
+    </tr>
+    <tr>
+      <td><span class="BodyText">Use Peck Drilling</span></td>
+      <td><span class="BodyText">The hole is deep enough to benefit from peck drilling.</span></td>
+    </tr>
+    <tr class="BodyText">
+      <td>Drill a pilot hole 2xD deep</td>
+      <td>On some deep holes, it is advantageous to drill a pilot hole that is 2xD deep. The pilot should be a slightly smaller diameter than the main hole.   The pilot is important because the long shank needed for the deep hole makes the tool less rigid.  The pilot ensures it gets started properly and is supported by the hole with reduced cutting force before it has to really dig in.</td>
+    </tr>
+    <tr>
+      <td><span class="BodyText">Use Conventional Milling</span></td>
+      <td><span class="BodyText">Some cutting conditions result in negative rake geometry when climb milling.     When this happens use Conventional Milling.</span></td>
+    </tr>
+    <tr>
+      <td><span class="BodyText">Use Climb Milling</span></td>
+      <td><span class="BodyText">If your machine is capable of it, climb milling will produce a better finish.    Make sure your machine has no backlash before attempting climb milling.</span></td>
+    </tr>
+    <tr>
+      <td><span class="BodyText">Avoid the centerline of your cutter by using more or less cut width</span></td>
+      <td><span class="BodyText">Centerline cutting is hard on the cutter and hard on the workpiece.  You'll get a better result if you use either more or less cut width.</span></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</div>
+<p align="center" class="BlogTitle">&nbsp;</p>
+<p align="left" class="BlogTitle">Feeds and Speeds</p>
+      <p><font face="Arial, Helvetica, sans-serif">This is what its all about: G-Wizard has calculated your feeds and speeds by telling you the RPM and Feedrate you should be using.</font></p>
+      <p class="BlogTitle">Advanced Cutting Parameters</p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">There is a lot more information available to help you understand what's going on and potentially fine tune further.   You get the additional information by pressing the &quot;Advanced&quot; button.   Most of the time, you have everything you need already, so all that extra stuff is hidden so it won't be distracting.  </font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">Note that if you are hitting the limits of your machine in some way, the Feedrate or RPM will change colors.  Clicking the Advanced button will lead you to the reason because the appropriate parameters under Advanced will also change color.</font></p>
+      <p align="center" class="SectionTitle">Advanced Cutting Parameters</p>
+      <p align="center"><img src="img/GWizard/SimpleView.jpg" width="800" height="558"></p>
+      <p align="center" class="BodyText">Simplified View. Switch to advanced view with the Advanced button in the Feeds row...</p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/GWizard/FeedsSpeeds.jpg" alt="G-Wizard Feed and Speed Calculator" width="800" height="558"></font></p>
+      <p align="center" class="BodyText">This is the Advanced view showing all the cutting parameters for Feeds and Speeds. Switch to Simplified View with the &quot;Simplify&quot; button in the Feeds row...</p>
+      <p align="center" class="BodyText">&nbsp;</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BodyText">After pressing the Advanced button, you can read 
+        off a number of additional parameters about your cut as shown in the screen shot. Any of the indicators 
+        that have that little padlock to the right are ones you have overridden 
+        from the recommended settings.  Be sure to take a look at G-Wizard's recommendations before you try to override anything!  To make the Advanced Cutting Parameters go away, just press the &quot;Simplify&quot; button, which is in the same place the &quot;Advanced&quot; button was before.</font></p>
+      <p align="left" class="BlogTitle">Machine Limits Column</p>
+<p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">The first column 
+        in this section is related to your machine limits. They're set up based on which machine you have selected. You can override them here, or you can set up a machine profile in the <a href="GWCalcSetup.htm">Setup Tab</a> that matches your machine. Here is what you'll find in this column:</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- HP Limit: The 
+        maximum number of horsepower for your spindle motor. Note that not all 
+        spindles can make their full horsepower at all rpms even though G-Wizard 
+        assumes they will! When a cut is specified that would exceed the HP Limit, 
+        G-Wizard scales back the feedrate until the operation is within the HP 
+        Limit specified.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- RPM Limit: That 
+        maximum RPM your spindle is limited to.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- Spindle %: The percentage of the available rpm  you are using.</font></p>
+<p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- Feed Limit: 
+        The maximum feedrate your machine can manage. </font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- Feed %: The percentage of the available feedrate  you are using.</font></p>
+      <p align="left"><span class="BodyText"><font face="Arial, Helvetica, sans-serif">Keep in mind, not all machines can offer their full HP over the entire RPM range.  You may need to be conservative about approaching your machine's HP limit.  I &quot;derate&quot; my HP by specifying a little less in the machine profile.   Also, some machines become less accurate at higher feedrates, and should only use the higher feedrates for rapids.    So you may want to derate the feedrate as well.</font></span> </p>
+      <p align="left" class="BlogTitle">Cutting Parameters Column</p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">The second column 
+        in this section is related to a deeper analysis of the cutting parameters:</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- Surface Speed 
+        (SFM or SMM in Metric): This is a measure of how fast the tool is moving 
+        relative to the material being cut. SFM is &quot;Surface Feet per Minute&quot; 
+        and &quot;SMM is Surface Meters per Minute&quot;. If the tool were a wheel 
+        rolling along the workpiece, that's how fast it would be rolling. SFM 
+        is largely what determines tool life. If you exceed the recommended SFM, 
+        you will wear out the tool much faster. If you run more slowly than recommended 
+        SFM, you may extend the tool life.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- IPT: Inches 
+        Per Tooth, also called Chipload. For metric, this is mm per tooth. To 
+        maximize tool life, cut as close to the recommended chipload as possible 
+        without going over. Exceeding the chipload will eventually break the tool. 
+        Excessive SFM burns or wears out the tool, excessive chipload breaks the 
+        tool.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- IPR: Inches 
+        per revolution, or mm per revolution for metric. During the time it takes 
+        for the spindle to make one revolution, this how far the workpiece must 
+        move relative to the spindle to maintain the chipload given the number 
+        of cutting flutes on the tool.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- Chip Thinning 
+        and AFPT: That business of &quot;Chip Thinning&quot; and &quot;AFPT&quot; 
+        on the mill cutter screens is a High Speed Machining concept, but it matters 
+        no matter what speed you are machining at. When you use less than half 
+        of the total cutter diameter for your radial engagement, it turns out 
+        you're not cutting full chip thickness. Hence the chip is &quot;thinned&quot;. 
+        The idea behind these settings is to bump up the feed rate until you're 
+        cutting full thickness chips again. Use the &quot;Chip Thinning&quot; 
+        checkbox to turn this on and off. &quot;AFPT&quot; is the actual chip 
+        thickness if you weren't using a chip thinning feedrate. Remember, cutting 
+        a chip that is too thin will prematurely wear your cutter. Try to approach 
+        the recommended chiploads by bumping up your feed. Chip 
+        Thinning and AFPT also come into play if you are using a high lead angle 
+        cutter. Similar geometric effects make the high lead angle (I don't know 
+        why 45 is a &quot;high&quot; lead angle and 90 is not!) cutters require 
+        more feed to maintain the recommended chipload.</font></p>
+      <p align="left"><span class="BlogTitle">Material Removal Rates and HP Column</span></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Once the feeds 
+        and speeds are determined, G-Wizard can estimate you material removal 
+        rate (MRR) in cubic inches per minute (cubic mm/min for metric), how much 
+        horsepower will be required, what % of your available maximum feedrate 
+        and spindle speed are being used, and the recommended plunge rate for 
+        endmills.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">A lot of machinists 
+        focus on maximizing MRR as a way of running their machines for optimal 
+        productivity. </font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Something else 
+        to think about: not all machines are equal in rigidity. Not even all setups 
+        are equal. HP is a pretty good indicator of how much energy is being transferred 
+        into the workpiece from a cutting operation. Since every action has an 
+        equal and opposite reaction, that force is transferred back into the machine, 
+        and the machine's rigidity has to fight to hold it in check. HP can be 
+        a useful way to tell how stressful a cut is going to be. When you get 
+        a feel for how many HP your machine can successfully transfer into a cut 
+        for certain operations, you may want to use the HP Limit to scale back 
+        a cut so that it is more in line with your machine's comfort zone.</font></p>
+      <p align="left" class="BodyText">And speaking of rigidity, you can see the predicted tool deflection for your cut (only for endmills and indexables) as well.</p>
+      <p align="left">&nbsp;</p>
+      <p align="left" class="BlogTitle">HSM Toolpaths</p>
+      <p align="left" class="BodyText">&quot;HSM&quot; refers to &quot;High Speed Machining&quot;, a collection of modern techniques designed to wring maximum performance out of CNC machine tools.</p>
+      <p align="left" class="BodyText">The HSM section provides several tools for dealing with the effects of Tool Engagement Angles (also called Cutter Engagement Angles). The TEA provides a means of measuring how hard a cut is working the cutter.  Think of it as the angle of the cutter that is actually engaged in cutting.  For example, when slotting, a full 180 degrees is engaged.  This is the maximum, except during plunging, when a full 360 degrees may engage. TEA changes as a function of corners the cutter may be forced to negotiate in a complex toolpath for CNC.   If you don't use CNC, the TEA functions are probably not important to your work.   </p>
+      <p align="left" class="BodyText">This portion of the G-Wizard Calculator enables you to do the following:</p>
+      <p align="left" class="BodyText">-  Calculate the straightline TEA based on tool diameter and cut width.   To do so, just press the &quot;Const. TEA&quot; button and you'll see it come up.  For example, a 1/2&quot; endmill cutting 0.015&quot; width of cut has a TEA of 19 degrees--much less than the 180 degrees when full slotting!</p>
+      <p align="left" class="BodyText">- Estimate the TEA of a toolpath based on tool diameter, cut width, and the sharpest angled corner in the path.   To bring up the TEA Estimator, press the &quot;Est. TEA&quot; button.  Here is our 1/2&quot; endmill, 0.015&quot; cut width example with a 90 degree corner:</p>
+      <p align="center" class="BodyText"><img src="img/GWizard/EstTEA.jpg" width="683" height="538"></p>
+      <p align="center" class="BodyText">Estimating the TEA of a 1/2&quot; EM with a 0.015&quot; width of cut in a 90 degree corner...</p>
+      <p align="left" class="BodyText">When estimating TEA's, you're stuck using the worst case corner since you presumably have a conventional toolpath and not a constant TEA toolpath.   You'll be surprised at how much corners increase your TEA.  The example cut went from a paltry 19 degrees all the way to 109 degrees in a 90 degree corner, for example.  The estimator will show you a scale drawing of the cutter and the corner to help visualize what's happening.</p>
+      <p align="left" class="BodyText">-  Estimate how much you'd need to slow down in a 90 degree corner versus &quot;straight line&quot; performance.   Any machinist has seen cases where corners cause problems with chatter or perhaps even breaking or chipping a corner.   The &quot;Corner Adjust&quot; number tells you how much slower you'd have to go through a 90 degree corner versus straightline with a given tool diameter and cut width.  To determine the slowdown, press &quot;Const. TEA&quot; first so you have a straightline TEA, and then look at the &quot;Corner Adjust&quot;.   For our example, we'd have to slow a path optimized for straight line to just 17% of the MRR of the straight line path. </p>
+      <p align="left" class="BodyText">-    Calculate how much faster a constant engagement angle toolpath (HSM) can run than a &quot;standard&quot; toolpath.  Calculate the standard feeds and speeds as you always would, press &quot;Const. TEA&quot;, and read off the &quot;HSM Adjust&quot;.  Like &quot;Corner Adjust&quot;, this is an increase in MRR.   Press the &quot;Show HSM Feeds and Speeds&quot; checkbox to update RPM and IPM accordingly.  Our light TEA angle example (1/2&quot; EM, 0.015&quot; cut width) goes from a speed of 3805 rpm and 76.5 IPM to a blistering 6946 rpm and 382 IPM with an HSM toolpath because the MRR went up 500% Now you know why they can charge more for that feature in a CAM program!</p>
+      <p align="left" class="BodyText">The &quot;RPM Factor&quot; and &quot;Feedrate Factor&quot; tell you how much you're exceeding the non-HSM toolpath spindle speed and feedrates, respectively.  For example, &quot;1.19&quot; means you're going 1.19 times faster.</p>
+<p align="left" class="BlogTitle">&nbsp;</p>
+      <p align="left" class="BlogTitle">&nbsp;</p>
+      <p align="left">&nbsp;</p>
+      <p align="left" class="BlogTitle">Mini-Calcs</p>
+      <p><font face="Arial, Helvetica, sans-serif">G-Wizard's feeds and speeds 
+        calculator has a set of functions called &quot;Mini-Calcs&quot; that <span class="style1">are little popup feeds and speeds calculators for special situations</span>:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Surface Finish:  Ballnose and Turning surface finish</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">- </font>Interpolate:  Circular and Helical Interpolation of holes and bosses</p>
+      <p class="BodyText">- Ramp:  Feeds and Speeds for ramping into a cut</p>
+      <p class="BodyText">- Plunge:  Plunge Roughing speeds and feeds</p>
+      <p class="style1">The Mini-Calcs are accessed directly under the Tool Definition (where you specify tool diameter, flutes, and so on).  For more information, see the <a href="GWCalcMiniCalcs.htm">Mini-Calcs Doc Page</a>.</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Parameter 
+        Locking and Overrides</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BodyText">Many of the parameters 
+        sometimes have a little padlock next to them, for example there is one 
+        next to the Surface Speed parameter. The padlock only appears when the 
+        parameter has been overridden by the user. Let's say G-Wizard is recommending 
+        400 SFM for your Surface Speed, and you think that's too fast. You can 
+        simply type &quot;200&quot; into that field and override the recommendation. 
+        Once you've overridden, the field stays overridden until you click the 
+        padlock, press the &quot;Reset to Defaults&quot; button (which resets 
+        all padlocks), or restart G-Wizard.</font></p>
+      <p align="center"><img src="img/GWizard/Padlock.jpg" width="180" height="35"></p>
+      <p align="center" class="BodyText">The little padlock indicates this RPM parameter was overridden by the user and G-Wizard is no longer calculating a value there...</p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Note that there 
+        are some good reasons not to leave parameters locked for very long. Many 
+        of them interact with one another. For example, let's say you want to 
+        look at the MRR and HP for various sized cutters. You decide to override 
+        SFM because you prefer a lower value. However, G-Wizard tweaks SFM depending 
+        on cut depth and cut width relative to cutter diameter. So as you're playing 
+        with larger and smaller endmill diameters, you're missing out on that 
+        tweaking.</font></p>
+      <p align="left" class="BodyText">A good rule of thumb is if you see any parameter with a padlock or that is red, make sure you know why and are comfortable leaving it that way.</p>
+      <p align="left" class="BlogTitle">Using the Cut Knowledge Base</p>
+      <p align="left" class="BodyText">The Cut Knowledge Base (Cut KB) is a powerful feature normally only found in high end CAM packages where it is often referred to under the heading of &quot;knowledge based programming&quot;.  The idea behind the Cut KB is to facilitate the gathering and organization of your shop's best practices around cutting to create a Knowledge Base (similar to a database) that captures that experience.</p>
+      <p align="left" class="BodyText">See the <a href="GWCalcCutKB.html">Cut Knowledge Base documentation page</a> for more information.</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">What 
+        is Chip Thinning?</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Chip thinning 
+        is the tendency for the chips to get thinner when you cut less than half 
+        the cutter's diameter depth of cut at a particular feedrate (more detail on my <a href="CCChipThinning.htm">chip thinning page</a>).</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Consider a cutter 
+        that is 1/2&quot; in diameter edge milling a 1/4&quot; deep depth of cut. 
+        Further, let's say it is spinning at 2700 rpm at a recommended feedrate 
+        of 16 IPM. So, for 1/2 of a revolution, a tooth is engaged in the cut. 
+        That 1/2 revolution takes 0.000185 minutes. During that time, the 16 IPM 
+        feedrate moves the cutter 0.003&quot;, which is the recommended chipload 
+        for the cutter.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Now let's try 
+        less depth of cut. Instead of 1/4&quot; deep, let's go 1/8&quot; deep, 
+        half as much cut. We can use the chord calculator in G-Wizard to see how 
+        much engagement we have. The arc length is 0.5236&quot;, and the overall 
+        circumference of the cutter is 1.5708&quot;, so we are engaging only 1/3 
+        of the total circumference instead of the 1/2 with the deeper cut. So 
+        the cutter now has even less time to peel of a chip, hence it has a lower 
+        chipload. The actual chipload is now than what it should be. Hence, we 
+        can speed up the feedrate quite a bit to restore the recommended chipload. 
+        G-Wizards's &quot;AFPT&quot; is the &quot;Adjusted Feed Per Tooth&quot;, 
+        and it is the chipload at this faster feedrate.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Note that G-Wizard's 
+        Chip Thinning compensation is radial chip thinning. Axial chip thinning 
+        is also possible, but is based on the cutter's profile being something 
+        other than vertical. For example, button cutters are like face mills that 
+        have round inserts. The ballnosed cutter compensation compensates for 
+        the round profile of a ballnosed cutter, but assumes a semicircle rather 
+        than the radius of a button cutter. Certain insert types (high feed inserts) 
+        also use this kind of geometry to allow extremely high feedrates.</font></p>
+      <p align="left" class="BodyText">The danger when running light cuts and feeds and speeds that don't take chip thinning into account is that your cutter will &quot;rub&quot;, which drastically reduces tool life!</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">The Case 
+        for Parabolic Drills and Their Use With G-Wizard</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">It is always hard to drill 
+        deep holes, where deep is defined by a hole that is many diameters of 
+        the drill bit deep. I recently came across <a href="http://www.cnczone.com/forums/showthread.php?p=686096#post686096">a 
+        question on CNCZone</a> that started me doing some research on the topic 
+        of parabolic drills. Parabolic-style drills were developed in the early 
+        1980s. They use a heavier web to create higher rigidity and increased 
+        flute area for chip removal on deep-hole drilling operations. </font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">Precision Twist Drill has <a href="http://www.precisiontwistdrill.com/techhelp/article08281995.asp?image=contact">a 
+        nice discussion</a> on their site of how to vary feeds and speeds to accomodate 
+        deep holes when using regular and parabolic twist drills. I was so taken 
+        by the CNCZoner's question and that nice discussion that I wound up adding 
+        a bunch of functionality to my <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard Machinist's 
+        Calculator</a>.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">The new functionality is both 
+        to implement the feeds and speeds adjustments recommended by Precision 
+        Twist for deep holes, but also to give recommendations based on the hole 
+        depth. For example, it suggests when you need to use a peck drilling cycle 
+        (where you drill down a little ways and then retract to clear chips) as 
+        well as when you should be considering a parabolic bit instead of a regular 
+        twist drill.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">The question the CNCZoner raised 
+        was what feeds and speeds to use when drilling a 0.201&quot; hole 3.5&quot; 
+        deep. That's over 17x the diameter in depth, so a parabolic drill is definitely 
+        called for!</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">Here is what G-Wizard shows 
+        when you enter those parameters:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Blog/Parabolic1.jpg" width="800" height="715"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BodyText">Note the box for 
+        Parabolic is checked, which tells G-Wizard we want to use a parabolic 
+        drill. Also, it is recommending a peck drilling cycle (DUH!) for this 
+        17.412x Diameter hole depth. If we enter a less severe hole depth, 0.2&quot;, 
+        it recommends 3800 rpm and a feed of 16.85, whereas you can see from the 
+        diagram it has compensated for hole depth and slowed down both the feeds 
+        and speeds. The feed is slowed as a result of the spindle rpm. Parabolics 
+        don't need further slowing. A regular twist drill would also get feedrate 
+        reduction on top of that.</font></p>
+      <p align="left">&nbsp;</p>
+      <p align="left" class="BlogTitle">When to Climb Versus Conventional Mill</p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Many CNC'ers are 
+        brought up on the notion that you should always Climb mill because it 
+        leaves a better surface finish, requires less energy, and is less likely 
+        to deflect the cutter. Conversely, manual machinists are often taught 
+        never to climb mill because it's dangerous to do on a machine that has 
+        backlash. The truth is somewhere in the middle. ABTools, makers of the 
+        popular AlumaHog and ShearHog cutters, point out some 
+        worthwhile rules of thumb:</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- One cutting 
+        half the cutter diameter or less, you should definitely climb mill (assuming 
+        your machine has low or no backlash and it is safe to do so!).</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- Up to 3/4 of 
+        the cutter diameter, it doesn't matter which way you cut.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">- When cutting 
+        from 3/4 to 1x the cutter diameter, you should prefer conventional milling.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">The reason is 
+        that cutter geometry forces the equivalent of negative rake cutting for 
+        those heavy 3/4 to 1x diameter cuts. It seems that Dapra corporation first 
+        discussed this phenomenon way back in 1971. G-Wizard now reminds you with 
+        a little hint which one you should prefer:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/GWizard/GWizClimbHint.jpg" width="512" height="148"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Just to the 
+        right of Radial Engagement it says, &quot;Use Climb Milling&quot;...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BodyText">If you choose 
+        to climb mill, do make sure your machine is up to it from the standpoint 
+        of having low or no backlash, lest your cutter dig in and suddenly jump 
+        very deeply into the cut due to the backlash.</font></p>
+      <p align="left">&nbsp;</p>
+      <p align="left" class="BlogTitle">Exploring Ramping and Interpolated Holes with G-Wizard's New Mini-Calcs</p>
+      <p class="BodyText">I've just finished adding a new feature to the <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard Calculator</a> that I call &quot;Mini-Calcs&quot; for release 1.040.  Mini-Calcs are little popup feeds and speeds calculators for special situations.  We already had one popup for calculating ballnose cutter stepover to achieve a particular surface finish.  I've just added two more--one is all about interpolated holes and the other is about ramping.  Both are common CNC operations that may be used to get a cutter down into a pocket or in the case of interpolation, this is an effective way to use an endmill to create a hole of a particular size.  There are a lot of trade-offs around making holes with interpolation, but more on those in a moment.</p>
+      <p class="BodyText">The Mini-Calcs are accessed directly under the Tool Definition (where you specify tool diameter, flutes, and so on):</p>
+      <p align="center" class="style1"><img src="img/GWizard/GWMiniCalcs.jpg" width="800" height="706" alt="G-Wizard Mini-Calcs"></p>
+      <p align="center" class="style1">The three Mini-Calc buttons are right under where you specify Tool Diameter and Flutes...</p>
+      <p class="BodyText">Let's start with the Ramping Mini-Calc.  From the screen shot above you can see I've set up an aggressive machining scenario in 6061 aluminum.  I've got a 1/2&quot; 3-flute TiAlN Endmill selected and it's a serrated &quot;corncob&quot; rougher to boot.   I want to set up my CAM program to cut a pocket on a part, and I've decided my entry to the pocket will be via ramp.  I'll show how to use the Ramp Mini-Calc to solve a couple of interesting problems. </p>
+      <p class="BodyText">First, let's say I just plan to ramp down at some &quot;standard&quot; rate, say a 3 degree angle.  What should my feeds and speeds be on that ramp?   You should adjust your feeds and speeds slightly when ramping because its harder than making a level cut.  Let's say we'll be cutting our pocket at a 1/2&quot; depth.  Set up  for a full slot cut, because the ramp will be descending into bare metal.  Let's also set the depth of cut to be the maximum depth of the ramp in one pass. If we need to go deeper to get down to full cut depth, the ramp will zig zag back and forth. I'll use a 1/2&quot; depth of cut at full ramp. Here is the Ramp Mini-Calc with all that keyed in:</p>
+      <p align="center" class="style1"><img src="img/GWizard/GWRampMC.jpg" width="500" height="311" alt="Ramping the Cut Down 3 Degrees"></p>
+      <p align="center" class="style1">Ramping the Cut Down 3 Degrees...</p>
+      <p align="left" class="BodyText">As you can see, with a 3 degree ramp, the adjustment in feedrate is pretty minor, from 108.6'ish IPM down to 106.  No biggie, in fact we could probably just choose to ignore it unless we're running a really max'ed out feedrate we've determined through trial and error to be right at the ragged edge.</p>
+      <p align="left" class="BodyText">What if we want to see what angle is needed to get all the way down the ramp in say 2&quot; of travel?  No problem.  Set your depth of cut as before to the bottom of the ramp, bring up the Ramp Mini-Calc and press &quot;From Cut Depth&quot;.  You'll see a new control appear that wants to know the travel length.  We're trying to get there in 2&quot;, so fill that in:</p>
+      <p align="center" class="style1"><img src="img/GWizard/GWRampMC2.jpg" alt="" width="500" height="303"></p>
+      <p align="center" class="style1">You need a 14 degree angle to ramp down 1/2&quot; in a 2&quot; pass...</p>
+      <p align="left" class="BodyText">The Ramping Mini-Calc figures the ramp angle at 14 degrees. This is more aggressive than the 3 degrees we had earlier, so we have to cut our feedrate from 108.6 IPM down to about 97 IPM. That's starting to be worth worrying about in the CAM program. You can just click &quot;Adjust Feedrate&quot; and the Mini-Calc will override G-Wizard's default calculated feedrate based on the new information on ramp angle.</p>
+      <p align="left" class="BodyText">This is a probably a good time to mention the warning you see there.  Not all cutters can tolerate arbitrary ramp angles.  For example, let's say we had a 90 degree ramp angle. That would be a straight plunge.  Obviously if you don't have a center-cutting endmill, that's a no-no!</p>
+      <p align="left" class="BodyText">Insertable tooling will have a ramp angle limitation that you can find in the manufacturer's catalog.  It's often pretty limiting, so be sure you don't find out the hard way you have exceeded it!</p>
+      <p align="left" class="BodyText">What about the Interpolation Mini-Calc?   Let's check it out:</p>
+      <p align="left" class="BodyText">Suppose you want to use the same basic setup to interpolate a 2&quot; hole.  Click on the Interpolate Mini-Calc and here's what you'll see:</p>
+      <p align="center" class="style1"><img src="img/GWizard/GWInterpMC.jpg" width="500" height="441" alt="Helical and Circular Interpolation Calculator"></p>
+      <p align="center" class="style1">The Helical and Circular Interpolation Mini-Calc...</p>
+      <p align="left" class="BodyText">There's quite a bit more going on here as you can see. First, you'll need to specify whether you're machining a hole or a boss.  This determines whether the endmill is going around an ID or an OD diameter.  In addition, the checkbox tells whether Tool Comp is in use, in which case the toolpath is the cutting edge rather than center of tool.   We also need to tell whether we will be doing a Helical Interpolation (going down the hole in a spiral) or a Circular Interpolation (just machine from center out without changing the Z depth).   Lastly, we enter our Feature Diameter, which we said would be a 2&quot; hole. </p>
+      <p align="left" class="BodyText">Now the Mini-Calc displays a series of intermediate results:</p>
+      <p align="left" class="BodyText">-  The raw unadjusted feedrate coming in from G-Wizard is 108.6 IPM again.</p>
+      <p align="left" class="BodyText">- Since we're doing a Helical Interpolation, there is a ramp angle. We figured it out from the Cut Depth parameter. You could also have used the ramp calculator to go from degrees to cut depth.</p>
+      <p align="left" class="BodyText">-  We need to adjust for the geometry of both the ramp and the fact that unless we have tool comp on, our feedrate is based on a radius that is either larger (boss) or smaller (hole) than our feature.  As we can see, the geometry adjust feedrate is signicantly different in this case, coming in at 77.8 IPM.</p>
+      <p align="left" class="BodyText">What's all this business of acceleration?  Thought you'd never ask!</p>
+      <p align="left" class="BodyText">Not long ago I was chatting with a moldmaker about the pros and cons of interpolation versus a honking indexable drill to open up a hole before pocketing. He wasn't having any of it because he needed a bunch of hole sizes in his molds and he needed them to be done accurately via interpolation.  And, he wanted G-Wizard to do the interpolation calculations, and BTW, the feedrates it was giving him were too fast for his machine to interpolate accurately (I related the story in more detail in <a href="http://cnccookbook.wordpress.com/2011/02/16/interpolate-or-twist-drill-part-deaux-making-holes-not-pockets/">a prior blog post</a>).  After thinking about the issue for quite some while, I finally realized the answer to the accuracy issue was in figuring out the acceleration required for the op and making sure it was within the machine's capabilities.</p>
+      <p align="left" class="BodyText">As you can see, the operation depicted by the screen shot requires 0.03 g's of acceleration, which is 4034.5 inches per minute per minute. That's not very challenging for most machines.  A high-end machine purpose-built for HSM with linear servos may be able to do 5 g's of acceleration.  The vast majority of machines are only capable of a tiny fraction of that kind of performance.  You can check your manufacturer's specifications, but I have more bad news--the exact acceleration capabilities can vary fairly significantly from one machine to the next, particularly if they're not right off the assembly line.</p>
+      <p align="left" class="BodyText">The thing to do if you want to be able to interpolate holes and other features accurately is to measure your machine's capability in this regard.  Mastercam <a href="http://www.cnccookbook.com/img/92554402-hfapp-v8.doc">has a document</a> out that walks through how to go about this with their software.  Or, you can use G-Wizard's Interpolation Mini-Calc to figure it out.  Here's how:</p>
+      <p align="left" class="BodyText">1.   Pick a test diameter.  Smaller is better because its easier to generate higher accelerations going round and round real fast in a little hole!</p>
+      <p align="left" class="BodyText">2.  Set up the Interpolation Mini-Calc for circular interpolation on your small hole. </p>
+      <p align="left" class="BodyText">3.  Now go run tests on your machine until you've figured out the fastest feedrate that interpolates that hole accurately.  Plug that feedrate into the Mini-Calc and it'll tell you how many g's that was.    Write that down!  Eventually I will add a field to the Machine Profiles in G-Wizard so it'll remember it for future interpolation calculations.</p>
+      <p align="left" class="BodyText">Just as an example, let's say we machine 1/2&quot; bosses with a 1/4&quot; EM.  I like bosses for these tests because we can get a micrometer on one to accurately measure it.  Holes are more trouble.  Given a Cut Depth of 0.2&quot; and a 15% of diameter Cut Width for that boss, G-Wizard has us going round and round at 178 IPM on our 7500 rpm limited spindle.  That gives us an acceleration of 0.3 g's.  Believe it or not, that's probably heading into the pain threshold for an older VMC that doesn't have the swiftest rapids in the Wild West.   So let's say we wind up having to slow it down to 120 IPM before we hit our tolerances.  With just a little fiddling in G-Wizard around the Interpolation Calculator, we discover that means our limit is 0.15 g's. </p>
+      <p align="left" class="BodyText">If you're just hogging a hole to get a pocket started, don't sweat the acceleration limits. There is a checkbox to turn the feature off.</p>
+      <p align="left" class="BodyText">Incidentally, going around a corner on a toolpath will be subject to the same kinds of acceleration limits.  You'll want to map these limits out for a couple of hole sizes to see how stable they are for your machine.  Keep careful notes, they'll come in handy when you're trying to dial in that high dollar job.</p>
+      <p align="left" class="BodyText">Okay. You've now seen how we can use the Ramping and Interpolation Mini-Calcs in G-Wizard to solve some interesting machining problems.  Go forth, be fruitful, and make some chips!</p>
+      <p align="left" class="style1">&nbsp;</p>
+      <p align="left" class="BlogTitle">Perhaps you should <a href="GWCutOptimizer.html">investigate the Cut Optimizer next...</a></p>
+      <p align="left">&nbsp;</p>
+      <p align="center"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a><span class="style1">&nbsp;</span></p>
+<p align="left">&nbsp;</p>
+      <!-- #EndEditable -->
+  </div>
+  </td>
+</tr>
+<!-- Begin Site Map -->
+<tr>
+  <td width="232" valign="top" bgcolor="#f0f0f0" ><p class="BodyText">&nbsp;</p></td>
+  <td width="283" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html"></a></strong> <strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/"></a></strong></p>
+    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong></p>
+    <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational</a></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></p></td>
+  <td width="223" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/techniques/">Techniques</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/beginner/">Beginner</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/cool/">Cool</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/cncprojects/">Projects</a></p>
+    <p class="BodyText"><strong></strong></p>
+    <p class="BodyText"></p>
+    <p>&nbsp;</p></td>
+  <td width="321" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Cookbooks</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/beginner/">CNC Beginner Articles</a></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a></p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a></strong></p></td>
+  <td width="339" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMachine.htm">Machines</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://www.cnccookbook.com/CCMillCNCConversionHome.html">CNC Mill Retrofit</a></strong></p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://www.cnccookbook.com/CCPlasmaCNCHome.htm">Plasma Table</a></strong></span></p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="BodyText"><strong><a href="http://www.cnccookbook.com/MTWeldingHome.htm">Welding</a></strong></span></p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p></td>
+  <td width="333" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong>Resources</strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCSearch.html">Machinist's Search</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCVideosHome.htm">Videos</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Online Groups</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesInd.htm">Individuals</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesRef.htm">Reference Data</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesBooks.htm">Books</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesSup.htm">Suppliers</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesBrands.htm">Tool Brands</a></strong></p></td>
+  <td width="650" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong>Workshop</strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a></strong></p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://cnccookbook.uservoice.com/">Support</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCManufacturers.html">Customers</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPartners.html">Partners</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHistory.htm">Our History</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">Cheapskate Page</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></strong></p></td>
+  </tr>
+<tr>
+  <td colspan="5" bgcolor="#f0f0f0" >
+      <!-- Place this tag where you want the badge to render -->
+    <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;"/></a></strong></td>
+  <td colspan="2" bgcolor="#f0f0f0" ><div align="left">
+    <table width="100%" border="0">
+      <tr>
+        <td>&nbsp;</td>
+        <td><div align="right">All material &copy; 2010-2012, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a></div></td>
+        </tr>
+      </table>
+  </div></td>
+</tr>
+<!-- End Site Map -->
+
+</table>
+</body>
+
+<!-- Kissmetrics tracking snippet -->
+<script type="text/javascript">var _kmq = _kmq || [];
+var _kmk = _kmk || '2b958799075c725d4ce95572a0b6e967ecafd184';
+function _kms(u){
+  setTimeout(function(){
+    var d = document, f = d.getElementsByTagName('script')[0],
+    s = d.createElement('script');
+    s.type = 'text/javascript'; s.async = true; s.src = u;
+    f.parentNode.insertBefore(s, f);
+  }, 1);
+}
+_kms('//i.kissmetrics.com/i.js');
+_kms('//scripts.kissmetrics.com/' + _kmk + '.2.js');
+</script>
+
+
+<!-- #EndTemplate --></html>
+

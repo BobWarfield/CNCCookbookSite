@@ -1,0 +1,575 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPageNoSlidePAP.dwt" --><!-- DW6 -->
+
+<head>
+
+<!-- #BeginEditable "doctitle" -->
+
+<!-- Google Analytics Content Experiment code -->
+<script>function utmx_section(){}function utmx(){}(function(){var
+k='2217679-25',d=document,l=d.location,c=d.cookie;
+if(l.search.indexOf('utm_expid='+k)>0)return;
+function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+'<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+'://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+'" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+</script><script>utmx('url','A/B');</script>
+<!-- End of Google Analytics Content Experiment code -->
+
+<title>GWizard Estimator: Feature Based Cost Estimation for Job Shops</title>
+
+<meta name="keywords" content="cnc,cnc programming,g-code,machining,machinist,cnc editor,cnc editing,cncedit,computer numerical control,NC,nc,nc editor,machine shop,metric conversions,trigonometry,speeds and feed,bolt circles">
+
+<style type="text/css">
+
+.style2 {
+	font-size: 28px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #795352;
+}
+.style3 {color: #339933}
+.style4 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style5 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+	color: #000;
+}
+.style31 {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.Title2 {
+	font-size: 24pt;
+	color: #339933;
+}
+SignupTitle {
+}
+.style51 {font-family: Arial, Helvetica, sans-serif}
+.style31 div a {
+}
+PrivacyNotice {
+}
+privacynotice2 {
+}
+.privacynotice3 {
+}
+.FormBkgd {
+}
+.Title2 strong {
+}
+.style5 {
+	color: #FFF;
+}
+.style52 {	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+}
+.style52 {	font-weight: bold;
+}
+.style511 {font-family: Arial, Helvetica, sans-serif;
+color:#FFF}
+.style53 {	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+}
+.style5112 {	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+}
+.style5112:link {color: #aaa; background: #000; font-weight: bold;}
+.style5112:active {color: #aaa; background: #000; font-weight: bold;}
+.style5112:visited {color: #fff; background: #000; font-weight: bold;}
+.style5112:hover {color: #fff; background: #111; font-weight: bolder;}
+.green_button{
+	width:214px;
+	height:54px;
+	background:url(GWizard/StartFreeTrial.png) no-repeat;
+	color:#00BF30;
+	font-size:0%;
+	font-weight:bold;
+	border:none;
+	margin-top:10px;
+}
+.style6 {font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+	color: #FFF;
+}
+.style53 {
+}
+.WhiteOnBlack {
+}
+
+</style>
+
+<script type="text/javascript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script> 
+
+<script type="text/javascript">
+
+// <![CDATA[
+
+function registerUserSuccess(data) {
+    var response = data;
+    if (typeof(response.status) == 'number' &&
+       response.status == 0 &&
+	typeof(response.email) == 'string' &&
+	typeof(response.provision) == 'string') {
+	var email = response.email;
+	var provision = response.provision;
+	//
+	// cookie saving disabled for now
+	//
+	//$.cookie("cnccookbook_register_email", email);
+	//$.cookie("cnccookbook_register_provision", provision);
+    }
+
+    var formName = "joinform"; 
+    var theForm = document.forms[formName];
+    theForm.onsubmit = "return true";
+    document.forms[formName]._submit(); 
+}
+
+function registerUser(userNameVal, emailVal, provisionVal) {
+    var serverHost = "http://184.72.62.67";
+    var urlParams = "&user_name=" + encodeURIComponent(userNameVal) + 
+                   "&user_email=" + encodeURIComponent(emailVal) +
+                   "&provision=" + encodeURIComponent(provisionVal);
+    jQuery.getJSON(serverHost + "/api/v2/register_trial?callback=?" + urlParams,
+		  registerUserSuccess);
+ }
+
+function registerSubmit() {
+    HTMLFormElement.prototype._submit = HTMLFormElement.prototype.submit;
+    var userNameVal = $('#name-field')[0].value;
+    var emailVal = $('#email-field')[0].value;
+    if (typeof(userNameVal) != 'undefined' &&
+	userNameVal.length > 0 &&
+	typeof(emailVal) != 'undefined' &&
+	emailVal.length > 0) {
+	registerUser(userNameVal, emailVal, "GWC");
+    } else {
+	alert('Name and email fields must have valid values');
+    }
+
+    return false;
+}
+
+// ]]>
+
+</script>
+
+<!-- Google Code for VIsitedGWHomePage Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1027617985;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "AhpNCNOnxQIQwemA6gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1027617985/?label=AhpNCNOnxQIQwemA6gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- #EndEditable -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="file:///D|/My%20WebSites/Templates/img/CNCFavIcon.ico" />
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+<style type="text/css">
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 14pt}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.Tagline {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #0;
+	font-size: medium;
+	vertical-align: middle;
+}
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" />
+<style type="text/css">
+.BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1060932-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">
+  multitouch();
+</script>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr></tr>
+<tr>
+  <td height="68" colspan="4" valign="middle" bordercolor="0" class="Tagline">
+  
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr height="48">
+	<td height="78" bgcolor="#000000"> &nbsp;
+        <!-- BEGIN MAIN MENU -->
+        <div id="mainMenu" class="ddsmoothmenu"><ul id="menu-mainmenu" class="menu">
+            <li id="menu-item-430" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-430"><a href="http://www.cnccookbook.com">Home</a></li>
+            <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">Blog</a></li>
+            <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></li>
+            <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Cookbook</a></li>
+            <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCProjects.htm">Projects</a></li>
+            <li id="menu-item-42" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-42"><a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Workshop</a></li>
+            <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCVideosHome.htm">Videos</a></li>
+            <li id="menu-item-44" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-44"><a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></li>
+            <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></li>
+      </ul></div>            
+        <!-- END MAIN MENU -->
+    </td>
+    </tr>
+  </table>
+  
+  </td>
+</tr>
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="68" colspan="10" valign="middle" bordercolor="0" class="Tagline">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td colspan="10" align="left" bgcolor="#f0f0f0"><p><span class="LogoCNCStyle">CNC</span><span class="LogoCookbookStyle">Cookbook</span> &nbsp;Software and Information for Machinists </p>
+        <div align="right" class="Tagline"></div></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0"><table width="65%"  border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><div align="center">
+        <p><a href="http://www.cnccookbook.com/CCGWizard.html"><img src="img/Ads/GWAd05152011.gif" width="120" height="90" alt="G-Wizard Machinist's Calculator" longdesc="http://www.cnccookbook.com/CCGWizard.html"></a></p>
+        <p><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm"> <img src="img/Ads/FeedsSpeedsAd.jpg" width="120" height="69" alt="Feeds and Speeds Cookbook"></a></p>
+      </div></td>
+    </tr>
+  </table>
+    <!-- #BeginEditable "PageNav" -->
+      <p align="center"><a href="CCManufacturers.html" class="BodyText"><strong>Customers</strong></a><br>
+    </p>
+<p align="center"><strong><a href="CCPartners.html">Partners</a></strong></p>
+      <p align="center">&nbsp;</p>
+      <p align="center"><strong><a href="FeedSpeedsCalculator/CCGWizard.html">Purchasing FAQ</a></strong>    </p>
+    <!-- #EndEditable -->
+    <p>
+  <!-- Place this tag where you want the +1 button to render -->
+  <p>
+  <g:plusone></g:plusone>
+  </p>
+    <!-- AddThis Button BEGIN -->
+    <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+    <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=cnccookbook"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=cnccookbook"></script>
+    <!-- AddThis Button END -->
+</p>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    gaTrack: true,
+    gaId: 'UA-1060932-2'
+  }, 'google_translate_element');
+}
+  </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</p>
+</td>
+</tr>
+<tr>
+  <td width="10" bgcolor="#f0f0f0" ></td>
+  <td width="1200" colspan="7" align="left" valign="top" bgcolor="#FFFFFF">
+  <div id="centerContainer">
+  <!-- #BeginEditable "Body" -->
+    <table width="100%" border="0">
+      <tr>
+        <td width="47%" bgcolor="#000000"><p align="center"><font color="#ffffff" size="+4"><strong>Is Your Quoting and Cost Estimation Accurate?</strong></font></p>
+          <p align="center"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style5">CADCAM Estimator is an add-on Module for G-Wizard Calculator that lets you use the same feeds and speeds for estimating that you use to make the parts. </font></p>
+          <p align="center"><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style5"> Why would you estimate cost any other way?</font></p>
+          <p align="center">
+          <div align="center">
+            <p><a href="http://www.cnccookbook.com/GWizard/GWizardInstall1SC.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></p>
+            <p><font face="Arial, Helvetica, sans-serif" color="#ffffff"><a href="http://www.cnccookbook.com/GWSignup.html" class="style5112">Plans and Pricing</a></font>          </p>
+            <p><font color="#ffffff" face="Arial, Helvetica, sans-serif" class="style5">Note: CADCAM Estimator is an add-on module for G-Wizard Calculator.</font></p>
+          </div>
+          <br>
+          </p></td>
+        <td width="53%" bgcolor="#000000"><div align="center"><img src="img/Art/WWIIGalEstimator.jpg" width="500" height="387"></div></td>
+      </tr>
+    </table>
+    <table width="100%" border="0">
+      <tr>
+          <td colspan="4"><div align="center" class="Title2"></div></td>
+        </tr>
+        <tr>
+          <td height="59" colspan="4" bgcolor="#e9f1f5"><div align="center" class="style2"><strong>Estimate Costs with the Same Feeds and Speeds You Use to Make the Parts</strong></div></td>
+          </tr>
+        <tr>
+          <td width="2%" height="59" valign="top"><div align="right"><img src="img/GWizard/bullet-arrow-green_original.png" alt="" width="32" height="26"></div></td>
+          <td width="44%" class="style31"><p align="left"><strong>Most Accurate Quotes Available<br>
+          </strong>It's hard to get more accurate than using the same feeds and speeds you'll use to make the parts.</p>
+          <p align="right">&nbsp;&nbsp;&nbsp;&nbsp;</p></td>
+          <td colspan="2" rowspan="5" align="center" valign="top" bgcolor="#e8e8e8"><table width="100%" border="0">
+            <tr>
+                <td bgcolor="#000000"><p align="center">&nbsp;</p>
+                  <p align="center"><iframe width="640" height="360" src="//www.youtube.com/embed/sqhI-sPNbrM?feature=player_embedded" frameborder="0" allowfullscreen></iframe></p>
+                  <p align="center">&nbsp;</p></td>
+              </tr>
+            </table>
+            <p align="center" class="style5112"><strong>Best News: CADCAM Estimator is Free while in Beta Test!</strong></p>
+            <p align="center" class="style5112">Just Click the Green button above to start a G-Wizard Trial. CADCAM Estimator is integrated with G-Wizard.</p>
+            <p align="center"><strong>Our Guarantee</strong></p>
+<p align="center">After purchase, if you're not completely satisfied, tell us within 30 days for a full refund.</p></td>
+        </tr>
+        <tr>
+          <td height="39" valign="top"><div align="right"><img src="img/GWizard/bullet-arrow-green_original.png" alt="" width="32" height="26"></div></td>
+          <td><div align="right" class="style31">
+            <p align="left"><strong>Saves Estimates as Spreadsheets for Maximum Flexibility<br>
+            </strong>Do further calculating and formatting in your favorite spreadsheet.  Or feed the spreadsheet to your CRM or other Shop Management Software.</p>
+            <p align="left">&nbsp;</p>
+          </div></td>
+        </tr>
+        <tr>
+          <td height="42" valign="top"><div align="right"><img src="img/GWizard/bullet-arrow-green_original.png" alt="" width="32" height="26"></div></td>
+          <td class="style31"><div align="right">
+            <p align="left" class="style31"><strong>12 Different Cost Categories for Maximum Flexibility<br>
+            </strong>Feeds and Speeds-based machining operations, Programming Time, Material Costs, Rought Cut w/ Bandsaws, Waterjets, and Lasers, Consumables such as cutters or abrasives, Components such as fasteners and bearings, Setup costs, Finish costs (deburr, etc.), Inspection, Coatings, Subcontract, Freight, and Other.</p>
+            <p align="right">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          </div></td>
+        </tr>
+        <tr>
+          <td height="42" valign="top"><div align="right"><img src="img/GWizard/bullet-arrow-green_original.png" alt="" width="32" height="26"></div></td>
+          <td class="style31"><div align="right">
+            <p align="left" class="style31"><strong>Fixed (per Job) and Variable (per Part) Costing</strong><br>
+              Factor in the costs for Programming or Fixtures as Fixed Costs then add specific Variable Costs per part.&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          </div></td>
+        </tr>
+        <tr>
+          <td height="44" valign="top"><div align="right"><img src="img/GWizard/bullet-arrow-green_original.png" alt="" width="32" height="26"></div></td>
+          <td valign="top" class="style31"><div align="right">
+            <p align="left"><strong>Calculates Cycle Times, Parts Per Day, Week, or Month, and Part Costs</strong><br>
+            </p>
+</div></td>
+        </tr>
+      </table>
+      <p>CADCAM Estimator is an add-on module for <span class="style31">G-Wizard Calculator. You need a paid up GW Calculator subscription to make it work.</span></p>
+    <!-- #EndEditable -->
+  </div>
+</tr>
+<tr>
+  <td bgcolor="#f0f0f0" >&nbsp;</td>
+  <td bgcolor="#f0f0f0" >&nbsp;</td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html"></a></strong></p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p class="BodyText1">&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong> </p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a> </p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> </p>
+    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></p></td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Cookbooks</a></strong> </p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a> </p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a> </p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"><strong></strong></p>
+    <p class="BodyText"></p>
+    <p>&nbsp;</p></td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+    <p class="BodyText1">&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+    </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a></p>
+    <p><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong></p></td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+    <p class="BodyText">&nbsp;</p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p></td>
+  <td valign="top" bgcolor="#f0f0f0" >&nbsp;</td>
+  <td valign="top" bgcolor="#f0f0f0" >&nbsp;</td>
+  <td valign="top" bgcolor="#f0f0f0" >&nbsp;</td>
+  </tr>
+<tr>
+  <td width="146" bgcolor="#f0f0f0" >&nbsp;</td>
+  <td width="10" bgcolor="#f0f0f0" >&nbsp;</td>
+  <td colspan="7" bgcolor="#f0f0f0" ><div align="left">
+    <table width="100%" border="0">
+      <tr>
+        <td><strong><a href="CCPrivacy.htm">Privacy</a> <a href="CCSiteMap.html">Site Map</a> <a href="CCAbout.htm">About </a>
+        <!-- Place this tag where you want the badge to render -->
+<a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;"/></a></strong></td>
+        <td><div align="right">All material &copy; 2010-2012, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a></div></td>
+      </tr>
+    </table>
+  </div></td>
+</tr>
+</table>
+</body>
+<!-- #EndTemplate --></html>
+

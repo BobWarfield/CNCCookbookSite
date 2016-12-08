@@ -1,0 +1,672 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+
+<title>CNC Tool Data Management, Presetters, Chatter, and Tool Software</title>
+
+<style type="text/css">
+<!--
+.PageTitle {
+	font-size: x-large;
+	color: #339933;
+}
+
+<meta name="description" content="Tool data management: software and tool presetting to streamline job setup, tool management, and help control chatter.">
+
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" -->
+      <p class="PageTitle">Tool Management for CNC (Part 2 on Tool Length Offsets)</p>
+      <p class="BodyText">If you haven't already, check out Part 1 for a refresher on <a href="CCCNCToolManagement.html">Tool Length Offsets</a>.      </p>
+      <p class="BlogTitle">Getting Organized and Systematic About Tool Management</p>
+      <p class="BodyText">How does one get their Tool Management organized?  Remember, you have to manage this data both from the standpoint of the Shop Floor and the Design Office, even if you have a small business and the two share the same desk.  The two generally have slightly different concerns.  In the Design Office, its a matter of making sure you have access to what tooling is available on the Shop Floor as the CAM work is being done.   You don't want to specify tooling your Shop Floor doesn't have.   On the other hand, the Shop Floor is going to be more worried about all the details needed to make sure the job comes off accurately and efficiently.  That involves a lot more than just knowing what tooling is available, because you want to optimize your setup time. Therefore, you also have to keep up with all the offset data and make sure its loaded into the machine correctly so it knows what to do with the tools in its changer.</p>
+<p class="BodyText">The first step is to standardize what you're doing in terms of offsets, as was mentioned in Part 1.   The second step is have a system for managing the information.   That system can range from some means of record keeping to some fixed process and even involve both. Any such system should make it easy for you to look back over some history and see how to optimize further.  For example, which tools are you most commonly using?  Can that information lead to a notion of standardizing some of the slots in your toolchanger across all machines?  You'll want to leave some slots open for job-specific tooling, but what is the optimal split between standard slots and special slots, and which tools should you put into your standard slots?</p>
+      <p class="BodyText">At the simplest level, your machine controller's tool table is your record keeping system.  But that's probably also the least efficient and most error-prone approach.   To offset that, if you're going to use the controller, you should have a touch setter, and use it every time you load a new tool in the changer so that the controller's information stays up to date.    If you're trying to keep up with it through manual data entry on the controller, that's asking for trouble, not to mention being time inefficient. The other issue is your machine controller isn't keeping the historical data you need to make other critical decisions, so even if you choose to have it be the source of truth for tool offsets, you're still going to need more.</p>
+      <p class="BodyText">A step up would be a tagging system.  As soon as a tool goes into a tool holder, you measure the offsets with your tool presetter and record them on a tag, which is then attached to the tool.     Before launching into more discussion of managing your tool data, let's detour to talk about methods of tagging tools and tool presetting.</p>
+      <p class="BlogTitle">Labelling and Barcoding Tools</p>
+      <p class="BodyText">In order to reliably tell one tool apart from another, you need some kind of labeling system.</p>
+      <p align="center" class="BlogTitle"><img src="img/CNCCookbook/ToolData/HolderLabel.jpg" width="174" height="122"></p>
+      <p class="BodyText">There are a number of different <a href="http://www.practicalmachinist.com/vb/cnc-machining/tool-label-options-192454/">approaches to labeling tools</a> (or to be more precise, labeling a toolholder and its tool) including:</p>
+      <p class="BodyText">- Sharpie: Get out your marker and write its serial numbers and offsets right on the toolholder.</p>
+      <p class="BodyText">- Tags: Various kinds of tags are made that <a href="http://www.ipnews.com/archives/tooling_access/may99/command_tool_tags_urma_pic.htm">clip onto the taper</a> or that can be hung or twist tied on the tooling.</p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/ToolData/SnapOnTag.jpg" width="230" height="152"></p>
+      <p class="BodyText">- Stick on Labels: All sorts of stick on labels are available from <a href="http://www.tool-wall.com/labels.htm">companies like ToolWall</a>.</p>
+<p class="BodyText">- Laser Engraving:  This is a more durable approach if you have access to a laser marker.</p>
+<p class="BodyText">Barcodes can make it easier to automate your tool management if you have the software to deal with the barcodes.   Tags can either have the tool offset information written right on the tag, or if you have a more sophisticated system involving serial numbers or barcodes, you may use those to cross reference the information in some kind of software.  One thing is for sure, any time a new tool goes into a holder, and anytime you find a tagless or unidentified holder, the offset information needs to be measured on your tool presetter.   </p>
+<p class="BodyText">Serial numbers, whether via barcodes, hand written, or on printed labels, are important for a variety of reasons.  If nothing else, they will uniquely identify the tool and holder for your inventory system, but also for your historical record that you will use to optimize your shop's best practices.  While you may initially be focused strictly on tool offset data, take the opportunity to start tracking serial numbers too.</p>
+      <p class="BlogTitle">Tool Presetters</p>
+      <p align="left" class="BodyText">Tool Presetters are measuring arrangements that make it easy to measure the Tool Offset Data off the machine.  They range from utter simplicity--a way to reliably position a tool holder on a surface plate plus a height gage--to the super sophisticated models with digital cameras, lasers, shrink fit induction heaters and probably someone makes one with an integrated espresso machine too!  Here is a typical super-simple height gage arrangement from Techniks:</p>
+      <p align="center"><img src="img/CNCCookbook/ToolData/height_gauge_w-stand.jpg" width="357" height="291"></p>
+      <p align="center" class="BodyText"><a href="http://www.techniksusa.com/metal/cnahgts.htm">Techniks has a nice integrated tightening stand with surface plate</a> so you can use a height gage as a presetter...</p>
+      <p align="left" class="BodyText">The simplest versions are little more than height gages with a repeatable way to secure the tooling.  Such presetters are only able to accomodate Tool Length Offsets.  </p>
+      <p align="left" class="BodyText">The next step up would provide a means of rotating the tool so that diameter measurements could be taken. Such systems typically add a precision DRO and leadscrews for motion.  Here is such a system <a href="http://www.practicalmachinist.com/vb/cnc-machining/tool-presetter-opinion-119633/">Frank Mari had looked at</a> (MariTool doesn't seem to  sell it though):</p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/ToolData/DSC01947.jpg" width="800" height="752"></p>
+      <p align="center" class="BodyText">Glass scale DRO, leadscrew adjustment, dial indicators, and rotating taper holder...</p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/ToolData/DSC01921.jpg" width="751" height="768"></p>
+      <p align="center" class="BodyText">For diameter, rotate to maximum reading on the dial indicator, turn the leadscrew to zero the indicator, and read the diameter off the glass scale...</p>
+      <p align="left" class="BodyText"> After that, the sky is the limit. The axes get motorized, data is collected via computer, digital cameras allow you to check and measure the cutting edges precisely, etc. The most automated models let you drop in a tool, push a button, and invoke everything from automated data transfer to your machining center to label printing with barcodes for the toolholder or your tooling cart.</p>
+      <p align="left" class="BodyText">The alternative to presetting is to  use your machine with touch offs as a way to measure, so:</p>
+<p class="BodyText"><strong>Why Use a Tool Presetter Instead of Measuring on the Machine?</strong></p>
+      <p class="BodyText">Let's review our choices:</p>
+      <p class="BodyText">-  Measure on machine with a touch off of some kind</p>
+      <p class="BodyText">- Measure on machine with a tool setter</p>
+      <p class="BodyText">- Measure offline with a tool presetter</p>
+      <p class="BodyText">Obviously a touch off is easy, but it's also the most time consuming.</p>
+      <p class="BodyText">A tool setter is very easy, its on the machine, and you can use it to improve reliability by checking every so often for a worn or broken tool.       There is no possibility for errors managing the tool data if you measure every time you load a tool or even every time you run a program.</p>
+      <p class="BodyText">So why use a Tool Presetter?    Consider these possibilities:</p>
+      <p class="BodyText">-  Your machine may not have a touch setter.</p>
+      <p class="BodyText">-  You may be in a manufacturing situation where it makes better economic sense to keep the machine cutting at all times, and there is enough spare time for the machinists to use a presetter to take measurements offline.</p>
+      <p class="BodyText">- There are various checks it may be convenient to make before the tool gets to the machine. For example, your tool crib may want to check indexable tooling before it is sent out to a machine.</p>
+      <p class="BodyText">-      Assuming you have no touch setter, and you want to share the tooling among machines, the data has to be tracked somehow.  If you've got a tracking system, at least you only have to measure once on the presetter, and then the tool can be shared throughout the shop.</p>
+      <p class="BodyText">- As we've discussed, if you will want to track tools by serial number and record lots of information beyond just the offsets in order to have all that information available for analysis of your shop's best practices.  If you're going to do a little bit offline, it's easier to justify doing the presetting for tool offsets as well.</p>
+      <p><span class="BodyText">There are more  reasons for using a Tool Presetter, but that's a good start.</span></p>
+      <p class="BodyText"><strong>How do we get the offset data out of the Tool Presetter?</strong></p>
+      <p class="BodyText">Depending on your presetter, a variety of options are available that range from:</p>
+      <p class="BodyText">- You write it down on a tool tag or scrap of paper.</p>
+      <p class="BodyText">- You type it into some other program.</p>
+      <p class="BodyText">- The presetter gives you the data in some electronic way.        Popular electronic formats include g-code programs that use G10 to load the offsets into your control, direct RS-232 (DNC) or other links back to your machine, and USB keys that can carry the data.</p>
+      <p class="BlogTitle">Tool Data Management</p>
+      <p><span class="BodyText">Getting back to Tool Data Management, by now you have some way of capturing tool data and keeping up with which tool holder and tool goes with which data.   Or do you?   How do you connect your offset data with each tool holder?</span></p>
+      <p class="BodyText">Here are your choices in order of operational and organizational efficiency:</p>
+      <p class="BodyText">1.  Use a Touch Setter or other process and keep the offset information in the machine controller.   As mentioned, you'll want to be diligent about always checking that data every time you move a tool into the changer, and you won't have the information available for analysis in any convenient form.</p>
+      <p class="BodyText">2.  Use a presetter, and  write the offset data right on a tag that is attached to the tooling.  When  loading the tool in the machine,  detach the tag and enter the data in the controller.    Not bad, but there is room for error any time you write data down or have to key it in.     You want to minimize that as much as possible.</p>
+      <p class="BodyText">3.  Use a presetter, and keep tool are serial numbered, whether by tag or engraving.   Use the serial number to look up the offsets and get them into the controller. If your serial number software is clever, it will make sure that if the serial # has to be entered by hand, missing a digit will immediately produce a bad serial # and it can ask you to try again.   Now you are starting to have the opportunity to record and track all the data against the serial numbers.</p>
+      <p class="BodyText">4. Use a presetter, and keep tools  tagged, but the serial number and possibly the offset data is encoded in a barcode that can be read with a wand. This is pretty cool, because the opportunity for manual data entry and errors has really been minimized. Once the data gets into the system correctly, and your presetter probably printed that barcode, you should be good to go from there on out.</p>
+      <p class="BodyText">5.  Use some centralized way of managing all the tool  data.   When I put together the tools for a job, I can punch a button and get the right data for those tools loaded into my machine.  This is the most sophisticated alternative. Instead of having to access physical tooling, you can work it all via software and then go get the tooling as identified on a job sheet from the same software.</p>
+      <p class="BlogTitle">Example Tool Data Management from G-Wizard Editor</p>
+      <p class="BodyText">CNCCookbook's <a href="CCGWizardE.html">G-Wizard G-Code Editor</a> has some simple Tool Data Management functions to give you some idea what's possible. For full details  on how it works, visit the <a href="GWETools.html">GWE Tool Managment</a> page. From a broad brush stroke standpoint, GWE has the facilities to cover each step in the process:</p>
+      <p class="BodyText">Step 1: Determine What Tooling is Needed by the G-Code Program</p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/Docs/ToolsTab.jpg" alt="" width="640" height="703"></p>
+      <p align="center" class="BodyText">The Tools View scans your g-code program and makes a list of which tools are being used both by T# and by identifying comments if they are available...</p>
+      <p align="left" class="BodyText">Step 2: Map the Tools Called for by the G-Code Program to Real Tooling in the Tool Crib</p>
+      <p align="left" class="BodyText">You can see by the mapping options in the screen shot above that GWE can match tools up either by T# or by matching the comments.   If you've set your CAM program up to use a particular set of tool names that it outputs as comments, and you've set up your GWE Tool Crib with the same comments as tool names, you are good to go.  Here is a shot of the Tool Crib:</p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/Docs/ToolCrib.jpg" alt="" width="900" height="460"></p>
+      <p align="center" class="BodyText">The Tool Crib...</p>
+      <p align="left" class="BodyText">Step 3:  Collect the Tool Offset Information Via Tool Presetter</p>
+      <p align="left" class="BodyText">If your presetter outputs a G10 program, you can load it right into GWE, run it in the simulator, and pull the offsets into the Tool Crib. </p>
+      <p align="left" class="BodyText">Step 4: Load the Tool Offset Information into your Controller</p>
+      <p align="left" class="BodyText">  After you map tools in the Tool Crib to the T# slots needed by your g-code program, GWE generate a G10 program for those slots.  Just load the G10 program into your controller and run it, and you've now loaded the offsets into your controller. The GWE Tool Crib serves as a central repository for tracking that offset information.</p>
+<p class="BlogTitle">What About the Design Office?</p>
+<p class="BodyText">Here you need to make sure the Design Office has access to some sort of Tooling Catalog so both the Shop Floor and the Design Office are on the same page about what Tooling is available.  Something like G-Wizard's Tool Crib is one way to approach the problem. There are a number of packages available in the industry whose purpose it is to facilitate management of tooling inventory.</p>
+<p class="BlogTitle">Wear Offsets and Other Fine Tuning</p>
+<p class="BodyText">By the way, how can you feed tooling data back to the Design Office or use it to improve the efficiency of your Shop Floor?  So you're running a job shop or small manufacturer.  You frequently run parts that you have run before.  Good tool data management can save you a lot of time and effort by managing not just the length offsets, but also the wear offsets.</p>
+<p class="BodyText">Let's say you ran the part the first time, and discovered it was coming out just a little too big by a few thou.     A skilled machinist can tweak that in by adjusting wear offsets.   If you record those wear offsets in some sort of Tool Data Management software, they'll be there for you the next time you need to run the job.  Maybe you can even use a G10 program to automate the process.   Or, you can send that information up to the Design Office.  Eventually they may figure out some commonalities in the data that tell them how to tweak their CAM programs so things are right the first time.      </p>
+<p class="BodyText">You may even be able to tell when a machine is about to have a problem by monitoring what's happening with the wear offsets.</p>
+<p class="BodyText">You've also got all the data by job on which tools were needed.  This can be cross-referenced and turned into standard tooling recommendations.   From that data it's possible to understand the answers to what is the optimal split between standard slots and special slots, and which tools should you put into your standard slots.  You can play with scenarios that involve minimizing the variety of tooling you keep in inventory, and have some idea what impact that will have on your jobs.  You'll have a much better understanding of tool life and the cost of tooling if you can actually track which jobs each tool participated in and how many parts were made.</p>
+<p class="BodyText">Without good tool data management record keeping, it's impossible to answer those questions.</p>
+<p class="BlogTitle">Importance of Consistency of Tool Lengths for Chatter</p>
+<p class="BodyText">Phew!  It's getting to be kind of a long article, but I want to leave you with one last thought about tool data management.  </p>
+<p class="BodyText">Chatter is a subject worth long articles all by itself.   For now, I just want to focus on consistency.   Machine tools are actually quite consistent about chatter.  It's a resonance effect or vibration, kind of like a tuning fork.   Assuming your machine and tooling are in good working order (i.e. no bad bearings or spring washers in the spindle!), it is most prominently affected by four factors:</p>
+<p class="BodyText">- Spindle RPM</p>
+<p class="BodyText">- Tool Holder Type</p>
+<p class="BodyText">- Tool</p>
+<p class="BodyText">- Tool Stickout</p>
+<p class="BodyText">If you match those four factors up to exactly what they were when you got chatter, you are just as likely to get chatter again if your toolpath, material, and workpiece apply the same or more force to the tooling.</p>
+<p class="BodyText">Can you see how consistent tool data management can help?</p>
+<p class="BodyText">If we use the same tool holder type every time, the same brand and type of cutter, and we standardize the tool stickout instead of just letting it be whatever it turns out to be when the collet is tightened, we are on to something.   By keeping careful notes on these factors, we can begin to deduce which rpm ranges are most chatter prone and we can avoid them.  We can also &quot;tune the tool&quot;.   Suppose you find a situation that is a total chatter box.    The easiest thing to vary is spindle rpm.       And BTW, make sure to vary it both faster and slower--you're just trying to get away from the resonance.  </p>
+<p class="BodyText">But if you have the time to experiment, you will discover that changing the tool's stickout is a way of tuning that resonance too.    If you can find the amount of stickout that lets you maximize your spindle rpm to the high end of what your cutter can use, you'll get the best material removal rates.  There are systematic experiments you can perform to map all this out, or you can keep careful notes whenever you're cranking up your speeds and feeds on a job to see how fast you can go.  Either way, if you control those four factors, you will have a configuration with repeatable chatter characteristics and you won't have to guess.</p>
+<p class="BlogTitle">More Good Tool Setting Threads</p>
+<p class="BodyText">Still haven't had enough on Tool Offsets, Tool Setting, and the like? Try these threads:</p>
+<p class="BodyText">-  <a href="http://www.practicalmachinist.com/vb/cnc-machining/setting-tools-202184/">PM Setting Tools</a></p>
+<p class="BodyText">- <a href="http://www.practicalmachinist.com/vb/cnc-machining/tool-length-offsets-187207/">PM: Benefits of Gage Line Offsets</a></p>
+<p class="BodyText"><a href="http://www.practicalmachinist.com/vb/cnc-machining/tool-presetter-183720/">- PM: Height Gage Presetters</a></p>
+<p class="BodyText"><a href="http://www.practicalmachinist.com/vb/cnc-machining/presetter-offset-question-160263/">- PM: Beginner Intro to Tool Offsets and Presetters</a></p>
+<p class="BodyText">Interested in optimizing job setup?  Try these threads:</p>
+<p class="BodyText"><a href="http://www.linkedin.com/groupItem?view=&srchtype=discussedNews&gid=126939&item=28868515&type=member&trk=EML_anet_qa_ttle-d7hOon0JumNFomgJt7dBpSBA">LinkedIn</a></p>
+<p class="BodyText">&nbsp;</p>
+    <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

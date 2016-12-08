@@ -1,0 +1,718 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+
+<title>Total Guide to CNC Milling Machine Workholding</title>
+
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <hr>
+      <p>&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" -->
+    <p class="LogoCookbookStyle">Total Guide to CNC Milling Machine Workholding</p>
+    <p class="BlogTitle">Introduction</p>
+    <p class="BodyText">Workholding is the generic term for any device used to firmly hold your workpiece while machining it.  There are two components to workholding:</p>
+    <p class="BodyText">-  The actual workholding device, such as a milling vise.</p>
+    <p class="BodyText">- The method of locating and securing that workholding device to your machine.  This includes the ubiquitous T-Slots but goes on to include modular fixture plates, 4th axis solutions, and much more.</p>
+    <p class="BodyText">We'll go through the various methods of locating the workholding devices and then follow up with a description of your choices for workholding devices.</p>
+    <p class="LogoCookbookStyle">Positioning for Workholding Devices</p>
+    <p class="BlogTitle">T-Slots</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/TSlots.jpg" width="600" height="400" alt=""/></p>
+    <p align="center" class="BodyText">T-Slots are the most common method of positioning and holding down your workholding solution...</p>
+    <p class="BodyText">T-Slots are by far the most common way of positioning and holding down your Workholding solution. They are simple, robust, and they work.  To attach something to a T-Slotted table, use T-Slot nuts and suitable studs or other fasteners that fit the nuts:</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/TSlotNut.jpg" width="577" height="369" alt=""/></p>
+    <p align="center" class="BodyText">T-Slot Nuts...</p>
+    <p align="left" class="BodyText">While they are common, they have some disadvantages relative to other solutions.  Aside from the fact that  T-Slots can collect chips and other debris, their biggest disadvantage is that it's hard to get your vise or other Workholding fixture back onto the table in exactly the same place and orientation.  This can result in extra work every time a machine needs to be set up with new workholding for a new job.  Over time, the cost of that inefficiency can be quite large.  </p>
+    <p align="left" class="BodyText">Just imagine, what if instead of having a tool changer and a tool table you had to dial in each tool every time it was used?    Wouldn't that be a huge productivity block in your machining workflow?   Well, setup time can be a big productivity block too, and T-Slots are not helpful for that.</p>
+    <p align="left" class="BodyText">There are some solutions that've been tried to make them a little better:</p>
+    <p align="left" class="BodyText"> <strong>Truing the Slots</strong></p>
+    <p align="left" class="BodyText">We can check the T-Slots of machine to make sure the run parallel to axis motion by sweeping them with a Dial Test Indicator (DTI).  If they don't, we can mill them true.   A lot of folks hate the idea of intentionally milling their table, but if the T-Slots aren't true and you need them to be, it's hard to see what choice you have.   But there is a choice that involves using something other than T-Slots as we will see shortly.</p>
+    <p align="left" class="BodyText"><strong>Keyed Vises and Fixtures    </strong></p>
+    <p align="left" class="BodyText">If your T-Slots are true, you can install keys on the bottom of vises or <a href="http://blog.cnccookbook.com/2012/09/04/super-simple-keyed-fixtures-for-cnc-mills/">fixture plates</a> that line up with the T-Slots. You can also install keys in the T-Slots that line up the edge of a plate or vise base.   Doing so can save you quite a lot of time tramming vises and such, and it isn't hard to do, so it is definitely worth considering.</p>
+    <p align="left" class="BodyText">The trouble is, these kinds of solutions will help with one dimension (typically the short dimension of the table is the Y dimension and is aligned perpendicular to the slots), but we still have the problem of positioning along the axis of the T-Slot.</p>
+    <p align="left" class="BodyText">Fortunately, there is a better way in the form of Fixture Sub-Plates (also called Tooling Plates).    </p>
+    <p class="BlogTitle">Fixture Sub-Plates, Tooling Plates, and <font face="Arial, Helvetica, sans-serif">Modular Fixturing</font></p>
+    <p class="BodyText">Fixture Sub-Plates (also called Tooling Plates) are plates that are installed on top of a T-Slot table to provide a new way to position and secure Workholding.   A typical Tooling Plate looks like this:</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/Blog/fixtureplate.jpg" width="444" height="274" alt=""/></p>
+    <p align="center" class="BodyText">A typical Tooling Plate...</p>
+    <p align="left" class="BodyText">Tooling Plates typically use a grid of holes that alternate between holes for precision dowel pins for positioning and threaded holes for fasteners.      If this grid is precisely positioning (or even if it isn't and the positions are precisely known) you have a very repeatable way to install Workholding on the plate.    The dowel pins provide precision location that is repeatable to perhaps half a thousandth.  Imagine being able to drop a vise mounted on its own fixture plate with dowel pins and fastener holes onto a Tooling Plate and have it be repeatable to half thousandth.   If all your fixtures can drop onto the Tooling Plate you can change the machine over to a new Workholding configuration very quickly indeed.    The savings in time adds up to pay off the cost of such a system very quickly.</p>
+    <p align="left" class="BodyText">With an air ratchet in hand, a vise can be installed on one of these plates within a minute or two. A CNC Machine can be reconfigured in 5 or 10 minutes for a completely different job.  And the skills required of the machine operators, as well as the potential for mistakes, are greatly reduced if the fixtures don't have to be carefully dialed in each time. There are advantages for the creation of modular g-code too, because it can rely on the positioning grid of the Tooling Plate.</p>
+    <p align="left" class="BodyText">If accuracy of more than half a thousandth is required, it is often better to use probing together with selected g-code parameterization to correct for the remaining error.   You could try to dial things in more precisely by hand, but a probing solution can rely on things being nearly right to determine the last little bit of error correction that needs to be applied in the g-code itself.  For example, it's possible to apply rotation to the g-code based on a probes results to tram (that's aligning things to the axis motion) very precisely an almost right situation.</p>
+    <p align="left" class="BodyText">Tooling Plates are typically made of either Cast Iron or Aluminum, though there are steel ones available too. They can be purchased or made from scratch.  For more on how they're made, <a href="http://www.cnccookbook.com/MTMillFixturePlate.htm">be sure to visit our Fixture Plate page</a>.</p>
+    <p align="left" class="BodyText"><strong>Modular Fixturing</strong></p>
+    <p align="left" class="BodyText">One other thing Tooling Plates help facilitate is Modular Fixturing.   Once we have a fixed grid to rely on, we can purchase ready-made fixturing components that will fit the grid.  This can save quite a lot of cost versus having to fabricate everything to some custom arrangement.  </p>
+    <p align="left" class="BodyText"><strong>Ball Locks and Other Quick Change Tooling Plate Solutions</strong></p>
+    <p align="left" class="BodyText">By now I hope you're seeing how much Setup Time could be saved by using Tooling Plates.  What could be better?  Why there are at least two different ways to improve on the theme: quick change tooling plates and pallets.</p>
+    <p align="left" class="BodyText">With a Quick Change system, the time required to deal with the dowel pins and fasteners is reduced through some kind of integrated solution that allows precise position and locking very quickly.  One such is the Jergens Ball Lock system:</p>
+    <p align="center" class="BodyText"><img src="img/OthersProjects/BALLOCK01.jpg" width="448" height="367" alt=""/></p>
+    <p align="center" class="BodyText">Ball Locks are a Quick Release system for Tooling Plates...</p>
+    <p align="left" class="BodyText">With this system, you get precise positioning and secure holding with 4 Ball Locks.  Just align the plate to the sub-plate (which has the Receiver Bushings and is mounted to the table), drop the Ball Lock Shanks into the hole, twist the bolt on top of the Ball Lock Shank, and you are done.   Twisting four bolts and no fooling around with dowel pins or extra fasteners is really quick and easy.  Jergens talks about 30 second fixture change times which is very fast indeed.</p>
+    <p class="BodyText"><strong>Pallets</strong></p>
+    <p class="BodyText">The next step up are Pallets.   Think of them as power operated Tooling Plates whereas everything else we've talked about has been hand operated.   A typical machine with Pallets allows you to be setting one or more Pallets up while the machine is working on another.   A Pallet change operation cycles the old Pallet outside of the machine's milling area and brings the new one in.   This minimizes the time the machine has to be offline and allows Setup to be done in parallel with machining.    </p>
+    <p class="BodyText">Some machines have what are called &quot;Pallet Pools&quot;, which allow multiple pallets to be set up in advance and scheduled to run.  A Pallet Pool can allow a machine to run unattended for quite a long time and can be a useful building block for total automation.</p>
+    <p class="BodyText">Pallets are typically only seen on Horizontal Machining Centers and some high end Vertical Machining Centers.  They're definitely a full-on production feature that is fairly expensive, so the cost has to be justified by the need ot keep the machines churning out parts constantly.</p>
+    <p class="BlogTitle">4th Axis,  Trunion Fixtures, Tombstones, and Tool Columns</p>
+    <p class="BodyText">Sometimes it is helpful to be able to apply another dimension to our thinking--in this case a 4th Axis. In CNC, a 4th Axis is commonly a rotary axis that is aligned to spin along an axis parallel to one of the machine's other 3 axes.   On Vertical Mills, the 4th Axis is frequently parallel to X or Y, and is laid down. On a Horizontal Mill, the 4th Axis is also parallel to X or Y, but it is standing up.  Both methods work great, but the horizontal mill's standing 4th axis frequently has more clearance available since the work is never trapped between the table and the axis.</p>
+    <p class="BodyText"> From a Workholding standpoint, a 4th Axis can be used to bring new orientations into play for two purposes:</p>
+    <p class="BodyText">1.   It allows access to more sides of the part so machining can continue without having to flip parts around by hand.</p>
+    <p class="BodyText">2.  It allows access to more parts which may be arrayed around the 4th Axis.</p>
+    <p class="BodyText">To find out more about these uses for <a href="http://blog.cnccookbook.com/2013/04/23/cnc-4th-axis-basics-workholding/">Workholding, check out our excellent series on 4th Axis Basics</a>.</p>
+    <p class="LogoCookbookStyle">Workholding Solutions</p>
+    <p class="BodyText">Having seen how we're going to position and attach our Workholding Solutions to our milling machine, let's delve into what types of Workholding are available.</p>
+    <p class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Milling Vise</font></p>
+    <p align="center" class="BodyText"><img src="img/MillStuff/ViseStuff/JawsOfDoom/P1011728.JPG" width="600" height="453" alt=""/></p>
+    <p align="center" class="BodyText">A pair of milling vises sit side by side on a machine table...</p>
+    <p class="BodyText">It's not too much of a stretch to say that the most popular Workholding Solution today is the Milling Vise.  While there are many manufacturer's of such vises, the poster child is <a href="http://www.kurtworkholding.com/">Kurt</a> who shipped their first &quot;Kurt Vise&quot; in the 1950's.</p>
+    <p class="BodyText"><strong>What Makes a Good Milling Vise?</strong></p>
+    <p class="BodyText">A good vise is well made, typically of cast iron. It operates smoothly, repeatably, and with a wedge mechanism that pulls the movable jaw down onto the bed so the part is not lifted due to deflection as the jaws are tightened.    Don't scrimp on your milling vises because they're most likely the Workholding Solution you'll turn to most often.</p>
+    <p class="BodyText"><strong>Clean the Table and Tram the Vise</strong></p>
+    <p class="BodyText">Before putting any vise on your machine table, be sure to clean the table of chips.   You don't want to trap a chip between the vise or table.    If you have a T-Slot table you're mounting the vise to, you'll probably want to tram the vise as well.  This is the procedure of using an indicator to sweep a vise jaw (you want the fixed jaw, not the movable jaw) so you can adjust the vise position until the sweep shows the vise  jaw is parallel to the axis as it moves.</p>
+    <p class="BodyText">Learning to tram (or &quot;square&quot;) a vise is one of those basic skills every machinist must learn early on.</p>
+    <blockquote>
+      <p class="BodyText"><a href="http://www.cnccookbook.com/CCMillTipsTechniques.htm">How to Tram a Vise on a Mill</a></p>
+      <p class="BodyText"><a href="http://blog.cnccookbook.com/2013/08/20/2-weird-tricks-to-tram-a-milling-vise/">2 Weird Tricks to Tram a Vise Quickly</a></p>
+    </blockquote>
+    <p class="BodyText"><strong>Vise Parallels and Jaw Steps</strong></p>
+    <p class="BodyText">Having the vise properly installed and trammed, the next question is proper use.   Most of the time we'll want to sit the workpiece fairly high in the jaws.   This is done both to provide access to the workpiece and because it provides more repeatability the less of the workpiece is gripped--there's just less area for a trip or other irregularity to influence what's going on.</p>
+    <p class="BodyText">We set the workpiece high in the jaws typically either by using a set of Vise Parallels or because we have jaws installed in the vise that have a step machined fairly high on the jaw.   We may either machine the step ourselves (in the case of soft jaws) or purchase jaws with a step already machined.   </p>
+    <p class="BodyText"><strong>Clamping Outside the Jaws and Other Jaw Tricks</strong></p>
+    <p class="BodyText">There are a lot of Vise Jaw tricks but one of the first to be aware of is that you can mount the jaws either inside or outside the normal jaw mounting locations.  Mounting outside allows larger plates to be gripped in the vise easily:</p>
+    <p align="center" class="BodyText"><img src="img/OthersProjects/KurtOutsideJaws.JPG" width="640" height="480" alt=""/></p>
+    <p align="center" class="BodyText">By mounting the jaws in the outside position, quite a large workpiece can be accomodated...</p>
+    <p align="center" class="BodyText"><img src="img/OthersProjects/PlateSquaring.JPG" width="640" height="480" alt=""/></p>
+    <p align="center" class="BodyText">Increasing rigidity is always important.  For this operation, two 2-4-6 blocks are used as a vise jaw extension to help support the plate on end better...</p>
+    <p class="BodyText"><strong>Using Multiple Vises, Jaws that Span Vises, and Grinding Matching Vises</strong></p>
+    <p class="BodyText">There's an old saying that if you want to make full use of your machine you need to use every square inch on the table.  Most machine tables can accomodate multiple vises, and it is very common to install multiple vises on a mill table.  Our photo above of side by side vises shows one such setup.  It's not uncommon to see four or even six vises on a larger millling machine.   The more the merrier so long as travels will accomodate it because the more vises you have, the more parts you can machine before the machining has to stop so the operator can load new workpieces.</p>
+    <p class="BodyText">When you have multiple vises on a machine, it is convenient if they match in all the key dimensions to within a decent tolerance. That way if you are duplicating a setup and get the vises in a different order, all will be well.   Most vise manufacturers will match vises for you or it's a fairly simple operation with a surface grinder to match a pair of vises.</p>
+    <p class="BodyText">Another trick that's possible with two vises is to use jaws that span both vises for handling really long parts:</p>
+    <p align="center" class="BodyText"><img src="img/MillStuff/ViseStuff/JawsOfDoom/P1011733.JPG" width="600" height="343" alt=""/></p>
+    <p align="center" class="BodyText">Spanning two vises with a single set of jaws...</p>
+    <p align="left" class="BodyText">I made that set of &quot;Jaws of Doom&quot; for a project that required machining a thin aluminum panel for some electronics and they worked out great.</p>
+    <p class="BodyText"><strong>Double MillingVise</strong></p>
+    <p class="BodyText">Having spread three or four vises across your mill table, you've pretty well taken advantage of the X-Axis.  But, there's an opportunity to take better advantage of the Y-Axis by using Double Vises:</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/DoubleVise.jpg" width="385" height="215" alt=""/></p>
+    <p align="center" class="BodyText">A typical double station vise is like 2 vises in one...</p>
+    <p align="left" class="BodyText">A typical double station vise is like 2 vises in one:  you can put two workpieces instead of one.  With judicious use of double vises you can really multiply the number of parts that can be worked at the same time on your mill's table.    </p>
+    <p class="BodyText"><strong>Vises to Hold Other Workholding Solutions</strong></p>
+    <p class="BodyText">Between using multiple vises, double station vises, moving the jaws around, and even using jaws that span multiple vises, quite a lot is possible using just vises.  In fact, you can even use the vises to hold other Workholding gadgets.   It's a very common trick to drop a sine vise into a milling vise to get jaws working the other direction:</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/SineViseInMillingVise.jpg" width="640" height="480" alt=""/></p>
+    <p align="center" class="BodyText">Use a sine vise to hold a part at 90 degrees from where the milling vise jaws run...</p>
+    <p class="BodyText"> BTW, sine vises are also called Toolmaker's Vises or Grinding Vises.</p>
+    <p class="BodyText">You can also create small plate fixtures that are designed to sit in a vise, creating what is often called a &quot;vise pallet&quot; since the individual plate fixtures can be swapped out of the vises much like pallets.</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/visepallet.jpg" width="350" height="253" alt=""/></p>
+    <p align="center" class="BodyText">Vise Pallets are just small plate fixtures designed to be held in the jaws of a milling vise...</p>
+    <p align="left" class="BodyText">In general, solutions like Vise Pallets are created to enable vises to be left on the machine in shops where the flexibility and simplicity of vise workholding is ideal for most of their jobs.</p>
+    <p align="left" class="BodyText">Tormach made a <a href="https://www.tormach.com/blog/many-vises-guide-selecting-right-vise-job/">great suggestion over in their blog which was to use a Sine (Toolmaker's) Vise as a vise pallet</a>. </p>
+    <p class="BlogTitle">Soft Jaws and Custom Hard Jaws  Multiply the Vise's Workholding Flexibility</p>
+    <p class="BodyText">Soft Jaws on milling vises are a very popular form of workholding.   The idea is to create aluminum vise jaws (since aluminum is softer than ferrous materials that's where the name comes from) that are customized for particular jobs. Sometimes a more durable material is advantageous, in which case we have Hard Jaws.</p>
+    <p class="BodyText">Here are some examples:</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/SoftJawsLargeRound.jpg" width="600" height="433" alt=""/></p>
+    <p align="center" class="BodyText">Use soft jaws to locate and hold a larger round part.  A &quot;V&quot; is often seen, but it won't support the part as well as the soft jaws.</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/DovetailKnifeedgeJaws.jpg" width="600" height="429" alt=""/></p>
+    <p align="center" class="BodyText">As mentioned above, we don't want to grip the whole height of the part in the jaws.  A particularly thin grip can be had with dovetail jaws.   The little red circle points to the dovetail which locks the workpiece in from slipping upward under heavy machining.   These are <a href="http://www.carvesmart.com/jaws-in-action.html">Carvesmart quick change jaws</a>.</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/PartFlipJaws.jpg" width="600" height="309" alt=""/></p>
+    <p align="center" class="BodyText">Here's a common setup.   The part is machined from a block on the left (those are the same Carvesmart dovetail jaws).   Then the part is flipped in a set of custom soft jaws on the right that are the mirror image of the part.   A Face mill then takes off the little bit of flat stock left from the original material (that's already happened in this photo).</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/AngleJaws.jpg" width="450" height="344" alt=""/></p>
+    <p align="center" class="BodyText"><a href="http://www.lang-technovation.com/en/artikel/gruppen/51217.vario-tec-accessory-jaws.html">Lang Innovations makes these neat jaws</a> that make it easy to set the workpiece in the vise at a precise angle when needed.  The pins can be individually pushed in to create angles and other holding patterns too...</p>
+    <p align="left" class="BodyText">These are but a few examples. When using Custom Jaws, your imagination is the only limit.  Well almost, table size will play a role as will the number and type of vises you have available.</p>
+    <p class="BodyText"><strong>Quick Change  Jaws</strong></p>
+    <p class="BodyText">I hope you're getting the idea that Milling Vises with Custom Jaws can be a powerful workholding solution.   So powerful, in fact, that a lot of work is done solely with this style of Workholding.   Shops spend a lot of time creating Custom Jaws and often box them up in storage to use for other jobs or in case a customer reorders a part.   Even though the vises spend most of their time on the table, we still have a Setup Time bottleneck in the time it takes to change vise jaws.   Maybe you saw this coming, but there are a variety of Quick Change Vise Jaws available too.  The Carvesmart jaws we pictured are one variety, but there are many more.   Judicious use of an air ratchet and socket head cap screws can also speed the job of changing jaws.</p>
+    <p class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Plates, Plate Fixtures, and Clamps</font></p>
+    <p class="BodyText">As useful as vises are, they have a sweet spot for part size.   They have a difficult time with really large plate work, though as mentioned you can move the jaws to the outside positions for medium-sized plates.  And, they can also be less than optimal for very small parts.   Sure, you can fit multiple parts in a set of Soft Jaws, but the space between adjacent vises and the space required for the vise mechanism makes it hard to fully fill the table with as many small parts as you might otherwise be able to.  </p>
+    <p align="center" class="BodyText"><img src="img/OthersProjects/Tools/shopmadepallet1.jpg" width="800" height="600" alt=""/></p>
+    <p align="center" class="BodyText">It's hard to achieve this dense packing of smaller parts with a vise, but a plate fixture makes it easy.  This one uses Mitee Bite Pit Bull clamps.  The effect is not unlike tiny milling vises designed to fit each part just right.</p>
+    <p class="BodyText">When its time to machine large plates or a great many small parts, it's usually time to pull the vises off the table and use a workholding solution based on clamps.</p>
+    <p class="BodyText"><strong>Step Clamps</strong></p>
+    <p class="BodyText">The most common type of clamps are called step clamps because they have little steps machined on them.  They're commonly used with T-Slots, although you can also use bolt them into a Tooling Plate. Here are some typical Step Clamps:</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/StepClamp.jpg" width="600" height="383" alt=""/></p>
+    <p align="center" class="BodyText">Step Clamp holding down plate, step block supporting end of clamp, and bolt goes through T-Slot Nut...</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/StepClampSet.jpg" width="500" height="310" alt=""/></p>
+    <p align="center" class="BodyText">A typical Step Clamp Set...</p>
+    <p align="left" class="BodyText">Pictured is a typical Step Clamp Set. It can be handy to stock up on a an extra set so you've got more clamping parts to work with.  By stacking the Step Blocks and using longer bolts, you can clamp workpieces that are quite tall. When using step clamps, keep the bolt close to the workpiece rather than the step block.  Also, it can be helpful to angle the clamp down on the part by raising it up a step or two from level.  You may also want to put a shim of soft material between the clamp and the workpiece if you want to avoid marring the workpiece.  Soda can makes a great shim for this purpose if you slice out some strips with your snips.</p>
+    <p class="BodyText"><strong>Toe Clamps</strong></p>
+    <p class="BodyText">Step Clamps grip the top of the workpiece, which is sometimes inconvenient because you might need to machine the area being gripped.   Toe Clamps grip the side of the workpiece to give you full access to the top of the workpiece.  There are a wide variety of different styles available:</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/ToeClamps.jpg" width="265" height="265" alt=""/></p>
+    <p align="center" class="BodyText">This toe clamp moves the clamp down a ramp when tightened to press against the workpiece...</p>
+    <p align="center" class="BodyText"><img src="img/CNCCookbook/MiteeBiteEccentric.jpg" width="490" height="264" alt=""/></p>
+    <p align="center" class="BodyText">These Mitee Bite Edge Clamps have an eccentric bolt head that forces the hex against the workpiece as you tighten it...</p>
+    <p class="BlogTitle">Tab Supports: Workholding Via CAM Software</p>
+    <p class="BodyText">What if your CAM software could solve some major workholding problems for you, wouldn't that be neat?</p>
+    <p class="BodyText">Turns out some CAM software can help out with workholding quite a lot by automatically creating tabs.  Here's a video of MeshCAM's facility for creating tab supports to help machine a part that has to be machined on 2 sides and is awkward to hold otherwise:</p>
+    <p align="center" class="BodyText"><iframe width="560" height="315" src="//www.youtube.com/embed/-PRa7Az-IjY" frameborder="0" allowfullscreen></iframe></p>
+    <p align="center" class="BodyText">Using MeshCAM to add tab supports so you can machine a part on 2 sides...</p>
+    <p align="left" class="BodyText"><a href="http://www.cnccookbook.com/CCMeshCamEasyCAMSoftware.html">We offer MeshCAM at CNCCookbook because it's one of the easiest to use CAM packages there is</a>.</p>
+    <p class="BlogTitle">Double Sided Tape, Glue, Wax, and Low Melting Point Alloys</p>
+    <p class="BodyText">Some workpieces can be very difficult to hold because they're too thin or because their shaped so there's just no way to clamp on.   Some solutions for these situations are in the form of Double Sided Tape, Glue, Wax, and Low Melting Point Alloys.    </p>
+    <p class="BodyText">The Glue needs to be something that will release when needed.   For example, Super Glue releases at a particular temperature just like LocTite.  The fumes from it are toxic, so take care to release with plenty of ventilation.  Double sided tape can work great, especially for really thin materials.</p>
+    <p class="BodyText">Wax and Low Melting Point Alloys (typically Bismuth alloys) can be used to embed the workpiece and create grippable area.  When the machining is done, one can melt the wax or alloy away and save for reuse.</p>
+    <p class="BlogTitle">Vacuum Fixtures</p>
+    <p class="BodyText">Need to apply uniform pressure to hold a part down?  Maybe a vacuum fixture is the answer.  Sea level air pressure is 14.7 lbs per square inch.  A vacuum fixture pumps a vacuum under the part so that air is pressing down on every square inch of the top with 14.7 lbs of pressure.   That can create considerable holding force if there is enough surface area regardless of the shape of the top or how thin the material may be.   We have a nice article on <a href="http://blog.cnccookbook.com/2012/02/18/fixturing-with-vacuum-tables-vacuum-chucks-and-vacuum-clamping-systems/">how to create your own vacuum fixtures</a> that's very popular.  For more in-depth information on vacuum workholding visit our <a href="CCCNCVacuumTable.html">Vacuum Table Page</a> and our <a href="CCCNCDIYVacuumTable.html">DIY Vacuum Table Page.</a></p>
+    <p class="BodyText">Perhaps the biggest disadvantage of vacuum fixtures is their hold-down force is limited by surface area--that means small parts can pop off relatively easily.  <span class="BodyText1">When cutting forces exceed the hold-down force a vacuum table can pull, the part pops off and is generally ruined.  This is a common problem for vacuum table users, especially for smaller parts that don't have much surface area.   Until now, fixing the problem has been hit or miss, but our G-Wizard Calculator software now has the ability to limit cutting forces to what your vacuum table can handle.  For more information, <a href="http://blog.cnccookbook.com/2016/06/13/quit-scrapping-parts-pop-off-vacuum-table/">check out our article on this special feature</a>.</span></p>
+    <p class="BlogTitle">Chucks and Collets: For Round Parts</p>
+    <p class="BodyText">While we typically think of machining round parts on lathes, there are many times when you may need to mill them as well.  If you've got a Mill-Turn machine, it may not be necessary to put them on a mill, but if you don't, or if you just need to work on some round parts on the mill, you can use the same <a href="MTLatheHolding.htm">workholding solutions Lathes use</a>.  Just bolt or clamp them down to your mill table.  For example, use a 3 jaw chuck or a bank of collet chucks.</p>
+    <p class="BodyText">Lathe Chucks are particularly common on 4th Axes because we often start from round stock.<span class="BodyText"></span></p>
+    <p class="BodyText">Every now and then we put round parts on the mill because it's just downright faster. Consider this setup for machining round parts::</p>
+    <p align="center" class="BodyText"><img alt="" src="http://www.cnccookbook.com/img/OthersProjects/Geof4Axis.jpg" width="800" height="600"></p>
+    <p align="left" class="BodyText">I never would have guessed it, but&nbsp;<a target="_blank" href="http://www.cnczone.com/forums/showthread.php?t=22125">Geof on CNCZone</a>&nbsp;says the following 4-axis mill set up was able to machine these aluminum bars to length, ensure the faces were square, and drill and tap a hole faster than he could do it in a lathe. You can imagine each of those round parts being a 5C collet and suddenly you fit quite a few more parts on your 4th Axis.   There's probably room to do them on all 4 points of the compass on a rig like this.</p>
+    <p align="center" class="BodyText">&nbsp;</p>
+    <p class="BlogTitle">Expanding Mandrels, Arbors, and Studs</p>
+    <p class="BodyText">Toe Clamps are one solution to keeping the workholding away from the milling, but we can do even better using expanding mandrels, arbors, or studs.   The idea is to put an expanding cylinder in a hole on the underside of the workpiece and expand it to lock the workpiece in place.  Once that's done, you can access the workpiece from every direction except the bottom without encountering the workholding (do remember where the mandrels are though so you don't have one in the middle of a pocket waiting to be hit!).</p>
+    <p class="BodyText">Here is a <a href="http://blog.cnccookbook.com/2013/09/18/expanding-studs-fixturing/">fixture using expanding studs</a>:</p>
+    <p align="center" class="BodyText"><img src="img/OthersProjects/Fixtures/fixture3.jpg" width="320" height="278" alt=""/></p>
+    <p align="center" class="BodyText">Turn the bolt opens the expanding stud so it can clamp the workpiece...</p>
+    <p class="BodyText">There are a wide variety of these kinds of gizmos available for your workholding needs.  They're particularly common for lathes, but as we mentioned, you can use <a href="MTLatheHolding.htm">lathe workholding</a> all day long provided you find a way to mount it to your table.</p>
+    <p class="BlogTitle">5-Axis Workholding</p>
+    <p class="BodyText">5-Axis workholding, like most things 5-axis, is a whole other world.  I won't go into any detail here other than to say you need different kinds of workholding when you can access a part from virtually any direction.  It becomes more challenging in this kind of workholding that the workholder not get in the way of milling the part.</p>
+    <p class="BlogTitle">&nbsp;</p>
+  <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

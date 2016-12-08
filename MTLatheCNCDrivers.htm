@@ -1,0 +1,959 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>Machine Tools:  Lathe Driver Electronics</title>
+<style type="text/css">
+<!--
+.style1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: italic;
+}
+.style2 {font-family: Arial, Helvetica, sans-serif}
+.style6 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="10%"><img src="img/GearsIcon.jpg" width="88" height="77"></td>
+          <td width="90%"><font face="Times New Roman, Times, serif" size="7" color="#FF0000"> 
+            CNC Lathe: Stepper Driver Electronics</font></td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif">The stepper driver electronics 
+        consist of a DC stepper power supply, the breakout board or controller, 
+        Gecko Drives, and some miscellaneous relays needed to control things like 
+        spindle and coolant. I want want to put all of this in <a href="CCLatheCNCEnclosures.html">one standard rack 
+        mount enclosure</a> and use <a href="MTLatheCNCPC.htm">another identical enclosure to hold the PC</a>. Hopefully 
+        this keeps the two sets of electronics out of each other's hair from a 
+        noise and heat standpoint. </font></i></p>
+      <p align="left"><span class="style1">Before beginning my own efforts at this, I spent considerable time scouring the Internet to see how others had approached the problem, and constructed a  <a href="CCEnclosureIdeas.html">photo scrapbook of what I thought were good enclosure designs</a>. </span></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><b><font face="Arial, Helvetica, sans-serif">DC Stepper 
+            Power Supply </font></b></i></td>
+        </tr>
+      </table>
+      <p><b><font face="Arial, Helvetica, sans-serif"><b>Finished DC Supply</b></font></b></p>
+      <p align="center"><img src="img/LatheStuff/CNCConversion/Drivers/P9173614.JPG" width="800" height="516"></p>
+      <p align="center"><b><i>Here is my finished supply putting out 71.8V: perfect!</i></b></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">Transformer: 
+        Toroid from Parts Express with a 56V secondary (among several others). 
+        $29.95</font></i></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><i>Ajax CNC Rectifier 
+        Board: $29, has inrush protection.</i></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><i>Electrolytic 
+        Capacitor: eBay, about $3.</i></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><i>Specs: about 
+        72V DC @ 5A out.</i></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><i>This about 
+        twice the amperage needed for my 2 little steppers based on the design 
+        work below, which suits me fine. The chassis and mountings consist of 
+        a piece of 18 gauge steel, a pipe clamp, and an expander rubber pipe plug 
+        from the hardware store. Miscellaneous parts and hardware probably cost 
+        me in the neighborhood of $15, so the total power supply cost came in 
+        at about $80.</i></font></p>
+      <p><b><font face="Arial, Helvetica, sans-serif">Designwork</font></b></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">I'll be constructing a classic 
+        unregulated DC power supply along the lines suggested on the <a href="http://finance.groups.yahoo.com/group/geckodrive/">Yahoo 
+        Group for Gecko Drives</a>. There is a white paper in their files section 
+        that gives a detailed description for how to design one of these simple 
+        power supplies to fit your particular step motors. In my case, the design 
+        exercise was done in an Excel spreadsheet that looked something like this:</font></i></p>
+      <p> Input Parameters </p>
+      <p>Stepper Rated Voltage 24 volts </p>
+      <p>Stepper Rated Amperage 3.4 amps </p>
+      <p># of Steppers 2 </p>
+      <p>Driver Max Voltage 80 Gecko's max rated voltage </p>
+      <p>Max. Stepper Over-Voltage 25 x rated </p>
+      <p>Desired Min Over-Voltage 3 </p>
+      <p>Zener Requirement Range 15% Use clamping diode if voltage is within this 
+        percent of drives max! </p>
+      <p>Idealized Outputs Power Supply Rating 2.27 amps </p>
+      <p>Target Voltage 80 volts </p>
+      <p>Undershoot no If "yes" the steppers requires too much voltage for the 
+        driver </p>
+      <p>Ideal Transformer Secondary 57.14 volts </p>
+      <p>Transformer Rating 181.33 voltamps </p>
+      <p>Min. Rectifier Ratings </p>
+      <p>&nbsp;&nbsp;Voltage 57.14 volts </p>
+      <p>&nbsp;&nbsp;Current 2.27 amps </p>
+      <p>Filter Capacitor </p>
+      <p>&nbsp;&nbsp;capacitance 2,266.67 microfarads </p>
+      <p>&nbsp;&nbsp;voltage rating 100 volts </p>
+      <p><i><font face="Arial, Helvetica, sans-serif">All these values were derived 
+        by formulas on the Gecko site. Essentially, you want a voltage that is 
+        about 20x what your motors are rated for (the Gecko site explains why, 
+        don't worry, the Geckos won't burn out your motor if you follow their 
+        directions). So, you work backwards to the transformer. Rectifying (converting 
+        AC to DC) will multiply the voltage by 1.414. So you need a transformer 
+        that is 20x/1.414 volts, where x is the motor voltage. Gecko also recommend 
+        not feeding their drives more than 70v, so keep that in mind too.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">The toroidal transformer 
+        I found came from Parts Express, and as you can see, it worked out almost 
+        perfectly for this application and was cheap as well: $29.95. While I 
+        was on the site I also purchased a bridge rectifier that was way overrated 
+        for this application, but that was also cheap at only $2.50. So far this 
+        CNC stuff is not too bad!</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">I purchased some 3500 mF 
+        electrolytic capacitors on eBay. They're a bit larger than what the design 
+        calculations require, but there is no harm in that. The extra capacity 
+        will just smooth out the current supplied a little better. The required 
+        circuit is quite simple:</font></i></p>
+      <p align="center"><img src="img/LatheStuff/CNCConversion/StepperPowerSupplySchematic.jpg" width="512" height="311"></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">Note that some 
+        folks will tell you to put a zener diode across the DC outputs to deal 
+        with back EMF. This is a very controversial subject, and one Mariss F. 
+        himself ultimately weighed against over on the Gecko board. The diagram 
+        above used to have one, but I got tired of the controversy and took it 
+        out. Another one that comes up a lot is a suggestion to put a resistor 
+        to discharge the capacitor. I've seen a number of posts that indicate 
+        the Geckos will discharge the cap reasonably quickly however, so I didn't 
+        worry about that.</font></i></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>Rectifier Board 
+        and Capacitor</b></font></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">In fact, I 
+        found a short cut so I didn't have to worry about anything but the transformer 
+        and cap. You can do a really slick thing and purchase a card from <b><a href="http://www.ajaxcnc.com/">Ajax 
+        CNC</a></b> for $29 that gathers all of those electronics on a small board 
+        that mounts atop the capacitor:</font></i></p>
+      <p align="center"><img src="img/LatheStuff/CNCConversion/CapTopRectifier2.jpg" width="365" height="400"></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">Ajax has all 
+        kinds of useful CNC components, including transformers, capacitors, control 
+        panels, MPG's, and most of whatever else you might need. Be sure to check 
+        them versus other suppliers you may consider. <a href="http://www.tormach.com/index.html"><b>Tormach</b></a> 
+        sells a similar board, but it was quite a bit more money last I checked. 
+        <b> <a href="http://www.pmdx.com/">PMDX</a></b> also make a nifty power 
+        supply circuit board.</font></i></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">I bought the 
+        capacitor on eBay, a box of 9 was $27. Cheap!</font></i></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>Transformer 
+        &amp; Phasing</b></font></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">With the Ajax 
+        board and capacitors, you just need a transformer to finish the supply. 
+        I got mine from Parts Express for $29.95, and it's a toroidal. It had 
+        a sticker on it telling which wire was which. </font></i><i><font face="Arial, Helvetica, sans-serif">If 
+        you don't have a proper description of the wiring for your transformer, 
+        you'll need to check the phasing yourself. Transformers often have multiple 
+        sets of windings, for example so the same transformer will work with 110V 
+        or 220V. For example, if there are 2 110V primaries, you connect them 
+        in parallel for 110V and series for 220V operation. It is even more coming 
+        to find this flexibility in the wiring of the secondaries. If you connect 
+        the wire wrong, you get a short circuit, so you have to phase them. </font></i><i><font face="Arial, Helvetica, sans-serif">Phasing 
+        is the process of figuring out which wires coming out of the transformer 
+        you want to use in what way for your application.</font></i></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">This is not 
+        hard to do, but you want to do it carefully. First, the voltages involved 
+        are dangerous--BE CAREFUL WHAT YOU TOUCH AND WHAT TOUCHES THE TRANSFORMER 
+        AND OTHER WIRING! Beware of both shock and fire hazard.</font></i></p>
+      <p align="left"><i>http://www.du.edu/~jcalvert/tech/transfor.htm</i></p>
+      <p align="left">For example just connect one primary by disconnecting ONE 
+        of the red wires, leave the 2 blacks & one red connected and power up 
+        and test the voltage between the two reds, you should get near zero volts, 
+        if so connect the reds up again, if the breaker trips with this test then 
+        the secondaries are phased wrong. </p>
+      <p align="left">------------</p>
+      <p align="left">As far as the primary is concerned if it is a centre tapped 
+        winding at 115v then it would not matter if you went from blk to red or 
+        red to yellow for the 115v input. In any case hook up the primary first 
+        and check the secondary ac voltage on blu to blu and grn to grn if they 
+        are the same voltage on each they can be paralled up for double current 
+        rating, the only thing is they have to be phased right, they may have 
+        a marking on one blu and one of the grn wires. The AC voltage you are 
+        getting on the secondary will be mulitplied by 1.414. -1.2v for a DC bridge 
+        rectifier supply with capacitance smoothing. If you need help phasing 
+        the secondaries more help can be given, if the secondaries are different 
+        voltages then you cannot parallel them. </p>
+      <p align="left">-------------</p>
+      <p align="left">To phase the secondaries, take ONE wire from each sec. and 
+        wire together, then measure the ac voltage on the two open ends, there 
+        should be close to zero voltage, if you get double the voltage of one 
+        sec. then swop one of the connected wires for the other of the same secondary. 
+        When you have zero of the two open ends then they can be paralleld. </p>
+      <p align="left">-------------</p>
+      <p align="left">I think you have it, once you get 0v across the two open 
+        ends, then these two open ends can be connected together , what you are 
+        doing is connecting both secondaries in parallel, one across the other 
+        so you end up with two connections with a blu and grn connected at each 
+        end. When you tried before, you probabally had them connected this way 
+        but they were not phased properly. BTW did you get this from the guy who 
+        sells them on ebay, as usually he marks the start winding of each secondary 
+        by a piece of black heat shrink. </p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><b><font face="Arial, Helvetica, sans-serif">Gecko 
+            Drivers</font></b></i></td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif">I'll be using the Gecko 
+        202 step motor drivers. The 201's are cheaper, but the 202's are a little 
+        more rugged and &quot;beginner-proof&quot;. The extra cost is worth it 
+        to me. I used a piece of extruded aluminum heatsink material from eBay 
+        to create a tray for the Geckos and their fuses:</font></i></p>
+      <p align="center"><img src="img/LatheStuff/CNCConversion/Drivers/P9243616.JPG" width="800" height="345"></p>
+      <p align="center"><strong>Gecko Drives for X and Z Axes with Fuses Mounted on Heat Sink... </strong></p>
+      <p align="left" class="style1">Be sure to put the fuses in the circuit between the DC power supply and the Gecko drive rather than between the Gecko drive and the motors. The latter will encourage the Gecko to self-destruct if the fuse blows. </p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><b><font face="Arial, Helvetica, sans-serif">PC Interface 
+            / Breakout Board: GRex</font></b></i></td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif">My choice of a <a href="CCBreakoutBoards.htm">breakout 
+        board</a> to connect the PC to the Gecko's is a bit avant garde, at least 
+        in May of 2006 when I made the decision. Because my control panel has 
+        so many controls, I would have to use several conventional boards to connect 
+        everything--either 2 parallel breakout boards or one parallel and a ModIO 
+        board. In addition to the breakout boards, I would need a keyboard emulator. 
+        While the boards from Campbell Design and Rogers Machine are tried and 
+        true, I have decided on a newer solution. The GRex, or G100, is a product 
+        made by <a href="http://www.geckodrive.com/">Geckodrive</a> that is chock 
+        full of I/O ports and is capable of handling a whole slew of I/O connections. 
+        One is on order.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">The GRex has the potential 
+        for much higher performance than the parallel boards because it allows 
+        Mach to offload a fair amount of its tight timing loop operations onto 
+        an onboard CPU. I don't really need that extra performance for this lathe, 
+        but it's nice to know it's there. My biggest challenge at this point is 
+        that Mach IV and GRex are still pretty experimental as I'm writing this, 
+        so I'm definitely out on the &quot;bleeding edge&quot;.</font></i></p>
+      <p align="center"><img src="img/LatheStuff/CNCConversion/Drivers/P4213943.JPG" width="800" height="504"></p>
+      <p align="center"><b><i>GRex, Gecko Drives, and DC Stepper Power Supply 
+        Mounted in <a href="CCLatheCNCEnclosures.html">Enclosure</a>...</i></b></p>
+      <p align="center">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><b><font face="Arial, Helvetica, sans-serif">Spindle 
+            and Coolant Control</font></b></i></td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p><font face="Arial, Helvetica, sans-serif"><i><b>Coolant Control</b></i></font></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">This one is easy. I just 
+        need to control a relay from the GRex. The relay will control AC power 
+        to a receptacle mounted on the back of the enclosure. This way, I can 
+        use any AC pump I find for the coolant and the pump will be turned on 
+        and off by the relay as needed. I'll use a mechanical relay so that if 
+        I needed to switch to a DC connection that would work too. I have some 
+        thought I might choose to control air rather than flood coolant because 
+        its less messy and I wouldn't have to build an enclosure for the lathe. 
+        Also, I have a nifty little vortex tube cooler that would be just the 
+        ticket for my lathe. We will see.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">It's been noted that a suppressor 
+        diode across the coil helps reduce noise, so I need to look into that 
+        as well.</font></i></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif"><b>Spindle 
+        Control</b></font></i></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">The spindle 
+        cont<span class="style1">rol is a little bit more complex because there are three functions: 
+        on/off, direction, and speed. </span></font></i><span class="style1"> I am planning to mount the circuitry for spindle control in a separate chassis connected back to the GRex using microphone connectors and 6-conductor shielded cable. I am hoping this will help keep the noise from the speed control away from the rest of the system. This remote chassis will be mounted back-to-back with the speed controller on the lathe itself. I intend to install a load meter, which is just an ammeter telling how much current the spindle is drawing, as well as a tachometer. All AC to this remote chassis will be via the switched receptacle strip on the back of the main enclosure. That strip is switched by the E-stop circuitry, so we'll be sure the spindle gets shut down as well as the coolant in the event of an emergency stop.</span></p>
+      <p align="left" class="style1">Here is my current schematic for how this remote spindle and coolant control chassis will be wired:</p>
+      <p align="center" class="style1"><img src="img/LatheStuff/CNCConversion/Drivers/SpindleSchematic.jpg" width="1024" height="633"></p>
+      <p align="left" class="style1">Let's walk through its operation. </p>
+      <p align="left" class="style1">First, the on/off circuit. I've shown it as an SPST. I need to go back and look at my controller and see exactly what it wants to turn the spindle on and off. The GRex digital outputs basically take the voltage down to 0V when they are &quot;On&quot;, so I think of them as grounding the connection. That's why the On/Off relay takes positive from the wall wart and hooks the other &quot;coil&quot; terminal to the GRex line. </p>
+      <p align="left" class="style1">Next, we have the reversing circuit. This is a common DPDT set up to reverse direction. I will again use a solid state relay (SSR) for this purpose. All it does is switch the polarity of the 2 output lines from the speed controller. </p>
+      <p align="left" class="style1">Speed control is via the excellent <a href="http://homanndesigns.com/store/index.php?main_page=product_info&cPath=1&products_id=21">Homann Designs DigiSpeed-GX</a>, which is especially designed for applications like the GRex. The GRex puts out a variable analog voltage (0 to +5VDC)  on one of   its output lines. Mach 3 is set up to work this way with a GRex or breakout. The   DigitSpeed board will convert that variable analog to an analog voltage suitable for driving a   speed controller, replacing the potentiometer normally installed there. The important function it provides is isolating your GRex or other breakout board from the motor controller. Failure to do so can quickly &quot;fry&quot; your GRex or breakout board! </p>
+      <p align="left" class="style1">Coolant is a simple relay that will pass through AC to a receptacle, said AC coming from the E-stop switched receptacle. This way I can just plug a coolant pump or whatever into the outlet. I may not do the coolant right away, as there is some question in my mind whether I'll ever run flood coolant on this lathe. It might make more sense to stick to air or a mist system. </p>
+      <p align="left" class="style1">There are a few open issues noted on the drawing, but I'll tackle those when I'm closer to building this little enclosure. </p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><b><font face="Arial, Helvetica, sans-serif">Wiring, 
+            Connectors, and Noise, Oh My!</font></b></i></td>
+        </tr>
+      </table>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">I bought a 
+        <a href="http://www.action-electronics.com/cabl-prc.htm#Shielded">500' 
+        spool of 6 conductor shield 22 AWG cable from Action Electronics</a>. 
+        For connectors, I'm using some <a href="http://www.action-electronics.com/audcon.htm#Mic">microphone 
+        connectors, also from Action</a>.</font></i></p>
+      <p align="center"><img src="img/LatheStuff/CNCConversion/Drivers/PA273629.JPG" width="800" height="525"></p>
+      <p align="center"><em><strong>6 conductors and a foil shield: this is the right cable for my step motors! </strong></em></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">For others 
+        who may read this, you want to use shielded cables or noise will make 
+        your system unreliable. Other thoughts:</font></i></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">- You can use 
+        CAT-5 cable for encoders or limit switches, just be sure you use the twisted 
+        pair feature and pair each signal with it's ground to provide noise immunity. 
+        Apparently this idea has been blessed by none other than Mariss F., Mr 
+        Gecko, himself.</font></i></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">- DIN cables 
+        such as are used as MIDI patch cables in the music business and older 
+        keyboard cables (before the PS/2 and USB styles) in the PC business are 
+        another possibility. Even Radio Shack carries some DIN cable componentry. 
+        DIN for MIDI applications have 5 conductors plus a ground/shield and are 
+        supposed to be rated to 2 amps @ 100V. What's nice is you can get premade 
+        DIN cables in a variety of colors and lengths. If they'll serve the power 
+        needs of your system, they could be quite convenient. Mini-DIN is the 
+        PS/2 keyboard connector, and is also shielded. It might be useful for 
+        limits and encoders. Cables are </font></i><span class="style1">available already made up. Note that <a href="http://www.homanndesigns.com/store/index.php?main_page=index&cPath=1">Homann</a> sells a mini-DIN breakout board that would make it easy to connect to your mini-DIN cables with point to point wiring. </span></p>
+      <p align="center"><img src="img/OthersProjects/midi-cable.gif" width="200" height="165"></p>
+      <p align="center"><b><i>MIDI DIN patch cable...</i></b></p>
+      <p align="left"><em>- <a href="http://www.action-electronics.com/cinch.htm">Cinch connectors</a> are another common type of connector used for motors. They will carry a bit more current than DINs or microphone connectors.</em></p>
+      <p align="center"><img src="img/LatheStuff/CNCConversion/Drivers/ircp304c.jpg" width="360" height="286"> <img src="img/LatheStuff/CNCConversion/Drivers/ircs306a.jpg" width="360" height="310"></p>
+      <p align="center"><em><strong>Cinch connectors...</strong></em></p>
+      <p align="center"><img src="img/LatheStuff/CNCConversion/Drivers/PA283631.JPG" width="800" height="600"></p>
+      <p align="center"><em><strong>I quickly remembered how much I hate soldering connectors...</strong></em></p>
+      <p align="left" class="style1">When I started soldering my  connectors, I quickly remembered how much I hated this task. I used to regularly have to make up serial and parallel cables for a part time job I have in college at a computer store as a technician. The technique I was trained on what to fill each pin with solder first, &quot;tin&quot; the wires, and then heat each pin and plunged the tinned wire into the pin's molten pool of solder. It actually works pretty well and it won't take long to finish the connector. You'll go crazy if you don't have some way of holding it while you do the soldering--I have a cheap alligator-clip based solution I got from Radio Schlock. The other thing I discovered is that it is much easier to hold and manuever the wire with hemostat clipped shut over it than with a needle nosed pliers. </p>
+      <p align="center"><b><i></i></b><img src="img/LatheStuff/CNCConversion/Drivers/PA283630.JPG" width="800" height="600"></p>
+      <p align="center"><em><strong>Plunge the wire into the pool of molten solder in each pin! </strong></em></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><b><font face="Arial, Helvetica, sans-serif">E-Stop 
+            and Time Delay Power On Circuits</font></b></i></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Emergency Stop and time 
+        delay power on are important safety features to provide for the driver 
+        electronics. Time delay power on ensures there is adequate time for the 
+        GRex to boot up before any power is available to the Gecko Drives. This 
+        is to make sure no inadvertant glitches can send a motor signal before 
+        the GRex is awake and fully ready to assume control.</i></font></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">The Emergency Stop is a 
+        fail safe means of cutting power to the spindle and axis motors by hitting 
+        one switch.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">How did I implement these 
+        functions? </font></i></p>
+      <p class="style1">I've used a switch with safety cover to turn on the system. 
+        You will have to lift the cover and flip the toggle up. Pressing the red 
+        safety cover once the system is on will open the circuit and cut power.</p>
+      <p align="center"><img src="img/LatheStuff/CNCConversion/Drivers/PA213622.JPG" width="512" height="538"> 
+        <img src="img/LatheStuff/CNCConversion/Drivers/PA213623.JPG" width="512" height="573">      </p>
+      <p align="center"><em><strong>Flip up to supply power, press down on safety 
+        cover and power is cut...</strong></em></p>
+      <p align="left" class="style1">This master on switch can therefore serve 
+        as the E-Stop switch. Slap it down and power is cut. Power from this switch 
+        goes to two places. First, it goes to the GRex wall wort as we want it 
+        to power up first. Second, it goes to a Delay On Make timer relay. This 
+        device waits an adjustable interval before letting power go on through. 
+        That interval gives the GRex time to boot up. The output of the timer 
+        relay will be a much larger (10-20 amp) solid state relay that supplies 
+        power to the DC power supply for the step motors, as well as to a power 
+        strip, where I can plug in the spindle VFD and any other accessories that 
+        want delayed power up. I got my Delay On Make timer relay from McMaster 
+        Carr for about $20. </p>
+      <p align="center" class="style1"><img src="img/LatheStuff/CNCConversion/Drivers/DOMRelays.jpg" width="800" height="614"></p>
+      <p align="center" class="style1"><b><i>Back of Front Panel, Left to Right: 
+        E-Stop Power Switch, Delay On Make Relay, SPST Relay, and SPST Relay...</i></b></p>
+      <p align="left" class="style1">In addition to the safety covered master 
+        on-off on the driver electronics enclosure, there is an additional plunger-style 
+        E-Stop on the lathe control panel. I'll wire this up in series between 
+        the Delay On Make Timer Relay and the heavy duty contactor. Hitting that 
+        E-Stop plunger will therefore cut power to spindle and stepper motors. 
+        I'll also drive any accessories such as coolant pumps of this circuit 
+        as well. </p>
+      <p align="left" class="style1">Here is a schematic of the overall E-Stop 
+        and Delayed Power Up circuitry:</p>
+      <p align="center" class="style1"><img src="img/LatheStuff/CNCConversion/Drivers/ACSchematic.jpg" width="1024" height="777"></p>
+      <p>&nbsp;</p>
+      <table width="100%" border="0">
+        <tr>
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><b><font face="Arial, Helvetica, sans-serif">Home/Limit Switches </font></b></i></td>
+        </tr>
+      </table>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">I am using two switches on each axis as combination home/limit switches. The X-axis (long axis on the lathe) is constructed using simple clamp-on brackets to hold roller microswitches:</font></i></p>
+      <p align="center"><em><font face="Arial, Helvetica, sans-serif"><img src="img/LatheStuff/CNCConversion/P1023698.JPG" width="800" height="600"></font></em></p>
+      <p align="center"><em><strong>X-Axis Home/Limit Switch </strong></em></p>
+      <p align="center"><img src="img/LatheStuff/CNCConversion/P1023699.JPG" width="800" height="600"></p>
+      <p align="center"><em><strong>X-Axis Home/Limit Switch </strong></em></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">The plan is to wire these switches in series in a normally closed configuration. If the limit is hit on any axis, the switch will open the series circuit. Likewise, if there is a connection problem, the system will fail open and the limit will be tripped. </font></i></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">These switches will be connected using the same shielded cable and mic connectors I am using for the step motors. The GRex uses 12V for power, and I am hopeful this level of voltage together with the shielded cable will be sufficient to avoid any noise on these lines. In addition, the normally closed mode of operation should also make for better noise immunity I would think, as a noise spike would seem to lead to falsely tripping the switch only in a normally open configuration. In practice, we will have to see. </font></i></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><p><img src="img/GearsIconSm.jpg" width="53" height="46"></p></td>
+          <td width="93%"><i><b><font face="Arial, Helvetica, sans-serif">Blinkin' 
+            Lights</font></b></i></td>
+        </tr>
+      </table>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">I like the 
+        idea of front panel lights that flash when there is activity on an axis. 
+        Could be a useful troubleshooting adjunct, or just a nifty bit of eye 
+        candy to make things look more &quot;professional.&quot; I've done a small 
+        amount of research so far on how to make this work out. Firstly, a company 
+        called <a href="http://www.candcnc.com/Mini_IO.htm">CAndCNC</a> has a 
+        little card to do this that works with their breakout boards. It's called 
+        the SDM-100, or in some places referred to as the S&amp;D-03. I sent them 
+        a note to see if pinout is available because it is set up to work with 
+        a dedicated feature connector on their breakout boards, which of course 
+        I am not using.</font></i></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">There was a 
+        brief exchange on CNCZone with some clues as to how to do this more directly. 
+        The suggestion was thus:</font></i></p>
+      <p align="left">+5 thru current limit resistor thru led (----l>----) to 
+        ground. Don't worry, if you botch the polarity on the led, it simply won't 
+        light - haven't fried one yet by reversing it. When the +5 line goes HI, 
+        the led will glow. Calcing the resistor value is the only "hard part". 
+        I use this formula: (source voltage -1.5)/.010 = resistor value in ohms 
+        rounded up to nearest standard value. This puts about 10 milliamps into 
+        the led. For 5 ma, change the 0.010 to 0.005. The led should light either 
+        way. 1/4 watt resistors should be fine.</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><i>This was later 
+        amended by Mariss by the following:</i></font></p>
+      <p align="left">The G100 general purpose outputs are common collector. Reverse 
+        the LEDs and take the anodes to the G100 +24VDC terminal. Same for your 
+        SSR1. </p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">Which seemed 
+        simple enough to me and worth a try. I may have to think about putting 
+        LEDs on all of the interesting outputs for the G100.</font></i></p>
+      <p align="left"><b><i><font size="+2"><a href="CCLatheCNCHome.htm">Back 
+        to CNC Lathe Home...</a></font></i></b></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

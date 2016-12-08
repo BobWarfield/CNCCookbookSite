@@ -1,0 +1,512 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCGWEDocPage.dwt" --><!-- DW6 -->
+
+<head>
+
+<!-- #BeginEditable "doctitle" --> 
+
+<title>GWE: Getting Started</title>
+
+
+<meta name="description" content="G-Wizard G-code Editor/Simulator overview and getting started.">
+
+<style type="text/css">
+<!--
+BodyText {
+	font-size: 12pt;
+}
+.RedText {
+	color: #F00;
+}
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText {
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<style type="text/css">
+.BodyText2 {	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<!-- #EndEditable -->
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+<style type="text/css">
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 14pt}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+<!-- SumoMe Listbuilder Email Exit Intent -->
+<script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" />
+<style type="text/css">
+.BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">
+  multitouch();
+</script>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr></tr>
+<tr>
+  <td height="68" colspan="4" valign="middle" bordercolor="0" class="Tagline">
+  
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/LogoBitmap30High.jpg" alt="CNCCookbook: Software and Information for Macihnists" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="32" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+  
+  </td>
+</tr>
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+<tr class="LeftNav">
+  <td width="231" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0"><table width="65%"  border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><div align="center">
+        <p><a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"><img src="img/Ads/GWAd05152011.gif" width="120" height="90" alt="G-Wizard Machinist's Calculator" longdesc="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"></a></p>
+        <p><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm"> <img src="img/Ads/FeedsSpeedsAd.jpg" width="120" height="69" alt="Feeds and Speeds Cookbook"></a></p>
+      </div></td>
+    </tr>
+  </table>
+    <p>
+      <!-- Place this tag where you want the +1 button to render -->
+        <g:plusone></g:plusone>
+    </p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="+1" color="#66CC00">GW Editor 
+      User Guide</font></b></p>
+    <p align="center" class="Tagline1"><a href="GWEUIntro.html" class="BodyText"><strong>GWE Video University</strong></a>    </p>
+    <p align="center" class="BodyText"><strong><a href="GWEOverview.html">Getting Started</a></strong></p>
+    <p align="center" class="BodyText"><a href="GWEHowToArticles.html"><strong>How-To Articles</strong></a></p>
+    <p align="center" class="BodyText"><strong><a href="GWESetup.html">Setup</a></strong></p>
+    <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWECommands.html"><strong>Commands</strong></a></p>
+    <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWEKeyboard.html"><strong>Keyboard</strong></a></p>
+    <p align="center" class="BodyText"><strong><a href="GWERevisions.html">Revisions</a></strong></p>
+    <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWECNCSimulator.html"><strong>CNC Simulator</strong></a></p>
+    <p align="center" class="BodyText"><strong><a href="GWEWizards.html">Wizards</a></strong></p>
+    <p align="center" class="BodyText"><strong><a href="GWETools.html">Tool Data</a></strong></p>
+    <p align="center" class="BodyText"><a href="GWETips.html"><strong>Tips</strong></a></p>
+    <p align="center" class="BodyText"><a href="GWEPostList.html"><strong>Post List</strong></a></p>
+    <p align="center" class="BodyText"><a href="GWECustomPosts.html"><strong>Customizing Posts</strong></a></p>
+    <p align="center" class="Tagline1">&nbsp;</p>
+    <p align="center" class="Tagline1"><strong><a href="GWCCOverview.html">GW Conversational CNC</a></strong></p>
+    <p align="center" class="Tagline1">&nbsp;</p>
+    <p align="center" class="Tagline1"><a href="http://www.cnccookbook.com/CCCNCGCodeRef.html"><strong>Mill G-Codes</strong></a></p>
+    <p align="center" class="Tagline1"><a href="http://www.cnccookbook.com/CCCNCGCodeRefTurn.html"><strong>Lathe G-Codes</strong></a></p>
+    <p align="center" class="Tagline1">&nbsp;</p>
+    <p align="center" class="Tagline1"><a href="GWESampleFiles.html"><strong>Sample G-Code Files</strong></a></p>
+    <p align="center" class="Tagline1">&nbsp;</p>
+    <p align="center" class="Tagline1"><strong><a href="http://www.cnccookbook.com/GWETips.html">GWE Tips</a></strong></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><strong><a href="GWEChangeLog.html" class="BodyText">GWE Change Log</a></strong></p>
+    <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWizard/GWEInstall.html"><strong>GWE Install</strong></a></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="GWTrouble.htm">Troubleshooting</a></font></b></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><a href="http://www.cnccookbook.proboards.com/index.cgi" class="BodyText"><strong>User's Club</strong></a></p>
+<p>
+  <!-- Place this tag where you want the +1 button to render -->
+  <p>
+  <g:plusone></g:plusone>
+  </p>
+    <!-- AddThis Button BEGIN -->
+    <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+    <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=cnccookbook"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=cnccookbook"></script>
+    <!-- AddThis Button END -->
+</p>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    gaTrack: true,
+    gaId: 'UA-1060932-2'
+  }, 'google_translate_element');
+}
+  </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</p>
+</td>
+</tr>
+<tr>
+  <td colspan="7" align="left" valign="top" bgcolor="#FFFFFF">
+  <div id="centerContainer">
+  <!-- #BeginEditable "Body" -->
+      <p><font color="#339933" size="+4">G-Wizard 
+        Editor: Getting Started</font></p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BodyText"><strong>Welcome to G-Wizard Editor!  </strong></p>
+      <p class="BodyText">This page is designed to help you get started as quickly as possible using it.   We'll assume you're all registered, installed, and wondering what the heck you need to do next.   If you haven't yet registered, <strong>please do so <a href="CCGWizardE.html">here</a>.</strong></p>
+      <p class="BodyText"><strong>Here are some resources we've put together to help you get started:</strong></p>
+      <p class="BodyText">- This &quot;Getting Started&quot; page will provide you with some helpful videos as well as a written tour of the product. Start here and at least watch the video down below. At the bottom of the page is a link to the next relevant documentation section to visit, or you can check out all the links to the left.</p>
+      <p class="BodyText">-  <strong><a href="GWEUIntro.html">Visit G-Wizard University for GW Editor</a></strong>.  This page is our collection of quick and helpful videos that cover various aspects of the product.</p>
+      <p class="BodyText">-  You'll want to hit the <a href="http://www.cnccookbook.com/GWESetup.html"><strong>Setup page</strong></a> pretty soon to get GWE configured for your CNC machine and its controller.</p>
+      <p class="BodyText"><span class="BodyText2">- <a href="GWEHowToArticles.html">How-To Articles</a>:  An index of our best How-To articles for G-Wizard Editor.</span></p>
+      <p class="BodyText">-  There are some <a href="http://www.cnccookbook.com/GWESampleFiles.html"><strong>sample g-code files to download</strong></a> and play with.</p>
+      <p class="BodyText">-  There is a <a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm"><strong>G-Code Tutorial</strong></a> that has lots of G-Wizard Editor examples.</p>
+      <p class="BodyText">-  There are <a href="http://www.cnccookbook.com/CCCNCGCodeRef.html"><strong>Quick References tables for the G-Codes</strong></a></p>
+      <p class="BodyText">- There's a <strong><a href="http://www.cnccookbook.com/GWTrouble.htm">Troubleshooting Page</a></strong> in case you're having install problems.</p>
+      <p class="BodyText">- There's a <a href="http://blog.cnccookbook.com/category/software/"><strong>Software Channel for Our Blog</strong></a> that has all the posts we've done about the software: lots of great tips and in-depth how-to's.</p>
+      <p class="BodyText">-  We encourage you to subscribe to the <a href="http://blog.cnccookbook.com/subscribe-to-blog-posts/"><strong>Blog e-mail newsletter</strong></a> so you can see a post any time there's something new or important to know about G-Wizard Editor.</p>
+      <p class="BodyText">-  When all else fails, there's a <strong><a href="http://cnccookbook.uservoice.com/">Customer Portal</a></strong> where you can log support tickets, search our Knowledge Base, and make or vote on suggestions for future product features.</p>
+      <p class="BodyText">Now here's the good news:  you've got all those resources in your back pocket if you need them, but GWE is actually pretty simple.   You don't need all that just to get started.  Go through this &quot;Getting Started&quot; page.   Watch the video. That'll get you the basics. Then run through the Setup page and get GWE configured for your machine.  Feel free to try winging it too if you're the sort that doesn't like to crack open the Instructions. You can always come back here by pressing the &quot;Getting Started&quot; button on GWE.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Video: Getting Started Tour</p>
+      <p align="center" class="BlogTitle"><object width="853" height="480"><param name="movie" value="http://www.youtube.com/v/IWVVrH1_588?version=3&amp;hl=en_US&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/IWVVrH1_588?version=3&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" width="853" height="480" allowscriptaccess="always" allowfullscreen="true"></embed></object>&nbsp;</p>
+      <p align="center" class="BodyText">The G-Wizard Editor Getting Started Tour...</p>
+      <p align="left" class="BodyText">For a more in-depth video tour and demonstration, <a href="http://www.cnccookbook.com/GWizardWeeklyWebinar.html">download the latest webinar on G-Wizard Editor from our Webinar page</a>.  The recorded webinars are at the bottom of the page.</p>
+      <p class="BlogTitle">Bubble Tips</p>
+      <p class="BodyText">Bubble Tips are there to give you a guided tour right inside the product.  They begin with a popup Start Wizard that tells you how to use Bubble Tips.  Go through all the Bubble Tips to checkout the different parts of GWE interactively.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Screen Layout</p>
+      <p align="center"><img src="img/GWizardE/Docs/ScreenOverview.jpg" width="1024" height="745"></p>
+      <p><font face="Arial, Helvetica, sans-serif">The different elements of GWE are called out in the screen shot above:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">-  Menus: Just what you'd expect.   Tools is where you go for various transformations on the g-code, Backplot for special options on the graphical backplot, and Insert gives you menu equivalents for the Insert buttons on the G-Code tools. The File and Edit menus are standard fare. Many of the menu choices are not working yet and keyword shortcuts are scarce.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Login Bar: This is the same component found in the <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard Calculator</a>.  In fact, where possible, I am sharing components, which makes everything simpler because you learn how they work once and can use the functionality in all the products.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">-   Tool Bar: This is the standard sort of tools.    I will likely add some less standard ones over time as the G-Code Tool Bar is nearly full with insert and simulator functionality.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Views:     There are a number of different kinds of Views that are accessible from these two tab clusters.  The views on the right are different perspectives from which to view the backplot.   On the left are different views of the G-Code Program.    There is the text itself, under &quot;G-Code&quot;, the Hints, and an overall Info view.  More on each one below.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Line Gutter:   This is an important tool for providing concise additional information about each line, as well as to tell you what the overall line number is.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Status Bar:  A few bits of incidental information such as the Line Number (in case you're looking at some view other than the G-Code), and the cursor coordinates when it is over the Backplot.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Let's look at these different regions in a little more detail below.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Menus</font></p>
+      <p class="BodyText">Most of the menu choices are pretty standard and need no explanation.  I'll list them and only annotate those that are more unique to GWE:</p>
+      <p class="BodyText">Here is a quick summary of all the menu choices:</p>
+      <p class="BodyText"><strong>File Menu</strong></p>
+      <p class="BodyText">- New</p>
+      <p class="BodyText">- Open</p>
+      <p class="BodyText">- Save</p>
+      <p class="BodyText">- Save As</p>
+      <p class="BodyText">-  Exit</p>
+      <p class="BodyText">- History List</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BodyText"><strong>Edit Menu</strong></p>
+      <p class="BodyText">-  Undo</p>
+      <p class="BodyText">- Redo</p>
+      <p class="BodyText">- Cut</p>
+      <p class="BodyText">- Copy</p>
+      <p class="BodyText">- Paste</p>
+      <p class="BodyText">- Select All</p>
+      <p class="BodyText">- Find/Replace</p>
+      <p class="BodyText">-  Jump</p>
+      <p class="BodyText">Find/Replace and Jump create special Toolbar menus so they're not hanging out on top of the screen hiding what you're trying to find or jump to.  Use Find/Replace to do traditional Find/Replace style operations.  Use Jump to move to the next tool change and perform similar operations.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BodyText"><strong>Insert Menu</strong></p>
+      <p class="BodyText">- G-Code</p>
+      <p class="BodyText">- M-Code</p>
+      <p class="BodyText">- Feeds and Speeds</p>
+      <p class="BodyText">- Tool Change</p>
+      <p class="BodyText">- # Macro</p>
+      <p class="BodyText">- Custom Cycle</p>
+      <p class="BodyText">- Insert File</p>
+      <p class="BodyText">- Append File</p>
+      <p class="BodyText">Most of these choices pop up special Wizards to help you enter g-codes.   In addition, you can either insert a file at the current cursor location or append a file to the end of the currently loaded file.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BodyText"><strong>Simulator Menu</strong></p>
+      <p class="BodyText">-  Cycle Start</p>
+      <p class="BodyText">-  5 Step</p>
+      <p class="BodyText">-  Single Block</p>
+      <p class="BodyText">-  Stop</p>
+      <p class="BodyText">- Rewind</p>
+      <p class="BodyText">- Feedhold</p>
+      <p class="BodyText">- Options</p>
+      <p class="BodyText">Start the Simulator with Rewind.  You'll see the additional debug information window appear below the backplot.  Use Cycle Start to get the Simulator running.  We tend to use the words &quot;Simulator&quot; and &quot;Debugger&quot; almost interchangeably here.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BodyText"><strong>Tools Menu</strong></p>
+      <p class="BodyText">-   Revise</p>
+      <p class="BodyText">- Auto Revise</p>
+      <p class="BodyText">-  Last Revision</p>
+      <p class="BodyText">-  Revision History</p>
+      <p class="BodyText">-  Options</p>
+      <p class="BodyText">-  Setup</p>
+      <p class="BodyText">Revisions are commands that revise your G-Code.  There are a lot of them that do all sorts of useful things that can save you a lot of time.   Go ahead and pop open the &quot;Revise&quot; choice to take a look at the list.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BodyText"><strong>Backplot Menu</strong></p>
+      <p class="BodyText">- Zoom Extents<br>
+        <br>
+        -  Redraw</p>
+      <p class="BodyText">- Zoom In </p>
+      <p class="BodyText">- Zoom Out</p>
+      <p class="BodyText">- Options<span class="BodyText"></span></p>
+      <p class="BodyText">You have full control of the Backplot here.</p>
+      <p><br>
+      </p>
+      <p class="BlogTitle"><font face="Arial, Helvetica, sans-serif">G-Code Tools</font></p>
+      <p class="BodyText">There are three button clusters that make up the G-Code Tools ribbon:</p>
+      <ul>
+        <li class="BodyText">Wizards: Wizards help you quickly enter G-Code with easy keyboard shortcuts and prompts. See the <a href="GWEWizards.html">Wizards page</a> for more.</li>
+        <li class="BodyText">Debugger:  The debugger looks like music playback buttons.  It lets you step through your g-codes and see what they're doing.</li>
+        <li class="BodyText">Setup: The button on the far right opens the Setup tool, where you give GWE all of your setup preferences and options.  See the <a href="GWESetup.html">Setup page</a> for more.</li>
+      </ul>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Line Gutter</font> </p>
+      <p><font face="Arial, Helvetica, sans-serif">Beyond showing you the line numbers, the Line Gutter provides a couple of other kinds of interesting information:</font></p>
+      <p align="center"><img src="img/GWizardE/Docs/LineGutterErr.jpg" width="475" height="319"> </p>
+      <p align="center" class="BodyText">Lines that have errors are highlighted in Red, so you can scan down the gutter and find them quickly...</p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/Docs/LineGutterHint.jpg" width="371" height="174"></p>
+      <p align="left" class="BodyText">Let your mouse cursor hover over a line, and a Tool Tip pops up giving you the Hint for the line.   In this case, we can see quite a lot of info about Line 0013, including the fact that the Error is that G4 (Dwell) is not available.    That just means GWE doesn't know what to do with it yet.    </p>
+      <p align="center" class="BodyText">&nbsp;</p>
+      <p class="BlogTitle"><font face="Arial, Helvetica, sans-serif">G-Code View</font></p>
+      <p class="BodyText">G-Code view is just a basic text editor.  No surprises here!</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Hints and Errors View</font>s</p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/Docs/HintsView.jpg" width="1024" height="788"></p>
+      <p align="center" class="BodyText">Hints View shows you a quick explanation of what the g-code does...</p>
+      <p align="left" class="BodyText">Hints View shows you a quick explanation of what the g-code on each line does.  It's a great learning tool, as well as a way to see some deeper information about what's going on.   Doesn't everyone learn to read G-Code pretty quickly?   Sure, reading something like &quot;G0 X0Y0&quot; is pretty easy.   But, what about that canned cycle you use once in a blue moon.   What exactly where it's arguments again?   With Hints View, you can be reminded instantly what's going on.   </p>
+      <p align="left" class="BodyText">Note that the Hint where the cursor in the G-Code view is gets a heavy black outline.    If you're running the g-code simulator, you can leave Hints View up and the outline tells you which line is currently executing too.  Most lines are alternating blue and white background, but if GWE finds an error on the line, the hint for that line will have a pinkish background.   The error text within the hint will be called out in bright red.  This makes it easier to scan through and find your errors quickly.</p>
+      <p align="left" class="BodyText">The Errors View is a version of Hints that only shows lines with Errors.  This makes it easy to zero in on the Errors and fix them.</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Tools View</p>
+      <p align="left" class="style1">The Tools View (accessed via the &quot;Tools&quot; tab), collects information from your g-code program about what tools are used and where the Tool Changes occur:</p>
+      <p align="center" class="BlogTitle"><img src="img/GWizardE/Docs/ToolsTab.jpg" alt="" width="640" height="703"></p>
+      <p align="center" class="style1">The Tools View...</p>
+      <p align="left" class="style1">The Tools View lets you do the following:</p>
+      <p align="left" class="style1">-   See a list of all the Tool Changes in your program.  Double click any tool change to go directly to that line.</p>
+      <p align="left" class="style1">-  See a list of the Tools used in your program.   Double click any entry to go to the first use of the tool in the g-code.</p>
+      <p align="left" class="style1">-  See the comment associated with a tool, which may help identify which tool it is.</p>
+      <p align="left" class="style1">- See which length or tool radius compensation is in use for the tool.</p>
+      <p align="left" class="style1">-   Map the tool to tools in the Tool Crib.    This is useful when working with Feeds and Speeds.  This is done by selecting a crib with the dropdown, and then picking which mapping style should be used.   Mapping can be accomplished by matching slots numbers (i.e. the &quot;T&quot; # must match the crib slot #) or by matching the tool comment to the crib's tool description.   The latter is very flexible when tools can move around to different slots in the changer.</p>
+      <p align="left" class="style1">-  Create a new Tool Crib table that corresponds to the tools used in the g-code program by pushing the &quot;Gen Crib&quot; button.</p>
+      <p align="left" class="style1">For more on the Tools View, visit the <a href="GWETools.html">GWE Tool Data Management</a> page.</p>
+      <p align="left" class="style1">&nbsp;</p>
+      <p class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Info View</font></p>
+      <p align="center" class="BlogTitle"><img src="img/GWizardE/Docs/InfoView.jpg" width="1024" height="764"></p>
+      <p align="center" class="BodyText">Info View gives quick summary information about your G-Code program...</p>
+      <p align="left" class="BodyText">Info View gives quick summary information about your G-Code program: </p>
+      <p align="left" class="BodyText">-   What are the maximum extents (travels) of the various axes?  In the screen shot, the X-axis stays in the range from 0 to 11 inches.</p>
+      <p align="left" class="BodyText">-  What ranges of spindle rpms and feedrates are used?    In the example, the spindle runs at 1600 rpm the whole program, and the feedrate ranges from 3.5 to 7 IPM.</p>
+      <p align="left" class="BodyText">- The Code Types pane breaks down how many of each kind of code are encoded in the program.  This program has 2 errors (we saw one up above), 185 G-codes of all kinds, 13 M-codes, 1241 XYZ moves of which the shortest was 0 distance (hmmm, have to look at that one), 858 arcs specified by IJK and no arcs specified with R (radius), and so on.      </p>
+      <p align="left" class="BodyText">&nbsp;</p>
+<p align="left" class="BlogTitle">What to Read Next?</p>
+      <p align="left" class="BodyText">Now that you're familiar with how the screen works, it's time to customize your GWE so it understands the <a href="CCCNCGCodeDialects.htm">g-code dialect</a> of your CNC controller.  That's done in the <a href="GWESetup.html">Setup Page</a><a href="GWEWizards.html">.</a></p>
+      <p align="left" class="BodyText">&nbsp;</p>
+    <!-- #EndEditable -->
+  </div>
+  </td>
+</tr>
+<!-- Begin Site Map -->
+<tr>
+  <td width="231" valign="top" bgcolor="#f0f0f0" ><p class="BodyText">&nbsp;</p></td>
+  <td width="312" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html"></a></strong><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p class="BodyText1">&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong> </p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a> </p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> </p>
+    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong></p></td>
+  <td width="245" valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+    </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+    <p class="BodyText1">&nbsp;&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+    <p class="BodyText1"><strong></strong> </p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"></p>
+    <p>&nbsp;</p></td>
+  <td width="378" valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Cookbooks</a></strong> </p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a> </p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a> </p>    <p class="BodyText">&nbsp;</p></td>
+  <td width="268" valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+    <p class="BodyText1">&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+    </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a></p>
+    <p><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+    <p class="BodyText">&nbsp;</p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p></td>
+  <td width="284" valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>    <p class="BodyText">&nbsp;</p></td>
+  <td width="658" valign="top" bgcolor="#f0f0f0" ><p class="BodyText">&nbsp;</p></td>
+  </tr>
+<tr>
+  <td colspan="5" bgcolor="#f0f0f0" >
+      <!-- Place this tag where you want the badge to render -->
+    <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;"/></a></strong></td>
+  <td colspan="2" bgcolor="#f0f0f0" ><div align="left">
+    <table width="100%" border="0">
+      <tr>
+        <td>&nbsp;</td>
+        <td><div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a></div></td>
+        </tr>
+      </table>
+  </div></td>
+</tr>
+<!-- End Site Map -->
+
+</table>
+</body>
+
+<!-- #EndTemplate --></html>
+

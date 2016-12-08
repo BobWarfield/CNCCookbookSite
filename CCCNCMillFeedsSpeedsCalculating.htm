@@ -1,0 +1,669 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>Calculating CNC Milling Feeds and Speeds</title>
+
+<meta name="description" content="How to go about calculating CNC Feeds and Speeds for mills and lathes." />
+
+<style type="text/css">
+<!--
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.WarningText {
+}
+.WarningText {
+}
+.Warning {
+}
+.Warning {
+}
+.Bozon {
+	font-size: large;
+	color: #F00;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p align="center" class="style1 style4"><strong><font face="Arial, Helvetica, sans-serif" size="+1"><a href="CCCNCMillFeedsSpeeds.htm">CNC Milling Feeds and Speeds</a></font></strong><a href="CCCNCMillFeedsSpeeds.htm"><strong><font size="+1" face="Arial, Helvetica, sans-serif">Contents</font></strong></a></p>
+<p align="center" class="style1">&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="6%"><img src="img/GearsIcon.jpg" width="88" height="77"></td>
+          <td width="94%"><p><font face="Times New Roman, Times, serif" size="7" color="#FF0000">Calculating Feeds and Speeds</font></p>
+          <p><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="BlogTitle"><strong>CNC Milling Feeds and Speeds Cookbook</strong></font></p></td>
+        </tr>
+      </table>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle">How Do Machinists Determine Feeds and Speeds?</p>
+      <p class="style1">By now you're getting the idea that feeds and speeds are important, and that they involve a lot of different concepts.  We haven't covered nearly all of them yet, either.  But before we go further, it's worth asking, &quot;How do machinists determine Feeds and Speeds?&quot;</p>
+      <p class="style1">There are a number of approaches:</p>
+      <p class="style1">-  They can go by seat of pants and experience or by asking other machinists.</p>
+      <p class="style1">- They can use rules of thumb.</p>
+      <p class="style1">- They can punch it up on a calculator.</p>
+      <p class="style1">- They can rely on manufacturer's recommendations.</p>
+      <p class="style1">-  They can use a machinist's calculator.</p>
+      <p class="style1">- They can rely on their CAM program.</p>
+      <p class="style1">- They can use trial and error and repeat what works.</p>
+      <p class="style1">Phew! That's a lot of choices.  Which one is right? Do we have to follow them all?</p>
+      <p class="style1">Let's look at a few of them in more detail.</p>
+      <p class="BlogTitle">Seat of pants, experience, rules of thumb, and asking other machinists</p>
+      <p class="style1">Some machinists feel like they can judge feeds and speeds by sound and experience, with maybe a few rules of thumb thrown in.   In the manual machining days, this was probably true, particularly when turning on a lathe.   With your hand on the machine's handwheels, a machinist gets quite a bit of feedback about what's going on with the cut. If you have any doubt, try ramping into the cut by turning either X or Y at the same time as Z.  The endmill cuts much easier than trying to plunge with your machine's quill.  You really can feel the difference, even if it is hard to coordinate the motions as precisely as a CNC can.</p>
+      <p class="style1"> Things like cutter engagement angle are largely irrelevant--you'd have to turn two handwheels at once in exactly the right way to mill around a corner.   Feedrates were generally a lot slower, so radial chip thinning would seldom be a problem, at least not for longer than it takes to complete a light finish pass.   Roughing would be contacted with the biggest hogging cuts that could be made--no dainty swirly HSM toolpaths were available. If you ran a Bridgeport manual mill by hand, never able to exceed 6000 rpm or so, and probably using HSS tooling, it's pretty easy to pick up the feeds and speeds, especially if an old-time master is looking over your shoulder and letting you know when you're screwing up.</p>
+      <p class="style1">Those days are gone, unfortunately.  Today we have CNC, much higher speeds, the ability to do things manual machinists can only dream of, and a far more competitive business environment for manufacturers. You need to be able to maximize your machine's performance, or at least take advantage of as much as you can without damaging tools.   CNC machines are dumb--they have no ability to sense much about what's going on in the cut.  They're going to do just exactly whatever you program them to do, and the better ones will do it so fast it'll be all you can do to press the E-Stop before anything too terrible can happen.   Tools can snap or rub and where out very suddenly.   </p>
+      <p class="style1">Forget about seat of the pants or rules of thumb. You can ask other machinists who have experience, and many times they'll be helpful.  But try to ask your question generally to get the maximum benefit of their experience.   For example, they can tell you pretty quickly what range of surface speed and chipload they like to use and perhaps their preferred tooling.   That's helpful, but those are just parameters and you'll still need to perform some calculations.     If you ask for the answer, e.g. what spindle speed and feedrate for this exact cut, you're doing them a disservice (that's some trouble for them to sit down and figure out) and you're only getting value for one cut.</p>
+      <p class="style1">Experience counts, but experience knows it's important to get smart about what you're doing and not reinvent the wheel.  Experience needs to move higher up the food chain than just feeds and speeds where purely mechanical calculations can produce accurate results quickly.   Why waste your time on something like that when you can't do any better job?</p>
+      <p class="BlogTitle">Can I do those &quot;Mechanical Calculations?&quot;</p>
+      <p class="BodyText">Absolutely!</p>
+      <p class="BodyText">All the information is available.  But, and this is important, there is a lot more going on than the simple formulas used to derive feedrate and spindle rpm can account for.</p>
+      <p class="BodyText">In the spirit of full disclosure, you can find the simple formulas in a lot of places, but I'll <a href="http://en.wikipedia.org/wiki/Speeds_and_feeds">link to Wikipedia</a>. These formulas accept as inputs surface speed and tool diameter to calculate spindle rpm, and they accept number of flutes, spindle rpm, and chipload to calculate feedrate.  </p>
+      <p class="BodyText">Seems pretty simple, so where is the problem?</p>
+      <p class="BodyText">We've already seen one fly in the ointment in the form of radial chip thinning.   Those formulas on Wikipedia don't account for chip thinning, so anytime you're cutting less than half the diameter of the cutter as your stepover or cut width, they're wrong. The thinner the cut, the more they're wrong, and ultimately they will be very wrong.    </p>
+      <p class="BodyText">So, you'll need to go research the formulas for chip thinning so you can add them too.   You'll also want to find a large table of materials, with chiploads and surface speeds.  Ideally your table is large enough to be a materials database that considers not just broad classes of materials, but individual alloys as well as the <em>condition</em> of the alloy, and adjusts the figures accordingly.  You will want to scale back your figures if you are slotting. In fact, you want to adjust based on how wide the cut is as well as how deep.   There are manufacturer's tables out there to help you do that, it's just one more step to add to your process.</p>
+      <p class="BodyText">Speaking of steps, this stuff all adds up, and eventually, you have an awful lot of steps to be punching numbers into a calculator while rabidly flipping back and forth to look at various charts.   I recommend using an Excel spreadsheet.   In fact, that's how my <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard feeds and speeds</a> software started out, but I'll warn you, you will outgrow Excel if you keep adding bells and whistles like I did. More on that below. </p>
+      <p class="BlogTitle">What About Feeds and Speeds Calculators?</p>
+      <p class="style1">LOL, I thought you'd never ask (and I bet you figured I'd get here sooner or later because I sell software that calculates feeds and speeds).</p>
+      <p class="style1">Here's the thing, you can figure out everything you need to know to do what the software does and you can do it yourself. The data is all out there if you want to take the time to research it.    To write G-Wizard, I've probably gone through several hundred learned papers by PhD's and countless thousands of pages elsewhere on the Internet.  I have standing Google searches that give me alerts every morning if someone publishes a new article about speeds and feeds that might be of interest.</p>
+      <p class="style1">There are really only two reasons why you'd want to look into a feeds and speeds calculator like G-Wizard:</p>
+      <p class="style1">1. They work and produce better results than simpler methods.   The software can  consider a whole lot more variables than you can punch into your desk calculator.   </p>
+      <p class="style1">2.  Because you don't have time to do all the research and build the software that brings it all together.</p>
+      <p class="style1">Using a calculator is fast and easy.  Take a look at my doc page on G-Wizard's feeds and speeds which includes a <a href="GWCalcFeedsSpeeds.htm">2-part video course on feeds and speeds</a> to get a quick overview of just how easy it is.  I won't belabor the point further other than to say I can't understand why every machinist wouldn't want to use a calculator of some kind (whether or not you choose G-Wizard) unless they just weren't worried about being competitive or were so conservative about feeds and speeds (remember the manual machinist case) that it just didn't matter.   After all, who wouldn't want the best possible material removal rates,   surface finish, or tool life?  </p>
+      <p class="BlogTitle">What's the Role of  Manufacturer's Recommendations?</p>
+<p class="style1">A number of machinists will pop up at this point and ask about Manufacturer's Recommendations. After all, doesn't the manufacturer know best how their tooling should be used? The short answer is, &quot;Yes, but it's more complex than that.&quot;</p>
+      <p class="style1">Some machinists have the perspective that their manufacturer is making claims that are aggressive for marketing reasons. They're suggesting outlandishly high feedrates and surface speeds that the tooling can't actually back up or that won't work right when the machinist tries them.  This is true in some cases, but most manufacturers can't afford to do this very much.  After all, if the cutters don't perform, are you going to reorder?</p>
+      <p class="style1">What they can afford to do is shade things towards the aggressive.  After all, who is to say whether the numbers are a tad aggressive and the tool wears out a little quicker than it has to?  There are remedies for this.  G-Wizard, for example, considers a lot of manufacturer's recommendations in an apples to apples match up (i.e. same coatings and geometries).  It then does some very sophisticated number crunching to try to separate out the fact from the fiction.    In other words, it tries to determine whether a manufacturer is overly aggressive (great MRR, lower tool life) or overly conservative (great tool life, lower MRR) to get to some &quot;balanced&quot; numbers.  It does this by analyzing a minimum of 3 manufacturers for uncommonly used tools and 12-15 for commonly used tools (e.g. endmills or twist drills).   It then provides a slider that lets you configure whether you're more interested in being conservative or aggressive:</p>
+      <p align="center" class="style1"><img src="img/GWizard/GasPedal.jpg" width="800" height="716" alt="The G-Wizard Gas Pedal"></p>
+      <p align="center" class="style1">The G-Wizard Gas Pedal</p>
+      <p align="left" class="style1">We call this feature the &quot;Gas Pedal&quot;, and it is depicted by a tortoise and a hare, much like the old Bridgeport manual mills had for speed control.   I'll talk more about how to use the Gas Pedal and how to think about how aggressive you want to be in the article &quot;<a href="CCCNCMillFeedsSpeedsToolroom.htm">Toolroom vs Manufacturing Feeds and Speeds</a>&quot;, which is the next article after this one.</p>
+      <p align="left" class="style1">Being able to make your own choices about whether to be conservative or aggressive is useful, but here is the real way to think about calculators and other machinist's software:</p>
+      <blockquote>
+        <p align="left" class="style1">It's all about how many variables you can master.</p>
+      </blockquote>
+<p align="left" class="style1">Sophisticated feeds and speeds software lets you master a lot more variables than you could manage by hand.   You can see a number of them in the G-Wizard screen shot above, but there are even more built into the internals of the program.   These variables all interact in various ways.   Most are quantitative numbers and hard math, but G-Wizard even includes qualitative rules and variables.  Note the line right above the Gas Pedal labeled &quot;Tips&quot;.  It says, &quot;Use Conventional Milling,&quot; and, &quot;Coatings: TiN, TiAlN&quot;.   That's useful information to have handy.  If you read many articles on machining, you'll know there are tons of these out there.   I used to try to memorize them, but then I thought, &quot;Why bother if I can have the software tell me the right rules at the right time?&quot;</p>
+<p align="left" class="style1">Every time you learn to master some additional variables, you can produce better results. G-Wizard is all about helping to master as many as possible.</p>
+<p align="left" class="style1"><span class="BodyText1">To give an idea of how crazy it gets, G-Wizard considers 49 different variables as it is making a feed and speed calculation.  Compare that to the half dozen considered by the Wikipedia formulas and you can start to understand the complexity behind modern feeds and speeds calculators.   In addition to its 49 variables, it consults a total of 14 distinct databases.  The total size of all that data makes <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard the Calculator</a> larger than <a href="CCGWizardE.html">G-Wizard the G-Code editor</a> as I write this, even though the G-Code Editor is a far more complex piece of software.  It's the sheer volume of the databases that makes the Calculator larger.</span> And, it's being able to consider all that data together with all those variables and do the math in the blink of an eye that produces the results.</p>
+<p align="left" class="style1">Let's go back to the Manufacturer's data one more time. Are we saying you should ignore it? No, absolutely not.  On the other hand, G-Wizard and other calculators obviously can't incorporate every manufacturers data. Most of the time they don't even tell you which data was used to develop their database.    If you use a particular line of tooling as most shops do, you'll want your calculator to be able to import and use the manufacturer's data. Ideally it will import and use it along with all the other rules and formulas built in.   That last point is important: you need to apply all that math even if you have the manufacturer's data.</p>
+<p align="left" class="style1">Why?</p>
+<p align="left" class="style1">Because manufacturer's data has to be simplified in the interests of presentation.   If the manufacturer gave you a fancy calculator like G-Wizard, they could afford to consider a ton of proprietary variables.  But they don't.  Instead, they give you tables.   Tables limit the number of variables that can be considered.  A two dimensional table considers just 2 variables, perhaps material and tool diameter, for example, to look up surface speed and chipload.    If you're lucky, they give you a couple of extra tables and maybe some rules of thumb:</p>
+<p align="left" class="style1">- &quot;These numbers are good to 1/2 diameter cut depth.&quot; </p>
+<p align="left" class="style1">-  &quot;Reduce SFM 50% for full slotting or when cutting more than 2 x diameter deep.&quot;</p>
+<p align="left" class="style1">You've surely seen such rules. Once again, a calculator can consider far more complex models. It can interpolate smoothly from 0 to the 2x diameter depth, adjusting all along the way. It can consider any cut width when figuring radial chip thinning instead of just the few in the manufacturer's tables.   This is valuable and leads to more performance no matter what you're trying to optimize for.   The Manufacturer's data augments the 49 variables and 14 databases inside G-Wizard, it doesn't replace them.</p>
+<p align="left" class="style1">So, enter your manufacturer's data into your calculator so it can add value to that data.  G-Wizard lets you import the data as spreadsheet (CSV) files, to make it easy. It also includes a large catalog of downloadable manufacturer's data so you may not have to do any data entry at all.  Lastly, if your calculator has tool table (tool crib) support and the ability to import manufacturer's data, they make ideal tools for comparing the performance of different tooling.</p>
+<p class="BlogTitle">What About my CAM Program, Won't it Figure Feeds and Speeds?</p>
+      <p class="style1">Most CAM programs have some sort of simplified speeds and feeds calculator built right in.  Unfortunately, most of them are painfully over simplified to the point where they don't do much more than your 4 function calculator would let you punch in with the basic Wikipedia formulas.   As I write this, I have no less than 5 different CAM programs installed on my computer.  They were all sent to me to evaluate and write about.  Every one of them has cool features of various kinds that I love.   But every one of them also has a very primitive notion of feeds and speeds.    That's probably a good thing because it gives my G-Wizard business an opportunity to grow, but I wonder how many machinists just assume their CAM program is doing a good job for them on feeds and speeds?</p>
+      <p class="style1">You can tell how sophisticated a speeds and feeds calculator is by the information it takes in and the information it gives out.    Take a look, for example, at the <a href="GWCalcFeedsSpeeds.htm">G-Wizard's Feeds and Speeds documentation page</a>--there's a lot going on there.  Now compare that information to what your CAM program is doing.  Many of them have a lot of limitations. Here are just a few examples:</p>
+      <p class="style1">-  A fixed chipload by tool without regard to material.  This may be modified by some &quot;chipload factor&quot; by material, but that isn't how the manufacturer presents the data, so why should you stand on your head to think about it the way the crazy CAM program wants?</p>
+      <p class="style1">-  No chip thinning calculations.</p>
+      <p class="style1">- Not much tooling-specific calculations.</p>
+      <p class="style1">-  No qualitative rules, like when to use conventional vs climb milling (there are important distinctions there!).</p>
+      <p class="style1">- etc.</p>
+<p class="BodyText">The short answer is using your CAM program is better than nothing, but not so great.  For that reason, we're working on integrating G-Wizard with various CAM programs to make it easier for you. Meanwhile, it's easy enough to use G-Wizard and enter the values it produces into the CAM program.   You'll be happy you did so as our users report it does a better job than even the market leading CAM programs.</p>
+<p class="BodyText">&nbsp;</p>
+<p class="BlogTitle">Next Article:  <a href="CCCNCMillFeedsSpeedsCoolant.htm"><span class="BodyText1"><a href="CCCNCMillFeedsSpeedsToolroom.htm"></a><a href="CCCNCMillFeedsSpeedsInfographic.htm">INFOGRAPHIC: Why You Need a Feeds and Speeds Calculator</a></p>
+<p class="BodyText">&nbsp;</p>
+<p align="center" class="BodyText1"><b><i><font size="+2"><a href="FeedSpeedsCalculator/CCGWizard.html">Try the Free Trial Version of G-Wizard Speeds and Feeds Calculator...</a></font></i></b></p>
+<p align="center" class="BodyText1"><span class="style12"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+<p align="center" class="BodyText1">No credit card required--just your name and email.</p>
+<p align="center" class="BodyText">&nbsp;</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

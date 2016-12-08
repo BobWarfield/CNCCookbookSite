@@ -1,0 +1,882 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNCCookbook: Servo Tuning</title>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p><font color="#339933" size="+4">Servo Tuning </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Servos are closed loop devices. 
+        They operate by comparing the position they're supposed to be at with 
+        the position their encoder says they actually are at and applying current 
+        to the servo motor until the two match. This linkage between the encoder 
+        and motor is commonly called a &quot;PID loop&quot;, although there are 
+        other names and methods used to close the loop. The linkage requires tuning 
+        in almost every case. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Think of a servo as a mechanical 
+        system not unlike your car's suspension. There is a spring and a shock 
+        absorber. The spring allows the wheel to follow the road, moving up and 
+        down with the bumps. If the spring is extremely soft, the ride is smooth. 
+        That's great for the car, but lousy for your CNC, because those &quot;bumps&quot; 
+        are fine positional movements that are lost because the spring was too 
+        soft. You want to feel every bump! So you want tight springs. The stiffness 
+        of the spring is controlled by a parameter known as &quot;Gain&quot;. 
+        More gain results in a stiffer system. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Why not just turn the Gain 
+        all the way up and be done with it? Recall there is a shock absorber involved 
+        here too. Lots of gain makes a very stiff suspension, and that suspension 
+        will ring like a bell. That &quot;ringing&quot; is called oscillation 
+        in the case of a servo. It means that after a move is commanded, the servo 
+        oscillates roughly around the actual position. Since this is an electrical 
+        system with no friction, its possible for that oscillation to continue 
+        forever, and even for it to get pretty violent. Imagine your spindle slamming 
+        around the desired location back and forth maybe 1/4&quot;. Scary!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">We need the shock absorber 
+        to dampen the oscillation, hence servo systems have another tuning parameter 
+        called &quot;Dampening&quot; or &quot;Damping&quot;. It's role is to stop 
+        oscillation.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">With that understanding, there 
+        are two ways to tune a servo system. One is by ear, when we listen for 
+        oscillation. They other is using an oscilloscope or other means of observing 
+        the position versus time plot so we can tell visually whether there is 
+        oscillation. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">If we plot position error (not 
+        position, but the error or difference between what the encoder says and 
+        where we told the servo to move to) versus time, we can see the effects 
+        of different amounts of damping as a series of &quot;bumps&quot; or other 
+        features in the graph of position error. Note that the first bump is normal, 
+        and appears on every graph. It is the point of maximum error, when the 
+        servo was commanded, but hasn't yet moved. It's what happens after the 
+        bump that matters.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">If we don't have enough damping, 
+        we can see the position oscillates back and forth, often with slowly decreasing 
+        amplitude. The servo heads for the intended location, but it overshoots, 
+        then it heads back and undershoots, so it reverses direction again, ad 
+        nauseum. The effect is called &quot;oscillation&quot; or &quot;ringing&quot; 
+        and it is very audible in most cases. The amplitude decreases because 
+        there is a little damping, but the oscillation goes on for too long:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Debugging/Underdamping.jpg" width="496" height="309"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b>An underdamped 
+        servo oscillates...</b></font></p>
+      <p align="left">&nbsp;</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">You can hear or 
+        sometimes see an underdamped servo oscillating. Give the servo a motion 
+        input that's pretty extreme: lots of acceleration and velocity. A change 
+        of direction really puts it to the servo. Normally servos are pretty quiet, 
+        but you can hear this oscillation. I burned out a Geckodrive one time 
+        due to oscillation. I couldn't hear it over the noise of the mill cutting 
+        chips, but eventually I saw the timing belt oscillating very slightly--just 
+        enough to make the lettering on the logo look fuzzy. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The solution to 
+        under damping is more damping (obviously!). Turn up the damping trim pot 
+        on your servo driver.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The opposite of underdamping 
+        is (pretty obviously) overdamping. It looks like this:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Debugging/Overdamping.jpg" width="495" height="309"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b>Overdamping 
+        has no oscillation, but damping really slows down the curve moving to 
+        commanded position too much...</b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The overdamped 
+        servo does not oscillate, but as we can see, too much dampening really 
+        slows down the ability of the curve to reach equilibrium and stop moving. 
+        It makes it sloppy, as though the servo is afraid and creeps up on the 
+        commanded position. Imagine your mill cutter is a racecar running through 
+        the curves that are the desired cuts on your workpiece. An overdamped 
+        servo means that the racecar is always a little slow to respond to where 
+        it should be. Take a sharp turn and the driver is too slow or timid, turns 
+        the wheel late, and the car swings a little wide. This is not very accurate, 
+        although at least it does not oscillate. Still, it is an undesirable and 
+        unacceptible condition. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Now what should 
+        the curve look like? </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Here is the condition 
+        known as &quot;critically damped&quot;:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/Debugging/Criticallydamped.jpg" width="491" height="302"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b>Critically 
+        damped is just right!</b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">In a critically 
+        damped system, the initial command to move creates a large error which 
+        the servo rapidly closes and then it stops moving when it gets there. 
+        Pretty simple, eh? Servo performance doesn't get any better than this.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Now how do we 
+        get a servo system tuned so it is critically damped? We can either do 
+        so by ear or with an oscilloscope or other measuring device that can show 
+        us the plot. Is one better than the other? Many have achieved excellent 
+        results tuning by ear, but it does require a bit of &quot;touch&quot;. 
+        You can well imagine the pitfalls. Your only way of knowing you are underdamped 
+        is audible oscillation. You don't really have a great way to hear overdamping 
+        other than that motion may not be so smooth when you reverse direction 
+        because the system is slow to respond. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Because it is 
+        harder to detect overdamping than underdamping by ear, you want to err 
+        on the side of too little damping. That's what the method I'll show does--it 
+        gets as much gain going as possible and turns up damping until it just 
+        stops the oscillation.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">If you have access 
+        to an oscilloscope, or your motion control board or servo driver can show 
+        you a position error diagram, tuning can be much more precise and obvious.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">What's the worse 
+        case tuning by ear? If you do it right, you have eliminated oscillation 
+        and underdamping, which is audible. The worst case is you dialed in too 
+        much damping and you now have an overdamped servo. Hopefully it is only 
+        slightly overdamped. Your response is a little slow, but probably not 
+        too bad. You're not squeezing the last iota of performance from your machine. 
+        Check the accuracy of axis motion. You can just slow down the speeds until 
+        it is accurate when cutting. Cutting speeds are not very fast anyway. 
+        Remember, if left to find its position long enough, the underdamped servo 
+        still goes to the right place. So largely, the penalty of a less than 
+        optimal tuning job will be you have to run at slower speeds to achieve 
+        accuracy. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">One important 
+        thing to note before we get on with the tuning. It does no good to tune 
+        a servo motor sitting on the bench. It must be installed on the machine, 
+        and the machine must be set up as near to how it will be used in production 
+        as possible. That means the gibs are adjusted and so on. I would even 
+        go so far as to throw your vise or 4th axis on the table if that's how 
+        you plan to run. Really tight servo tuning can change even with the difference 
+        between a really heavy workpiece and a light workpiece, so set up your 
+        mill table the way you expect it will be used before attempting to tune.</font></p>
+      <p><span class="BlogTitle">Servo Tuning by Ear</span></p>
+      <p><font face="Arial, Helvetica, sans-serif">When the servo is on, but not 
+        moving, you will normally hear a little bit of &quot;singing&quot; from 
+        it. Perhaps an occassional ticking, or maybe a little bit more insistent 
+        noise, but it is periodic, and not continuous. This is normal. Encoders 
+        have a finite number of positions, and the servo often stops between two 
+        positions. This will cause it to do what's called &quot;dithering&quot;, 
+        where it is alternately seeking to find that missing position between 
+        the two locations it can actually measure on the encoder. Dithering is 
+        not overly noisy. Too much noise or continuous noise usually indicates 
+        oscillation. Don't let your servo oscillate for very long without making 
+        an adjustment or you can damage the drive. If an axis is making noise 
+        and the drive is getting hot, you are oscillating, not dithering! If you 
+        can turn up the damping and the noise stops, you were likely oscillating 
+        slightly. If the noise happens right after you move the axis and dies 
+        out, that's oscillation from an underdamped servo.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">On my Geckos, I start out a 
+        tuning session with the Gain and Dampening trimpots in about the 11 o'clock 
+        position. This should be enough to allow the servos to at least remain 
+        stationary without faulting. If they fault, try a little more Gain, but 
+        it's likely you have a problem to diagnose if that doesn't fix it up pretty 
+        easily. See <a href="CCCNCDebug.htm">the troubleshooting page</a> for 
+        help.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Now tuning is pretty easy. 
+        &quot;Bump&quot; the axis, or as some will say &quot;disturb&quot; the 
+        axis. That means to move it. It's time to move it, move it, as they said 
+        in the movie. Use a motion that has a fair amount of acceleration and 
+        speed, like a fast jog. Also try changing direction. Then stop. What happens? 
+        If nothing happens, turn up the gain a little bit and try again. You are 
+        trying to provoke oscillation. When you get some oscillation, advance 
+        the dampening slightly until the oscillation stops. Try again, first without 
+        moving the gain. If there is oscillation, turn up damping slightly. If 
+        not, turn up gain slightly. Be conservative on the dampening, because 
+        it is hard for you to detect overdamping by ear. You want just enough 
+        to eliminate oscillation, which should be readily audible.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">You will go through this cycle 
+        of upping gain and then damping oscillation several times. If you stop 
+        too early, the holding torque on your machine will be &quot;soft&quot; 
+        and you will not have &quot;tight&quot; servo control. </font><font face="Arial, Helvetica, sans-serif">When 
+        you have ridden the gain up until you have almost no travel left on the 
+        damping pot to stop oscillation, you are done. You've gotten as much gain 
+        in as you can while keeping it damped. Hopefully it is critically damped 
+        and not overdamped. Now try disturbing the axis again, but this time use 
+        a variety of speeds and accelerations and travels to different locations 
+        on the axis. You want to make sure you haven't overlooked some little 
+        area of the performance envelope where oscillation still exists. That's 
+        why you kept a little extra dampening travel available.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Only connect one axis at a 
+        time so you can hear it well and make sure it is quiet in the shop. Ideally, 
+        you don't even want the other servos &quot;singing&quot; while you tune 
+        an axis.</font></p>
+      <p><span class="BlogTitle">Servo Tuning with an Oscilloscope or other Position 
+        vs Time Plot</span></p>
+      <p><font face="Arial, Helvetica, sans-serif">OK, now let's see how the other 
+        half lives, the &quot;pro&quot; half, because they often use better means 
+        of tuning than ear. Many pro-quality motion controllers and servo drives 
+        have a tuning display built right in that shows graphs like what I've 
+        shown. Some even have a self-tuning mode so you never need to tune manually. 
+        For this discussion, we'll assume the entry level pro approach, which 
+        involves connecting an oscilloscope to your Geckodrive in order to tune 
+        it.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">What kind of oscilloscope will 
+        I need? What's expensive on oscilloscopes is bandwidth, and some high-end 
+        features (like a storage 'scope). The good news is it takes a very minimal 
+        oscilloscope to tune servos. As little as 20-30 MHz of bandwidth will 
+        suffice. You want dual channels to connect properly as we'll see. Beyond 
+        that, it's up to you. If you want the oscilloscope to be good for other 
+        things, more features are probably needed. I have an older Tektronix 465 
+        100 MHz scope. It was the workhorse of its day (late 70's), and is a good 
+        general purpose scope. They are widely available used for $200-300. Another 
+        possibility that is cheaper are the USB oscilloscopes that just plug into 
+        your PC.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Here's how I connect my Tek 
+        465 oscilloscope on the Gecko 320 drives:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Connect Channel 1 to the 
+        Gecko 320 test point (the location is shown in the Gecko documentation). 
+        DC couple this input. Use the blue capacitor's ground lead to ground this 
+        probe.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Connect Channel 2 to the 
+        direction signal. You will be measuring (or triggering) the curve whenever 
+        the axis changes direction. DC couple this input. Ground to the blue capacitor, 
+        or leave ground disconnected and the scope will use Channel 1 ground.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Set trigger to &quot;normal&quot;, 
+        trigger source to &quot;channel 2&quot;, and trigger edge to &quot;+&quot;.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Set the scales to 2V/cm vertical 
+        and 1 millisecond/cm horizontal.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Adjust the vertical position 
+        of the trace so it is near the bottom, rather than in the middle of the 
+        screen. </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011035.JPG" width="800" height="659"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Oscilloscope 
+        is connected, but the axis isn't moving yet. I also haven't set everything 
+        up or you wouldn't see that trace without a moving axis!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/Servos/P1011037.JPG" width="800" height="600"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I use the circle 
+        pocket wizard's g-code for servo tuning. Set a small diameter circle and 
+        a relatively high feed rate and you'll get lots of direction reversals 
+        to use for tuning...</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The procedure we will use is 
+        not unlike what we used when tuning by ear, except that now we have an 
+        oscilloscope display to look at. You get one oscilloscope trace every 
+        time you change direction, because the direction change triggers the trace. 
+        So we want to set up the axis so it is receiving a steady command to move 
+        at a particular speed, but the direction is changing constantly. An easy 
+        way to do this is with the interpolated hole wizard in Mach3. If we look 
+        at just one axis, it is constantly reversing direction as the cutter goes 
+        around the circle. Choose a hole with a fairly small diameter, say 1&quot; 
+        or 2&quot;, and set the feedrate up low to start with. Use a very shallow 
+        depth of cut so lots of passes will be needed to give you time to finish 
+        tuning before the g-code program runs out.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">OK, now run the g-code and 
+        take a look at the oscilloscope display. You should see something close 
+        to one of the three cases mentioned above. If you are underdamped, increase 
+        the damping until the display shows critical damping. If you are overdamped, 
+        increase gain until you can see critical dampening. When you have critical 
+        damping, stop the program, go back to the wizard, and try again with a 
+        higher feedrate. Eventually, you will have tuned the servos to critical 
+        damping all the way up to the maximum feedrate (the max motor speed as 
+        set by the motor tuning in Mach3). </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Do you still have more travel 
+        left on the damping trim pot? If so, and you have a good scope display 
+        showing critical damping, you can try for more performance. Go to the 
+        Mach3 motor tuning and you can increase either acceleration or maximum 
+        motor speed. Acceleration is the more valuable of the two to increase, 
+        but it is also the most expensive. In other words you will likely be able 
+        to get more top end than acceleration from your servos. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">When you get close to running 
+        out of travel on damping, it's time to stop. No more performance is available. 
+        Remember, a lot of factors will affect the performance over time. Friction 
+        increases if your ways need lube. Gib adjustment can affect tuning too. 
+        Keep an eye on all this.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The biggest difficulty with 
+        the oscilloscope is the waverform display can be a bit unstable. You only 
+        see the trace every other direction change, and it fades pretty rapidly. 
+        So you really want to change directions very frequently to keep repainting 
+        that trace. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b>Is the Oscilloscope Better 
+        than Tuning by Ear?</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I found the oscilloscope was 
+        a little more sensitive to detecting oscillation than my ear. I trusted 
+        it a little more as a result to get closer to the last little bit of performance. 
+        In practice, I tried tuning each axis by ear and then touching it up with 
+        the oscilloscope just so I could see what difference it would make. Depending 
+        on the axis, I got maybe 10-20% more performance with the oscilloscope. 
+        It may be that you can do just as well if your ear is sensitive or if 
+        you really work at it though.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Based on a 10-20% advantage, 
+        I don't think I would buy an oscilloscope just for this purpose. It will 
+        be hard to use that small improvement in practice. I prefer to think of 
+        it as a little extra safety margin. I dialed back my final accelerations, 
+        for example, just a tad after tweaking them up to their max after an oscilloscope 
+        tuning. </font></p>
+      <p align="center"><img src="img/MillStuff/CNC/Servos/P1011041.JPG" width="800" height="600"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I got my mill 
+        X and Y axes up to 50 in/sec/sec or 0.13g's acceleration with the o-scope. 
+        Without it, I could only get to maybe 40'ish by ear. Z has the heavy mill 
+        head, so about half this much acceleration is available...</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/Servos/P1011040.JPG" width="800" height="629"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The X-axis right 
+        after o-scope tuning. Full clockwise current, nearly full gain, a little 
+        bit less damping. Your tuning settings will definitely be something different!</font></p>
+      <p align="center">&nbsp;</p>
+      <p><font face="Arial, Helvetica, sans-serif"><b>Further Thoughts:</b></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Interpolating a circle generates 
+        code for X and Y axes, what about tuning Z? Lots of ways to skin that 
+        cat. You can modify the g-code with search and replace to change either 
+        the X or the Y motions to be Z motions. Or, you can simply connect step 
+        and dir from X or Y to the Z servo drive to achieve the same result. Don't 
+        forget to connect the right Z step and dir back when you are done!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Gain controls following error 
+        and damping controls oscillation. If you have too much following error, 
+        but you have successfully damped oscillation and you cannot raise the 
+        gain further (no more travel on damping), you're probably running too 
+        much acceleration and the system just can't keep up. Try reducing the 
+        acceleration. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- In some cases, way to much 
+        damping also leads to oscillation. Back way off on the damping until you're 
+        sure there is not enough. Gradually increase damping until the oscillation 
+        stops. Now you're in the right place.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Some Links 
+        Related to Servo Tuning</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.cnczone.com/forums/showthread.php?t=15412&amp;highlight=oscilloscope+servo">CNCZone 
+        thread</a> on how to connect the oscilloscope to a G320.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://finance.groups.yahoo.com/group/geckodrive/message/16014">Ray 
+        Livingston gets help</a> tuning his Bridgeport by ear.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://finance.groups.yahoo.com/group/geckodrive/message/16336">Tuning 
+        servos for an X3 mill</a>.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://support.motioneng.com/Downloads-Notes/Tuning/pid_overshoot.htm">Pro-Tuning 
+        using an oscilloscope from Motion Engineering</a>.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.cnczone.com/forums/showthread.php?t=42738&amp;highlight=servo+tuning">Tom 
+        Caudle tells how he tunes Geckos by ear</a>.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.cnczone.com/forums/showthread.php?t=47942&amp;highlight=servo+tuning">Al 
+        the Man offers a pdf with tuning tips</a>.</font></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

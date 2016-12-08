@@ -1,0 +1,678 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPageNoSlide.dwt" --><!-- DW6 -->
+
+<head>
+
+<!-- #BeginEditable "doctitle" --> 
+
+<title>10 Things the G-Wizard Feeds and Speeds Calculator Will Do For You</title>
+
+<meta name="description" content="10 Reasons CNC Hobbyists Need a Feeds and Speeds Calculator.">
+
+<link rel="canonical" href="http://www.cnccookbook.com/CCGWizardBenefits.html" />
+
+<meta name="keywords" content="cnc,cnc programming,g-code,machining,machinist,cnc editor,cnc editing,cncedit,computer numerical control,NC,nc,nc editor,machine shop,metric conversions,trigonometry,speeds and feed,bolt circles">
+
+<style type="text/css">
+
+.PageTitle {
+	font-size:36px;
+	color: #339933;
+}
+
+.BlogTitle {
+	font-size: 28px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #339933;
+}
+.style3 {color: #339933}
+.style4 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style5 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+	color: #000;
+}
+.style31 {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.Title2 {
+	font-size: 24pt;
+	color: #339933;
+}
+SignupTitle {
+}
+.style51 {font-family: Arial, Helvetica, sans-serif}
+.style31 div a {
+}
+PrivacyNotice {
+}
+privacynotice2 {
+}
+.privacynotice3 {
+}
+.FormBkgd {
+}
+.Title2 strong {
+}
+.style5 {
+	color: #FFF;
+}
+.style52 {	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+}
+.style52 {	font-weight: bold;
+}
+.style511 {font-family: Arial, Helvetica, sans-serif;
+color:#FFF}
+.style53 {	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+}
+.green_button{
+	width:214px;
+	height:54px;
+	background:url(GWizard/StartFreeTrial.png) no-repeat;
+	color:#00BF30;
+	font-size:0%;
+	font-weight:bold;
+	border:none;
+	margin-top:10px;
+}
+.style6 {font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+	color: #FFF;
+}
+.style53 {
+}
+.WhiteOnBlack {
+}
+
+.rounded {
+   border: 1px solid #000;
+   background-color: #fff;
+   color: #000;
+   padding: 10px;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px; }
+
+</style>
+
+<script type="text/javascript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script> 
+
+<script type="text/javascript">
+
+// <![CDATA[
+
+function registerUserSuccess(data) {
+    var response = data;
+    if (typeof(response.status) == 'number' &&
+       response.status == 0 &&
+	typeof(response.email) == 'string' &&
+	typeof(response.provision) == 'string') {
+	var email = response.email;
+	var provision = response.provision;
+	//
+	// cookie saving disabled for now
+	//
+	//$.cookie("cnccookbook_register_email", email);
+	//$.cookie("cnccookbook_register_provision", provision);
+    }
+
+    var formName = "joinform"; 
+    var theForm = document.forms[formName];
+    theForm.onsubmit = "return true";
+    document.forms[formName]._submit(); 
+}
+
+function registerUser(userNameVal, emailVal, provisionVal) {
+    var serverHost = "http://184.72.62.67";
+    var urlParams = "&user_name=" + encodeURIComponent(userNameVal) + 
+                   "&user_email=" + encodeURIComponent(emailVal) +
+                   "&provision=" + encodeURIComponent(provisionVal);
+    jQuery.getJSON(serverHost + "/api/v2/register_trial?callback=?" + urlParams,
+		  registerUserSuccess);
+ }
+
+function registerSubmit() {
+    HTMLFormElement.prototype._submit = HTMLFormElement.prototype.submit;
+    var userNameVal = $('#name-field')[0].value;
+    var emailVal = $('#email-field')[0].value;
+    if (typeof(userNameVal) != 'undefined' &&
+	userNameVal.length > 0 &&
+	typeof(emailVal) != 'undefined' &&
+	emailVal.length > 0) {
+	registerUser(userNameVal, emailVal, "GWC");
+    } else {
+	alert('Name and email fields must have valid values');
+    }
+
+    return false;
+}
+
+// ]]>
+
+</script>
+
+<!-- Google Code for VIsitedGWHomePage Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1027617985;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "AhpNCNOnxQIQwemA6gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1027617985/?label=AhpNCNOnxQIQwemA6gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- #EndEditable -->
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="file:///D|/My%20WebSites/Templates/img/CNCFavIcon.ico" />
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+<style type="text/css">
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 14pt}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.Tagline {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #0;
+	font-size: medium;
+	vertical-align: middle;
+}
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" />
+
+<!-- Kissmetrics tracking snippet -->
+<script type="text/javascript">var _kmq = _kmq || [];
+var _kmk = _kmk || '2b958799075c725d4ce95572a0b6e967ecafd184';
+function _kms(u){
+  setTimeout(function(){
+    var d = document, f = d.getElementsByTagName('script')[0],
+    s = d.createElement('script');
+    s.type = 'text/javascript'; s.async = true; s.src = u;
+    f.parentNode.insertBefore(s, f);
+  }, 1);
+}
+_kms('//i.kissmetrics.com/i.js');
+_kms('//scripts.kissmetrics.com/' + _kmk + '.2.js');
+</script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" />
+<style type="text/css">
+.BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">
+  multitouch();
+</script>
+
+<!-- SumoMe Listbuilder Email Exit Intent -->
+<script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr></tr>
+<tr>
+  <td height="68" colspan="4" valign="middle" bordercolor="0" class="Tagline">
+  
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/LogoBitmap30High.jpg" alt="CNCCookbook: Software and Information for Macihnists" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="32" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+  
+  </td>
+</tr>
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0"><table width="65%"  border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><div align="center">
+        <p><a href="http://www.cnccookbook.com/CCGWizard.html"><img src="img/Ads/GWAd05152011.gif" width="120" height="90" alt="G-Wizard Machinist's Calculator" longdesc="http://www.cnccookbook.com/CCGWizard.html"></a></p>
+        <p><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm"> <img src="img/Ads/FeedsSpeedsAd.jpg" width="120" height="69" alt="Feeds and Speeds Cookbook"></a></p>
+      </div></td>
+    </tr>
+  </table>
+    <!-- #BeginEditable "PageNav" -->
+      <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="CCGWizLite.html">G-Wizard Lite:<br>
+        For Hobbyists
+      </a></font></b>      </p>
+      <p align="center">&nbsp;</p>
+	  <p align="center"><a href="CCManufacturers.html" class="BodyText"><strong>Customers</strong></a><br>
+      </p>
+<p align="center"><strong><a href="CCPartners.html">Partners</a></strong></p>
+      <p align="center">&nbsp;</p>
+      <p align="center"><strong><a href="FeedSpeedsCalculator/CCGWizard.html">Pricing &amp; FAQ</a></strong>    </p>
+    <!-- #EndEditable -->
+    <p>
+  <!-- Place this tag where you want the +1 button to render -->
+  <p>
+  <g:plusone></g:plusone>
+  </p>
+ </p>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    gaTrack: true,
+    gaId: 'UA-1060932-2'
+  }, 'google_translate_element');
+}
+  </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</p>
+</td>
+</tr>
+<tr>
+  <td width="10" bgcolor="#f0f0f0" ></td>
+  <td width="1200" colspan="7" align="left" valign="top" bgcolor="#FFFFFF">
+  <div id="centerContainer">
+  <!-- #BeginEditable "Body" -->
+    <p align="center" class="PageTitle">10 Things the G-Wizard Feeds and  Speeds Calculator Does For You</p>
+<p class="BodyText">A lot of what matters to a CNC professional is irrelevant to a hobbyist.  You're not worried about saving a few seconds on a part because you're not making 1000 identical parts.  On the other hand, you haven't had all the training of the professional and your hobby machine is probably not as rigid or as fast as a full vertical machining center.   You'd love to get better surface finishes, and you'd love to quit breaking tools.   </p>
+<p class="BodyText">G-Wizard can help!</p>
+<div class="rounded">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+       <tr>
+         <td width="50%"><span class="BlogTitle">
+           <p><strong>1. Simplifies  a Complex Process by Building the Expertise Into the Software</strong></p>
+           </span>
+           <p><span class="BodyText">There's a lot to know to get good results when machining.</span>   The more easily you can get the best answers to the questions your CAM software wants you to answer,  the better your project will turn out.</p>
+           <p>G-Wizard has a feature called CADCAM Wizard that radically simplifies all this. Just give it a little bit of information such as material and your machine's parameters (set that up once) and then the basics about your feature:</p>
+           <p class="BodyText">- How deep is that pocket?</p>
+           <p class="BodyText">-  What is the minimum inside corner radius?</p>
+           <p class="BodyText">CADCAM Wizard will then crank out an optimal recipe you can take back to your CAM program to decide how best to machine that pocket or other feature.  And you've got a Tortoise-Hare slider so you can dial back for conservative feeds and speeds you'll be comfortable with.</p>
+           <p class="BodyText">&nbsp;</p>
+           <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWizard/GWizardInstall1SC.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></p></td>
+         <td width="50%"><div align="center">
+           <p style="text-align: center;"><span class="vvqbox vvqyoutube" style="width:425px;height:344px;"><span id="vvq-2904-youtube-1"><a href="http://www.youtube.com/watch?v=b71fNomCcW8"><img src="http://img.youtube.com/vi/b71fNomCcW8/0.jpg" alt="YouTube Preview Image" /></a></span></span></p>
+           <p style="text-align: center;">See CADCAM Wizard in Action...</p>
+         </div></td>
+       </tr>
+	</table>
+  </div>
+    <p>&nbsp;</p>
+    <div class="rounded">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="50%"><span class="BlogTitle"><strong>2. Minimizes  Tool Breakage</strong>.&nbsp; </span><br>
+          <br>
+          <span class="BodyText">
+          <p>One minute things are going well, the next: CRACK!  The tool breaks and you're dodging flying cutter bits.   Doh!  And I only had one endmill left of that size and it'll take a week to get another one by mail.</p>
+          <p>That's no way to be productive in your shop.</p>
+          <p>Here's a hidden secret: when you baby a tool by slowing the feedrate way down and taking very shallow width of cut, you may be making tool wear far worse. Due to a weird phenomenon called chip thinning the tool will start rubbing instead of cleanly cutting chips.  </p>
+          <p>Or how about another one: many kinds of stainless steel work harden.  If you baby them, you'll suddenly find yourself cutting hardened steel.  That's no treat for your endmills, let me tell you!</p>
+          <p>G-Wizard understands all this and minimizes your tool breakage.  It's designed for what I call &quot;Toolroom Feeds and Speeds.&quot;  Toolrooms make one offs, not 1000's of parts. They want to get through the part without breaking a cutter because any savings versus the bleeding edge limits are less than it takes to deal with a broken tool.   Isn't that how you work too?</p>
+          </span>
+		<p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWizard/GWizardInstall1SC.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></p>
+		</td>
+        <td width="50%"><div align="center"><img src="http://www.cnccookbook.com/img/CNCCookbook/MillFeedsSpeeds/DeflectWall.JPG" width="400" height="384" alt="Feeds and Speeds Calculator"></div></td>
+      </tr>
+      <tr>
+	</table>
+    </div>
+    <p>&nbsp;</p>
+    <div class="rounded">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="50%"><p><strong><span class="BlogTitle">3. G-Wizard Can Work Within the Capabilities of Your Machine</span></strong><br>
+          <br>
+          <span class="BodyText">Your machine is not as rigid as the CAT 50 taper horizontal mill at the shop you visited recently.  Heck, it seems like it's only slightly ahead of a drill press some days when you're mad at it.</span></p>
+          <p class="BodyText">We've designed G-Wizard to collect the key information needed to work within the capabilities of your machine and maximize the potential of that machine.  Given the machine's weight, work envelope, spindle characteristics, and availability of coolant options, it gives G-Wizard a pretty good idea of how it needs to adjust feeds and speeds to help you and your machine be as successful as possible.    </p>
+            <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWizard/GWizardInstall1SC.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></p></td>
+        <td width="50%"><div align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/P1011029.JPG" alt="CNC Mill Conversion" width="395" height="512"></font></div></td>
+      </tr>
+	</table>	
+    </div>
+    <p>&nbsp;</p>
+    <div class="rounded">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="50%"><p><span class="BlogTitle"><strong>4. Tips  and Techniques Suggestions:  Next Best thing to a Machinist Mentor</strong></span></p>
+          <p class="BodyText">Professional machinists have a wonderful luxury compared to amateurs: they get to learn from seasoned professionals.   There's a lot that's not written down.  Things you have to just see or hear firsthand.     G-Wizard can't replace that invaluable learning experience, but it can help a lot for those who can't get it.</p>
+          <p class="BodyText">We've collected a myriad of tips from various sources and built them into G-Wizard.  If it sees you going down a path where a tip might help, it speaks up.     Did you know that if the hole depth is greater than X, you should use a  peck drilling cycle?&nbsp; If the cut  width is greater than Y, use conventional milling instead of climb milling?&nbsp; And you shouldn&rsquo;t make stepover exactly half the cutter  diameter.&nbsp; Those are just a few of the many  tips G-Wizard will suggest to you if it sees an opportunity to help.&nbsp; </p>
+          <p><span class="BodyText">Why not have an expert keeping  an eye out for you?</span> </p>
+<p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWizard/GWizardInstall1SC.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></p></td>
+        <td width="50%"><div align="center"><img src="img/GWizard/wordle.jpg" width="384" height="205"></div></td>
+      </tr>
+	</table>	
+    </div>
+    <p>&nbsp;</p>
+    <div class="rounded">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="50%"><p><span class="BlogTitle"><strong>5. Micromachining  Expertise</strong></span><strong><br>
+          <br>
+          </strong><span class="BodyText">Do you use cutters that are less than 1/8&rdquo; (3mm) in diameter?&nbsp; Why not, they are often cheaper, you're doing smaller work, and they require a less rigid machine.    Boy, they sure do break easily too, don't they?</span></p>
+          <p><span class="BodyText">Welcome to the world of  micromachining.&nbsp; Cutters are extremely  delicate here, tool deflection is much more noticeable, and to make matters  worse, a lot of the physics and geometry are subtly different.&nbsp; If you try diving in with the same approach  that worked with larger cutters, you&rsquo;re in for a lot of trial and error.&nbsp; <br>
+            <br>
+            G-Wizard uses a completely different set of feeds and speeds algorithms based  on work done by some of the major machinery manufacturers to determine its  recommendations when micromachining.</span> </p>
+          <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWizard/GWizardInstall1SC.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></p></td>
+        <td width="50%"><div align="center"><img src="http://www.cnccookbook.com/img/TurnersCubes/MicroMilledTurnersCubes.jpg" alt=""></div></td>
+      </tr>
+	</table>	
+    </div>
+    <p>&nbsp;</p>
+    <div class="rounded">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="50%"><span class="BlogTitle"><strong>6. Dealing  With Tool Geometry</strong></span><strong><br>
+            <br>
+        </strong><span class="BodyText">So many different shapes: ballnose, toroid/button cutters, v-bits,  dovetails, corner rounding, chamfering, and many more.&nbsp; Some of these you can't even find recommendations for online. G-Wizard has a first class geometry module to  determine what to do with each of these.</span>
+        <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWizard/GWizardInstall1SC.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></p></td>
+        <td width="50%"><div align="center"><img src="img/GWizard/VBit.jpg" width="235" height="319"></div></td>
+      </tr>
+	</table>	
+    </div>
+    <p>&nbsp;</p>
+    <div class="rounded">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="50%"><p><span class="BlogTitle"><strong>7. The Tortoise and the Hare: Surface Finish at Your Fingertips</strong></span><strong><br>
+          <br>
+          </strong><span class="BodyText">Machining is all about finding the sweet spots for your tools, machine, and materials.          Just to make it more challenging, there are different sweet spots for best surface finish, best material removal rate for roughing, and best tool life.         G-Wizard makes it easier for you to dial in your cuts with the Tortoise and Hare slider.      Dial it to the Tortoise and you're maximizing your surface finish and tool life.    Dial it to the Hare and you're maximizing the material removal rate for roughing.
+</span></p>
+          <p><span class="BodyText">What could be easier?</span> </p>          <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWizard/GWizardInstall1SC.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></p></td>
+        <td width="50%"><div align="center"><img src="img/GWizard/GasPedal.jpg" width="400" height="358"></div></td>
+      </tr>
+	</table>	
+    </div>
+    <p>&nbsp;</p>
+    <div class="rounded">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="50%"><p><span class="BlogTitle"><strong>8. Affordability</strong></span></p>
+          <p class="BodyText">The professionals tell me<span class="BodyText"> that G-Wizard pays for itself on the first job by speeding up their productivity and their machine's productivity. As a hobbyist, how do you cash in?</span></p>
+          <p class="BodyText">The answer is that we have a unique pricing approach we call &quot;G-Wizard Lite&quot;.
+          Each year you subscribe to G-Wizard, you get a permanent extra hosepower of capability.   Most hobby machines don't exceed 3 horsepower, so if you buy the 3 year subscriptions, that's probably all you'll ever need.   Many don't exceed 1 horsepower, so a 1 year subscription covers that.         Other than the horsepower limit, your G-Wizard Lite keeps working with all the features updates and support even after the subscription expires.</p>
+          <p class="BodyText">We're not for every hobbyist.  But if you're the sort of craftsman who seeks out a real Haimer 3D Taster instead of a clone, who buys name brand endmills, and who really cares about the craft, G-Wizard is a bargain.   Breaking just one high quality coated carbide cutter can run as much as a year's subscription.  You don't have to save many cutters to come out way ahead.</p>
+          <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWizard/GWizardInstall1SC.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></p></td>
+        <td width="50%"><div align="center"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/05/PennyPinching.jpeg" width="275" height="183" alt="Tool Deflection Calculator"></div></td>
+      </tr>
+	</table>	
+    </div>
+    <p>&nbsp;</p>
+    <div class="rounded">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="50%"><p><strong><span class="BlogTitle">9. How Deep and How Wide Should I Make My Cuts?</span><br>
+          <br>
+          </strong><span class="BodyText">I get this question more than almost any other from beginner machinists.
+          How do I know how deep or how wide to cut?      Seasoned machinists fly by the seat of their pants having done it for years.    Beginners just have to guess.   Until now.
+</span></p>
+          <p class="BodyText">CADCAM Wizard will ask you just a few simple questions and then it will complete a complete roughing and finishing recipe you can take back to your CAM program. If you want to explore and customize the cut more closely, G-Wizard's Cut Optimizer tells you how to maximize either the depth or width of cut within the limits of your tool and machine.   It works so well many of the professionals are raving about it.   It'll work for you too.</p>          
+          <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWizard/GWizardInstall1SC.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></p></td>
+        <td width="50%"><div align="center"><img src="img/GWizard/GWCutOptRoughSm.jpg" width="336" height="208" alt="Tool Deflection Calculator"></div></td>
+      </tr>
+	</table>	
+    </div>
+    <p>&nbsp;</p>
+    <div class="rounded">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="50%"><p><span class="BlogTitle"><strong>10. We Know Materials</strong></span><strong><br>
+          <br>
+          </strong><span class="BodyText">You're pretty good with steel versus aluminum versus brass.  But what are the different grades and alloys? How do these affect feeds and speeds?  What about Wood or Plastics? Want to try your hand with Titanium or hardened steel?</span></p>
+          <p class="BodyText">Normally, you'd pay a small fortune as a shop to buy a Materials Database.  Or, you'd spend half your life in Google trying to research it by hand.  G-Wizard gives you a comprehensive Materials Database right up front.</p>
+          <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWizard/GWizardInstall1SC.html"><img src="GWizard/StartFreeTrial.png" width="214" height="54" alt="Start My Free Trial"></a></p></td>
+        <td width="50%"><div align="center"><img src="img/GWizard/MaterialsDB.jpg" width="637" height="467"></div></td>
+      </tr>
+	</table>	
+    </div>
+    <p>&nbsp;</p>
+
+  <!-- #EndEditable -->
+  </div>
+</tr>
+<tr>
+  <td bgcolor="#f0f0f0" >&nbsp;</td>
+  <td bgcolor="#f0f0f0" >&nbsp;</td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html"></a></strong><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p class="BodyText1">&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong> </p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a> </p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> </p>
+    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></p></td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+    </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+    <p class="BodyText1">&nbsp;&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"><strong></strong></p>
+    <p class="BodyText"></p>
+    <p>&nbsp;</p></td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Cookbooks</a></strong> </p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a> </p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a></p>    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong></p></td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+    <p class="BodyText1">&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+    </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a></p>
+    <p><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> </p>
+    <p class="BodyText">&nbsp;</p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p></td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>    <p class="BodyText">&nbsp;</p></td>
+  <td valign="top" bgcolor="#f0f0f0" ><p class="BodyText">&nbsp;</p></td>
+  <td valign="top" bgcolor="#f0f0f0" >&nbsp;</td>
+  </tr>
+<tr>
+  <td width="146" bgcolor="#f0f0f0" >&nbsp;</td>
+  <td width="10" bgcolor="#f0f0f0" >&nbsp;</td>
+  <td colspan="7" bgcolor="#f0f0f0" ><div align="left">
+    <table width="100%" border="0">
+      <tr>
+        <td><strong><!-- Place this tag where you want the badge to render -->
+<a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;"/></a></strong></td>
+        <td><div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a></div></td>
+      </tr>
+    </table>
+  </div></td>
+</tr>
+</table>
+</body>
+
+<!-- #EndTemplate --></html>
+

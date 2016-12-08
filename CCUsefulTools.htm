@@ -1,0 +1,1482 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNCCookbook: Useful Tools</title>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p class="style1 style4"><strong><font face="Arial, Helvetica, sans-serif" size="+1">Tips 
+        &amp; Techniques Pages</font></strong></p>
+      <p class="style1"><a href="CCUsefulTools.htm"><b><font face="Arial, Helvetica, sans-serif">Commonly 
+        Used Tools</font></b></a></p>
+      <p class="style1"><font face="Arial, Helvetica, sans-serif"><b><a href="CCDeburrPolish.htm">Deburring 
+        and Polishing</a></b></font></p>
+      <p class="style1"><font face="Arial, Helvetica, sans-serif"><b><a href="CCDesignManufTips1.htm">Design 
+        &amp; Manufacturing</a></b></font></p>
+      <p class="style1"><font face="Arial, Helvetica, sans-serif"><b><a href="MTLatheDrillBore.htm">Drilling, 
+        Boring &amp; Reaming</a></b></font></p>
+      <p class="style1"><font face="Arial, Helvetica, sans-serif"><b><a href="CCLatheSurfaceFinish.html">Lathe 
+        Cutting &amp; Finish</a><a href="MTLatheDrillBore.htm"> </a></b></font></p>
+      <p class="style1"><font face="Arial, Helvetica, sans-serif"><b><a href="MTLathePartingCutoff.htm">Lathe 
+        Parting &amp; Cutoff </a></b></font></p>
+      <p class="style1"><font face="Arial, Helvetica, sans-serif"><b><a href="MTLatheHolding.htm">Lathe 
+        Workholding</a></b></font></p>
+      <p class="style1"><font face="Arial, Helvetica, sans-serif"><b><a href="CCMachineResto.html">Machine 
+        Restoration</a> </b></font></p>
+      <p class="style1"><font face="Arial, Helvetica, sans-serif"><b><a href="MTLatheCNCGRexNotes.htm">Mach3 
+        and GRex </a></b></font></p>
+      <p class="style1"><font face="Arial, Helvetica, sans-serif"><b><a href="MTMillSurfaceFinish.htm">Mill 
+        Cutting &amp; Finish </a></b></font></p>
+      <p class="style1"><font face="Arial, Helvetica, sans-serif"><b><a href="CCMillTipsTechniques.htm">Mill 
+        Tips &amp; Techniques</a> </b></font></p>
+      <p class="style1"><font face="Arial, Helvetica, sans-serif"><b><a href="MTCNCRhinoTips.htm">Rhino 
+        Tips </a></b></font></p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left"><font face="Times New Roman, Times, serif" size="7" color="#339933">Commonly 
+        Used and Handy Tools</font></p>
+      <p align="left" class="BlogTitle">The Tool Popularity Contest</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" color="#000000">I 
+        recently <a href="http://www.practicalmachinist.com/vb/showthread.php?t=149676&amp;page=2">came 
+        across a thread</a> asking for the top 10 must have machinist's tools. 
+        These are tools with general applicability, rather than tooling for a 
+        specific machine. Of course putting everyone's list of 10 together resulted 
+        in a list of 63. Here is that list, sorted by popularity, and with my 
+        comments</font><font face="Arial, Helvetica, sans-serif">.</font></p>
+      <p align="left"><span class="BlogTitle">Top 10</span></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>1. Micrometer 
+        set in 0-6&quot; range. 0-1&quot; and 1-2&quot; are the most used. I agree 
+        this is a must-have tool, but I use my calipers more often!</b></font></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">2. 6&quot; 
+        caliper, digital or dial, your choice. I constantly use these. They all 
+        seem similar in accuracy, but my Mitutoyos have better feel, so I reach 
+        for them first.</font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">3. Dial Test 
+        Indicator w/ Magnetic Base. Another constant use tool. Noga makes the 
+        best bases, and I like Interapid Indicators. B&amp;S Best Test were also 
+        highly favored.</font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">4. Allen wrenches. 
+        T-handles in metric and imperial are constantly needed. I also have a 
+        set to fit my 3/8&quot; ratchet, a folding set, and a set of loose keys. 
+        Wiha looks like a nice brand I may try when I buy a new set of T-handles.</font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">5. Edge finder. 
+        An essential tool, but I don't use my Starret all that often. I guess 
+        I don't do enough precision mill work.</font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">6. 6&quot; 
+        Scale with fractional and 1/100&quot; divisions. Many swear by their scales. 
+        I don't own one and haven't missed it. I use a tape measure or digital 
+        calipers. I did read <a href="http://www.homemodelenginemachinist.com/index.php?topic=1101.0;topicseen">a 
+        fascinating account</a> of how one fellow uses his with CNC to good effect.</font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">7.Calculator. 
+        Amen! And I will add to that a notepad and a pen. I bought a box of steno 
+        pads and a box of Sharpies. I use them constantly. </font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">8. 0-6&quot; 
+        Depth micrometer. This is another popular pick that I don't use much.</font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">9. Combination 
+        square. Another I don't use. </font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">10. 12&quot; 
+        Crescent wrench. Yep, they are handy.</font></b></p>
+      <p align="left"><span class="BlogTitle">The Whole List</span></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I <b>bold faced</b> 
+        my favorites from the list.</font></p>
+      <table width="100%" border="1">
+        <tr bordercolor="#003333"> 
+          <td height=20 align=right width=63 style='height:15.0pt;width:48pt'> 
+            <div align="center"><font face="Arial, Helvetica, sans-serif"><b>Rank</b></font></div>
+          </td>
+          <td width=430 style='width:265pt'> 
+            <div align="center"><font face="Arial, Helvetica, sans-serif"><b>Tool</b></font></div>
+          </td>
+          <td width=1357 style='width:452pt'> 
+            <div align="center"><font face="Arial, Helvetica, sans-serif"><b>Remarks</b></font></div>
+          </td>
+        </tr>
+        <tr> 
+          <td height=20 align=right width=63 style='height:15.0pt;width:48pt' bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">1</font></td>
+          <td width=430 style='width:265pt' bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">0-6&quot; 
+              Micrometers, 0-1&quot; and 1-2&quot; are used most</font></b></div>
+          </td>
+          <td width=1357 style='width:452pt' bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Must 
+            have tool, but I use my calipers more often!</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">2</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">6&quot; 
+              Caliper:<span style='mso-spacerun:yes'>  </span>Dial or digital, 
+              your choice</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Constant 
+            use.<span style='mso-spacerun:yes'>  </span>They all seem similar 
+            in accuracy, but my Mitutoyos have better &quot;feel&quot;</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">3</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">DTI 
+              w/ Mag Base</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Constant 
+            use, by a good one!<span style='mso-spacerun:yes'>  </span>Noga base 
+            is supposed to be best.<span style='mso-spacerun:yes'>  </span>I like 
+            Interapid indicators</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">4</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">Allen 
+              Wrenches</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Constant 
+            use, by a good set!</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">5</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">Edge 
+              Finder</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Must 
+            be accurate: by a good one.<span style='mso-spacerun:yes'>  </span>Mine's 
+            a Starret</font></td>
+        </tr>
+        <tr> 
+          <td height=25 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">6</font></td>
+          <td width="430" bordercolor="#003333" height="25"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">6&quot; 
+              Scale, Fractional and 1/100&quot; divisions</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333" height="25"><font face="Arial, Helvetica, sans-serif">Don't 
+            own and never missed one.<span style='mso-spacerun:yes'>  </span></font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">7</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Calculator</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Indispensible!<span style='mso-spacerun:yes'>  
+            </span>I use an HP.</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">8</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">0-6&quot; 
+              Depth Micrometer</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">I 
+            have one, but seldom use it.</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">9</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Combination 
+              Square</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">I 
+            have one, but seldom use it.</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">10</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">12&quot; 
+              crescent wrench</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Constant 
+            use…</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">11</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">50 
+              millionths DTI</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Love 
+            my Interapid.<span style='mso-spacerun:yes'>  </span>I baby it.</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">12</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">Ball 
+              Peen Hammer: 10 ounce</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">You 
+            can never own too many different hammers</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">13</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Carbide 
+              Scriber</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">I 
+            use mine sometimes for layout, but I prefer the scribe on my height 
+            gage to get it right.</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">14</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">Height 
+              Gage w/ DTI and Scribe attachments</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">I 
+            use my height gage and surface plate constantly when marking out a 
+            part</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">15</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">India 
+              Stone</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">I 
+            keep a variety of stones handy</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">16</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">Indicol 
+              w/ DTI</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Indispensible!<span style='mso-spacerun:yes'>  
+            </span>I have a real Indicol with a good Interapid DTI</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">17</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">Parallels</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Constant 
+            use</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">18</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">Safety 
+              glasses</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Find 
+            something comfortable.<span style='mso-spacerun:yes'>  </span>I have 
+            both glasses and a face shield if the chips are really flying</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">19</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Telescoping 
+              (Snap) Gage Set</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Takes 
+            practice and technique, but they work</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">20</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Tool 
+              Box</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">You 
+            can't have too many tool boxes: they will get filled</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">21</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Torx Wrench 
+              Set</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Haven't 
+            needed them often, but I do have a set for my socket wrenches</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">22</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Vee 
+              Blocks</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Constant 
+            use…</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">23</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">10-12&quot; 
+              Mill Bastard File</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">I 
+            prefer scrapers and sanders for deburring</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">24</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>123 
+              Blocks</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Constant 
+            use…</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">25</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">2&quot;-12&quot; 
+              Tubular Inside Micrometers</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Don't 
+            own and never missed one.<span style='mso-spacerun:yes'>  </span></font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">26</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">25' 
+              Tape Measure</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Much 
+            prefer to the 6&quot; scale.<span style='mso-spacerun:yes'>  </span>I 
+            have 4 floating around the shop so one is always handy</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">27</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">5lb 
+              Lead Hammer</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">You 
+            can never own too many different hammers</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">28</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><b><font face="Arial, Helvetica, sans-serif">6 inch 
+              needle nose pliers</font></b></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Yep, 
+            though mine are not that long</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">29</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">8&quot; 
+              Coolant Proof Digital Calipers</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">I 
+            have 6&quot;, but 8&quot; would be handier</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">30</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">8-10&quot; 
+              Mill File for deburring</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">I 
+            prefer scrapers and sanders for deburring</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">31</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">90 Degree 
+              False Center:<span style='mso-spacerun:yes'>  </span>Shopmade</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Made 
+            one, but don't use it often</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">32</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Apron</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Nope</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">33</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Brass 
+              Rod 3/8 inch x 8&quot; long for use with hammer</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Sounds 
+            handy</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">34</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Chip 
+              Brushes, 1&quot; and 2&quot;</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Constant 
+            use, bought a case of each</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">35</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">CNC Code 
+              Reference (Tulip or MasterCam off the web)</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Nope</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">36</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Computer 
+              w/ CAD/CAM Program</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Constant 
+            use, find one you like</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">37</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div style='padding-bottom:0px;padding-top:0px' align="left"> 
+              <div style='padding-bottom:6px;padding-top:0px' align="left"><font face="Arial, Helvetica, sans-serif"><b>Decimal 
+                Fractional Chart with tap drill reference</b></font></div>
+            </div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">I 
+            use the ones taped inside my drill indexes constantly</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">38</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">DRO</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Don't 
+            have a complete DRO setup on machines, so sometimes</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">39</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Gage Block 
+              Set</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Seldom 
+            use</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">40</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Hearing 
+              Protection</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Yep</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">41</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Inside 
+              Micrometer</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Sometimes</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">42</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Knipex 
+              pump pliers</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">A 
+            particular kind of channel lock.<span style='mso-spacerun:yes'>  </span>Not 
+            fond of the breed.</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">43</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Layout 
+              Blue</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">yep</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">44</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Lixie 
+              Deadblow</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Nice 
+            hammer!</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">45</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Machine 
+              Lube</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Yep</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">46</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Machinery 
+              Handbook</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Have 
+            2 versions.<span style='mso-spacerun:yes'>  </span>Invaluable when 
+            needed, seldom needed.</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">47</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Machinist's 
+              Square, 6&quot;</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Use 
+            mine fairly often</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">48</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Metric 
+              Wrenches</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Yep</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">49</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Noga triangular 
+              scraper</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Never 
+            used one</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">50</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">optima 
+              center punch</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Never 
+            used one</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">51</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Optvisor 
+              Magnifier</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Invaluable 
+            for small work</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">52</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Pencil</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">I 
+            keep a box of sharpies handy as well as a bunch of steno pads for 
+            quick notes and lists.</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">53</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Pocket 
+              Level</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Yep</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">54</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">pocket 
+              ref chart</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Nope</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">55</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Rags/towels</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Yep.<span style='mso-spacerun:yes'>  
+            </span>Tempted to put a paper towel dispenser by each machine.</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">56</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Screwdriver 
+              Set</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">yep</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">57</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Single 
+              cut file (aka &quot;Lathe&quot; file)</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Very 
+            handy for deburring on a lathe</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">58</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Speeds 
+              and Feeds Chart</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Nope, 
+            I use software from Mrainey</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">59</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Starret 
+              Auto Centerpunch</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Constant 
+            use!</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">60</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">starrett 
+              E center punch (the big one!)</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Nope</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">61</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Surface 
+              Gage/Indicator Holder</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Seldom 
+            use: prefer height gage</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">62</font></td>
+          <td width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif"><b>Surface 
+              Plate</b></font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Constant 
+            use!</font></td>
+        </tr>
+        <tr> 
+          <td height=20 align=right style='height:15.0pt' width="63" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">63</font></td>
+          <td class=xl65 width="430" bordercolor="#003333"> 
+            <div align="left"><font face="Arial, Helvetica, sans-serif">Thread 
+              TPI Gauge</font></div>
+          </td>
+          <td width="1357" bordercolor="#003333"><font face="Arial, Helvetica, sans-serif">Seldom 
+            use</font></td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p class="BlogTitle">Tools I Love That They Missed</p>
+      <table width="100%" border="1">
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Pad and paper</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">As mentioned 
+            above, I bought a box of steno pads and a box of Sharpies. I use them 
+            constantly. </font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Screw Machine 
+            Bit Set</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">Infinitely 
+            better than regular drill bits. They're more rigid, and because they're 
+            less common, you wind up buying a better made set. Wait for them to 
+            be on sale.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Nice Drill 
+            Chucks </font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">Don't scrimp. 
+            Buy nice chucks. I use Javobs for small bits and an Asian-made Albrecht 
+            clone for bigger bits. I got the Albrecht-clone from Lathemaster, 
+            who sell a nice one.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Kant Twist 
+            Clamps </font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">A million 
+            and one uses. C-Clamps are prehistoric technology by comparison. Their 
+            only drawback is they aren't cheap.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Magnetic base 
+            halogen work light</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">None of my 
+            machines have a work light. Halogen is bright and the flexible neck 
+            puts the light right where it does the most good.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">DeWalt 14&quot; 
+            Multicutter </font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">OK, that's 
+            cheating, this is a machine, BUT, boy is it handy, and it isn't that 
+            expensive. I have not used my bandsaw since buying it. It is faster, 
+            takes less shop space, and leaves a cleaner cut.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Air Tool w/ 
+            Cut-off Wheel</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">When nothing 
+            else works, I grab this. Think of it as a rotary cutting &quot;bigger 
+            hammer&quot;. </font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Bessey Clamps</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">When you need 
+            more range than a Kant-Twist offers, I go for my Bessey clamps. C-clamps, 
+            you lose again!</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">1/8&quot; 
+            Air-Powered Mini-Belt Sander</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">We don't need 
+            no steeking files no more!</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Scraper-style 
+            Deburring Tool</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">Chapter 2: 
+            We don't need no steeking files no more! </font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Angle block 
+            set </font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">An Asian-made 
+            angle block set is not too expensive ( gave $40 for mine) and I've 
+            found them to be extremely handy. </font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">&quot;Arrow&quot; 
+            Welding Magnets</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">I find these 
+            to be pretty handle way beyond welding. Magnets in general are handy 
+            around a shop.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">File Brush</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">If you use 
+            files, get a file brush. Mine came from Brownell's.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Piloted Tap 
+            Wrenches </font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">You need a 
+            big one and a small one. The pilot goes in any drill chuck. </font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Z-Axis Presetter</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">Cheap eBay 
+            purchase has been my most accurate way to set Z heights.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">5C Collet 
+            Blocks </font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">Holding round 
+            stock couldn't be easier.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Big Blocks: 
+            2-4-6, Angle Blocks, etc.</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">Because its 
+            hard enough to get big pieces clamped down.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Huot Dispensers 
+            for End Mills</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">Extremely 
+            worthwhile organizer. I have them for taps and drills (got the works 
+            for cheap on eBay), but don't use the latter.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+      </table>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle">Tools I Thought I'd Use and Mostly Don't</p>
+      <p><font face="Arial, Helvetica, sans-serif">Maybe you won't need them either!</font></p>
+      <table width="100%" border="1">
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Old School 
+            Calipers and Dividers</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">Rarely, I 
+            use these to transfer a measurement or for some other chore. In an 
+            age of digital calipers, they don't seem that useful to me anymore.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Wobblers</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">The wobbler 
+            is billed as a quick way to center things in a 4-jaw lathe chuck or 
+            even on the mill. I played with one I bought, but I much prefer a 
+            DTI with appropriate holder. This is another one of those &quot;old 
+            school&quot; things.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Protractors 
+            and Angle Gages</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">I have several 
+            different kinds including a nifty digital model and have never used 
+            one yet. I like my angle block set for setting up angles. Failing 
+            that, a sine bar.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Radius gages</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">B&amp;S radius 
+            gages sit in a corner, never used. At least they were cheap on eBay.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Adjustable 
+            parallels </font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">I've had these 
+            for a long time. I've seen some wonderful uses for them. I am convinced 
+            I will be greatly relieved I have them some day. So far I've never 
+            used them.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Lathe dogs</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">I use a constant 
+            face driver instead.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Toolmaker's 
+            Vise, 3&quot;</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">You know those 
+            cool looking little vises. They're intended for grinding. I've yet 
+            to use one.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Wohlhaupter 
+            Boring and Facing Head</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">It's too pretty 
+            to put it in the machine and screw it up!</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Drill bit 
+            sharpener </font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">One reads 
+            a lot about sharpening. Someday I need to do it. So far my bits are 
+            new and I keep buying more newer ones.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+      </table>
+      <p class="BlogTitle">Machine Specific Tools that Need Honorable Mention</p>
+      <p><font face="Arial, Helvetica, sans-serif">I use these so much and am 
+        so happy with them, I just had to bring them up!</font></p>
+      <table width="100%" border="1">
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Phase 2 QCTP</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">I can't imagine 
+            a lathe without a QCTP and as many holders as I can afford for tooling.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Buck Adjust 
+            Tru 6-Jaw Lathe Chuck</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">I use either 
+            this chuck or my 4-jaw. I have 2 3-jaws that are only used for larger 
+            capacity or when the work is so groady I won't risk the 6-jaw.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Boring Bars</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">Because life 
+            is too short for crappy boring bars. Buy solid carbide bars. I like 
+            indexable inserts. Circle boring is one company as is Micro100 that 
+            make good bars. James Harvey says you can't have too many boring bars 
+            in &quot;Machine Shop Trade Secrets.&quot; He's right!</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Lathe Tool 
+            Height Gage</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">A little gizmo 
+            with a v-block for the workpiece, a step for the tool, and a bubble 
+            level. I got mine from Brownell's. Beats jamming a ruler between the 
+            tool and work.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">No.71 Holder 
+            Axa Cut-off & Grooving Holder </font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">My favorite 
+            cutt-off tool for the lathe. </font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">MT3 CONSTANT 
+            FACE DRIVER SET, =BRAND NEW= </font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">If you can 
+            find an affordable constant face driver, you'll never touch your lathe 
+            dogs! </font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Kurt Vise</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">Even a used 
+            Kurt is a great piece of tooling to have around. Forget other vises.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Powered Drawbar</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">I made one 
+            for my mill and boy is it great!</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Power Feed 
+            for the Mill</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Aluminum Soft 
+            Jaws for Kurt Vise</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">A variety 
+            of possibilities here, all of them useful.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif">Royal Products 
+            Live Center</font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif">Bought used 
+            on eBay. Stunningly accurate. All my other live centers sit around 
+            unused as does the dead center.</font></td>
+        </tr>
+        <tr> 
+          <td width="27%"><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td width="73%"><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+      </table>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

@@ -1,0 +1,755 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+
+<title>G54 Work and Fixture Offsets</title>
+
+<meta name="description" content="How to program G54 Work and Fixture Offsets.">
+
+<style type="text/css">
+<!--
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {font-family: Arial, Helvetica, sans-serif;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<style type="text/css">
+.BodyText11 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText11 {font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<style type="text/css">
+.BodyText2 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText2 {	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+     <div align="center"><strong><font face="Arial, Helvetica, sans-serif" size="+1"><a href="CCCNCMillFeedsSpeeds.htm">CNC</a><a href="CCCNCGCodeCourse.htm">Cookbook's G-Code Course</a></font></strong></div>
+     <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" -->
+      <table width="100%" border="0">
+        <tr>
+          <td width="6%"><img src="img/GearsIcon.jpg" alt="" width="88" height="77"></td>
+          <td width="94%"><p><font face="Times New Roman, Times, serif" size="7" color="#FF0000">G52, G54, and G92: Work and Fixture Offsets</font></p>
+            <p><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="BlogTitle"><strong><a href="CCCNCGCodeCourse.htm">CNCCookbook's G-Code Tutorial</a></strong></font></p></td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p class="BlogTitle"><strong>Introduction</strong></p>
+      <p><font face="Arial, Helvetica, sans-serif">Recall the Coordinate Transformation Pipeline that is used to convert coordinates in g-code to the actual coordinates the machine is to move to:</font></p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/GCodeCourse/CoordinatePipeline.jpg" width="800" height="541" alt="G-Code Coordinate Pipeline"></p>
+      <p align="center" class="BodyText">The 5 Step G-Code Coordinate Pipeline...</p>
+      <p align="left" class="BodyText">This chapter on g-code programming is all about G52, G54, G92 and related <em>work and fixture offset</em> commands. After the prior steps in the pipeline, our coordinates have been <a href="CCCNCGCodeG20G21MetricImperialUnitConversion.htm">converted to the proper units (Imperial or Metric)</a>, converted to <a href="CCCNCGCodeRelativeAbsoluteCoordinateMoves.htm">absolute coordinates (via G90/G91 status)</a> and now we're ready to <em>offset</em> those coordinates to the actual work location.</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p align="left" class="BlogTitle"><strong>Why Offset Coordinates to a Work Location?</strong></p>
+      <p align="left" class="BodyText">Why would we want to offset the coordinates to a work location?  Think of work offsets as being like bookmarks.   They identify places in your machine's work envelope (the range of positions it can move to) that are of interest.   For example, suppose we have 4 vises on the table capable of holding 4 parts for machining.  This can speed up production as we can stick 4 workpieces in the vises, push the &quot;Start&quot; button, and not have to worry about it until the machine has finished 4 parts.  This requires much less effort than swapping out ever single part as it is finished.   </p>
+      <p align="left" class="BodyText">What would a program for such a 4 part setup look like?</p>
+      <p align="left" class="BodyText">Well, ideally, we don't want to have to change the part program to handle the coordinates of each part position.  We'd like to write the program relative to part zero, and then let some other function magically change the coordinates as we work on each part.  After all, they're just shifted over relative to one another, but other than that, the part programs would be identical.</p>
+      <p align="left" class="BodyText">A specialized fixture may be set up for a number of part positions, and it may be intended that each position have a work offset assigned to make it easy to program g-code for the fixture.    The most complex examples of this are 4th axis and tombstones that may even combine different kinds of parts and use a variety of work offsets to keep it all straight.</p>
+      <p align="left" class="BodyText">Sometimes there are work offsets associated with some feature of the machine.  Maybe you've mounted a tool sensor at a particular place on the table and use a work offset to keep track of that location.</p>
+      <p align="left" class="BodyText">Dealing with those kinds of situations is what work offsets were made for.</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p align="left" class="BlogTitle"><strong>How Are Work Offsets Specified in G-Code?</strong></p>
+      <p align="left" class="BodyText">Basic work offsets are very simple to specify: simply enter one of G54, G55, G56, G57, G58, or G59.  Most machine startup with G54 selected.    It's a good practice to put a G54 into the safety line at the top of all of your g-code programs to make sure you know what work offset is being used unless you have reason to want to leave that aside.  </p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/GCodeCourse/G54Logo.jpg" width="349" height="288" alt="G54 Work Offsets"></p>
+      <p align="left" class="BodyText">When you execute the work offset g-code, the XYZ offset will be added to all of your coordinates from that point forward.   Let's return to our 4 vise setup.   You might want to set 4 work offsets to be the coordinates of the left rear vise jaw corner of each vise.   You want to choose the non-moving jaw because that one's position is more accurate.   Use and edge finder or probe to locate the position of that vise jaw corner and then set that work offset based on the way your machine controller sets up offsets.   Once you have G54 through G57 set to the four vise jaw positions, you're ready to go.</p>
+      <p align="left" class="BodyText">You could issue a work offset manually based on which vise you stick the workpiece in, but it's more productive to do it right in the g-code.      The overall scheme looks like this:</p>
+      <blockquote>
+        <p align="left" class="BodyText">G54</p>
+        <p align="left" class="BodyText">( Code for part in first vise )</p>
+        <p align="left" class="BodyText">G55</p>
+        <p align="left" class="BodyText">( Code for part in second vise )</p>
+        <p align="left" class="BodyText">G56</p>
+        <p align="left" class="BodyText">( Code for part in third vise )</p>
+        <p align="left" class="BodyText">G57</p>
+        <p align="left" class="BodyText">( Code for part in fourth vise )</p>
+      </blockquote>
+      <p align="left" class="BodyText">For now, you'll probably just cut and paste copies of the code.   Assuming your control supports them, <a href="CCCNCGCodeSubprograms.htm">once you learn to use subprograms</a>, you can keep one copy of the part code, and call it as a subprogram from each work offset block.   By way of example, here's how a subprogram setup might look to make 4 identical parts with work offsets:      </p>
+      <blockquote>
+        <p align="left" class="BodyText">G54</p>
+        <p align="left" class="BodyText">( Call the part subprogram )</p>
+        <p align="left" class="BodyText"><span class="BodyText2">M98 P2000</span></p>
+        <p align="left" class="BodyText">G55</p>
+        <p align="left" class="BodyText">( Call the part subprogram )</p>
+        <p align="left" class="BodyText"><span class="BodyText2">M98 P2000</span></p>
+        <p align="left" class="BodyText"></p>
+        <p align="left" class="BodyText">G56</p>
+        <p align="left" class="BodyText">( Call the part subprogram )</p>
+        <p align="left" class="BodyText"><span class="BodyText2">M98 P2000</span></p>
+        <p align="left" class="BodyText"></p>
+        <p align="left" class="BodyText">G57</p>
+        <p align="left" class="BodyText">( Call the part subprogram )</p>
+        <p align="left" class="BodyText"><span class="BodyText2">M98 P2000</span></p>
+        <p align="left" class="BodyText"></p>
+        <p align="left" class="BodyText">M30 (Stop the program )</p>
+      </blockquote>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <blockquote>
+        <p align="left" class="BodyText">O2000 (Part Subprogram)</p>
+        <p align="left" class="BodyText">( g-code to make a part )</p>
+        <p align="left" class="BodyText"><span class="BodyText2">M99 (Return to Main program)</span></p>
+        </blockquote>
+      <p align="left" class="BodyText">As you can see, subprograms can make it very slick and easy for you to make a lot of identical parts.</p>
+      <p>&nbsp;</p>
+      <p align="left" class="BlogTitle"><strong>Extending the Number of Work Offsets</strong></p>
+      <p align="left" class="BodyText">With G54 to G59, you have 6 work offsets.  That's pretty helpful, but what if you have even more parts to be made. There might be room for dozens of small parts on a big fixture plate for a machine with long travels.</p>
+      <p align="left" class="BodyText">Over the years, the makers of CNC Controllers have come up with several ways to extend the syntax to allow a lot more work offsets.   One common approach is to use &quot;G54.1 Pxxx&quot; where the &quot;xxx&quot; is a number.   Typical ranges for the number are 1..48 or 1..300.  You'll want to look up the specifics in your machine's programming manual.  To use work offset #45, you'd simply issue the following g-code:</p>
+      <blockquote>
+        <p align="left" class="BodyText">G54.1 P45 ( Use Work Offset #45 )</p>
+      </blockquote>
+      <p align="left" class="BodyText">Some controls allow the &quot;.1&quot; to be omitted, so you could write &quot;G54 P45&quot;.</p>
+      <p align="left" class="BodyText">Using this new syntax, you get the original 6 work offsets plus however many more are available.      </p>
+      <p align="left" class="BodyText"><strong>Extra Offsets for Haas Machines</strong></p>
+      <p align="left" class="BodyText">Haas allows G110..G129 to reference offsets just as G54.1 Px does.</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p class="BlogTitle"><strong>Setting Up G-Wizard Editor's Work Offsets</strong></p>
+      <p class="BodyText"><a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a> offers a number of Work Offset options that may be customized in the Post. Reading over them will give you a good overview of how the many <a href="CCCNCGCodeDialects.htm">g-code dialects</a> handle work offsets.</p>
+      <p class="BodyText">Here are the relevant post variables:</p>
+      <p class="BodyText"><strong>Offsets.G54toG59Offsets</strong></p>
+      <p class="BodyText">Set this checkbox if your controller allows G53..G59.</p>
+      <p class="BodyText"><strong>Offsets.G54Mach3Offsets</strong></p>
+      <p class="BodyText">Mach3 allows the syntax G59 P1..P255 for an additional 255 offsets.</p>
+      <p align="left" class="BodyText"><strong>Offsets.Okuma</strong></p>
+      <p align="left" class="BodyText">Okuma controls use G15 H0..H50 for their work offset syntax.</p>
+      <p align="left" class="BodyText"><strong>Offsets.OkumaOneShot</strong></p>
+      <p align="left" class="BodyText">These work offsets are used once and then the system goes back to the prior offset that was used. The syntax is G16 H0..H50 for a one shot work offset.</p>
+      <p align="left" class="BodyText"><strong>Offsets.Plus300Offsets and Offsets.Plus48Offsets</strong></p>
+      <p align="left" class="BodyText">As mentioned G54.1 Pxx is a popular syntax for more offsets. xx may range from 1..300 or 1..48.  You can also set the Haas G110..G1xx offsets on the 1..48 tab where they are called out.</p>
+      <p align="left" class="BodyText"><strong>Offsets.G110HaasOffsets</strong></p>
+      <p align="left" class="BodyText">Haas allows G110..G129 to provide additional work offsets beyond the basic 6.</p>
+      <p align="left" class="BodyText"><strong>Offsets.G154HaasOffsets</strong></p>
+      <p align="left" class="BodyText">In addition Haas allows the syntax &quot;G154 Pxxx&quot; where &quot;xxx&quot; is number from 1..99.</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p align="left" class="BlogTitle"><strong>More G-Wizard Editor Tools for Work Offsets</strong></p>
+      <p align="left" class="BodyText">The whole purpose of <a href="http://www.cnccookbook.com/CCGWizardE.html">G-Wizard Editor</a> is to make all this g-code programming easier, right?  Well, here's what we've added to make using work offsets easier:</p>
+      <p class="BodyText"><strong>Work Offset Hints</strong></p>
+      <p class="BodyText">The Hints feature in <a href="http://www.cnccookbook.com/CCGWizardE.html">G-Wizard Editor</a> tells you what a line (what&rsquo;s officially called a &ldquo;block&rdquo;) of g-code does in plain English. &nbsp;It&rsquo;s really handy when learning g-code, but it tells you all sorts of things that just aren&rsquo;t in the g-code even if you know how to read it already. &nbsp;For example, on an arc, it calls out the arc center as well as a bunch of other information. &nbsp;In this latest release, when a new work offset is put in place, it tells you the XYZ coordinates of the Work Offset. &nbsp;Something like this:</p>
+      <p class="BodyText"><img src="http://blogcnccookbookcom.c.presscdn.com/wp-content/uploads/2015/02/WorkOffsetHintCoordinates.jpg" alt="WorkOffsetHintCoordinates" width="530" height="323"></p>
+      <p class="BodyText">This gcode sets several work coordinates as part of a loop and each of them is recorded in the hint&hellip;</p>
+      <p class="BodyText">That hint is particularly nifty because the workoffsets are being set as #variables. &nbsp;The line G#100 executes a gcode based on the value of variable #100. &nbsp;In this case, the value goes from 54 to 59, so we set all the work offsets from G54 to G59. &nbsp;You get to see the Work Offset XYZ coordinates for each value of the variable below. &nbsp;That can be really helpful in a sophisticated gcode like this one in helping understand what&rsquo;s going on.</p>
+      <p class="BodyText"><strong>Work Offset Spreadsheets</strong></p>
+      <p class="BodyText">Here&rsquo;s on more goodie if you work with #variables a lot. &nbsp;GWE stores those variables in spreadsheet CSV files. &nbsp;This means you can open up the file to see all the variables laid out at once. &nbsp;You could even substitute a file to set up for different jobs. &nbsp;To find these files, go to the Setup Files tab. &nbsp;All the setup files are called Preferences files and that tab tells you the directory where they are kept.</p>
+      <p align="left" class="BlogTitle">&nbsp;</p>
+      <p align="left" class="BlogTitle"><strong>G92: A Programmable Temporary Work Offset</strong></p>
+      <p align="left" class="BodyText">Suppose you want a programmable temporary work offset.  There are a lot of ways to accomplish this, but one that is tried and true is to use G92.  G92 establishes a work offset based on the offset coordinates you provide.  So, if that vise jaw corner we've talked about is located <em>from the current tool position</em> at <em>offset</em> X10Y10Z0, you could execute the following:</p>
+      <blockquote>
+        <p align="left" class="BodyText">G92 X10Y10Z0</p>
+      </blockquote>
+      <p align="left" class="BodyText">Now the coordinates of the vise corner are X0Y0Z0.  You've just established your own work offset using G92.</p>
+      <p align="left" class="BodyText">Let's consider another example where a G92 or one of the other ways of programming a work offset might be handy.  Let's suppose you have a fixture plate that has a grid of parts on it.  You know in advance that the parts are 4 across and 2 down, so there will be 8 parts.   The plate is made so that the X and Y distance between each part is constant (within tolerances of course).  So, the parts are maybe 5 inches apart in X and 5 inches in Y.</p>
+      <p align="left" class="BodyText">Since G92 is an offset from the current tool position, we move the tool to part zero on the first part at the beginning of the g-code program. We can then use G92 to add offsets relative to that position, 5 inches in X and 5 inches in Y for each part as we step through them.   Pretty handy, huh?</p>
+      <p align="left" class="BodyText">Note that G92 is available on mills and some lathes, but most lathes use G50 for this function.</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p align="left" class="BlogTitle"><strong>G52: Offset the Offsets</strong></p>
+      <p align="left" class="BodyText">Given the number of features associated with offsets on CNC machines, it must be obvious how handy they can be. So much so that there are a lot of different ways to achieve similar results.  Suppose you've set up work offsets for each part on the table.  Now further suppose each part has some identical features located at different points on the part.  You could use even more work offsets to identify those identical features so you can use the same g-code to machine them, or you could use G52 to create a temporary offset on the offset.  That might look like this:</p>
+      <blockquote>
+        <p align="left" class="BodyText">G54 (Select the work offset for the part)</p>
+        <p align="left" class="BodyText">G52 X10Y10 ( Select an offset from part zero for the first feature. That feature is now at part zero after G52. )</p>
+        <p align="left" class="BodyText">(Machine feature)</p>
+        <p align="left" class="BodyText">G52 X20 (select another offset from part zero for the second identical feature)</p>
+        <p align="left" class="BodyText">...</p>
+        <p align="left" class="BodyText">G52 X0Y0 (Turn off the G52 offset so things are back to &quot;normal&quot;)</p>
+      </blockquote>
+      <p align="left" class="BodyText">I'll bet you can see where G52 would come in handy right away, right?</p>
+      <p align="left" class="BlogTitle">&nbsp;</p>
+      <p align="left" class="BlogTitle"><strong>G10 to Set Work Offsets in G-Code</strong></p>
+      <p align="left" class="BodyText">G10 is a handy g-code that lets you program the G54 style work offsets from within your g-code. The typical syntax would be:</p>
+      <blockquote>
+        <p align="left" class="BodyText">G10 L2 Poo Xxx Yyy Zzz</p>
+      </blockquote>
+      <p align="left" class="BodyText">Where &quot;oo&quot; is the work offset number, &quot;xx&quot; is the X offset, &quot;yy&quot; is the Y offset, and &quot;zz&quot; is the Z offset.      </p>
+      <p align="left" class="BodyText"><strong>Tip:</strong></p>
+      <p align="left" class="BodyText">If you have an older control that doesn't have very many work offsets, you can use G10 to reuse the available work offsets with different coordinates.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle"><strong>Work Offsets and Macro Variables</strong></p>
+      <p class="BodyText">On machines that allow parameterized programming, there are usually also macro variables that correspond to each coordinate of each work offset.  On Fanuc, for example, the following variables are used for G54:</p>
+      <blockquote>
+        <p class="BodyText">#5221 G54 X Offset<span class="BodyText"></span></p>
+        <p class="BodyText">#5222 G54 Y Offset</p>
+        <p class="BodyText">#5223 G54 Z Offset</p>
+        <p class="BodyText">#5224 G54 Fourth Axis Offset</p>
+      </blockquote>
+      <p class="BodyText">You can access these variables to see what the values are or to change them.</p>
+      <p class="BlogTitle">&nbsp;</p>
+      <p align="left" class="BlogTitle"><strong>Stop Using Work Offsets Entirely With G53.</strong></p>
+      <p align="left" class="BodyText">To stop using the work offsets, use G53.  This forces the machine to use the machine zero coordinates with no offset whatsoever as part zero.   This is not done very commonly, but it is possible to do so.</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p class="BlogTitle"><strong>Conclusion</strong></p>
+      <p class="BodyText">Now you know how to use Work Offsets, which make it easy to set up for making multiple parts or quickly accomodating multiple fixtures on your machines.  </p>
+      <p class="BodyText">&nbsp;</p>
+      <p align="left" class="BlogTitle"><strong>Exercises</strong></p>
+      <p align="left" class="BodyText1">1.  Set up GW Editor to use your controller's work offset syntax. </p>
+      <p align="left" class="BodyText1">2.  Write a g-code program that uses multiple work offsets to create multiple identical parts.   Set the values of the work offsets in G-Wizard Editor by changing the #variable values for the offsets so you can see all the parts on the backplot.</p>
+      <p align="left" class="BodyText1">&nbsp;</p>
+      <p class="BodyText1">&nbsp;</p>
+      <p align="center" class="BodyText1"><b><i><font size="+2"><a href="CCGWECNCProgramEditor.html">Try the Free Trial Version of G-Wizard CNC Program Editor...</a></font></i></b></p>
+      <p align="center" class="BodyText1"><span class="style12"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+      <p align="center" class="BodyText1">No credit card required--just your name and email. </p>
+      <p class="BodyText1">&nbsp;</p>
+      <p class="BlogTitle"><strong>Next Article:<span class="BodyText11"> <a href="CCCNCGCodeHelicalInterpolationCircularRamping.htm">Helical Interpolation: Making holes bigger than any cutter you've got</a></span></strong></p>
+      <p>&nbsp;</p>
+    <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

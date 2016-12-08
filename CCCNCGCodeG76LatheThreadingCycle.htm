@@ -1,0 +1,786 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" -->
+
+<script>
+  _udn = 'cnccookbook.com'
+</script>
+
+<!-- Google Analytics Content Experiment code -->
+<script>function utmx_section(){}function utmx(){}(function(){var
+k='2217679-104',d=document,l=d.location,c=d.cookie;
+if(l.search.indexOf('utm_expid='+k)>0)return;
+function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+'<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+'://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+'" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+</script><script>utmx('url','A/B');</script>
+<!-- End of Google Analytics Content Experiment code -->
+ 
+<title>CNC G-Code: G76 Lathe Threading Cycle</title>
+
+<meta name="description" content="Try this easy step by step tutorial to learn cnc programming and g-code for everyone from beginner to advanced.  Learn to program CNC machines the easy way." />
+
+<link rel="canonical" href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm" />
+
+<style type="text/css">
+<!--
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.WarningText {
+}
+.WarningText {
+}
+.Warning {
+}
+.Warning {
+}
+.Bozon {
+	font-size: large;
+	color: #F00;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+
+
+<style type="text/css">
+.style2 {font-family: Arial, Helvetica, sans-serif}
+</style>
+<style type="text/css">
+.BodyText11 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText11 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText11 {font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <hr>
+      <p>&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" -->
+                                <table width="100%" border="0">
+                                  <tr>
+                                    <td width="6%"><img src="img/GearsIcon.jpg" width="88" height="77"></td>
+                                    <td width="94%"><p><font face="Times New Roman, Times, serif" size="7" color="#FF0000">G76 Lathe Threading Cycle</font></p>
+                                      <p><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="BlogTitle"><strong><a href="CCCNCGCodeCourse.htm">CNCCookbook's G-Code Tutorial</a></strong></font></p></td>
+                                  </tr>
+                                </table>
+                                <p class="BlogTitle">&nbsp;</p>
+                                <p align="center" class="BlogTitle"><strong>G76 Repetative Threading Cycle Basics</strong></p>
+                                <p class="BodyText">In this section, we walk through the different parameters that will be specified to tell the G76 how to cut the specific thread you want.</p>
+                                <p class="BlogTitle">Thread Start and End Positions</p>
+                                <p class="BodyText">The first thing you'll need to come up with is the thread's start and end positions.  The end position is perhaps a bit easier, particularly in Z, as you generally know exactly the length you want threaded and where that thread starts.     The ending diameter is not too bad either as the thread's specification will tell you that.</p>
+                                <p class="BodyText">Incidentally, our <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard Calculator software</a> has a nice database of common threads that calls out this sort of thing.  Here's a typical screen shot:</p>
+                                <p align="center" class="BodyText"><img src="img/GWizard/GWCThreadDB.jpg" width="700" height="544" alt=""/></p>
+                                <p align="center" class="BodyText">G-Wizard Calculator has a database of common threads...</p>
+                                <p align="left" class="BodyText">If you don't have software like G-Wizard Calculator, you'll have to leaf through your Machinery's Handbook or something similar to find the information.</p>
+                                <p align="left" class="BodyText">The Start Position is a little more interesting. You'll obviously want to start somewhere outside the threads. You need to leave some allowance in Z to give the CNC lathe time to synchronize the feedrate with the spindle rotational position.  It turns out that cutting threads puts more stress on the cutter than a lot of other operations, so you want to turn the OD (External threads) or ID (Interneal threads) to get close to the top of the thread to minimize the amount of cutting needed by the threading tool.   This will determine the X coordinate you start from.  I typically turn down to the top of the thread tooth and use a finish allowance so there's a nice surface there.</p>
+                                <p class="BlogTitle">Thread Height</p>
+                                <p class="BodyText">Thread Height is another value that comes from a thread spec, so it's easy to come by.  In the screen shot above, use 0.0433&quot; for the 1/4-20 thread.</p>
+                                <p class="BlogTitle">Taper Amount</p>
+                                <p class="BodyText">Pipe threads are often tapered to improve sealing.  You can specify a taper amount on the G76 cycle when cutting such threads.</p>
+                                <p class="BlogTitle">Thread Pitch or Lead</p>
+                                <p class="BodyText">For most G76 cycles, this is specified as a Feedrate.  It's another value you can pull out of your thread database.  For the 1/4-20 thread above, the pitch is 0.050&quot; (1/20 TPI) and the Lead is 20 TPI.</p>
+                                <p class="BlogTitle">Thread Infeed Angle (also called Tool Nose Angle)</p>
+                                <p class="BodyText11">Back in the days of manual lathes, the machinst used to set the compound slide at an angle to the thread that's called the infeed angle. Being able to set that angle is important to ensuring a constant amount of material is removed and that the cutting spreads the wear to both sides of the insert or cutter.</p>
+                                <p align="center" class="BodyText11"><img src="img/CNCCookbook/GCodeCourse/CannedCycles/G76/ThreadInfeed.jpg" width="370" height="136" alt=""/></p>
+                                <p align="center" class="BodyText11">Illustration by Sandvik shows three infeed strategies...</p>
+                                <p align="left" class="BodyText11">The illustration above, courtesy of Sandvik, shows thread infeed strategies:</p>
+                                <p align="left" class="BodyText11">- Radial Infeed:  Go straight in with a 0 degree angle. Note that the force increases steadily into the cut as more area is being cutter the deeper we go.   </p>
+                                <p align="left" class="BodyText11">- Modified Flank Infeed:  Go in at an angle, which helps spread the wear and keep the force constant.</p>
+                                <p align="left" class="BodyText11">- Incremental Infeed: Alternate side-to-side while feeding at an angle.</p>
+                                <p align="left" class="BodyText11">Radial Infeed is quick and dirty, but it produces a stiff V-shaped chip which may have difficulty forming. The insert tip can also reach very high temperatures.   This method is suitable for fine pitches, but for coarse pitch threads it often results in too much vibration (chatter) and poor chip control.</p>
+                                <p align="left" class="BodyText11">The Modified Flank Infeed is the one most commonly programmed in CNC machines. By choosing the right angle, we can avoid having the insert rub. Chips are formed much more easily.  The chips are thicker than for a Radial Infeed, but they are much better behaved. As a result, fewer passes are often required and less heat is generated.   </p>
+                                <p class="BodyText11">When specifying the thread angle, most people use an A58 for a 60 degree thread tool. This will cause the tool to move in at a 29 degree ( 58 / 2 ) angle on each pass thus cutting mostly on one side and just a little on the other side. if you program an A60 the tool will feed in at a 30 degree angle just cutting on one side.</p>
+                                <p class="BodyText11">If you've got a really large thread to cut, the Incremental Infeed method is probably best. Unfortunately, Incremental Infeed is not available on most G76 cycles.</p>
+                                <p class="BlogTitle">First Cut Depth</p>
+                                <p class="BodyText">This value specifies the depth of the first pass. This should be the deepest cut you make since each subsequent cut will be harder on cutter and machine if you make every subsequent pass as deeply as the first one.   The reason is the triangular shape of the thread cutter.  As you push the triangle deeper into the cut, more and more area is being cut.</p>
+                                <p class="BodyText">How much material should you try to remove on that first cut?</p>
+                                <p class="BodyText">You can consult the cutter manufacturer, go on your experiene, or you could use <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard Calculator's handy Cut Depth Calculator</a>:</p>
+                                <p align="center" class="BodyText"><img src="img/GWizard/ThreadCutDepth.jpg" width="700" height="544" alt=""/></p>
+                                <p align="center" class="BodyText">GW Calculator suggest a depth of 0.018&quot; for the first pass on a 1/4-20 thread...</p>
+                                <p align="left" class="BodyText"><span class="BodyText1">GW Calculator suggest a depth of 0.018&quot; for the first pass on a 1/4-20 thread, and it even estimates it will take 6 passes to cut the thread. We'll talk about the passes in a minute, but suffice to say that unless you actually simulate ALL the parameters of G76, you can only estimate the number of passes that will be needed.</span></p>
+                                <p class="BlogTitle">Minimum Cutting Depth</p>
+                                <p class="BodyText">Most versions of G76 allow you to specify a minimum cutting depth.  This ensures things won't take too long by running excessively small depth passes.  Given that G76 can automatically adjust cut depth on each pass to equalize the amount of material removed, the passes will get smaller, and it takes a fair amount of calculation to figure out how much any given pass will be taking off.   </p>
+                                <p class="BodyText">This parameter just makes it easy to get control over that.  Be careful not to get too carried away with it though.   For most GCode dialects, specifying a Minimum Cut Depth that's larger than the Finish Allowance may prematurely end the threading cycle without taking the finish pass.</p>
+                                <p class="BlogTitle">Finish Allowance</p>
+                                <p class="BodyText">This is a typical finish allowance.  It's meant to be light so you can get good surface finish and minimize deflection.  Even so, you may want some Spring Passes (see below) to ensure the threads are clean and accurate.</p>
+                                <p class="BlogTitle">Spring Passes</p>
+                                <p class="BodyText11">A <em>Spring Pass</em> is a pass cut at the same depth as the prior pass.  It's called a &quot;Spring Pass&quot; because it is combating the tendency of the part to spring away from the cutting pressure and then spring back afterward without having the full depth of cut taken.  Spring passes can help clean up and debur a thread and minimize errors in the thread's dimensions.</p>
+                                <p class="BodyText11">Some G76 versions have a built-in parameter for spring passes.   For example, in the Fanuc double block format, digits 1 and 2 of the P-word specify the number of spring passes to make.   In Mach 3, Q specifies spring passes, and in LinuxCNC it is H.</p>
+                                <p class="BodyText11">Other controls may specify spring passes with a parameter, or they may not have a way to specify spring passes.   When you don't have a way to specify spring passes, you can use G92 to specify spring passes.  Just program one or more G92's right after the G76 and you'll retrace the thread contour perfectly. </p>
+                                <p class="BodyText11">Typically, two Spring Passes is plenty and one will often suffice, so it's quick and easy to slap in one or two G92's after the G76.</p>
+                                <p class="BlogTitle">Chamfering Options</p>
+                                <p class="BodyText">When you cut a thread to a shoulder, it's nice to chamfer the end of the thread so it ends cleanly at the shoulder. That's what your Chamfering Options are designed to allow.</p>
+                                <p class="BlogTitle">&nbsp;</p>
+                                <p align="center" class="BlogTitle"><strong>G76 Tips and Thoughts on Passes</strong></p>
+                                <p class="BlogTitle">Passes</p>
+                                <p class="BodyText">The number of passes that must be cut to make your thread is very important.   Take too few passes, and surface finish is apt to be poor and you might even break your threading tool by forcing it to work too hard.  Take too many passes and you're going to waste a lot of time.</p>
+                                <p class="BodyText">You can't change most of the information relating to the thread's specifications, so your primary tools for controlling the number of passes include:</p>
+                                <p class="BodyText">-   Start Position:  Turn things down as I describe above to minimize the work the threading tool must do.</p>
+                                <p class="BodyText">-  First Pass Depth:   Pick the largest pass you can.  G-Wizard Calculator will give you a good recommendation here.</p>
+                                <p class="BodyText">- Minimum Pass Depth:  Try to avoid using this parameter too much and set it to your Finish Allowance.</p>
+                                <p class="BodyText">- Finish Allowance:   A smaller finish allowance can mean larger roughing passes remove most of the material.  Just remember, too small an allowance will force your cutter to rub.</p>
+                                <p class="BodyText">- Spring Passes:  You shouldn't need more than 2 passes and 1 may suffice.   Experiment with your particular situation to see if you can get by with 1 or perhaps even no spring passes.</p>
+                                <p class="BodyText">Your next challenge will be in determining how many passes the cycle will actually make. This is not easy as G76 will dynamically change the depth of each pass after the first to equalize the amount of material removed. You have to do quite a lot of calculation to figure out exactly how many passes will be made.</p>
+                                <p class="BodyText">But there if you have a GCode Simulator, it may be able to help out.   Take a look at this screen shot of G-Wizard Editor:</p>
+                                <p align="center" class="BodyText1"><img src="img/GWizardE/Posts/Fanuc2LineG76.jpg" width="700" height="610" alt=""/></p>
+                                <p align="center" class="BodyText1"><a href="CCGWizardE.html">G-Wizard Editor</a> will tell you in the hint below the backplot how many passes the G76 cycle will take...</p>
+                                <p align="left" class="BodyText"><span class="BodyText11"><a href="CCGWizardE.html">G-Wizard Editor</a> will tell you in the hint below the backplot how many passes the G76 cycle will take.  You can use it to help tune your G76 cycle so it doesn't have an excessive number of passes.  Note the WARNING message given that tells you the finish allowance will not be used due to the Minimum Cut Depth being larger.    That's also helpful when setting all this up.</span></p>
+                                <p class="BodyText">&nbsp;</p>
+                                <p class="BlogTitle">Tips</p>
+                                <p class="BodyText1"><strong>Don't Feed Too Fast</strong></p>
+                                <p class="BodyText1">Many lathes have problems synchronizing the spindle if fed too quickly. If your threading passes are not synchronizing, try slowing down until it improves.  Typically, this means slowing the RPM, which determines how fast you'll be feeding based on your thread pitch.</p>
+                                <p class="BodyText1">&nbsp;</p>
+                                <p class="BodyText1">&nbsp;</p>
+                                <p class="BlogTitle"><strong>Code Dialects for G76</strong></p>
+                                <p class="BodyText">Hopefully you've gathered up the values for all the parameters described above.  Perhaps you can use a spreadsheet to make that process easier and more complete.  Now you're ready to plug the parameters into the particular GCode dialect used by your control:</p>
+                                <p class="BodyText"><strong>Fanuc Double Line G76</strong></p>
+                                <blockquote>
+                                  <p class="BodyText"><strong>G76 P(m) (r) (a) Q(dmin) R(d)</strong></p>
+                                  <p class="BodyText"><strong>G76 X(U) Z(W) R(i) P(k) Q(d) F(L)</strong></p>
+                                  <p class="BodyText">P Word: &nbsp;The P-word has 6 digits consisting of three 2-digit clusters for m, r, and a.</p>
+                                  <p class="BodyText">&nbsp; &nbsp; m: &nbsp;Repetitive finishing count (1 to 99)--spring passes. </p>
+                                  <p class="BodyText">&nbsp; &nbsp; r: &nbsp;Chamfering amount (1 to 99)</p>
+                                  <p class="BodyText">&nbsp; &nbsp; a: &nbsp;Angle of Tool Nose. &nbsp;Select 80, 60, 55, 30, 29 or 0 degrees.</p>
+                                  <p class="BodyText">Q Word: &nbsp;dmin is the Minimum Cutting Depth. &nbsp;If the depth of either a roughing or finish pass is less than this, it is clamped to be at least this much.</p>
+                                  <p class="BodyText">R Word: d is the finish allowance.</p>
+                                  <p class="BodyText">X/Z/U/W words (2nd line): &nbsp;Specify the coordinates of the end point. &nbsp;X, Z use the current mode (absolute or relative) while U, W can be used to specify a relative position.</p>
+                                  <p class="BodyText">R Word (2nd line): i is the taper amount when cutting tapered threads.</p>
+                                  <p class="BodyText">P Word (2nd line): &nbsp;k is the thread height expressed as a radius (not diameter) value.</p>
+                                  <p class="BodyText">Q Word (2nd line): &nbsp;d is the depth of the first cut.</p>
+                                  <p class="BodyText">F Word (2nd line): L is the lead of the thread.</p>
+                                </blockquote>
+                                <p class="BodyText">Example: Fanuc 2 line G76 cutting a tapered pipe thread:</p>
+                                <p align="center" class="BodyText"><img src="img/GWizardE/Posts/Fanuc2LineG76.jpg" width="700" height="610" alt=""/></p>
+                                <p align="center" class="BodyText"><a href="CCGWizardE.html">G-Wizard Editor</a> will tell you in the hint below the backplot what all the G76 parameters are doing...</p>
+                                <p class="BodyText"><strong>Fanuc Single Line G76</strong></p>
+                                <blockquote>
+                                  <p class="BodyText"> <strong>G76 X.. Z.. I.. K.. D.. F.. A.. P..</strong><br>
+X = Diameter of last threading pass<br>
+Z = Position of the thread end<br>
+I = Taper over total length<br>
+K = Single depth of the thread &ndash; positive<br>
+D = Depth of first threading pass &ndash; positive<br>
+A = Included angle of the insert &ndash; positive<br>
+P = Infeed method (one of 4)<br>
+                                  </p>
+                                </blockquote>
+                                <p class="BodyText"><strong>Haas G76</strong></p>
+                                <blockquote>
+                                  <p class="BodyText"><strong>G76 D.. K.. X.. Z.. U.. W.. I.. P.. F.. A..</strong></p>
+                                  <p class="BodyText">D = Initial cut depth</p>
+                                  <p class="BodyText">K = Thread height</p>
+                                  <p class="BodyText">X* = X-axis absolute ending location</p>
+                                  <p class="BodyText">Z* = Z-axis absolute ending location. Determines thread length.</p>
+                                  <p class="BodyText">U* = X-axis incremental distance to end. May be used instead of X.</p>
+                                  <p class="BodyText">W* = Z-axis incremental distance to end. May be used instead of Z.</p>
+                                  <p class="BodyText">I* = Thread taper amount (radius measure).</p>
+                                  <p class="BodyText">P* = Subsequent pass positioning method (1-4)</p>
+                                  <p class="BodyText">F* = Feedrate</p>
+                                  <p class="BodyText">A* = Tool nose angle (0 -120 degrees. 0 assumed if not specified)</p>
+                                </blockquote>
+                                <p class="BodyText"><strong>LinuxCNC / PathPilot G76</strong></p>
+                                <blockquote>
+                                  <p class="BodyText"> <strong>G76 P.. Z.. I.. J.. R.. K.. Q.. H.. E.. L..</strong><br>
+P = Thread pitch in distance per revolution<br>
+Z = Final position of threads<br>
+I = Thread Peak offset.  Negative for external, positive for internal.<br>
+J = Initial cut depth<br>
+K = Full thread depth<br>
+R = Depth digression (optional). R = 1 is constant depth, R =2 is constant areas. <br>
+Q = Compound slide angle (optional)<br>
+H = Spring passes (optional)<br>
+E = Distance along drive line for taper<br>
+L = Which end of the thread gets tapered.  L0 = no taper.  L1 = entry taper.  L2 = exit taper.  L3 = entry and exit taper.<br>
+                                  </p>
+                                </blockquote>
+                                <p class="BodyText"><strong>Mach 3 G76</strong></p>
+                                <blockquote>
+                                  <p class="BlogText"><span class="BodyText"><strong>G76 X.. Z.. Q.. P.. H.. I.. R.. K.. L.. C.. B.. T.. J..</strong><br>
+                                  X = X end<br>
+                                  Z = Z end<br>
+                                  Q = Spring passes (optional)<br>
+                                  P = Pitch<br>
+                                  H = Depth of first pass<br>
+                                  I = Infeed angle<br>
+                                  R = X Start (optional)<br>
+                                  K = Z Start (optional) <br>
+                                  L = chamfer (optional)<br>
+                                  C = X Clearance<br>
+                                  B = Depth Last Pass (optional)<br>
+                                  T = Taper (optional)<br>
+                                  J = Minimum depth per pass (optional)</span></p>
+                                </blockquote>
+                                <p class="BlogTitle"><strong>Exercises</strong></p>
+                                <p class="BodyText1">1. Dig out the programming manual for your CNC Control and make sure you understand the G76 syntax it uses.    If you're using G-Wizard Editor to help simulate such things, set it up for your control's syntax if it isn't already built into the post.</p>
+                                <p class="BodyText1">2. Try some G76 examples on your own for common threads you use in your projects.</p>
+                                <p class="BodyText1">3.  Try optimizing the number of passes your G76 examples need to get the job done.</p>
+                                <p class="BodyText1">&nbsp;</p>
+                                <p class="BlogText"><br>
+                                </p>
+                                <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

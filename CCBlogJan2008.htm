@@ -1,0 +1,1107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNC Cookbook: November - January 2008</title>
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.style4 {color: #FFFFFF}
+.style6 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+.style7 {font-size: 36px}
+.style10 {font-size: 24px}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" --> 
+      <hr>
+      <p><span class="PageNav"><b>Blog Archives</b></span></p>
+      <p class="style1"><a href="CCBlogIndex.htm"><strong>Index</strong></a></p>
+      <p class="style1"><a href="index.htm"><strong><font face="Arial, Helvetica, sans-serif">Current</font></strong></a></p>
+      <p class="style1">&nbsp;</p>
+      <p class="style1">&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <font size="+2" face="Arial, Helvetica, sans-serif" color="#339933"><b>November 
+      2007 Through January 2008 CNC Blog Archive</b></font>
+<p class="BlogDate">1/28/08</p>
+      <p class="BlogTitle">The Lucky Setup</p>
+      <p><font face="Arial, Helvetica, sans-serif">Once in a great while I get 
+        lucky. It's always cause to rejoice, but it doesn't always turn out to 
+        be valuable. Recently, I was fooling with setups to machine the table 
+        for my <a href="CCDiscSander.htm">disc sander project</a>. I was considering 
+        a setup to mill the plate that did not involve the Kurt vise, but instead 
+        involved clamping to the table and some big 2-4-6 blocks I had. I put 
+        down the first 2-4-6 block in back to act as a reference for everything 
+        else. Of course I wanted to tram that block, much as you would the vise, 
+        so everything would be square. I slapped on the old Indicol and Interapid 
+        DTI and made a pass:</font></p>
+      <p align="center"><img src="img/LuckySetup.jpg" width="1024" height="805"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Photo before 
+        I zeroed the indicator...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I partially tightened 
+        the clamps, zeroed the indicator by moving the Y-axis (I prefer that to 
+        touching the indicator), and low and behold it was perfect! I was using 
+        an indicator accurate to 0.0005&quot; and the needle didn't budge left 
+        to right for the entire length of the block! &quot;This can't be right!&quot; 
+        sez I. I fiddled with the indicator to be sure it was in contact, and 
+        then I went to the trouble of mounting my other indicator thinking this 
+        one was damaged. Perfect! The block was exactly square just the way I 
+        had laid it down. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Now for the bad 
+        news: the mill didn't have enough Y-travel to do what I wanted, so I never 
+        used the setup. DOH!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">BTW, George Loo 
+        sent me a note and helpfully pointed out I would have been better off 
+        to bolt through the 2-4-6 blocks and skip the clamps. I'll try that the 
+        next time I'm working with a setup of this kind!</font></p>
+      <p class="BlogDate">1/25/08</p>
+      <p class="BlogTitle">A Bigger Greener Tool Grinder</p>
+      <p><font face="Arial, Helvetica, sans-serif">Alistair Hosie had pix of his 
+        tool grinder which is a bit larger than the Harbor Freight unit I own. 
+        It's greener too, but Alistair is famous for that! I liked some of the 
+        features I saw, so grabbed the pix:</font></p>
+      <p align="center"><img src="img/OthersProjects/Tools/workshopgrinderoverview005.jpg" width="600" height="800"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I like the table 
+        tilting mechanism and the nice looking water drip system...</font></p>
+      <p align="center"><img src="img/OthersProjects/Tools/workshopgrinderoverview003.jpg" width="800" height="600"></p>
+      <p class="BlogTitle">Small Bridgeport VMC's</p>
+      <p><font face="Arial, Helvetica, sans-serif">I came across this small Bridgeport 
+        421X VMC and thought it would make a cool uber high end machine for a 
+        home shop. It sold on eBay for $17K, which is definitely not cheap, but 
+        look at what you get:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/412x-1.jpg" width="600" height="533"> 
+        <img src="img/OthersProjects/Machines/412x-2.jpg" width="600" height="528"> 
+        </font></p>
+      <p> <font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/412x-4.jpg" width="600" height="450"> 
+        <img src="img/OthersProjects/Machines/412x-6.jpg" width="600" height="499"> 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Machines/412x-9.jpg" width="600" height="450"> 
+        <img src="img/OthersProjects/Machines/412x-10.jpg" width="600" height="385"> 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Modern looking controls, flood 
+        safe enclosure, tool changer, box ways--it's got all the right stuff going 
+        on.</font> </p>
+      <p class="BlogDate">1/24/08</p>
+      <p class="BlogTitle">Disc Sander Progress</p>
+      <p><font face="Arial, Helvetica, sans-serif">I made some more progress on 
+        my <a href="CCDiscSander.htm">disc sander</a> since I got about a half 
+        day in the shop. I basically got the table together except for it's mounting 
+        system:</font></p>
+      <p align="center"><img src="img/DiscSander/P1010150.JPG" width="1024" height="768"></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">It's a real nice 
+        steel table with a flycut finish. I milled a tooling slot for it that 
+        matches the slot on my Harbor Freight tool grinder so that the tooling 
+        will be interchangeable. Here you can see the tool grinder's miter gage 
+        on the new table. Corners of the table were radiused by hand and eye on 
+        the same grinder.</font></p>
+      <p class="BlogDate">&nbsp;</p>
+      <p class="BlogDate">1/19/08</p>
+      <p class="BlogTitle">I Need to Make a Micrometer Stand</p>
+      <p><font face="Arial, Helvetica, sans-serif">Snagged a couple photos of 
+        shopmade mic stands. These look so useful I added an entry on the <a href="CCWishListFutures.htm">projects 
+        wish list</a>. </font></p>
+      <p align="center"><img src="img/OthersProjects/Tools/DBirdMikeStand.jpg" width="800" height="600"> 
+        <img src="img/OthersProjects/Tools/JDeereMicStand.jpg" width="640" height="480"> 
+      </p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">A couple of 
+        shopmade mic stands...</font></p>
+      <p class="BlogDate">1/19/08</p>
+      <p class="BlogTitle">Handy eBay Parting-Off Tool</p>
+      <p><font face="Arial, Helvetica, sans-serif">I bought some of these a while 
+        back and have really liked them:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/LatheStuff/eBayCutoffTool.jpg" width="400" height="320"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">They're basically 
+        pre-ground part-off tools made of tool steel. I also love my Aloris insert 
+        cutoff tool, but this one makes a narrower cut. Seems like it would also 
+        be handy for grooving. And, it fits in a regular QCTP holder. The eBay 
+        seller is &quot;<a href="http://myworld.ebay.com/samsws/">samsws</a>&quot; 
+        and these little guys cost $9.50 for a single tool in 3/8&quot; shank. 
+        Mine has lasted a long time now, so I have no idea what their life really 
+        is. I touch it up with a stone every now and again. Search for &quot;parting 
+        mini lathe&quot; on eBay to find them too.</font></p>
+      <p class="BlogDate">1/18/08</p>
+      <p class="BlogTitle">More Belt Grinder Notes</p>
+      <p><font face="Arial, Helvetica, sans-serif">I'm <a href="CCKnifeMakingGrinders.htm">building 
+        up a page with lots of pictures and notes</a> before I build a belt grinder. 
+        Currently the <a href="CCDiscSander.htm">disc grinder</a> is ahead in 
+        the queue. Here is a typical shopmade belt grinder:</font></p>
+      <p align="center"><img src="img/OthersProjects/Knives/grinders/RCbelt_grinder_2.jpg" width="401" height="450"></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">That nicely made 
+        grinder uses a piece of truck driveshaft and a U-joint to pivot the arm.</font></p>
+      <p class="BlogDate">1/17/08</p>
+      <p class="BlogTitle">LTD Stirling Runs on a Cup of Coffee</p>
+      <p><font face="Arial, Helvetica, sans-serif">This was a lark I came across 
+        on eBay. It required no machining, and is a complete kit:</font></p>
+      <p align="center"><img src="img/StirlingEngines/JaxaFreePiston/JaxaThumb.jpg" width="300" height="383"></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><a href="CCJaxaStirling.htm">I 
+        made a page with more pictures</a>. Eventually I will either build a bigger 
+        one or do something more interesting with this one like convert it to 
+        solar power. Meanwhile, it was a fun little kit to build. <a href="img/StirlingEngines/JaxaFreePiston/P1010117.MOV">Click 
+        here</a> to see a movie of it running.</font></p>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle">Cutting a 45 Degree Angle on a Plate</p>
+      <p><font face="Arial, Helvetica, sans-serif">I need to mill a 45 degree 
+        relief on one edge of the table I'm making for my disc sander. You need 
+        the relief so that if you tilt the table it can stay close to the wheel 
+        without rubbing. Doing this takes a bit of doing to get a good setup. 
+        </font><font face="Arial, Helvetica, sans-serif" color="#000000">I don't 
+        have a tilting table for the milling machine, though I have thought of 
+        building one. </font><font face="Arial, Helvetica, sans-serif"> </font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.cnczone.com/forums/showthread.php?t=50522">In 
+        an exchange with the Fidgiting Wigitmaster</a>, one of my generous mentors, 
+        he suggest finding a way to do it without a tilting table or sine vise. 
+        In fact, his view is that 45 degrees is too much angle for a sine vise. 
+        Alternatives include tramming the milling spindle to 45 degrees if it 
+        tilts (mine does) and using a cutter that will cut the relief while the 
+        table is flat on the mill table. The latter appeals to me most. There 
+        are a couple of possibilities. Widgit suggests you can use your tool grinder 
+        to alter a normal endmill by grinding the end to a 45 degree angle. This 
+        may be a change for me to use the drill sharpening fixture I bought some 
+        time ago:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/Tooling/DrillSharpener.jpg" width="280" height="280"></font></p>
+      <p class="BodyText">I never use the thing because my <a href="http://blog.cnccookbook.com/2012/12/07/drill-bit-sharpener/">Drill Doctor drill sharpener</a> does the job so easily.</p>
+      <p><font face="Arial, Helvetica, sans-serif">I've also got an<a href="MTMillDovetail.htm"> 
+        indexable dovetail cutter</a> I made that might do the trick, and an indexable 
+        chamfer tool. I'll look into what works best and you'll see the result 
+        on the <a href="CCDiscSander.htm">build page for my disc sander</a>.</font></p>
+      <p class="BlogDate">1/14/08</p>
+      <p class="BlogTitle">Super EZ Clamps</p>
+      <p><font face="Arial, Helvetica, sans-serif" color="#000000">A while ago 
+        I came up with the idea to make what I called &quot;EZ Clamps&quot; for 
+        table clamping. These clamps eliminate the need for step blocks. Here 
+        was my design:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MiniRouter/EZClamp/EZClamp.jpg" width="800" height="558"></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Recently, I came across another 
+        fellow who made some really large clamps that are very similar. Here are 
+        the photos:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Tools/rhclamps001.jpg" width="640" height="480"> 
+        <img src="img/OthersProjects/Tools/rhclamps002.jpg" width="640" height="480"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Start with some 
+        thick wall pipe or DOM tubing. True up the sides (he has a horzontal/vertical 
+        combo mill it looks like)...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Tools/rhclamps003.jpg" width="640" height="480"> 
+        <img src="img/OthersProjects/Tools/rhclamps004.jpg" width="640" height="480"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Nifty form tool. 
+        Have to think about how to do the operation otherwise. 5/8&quot; ball 
+        mill cuts the rocker slot for the hold down bolt...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Tools/rhclamps005.jpg" width="640" height="480"> 
+        <img src="img/OthersProjects/Tools/rhclamps006.jpg" width="640" height="480"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">You need a slot. 
+        Note the half-cylinder hold down pivots on the right. He just drilled 
+        some round stuck and then split it with a slitting saw...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Tools/rhclamps007.jpg" width="640" height="480"> 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Sure makes securing the vise 
+        on the drill press quick and easy!</font></p>
+      <p class="BlogTitle">Workshop Storage Ideas</p>
+      <p><font face="Arial, Helvetica, sans-serif" color="#000000">Random ideas 
+        and pictures I've come across:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><img src="img/Workshop/Organization/Ideas/62688463-M.jpg" width="338" height="450"> 
+        <img src="img/Workshop/Organization/Ideas/62688472-M.jpg" width="338" height="450"> 
+        <img src="img/Workshop/Organization/Ideas/62688484-M.jpg" width="338" height="450"> 
+        <img src="img/Workshop/Organization/Ideas/62696452-M.jpg" width="338" height="450"></font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I need a stock rack for long 
+        stock. I love this rolling rack with shelves and safety chains...</font></p>
+      <p> <font face="Arial, Helvetica, sans-serif"><img src="img/Workshop/Organization/Ideas/Stockrack2.jpg" width="480" height="640"> 
+        <img src="img/Workshop/Organization/Ideas/DualGrinderStand.jpg" width="378" height="504"> 
+        <img src="img/Workshop/Organization/Ideas/RevolveGrinders.jpg" width="640" height="480"> 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Another stock rack, and a swivelling 
+        dual grinder stand. The pedal operates a locking system. On the right 
+        is a<a href="http://www.homemodelenginemachinist.com/index.php?topic=910.0"> 
+        revolving shelf for two grinders.</a></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><img src="img/Workshop/Organization/Ideas/P1010951.jpg" width="800" height="600"> 
+        <img src="img/Workshop/Organization/Ideas/P1010950-1.jpg" width="800" height="600"> 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">French-fitted tool trays. Wood 
+        is said to help absorb rust-causing moisture. It looks great and keeps 
+        the tools organized. Great job for a CNC. A lot of work otherwise...</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><img src="img/Workshop/Organization/Ideas/bins.jpg" width="800" height="600"> 
+        <img src="img/Workshop/Organization/Ideas/DrillTubes.jpg" width="600" height="800"> 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Similar to my small parts cubby 
+        cabinet, but made of welded tube and angle iron. Pretty slick and compact. 
+        The PVC tubes on the right are for oversized drill bits and such...</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><img src="img/Workshop/Organization/Ideas/P4190011.jpg" width="800" height="600"> 
+        <img src="img/Workshop/Organization/Ideas/rightopen.jpg" width="400" height="300"> 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Many drawers are good. This 
+        bunch seems to be in an outdoor shed. On the right we see that doors can 
+        be used to hold cans o' stuff.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><img src="img/Workshop/Organization/Ideas/shopspace03.jpg" width="360" height="270"> 
+        <img src="img/Workshop/Organization/Ideas/tol_p_rackSmall.jpg" width="360" height="480"> 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Another wall o' tool chest 
+        w/ small parts storage on top. On the right is a little rack for QCTP 
+        holders.</font></p>
+      <p class="BlogTitle">Useful and Commonly Used Tools</p>
+      <p><font face="Arial, Helvetica, sans-serif" color="#000000">I recently 
+        <a href="http://www.practicalmachinist.com/vb/showthread.php?t=149676&amp;page=2">came 
+        across a thread</a> asking for the top 10 must have machinist's tools. 
+        These are tools with general applicability, rather than tooling for a 
+        specific machine. Of course putting everyone's list of 10 together resulted 
+        in a list of 63. I <a href="CCUsefulTools.htm">wrote up a page</a> on 
+        those tools plus some they forgot. Here are the Top 10 with my comments</font>:</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>1. Micrometer 
+        set in 0-6&quot; range. 0-1&quot; and 1-2&quot; are the most used. I agree 
+        this is a must-have tool, but I use my calipers more often!</b></font></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">2. 6&quot; 
+        caliper, digital or dial, your choice. I constantly use these. They all 
+        seem similar in accuracy, but my Mitutoyos have better feel, so I reach 
+        for them first.</font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">3. Dial Test 
+        Indicator w/ Magnetic Base. Another constant use tool. Noga makes the 
+        best bases, and I like Interapid Indicators. B&amp;S Best Test were also 
+        highly favored.</font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">4. Allen wrenches. 
+        T-handles in metric and imperial are constantly needed. I also have a 
+        set to fit my 3/8&quot; ratchet, a folding set, and a set of loose keys. 
+        Wiha looks like a nice brand I may try when I buy a new set of T-handles.</font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">5. Edge finder. 
+        An essential tool, but I don't use my Starret all that often. I guess 
+        I don't do enough precision mill work.</font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">6. 6&quot; 
+        Scale with fractional and 1/100&quot; divisions. Many swear by their scales. 
+        I don't own one and haven't missed it. I use a tape measure or digital 
+        calipers. I did read <a href="http://www.homemodelenginemachinist.com/index.php?topic=1101.0;topicseen">a 
+        fascinating account</a> of how one fellow uses his with CNC to good effect.</font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">7.Calculator. 
+        Amen! And I will add to that a notepad and a pen. I bought a box of steno 
+        pads and a box of Sharpies. I use them constantly. </font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">8. 0-6&quot; 
+        Depth micrometer. This is another popular pick that I don't use much.</font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">9. Combination 
+        square. Another I don't use. </font></b></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">10. 12&quot; 
+        Crescent wrench. Yep, they are handy.</font></b></p>
+      <p class="BlogDate">1/12/08</p>
+      <p class="BlogTitle">4-Jaw Lathe Chuck Cheater Key</p>
+      <p><font face="Arial, Helvetica, sans-serif">Here's an idea I've been noodling 
+        for a bit. When I saw Evan Williams' drag graver it all sort of came together 
+        for me. Here is the spring-loaded drag graver:</font></p>
+      <p>&nbsp;</p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/springtoolb.jpg" width="800" height="600"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The assembled 
+        graver with carbide tip...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/springtoold.jpg" width="700" height="318"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">And here is 
+        my preliminary Rhino drawing of the cheater key:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MyProjects/4JawCheaterKey/4JawCheaterKeyRhino.jpg" width="800" height="832"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The circle is 
+        your 4-jaw chuck. The key consists of two keys so you can engage opposite 
+        sides at the same time by rocking the handle to move the part up or down 
+        as needed. The lower key is spring loaded just like the graver. To use 
+        the key, pull the spring load apart engage the fixed key, release the 
+        spring load to engage the floating key, and you're ready to go. The blue 
+        piece is just a shaft collar that holds the spring. The sliding portion 
+        is square tubing so the key is forced to turn. I'm thinking the handle 
+        assembly is welded together.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I'll probably 
+        get around to making one before too long to see how I like it. </font></p>
+      <p class="BlogTitle">12&quot; Disc Sander Started</p>
+      <p><font face="Arial, Helvetica, sans-serif">I started a new project today 
+        to <a href="CCDiscSander.htm">build a 12&quot; disc sander</a>. Started 
+        out making the hub to mate the disc to the motor:</font></p>
+      <p align="center"><img src="img/DiscSander/P1010098.JPG" width="800" height="547"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Finish came 
+        out pretty decent with little Lathemaster 9x30 lathe...</font></p>
+      <p class="BlogTitle">Hillbilly Hot Tank</p>
+      <p><font face="Arial, Helvetica, sans-serif">Here's a cool idea for the 
+        Home Shop Machinist. Buy a turkey frying rig and turn it into a hillbilly 
+        hot tank for cleaning parts, especially aluminum:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/HillbillyHot1.jpg" width="600" height="450"></font></p>
+      <p align="center"> <font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/HillbillyHot2.jpg" width="600" height="450"> 
+        <img src="img/OthersProjects/HillbillyHot3.jpg" width="600" height="450"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The secret is 
+        this aeration system connected to your shop air. All those bubbles help 
+        scrub things clean...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I got this one 
+        from an HSM thread. It was suggested there that dishwashing soap would 
+        foam less. The fellow that made it is degreasing aluminum car parts. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Nice 
+        7x14 Lathe</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">This lathe belongs 
+        to Cedge over at the <a href="http://www.homemodelenginemachinist.com/">Home 
+        Model Engine Machinist Board</a>. That's my new favorite board, BTW. I 
+        read it constantly, even on my iPhone when I'm waiting around somewhere. 
+        I've been meaning to get this up since I saw it. It's always fun to see 
+        how far one can modify one of these Asian machine tools to make it better, 
+        and this one is a beauty. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Let's take a look 
+        at the amazing Cedge-O-Matic and see if we can even identify all the neat 
+        modifications:</font></p>
+      <p align="center"><img src="img/OthersProjects/Tools/StockMicroMark.jpg" width="500" height="354"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The stock MicroMark 
+        7x14 Lathe...</font></p>
+      <p align="center"><img src="img/OthersProjects/Tools/lathe-w-mods1.jpg" width="1023" height="685"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Handwheels are 
+        updated, variable speed electric feed on the leadscrew, splash guard, 
+        light, QCTP, dial DRO's tailstock DRO, hand feed wheel on right, feed 
+        DRO, bullet holes, various bolt on attachments to hold wrenches and such, 
+        spindle handwheel, phew, Cedge you've been busy!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Tools/lathe-w-mods-2.jpg" width="1024" height="683"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Nice shot of 
+        the DRO and feed motor. I notice a tailstock locking lever peeking out 
+        too!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/Tools/lathe-w-mods-3.jpg" width="1023" height="685"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Oh geeze, didn't 
+        see this coming: Nice indexing setup on the spindle. </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The only thing 
+        I can think to add to this neat little lathe is some kind of vertical 
+        rack for QCTP holders and maybe a rear-mounted parting off tool. Otherwise, 
+        its really all there! I understand from reading the board that Cedge is 
+        now looking at Monarch 10EE's and Hardinge's. That should be quite an 
+        awesome step up for him from an already awesome lathe.</font></p>
+      <p class="BlogDate">1/10/08</p>
+      <p class="BlogTitle">Haas TL-1 Gang Tooling</p>
+      <p><font face="Arial, Helvetica, sans-serif">I recently saw this item on 
+        eBay that tickled a couple of my fancies. First, I love the idea of gang 
+        tooling--it's simpler than a turret-style toolchanger and faster to boot. 
+        The only disadvantage is you can't use the tailstock or a steady rest 
+        with long work. I've been actively thinking about <a href="CCLatheCNCGangSlide.html">gang 
+        tooling for my CNC lathe conversion</a> and may eventually build a gang 
+        setup for it. Second, I have liked the Haas TL-1 ever since seeing one. 
+        Why? Because it is an interesting and more modern replacement for the 
+        typical 12-16x40 class lathe. It has a tailstock, reasonable capacities, 
+        and its CNC has a great conversational mode. In short, it seems like the 
+        best of both worlds for a toolroom/prototyping/home CNC lathe with large 
+        capacities. in contrast, most of the CNC lathes you see are heavily tuned 
+        to manufacturing and short parts.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The seller (since the auction 
+        I saw will go away) on eBay was <a href="http://search.ebay.com/_W0QQsassZjeffrichlin">jeffrichlin</a>, 
+        and here is what the gang tool converter with some tools looks like:</font></p>
+      <p align="center"><img src="img/OthersProjects/Tools/HaasGang1d_12.jpg" width="500" height="375"> 
+        <img src="img/OthersProjects/Tools/HaasGang8e_12.jpg" width="500" height="375"> 
+        <img src="img/OthersProjects/Tools/HaaSGang38_12.jpg" width="500" height="375"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Gang tool adapter 
+        for the Haas TL-1...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The tooling is 
+        apparently the same as Omniturn uses, which is a great idea as that tooling 
+        also was used by Hardinge and is readily available. An adapter like this 
+        would be much easier to build than the fancy tool slide I was designing 
+        and ought to work well for a lot of lathes that are CNC converted.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">For the record, 
+        here is a Haas TL-2 (similar to a TL-1) in all of its glory:</font></p>
+      <p align="center"><img src="img/HaasTL1.jpg" width="1024" height="858"></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Used TL-1's in 
+        great condition seem to sell for a little under $20K. Not cheap, but it's 
+        a lot of machine for that. They don't seem to be particularly popular 
+        because they are not optimized for production. Not so many shops need 
+        a prototyping tool that is this expensive.</font></p>
+      <p class="BlogDate">1/09/08</p>
+      <p class="BlogTitle">Wonderful Video on Making a Triode Tube From Scratch: 
+        Think Glass for Stirlings</p>
+      <p><font face="Arial, Helvetica, sans-serif">This French fellow has put 
+        together a <a href="http://paillard.claude.free.fr/">beautiful video</a> 
+        on making a triode tube from scratch. I learned a lot about working glass 
+        from it. Apparently he built most of the tooling including even vacuum 
+        pumps which are also fascinating to watch in the video. After watching 
+        this I feel it may be of value to amateurs wanting to use glass in their 
+        Stirling engine models.</font></p>
+      <p class="BlogTitle">More Than You Wanted to Know About Harmonic Drives</p>
+      <p><font face="Arial, Helvetica, sans-serif">Got a <a href="http://www.powertransmission.com/issues/0706/harmonic.htm">recent 
+        link</a> while reading the HSM boards that is an informative article on 
+        harmonic drives. Think of them as backlash-free gearboxes. They're great 
+        to use when gearing down a stepper or servo in a motion control application. 
+        They are precision and somewhat costly to manufacture, which means we 
+        look for them in the surplus market on eBay and in other places. Probably 
+        the best use I've yet seen for one is in creating a CNC fourth axis. Use 
+        a harmonic drive instead of the normal rotary table wormdrive and you 
+        eliminate the backlash.</font></p>
+      <p class="BlogDate">1/08/08</p>
+      <p class="BlogTitle">Didja Know About the Reference Info Here?</p>
+      <p><font face="Arial, Helvetica, sans-serif">Added a link to <a href="http://oringswest.com/">a 
+        great o-ring reference chart </a>on my reference information page.</font></p>
+      <p class="BlogTitle">Ever Wonder How VMC's Work and What's Inside One?</p>
+      <p><font face="Arial, Helvetica, sans-serif">Download a <a href="http://www.compumachine.com/Support/DL-Fadal.htm">set 
+        of manuals for a Fadal 4020</a>. It's amazing what you can learn from 
+        these. There are exploded diagrams and detailed maintenance procedures. 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The two things that interested 
+        me most were the details of how the toolchanger works, and the details 
+        of how the 2-speed transmission for the spindle works. The latter is particularly 
+        intriguing for my <a href="CCMillBeltDrive.html">belt drive spindle design 
+        study</a>. I can't quite fathom all the details from the drawings and 
+        pictures, so I <a href="http://www.cnczone.com/forums/showthread.php?p=390756#post390756">posted 
+        a question on CNCZone</a> on a likely Fadal thread I found. If what I 
+        suspect is true, it would be a slick way of building a 2-speed transmission 
+        to extend the speed range beyond what a VFD will comfortably deliver. 
+        Hopefully the gang on the 'Zone will fill in my blanks.</font></p>
+      <p class="BlogDate">1/06/08</p>
+      <p class="BlogTitle">Stirling Model Engine Page</p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="CCStirlingModels.htm">Yet 
+        another thing I've gotten interested in</a> and would love to build some 
+        day. Some look easier than others. Here is one of my favorites from the 
+        gallery on that page:</font></p>
+      <p align="center"><img src="img/StirlingEngines/Gallery/dunmanstirling2.jpg" width="604" height="395"></p>
+      <p class="BlogDate">1/05/08</p>
+      <p class="BlogTitle">CNC Drag Engraving with a Spring-Loaded Graver</p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="http://bbs.homeshopmachinist.net/showthread.php?t=27011">Evan 
+        over on the HSM boards</a> has come up with a simple spring-loaded graver 
+        that is ideal for drag engraving. Using this method, the spindle doesn't 
+        move, rather the graver drags to cut the metal. While such a graver won't 
+        go deep, it leaves a nice effect:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/springtoolc.jpg" width="800" height="302"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Evan's Sister 
+        Runs Sarah Burns Photography...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/springtoolb.jpg" width="800" height="600"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The assembled 
+        graver with carbide tip...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/springtoold.jpg" width="700" height="318"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The component 
+        parts: pretty easy to cook one up!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Evan recommends 
+        keeping clearance tight on the barrel--he says tenths. He wants it to 
+        run true up and down without much side to side slop when engraving. He 
+        also mentions that if you wanted to spin the spindle for a rotating cutter, 
+        it would be straightforward to key the graver in such a way that the springloading 
+        was preserved but that a rotating cutter could be used. John Stephenson 
+        also mentions using a small ER11 collet system for this purpose too:</font></p>
+      <p align="center"><img src="img/OthersProjects/ER11-Collet-Chuck.jpg" width="250" height="145"></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Lots of good ideas 
+        for would-be engravers!</font></p>
+      <p class="BlogTitle">Peering Under the (Mazak Way) Covers...</p>
+      <p><font face="Arial, Helvetica, sans-serif">Coming up with appropriate 
+        way covers to protect leadscrews and ways from flying debris on a CNC 
+        has always been painful. Rubber bellows in suitable sizes are not that 
+        readily available, and when they can be found they're often not cheap. 
+        The covers that come with a lot of manual machines are often not that 
+        great. Wouldn't it be neat to fabricate some covers from stainless sheet 
+        metal the way the big guys do? Yet I'd always had a lingering doubt about 
+        how well they might work. Then I got a look at how Mazak way covers work 
+        and it gave me an idea that this was doable. Take a look:</font></p>
+      <p align="center"><img src="img/OthersProjects/mazaksuoja2.jpg" width="600" height="450"> 
+        <img src="img/OthersProjects/mazaksuoja3.jpg" width="600" height="450"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The secret is 
+        to guide the overlapping plates with a scissors mechanism!</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I'd hate to have to fabricate 
+        a scissors of appropriate length, but finding one to adapt seems considerably 
+        easier than finding metal way covers. You can bet I'll be keeping my eyes 
+        peeled!</font></p>
+      <p class="BlogDate">1/04/08</p>
+      <p class="BlogTitle">Solar-Powered Stirling Generators</p>
+      <p><font face="Arial, Helvetica, sans-serif">I was prompted to spend a few 
+        hours researching this last night, and put together <a href="CCStirlingGenerator.htm">a 
+        page with my notes</a>. </font></p>
+      <p align="left" class="style127"><font face="Arial, Helvetica, sans-serif">What 
+        if you could take a parabolic reflector such as an old C-Band satellite 
+        TV dish and use it to focus solar eneragy on a Stirling generator? The 
+        resultant system should be able to pump out 1-2 kilowatts of energy, quite 
+        respectable for sunshine. Commercial systems are twice as efficient as 
+        solar cells (photovoltaics). I've accumulated <a href="CCStirlingGenerator.htm">a 
+        page of notes on this idea</a>, but I'm still a long ways from an actionable 
+        plan. Still, I watch the Internet for information that could be useful 
+        and others pursuing a similar path.</font></p>
+      <p align="center" class="style127"><font face="Arial, Helvetica, sans-serif"><img src="img/StirlingEngines/EG-1000.jpg" width="489" height="597"></font></p>
+      <p align="center" class="style127"><font face="Arial, Helvetica, sans-serif"><b><a href="CCStirlingGenerator.htm">A 
+        1 kW Free-Piston Stirling Generator...</a></b></font></p>
+      <p align="left" class="BlogTitle">Formula One Racing Car Parts</p>
+      <p><font face="Arial, Helvetica, sans-serif">Here's a <a href="http://www.practicalmachinist.com/vb/showthread.php?t=148772">very 
+        cool story on PM</a> about making wheel uprights for a Formula One team. 
+        Dig these bad boys:</font></p>
+      <p align="center"><img src="img/OthersProjects/F1Uprights1.jpg" width="604" height="453"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b>Interrupted 
+        Turning on the Lathe. Note the surface finish even so!</b></font></p>
+      <p align="center"><b><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/F1Uprights2.jpg" width="604" height="453"></font></b></p>
+      <p align="center"><b><font face="Arial, Helvetica, sans-serif">Oh my, now 
+        we've made it lighter with some pocketing...</font></b></p>
+      <p align="center"><b><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/F1Uprights3.jpg" width="530" height="604"></font></b></p>
+      <p align="center"><b><font face="Arial, Helvetica, sans-serif">The drawing...</font></b></p>
+      <p align="center"><b><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/F1Uprights4.jpg" width="604" height="453"></font></b></p>
+      <p align="center"><b><font face="Arial, Helvetica, sans-serif">After anodizing...</font></b></p>
+      <p class="BlogDate">1/02/08</p>
+      <p class="BlogTitle">First Project of the New Year: A Quick and Easy Welding 
+        Table</p>
+      <p><font face="Arial, Helvetica, sans-serif">Finally got some time to do 
+        something useful in the shop <a href="CCWeldingTable.htm">so I built a 
+        welding table on top of a rolling tool cart</a>:</font></p>
+      <p><img src="img/Workshop/WeldingTable/P1010094.JPG" width="1024" height="768"></p>
+      <p class="BlogDate">12/06/07</p>
+      <p class="BlogTitle">The Spinning Tool Caddy of Doom</p>
+      <p><font face="Arial, Helvetica, sans-serif">Macona over on the HSM boards 
+        got me out of my shell to write about this cool gadget he made to organize 
+        his tooling:</font></p>
+      <p><img src="img/Tooling/SpinningToolCaddy.jpg" width="800" height="1067"></p>
+      <p><font face="Arial, Helvetica, sans-serif">What a cool idea! As the official 
+        armchair quarterback, I would make one a bit differently. I've always 
+        wanted to put a jib crane between my mill and lathe to lift heavy tooling 
+        or workpieces and to aid in working on the machinery. I'm picturing the 
+        jib crane's column as being home to some tooling using shelving like this. 
+        I probably wouldn't make it spin, as the crane will sit in a corner between 
+        the machines. I'd also rearrange the shelving a bit. For collets you have 
+        to be able to see the sizes. I want them up at a more convenient height 
+        so I don't have to bend down. A lot of the other tooling you can tell 
+        at a glance. I also like the idea of a rotating caddy for lathe QCTP holders. 
+        I may have to add this to my projects page!</font></p>
+      <p class="BlogDate">11/17/07</p>
+      <p class="style1">Long time between updates to the blog, I know. I'm still 
+        spending most waking hours nearly every day of the week putting together 
+        a new startup. I'll try to sneak in a post now and again.</p>
+      <p class="BlogTitle">Disc Sanders</p>
+      <p class="BlogDate"></p>
+      <p class="style1">I added another project to the <a href="CCWishListBiggerProjects.html">Big 
+        Projects Page</a>. This one is a disc sander. I've coveted a big disc 
+        sander since running across one at the community college where I learned 
+        to weld. It's so much nicer than a grinder for a lot of tasks, not the 
+        least of which is working with aluminum. The guys over on HSM board were 
+        talking about theirs, so I had to capture the pix:</p>
+      <p class="style1" align="center"><img src="img/OthersProjects/Tools/DiscSander1a.jpg" width="640" height="480"></p>
+      <p class="BlogDate">&nbsp;</p>
+      <p class="BlogDate"><b><i><font size="+2"><a href="CCBlogSep2007.htm">Earlier 
+        Entries in the Blog...</a></font></i></b></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

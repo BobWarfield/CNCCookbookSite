@@ -1,0 +1,846 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCLandingPage.dwt" --><!-- DW6 -->
+
+<head>
+
+<!-- #BeginEditable "doctitle" --> 
+
+<title>Feeds and Speeds Workshop | CNCCookbook.com</title>
+
+<!-- #EndEditable -->
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" >
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" >
+<!-- link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" -->
+
+<script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+<script async type="text/javascript" src="js/jquery.form.js"></script>
+<script async type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<!--script type="text/javascript" src="/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+<style type="text/css" >
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 140%}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+
+.Tagline {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #0;
+	font-size: 140%;
+	vertical-align: middle;
+}
+
+h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: #fff;
+}
+
+.LogoCNCStyleBlackSerif {
+	font-family:"Times New Roman", Times, serif;
+	font-size: 140%;
+	color: #000000;
+	font-weight: bold;
+	line-height: 1.0;
+}
+
+.LogoCNCStyleBlack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 160%;
+	color: #000;
+	font-weight: bold;
+	line-height: 1.0;
+}
+	.LogoCNCStyleBlack:link {
+		border: medium none;
+		text-decoration:underline;
+		color: #000;
+		margin-bottom: 10px;
+		padding: 8px 10px;
+		width: 300px;
+		border-radius: 20px;
+		-moz-border-radius: 20px;
+		-webkit-border-radius: 20px;
+		background: #339933;
+		width:35%;
+	}
+	.LogoCNCStyleBlack:visited {
+		text-decoration:underline;
+		color: #000;
+	}
+	.LogoCNCStyleBlack:active {
+		text-decoration:underline;
+		color: #000;
+	}
+
+.LogoCNCStyleBlackWhiteLinks {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 160%;
+	color: #fff;
+	font-weight: bold;
+	line-height: 1.0;
+}
+	a.LogoCNCStyleBlackWhiteLinks:link {
+		text-decoration:underline;
+		color: #fff;
+		margin-bottom: 10px;
+		padding: 8px 10px;
+	}
+	a.LogoCNCStyleBlackWhiteLinks:visited {
+		text-decoration:underline;
+		color: #fff;
+	}
+	a.LogoCNCStyleBlackWhiteLinks:active {
+		text-decoration:underline;
+		color: #fff;
+	}
+
+#price_link {
+	background: #3297de;
+	color: #ffffff;
+	text-align:center;
+	text-decoration: underline;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+	#price_link h1 {
+		font-size: 160%;
+	}
+	
+#topSection {
+  padding-bottom: 0;
+  min-height: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color:#373737;
+  text-align: center;
+  min-height: 672px;
+  line-height: 0.5;
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align:baseline;
+  box-sizing: border-box;
+  display:block;
+}
+	#topSection input {
+		border: medium none;
+		color: gray;
+		font-family: times new roman;
+		font-size: 16px;
+		font-style: italic;
+		margin-bottom: 10px;
+		padding: 8px 10px;
+		width: 300px;
+		border-radius: 20px;
+		-moz-border-radius: 20px;
+		-webkit-border-radius: 20px;
+	}
+		#topSection input.email { background: #fff }
+		#topSection input.name { background: #fff}
+		#topSection input[type="submit"] {
+			background: #339933;
+			color: #fff;
+			cursor: pointer;
+			font-size: 24px;
+			width: 35%;
+			padding: 8px 0;
+
+		}
+			#topSection input[type="submit"]:hover { 
+				text-decoration:underline;				
+			}
+
+.greenBand {
+  color:#fff;
+  background-color:#55ac3a;
+  direction:ltr;
+  line-height:1.6;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align:baseline;
+  box-sizing: border-box;
+  display:block;
+  position:relative;
+  margin-left:auto;
+  margin-right:auto;
+}
+	
+.tourBkgd {
+	background-color: #3aa497;
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+	.tourBkgd:hover {
+		text-decoration:underline;	
+	}
+
+#tour_link {
+	background: #3aa497;
+	color: #ffffff;
+	text-align:center;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	padding: 25px, 25px, 25px, 25px;
+}
+	#tour_link h1 {
+		font-size: 160%;
+	}
+
+.testimonialBkgd {
+	background-color: #fff;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: #eb4d5c;
+	text-align:center;
+	text-decoration: none;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	font-size:160%;
+	font-weight:50;
+	line-height:1.6;
+}
+	.testimonialBkgd h1 {
+		font-size: 160%;
+	}
+	.testimonialBkgd a:link {
+		color: #eb4d5c;
+	}
+	.testimonialBkgd a:visited {
+		color: #eb4d5c;
+	}
+	.testimonialBkgd a:hover {
+		color: #eb4d5c;
+	}
+	.testimonialBkgd a:active {
+		color: #eb4d5c;
+	}
+
+.testimonialQuotes {
+	color:#635232;
+	max-width:96%;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	margin:auto;
+	line-height:1.6;
+}
+	
+.customerBkgd {
+	background-color: #439fe0;
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+	.customerBkgd:hover {
+		text-decoration:underline;	
+	}
+
+#customer_link {
+	background: #439fe0;
+	color: #ffffff;
+	text-align:center;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+	#customer_link h1 {
+		font-size: 160%;
+	}
+
+.LogoCNCStyleRed {	
+	color: #eb4d5c;
+	max-width:96%;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	font-size:180%;
+	font-weight:50;
+	text-align:center;
+	margin:auto;
+}
+	.LogoCNCStyleRed:link {
+		text-decoration:underline;
+		color: #eb4d5c;
+	}
+	.LogoCNCStyleRed:visited {
+		text-decoration:underline;
+		color: #eb4d5c;
+	}
+	.LogoCNCStyleRed:hover {
+		text-decoration:underline;
+		color: #eb4d5c;
+	}
+	.LogoCNCStyleRed:active {
+		text-decoration:underline;
+		color: #eb4d5c;
+	}
+
+.closingForm {
+  background-image: url("http://www.cnccookbook.com/img/Art/TBlurred.jpg");
+  padding-bottom: 0;
+  min-height: 0;
+  line-height:1.0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color:#000000;
+  text-align: center;
+  min-height: 672px;
+	color:#E0E0E0;
+	text-align:center;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+	.closingForm h1 {
+		font-size: 160%;
+	}
+	.closingForm input {
+		border: medium none;
+		color: gray;
+		font-family: times new roman;
+		font-size: 16px;
+		font-style: italic;
+		margin-bottom: 10px;
+		padding: 8px 10px;
+		width: 300px;
+		border-radius: 20px;
+		-moz-border-radius: 20px;
+		-webkit-border-radius: 20px;
+	}
+		.closingForm input.email { background: #fff }
+		.closingForm input.name { background: #fff}
+		.closingForm input[type="submit"] {
+			background: #339933;
+			color: #fff;
+			cursor: pointer;
+			font-size: 24px;
+			width: 35%;
+			padding: 8px 0;
+
+		}
+			.closingForm input[type="submit"]:hover { 
+				text-decoration:underline;				
+			}
+
+.smallCenter {
+	margin-left:auto;
+	margin-right:auto;
+	width: 118px;
+	text-align:center;
+	border-top-width: 2px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-color: #595959;
+}
+
+.center {
+	color: #b2b2b2;
+	text-align:center;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	font-size: 1em;
+	line-height: 1.6;
+	margin: 10px 0 0;
+}
+
+.LogoCNCStyleBlack1 {	font-family: Arial, Helvetica, sans-serif;
+	font-size: 140%;
+	color: #000000;
+	font-weight: bold;
+}
+#landing #centerContainer #topSection .LogoCNCStyleBlack {
+}
+
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+<script type="text/javascript" src="js/cncheader.js"></script>
+
+<!-- SumoMe Listbuilder Email Exit Intent -->
+<script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" >
+
+<!-- Google -->
+<meta name="google-site-verification" content="_7vbS5Ds4mm66MBoWsSBSZCLEM_WzxbIESh_gjqqLpQ" >
+
+</head>
+
+
+
+<body id="landing" bgcolor="#FFFFFF">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=377247162305545";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- script type="text/javascript">multitouch();</script-->
+
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+						</li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left; padding-left:1em;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.png" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" max-width="100%" height="auto" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+</tr>
+</table>
+  <div id="centerContainer">
+  <!-- #BeginEditable "Body" -->
+    <p align="center" class="LogoCookbookStyle">CNCCookbook</p>
+    <p align="center" class="BlogTitle" style="color:#000000;">Live Feeds and Speeds Workshop <strong>Special Offer</strong></p>
+    <p align="center" class="BlogTitle" style="color:#339933; text-decoration:underline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p align="center" class="BlogTitle" style="color:#339933; text-decoration:underline">&nbsp;</p>
+    <p align="center" class="BlogTitle" style="color:#000000; font-size:34px">7 Advanced Feeds and Speeds Hacks That'll</p>
+    <p align="center" class="LogoCookbookStyle" style="font-size:34px">Maximize Your CNC Results</p>
+    <p align="center" class="BodyText">&nbsp;</p>
+    <p align="center"><img src="img/Art/Workshop/AttendCost.jpg" width="264" height="57" alt=""/></p>
+    	<table width="90%" border="0" align="center">
+    	  <tbody>
+    	    <tr>
+    	      <td><p align="left" class="BodyText" style="background:url(img/Art/Check-Mark.jpg) no-repeat; background-position:0 5px; padding-left:40px;">Includes 1 year <strong>free</strong> subscription to G-Wizard Calculator. $79 value.</p></td>
+  	      </tr>
+    	    <tr>
+    	      <td><p align="left" class="BodyText" style="background:url(img/Art/Check-Mark.jpg) no-repeat; background-position:0 5px; padding-left:40px;">I am so confident you<strong> will love this</strong> workshop I'm giving a 30-day money back guarantee.</p></td>
+  	      </tr>
+    	    <tr>
+    	      <td><p align="left" class="BodyText" style="background:url(img/Art/Check-Mark.jpg) no-repeat; background-position:0 5px; padding-left:40px;"><strong>If you don't feel it was worth it</strong>, simply email sales@cnccookbook.com for a full refund, no questions asked.</p></td>
+  	      </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td><div align="center" class="BodyText" style="background-color:#339933; color:#ffffff; font-size:35px;">Just $67.99 Today</div></td>
+  	      </tr>
+    	    <tr>
+    	      <td><div align="center">
+    	        <p class="BlogTitle" style="background-color:#339933; color:#ffffff; border:3px solid #FFFFFF; border-radius: 38px;">Click to Reserve Your Seat For Just $67.99    	      </p>
+    	      </div></td>
+  	      </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td><div align="center"><span class="BlogTitle" style="color:#000000; font-size:34px">Learn All <strong>7  Feeds and Speeds Hacks </strong>With My One-Time Only Live Workshop</span></div></td>
+  	      </tr>
+    	    <tr>
+    	      <td><div align="center"><span class="BlogTitle" style="color:#339933; text-decoration:underline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div></td>
+  	      </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td><span class="BodyText">There's a lot of <strong>bad advice</strong> on the Internet about Feeds and Speeds. I'll show you how to get what you want from your Feeds and Speeds using our <strong>exclusive industry-leading G-Wizard Feeds and Speeds Calculator</strong></span>.</td>
+  	      </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td><span class="BodyText">I'm doing this<strong> one-time only Live online workshop</strong> on Thursday May 26th where I'm going to teach you all 7 of my Advanced Feeds and Speeds Hacks.</span></td>
+  	      </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td><span class="BodyText">These hacks will give you an <strong>unfair advantage</strong> with Feeds and Speeds. They'll save you Time, Money, and Broken Tools.</span></td>
+  	      </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td><span class="BodyText">The workshop is suited to <strong>CNC Professionals and Hobbyists</strong>--we'll start slow and go all the way to the advanced stuff. Plus you can ask questions during the workshop.</span></td>
+  	      </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td><span class="BodyText">Here's a sneak peak at what you're going to learn on this workshop:</span></td>
+  	      </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+  	      </tr>
+  	      </tbody>
+  	  </table>
+    	<div align="center"></div>
+    	<table width="90%" border="0" align="center">
+    	  <tbody>
+    	    <tr>
+    	      <td width="125"><img src="img/Art/Teardrop1.jpg" width="124" height="120" alt=""/></td>
+    	      <td width="100%" style="font-size:32px; color:#339933; line-height:40px;"><p class="BlogTitle"><strong>Feeds and Speeds Hack #1</strong></p>
+   	          <p class="BodyText" style="color:#000; font-size:45px; line-height:50px;">Optimize for <strong>Your Machine</strong></p></td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2" class="BodyText"><p>Every machine is different, and those difference matter.   If you're a Hobbyist running a lightweight machine, you don't have the rigidity of a Pro machine.  If you've got high pressure through spindle coolant, you can do things others only dream of. </p>
+   	          <p> You need to <strong>dial in the specific characteristics of your machine</strong> before you can start to optimize your Feeds and Speeds.  I'll show you exactly how to do that.</p></td>
+   	        </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td><img src="img/Art/Teardrop2.jpg" width="124" height="120" alt=""/></td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;"><p class="BlogTitle"><strong>Feeds and Speeds Hack #2</strong></p>
+              <p class="BodyText" style="color:#000; font-size:45px; line-height:50px;">Optimize for <strong>Your Tooling</strong></p></td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2" class="BodyText"><p>There are dozens of specific types of tooling and thousands of different models out there.  Each one was designed and optimized for a specific purpose.  Each one needs to be dialed in based on its idiosyncracies and capabilities.</p>
+   	          <p>G-Wizard Calculator handles more tool types than any other feeds and speeds solution out there.    I'll show you how to <strong>dial in all of your tooling</strong> to achieve everything the manufacturer intended and everything you need for your jobs.</p></td>
+   	        </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td><img src="img/Art/Teardrop3.jpg" width="124" height="120" alt=""/></td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;"><p class="BlogTitle"><strong>Feeds and Speeds Hack #3</strong></p>
+              <p class="BodyText" style="color:#000; font-size:45px; line-height:50px;"><strong>Maximizing</strong> <strong>Tool Life</strong></p></td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2"><p class="BodyText">There's a lot of <strong>bad advice</strong> on the Internet about this, and a lot of factors most CNC'ers don't even think about where Tool Life is concerned:</p>
+   	          <p class="BodyText">- What's the role of coolant?</p>
+   	          <p class="BodyText">- How does Tool Deflection affect my Tool Life?</p>
+   	          <p class="BodyText">- What about spindle runout?   </p>
+   	          <p class="BodyText">- What parameters can I change today to radically improve my Tool Life?</p>
+   	          <p class="BodyText">I'll show you how to <strong>master all of these critical Tool Life parameters to create the Ultimate Tool Life Hacks</strong> for your needs.</p></td>
+   	        </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td><img src="img/Art/Teardrop4.jpg" width="124" height="120" alt=""/></td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;"><p class="BlogTitle"><strong>Feeds and Speeds Hack #4</strong></p>
+              <p class="BodyText" style="color:#000; font-size:45px; line-height:50px;"><strong>Maximizing</strong> <strong>MRR</strong> through Cut Depth and Cut Width</p></td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2" class="BodyText">The biggest <strong>opportunity to improve your Material Removal Rates</strong> and <strong>reduce overall cycle time</strong> starts with tool and toolpath selection, but after that it has to do with finding the<strong> optimum combination of Cut Depth and Cut Width</strong>. This is an opportunity that is almost totally neglected by most CNC'ers, but G-Wizard Calculator provides the most powerful tools available to maximize the potential.</td>
+   	        </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td><img src="img/Art/Teardrop5.jpg" width="124" height="120" alt=""/></td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;"><p class="BlogTitle"><strong>Feeds and Speeds Hack #5</strong></p>
+              <p class="BodyText" style="color:#000; font-size:45px; line-height:50px;">Take Advantage of <strong>HSM Toolpaths</strong></p></td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2" class="BodyText"><p>HSM Toolpaths are almost magical in their ability to improve efficiency and tool life, but there is also considerable magic in getting the most advantage from them.  I'll show you how to use G-Wizard to maximize your HSM opportunities.</p>
+   	          <p>While we're at it, we'll look at some other sneaky stuff like how to calculate how much to slow down in corners or how to figure out plunge milling feeds and speeds.</p></td>
+   	        </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td><img src="img/Art/Teardrop6.jpg" width="124" height="120" alt=""/></td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;"><p class="BlogTitle"><strong>Feeds and Speeds Hack #6</strong></p>
+              <p class="BodyText" style="color:#000; font-size:45px; line-height:50px;">Go <strong>Faster</strong> than  the Manufacturer Suggests</p></td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2"><p class="BodyText">You can beat the manufacturer's feeds and speeds and the feeds and speeds recommended by any calculator--even our G-Wizard.  But you can't do it all of the time. The trick is knowing exactly when and by how much you can jump ahead in the race.   </p>
+   	          <p class="BodyText">I'll show you how to use Knowledge-Based Machining to map out optimal strategies that are ideal for your machines, tooling, and best practices to create a nearly unbeatable competitive advantage.</p></td>
+   	        </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td><img src="img/Art/Teardrop7.jpg" width="124" height="120" alt=""/></td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;"><p class="BlogTitle"><strong>Feeds and Speeds Hack #7</strong></p>
+              <p class="BodyText" style="color:#000; font-size:45px; line-height:50px;">Work Out of <strong>Impossible Combinations</strong></p></td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2"><p class="BodyText">Nasty materials.   Spindles that won't go slow enough.  Feedrates that exceed your machine's fastest motion.   Rigidity issues with tools, machine, and materials.  Chatter that just won't stop.   </p>
+   	          <p class="BodyText">We've all had bad days when it seemed like we had to move forward productively against impossible odds.  I'll show you a toolbox full of techniques to add to your arsenal to help you work past these problems.</p></td>
+   	        </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2"><div align="center">Your Questions Answered</div></td>
+   	        </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">When is the workshop?</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">How much is the workshop?</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">Will there be a chance to ask you questions on the workshop?</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">How long will the workshop be?</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">How do I access the workshop after signing up?</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">If I miss the LIVE workshop, will I get a recording?</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">Seriously, if this information and software is so valuable, why are you only charging $67.99 for the live workshop and the software?</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">How long will it take me to implement all this in my shop?</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">&nbsp;</td>
+  	      </tr>
+    	    <tr>
+    	      <td colspan="2">&nbsp;</td>
+   	        </tr>
+    	    <tr>
+    	      <td>&nbsp;</td>
+    	      <td style="font-size:32px; color:#339933; line-height:40px;">&nbsp;</td>
+  	      </tr>
+  	      </tbody>
+  	  </table>
+    	<p align="center">&nbsp;</p>
+    	
+    <p>&nbsp;</p>
+  <!-- #EndEditable -->
+  </div>
+             
+    <!-- Mouseflow Heatmap snippet -->   
+    <script type="text/javascript">
+        var _mfq = _mfq || [];
+        (function () {
+        var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
+        mf.src = "//cdn.mouseflow.com/projects/b6a62468-145e-4624-950e-55a2afe8c7c5.js";
+        document.getElementsByTagName("head")[0].appendChild(mf);
+      })();
+    </script>                
+
+           
+</body>
+
+<!-- #EndTemplate --></html>
+

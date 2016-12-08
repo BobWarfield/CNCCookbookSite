@@ -1,0 +1,440 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCGWCDocPage.dwt" --><!-- DW6 -->
+
+<head>
+
+<!-- #BeginEditable "doctitle" --> 
+<title>G-Wizard Machinist's Calculator:  Feeds and Speeds Mini-Calcs</title>
+<style type="text/css">
+<!--
+.SectionTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: #339933;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.style1 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+<style type="text/css">
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 14pt}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.Tagline {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #0;
+	font-size: medium;
+	vertical-align: middle;
+}
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+<!-- SumoMe Listbuilder Email Exit Intent -->
+<script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" />
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">
+  multitouch();
+</script>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr></tr>
+<tr>
+  <td height="68" colspan="4" valign="middle" bordercolor="0" class="Tagline">
+  
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/LogoBitmap30High.jpg" alt="CNCCookbook: Software and Information for Macihnists" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="32" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+  
+  </td>
+</tr>
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+<tr class="LeftNav">
+  <td width="232" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0"><table width="65%"  border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><div align="center">
+        <p><a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"><img src="img/Ads/GWAd05152011.gif" width="120" height="90" alt="G-Wizard Machinist's Calculator" longdesc="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"></a></p>
+        <p><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm"> <img src="img/Ads/FeedsSpeedsAd.jpg" width="120" height="69" alt="Feeds and Speeds Cookbook"></a></p>
+      </div></td>
+    </tr>
+  </table>
+    <p>
+      <!-- Place this tag where you want the +1 button to render -->
+        <g:plusone></g:plusone>
+    </p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="+1" color="#66CC00">G-Wizard 
+      User Guide</font></b></p>
+    <p align="center" class="BodyText"><a href="GWCUIntro.html"><strong>GW Calc Video University</strong></a></p>
+    <p align="center" class="BodyText"><strong><a href="GWCalcGettingStarted.htm">Getting Started</a></strong></p>
+    <p align="center" class="BodyText"><strong><a href="GWCalcHowToArticles.html">How-To Articles</a></strong></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalculator.htm">Calculator</a></b></font></p>
+    <p align="center" class="BodyText"><a href="GWCalcCADCAMWizard.htm"><strong>CADCAM Wizard</strong></a></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcFeedsSpeeds.htm">Feeds 
+      and Speeds</a></b></font></p>
+    <p align="center" class="BodyText"><a href="GWCalcBeginnerFeedsSpeedsExamples.htm"><strong>Examples for Beginners</strong></a></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCutOptimizer.html">Cut Optimizer</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcMiniCalcs.htm">Mini-Calcs</a></b></font></p>
+    <p align="center" class="BodyText"><strong><a href="GWCalcCutKB.html">Cut KB</a></strong></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcGeometry.htm">Geometry</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcThreads.htm">Threads</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcQuickRef.htm">Quick 
+      Reference</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcSetup.htm">Setup</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWTips.html">Tips and Goodies</a></b></font></p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="GWTrouble.htm">Troubleshooting</a></font></b>    </p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="GWCustTools.html">Download Tool Data</a></font></b></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><a href="http://www.cnccookbook.proboards.com/index.cgi" class="BodyText"><strong>User's Club</strong></a></p>
+    <p align="center"><a href="CCGWizardChangeLog.htm"><font face="Arial, Helvetica, sans-serif"><b>G-Wizard 
+      Change Log</b></font></a></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWizard/GWizardInstall1SC.html">G-Wizard 
+      Install</a></b></font></p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="CCGWizardE.html">GWizard G-Code Editor</a></font></b></p>
+<p>
+  <!-- Place this tag where you want the +1 button to render -->
+<p>
+  <g:plusone></g:plusone>
+  </p>
+    <!-- AddThis Button BEGIN -->
+    <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+    <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=cnccookbook"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=cnccookbook"></script>
+    <!-- AddThis Button END -->
+</p>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    gaTrack: true,
+    gaId: 'UA-1060932-2'
+  }, 'google_translate_element');
+}
+  </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</p>
+</td>
+</tr>
+<tr>
+  <td colspan="7" align="left" valign="top" bgcolor="#FFFFFF">
+  <div id="centerContainer">
+  <!-- #BeginEditable "Body" --> 
+      <p><font size="+4" color="#339933">G-Wizard: Feeds 
+        and Speeds Mini-Calcs</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><a href="FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=MiniCalcs">G-Wizard's feeds and speeds 
+        calculator</a> has a set of functions called &quot;Mini-Calcs&quot; that <span class="style1">are little popup feeds and speeds calculators for special situations</span>:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- Surface Finish:  Turning surface finish</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">-  </font>Interpolate:  Circular and Helical Interpolation of holes and bosses</p>
+      <p class="BodyText">- Ramp:  Feeds and Speeds for ramping into a cut</p>
+      <p class="BodyText">- Plunge:  Plunge Roughing speeds and feeds</p>
+      <p class="style1">The Mini-Calcs are accessed directly under the Tool Definition (where you specify tool diameter, flutes, and so on):</p>
+      <p align="center" class="style1"><img src="img/GWizard/GWMiniCalcs.jpg" width="800" height="706" alt="G-Wizard Mini-Calcs"></p>
+      <p align="center" class="style1">The three Mini-Calc buttons are right under where you specify Tool Diameter and Flutes...      </p>
+      <p>&nbsp;</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Lathe 
+        Surface Finish </font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">For turning operations, 
+        you can pop up a surface finish box to determine feedrates based on desired 
+        surface finish given a particular cutter nose radius.</font></p>
+      <p align="center" class="BlogTitle"><img src="img/GWizard/GWLatheFinish.jpg" width="800" height="673" alt="Lathe Surface Finish"></p>
+<p align="left" class="BlogTitle"> Ramping</p>
+<p align="center" class="BlogTitle"><span class="style1"><img src="img/GWizard/GWMiniCalcs.jpg" width="800" height="706" alt="G-Wizard Mini-Calcs"></span></p>
+<p align="center" class="BodyText">Initial scenario for ramping...</p>
+<p class="style1">From the screen shot above you can see I've set up an aggressive machining scenario in 6061 aluminum.  I've got a 1/2&quot; 3-flute TiAlN Endmill selected and it's a serrated &quot;corncob&quot; rougher to boot.   I want to set up my CAM program to cut a pocket on a part, and I've decided my entry to the pocket will be via ramp.  I'll show how to use the Ramp Mini-Calc to solve a couple of interesting problems. </p>
+<p class="style1">First, let's say I just plan to ramp down at some &quot;standard&quot; rate, say a 3 degree angle.  What should my feeds and speeds be on that ramp?   You should adjust your feeds and speeds slightly when ramping because its harder than making a level cut.  Let's say we'll be cutting our pocket at a 1/2&quot; depth.  Set up  for a full slot cut, because the ramp will be descending into bare metal.  Let's also set the depth of cut to be the maximum depth of the ramp in one pass. If we need to go deeper to get down to full cut depth, the ramp will zig zag back and forth. I'll use a 1/2&quot; depth of cut at full ramp. Here is the Ramp Mini-Calc with all that keyed in:</p>
+<p align="center" class="style1"><img src="img/GWizard/GWRampMC.jpg" width="500" height="311" alt="Ramping the Cut Down 3 Degrees"></p>
+<p align="center" class="style1">Ramping the Cut Down 3 Degrees...</p>
+<p align="left" class="style1">As you can see, with a 3 degree ramp, the adjustment in feedrate is pretty minor, from 108.6'ish IPM down to 106.  No biggie, in fact we could probably just choose to ignore it unless we're running a really max'ed out feedrate we've determined through trial and error to be right at the ragged edge.</p>
+<p align="left" class="style1">What if we want to see what angle is needed to get all the way down the ramp in say 2&quot; of travel?  No problem.  Set your depth of cut as before to the bottom of the ramp, bring up the Ramp Mini-Calc and press &quot;From Cut Depth&quot;.  You'll see a new control appear that wants to know the travel length.  We're trying to get there in 2&quot;, so fill that in:</p>
+<p align="center" class="style1"><img src="img/GWizard/GWRampMC2.jpg" alt="" width="500" height="303"></p>
+<p align="center" class="style1">You need a 14 degree angle to ramp down 1/2&quot; in a 2&quot; pass...</p>
+<p align="left" class="style1">The Ramping Mini-Calc figures the ramp angle at 14 degrees. This is more aggressive than the 3 degrees we had earlier, so we have to cut our feedrate from 108.6 IPM down to about 97 IPM. That's starting to be worth worrying about in the CAM program. You can just click &quot;Adjust Feedrate&quot; and the Mini-Calc will override G-Wizard's default calculated feedrate based on the new information on ramp angle.</p>
+<p align="left" class="style1">This is a probably a good time to mention the warning you see there.  Not all cutters can tolerate arbitrary ramp angles.  For example, let's say we had a 90 degree ramp angle. That would be a straight plunge.  Obviously if you don't have a center-cutting endmill, that's a no-no!</p>
+<p align="left" class="style1">Insertable tooling will have a ramp angle limitation that you can find in the manufacturer's catalog.  It's often pretty limiting, so be sure you don't find out the hard way you have exceeded it!</p>
+<p class="style1"><span class="BlogTitle">Interpolated Bosses and Holes</span></p>
+<p align="left" class="style1">What about the Interpolation Mini-Calc?   Let's check it out:</p>
+<p align="left" class="style1">Suppose you want to use the same basic setup to interpolate a 2&quot; hole.  Click on the Interpolate Mini-Calc and here's what you'll see:</p>
+<p align="center" class="style1"><img src="img/GWizard/GWInterpMC.jpg" width="500" height="441" alt="Helical and Circular Interpolation Calculator"></p>
+<p align="center" class="style1">The Helical and Circular Interpolation Mini-Calc...</p>
+<p align="left" class="style1">There's quite a bit more going on here as you can see. First, you'll need to specify whether you're machining a hole or a boss.  This determines whether the endmill is going around an ID or an OD diameter.  In addition, the checkbox tells whether Tool Comp is in use, in which case the toolpath is the cutting edge rather than center of tool.   We also need to tell whether we will be doing a Helical Interpolation (going down the hole in a spiral) or a Circular Interpolation (just machine from center out without changing the Z depth).   Lastly, we enter our Feature Diameter, which we said would be a 2&quot; hole. </p>
+<p align="left" class="style1">Now the Mini-Calc displays a series of intermediate results:</p>
+<p align="left" class="style1">-  The raw unadjusted feedrate coming in from G-Wizard is 108.6 IPM again.</p>
+<p align="left" class="style1">- Since we're doing a Helical Interpolation, there is a ramp angle. We figured it out from the Cut Depth parameter. You could also have used the ramp calculator to go from degrees to cut depth.</p>
+<p align="left" class="style1">-  We need to adjust for the geometry of both the ramp and the fact that unless we have tool comp on, our feedrate is based on a radius that is either larger (boss) or smaller (hole) than our feature.  As we can see, the geometry adjust feedrate is signicantly different in this case, coming in at 77.8 IPM.</p>
+<p align="left" class="style1">What's all this business of acceleration?  Thought you'd never ask!</p>
+<p align="left" class="style1">Not long ago I was chatting with a moldmaker about the pros and cons of interpolation versus a honking indexable drill to open up a hole before pocketing. He wasn't having any of it because he needed a bunch of hole sizes in his molds and he needed them to be done accurately via interpolation.  And, he wanted G-Wizard to do the interpolation calculations, and BTW, the feedrates it was giving him were too fast for his machine to interpolate accurately (I related the story in more detail in <a href="http://cnccookbook.wordpress.com/2011/02/16/interpolate-or-twist-drill-part-deaux-making-holes-not-pockets/">a prior blog post</a>).  After thinking about the issue for quite some while, I finally realized the answer to the accuracy issue was in figuring out the acceleration required for the op and making sure it was within the machine's capabilities.</p>
+<p align="left" class="style1">As you can see, the operation depicted by the screen shot requires 0.03 g's of acceleration, which is 4034.5 inches per minute per minute. That's not very challenging for most machines.  A high-end machine purpose-built for HSM with linear servos may be able to do 5 g's of acceleration.  The vast majority of machines are only capable of a tiny fraction of that kind of performance.  You can check your manufacturer's specifications, but I have more bad news--the exact acceleration capabilities can vary fairly significantly from one machine to the next, particularly if they're not right off the assembly line.</p>
+<p align="left" class="style1">The thing to do if you want to be able to interpolate holes and other features accurately is to measure your machine's capability in this regard.  Mastercam <a href="http://www.cnccookbook.com/img/92554402-hfapp-v8.doc">has a document</a> out that walks through how to go about this with their software.  Or, you can use G-Wizard's Interpolation Mini-Calc to figure it out.  Here's how:</p>
+<p align="left" class="style1">1.   Pick a test diameter.  Smaller is better because its easier to generate higher accelerations going round and round real fast in a little hole!</p>
+<p align="left" class="style1">2.  Set up the Interpolation Mini-Calc for circular interpolation on your small hole. </p>
+<p align="left" class="style1">3.  Now go run tests on your machine until you've figured out the fastest feedrate that interpolates that hole accurately.  Plug that feedrate into the Mini-Calc and it'll tell you how many g's that was.    Write that down!  Eventually I will add a field to the Machine Profiles in G-Wizard so it'll remember it for future interpolation calculations.</p>
+<p align="left" class="style1">Just as an example, let's say we machine 1/2&quot; bosses with a 1/4&quot; EM.  I like bosses for these tests because we can get a micrometer on one to accurately measure it.  Holes are more trouble.  Given a Cut Depth of 0.2&quot; and a 15% of diameter Cut Width for that boss, G-Wizard has us going round and round at 178 IPM on our 7500 rpm limited spindle.  That gives us an acceleration of 0.3 g's.  Believe it or not, that's probably heading into the pain threshold for an older VMC that doesn't have the swiftest rapids in the Wild West.   So let's say we wind up having to slow it down to 120 IPM before we hit our tolerances.  With just a little fiddling in G-Wizard around the Interpolation Calculator, we discover that means our limit is 0.15 g's. </p>
+<p align="left" class="style1">If you're just hogging a hole to get a pocket started, don't sweat the acceleration limits. There is a checkbox to turn the feature off.</p>
+<p align="left" class="style1">Incidentally, going around a corner on a toolpath will be subject to the same kinds of acceleration limits.  You'll want to map these limits out for a couple of hole sizes to see how stable they are for your machine.  Keep careful notes, they'll come in handy when you're trying to dial in that high dollar job.</p>
+<p align="left" class="BlogTitle">Plunge Roughing </p>
+<p class="style1">Plunge Roughing is an extremely effective roughing strategy for cases where rigidity is limited.  This can be because the machine is light or because the reach needed is very long.     In Plunge Roughing, we mill straight down.  One could regard chain drilling with a cleanup pass as an early form of plunge roughing.  These days, we can plunge rough with twist drills, but it works better with milling cutters as the drills don't like partial holes.   </p>
+<p class="style1">Let's say we have to mill a small pocket that is 2&quot; deep.  Moreover, the geometry is such that this has to be done with a 1/2&quot; endmill.   That's a recipe for rigidity problems as we can see when we first dial it up in G-Wizard:</p>
+<p align="center" class="style1"><img src="img/GWizard/NoPlungeFeeds.jpg" width="800" height="699" alt="No plunge feeds"></p>
+<p align="center" class="style1">Deflection is huge with a 2.25&quot; stickout on a 1/2&quot; endmill...</p>
+<p align="left" class="style1">The deflection is huge--0.0034&quot;.   It's tough to deal with a 2.25&quot; stickout on a 1/2&quot; EM, even though we're only cutting 1/2&quot; deep per layer.  If we run the Cut Optimizer and lock both Cut Width and Cut Depth, it wants to back the feed off <span class="BodyText">all the way to 25 IPM to get rid of the deflection.</span></p>
+<p align="left" class="BodyText">Let's try Plunge Roughing:</p>
+      <p align="center" class="BodyText"><img src="img/GWizard/PlungeRoughMC.jpg" width="800" height="532" alt="Plunge Roughing Feeds and Speeds"></p>
+      <p align="center" class="BodyText">1/8&quot; by 1/8&quot; stepover gives us an 84 IPM feedrate...</p>
+      <p align="left" class="BodyText">The Plunge Roughing Mini-Calc wants 2 parameters: &quot;Step Up&quot; and &quot;Step Over&quot;.   Think of the operation as creating a matrix of plunges.   &quot;Step Up&quot; is the hole separation in the Y axis and &quot;Step Over&quot; is the separation on the X.   In truth, you could reverse those, it simply wants an idea of your stepover in two directions.   We've chosen 1/8&quot; for this operation.           In that scenario, we can run an adjusted feedrate of 84.6 IPM, and if we click &quot;Adjust Feedrate&quot; it'll punch that back into Feeds and Speeds as an override.</p>
+      <p align="left" class="BodyText">Note that the Plunge Rough feedrate is a little slower than the Non-Plunge.  Most cutters are not dedicated Plunge cutters and won't cut quite as fast that way.  It's okay though--we're still way ahead because we don't have to slow down to 25 IPM to get rid of tool deflection.</p>
+      <p align="left" class="BodyText">Why is deflection not a problem for plunge?  Think of a pencil.  Stand an unsharpened pencil vertically on a surface plate and try to break it by pressing down.  It's darned difficult!  But anyone can break a pencil in half by turning it sideways.   With Plunge Roughing, the forces are concentrated along Z instead of X and Y.  It's a much more rigid dimension.</p>
+      <p align="left" class="BodyText">How should you pick Step Up and Step Over?  There are a lot of schools of thought on it.   G-Wizard's Plunge Roughing calculations work by starting from a normal plunge rate and giving credit for how much the cut is &quot;unshrouded&quot;.   If the holes are just touching (tangent), it's just a hole and you have to run a normal plunge rate, which is quite slow.  The closer together the holes, the more the unshrouding, the better the chip clearance and cooling, and the faster we can go.</p>
+      <p align="left" class="BodyText">It's worth noting that entry needs to be handled differently than after you've started plunging along.   The first hole has no others around it, and hence no clearance.  Run it as a normal hole and not at the Plunge Rough feedrates!</p>
+      <p align="left">&nbsp;</p>
+      <p align="left" class="BlogTitle">Still looking for faster, better, cuts?   Check out our <a href="GWCalcCutKB.html">Cutting Knowledge Base, a tool you seldom see except on the most expensive CAM programs...</a></p>
+      <p align="left" class="BlogTitle">&nbsp;</p>
+      <p align="center"><a href="FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=MiniCalcs"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" id="Image21" border="0"></a><span class="style1">&nbsp;</span></p>
+<p align="left">&nbsp;</p>
+      <!-- #EndEditable -->
+  </div>
+  </td>
+</tr>
+<!-- Begin Site Map -->
+<tr>
+  <td width="232" valign="top" bgcolor="#f0f0f0" ><p class="BodyText">&nbsp;</p></td>
+  <td width="283" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html"></a></strong> <strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/"></a></strong></p>
+    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong></p>
+    <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational</a></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></p></td>
+  <td width="223" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/techniques/">Techniques</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/beginner/">Beginner</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/cool/">Cool</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/cncprojects/">Projects</a></p>
+    <p class="BodyText"><strong></strong></p>
+    <p class="BodyText"></p>
+    <p>&nbsp;</p></td>
+  <td width="321" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Cookbooks</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/beginner/">CNC Beginner Articles</a></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a></p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a></strong></p></td>
+  <td width="339" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMachine.htm">Machines</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://www.cnccookbook.com/CCMillCNCConversionHome.html">CNC Mill Retrofit</a></strong></p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://www.cnccookbook.com/CCPlasmaCNCHome.htm">Plasma Table</a></strong></span></p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="BodyText"><strong><a href="http://www.cnccookbook.com/MTWeldingHome.htm">Welding</a></strong></span></p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p></td>
+  <td width="333" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong>Resources</strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCSearch.html">Machinist's Search</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCVideosHome.htm">Videos</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Online Groups</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesInd.htm">Individuals</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesRef.htm">Reference Data</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesBooks.htm">Books</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesSup.htm">Suppliers</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesBrands.htm">Tool Brands</a></strong></p></td>
+  <td width="650" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong>Workshop</strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a></strong></p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://cnccookbook.uservoice.com/">Support</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCManufacturers.html">Customers</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPartners.html">Partners</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHistory.htm">Our History</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">Cheapskate Page</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></strong></p></td>
+  </tr>
+<tr>
+  <td colspan="5" bgcolor="#f0f0f0" >
+      <!-- Place this tag where you want the badge to render -->
+    <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;"/></a></strong></td>
+  <td colspan="2" bgcolor="#f0f0f0" ><div align="left">
+    <table width="100%" border="0">
+      <tr>
+        <td>&nbsp;</td>
+        <td><div align="right">All material &copy; 2010-2012, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a></div></td>
+        </tr>
+      </table>
+  </div></td>
+</tr>
+<!-- End Site Map -->
+
+</table>
+</body>
+
+<!-- Kissmetrics tracking snippet -->
+<script type="text/javascript">var _kmq = _kmq || [];
+var _kmk = _kmk || '2b958799075c725d4ce95572a0b6e967ecafd184';
+function _kms(u){
+  setTimeout(function(){
+    var d = document, f = d.getElementsByTagName('script')[0],
+    s = d.createElement('script');
+    s.type = 'text/javascript'; s.async = true; s.src = u;
+    f.parentNode.insertBefore(s, f);
+  }, 1);
+}
+_kms('//i.kissmetrics.com/i.js');
+_kms('//scripts.kissmetrics.com/' + _kmk + '.2.js');
+</script>
+
+
+<!-- #EndTemplate --></html>
+

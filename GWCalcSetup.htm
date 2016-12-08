@@ -1,0 +1,515 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCGWCDocPage.dwt" --><!-- DW6 -->
+
+<head>
+
+<!-- #BeginEditable "doctitle" --> 
+<title>G-Wizard Setup User Guide</title>
+<style type="text/css">
+<!--
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+<style type="text/css">
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 14pt}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.Tagline {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #0;
+	font-size: medium;
+	vertical-align: middle;
+}
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+<!-- SumoMe Listbuilder Email Exit Intent -->
+<script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" />
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">
+  multitouch();
+</script>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr></tr>
+<tr>
+  <td height="68" colspan="4" valign="middle" bordercolor="0" class="Tagline">
+  
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/LogoBitmap30High.jpg" alt="CNCCookbook: Software and Information for Macihnists" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="32" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+  
+  </td>
+</tr>
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+<tr class="LeftNav">
+  <td width="232" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0"><table width="65%"  border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><div align="center">
+        <p><a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"><img src="img/Ads/GWAd05152011.gif" width="120" height="90" alt="G-Wizard Machinist's Calculator" longdesc="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"></a></p>
+        <p><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm"> <img src="img/Ads/FeedsSpeedsAd.jpg" width="120" height="69" alt="Feeds and Speeds Cookbook"></a></p>
+      </div></td>
+    </tr>
+  </table>
+    <p>
+      <!-- Place this tag where you want the +1 button to render -->
+        <g:plusone></g:plusone>
+    </p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="+1" color="#66CC00">G-Wizard 
+      User Guide</font></b></p>
+    <p align="center" class="BodyText"><a href="GWCUIntro.html"><strong>GW Calc Video University</strong></a></p>
+    <p align="center" class="BodyText"><strong><a href="GWCalcGettingStarted.htm">Getting Started</a></strong></p>
+    <p align="center" class="BodyText"><strong><a href="GWCalcHowToArticles.html">How-To Articles</a></strong></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalculator.htm">Calculator</a></b></font></p>
+    <p align="center" class="BodyText"><a href="GWCalcCADCAMWizard.htm"><strong>CADCAM Wizard</strong></a></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcFeedsSpeeds.htm">Feeds 
+      and Speeds</a></b></font></p>
+    <p align="center" class="BodyText"><a href="GWCalcBeginnerFeedsSpeedsExamples.htm"><strong>Examples for Beginners</strong></a></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCutOptimizer.html">Cut Optimizer</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcMiniCalcs.htm">Mini-Calcs</a></b></font></p>
+    <p align="center" class="BodyText"><strong><a href="GWCalcCutKB.html">Cut KB</a></strong></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcGeometry.htm">Geometry</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcThreads.htm">Threads</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcQuickRef.htm">Quick 
+      Reference</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcSetup.htm">Setup</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWTips.html">Tips and Goodies</a></b></font></p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="GWTrouble.htm">Troubleshooting</a></font></b>    </p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="GWCustTools.html">Download Tool Data</a></font></b></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><a href="http://www.cnccookbook.proboards.com/index.cgi" class="BodyText"><strong>User's Club</strong></a></p>
+    <p align="center"><a href="CCGWizardChangeLog.htm"><font face="Arial, Helvetica, sans-serif"><b>G-Wizard 
+      Change Log</b></font></a></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWizard/GWizardInstall1SC.html">G-Wizard 
+      Install</a></b></font></p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="CCGWizardE.html">GWizard G-Code Editor</a></font></b></p>
+<p>
+  <!-- Place this tag where you want the +1 button to render -->
+<p>
+  <g:plusone></g:plusone>
+  </p>
+    <!-- AddThis Button BEGIN -->
+    <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+    <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=cnccookbook"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=cnccookbook"></script>
+    <!-- AddThis Button END -->
+</p>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    gaTrack: true,
+    gaId: 'UA-1060932-2'
+  }, 'google_translate_element');
+}
+  </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</p>
+</td>
+</tr>
+<tr>
+  <td colspan="7" align="left" valign="top" bgcolor="#FFFFFF">
+  <div id="centerContainer">
+  <!-- #BeginEditable "Body" --> 
+      <p><font size="+4" color="#339933">G-Wizard Machinist's Calculator: Setup 
+        and Tool Crib</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">G-Wizard's setup page contains 
+        all of the parameters it will remember each time you start up:</font></p>
+      <p align="center"><img src="img/GWizard/GWizSetup.jpg" width="800" height="596"></p>
+      <p align="left" class="BlogTitle">Imperial/Metric Units</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Select whether 
+        units throughout the G-Wizard will default to Imperial (inches) or Metric 
+        (mm).</font></p>
+      <p align="left" class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Machine 
+        Configuration (Profiles)</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Machine profiles 
+        let's you create new custom profiles for your machines. Each profile has 
+        the following information:</font></p>
+      <p align="left"> 
+       
+      <blockquote> 
+        <p class="style1"><font face="Arial, Helvetica, sans-serif">Name: Call it whatever you'd like, but keep it short</font></p>
+        <p class="style1"><font face="Arial, Helvetica, sans-serif">Type: Lathe or Mill. Router 
+          users should choose &quot;Mill&quot;.</font></p>
+        <p class="style1">Make and Model</p>
+        <p class="style1">Spindle Type and Size: e.g. &quot;CAT&quot; and &quot;40&quot;.</p>
+        <p class="style1"><font face="Arial, Helvetica, sans-serif">Max. RPM: Your spindle's 
+          maximum speed</font></p>
+        <p class="style1"><font face="Arial, Helvetica, sans-serif">Max. HP: The maximum horsepower 
+          your spindle will produce.  G-Wizard will keep your cuts within this limit.</font></p>
+        <p class="style1">Coolant:  What kind of coolant does your machine use?</p>
+        <p class="style1">Tool Changer Slots and Change Time: Use chip to chip for change. Calculator doesn't use this information but G-Wizard Editor does.</p>
+<p class="style1"><font face="Arial, Helvetica, sans-serif">Max. Feed: The maximum feedrate 
+          of your machine. Sorry, G-Wizard only tracks one, so if you have different 
+          maxima on different axes, you'll have to choose one.</font></p>
+<p class="style1">Max Rapids:     G-Wizard Editor uses this information, for example to calculate how long it will take a program to run.</p>
+<p class="style1">Travels:   What are your machine's axis travels.   </p>
+<p class="style1">Acceleration: What is the maximum accurate acceleration of your CNC? This is used by the interpolation calculator to keep feedrate within this limit so you get an accurate hole.  The number is usually determined through experimentation.</p>
+<p class="style1">Machine Weight: This is used for <a href="http://cnccookbook.wordpress.com/2011/04/01/making-g-wizard-better-for-beginners-and-small-machines/">Rigidity compensation by G-Wizard Calculator</a>.</p>
+<p class="style1">Spindle 0-max rpm time: Used by G-Wizard editor to figure program run time</p>
+<p class="style1">Min. word time: A measure of how many blocks your controller can execute.</p>
+<p class="style1">Coolant on/off time: Used by GWE to figure program run time</p>
+<p class="style1">CNC Controller: Used by GWE        </p>
+<p><span class="style1"><font face="Arial, Helvetica, sans-serif">SFM Adjustment: The value, 
+          in percent, by which to multiply SFM. 100% will simply used G-Wizard's 
+          recommendation. 200% would double the recommendation while 50% would 
+          hav</font><font face="Arial, Helvetica, sans-serif"></font></span><font face="Arial, Helvetica, sans-serif">e it. There is also an SFM adjustment available tool by tool in the 
+          Tool Crib.</font></p>
+<p><font face="Arial, Helvetica, sans-serif">Tool Life Estimate:   The biggest contributor to Tool Life is surface speed, according to <a href="http://www.scribd.com/doc/16736295/Tool-life-06">Taylor's Tool Life Equation</a>.    This line tells you the contribution your SFM Adjustment makes to Tool Life.  In the screen shot, setting SFM to 80% results in 6x longer tool life.  You can get crazy with it.  Setting it to 10% predicts 100 million x longer life.  You should take 100 million as the tool will last a LOT longer!  Because the numbers get silly after a while, I limit the results to be no more than 1000 times longer life.</font></p>
+        <p><font face="Arial, Helvetica, sans-serif">Chipload Adjustment: The 
+          value, in percent, by which to multiply chipload. There 
+          is also a chipload adjustment available tool by tool in the Tool Crib.</font> 
+        </p>
+      </blockquote>
+      
+      <p></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">G-Wizard remembers 
+        all the profiles you create. It also remembers the profile you last selected 
+        in the Feeds and Speeds calculator and brings that up each time you restart 
+        G-Wizard.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>Editing a Profile</b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">To edit a profile, 
+        select it with the &quot;Machine&quot; dropdown menu, change whatever 
+        fields you like below, and press &quot;Save&quot;.</font></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">Creating a 
+        New Profile</font></b></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">A new profile 
+        is created any time you change &quot;Name&quot; to a name that didn't 
+        exist before and press &quot;Save&quot;.</font></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">Deleting a 
+        Profile</font></b></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">To edit a profile, 
+        select it with the &quot;Machine&quot; dropdown menu, change whatever 
+        fields you like below, and press &quot;Delete Machine&quot;.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Warning: You can't 
+        get it back and there is no &quot;Undo&quot;!</font></p>
+      <p align="left"><b><font face="Arial, Helvetica, sans-serif">Reverting to 
+        the Default Profiles</font></b></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">To revert to the 
+        default profiles, press &quot;Reset&quot;.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Warning: This 
+        deletes any new profiles you may have created!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Tool 
+        Crib</font></p>
+      <p align="left" class="BodyText">Making a Custom Tool Crib Instructional Video:</p>
+      <p align="center">
+        <object width="425" height="344">
+          <param name="movie" value="http://www.youtube.com/v/4r6F1Mh9cIk?hl=en&fs=1">
+          </param>
+          <param name="allowFullScreen" value="true">
+          </param>
+          <param name="allowscriptaccess" value="always">
+          </param>
+          <embed src="http://www.youtube.com/v/4r6F1Mh9cIk?hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed>
+        </object>
+      &nbsp;</p>
+      <div align="center" class="BodyText1">Making a <a href="GWCalcSetup.htm">Custom Tool Crib in G-Wizard</a></div>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The Tool Crib 
+        makes it easy for you to define the tools you actually own or perhaps 
+        that are in the toolchanger of your CNC:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/GWizard/GWizToolCrib.jpg" width="1024" height="782"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The Tool Crib...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Select which tool 
+        table you'd like to use from the Table choice. &quot;Default&quot; is 
+        the one the Feeds and Speeds calculator will use for tool selection, so 
+        that's a special table. If possible, make it the one that reflects the 
+        real tools in your changer or that you own. You can create new tables 
+        or delete tables. Eventually, you will associate tables with particular 
+        machines too, but this is not yet working.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">To edit a tool 
+        in the table, simply select it and press the &quot;Edit Tool&quot; button. 
+        To create a new tool, press &quot;New Tool&quot;. To delete a tool, press 
+        &quot;Del Tool&quot;. The tools are saved when you exit G-Wizard to a 
+        settings file.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>Integration 
+        with Feeds and Speeds Tab</b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">As you are editing 
+        a tool, you can bring over the tool defined on the Feeds and Speeds tab 
+        by pressing the &quot;From Feeds Speeds&quot; button:</font></p>
+      <p align="center"><img src="img/GWizard/GWizEditTool.jpg" width="1024" height="830"> 
+      </p>
+      <p align="center" class="BodyText">The Tool Crib's Tool Editor...</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Over on the Feeds 
+        and Speeds tab, if you want to choose from the Tool Crib &quot;Default&quot; 
+        Table instead of the generic list of tools, simply click on the &quot;Crib&quot; 
+        checkbox and the tool choices will be those of the &quot;Default&quot; 
+        table:</font></p>
+      <p align="center"><img src="img/GWizard/GWizToolCribFS.jpg" width="1024" height="610"></p>
+      <p align="left" class="BlogTitle">Custom Tool Data</p>
+      <p align="left" class="BodyText">From the Tool Crib's Tool Editor (double click any tool crib entry), you can access custom tool data by clicking the &quot;Cust. Tool&quot; button.  The Custom Tool Data popup looks like this:</p>
+      <p align="center" class="BodyText"><img src="img/GWizard/GWizCustToolData.jpg" width="1024" height="830" alt="Custom Tool Data"></p>
+      <p align="center" class="BodyText">The Custom Inserts and Tooling Popup...</p>
+      <p align="left" class="BodyText">Custom Tool Data lets you enter data to override the G-Wizard defaults. You can enter data on a material-by-material basis for a given combination of Vendor, Product, Vendors Tool #, and Insert #.         For each of these combinations you can enter surface speed (SFM) and chipload (IPT) for the range of diameters that G-Wizard keeps in its internal database.  Any number you don't change stays with the G-Wizard defaults.    This saves you having to enter complete information for a tool when perhaps all you're interested in is one material and a few diameters.  Values that you customize are displayed in orange (see the screen shot) and defaults values remain black.  The orange color also displays in the Feeds and Speeds calculator when custom SFM or IPT values are in use.</p>
+      <p align="left" class="BodyText">To create or edit an entry, you must first get the right combination of Vendor, Product, Number, and Insert to display at the top.   If it's already there from a previous visit, no worries.  If not, you can either Search to see if it already exists, or create a New entry if it doesn't.</p>
+      <p align="left" class="BodyText">To use Search, click the Search button to open the Search Dialog:</p>
+      <p align="center" class="BodyText"><img src="img/GWizard/GWCustToolSearch.jpg" width="800" height="718" alt="Custom Tool Search">      </p>
+      <p align="center" class="BodyText">Search has uncovered one &quot;MariTool&quot; cutter in the Custom Tooling Database...</p>
+      <p align="left" class="BodyText">In Search, enter one or more values in &quot;Vendor&quot;, &quot;Product&quot;, or &quot;Number&quot; and press the &quot;Search&quot; button to see matching entries.  In the screen shot, we've entered &quot;MariTool&quot; and gotten one match.    To see valid values in the database, use the down arrow buttons on the right.   It's best to work from top to bottom.  Pick &quot;Vendor&quot; first, then product and so on.  If you just want to see all the entries in the database, leave all the Search entries blank and press the &quot;Search&quot; button.        Once you have a list, click on one of them and select &quot;OK&quot; to choose that data.</p>
+<p align="left" class="BodyText">&quot;Reset&quot; will turn all of the SFM and IPT values for the selected material back to the G-Wizard defaults.  &quot;Clear&quot; will clear the Vendor/Product/Number/Insert fields.   If you save having cleared the fields, the tool will be certain to use G-Wizard default values.      </p>
+      <p align="left" class="BodyText">Note the following: If you &quot;Reset&quot; but don't &quot;Clear&quot;, there is no custom tool data in the database, but your Vendor, Product Name, Id #, and Insert information are still carried by the Tool Crib, unless you delete the tool carrying the information.  This provides a way to track that information for tooling even in the absence of custom tool data.</p>
+      <p align="left" class="BlogTitle">Importing Custom Tool Data</p>
+      <p align="left" class="BodyText">CNCCookbook maintains a<a href="GWCustTools.html"> library of custom tool data</a> containing manufacturer's tool data that you may download for import.  The specifications for the import format are also contained on that page.  The format is simply a csv file that you can create in Excel.</p>
+      <p><span class="BodyText"><font face="Arial, Helvetica, sans-serif">If you're looking to create your own Custom Tooling Data, follow th</font><font face="Arial, Helvetica, sans-serif"></font></span><font face="Arial, Helvetica, sans-serif">e guidelines in <a href="img/GWizard/CustIPTSpecs.xlsx">this Excel spreadsheet</a>.</font></p>
+      <p class="BodyText">If you've gone to the trouble of creating Custom Tooling Data, why not contribute it to the community?  Just email your CSV file to CNCCookbook.    Be sure to include a link to the manufacturer's data you used or a PDF so we can confirm the accuracy of the data for our customers.   We'll add it to this list just as soon as we've reviewed it.</p>
+      <p class="BodyText">Good things will happen for those that contribute!      </p>
+      <p align="left" class="BlogTitle">Files Tab</p>
+      <p align="center"><img src="img/GWizard/GWizFiles.jpg" width="907" height="615"></p>
+      <p align="left" class="BodyText">The files tab shows you the directory where the various preferences and setup files are located, and provides buttons to reset these files to their defaults.  If you press the button, you will lose any data in the file associated with the button.   To reset a file, press the button and exit G-Wizard.   The next time you start G-Wizard, the file will have returned to its defaults.  </p>
+      <p align="left" class="BodyText">Note:  Currently, there are a lot of ways to bollux things up with these resets.       No permanent damage will be caused other than the loss of the data in the file you reset, but you will get better results if you reset all the files and not just one.  We'll be working to make this smoother.  For now, these resets are largely there to clean up problems in case of emergency or funny behavior between releases.   They take your files back to a known &quot;safe&quot; default state.</p>
+      <p align="center" class="BodyText"><span class="style1"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+      <!-- #EndEditable -->
+  </div>
+  </td>
+</tr>
+<!-- Begin Site Map -->
+<tr>
+  <td width="232" valign="top" bgcolor="#f0f0f0" ><p class="BodyText">&nbsp;</p></td>
+  <td width="283" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html"></a></strong> <strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/"></a></strong></p>
+    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong></p>
+    <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational</a></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></p></td>
+  <td width="223" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/techniques/">Techniques</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/beginner/">Beginner</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/cool/">Cool</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/cncprojects/">Projects</a></p>
+    <p class="BodyText"><strong></strong></p>
+    <p class="BodyText"></p>
+    <p>&nbsp;</p></td>
+  <td width="321" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Cookbooks</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/beginner/">CNC Beginner Articles</a></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a></p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a></strong></p></td>
+  <td width="339" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMachine.htm">Machines</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://www.cnccookbook.com/CCMillCNCConversionHome.html">CNC Mill Retrofit</a></strong></p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://www.cnccookbook.com/CCPlasmaCNCHome.htm">Plasma Table</a></strong></span></p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="BodyText"><strong><a href="http://www.cnccookbook.com/MTWeldingHome.htm">Welding</a></strong></span></p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p></td>
+  <td width="333" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong>Resources</strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCSearch.html">Machinist's Search</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCVideosHome.htm">Videos</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Online Groups</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesInd.htm">Individuals</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesRef.htm">Reference Data</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesBooks.htm">Books</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesSup.htm">Suppliers</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesBrands.htm">Tool Brands</a></strong></p></td>
+  <td width="650" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong>Workshop</strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a></strong></p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://cnccookbook.uservoice.com/">Support</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCManufacturers.html">Customers</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPartners.html">Partners</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHistory.htm">Our History</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">Cheapskate Page</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></strong></p></td>
+  </tr>
+<tr>
+  <td colspan="5" bgcolor="#f0f0f0" >
+      <!-- Place this tag where you want the badge to render -->
+    <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;"/></a></strong></td>
+  <td colspan="2" bgcolor="#f0f0f0" ><div align="left">
+    <table width="100%" border="0">
+      <tr>
+        <td>&nbsp;</td>
+        <td><div align="right">All material &copy; 2010-2012, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a></div></td>
+        </tr>
+      </table>
+  </div></td>
+</tr>
+<!-- End Site Map -->
+
+</table>
+</body>
+
+<!-- Kissmetrics tracking snippet -->
+<script type="text/javascript">var _kmq = _kmq || [];
+var _kmk = _kmk || '2b958799075c725d4ce95572a0b6e967ecafd184';
+function _kms(u){
+  setTimeout(function(){
+    var d = document, f = d.getElementsByTagName('script')[0],
+    s = d.createElement('script');
+    s.type = 'text/javascript'; s.async = true; s.src = u;
+    f.parentNode.insertBefore(s, f);
+  }, 1);
+}
+_kms('//i.kissmetrics.com/i.js');
+_kms('//scripts.kissmetrics.com/' + _kmk + '.2.js');
+</script>
+
+
+<!-- #EndTemplate --></html>
+

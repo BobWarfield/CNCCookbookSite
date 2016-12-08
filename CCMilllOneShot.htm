@@ -1,0 +1,840 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNCCookbook:  IH Mill One Shot Oiling</title>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" --> 
+      <p>&nbsp;</p>
+      <p class="style2"><a href="CCMillCNCConversionHome.html"><strong><font face="Arial, Helvetica, sans-serif"><b>CNC 
+        Mill Conversion: </b></font></strong></a></p>
+      <p class="style2"><b><font face="Arial, Helvetica, sans-serif"><em><strong><a href="CCMillCNCToDo.html">To 
+        Do List</a></strong></em></font></b></p>
+      <p class="style2"><b><font face="Arial, Helvetica, sans-serif"><em><strong><a href="CCMillZAxisMod.htm">Z-Axis 
+        Mod</a></strong></em></font></b></p>
+      <p class="style2"><b><font face="Arial, Helvetica, sans-serif"><em><strong><a href="CCMilllOneShot.htm">One 
+        Shot Oiler</a></strong></em></font></b></p>
+      <p class="style2"><b><font face="Arial, Helvetica, sans-serif"><em><strong><a href="CCMillEpoxyFill.htm">Epoxy 
+        Granite Fill</a></strong></em></font></b></p>
+      <p class="style5"><b><font face="Arial, Helvetica, sans-serif"><a href="CCMillCNCElectronics.html">Electronics 
+        </a></font></b></p>
+      <p class="style5"><b><font face="Arial, Helvetica, sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;<a href="CCMillCNCAxisModule.htm">Axis 
+        Modules</a></font></b></p>
+      <p>&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p><font size="+4" color="#339933">A One Shot Oiling System for the Industrial 
+        Hobbies Mill</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">As part of my CNC conversion 
+        of the mill I want to engineer a one shot oiling system. It will increase 
+        the reliability of the mill and ensure smoother operation.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Raw Materials</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Vinyl oil-proof tubing. 100' 
+        roll, cost $20 on eBay. </font><font face="Arial, Helvetica, sans-serif">Box 
+        of Legris push-on fittings and some Parker Flow Control Valves from eBay. 
+        One shot oil pump, slightly used, still in good working order. Collection 
+        of brass manifolds from eBay.</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/OneShot/P1010283.JPG" width="1024" height="817"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">eBay provides 
+        all the components needed to create a one shot oiling system...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Close up on the 
+        Legris fitting and Flow Control Valve:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010280.JPG" width="1024" height="778"></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Flow Control Valves 
+        have a check valve in them so the oil can only flow one way. It's convenient 
+        to build that in with a valve so I can fine tune how much way oil is going 
+        to each lube circuit. The IH mill will need the following lube circuits:</font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">X 
+        Axis: Left &amp; Right Ways, Ballnut</font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">Y 
+        Axis: Left &amp; Right Ways, Ballnut</font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">Z-Axis: 
+        Left &amp; Right Ways, Ballnut</font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">For 
+        a total of 9 circuits. In terms of fittings, this means 9 fittings to 
+        thread into the base castings, 9 check valves, and a manifold with associated 
+        piping. There will also need to be a couple of fittings and tubing to 
+        connect the pump to the manifold. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Z-Axis Modifications</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I started out this project 
+        modifying the Z-axis. I used a 1/8&quot; ball mill to cut oil distribution 
+        grooves on either side:</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/OneShot/P1010273.JPG" width="1024" height="717"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here I'm cutting 
+        the two long angled grooves. The intersect the existing oil passages, 
+        which I'll use to inject the oil...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010275.JPG" width="1024" height="930"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I assembled 
+        the Z-slide on the column with gib and just injected through the existing 
+        ball ports to see how they worked. Oil distribution was excellent! There 
+        was immediately a nice even layer of oil laid down over the entire width 
+        of the ways. The slide became noticeably easier to slide even with the 
+        gib set tight. I think I'm going to like this new setup! </font></p>
+      <p align="center"><img src="img/MillStuff/CNC/OneShot/P1010277.JPG" width="1024" height="768"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The Y-aixs. 
+        I had a couple of minor issues. I got a little too exuberant on the feed 
+        and broke an endmill. Left no impact on the slide groove at all, but it 
+        damaged my collet slightly. Bummer! Second issue is that I ran out of 
+        travel and had to shift the table to drill the second groove set.</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/OneShot/P1010293.JPG" width="1024" height="589"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Last set of 
+        grooves for the X-axis. Be sure to avoid the hole in the middle of the 
+        bottom way. That's for access to an additional mounting bolt for the Y-axis 
+        nut.</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010295.JPG" width="1024" height="860"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here's the 1/8&quot; 
+        ball end mill and a little closer look at the grooves. BTW, after breaking 
+        my 3rd end mill, I got suspicious of the ER-32 collet chuck I had been 
+        using. It's a real cheapie, and I suspected it had excessive runout, which 
+        will snap these delicate little cutters. A fixed amount of runout gets 
+        to be a greater and greater percentage of the cutter diameter as you get 
+        small, hence the stresses get worse even if you're prepared to live with 
+        the inaccuracy. I dug out my 1/8&quot; R8 collet and nary a problem was 
+        had. 2 new Bison ER32 collet chucks are on order!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The grooves are 
+        now cut for all axes. Remaining work on the ways includes drilling the 
+        holes that will connect the grooves to the fittings, engineering and fabricating 
+        the delivery of lube to the ball nuts, and any remaining mounting brackets.</font></p>
+      <p align="left" class="BlogTitle">Plumbing to the Grooves</p>
+      <p align="center"><img src="img/MillStuff/CNC/OneShot/P1010795.JPG" width="1024" height="768"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">First line up 
+        on the old ball oiler location with a spud. On the Z-axis, this hole goes 
+        all the way through already (nice!). So we just get rid of the ball oiler 
+        (mine had to be drilled out)...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010797.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">And now drill 
+        the hole you'll tap for the fitting...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010799.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">And tap. That 
+        fitting will be in the way of the gib locks, but I won't be using them 
+        anyway. I will likely put bolts of the same size into the holes to block 
+        them off...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010800.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Bit leaves a 
+        nasty bottom in the cast iron doesn't it?</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010806.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The saddle has 
+        no handy holes to work from. I'm drilling at the intersection of the middle 
+        cross grooves and centerline groove. The saddle is held by gently opening 
+        the Kurt vise with aluminum jaws against the ways. All holes are 0.450&quot; 
+        deep. </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010807.JPG" width="800" height="1067"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">With both sides 
+        drilled, it's time for the cross passages. My 6&quot; Kurt was too big, 
+        so I took it off the table and installed my 4&quot; Kurt. The vise has 
+        to fit between the X-axis slides that stick out...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010808.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I just lined 
+        up visually. It's actually closer than this, a bit of parallax from the 
+        camera angle makes it confusing...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010809.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Drill this hole 
+        all the way through from the outside to inside the ways so oil can get 
+        inside the dovetail. You can tell the holes line up if swarf comes out 
+        the cross hole!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010810.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Swap bits (almost 
+        not enough vertical room with my big keyless chuck!) and drill the fitting 
+        hole you will tap...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The X-axis goes 
+        pretty much the same as the Y-axis did. Be careful about putting the fitting 
+        too close to the center--that's where the limit switch mounts. You can 
+        also go in from behind as Thomas Powell did. It will make for a neater 
+        installation, but I had doubts about my ability to tap the fitting holes 
+        with so little clearance, so my fittings are all on the outside.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Did some thinking 
+        about how I'll run the tubing. Essentially I plan to put in two manifolds--one 
+        on the X-Y saddle and one on the Z-axis saddle. Attached to the manifolds 
+        will be the flow control valves so I can individually meter each passage 
+        for the proper amount of oil. I'll mount the one shot pump on the mill 
+        column and use flexible tubing to connect to each manifold so that these 
+        two tubes are the only ones moving--the rest of the plumbing is fixed. 
+        Access to the X-axis ballnut is easy as there is a large under-table gap. 
+        I may drill a hole through the saddle to allow flex hose to go underneath 
+        for the Y-axis ballnut. Same with the Z-axis ballnut. So, we'll have a 
+        6-port manifold on the X-Y saddle and a 3-port on the Z-axis saddle.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">X-Y 
+        Manifold and Plumbing</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I wound up making 
+        a manifold, and as it was a long piece of alumimum rod needing a center 
+        hole all the way through, I needed a bit longer than I had on hand. So, 
+        I used it as an excuse to try my hand at a homemade D-bit:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010859.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">A D-Bit I made 
+        to bore the center hole in the manifold...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">It cut fine, but 
+        loaded up with chips so fast it was a very slow process of having to withdraw 
+        every quarter inch or so to remove the chips. It seemed like it took hours, 
+        though it was probably only an hour and a half. Next time I'm ordering 
+        an extra long twist drill!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010858.JPG" width="1024" height="865"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I took a 3/4&quot; 
+        endmill and made cuts, then drilled with 7/16&quot;...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010860.JPG" width="1024" height="962"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Since my tap 
+        wrench isn't big enough for this chunky 1/4&quot; NPT tap, I used a machinist's 
+        parallel clamp...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010861.JPG" width="1024" height="768"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Both ends are 
+        drilled and tapped in the lathe as well!</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010862.JPG" width="1024" height="668"> 
+        </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here's what 
+        the manifold looks like trial fitted with the flow control valves and 
+        Legris push-on ells. I'll be using translucent tubing so I can verify 
+        visually that the oil is flowing...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010863.JPG" width="1024" height="629"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">A little broader 
+        view. There is a Legris on the back side of the saddle that goes to the 
+        top left flow valve. The valve right below it will be plumbed up to the 
+        ball screw lube port you see on the ball screw mount. I added that port!</font></p>
+      <p align="center"><img src="img/MillStuff/CNC/OneShot/P1010864.JPG" width="1024" height="755"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Clear tubing 
+        makes it easier to monitor the oil. I adjusted valves until the oil was 
+        arriving everywhere at about the same time...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010865.JPG" width="1024" height="785"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Excuse the clutter, 
+        but here is a better view of the finished X-Y oiling system...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Between having 
+        lapped the ways and installed this one shot system, I can turn the ballscrews 
+        and motion is velvety smooth even when I've got the gibs as tight as they'll 
+        go with a screwdriver!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Working on the 
+        oil pump mounting plate on the column:</font></p>
+      <p align="center"><img src="img/Tooling/TransferScrews/P1010884.JPG" width="800" height="879"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I had to make 
+        a set of transfer screws to pick up the bolt holes for the pump. Full 
+        details <a href="CCTransferScrews.htm">here</a>...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010894.JPG" width="1024" height="975"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Here's what 
+        the finished pump mounting looks like. The front line goes to the saddle. 
+        The rear line goes to the little manifold which has a vinyl tubing connection 
+        for either way on the Z saddle and the copper tubing goes up to oil the 
+        ballscrew. The rear circuit would benefit from a flow control valve, but 
+        I ran out of fittings. The flow control valve has two benefits. First, 
+        the check valve would keep the line charged so there'd be no need to pump 
+        oil up so far. Second, the current circuit flows a little too freely relative 
+        to the other circuit, so I get a bit more oil on this circuit than I'd 
+        like. It isn't terrible, so I don't know if I'll fix it or not...</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/CNC/OneShot/P1010893.JPG" width="1024" height="838"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">I reused the 
+        original oiling hole for the ballscrew oiling. I turned a little press 
+        fit piece of aluminum and JB welded the copper tubing into the proper 
+        position. The oil flows out onto the top of the ballscrew where it can 
+        drain down through the grooves all the way to the ballnut...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">While a little 
+        change here or there might improve the system (for example, a flow control 
+        on the Z-axis circuit), I am calling the one shot oiler done. It works 
+        extremely well and will give me a lot of peace of mind about the mill's 
+        durability and proper oiling. It was well worth the amount of effort I've 
+        invested in the project.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Project Planning</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">This modification has been 
+        done by <a href="http://imageevent.com/tppjr/rf45dovetailmill/oneshotoiler">Thomas 
+        Powell</a> on his IH mill.</font></p>
+      <p align="center"><a href="http://imageevent.com/tppjr/rf45dovetailmill/oneshotoiler"><img src="img/OthersProjects/IHOneShotOiler.jpg" width="482" height="576" border="0"></a> 
+        <img src="img/OthersProjects/oneshotoiler.jpg" width="576" height="393"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">It's all mounted 
+        on the saddle. Lines into saddle feed Y-axis ways, X-axis ways, and X-axis 
+        ballscrew. The 4 lines going the opposite way feed the Z-axis ways, Z-axis 
+        ballscrew, and Y-axis ballscrew. Oil comes in via the heavy black hose 
+        from the pump...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Thomas mentions 
+        he wishes he had cut some oil channels into the ways. Now that I own 2 
+        IH mills, I can use one to cut the grooves in the other with a small ball 
+        mill. If I didn't have a second mill and was desperate to have some grooves 
+        in the ways, I guess I would try to design a fixture that slid along the 
+        ways with a high speed spindle and stone attached to do the job. The other 
+        thought is to just run a little CNC program that moves the machine axes 
+        to spread the oil while the pump lever is pulled a few times. This would 
+        be a &quot;warm up&quot; sequence for the machine to run at the beginning 
+        of each session.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The consensus seems to be that 
+        1/4&quot; tubing will work well for this sort of thing. If the tubing 
+        doesn't move, some folks like to use stainless tubing.</font></p>
+      <p align="center" class="style1"><font face="Arial, Helvetica, sans-serif"><img src="img/OthersProjects/1ALube1.JPG" width="800" height="600"></font></p>
+      <p align="center" class="style1"><font face="Arial, Helvetica, sans-serif"><a href="http://www.cnczone.com/forums/showthread.php?t=10535"><strong>Mxtras 
+        one shot lube system on his Bridgeport... </strong></a></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>Thoughts:</b></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- <a href="http://www.cnczone.com/forums/showthread.php?t=18178&amp;page=2">One 
+        shot on a Bridgeport</a>: He used Bijur B1114 metering valves, an 8 port 
+        manifold bought from Enco, and 1/4&quot; tubing (some stainless, some 
+        flexible plastic).</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- <a href="http://www.cnczone.com/forums/showthread.php?t=22641" class="style1"><em>Nice 
+        thread on one shot systems on CNC Zone. </em></a></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- <a href="http://www.cnczone.com/forums/showthread.php?t=21338" class="style1"><em>One 
+        shot lube system on Bridgeports.</em></a></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- <a href="http://www.cnczone.com/forums/showthread.php?t=10535"><span class="style3">Mxtras 
+        one shot system on a Bridgeport. </span></a></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">- <a href="http://www.neme-s.org/shapers/bridgeport.html#oneshotlube">Kay 
+        Fisher does a one shot system on a Bridgeport</a></font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">Mxtras 
+        and others like Thomas Powell have used Legris 3109 series push lock pneumatic 
+        fittings. Mxtras says that in retrospect, he wishes he had check valves, 
+        and suggests using air flow control valves, which have built in check 
+        valves. He is planning to fit Part #7065 56 11 (1/8"NPT, 1/4" tube) Legris 
+        quick connect flow control valves. McMaster-Carr lists flow control valves 
+        (62005K224), but they are $17 each! </font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">The 
+        IH mill will need the following lube circuits:</font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">X 
+        Axis: Left &amp; Right Ways, Ballnut</font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">Y 
+        Axis: Left &amp; Right Ways, Ballnut</font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">Z-Axis: 
+        Left &amp; Right Ways, Ballnut</font></p>
+      <p align="left" class="style1"><font face="Arial, Helvetica, sans-serif">For 
+        a total of 9 circuits. In terms of fittings, this means 9 fittings to 
+        thread into the base castings, 9 check valves, and a manifold with associated 
+        piping. There will also need to be a couple of fittings and tubing to 
+        connect the pump to the manifold. </font></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

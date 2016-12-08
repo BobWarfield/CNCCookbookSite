@@ -1,0 +1,706 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>Definitive Guide to CNC Flood Coolant and Chip Clearing for CNC Milling</title>
+<style type="text/css">
+<!--
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText {font-family: Arial, Helvetica, sans-serif}
+.WarningText {
+}
+.WarningText {
+}
+.Warning {
+}
+.Warning {
+}
+.Bozon {
+	font-size: large;
+	color: #F00;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.BodyText {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p align="center" class="BodyText style4"><strong><font face="Arial, Helvetica, sans-serif" size="+1"><a href="CCCNCMillFeedsSpeeds.htm">CNC Milling Feeds and Speeds</a></font></strong><a href="CCCNCMillFeedsSpeeds.htm"><strong><font size="+1" face="Arial, Helvetica, sans-serif">Contents</font></strong></a></p>
+<p align="center" class="BodyText">&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="6%"><img src="img/GearsIcon.jpg" width="88" height="77"></td>
+          <td width="94%"><p><font face="Times New Roman, Times, serif" size="7" color="#FF0000">Coolant and Chip Clearing</font></p>
+          <p><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="BlogTitle"><strong>CNC Milling Feeds and Speeds Cookbook</strong></font></p></td>
+        </tr>
+      </table>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle">The Role of Coolant in Machining</p>
+      <p class="BodyText">Let's get off Feeds and Speeds for a minute and talk about Coolant. In some ways it's unfortunate that coolant is called &quot;coolant&quot;, because it causes machinists to ignore the other roles of using coolant.   We actually use coolant for three distinct reasons:</p>
+<p class="BodyText">1.   Chip Clearing:  Spraying a liquid at the cut helps move the chips out of the way of the cutter so it doesn't have to recut the chips or use valuable chip clearance on chips that are not part of the current cut.<span class="BodyText"> Recutting chips destroys surface finish and dulls tools much more quickly.  In the worst case, a cutter down in a slot or hole can get clogged with chips and get much hotter or even break.</span></p>
+      <p class="BodyText">2.  Lubrication:  Some materials, like aluminum or some  steels, are sticky.  They have an affinity for the material cutters are made from and will try to weld themselves to the cutter unless we can arrange for some lubrication to make that makes things slippery so the chips are less likely to adhere.</p>
+      <p class="BodyText">3.  Cooling:   Liquids, especially water-soluble coolants, are capable of carrying heat away from the cut much more efficiently than air.    <a href="http://en.wikipedia.org/wiki/Underwater">Plain water conducts heat 25 times more efficiently than air</a>, for example.</p>
+      <p class="BodyText">I've chosen to put cooling dead last for a reason--while not unimportant, cooling is probably the least important role of coolant!</p>
+      <p class="BodyText">In fact, I was very pleased when Haas released a video called, "<a href="https://www.youtube.com/watch?v=Ph1XztuXYv0" data-mce-href="https://www.youtube.com/watch?v=Ph1XztuXYv0">Haas Chip Clearing and Tool Lubrication</a>,&quot; because it puts the emphasis where it should be and not on the cooling aspects. Finally the word is getting out about what Coolant is all about.</p>
+      <p class="BodyText">Let's take a closer look at each of these three critical coolant functions.</p>
+      <p class="BlogTitle">Chip Clearing</p>
+      <p class="BodyText">Chip clearing is by far the most important function. I cringe every time I see a cut being made while the chips pile up.  Sure, it's easier to photograph the action, but those piling chips are very hard on your cutter's life and can even lead to breakage.    You're much more likely to experience built-up edge (BUE) where chips weld onto the cutter if the cutter must recut the same chips over and over and can't get rid of them. If there is insufficient chip clearing in your machining operation, you may use up all the chip clearance your cutter has available, which can lead quickly to cutter breakage, if the cutter is buried under a mound of chips.</p>
+      <p class="BodyText">If your machine has no flood coolant, rig up an air blast or mist to get the chips out of there.   Get paranoid about having too many chips around.   Think about it this way: most tooling manufacturers recommend you turn off the flood coolant when surface speed goes <em>above</em> a certain point and you will increase the life of your tooling.   If it was all about heat, that shouldn't be the case as more surface speed means more heat. </p>
+      <p class="BlogTitle">Lubrication</p>
+      <p align="left" class="BodyText">Lubrication helps the tool to cut more easily and therefore it cuts while generating less heat.  As the face of the tool slides across the workpiece, it rubs while cutting.  As the chip curls up, it also rubs on the tool, generating more heat.     All that rubbing will produce less heat with a little lube, just like any sliding fit would.   That's an important role for lubrication, but it's not the most important part of the cooling issue (generate less heat by reducing friction and we don't have as much to cool).    A much bigger role for lubrication is reducing the likelihood of Built Up Edge (BUE).   This is a big deal as anyone who has seen a big wad of aluminum get welded to their cutter will attest to. Things stop working pretty quickly when that happens!</p>
+      <p align="left" class="BodyText">Fortunately, BUE is material-specific, and mostly applies to Aluminum and Steel that lacks much carbon or other alloying substances.   Titanium is another material that has a reputation for being sticky. Use of really sharp cutters with very high rake angles (positive rake is your friend!) can help reduce adhesion tremendously, but it's not enough.      Many coatings used on tools can also provide lubrication, although they're fragile and as they wear off and shouldn't  be counted on as the primary answer to BUE. In the end, a little bit of mist can deal with this problem as well as flood coolant, so it isn't the end of the world. </p>
+      <p align="left" class="BodyText">Just don't forget to do <em>something</em> about lubrication before that wad of aluminum welds itself in all the wrong places. I've heard a number of professional machinsts flat out declare you can't machine aluminum without some form of lubrication (mist or tool coating, and preferably the mist).   Even a little spritz of WD-40 makes a big difference with aluminum.</p>
+      <p class="BlogTitle">Cooling (and its Evil Twin Shock Cooling)</p>
+      <p align="left" class="BodyText">Which brings us to our next issue, Cooling.   The temperature of the tool is probably the biggest factor affecting tool life.  A little heat is good, as it softens the work material, making it easier to cut.   A lot of heat is bad, as it softens the tool, which means it wears rapidly, becomes dull, cutting forces skyrocket, it gets hotter, and trouble is not far behind.    Note that the heat to be tolerated is hugely dependant on the tool material and coating.  Carbide takes a lot higher temperatures than HSS.    Some coatings, such as TiAlN really need the higher temperatures to do their job properly, and are often used without coolant. The benefits of TiAlN aren't even present until there is enough heat to &quot;activate&quot; it.</p>
+      <p align="left" class="BodyText">There are lots of stories out there where turning the coolant off increased tool life under the right conditions. Carbide is susceptible to micro-cracking under the thermal shocks of uneven heating and cooling.   This effect is called &quot;Shock Cooling&quot;, and matters a lot to tool life in higher performance applications. Sandvik, in their cutting tool study course, recommend either no coolant or copious amounts of coolant to avoid this problem.  It should also be noted that too much heat is not helpful to accuracy, as it makes your workpiece change size.</p>
+      <p align="left" class="BodyText">Let's also talk  about coolant type.   There are water soluble coolants, and there are oil-based coolants.  From a cooling standpoint, the water soluble coolants win.     How much?  Consider this data:</p>
+      <div align="center">
+        <table width="90%" border="2">
+          <tr>
+            <td><div align="center"><strong>Coolant</strong></div></td>
+            <td><div align="center"><strong>Specific Heat of Coolant</strong></div></td>
+            <td><div align="center">
+              <p><strong>Steel A (tempered)</strong></p>
+              <p><strong>Temp Decrease %</strong></p>
+            </div></td>
+            <td><div align="center">
+              <p><strong>Steel B (annealed)</strong></p>
+              <p><strong>Temp Decrease %</strong></p>
+            </div></td>
+          </tr>
+          <tr>
+            <td><div align="center">Air</div></td>
+            <td><div align="center">0.25</div></td>
+            <td><div align="center"></div></td>
+            <td><div align="center"></div></td>
+          </tr>
+          <tr>
+            <td><div align="center">Compound oil, high viscosity</div></td>
+            <td><div align="center">0.489</div></td>
+            <td><div align="center">3.9</div></td>
+            <td><div align="center">4.7</div></td>
+          </tr>
+          <tr>
+            <td><div align="center">Compound oil, low viscosity</div></td>
+            <td><div align="center">0.556</div></td>
+            <td><div align="center">6</div></td>
+            <td><div align="center">6</div></td>
+          </tr>
+          <tr>
+            <td><p align="center">Aqueous solution of wetting agent</p></td>
+            <td><div align="center">0.872</div></td>
+            <td><div align="center">14.8</div></td>
+            <td><div align="center">8.4</div></td>
+          </tr>
+          <tr>
+            <td><div align="center">Aqueous &quot;soda product&quot; solution, 4%</div></td>
+            <td><div align="center">0.923</div></td>
+            <td><div align="center">-</div></td>
+            <td><div align="center">13</div></td>
+          </tr>
+          <tr>
+            <td><div align="center">Water</div></td>
+            <td><div align="center">1.00</div></td>
+            <td><div align="center">19</div></td>
+            <td><div align="center">15</div></td>
+          </tr>
+        </table>
+      </div>
+      <p align="left" class="BodyText">First thing to notice about the table, is that the efficiency of the various coolants at removing heat directly corresponds to the specific heat of the coolant.   Second thing to notice is that air is pretty lousy, about 1/4 as good as water. That's actually not as bad as predicted, since water carries heat 25x more effectively than air.   The reason for the difference is its hard for the coolant to make efficient contact everywhere it needs to and carry away enough heat.  Also, if you're using the right cutting parameters (e.g. feeds and speeds), most of the heat should be carried away in the chips, not the coolant.</p>
+      <p align="left" class="BodyText">It's interesting to note that the oil-based coolants are about half as effective as water-based in terms of their ability to cool the tool and workpiece.   Between that and the health considerations, its no wonder a lot of shops have gone to water-soluble coolants--they just cool better. On the flip side, the oil lubricates better (natch), and there are still some applications where machinists may prefer oil (usually turning) to the water soluble coolants.</p>
+      <p align="left" class="BodyText">One last think about flood coolants--above a certain critical surface speed, they all start to work about the same, and the faster you go the less cooling effect they have.   One reason for this is that when things are going really fast, there isn't time for a big gout of coolant to make it's way into all the nooks and crannies.    Cooling becomes less and less consistent, and this also contributes to the shock cooling effects that make coolant hard on carbide life above certain speeds.</p>
+      <p class="BlogTitle">Material Considerations</p>
+      <p class="BodyText">There are two material-specific considerations for coolant. The first is the tendency to BUE, where the material sticks to the cutter and lubrication is important.  The second is the ability of the material to absorb and transfer heat.  Some materials do not transfer heat very well--titanium is a good example.  Those materials are often more dependent on the coolant for cooling in order to offset the inability of the material to carry heat.      That inability makes it harder for the chips to carry away heat and harder for the workpiece to stay cool without changing size due to excess heat. Titanium further compounds the problem by producing relatively small chips.</p>
+      <p class="BodyText">If the material you're cutting transfers heat poorly relative to aluminum (which is an excellent conductor of heat), steel (a decent conductor), or other common materials, make sure you've got a good flood coolant setup and are using it well.</p>
+      <p class="BlogTitle">Performance Recipe:  Aiming the Coolant for 5% Higher MRR</p>
+      <p class="BodyText">Where you aim the coolant matters, whether for chip clearance, cooling, or lubrication.  But how many machinists take time to aim the coolant after each tool change?  Different tools have different lengths. Different machining operations may also change the optimum aim of the coolant.  </p>
+      <p class="BodyText">You can offset the labor-intensive business of constantly reaiming the coolant by using multiple nozzles preset to a range of heights. With three nozzles, you can cover a pretty decent range.  The problem with this approach is you now only have 1/3 of your coolant available at the optimum spot as the other two nozzles aren't doing the right thing.   I keep wondering why I haven't come across a machine with solenoid valves that select the right nozzle under program control, but I haven't seen that. </p>
+      <p class="BodyText">Another solution is just to crank the volume and pressure so that even with only one of three nozzles in the right place, there is a wall of coolant.   The high pressure and volume option is available for most machines and is worthwhile.  </p>
+      <p class="BodyText">Lastly, you can retrofit your machine with a Spider Cool nozzle that allows you to pinpoint your coolant by twisting a know on the control panel, and that can track your tool changes and change the aim automatically.</p>
+      <p class="BodyText">What's good aim worth?  <a href="http://www.spidercool.com">Spider Cool says its good for 5% better MRR, and they have a free trial to prove it</a>.   Might be worth checking into your coolant aim.  Our <a href="http://www.cnccookbook.com/CCGWizard.html">G-Wizard Feeds and Speeds Calculator</a> will make the allowance for a Programmable Coolant Nozzle in its Feeds and Speeds Calculations.</p>
+      <p class="BlogTitle">Performance Recipe:  Through Spindle Coolant</p>
+      <p class="BodyText">The most difficult chip removal job is down in a hole.      For this case, through spindle coolant (TSC) is a huge benefit and sometimes the only way to drill deep holes. The performance increases possible with high pressure through spindle coolant are pretty amazing. <a href="http://blog.cnccookbook.com/2015/05/13/choosing-between-types-of-coolant-system-with-g-wizard/">Check out our full support for calculating feeds and speeds with high pressure TSC in G-Wizard</a>.</p>
+      <p class="BodyText">Another advantage for TSC machines: <a href="http://www.practicalmachinist.com/vb/cnc-machining/anyone-familiar-destiny-tool-end-mills-226302/">you can often run more flutes</a>, particularly when profiling. </p>
+      <p class="BlogTitle">Horizontal Mills and Lathes Have Gravity Helping Clear Chips</p>
+      <p class="BodyText">Don't overlook the benefits of gravity for machining. On vertical mills, gravity makes it harder to pull chips out of deep holes.  On lathes and horizontal mills, gravity makes it easier.     Kinda makes you wonder why nobody has a machine that cuts from underneath.  You'd need a pretty crazy palette loader so you could drop the workpiece onto the table and then flip it for cutting.      Too far out, I thought, but then I discovered such machines actually exist. They're called &quot;Inverted Spindle Lathes&quot; and are a potent alternative to bar fed lathes.</p>
+      <p class="BodyText">Here is a link to an <a href="http://www.mmsonline.com/articles/turning-turned-on-end">MMSOnline article about them</a>.</p>
+      <table width="100%" border="0">
+        <tr>
+          <td width="59%"><p class="BlogTitle">Exotic Recipe: Alcohol as Coolant </p>
+          <p class="BodyText">Datron uses an ethanol alcohol mist <a href="http://www.datrondynamics.com/pressroom/WP_Environmental.pdf">as coolant for its HSM machines</a>.  They make a good case for it:</p>
+          <p class="BodyText">It is ideal for high-speed, micro-tooling of non-ferrous metals and some            plastics due to a thinner-than-water viscosity that allows the ethanol to quickly cover and cool            more of the surface area on fast-moving parts. The low evaporation point of ethanol makes it an<br>
+            efficient cooling and lubricating solution. Since the ethanol simply evaporates, disposal, recycling            and their associated costs are a thing of the past. Plus, ethanol coolants leave no residue            on machined parts, which makes costly secondary operations, like de-greasing, obsolete &mdash; maximizing          throughput, increasing efficiency and ultimately improving a manufacturer&rsquo;s bottom-line.</p></td>
+          <td width="41%"><img src="img/CNCCookbook/MillFeedsSpeeds/DatronCoolant.jpg" width="224" height="224" alt="Datron alcohol mist coolant"></td>
+        </tr>
+      </table>
+      <p class="BlogTitle">Conclusion</p>
+<p class="BodyText">For many high performance applications, machinists can focus on chip clearance and lubrication and ignore the cooling issues.  Above a certain surface speed, many tooling manufacturers recommend turning off the flood coolant and using an air blast (perhaps with mist for lubrication) to clear chips.   Materials that don't transfer heat well like titanium will require flood coolant regardless.</p>
+<p class="BlogTitle">Additional Information</p>
+<p class="BodyText"><a href="http://www.journalamme.org/papers_vol25_2/2541.pdf">Selection of Cutting Fluids in Machining Processes</a>:  Good overview of some of the factors involved in selecting coolant type.</p>
+<p class="BodyText">DIY Flood Coolant:  Need to put together your own flood coolant system? Check this article out.</p>
+<p class="BodyText">&nbsp;</p>
+<p class="BlogTitle">Next Article:  <a href="CCCNCMillFeedsSpeedsHeat.htm">Turning Down the Heat in a Cut</a></p>
+<p class="BodyText">&nbsp;</p>
+<p align="center" class="BodyText"><b><i><font size="+2"><a href="MTLatheHome.htm">Try the Free Trial Version of G-Wizard Speeds and Feeds Calculator...</a></font></i></b></p>
+<p align="center" class="BodyText"><span class="BodyText2"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+<p align="center" class="BodyText">No credit card required--just your name and email.</p>
+<p align="center" class="BodyText">&nbsp;</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

@@ -1,0 +1,795 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>Learning to Love the Asian Machines</title><!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="10%"><img src="img/GearsIcon.jpg" width="88" height="77"></td>
+          <td width="90%"><font face="Times New Roman, Times, serif" size="7" color="#FF0000">Learning 
+            to Love Asian Machine Tools</font></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Having chosen this path, 
+        indeed having embraced it enthusiastically, what must be done to maximize 
+        the potential of these machines? Let's start by briefly understanding 
+        what I think are their principal weaknesses: <b>rigidity, speed, capacity, 
+         convenience</b>, and <strong>quality</strong>.</i></font></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">As we shall see, there are 
+        answers for each of these. More than once on the web I have read an experienced 
+        machinist opine that he could get good results out of the box from one 
+        of these machines because he &quot;knew how to do it.&quot; I will explore 
+        some general thoughts on how to do it as well as why these things work, 
+        and then I will drill down on the specific operations each machine is 
+        capable of to provide some of the tips I've researched along with my notes 
+        on how well it has worked for me. This is a labor under construction, 
+        so don't be surprised if it's incomplete, or if it changes from time to 
+        time.</font></i></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Rigidity</font></b></font></i></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Rigidity is the main weakness 
+        in these machines. They lack rigidity because:</i></font></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- They are smaller than 
+        &quot;professional&quot; sized machines. It takes a certain scale to achieve 
+        rigidity.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- They are lighter. Again, 
+        it takes scale, or in this case, mass to achieve the rigidity. Check to see how much the professional machines weigh. It's a 
+        tremendous task just to move one from place to place involving an experienced 
+        professional called a &quot;rigger&quot;.  Life seems to begin at about 3000 lbs for these machines, whereas a hobby-class mill or lathe may weigh 1/10 as much: 300 lbs.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- They may use less strong 
+        materials. These machines are cheap. They aren't going to be made out 
+        of solid green unobtanium or the other materials high end machines are 
+        constructed of. They aren't made to take the stresses of years of production 
+        usage. That's okay--this is a hobby, remember?!??</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- In some cases, their design 
+        may make them less smooth and precise. For example, they may use bushings 
+        rather than bearings in some places.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">Get in the habit of thinking 
+        about rigidity as you're planning a job. You will soon be thinking of 
+        ways to get the job done without over stressing the machine. Even big 
+        machines have rigidity limits that a skilled machinist knows how to approach 
+        for maximum productivity, but will avoid exceeding. If we do exceed the 
+        limits, here is what can happen:</font></i>  </p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- Loss of Accuracy: It's 
+        easy to see this one coming. Exceeding the limits of rigidity means things 
+        start to bend out of place. A little bit of this kind of thing may not 
+        matter if we're roughing, but we need to take care when finishing. Get 
+        used to the idea that you may use different techniques and even tools 
+        for roughing (the initial cuts that remove the most metal, but leave a 
+        rough finish and poor tolerances) and finishing (final steps removing 
+        very little material in order to achieve a fine finish and close tolerances). 
+        This is true for the big machines as well as our small ones.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- Chatter and Other Cutter 
+        Woes: If we can't maintain proper geometry of cutter to workpiece, how 
+        can we expect our cutters to work properly? Push too far and the finish 
+        will be terrible, the cutter will wear faster, it may break, and you won't 
+        even be cutting as quickly as you could by doing the job properly.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- Breakage: Flexing while 
+        cutting metal brings the potential for breakage of the part, the machine, 
+        or the tooling. Under certain circumstances, the flexing sucks the tool 
+        in even harder, causing more flexing, more sucking in, and a generally 
+        vicious cycle. Let's avoid coming any where near this condition, shall 
+        we?</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- Injury: Once we have breakage, 
+        there are bits of metal flying about our shop propelled my motors generating 
+        multiple horsepower and rapidly spinning machinery. That has to involve 
+        tremendous potential for personal injury. No matter how minor the injury, 
+        the potential is there for a crippling or even fatal injury if circumstances 
+        are just a bit different. Why take the risk? Learn how to use your machines 
+        properly and don't stress them to any where near their limits.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">What can be done to deal 
+        with the limited rigidity of our machines? Fortunately, there are a number 
+        of useful strategies we can employ:</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- <b>Use Softer Materials</b>: 
+        Must we make that part of Inconel, Titanium, or even Stainless Steel? 
+        Wouldn't Aluminum do just as well? Your machine will likely cut the softer 
+        materials faster, more accurately, and will leave behind a more attractive 
+        finish when you're done. Your tools will last longer, and you will generally 
+        have less aggravation with the project. Try to use the softest materials 
+        that will get your job done.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- <b>Cut Less</b>: Removing 
+        a half inch of diameter from a piece you're turning on the lathe is going 
+        to inspire you to take deep cuts so you don't have to go back and forth 
+        so often. If you can buy your raw materials closer to finished size, or 
+        use your saw (plasma torch, grinder, or whatever) to get closer before 
+        beginning the precision machine work, you can afford to take lighter cuts. 
+        Also, if it's turning you're doing, there will be a less massive piece 
+        to spin in the jaws of your chuck. Don't forget to think out of the box 
+        too. Is there a way to scale up the part so it's closer to the raw material 
+        you have on hand and it will therefore require less material be removed? 
+        In his wonderful book, <a href="http://www.proshoppublishing.com/"><b>Machine 
+        Shop Trade Secrets</b></a>, James Harvey recommends cutting within 0.1&quot; 
+        of your finished dimension before you even begin machining on a lathe 
+        or mill. This is the recommendation for professionals, and you should 
+        keep it in mind for your hobby too!</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- <b>Set Things Up Properly</b>: 
+        What's the most rigid way to hold a part in your lathe for turning? Probably 
+        not your 3-jaw chuck. What angle should the tool be to the part for maximum 
+        rigidity? For boring, angle your boring bar as much as possible, and try 
+        not to go &quot;straight in&quot; (another tip from Mr. Harvey). Can you 
+        lock parts of the machine that won't need to move so they'll be more solid? 
+        If you are using the tailstock, have you retracted it as much as possible? 
+        Can you mill with the quill retracted as far as possible? Have you buried 
+        the part in your chuck, leaving as little unsupported as possible? Learn 
+        all the tricks you can here, and keep a notebook to refresh your memory. 
+        Plan a set up carefully around these ideas. Don't just jump in haphazardly. 
+        With enough practice, this becomes second nature, but if you are an occasional 
+        hobbyist, refresh your memory often from that notebook!</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- <b>Modify Your Machine 
+        or Tooling</b>: Sometimes there are changes we can make to our machines 
+        to improve performance. The <a href="MTLinks.htm">Asian tool community</a> 
+        has a wealth of these that are carefully documented and make fun projects 
+        that will permanently improve the performance of your machine. Sometimes 
+        you can buy or build tooling to help as well. Jigs and fixtures can be 
+        very helpful to pros and amateurs alike. To often the amateur is in too 
+        much hurry to start making chips.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">These are general concepts 
+        to think about. When I reach a point of documenting each specific operation 
+        for each machine, this web site will be my notebook of techniques which 
+        you can refer to as well.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">A good proxy for rigidity is horsepower put into the cut.  <a href="FeedSpeedsCalculator/CCGWizard.html">A good machinist's calculator like G-Wizard</a> can tell you for any cut how much horsepower is being used.   In fact, G-Wizard will even take the parameters of your machine's work envelope (the axis travels) and weight and use them to &quot;derate&quot; the horsepower to show what horsepower can be used with ridigity equivalent to a &quot;pro&quot; class machine.</font></i></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Speed</font></b></font></i></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif"><i>You can find video clips 
+        on the web of high speed CNC machines cutting faster than I can write 
+        letters by hand. They are wonderful mesmerizing clips to entertain, but 
+        they do not reflect the reality of our hobby machines. You will find your 
+        Asian tools do well to cut a couple of tenths of an inch through soft 
+        materials on a roughing cut unless your technique is extremely good and 
+        you've made a lot of modifications to your machine and tooling. Many times 
+        you will have to slow the spindle or feed to avoid chatter, keep from 
+        stalling the motor, or preserve accuracy. Who cares?</i></font></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">Hobbyists are not running a production 
+        shop here where time is money. We're doing precision one off machining 
+        for our own amusement. With that said, consider the following:</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- <b>Pay Attention to Rigidity</b>: 
+        A good solid set up will take more speed. Follow all the rigidity guidelines 
+        and you can cut faster.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- <b>Cut Closer With the 
+        Saw</b>: Remember, get within 0.1&quot; before machining! The saw cuts 
+        much faster than your lathe or mill can. Also consider drilling things 
+        out close to where you need to be with a big drill in the drill press 
+        rather than hogging out with a mill or boring tool. </font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- <b>Change Tactics When 
+        Roughing</b>: We've already mentioned we can tolerate more, ah, roughness, 
+        when roughing. I'll get into specifics later, but you can push harder 
+        when you're hogging out material than when you are cutting to precise 
+        tolerances and trying to achieve a final finish. Also, different tooling 
+        may be used. For example, carbide cuts many materials faster (some say 
+        3x) than HSS tools, but for many materials (such as Aluminum) HSS will 
+        produce a finer finish.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- <b>Do As Much As Possible 
+        With Each Setup</b>: Setting up a machining operation takes quite a lot 
+        of time. You will save time to do as much as possible in a setup before 
+        moving on to the next set up. For example, do both the roughing and finishing 
+        in the same setup.  Before tearing down a setup, get in the habit of thinking carefully about whether there is anything else you might do, even just checking on some tolerances.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- <b>Plan Ahead</b>: How 
+        are you going to hold the workpiece on each operation? What is the optimal 
+        tooling and setup? Make some notes and a plan of action before you take 
+        your first cut. Thinking ahead will always save some time. Keep notes 
+        on your machine's capacity. How fast were you able to cut the last time? 
+        Remember, there are variables involved to make sure you compare apples 
+        to apples. Books like Machinery's Handbook are filled with tables and 
+        formulae. Find a few that work for you and study how your machine responds 
+        to them. Harvey offers his favorites in his book (Machine Shop Trade Secrets), things like chip load. 
+        You don't need to whole handbook to start an operation close to the optimal 
+        based on past experience and then tweak the job in quickly as you go.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- <b>Favor Faster Feeds 
+        Over Spindle Speed Or Deeper Cuts</b>: All three variables work together 
+        to determine how fast material is converted to chips, however, faster 
+        feeds with a slower spindle and shallower cuts will produce the best results 
+        while taxing your machine the least.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- <b>Modify Your Machine 
+        or Tooling</b>: As with rigidity, there are changes you can make to your 
+        machine or tooling to maximize potential speed. More horsepower, or the 
+        ability to apply exactly the power that can be used (variable speed motor) 
+        can help tremend</font></i><font face="Arial, Helvetica, sans-serif"><em><span class="BodyText">ously.</span></em></font></p>
+      <p class="BodyText"><em>I'll give you the biggest tip around speed I ever got:  convert your machine to CNC.  Yes, I know, you want to lovingly turn those handwheels and learn the craft. That's all fine and well, but at some point you will be dramatically more productive with CNC.  You'll know when turning the handwheels gets to be more drudgery than fun, and maybe that day will never come.  Just don't kid yourself that CNC is only for making runs of lots of identical parts.  A good machinist with a CNC can crank out single copies of parts much faster.  The advantage grows with the complexity of parts but exists for all but the simplest of parts.</em></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Capacity</font></b></font></i></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif"><i>This one is hard to overcome. 
+        If you need to swing a 12&quot; part on a 9&quot; lathe you are probably 
+        stuck. Start out buying the largest machine your budget allows and try 
+        to keep your projects from being too large. You'll find you can do a lot 
+        with your machines, and who knows, maybe you'll be upgrading to a larger 
+        machine someday. It may be that just a few of the parts for a project 
+        need the larger machine, in which case you could concievably farm that 
+        work out to the local machine shop and still carry on with most of the 
+        rest of the work.</i></font></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Convenience</font></b></font></i></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif"><i>Another area the Asian machines 
+        have to compromise is in convenience, which in this case means labor saving 
+        features. For example, they'll require you to hunt down a wrench for a 
+        bolt instead of providing a nice cam lock with a ball handled lever. Getting 
+        over these issues is a mixture of spending time with your machine so that 
+        you are efficient at using it and modifying the machine to add the missing 
+        features you most desire. All doable, and there is plenty of <a href="MTLoveTheAsianTools.htm">information 
+        on the web</a> to help you plan what to do.</i></font></p>
+      <table width="100%" border="0">
+        <tr>
+          <td width="7%"><img src="img/GearsIconSm.jpg" alt="" width="53" height="46"></td>
+          <td width="93%"><i><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Quality</font></b></font></i></td>
+        </tr>
+      </table>
+      <p class="BodyText"><em>This is the toughest one to get past.   No matter how you slice it, no matter how many modifications you make, your Asian lathe is never going to have the quality of a Mori Seiki or Monarch lathe in good condition.   Those machines are amazing, and the average Asian machinery can't compare.       They're extremely well built and capable of tremendous accuracy and productivity.     </em></p>
+      <p class="BodyText"><em>There are a few things you can do to help, though.    If something seems flimsy or poorly done on your machine, consider improving it.  Some hobbyists go through and replace all the cheap fasteners with higher quality hardware and Locktite it in place.     Another thing is to get good at adjusting your machine.    The light weight of these machines means they can go out of adjustment easily.   Get good at leveling, tramming, squaring, and all the other kinds of adjustments you can make.</em>      </p>
+      <table width="100%" border="0">
+        <tr>
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Made in Taiwan Versus Made in China </font></b></font></i></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif"><i>There seems to be considerable consensus that machines made in Taiwan are significantly better (and more expensive) than those made in China. There are also some machines (such as Mori Seiki lathe clones) coming out of Korea that are quite good. If you have the budget and want a cut above in the new Asian tool market, keep an eye out for these machines.</i></font></p>
+      <p><em><font face="Arial, Helvetica, sans-serif">Brands I've come across that import some or all of their line (be sure to check carefully!) from Taiwan include Acer, Acra, Birmingham, Grizzly (only a few lathes at the very high end), Hwacheon, Jet, Kingston, Lion, Sharp, Summit, Takisawa, Tos, Victor, and Webb. </font></em></p>
+      <p>&nbsp;</p>
+      <p><b><i><font size="+2"><a href="index.htm">Back to Machine Tool Home...</a></font></i></b></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

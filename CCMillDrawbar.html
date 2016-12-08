@@ -1,0 +1,783 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNC Cookbook: Powered Drawbar for IH Mill</title>
+<link rel="canonical" href="http://www.cnccookbook.com/CCMillDrawbar.html" />
+
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.style2 {font-size: 36px}
+.style3 {color: #339933}
+.style5 {font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+.style6 {font-size: 24px}
+.style11 {font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p class="style1 style2 style3">Powered Drawbar for My Industrial Hobbies 
+        Mill </p>
+      <p class="style1"><span class="style1 style2 style3 style6">Finished Drawbar: 
+        You Need One!!! </span></p>
+      <p align="center" class="style1"><img src="img/MillStuff/PowerDrawbar/PC173693.JPG" width="600" height="800"></p>
+      <p align="center" class="style1"><strong>Here's the beasty perched atop 
+        my Industrial Hobbies Mill...</strong></p>
+      <p align="center" class="style1"><strong><a href="img/MillStuff/PowerDrawbar/PC173692.MOV"><img src="img/MillStuff/PowerDrawbar/PC173694.JPG" width="482" height="501" border="0"></a></strong></p>
+      <p align="center" class="style1"><strong>Click this image for a <a href="img/MillStuff/PowerDrawbar/PC173692.MOV">MOVie 
+        file of the drawbar in operation</a>: Requires QuickTime! </strong></p>
+      <p class="style1">I don't know how I got by without one, now that I have 
+        it. They are available commercially, but I built mine (see below). Boy, 
+        does this ever make toolchanges fast! Press &quot;OUT&quot; and the tool 
+        pops out into your right hand in about 3 seconds. Insert a new tool in 
+        the spindle, press &quot;IN&quot;, and the holder or collet is torque 
+        down and ready to go in another 3 seconds. I love it! </p>
+      <p class="style1"><span class="style1 style3 style6">Details</span></p>
+      <p class="style1">Some time ago I came across a set of plans for a powered 
+        drawbar to be based on an import air impact wrench. The outfit selling 
+        them is called Home Shop Accessories, and the price was reasonable, so 
+        I sent off for a set. They arrived in fine order as a PDF file in my email 
+        inbox. I looked them over, and they were a high quality set of plans. 
+        Eventually I would build one of these gadgets and thereby make changing 
+        tools in my mill that much quicker. A lot of the earlier CNC mills such 
+        as the Tree 325's didn't even have a toolchanger--they relied exclusively 
+        on a power drawbar to speed up tool changes. I wanted to achieve a similar 
+        advantage for my own mill. There have been some others that came this 
+        way before me, such as this fellow, who mounted one of the Bridgeport 
+        &quot;Aussie&quot; power drawbars available on eBay:</p>
+      <p align="center" class="style1"><a href="http://imageevent.com/tppjr/rf45dovetailmill/zaxiscounterweight"><img src="img/OthersProjects/IHPowerDrawbar.jpg" width="576" height="384" border="0"></a></p>
+      <p align="center" class="style1"><b><i><a href="http://imageevent.com/tppjr/rf45dovetailmill/zaxiscounterweight">Power 
+        Drawbar...</a></i></b></p>
+      <p class="style1">Pretty soon, the same outfit I got my plans from released 
+        an even better version, which they were now calling the world's simplest 
+        and cheapest drawbar:</p>
+      <p align="center" class="style1"><a href="http://home.insightbb.com/~joevicar3/cheap_drawbar.htm"><img src="img/OthersProjects/PowerDrawbar.jpg" width="321" height="435" border="0"></a></p>
+      <p align="center" class="style1"><b><i><a href="http://home.insightbb.com/~joevicar3/cheap_drawbar.htm">Simplest, 
+        cheapest, powered drawbar you can build!</a></i></b></p>
+      <p class="style1">I promptly ordered the second set of plans, and I have 
+        to admit this is an amazingly simple design. It was finally time to dive 
+        in and start swimming on this project!</p>
+      <p class="style1">You can follow along here and see how I did it, but if 
+        you want to build your own, you will need a set of plans because I'm not 
+        giving out all the details here--wouldn't be fair! They're cheap and very 
+        well done, <a href="http://home.insightbb.com/~joevicar3/cheap_drawbar.htm">so 
+        order 'em up</a>! </p>
+      <p class="style1">I got a butterfly impact wrench ordered from Harbor Freight, 
+        you want the Central Pneumatic 37730. I also ordered the preferred air 
+        cylinder from <a href="https://www.aircylindersdirect.com/index.jsp">Air 
+        Cylinders Direct</a>, as it was the cheapest source I could find and was 
+        also the one recommended in the plan set. Other than a few small plumbing 
+        fittings to route the air around, you will be making the rest of the parts. 
+        The air cylinder was $20 with shipping, and harbor fright charged me $26.99 
+        for the butterfly impact wrench, which is a nice looking piece, BTW. </p>
+      <p align="center" class="style1"><img src="img/MillStuff/PowerDrawbar/PB103670.JPG" width="800" height="650"></p>
+      <p align="center" class="style1"><strong>An air cylinder to raise and lower 
+        and the butterfly impact wrench: These are the guts of the powered drawbar.</strong></p>
+      <p align="center" class="style5"><img src="img/MillStuff/PowerDrawbar/PB103671.JPG" width="800" height="600"></p>
+      <p align="center" class="style5">Top of the IH got me concerned about exactly 
+        how clearances would work out, so I made the base plate first, or at least 
+        far enough so I could trail fit things. It's covered in Dychem. I used 
+        my boring head to cut the semi-circular pocket similar to what I did on 
+        my power feed. I also cut out a notch to clear the gearbox oil fill. I 
+        wish I had the bigger motor on it, because I won't know how that will 
+        affect clearances. Oh well, may have to re-engineer at that point!</p>
+      <p align="center" class="style5"><img src="img/MillStuff/PowerDrawbar/PB103672.JPG" width="800" height="584"></p>
+      <p align="center" class="style5">Initial stages of the valve backplate. 
+        Lots of drilling and tapping on this project!</p>
+      <p align="center" class="style5"><img src="img/MillStuff/PowerDrawbar/PB103673.JPG" width="800" height="760"></p>
+      <p align="center" class="style5">Need to cut some angles onto the valve 
+        backplate to clear the operating lever. The backplate is resting on an 
+        angle block in the chuck. I used a parallel to apply side pressure because 
+        the angle block is thicker than the piece I'm cutting.</p>
+      <p align="center" class="style5"><img src="img/MillStuff/PowerDrawbar/PB183685.JPG" width="800" height="597"></p>
+      <p align="center" class="style5">There's one of those angle plates right 
+        now. They come in a set. Very handy! </p>
+      <p align="center" class="style5"><img src="img/MillStuff/PowerDrawbar/PB103675.JPG" width="800" height="562"></p>
+      <p align="center" class="style5">Here we are about finished. I just eyeballed 
+        it, gradually increasing depth until the point was roughly centered on 
+        the hole. Next, I take my air file to all those pointy corners.</p>
+      <p align="center" class="style5"><img src="img/MillStuff/PowerDrawbar/PB183686.JPG" width="800" height="589"></p>
+      <p align="center" class="style5">Just got this air file on sale from Enco--it's 
+        a mini belt sander. They are awesome for this sort of thing!</p>
+      <p align="center" class="style5"><img src="img/MillStuff/PowerDrawbar/PB183682.JPG" width="664" height="800"></p>
+      <p align="center" class="style5">Here is the valve mounted to the valve 
+        backplate. That's my little rocker handle I milled out of aluminum. My 
+        Asian letter stamps don't stamp very clean, do they? But they'll work 
+        OK.</p>
+      <p align="center" class="style5"><img src="img/MillStuff/PowerDrawbar/PB183683.JPG" width="800" height="600"></p>
+      <p align="center" class="style5">Another view of the valve backplate. This 
+        gets mounted on the mill wherever you want the drawbar switch to be.</p>
+      <p align="center" class="style5"><img src="img/MillStuff/PowerDrawbar/PB183677.JPG" width="800" height="578"></p>
+      <p align="center" class="style5">Now here is the plate that the impact wrench 
+        is mounted to.</p>
+      <p align="center" class="style5"><img src="img/MillStuff/PowerDrawbar/PB183678.JPG" width="800" height="754"></p>
+      <p align="center" class="style5">Wrench and air cylinder are mounted up!</p>
+      <p align="center" class="style5"><img src="img/MillStuff/PowerDrawbar/PB183680.JPG" width="800" height="666"></p>
+      <p align="center" class="style5">A slightly different view...</p>
+      <p align="center" class="style5"><img src="img/MillStuff/PowerDrawbar/PB183690.JPG" width="800" height="600"></p>
+      <p align="center" class="style5">Turning the rods that the impact wrench 
+        will ride on... </p>
+      <p align="center" class="style5"><img src="img/MillStuff/PowerDrawbar/PB183688.JPG" width="800" height="549"></p>
+      <p align="center" class="style5">To make the top bracket, I used my transfer 
+        punch and brass &quot;hammer&quot; to center punch the holes so they'd 
+        line up. Transfer punches are handy!</p>
+      <p align="left" class="style1">Next comes the fiddly part. You've made the 
+        guide rods to proper length, and made all the brackets. Bolt the whole 
+        thing together and play with it. When you press down does the wrench assembly 
+        slide smoothly? When you release it, is the return spring pressure strong 
+        enough to return it to top? Some fiddling with the slide rods helps tremendously. 
+        In the end, I didn't have quite enough spring pressure to reliably return 
+        the wrench to the top of travel every time. The answer was to drop a couple 
+        compression springs onto the guide rods to assist. These were readily 
+        available from the hardware store.</p>
+      <p align="left" class="style1">Notes to self: Were I to redesign this thing 
+        to improve upon it, I think I'd build the springs in from the get-go. 
+        I'd also be tempted to find a way to machine some UHMW plastic to serve 
+        as the bearing material that slides on the steel rods. </p>
+      <p class="style1">The other thing that was a bit of a nuisance is the top 
+        of the IH Mill has a complicated series of concentric round protrusions 
+        that have to be cleared before the base will bolt down against the mill 
+        head. I wound up simply making my base with slots and having it sit atop 
+        the round boss. One could spend a bit more time and make the base so it 
+        sits down onto the flat part of the mill top if you wanted.</p>
+      <p class="style1">In any event, I didn't take all that many pictures on 
+        this project. As I said, you need to buy a set of plans if you want to 
+        build one of these. It wouldn't be fair for me to give it all away. The 
+        plans are very inexpensive and there's a lot of good writing there to 
+        help you make one of these. </p>
+      <p class="style1">Highly recommended! </p>
+      <p class="BlogTitle" align="center">Postscript: Ideas I Missed the First 
+        Time Around</p>
+      <p class="BlogTitle">Socket Guide</p>
+      <p><font face="Arial, Helvetica, sans-serif">Awesome idea from <a href="http://www.cnczone.com/forums/showthread.php?t=79301">Bohica 
+        on CNCZone</a>! I had seen the Tapered Drawbar Bushing (see below) to 
+        help keep the drawbar centered in the bore. This helps considerably to 
+        reduce the wear of engagement and generally cleans things up. But Bohica's 
+        idea was to machine an adapter that would not only keep the drawbar centered 
+        but that would also guide the socket right down onto the head of the bolt. 
+        Here is his very nice and clean drawbar on his IH mill:</font></p>
+      <p align="center"><img src="img/MillStuff/PowerDrawbar/DrawbarReceiver.jpg" width="1025" height="769"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">Note the separately 
+        mounted air gadgetry, nice and clean. More importantly, check out the 
+        socket guide sitting on top of the spindle shaft!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">He gives a .DXF 
+        drawing in his write up, but here is my own interpretation in Rhino3D:</font></p>
+      <p align="center"><img src="img/MillStuff/PowerDrawbar/SocketGuideRhino.jpg" width="1024" height="711"></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Seeing as how 
+        I need to build a pulley that fits tightly onto the splines of the spindle 
+        for <a href="CCMillBeltDrive.html">a belt drive conversion</a>, I think 
+        making one of these to fit the splines will be an ideal warm up and test 
+        of my ability to make the part accurately. For the finished belt drive, 
+        a guide like this will be integral to the pulley assembly that I machine.</font></p>
+      <p class="BlogTitle">Tapered Drawbar Bushing</p>
+      <p class="style1 style1"><font face="Arial, Helvetica, sans-serif">I came 
+        across this idea over on the <a href="http://bbs.homeshopmachinist.net/showthread.php?t=22331">HSM 
+        Board</a>, and I think its great. This fellow replaced his drawbar washer 
+        with a tapered spacer that does a better job of keeping the drawbar centered:</font></p>
+      <p align="center" class="style1 style1"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/DrawbarSpacer.jpg" width="400" height="302"></font></p>
+      <p align="center" class="style1"><font face="Arial, Helvetica, sans-serif"><strong>Someone 
+        else gave me this idea, here is their version... </strong></font></p>
+      <p align="left" class="style1 style1"><font face="Arial, Helvetica, sans-serif">Every 
+        now and then my drawbar gets cocked a bit and the <a href="CCMillDrawbar.html">powered 
+        drawbar</a> has to work to engage the socket to it. It manages, but a 
+        bushing like this would make things run more smoothly. </font></p>
+      <p align="left" class="style1 style1"><font face="Arial, Helvetica, sans-serif"><strong>Update 
+        1/26/07</strong>: I made my own spacer. It took all of a half hour. Boy, 
+        what a difference! I made mine to fit fairly snugly in the spindle and 
+        leave a nice easy fit for the drawbar to go in and out. The drawbar is 
+        now very closely centered every time, the spindle seems to run more smoothly 
+        (better balanced or just my imagination, who knows?) and it was well worth 
+        doing. I am updating the drawbar page to reflect that this is a &quot;must 
+        have&quot; part of the project. I think it will reduce wear on the drawbar 
+        nut since the socket will be closer to right on. </font></p>
+      <p align="left" class="style1 style1"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Don't 
+        Want to Deal With Building a Drawbar? Two Options...</font></p>
+      <p align="left" class="style1 style1"><font face="Arial, Helvetica, sans-serif"><b>Option 
+        #1: Handheld Impact Wrench</b></font></p>
+      <p align="left" class="style1 style1"><font face="Arial, Helvetica, sans-serif">Just 
+        buy the HF wrench and use it by hand. I've done that on my CNC mill since 
+        I haven't yet built a drawbar for it as I write this. Works great and 
+        is superfast. Just reach up with the imapct wrench in one hand, grab the 
+        toolholder in the other, squeeze the trigger and boom, the toolholder 
+        is out.</font></p>
+      <p align="left" class="style1 style1"><font face="Arial, Helvetica, sans-serif"><b>Option 
+        #2: Buy someone else's</b></font></p>
+      <p align="left" class="style1 style1"><font face="Arial, Helvetica, sans-serif">I 
+        saw this on eBay recently:</font></p>
+      <p align="center" class="style1 style1"><font face="Arial, Helvetica, sans-serif"><img src="img/MillStuff/PowerDrawbar/eBayDrawbar1.jpg" width="400" height="300"> 
+        <img src="img/MillStuff/PowerDrawbar/eBayDrawbar2.jpg" width="400" height="300"> 
+        </font></p>
+      <p align="left" class="style1 style1"><font face="Arial, Helvetica, sans-serif">It's 
+        a little simpler design. Looks like you are meant to move the drawbar 
+        down by hand instead of with an air cylinder and rotate the handle to 
+        control the wrench. $195 from eBay seller <a href="http://myworld.ebay.com/mad_season74/">mad_season74</a>.</font></p>
+      <p align="left" class="BlogTitle">2nd Generation Powered Drawbar</p>
+      <p align="left" class="style1 style1">The first version I built works great, and is easy to build.  This second generation (which I haven't built) is just some thinking about alternate designs.  I've got 2 mills and will eventually build a drawbar for the 2nd (CNC'd) mill that is integrated with the <a href="CCMillBeltDrive.html">belt drive</a> components.</p>
+      <p align="left" class="style1 style1">Meanwhile, food for thought:</p>
+      <p align="center" class="style1 style1"><object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/ONM-EJGQbLw&hl=en_US&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/ONM-EJGQbLw&hl=en_US&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
+      </p>
+      <p align="center" class="style1 style1">Guts of a Kurt power drawbar are built on a Chicago Pneumatic butterfly impact wrench.   The air cylinder is machined into the base...</p>
+      <p align="center" class="style1 style1"><img src="img/MillStuff/PowerDrawbar/2ndGen/Kurt1.jpg" width="800" height="675"></p>
+      <p align="center" class="style1 style1">Note how the butterfly impact wrench is clamped.  Looks like the air block is attached via the swivel for the old wrench activating lever...</p>
+      <p align="center" class="style1 style1"><img src="img/MillStuff/PowerDrawbar/2ndGen/100_2375.jpg" width="800" height="600">&nbsp;</p>
+      <p align="center" class="style1 style1">A copy of the Kurt <a href="http://cnczone.com/forums/showthread.php?p=773118#post773118">Starleper is building</a>...</p>
+      <p align="left" class="style1 style1">I like this Kurt-style design because its more compact. It would be more trouble to build, since you have to machine the air cylinder/base, but perhaps not too much more trouble.</p>
+      <p align="center" class="style11"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="img/GWizard/GWScreenRow.jpg" alt="" width="1024" height="238"></a></p>
+      <p align="center" class="style11"><span class="style12"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+      <p align="center" class="style11"><a href="FeedSpeedsCalculator/CCGWizard.html">Be sure to check out G-Wizard, our Machinist's Software!</a></p>
+      <p align="left" class="style1 style1">&nbsp;</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

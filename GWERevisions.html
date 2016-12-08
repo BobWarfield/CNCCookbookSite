@@ -1,0 +1,477 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCGWEDocPage.dwt" --><!-- DW6 -->
+
+<head>
+
+<!-- #BeginEditable "doctitle" --> 
+
+<title>G-Wizard G-Code Editor Revisions</title>
+
+<style type="text/css">
+<!--
+.BodyText1 {}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText3 {}
+.BodyText3 {font-family: Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<!-- #EndEditable -->
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+<style type="text/css">
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 14pt}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+<!-- SumoMe Listbuilder Email Exit Intent -->
+<script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" />
+<style type="text/css">
+.BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">
+  multitouch();
+</script>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr></tr>
+<tr>
+  <td height="68" colspan="4" valign="middle" bordercolor="0" class="Tagline">
+  
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/LogoBitmap30High.jpg" alt="CNCCookbook: Software and Information for Macihnists" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="32" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+  
+  </td>
+</tr>
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+<tr class="LeftNav">
+  <td width="231" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0"><table width="65%"  border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><div align="center">
+        <p><a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"><img src="img/Ads/GWAd05152011.gif" width="120" height="90" alt="G-Wizard Machinist's Calculator" longdesc="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"></a></p>
+        <p><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm"> <img src="img/Ads/FeedsSpeedsAd.jpg" width="120" height="69" alt="Feeds and Speeds Cookbook"></a></p>
+      </div></td>
+    </tr>
+  </table>
+    <p>
+      <!-- Place this tag where you want the +1 button to render -->
+        <g:plusone></g:plusone>
+    </p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="+1" color="#66CC00">GW Editor 
+      User Guide</font></b></p>
+    <p align="center" class="Tagline1"><a href="GWEUIntro.html" class="BodyText"><strong>GWE Video University</strong></a>    </p>
+    <p align="center" class="BodyText"><strong><a href="GWEOverview.html">Getting Started</a></strong></p>
+    <p align="center" class="BodyText"><a href="GWEHowToArticles.html"><strong>How-To Articles</strong></a></p>
+    <p align="center" class="BodyText"><strong><a href="GWESetup.html">Setup</a></strong></p>
+    <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWECommands.html"><strong>Commands</strong></a></p>
+    <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWEKeyboard.html"><strong>Keyboard</strong></a></p>
+    <p align="center" class="BodyText"><strong><a href="GWERevisions.html">Revisions</a></strong></p>
+    <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWECNCSimulator.html"><strong>CNC Simulator</strong></a></p>
+    <p align="center" class="BodyText"><strong><a href="GWEWizards.html">Wizards</a></strong></p>
+    <p align="center" class="BodyText"><strong><a href="GWETools.html">Tool Data</a></strong></p>
+    <p align="center" class="BodyText"><a href="GWETips.html"><strong>Tips</strong></a></p>
+    <p align="center" class="BodyText"><a href="GWEPostList.html"><strong>Post List</strong></a></p>
+    <p align="center" class="BodyText"><a href="GWECustomPosts.html"><strong>Customizing Posts</strong></a></p>
+    <p align="center" class="Tagline1">&nbsp;</p>
+    <p align="center" class="Tagline1"><strong><a href="GWCCOverview.html">GW Conversational CNC</a></strong></p>
+    <p align="center" class="Tagline1">&nbsp;</p>
+    <p align="center" class="Tagline1"><a href="http://www.cnccookbook.com/CCCNCGCodeRef.html"><strong>Mill G-Codes</strong></a></p>
+    <p align="center" class="Tagline1"><a href="http://www.cnccookbook.com/CCCNCGCodeRefTurn.html"><strong>Lathe G-Codes</strong></a></p>
+    <p align="center" class="Tagline1">&nbsp;</p>
+    <p align="center" class="Tagline1"><a href="GWESampleFiles.html"><strong>Sample G-Code Files</strong></a></p>
+    <p align="center" class="Tagline1">&nbsp;</p>
+    <p align="center" class="Tagline1"><strong><a href="http://www.cnccookbook.com/GWETips.html">GWE Tips</a></strong></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><strong><a href="GWEChangeLog.html" class="BodyText">GWE Change Log</a></strong></p>
+    <p align="center" class="BodyText"><a href="http://www.cnccookbook.com/GWizard/GWEInstall.html"><strong>GWE Install</strong></a></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="GWTrouble.htm">Troubleshooting</a></font></b></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><a href="http://www.cnccookbook.proboards.com/index.cgi" class="BodyText"><strong>User's Club</strong></a></p>
+<p>
+  <!-- Place this tag where you want the +1 button to render -->
+  <p>
+  <g:plusone></g:plusone>
+  </p>
+    <!-- AddThis Button BEGIN -->
+    <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+    <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=cnccookbook"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=cnccookbook"></script>
+    <!-- AddThis Button END -->
+</p>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    gaTrack: true,
+    gaId: 'UA-1060932-2'
+  }, 'google_translate_element');
+}
+  </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</p>
+</td>
+</tr>
+<tr>
+  <td colspan="7" align="left" valign="top" bgcolor="#FFFFFF">
+  <div id="centerContainer">
+  <!-- #BeginEditable "Body" --><span class="BodyText"><font color="#339933" size="+4">G-Wizard 
+        Editor: Revisions</font>
+        </span>
+        <p class="BlogTitle">Introduction to Revisions</p>
+      <p class="BodyText1"><span class="BodyText">Revisions are commands that scan through the g-code and make revisions. </span>Think of a Revision as a sort of automated editor that makes a particular change to your g-code.  Examples of Revisions include:</p>
+        <ul>
+          <li class="BodyText1">Adding or deleting spaces and blank lines.</li>
+          <li class="BodyText1">Adding or removing block skip characters (/) over sections of g-code.</li>
+          <li class="BodyText1">Changing capitalization</li>
+          <li class="BodyText1">Removing comments from blocks and commenting out or uncommenting blocks.</li>
+          <li class="BodyText1">Eliminating control, garbage, and other non-printing characters. </li>
+          <li class="BodyText1">Expanding tabs to spaces</li>
+          <li class="BodyText1">Renumbering block sequence numbers (&quot;N&quot; numbers)</li>
+          <li class="BodyText1">etc.</li>
+        </ul>
+        <p class="BodyText1">There's a long list of Revisions that will eventually be added to GWE.    &quot;What's so special about Revisions?&quot; you ask. After all, a number of g-code editors have these capabilities. </p>
+        <p class="BodyText1">It's true, if Revisions were simply going to be commands you could trigger manually, they wouldn't be that unique.  Perhaps a little cleaner UI as they're all organized together into the same format.  Here for example is the Revision Chooser:</p>
+        <p align="center" class="BodyText1"><img src="img/GWizardE/Posts/RevisionList.jpg" width="800" height="535" alt="Revision List"></p>
+        <p align="center" class="BodyText1">The list of Revisions...</p>
+        <p align="left" class="BodyText1">As I say, if that's all there is, it's helpful, but not revolutionary.   But, there are big plans for Revisions. </p>
+        <p align="left" class="BodyText1">Referring to the screen shot, as  you step the cursor through each Revision, its options appear below the list.    Getting all Revisions to look the same and work through the same interface instead of being separate commands is the first step in realizing their potential.   The goal is to make it possible to use the Revisions as automatic building blocks for transforming your g-code to follow the Best Practices you want for your shop.</p>
+        <p align="left" class="BodyText1">Let's say there's a set of commands you have to perform on every g-code file to make it suitable for use.   Perhaps you have an older machine that doesn't have much memory, so you want to squeeze out all the spaces from the program.  Another machine wants &quot;G00&quot; not &quot;G0&quot;, but you're used to typing &quot;G0&quot; and just can't kick the habit.  With multiple machines and controllers, there may be subtle differences in the g-code one expects versus the other.   In extreme, perhaps you have a newer lathe that has canned cycles like G71 and an older lathe that lacks G71.  You like to program with G71.   What if you had a Revision that could simulate the G71 and generate the G-Code to perform the same rough turning without G71?</p>
+        <p align="left" class="BodyText1">That's the promise of Revisions.  We think they'll be quite a revolution in the g-code world.   Some of you are probably wondering why you'd want to look at the g-code at all--you're used to your CAM program and the machine control and don't want anything to come between them.   There will be Revisions you may find useful too, as well as other reasons why a G-Code Simulator and Editor might be useful to you. Think of GWE as your Shop Floor Swiss Army Knife for fiddling with g-code in various ways.  You don't have to program g-code from scratch to get some use from it.   Over time we'll give you all sorts of ideas how.</p>
+      <p class="BodyText">Revisions are selected via the Tools Menu:</p>
+      <p class="BlogTitle"><img src="img/GWizardE/Docs/ToolsMenu.jpg" width="402" height="224" alt="Tools Menu"></p>
+      <p class="BodyText">The Tools Menu has 4 Revisions-related commands:</p>
+      <p class="BodyText">-  Revise: Where Revisions can be accessed.</p>
+      <p class="BodyText">- Auto Revise: Where you set up automatic Revisions that can be triggered on file load, file save, or every time the file is parsed.</p>
+      <p class="BodyText">- Last Revision: Executes the last Revision you ran with the same options set. </p>
+      <p class="BodyText">- Revision History List:  A list of recent Revisions in case you want to run one again.      </p>
+      <p class="BodyText">You can also access Revisions from the Tool Bar:</p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/Docs/RevisionToolbar.jpg" width="800" height="164" alt="Revisions Tool Bar"></p>
+      <p align="left" class="BodyText">Run the last Revision again with the same options by clicking the &quot;Revise&quot; button. The message to the right tells you which Revision you're getting.  If you haven't run any yet, it just brings up the Revision Tool.    The down arrow also brings up the Revision Tool so you can change an option or pick a different Revision.</p>
+      <p class="BodyText">Here is the Revision Tool:</p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/Docs/RevisionTool.jpg" width="800" height="410" alt="Revision Tool"></p>
+      <p align="left" class="BodyText">The Revision Tool lets you select different Revision Functions, see what they do in the Description column, and see their various options down below.   When you find the Revision you'd like to make, select the appropriate options and press &quot;Apply&quot;.   Or, press &quot;Cancel&quot; to back out without making any revisions.</p>
+      <p class="BodyText">Below is a list of the available Revisions with a description of their purpose and options:</p>
+      <p class="BlogTitle">Add/Delete Spaces</p>
+      <p class="BodyText"><strong>Purpose:</strong> </p>
+      <p class="BodyText">Like the name says, &quot;Add/Delete Spaces&quot; is used to add or remove spaces.  Why would you want to remove spaces? Largely to reduce program size for machines with limited controller memory. Why add them back? To make your programs easier to read. </p>
+      <p class="BodyText">If you have to do a lot of work with a machine that needs to remove spaces, consider creating a File Open Auto-Revision to add spaces and a File Save Auto-Revision to remove the spaces. That way, whenever you have to edit a file, it will have spaces, and whenever you save to send it to your machine, it will create a smaller file.</p>
+      <p class="BodyText"><strong>Options:</strong></p>
+      <p class="BodyText"><img src="img/GWizardE/Docs/ReviseAddDelSpaces.jpg" width="244" height="123" alt="Revision Options for Add / Delete Spaces"></p>
+      <p class="BodyText">You have a choice to Del(ete) or Add Spaces. Spaces are added between each the argument for each word (letter), but not between the word and the argument. For example:</p>
+      <blockquote>
+        <p class="BodyText">Before Revision: X0Y0Z0</p>
+        <p class="BodyText">After Revision:&nbsp;&nbsp;&nbsp; X0 Y0 Z0</p>
+      </blockquote>
+      <p class="BodyText">You have the option to ignore spaces in Comments. This keeps the comments looking more like conversational language.</p>
+      <p class="BodyText">You have the option to treat tabs as spaces, which means tabs will be deleted when you run Del(ete) Spaces.</p>
+      <p class="BlogTitle">Adjust Addresses</p>
+      <p class="BodyText">The Adjust Addresses command makes it easy to apply math and formatting to addresses:</p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/GCodeCourse/AddressAdjust.jpg" width="800" height="485" alt="Adjust Addresses in G-Code"></p>
+      <p align="center" class="BodyText">Adjust Addresses revision makes it easy to apply math and formatting to addresses...</p>
+      <p align="left" class="BodyText">It lets you modify the value of up to 4 different words. Enter the word, the operation, a value, and which word you want to format like.  The example in the screen shot will subtract 1 from every &quot;X&quot; word and format the result as you would an &quot;O&quot; word.</p>
+      <p class="BlogTitle">Apply Block Skip (/)</p>
+      <p class="BodyText"><strong>Purpose:</strong></p>
+      <p class="BodyText">Apply Block Skip makes it easy to add or strip block skip characters. </p>
+      <p class="BodyText"><strong>Options:</strong>      </p>
+      <p class="BodyText">The options are simple.  Choose &quot;Skip&quot; to add Block Skips to every line that is selected and &quot;Unskip&quot; to remove any Block Skips found in the selected range of lines.</p>
+      <p class="BlogTitle">Arc Adjust</p>
+      <p class="BodyText"><strong>Purpose:</strong></p>
+      <p class="BodyText">Change arc usage in a program.  For example, change all IJK-style arcs to be R-style.</p>
+      <p class="BodyText"><strong>Options:</strong></p>
+      <p class="BodyText">-  Change IJK to R</p>
+      <p class="BodyText">- Change R to IJK</p>
+      <p class="BodyText">- Convert IJK centers to absolute centers</p>
+      <p class="BodyText">- Convert IJK centers to relative centers</p>
+      <p class="BlogTitle">CAPitalize</p>
+      <p class="BodyText"><strong>Purpose:</strong></p>
+      <p class="BodyText">CAPitalize makes it easy to set the capitalization on your g-codes.      Some prefer consistent capitalization for readablity and some controls may require it.   This is another good one to consider setting up an Auto-Revision for.    For example, you could set one on File Load, Parse, and Save and that will pretty much guarantee that no matter how you've typed, copied and pasted, or otherwise created g-codes, they will be properly capitalized.</p>
+      <p class="BodyText"><strong>Options:</strong>      </p>
+      <p class="BodyText">Just one option, the ability to ignore comments and leave their capitalization alone.</p>
+      <p class="BlogTitle">Comments</p>
+      <p class="BodyText"><strong>Purpose:</strong></p>
+      <p class="BodyText">Comments provides the ability to comment out the selected block, un-comment it, or to delete all comments within the selected block.  Commenting out code is a good way to execute just the code you leave uncommented. Perhaps you want to temporarily modify a g-code program to skip some steps, or maybe you want to save time debugging by not executing the commente out code.   When you're ready to uncomment the code, the Comments Revision makes that easy too.</p>
+      <p class="BodyText">When G-Wizard comments out code, it leaves the block (N) number intact and outside the comment.</p>
+      <p class="BodyText">The Comments Revision also has the capability to strip comments out of your g-code.  Like deleting spaces, this is something you might choose to do in order to save on the memory required to run the g-code program.</p>
+      <p class="BodyText"><strong>Options:</strong>      </p>
+      <p class="BodyText">The options are simply whether you want to Comment out, Uncomment, or Delete comments.</p>
+      <p class="BlogTitle">Control Characters</p>
+      <p class="BodyText"><strong>Purpose:</strong></p>
+      <p class="BodyText">Sometimes your g-code program files will pick up non-printing characters. Various software leaves such characters behind.  Aside from being a nuisance to look at in the editor, these characters can also trip up some CNC controllers, so it's usually a good idea to delete them.  That's exactly what the Control Characters Revision does.</p>
+      <p class="BodyText"><strong>Options:</strong></p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/Docs/ControlCharRevision.jpg" width="304" height="78" alt="Control Character Revision"></p>
+      <p align="left" class="BodyText">The Control Character Revision will delete any non-printing characters, and in addition has the option to convert tabs to spaces. You can specify how many spaces.  If you uncheck &quot;Convert tabs&quot; then tabs will be left alone in the file unmolested.</p>
+      <p class="BlogTitle">Delete Words</p>
+      <p class="BodyText"><strong>Purpose:</strong></p>
+      <p class="BodyText">Selective deletion of words that have certain address values.</p>
+      <p class="BodyText"><strong>Options:</strong></p>
+      <p class="BodyText">You may select up to 4 different words to process and optionally delete them if their address equals a certain value.      </p>
+      <p class="BlogTitle">Monitor Words</p>
+      <p class="BodyText"><strong>Purpose:</strong></p>
+      <p class="BodyText">Adds a string after a particular word.</p>
+      <p class="BodyText"><strong>Options:</strong></p>
+      <p class="BodyText">A string may be added everywhere the word is used, or just when the address for the word equals a certain value.      </p>
+      <p class="BlogTitle">Relative/Absolute</p>
+      <p class="BodyText"><strong>Purpose:</strong></p>
+      <p class="BodyText">Change XYZ coordinates to be either relative or absolute.</p>
+      <p class="BodyText"><strong>Options:</strong></p>
+      <p class="BodyText">Select whether coordinates are to be realtive or absolute.</p>
+      <p class="BlogTitle">Renumber Blocks</p>
+      <p class="BodyText"><strong>Purpose:</strong></p>
+      <p class="BodyText">Sequence numbers (&quot;N&quot; numbers) are a nuisance to keep straight in a g-code program.   The Renumber Blocks Revision is useful tool for automatically renumbering blocks.  It has a lot of smarts for exactly what to renumber and how.  Renumber Blocks understands how to adjust number references. For example, when you use a G71 rough turning canned cycle it has P and Q words that refer to the first and last block number defining the profile.  If we renumber, we have to adjust the P and Q words to whatever their original block numbers got changed to.</p>
+      <p class="BodyText"><strong>Options:</strong></p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/Docs/RenumberBlocksRevision.jpg" width="800" height="199" alt="Renumber Blocks Revision"></p>
+<p class="BodyText">Starting Number:   This is the first Block Number that will be used.</p>
+<p class="BodyText">Interval:   The amount to increase consecutive Block Numbers.  Choices are 1, 2, 5, 10, 20, 100, and 1000.</p>
+<p class="BodyText">Skip Blocks Starting With:   Don't renumber blocks whose first printing character is one of these characters.</p>
+<p class="BodyText">Block Number Character:    Block Numbers are this word (character) followed by the number.</p>
+<p class="BodyText">Limit Block Numbers To:      If this option is turned on, only lines that fit one of the checked options below will be numbered.  Numbers are removed from lines that don't fit. Options for which blocks to number:</p>
+<blockquote>
+  <p class="BodyText">Existing Numbers: Number lines that have an existing number.  Ignore non-numbered lines unless they fit one of the other checked options.</p>
+  <p class="BodyText">Non-Blank Lines:  Don't number lines that are blank.</p>
+  <p class="BodyText">Non-Comment Content:  Don't number lines that have nothing but comments on them.</p>
+  <p class="BodyText">Toolchanges:  Numbers lines that have toolchanges.</p>
+  <p class="BodyText">Every &lt;n&gt; Blocks:  Number every nth block.  </p>
+</blockquote>
+<p class="BodyText">Max Value:  The largest Block Number supported by your controller.  This number will be initialized from your post but can be overridden if you prefer.</p>
+<p class="BodyText">Restart: After the largest block number has been used, numbering starts over again with this value.</p>
+<p class="BlogTitle">Swap Axes (For Right Angle Heads, Horizontal Mills, and Such)</p>
+<p align="left" class="BodyText3">I ran across <a href="http://www.cnczone.com/forums/general_cnc_mill_lathe_control/132115-need_text_editor_tool_switch.html">a request over on CNCZone</a> for the ability to go through a g-code program and swap the axes. Apparently this is useful for writing programs for right angle heads or in some cases for converting a program from a vertical to a horizontal mill.   I did a little research and came across <a href="http://www.practicalmachinist.com/vb/cnc-machining/right-angle-head-programming-trouble-203333/">two</a> <a href="http://www.cnczone.com/forums/g-code_programing/75207-right_angle_head_programming.html">threads</a> over on Practical Machinist that wanted the capability for the same reason.  Since it's not hard to do and seemed to be something useful, I put together the capability to do this in <a href="CCGWizardE.html">G-Wizard G-Code Editor</a>.  It looks like this:</p>
+<p align="center" class="BodyText3"><img src="img/GWizardE/Docs/SwapAxes.jpg" width="800" height="404" alt="Swap Axes for Right Angle Head"></p>
+<p align="center" class="BodyText3">The Swap Axes Revision will swap up to 4 axes and automatically convert the related axes...</p>
+<p align="left" class="BodyText3">With Swap Axes (under the Tools Revisions menu), you can swap up to 4 axes if you need to.     Just tell it the &quot;from&quot; letter and the &quot;to&quot; letter.  These is also the option to automatically swap any related axes.  For example, if you are swapping X to Y, you probably want to swap I to J and U to V (Fanucs lets you use UVW as relative versions of XYZ so you needn't keep switching modes). One click saves you some time. This related axes option is not something I've seen in other editors, but it sure makes sense if you had to do this sort of thing very much. Note that the swap is one way unless you specify both directions.  So if you truly want to swap X and Y, you would put X to Y as one line and Y to X as the other.</p>
+<p align="left" class="BodyText3">The related threads I linked to had some good tips on how to go about this type of programming.   In particular the first tip also mentions that at least for one machinist, they had to switch G02 for G02.  I thought about adding a checkbox to automatically do that as well, but hadn't seen any other examples where it was necessary so left well enough alone.  If someone who does a lot of right angle head programming wants to suggest further additions to the function, <a href="mailto:sales@cnccookbook.com">drop me a note</a>.</p>
+<p align="left" class="BodyText3">BTW, it does kind of bake your noodle a little bit to think about programming a right angle head, but it isn't so bad if you just think of doing it in the normal XY plane and then use a capability like this swapping to move it to another plane. Read through all the links I gave before you attempt it, there's some good advice in them.</p>
+<p align="left" class="BlogTitle">What to read next</p>
+<p align="left" class="BodyText">Enough editing!  It's time to learn G-Wizard Editor's <a href="GWECNCSimulator.html">g-code simulator and debugger</a>.</p>
+<p align="left" class="BodyText3">&nbsp;</p>
+<p class="BodyText">&nbsp;</p>
+    <!-- #EndEditable -->
+  </div>
+  </td>
+</tr>
+<!-- Begin Site Map -->
+<tr>
+  <td width="231" valign="top" bgcolor="#f0f0f0" ><p class="BodyText">&nbsp;</p></td>
+  <td width="312" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html"></a></strong><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p class="BodyText1">&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong> </p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a> </p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> </p>
+    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong></p></td>
+  <td width="245" valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+    </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+    <p class="BodyText1">&nbsp;&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+    <p class="BodyText1"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+    <p class="BodyText1"><strong></strong> </p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"></p>
+    <p>&nbsp;</p></td>
+  <td width="378" valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Cookbooks</a></strong> </p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a> </p>
+    <p class="BodyText1"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a> </p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a> </p>    <p class="BodyText">&nbsp;</p></td>
+  <td width="268" valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+    <p class="BodyText1">&nbsp;</p>
+    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong> </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+    </p>
+    <p class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a></p>
+    <p><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+    <p class="BodyText">&nbsp;</p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p></td>
+  <td width="284" valign="top" bgcolor="#f0f0f0" ><p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong></p>
+    <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>    <p class="BodyText">&nbsp;</p></td>
+  <td width="658" valign="top" bgcolor="#f0f0f0" ><p class="BodyText">&nbsp;</p></td>
+  </tr>
+<tr>
+  <td colspan="5" bgcolor="#f0f0f0" >
+      <!-- Place this tag where you want the badge to render -->
+    <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;"/></a></strong></td>
+  <td colspan="2" bgcolor="#f0f0f0" ><div align="left">
+    <table width="100%" border="0">
+      <tr>
+        <td>&nbsp;</td>
+        <td><div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a></div></td>
+        </tr>
+      </table>
+  </div></td>
+</tr>
+<!-- End Site Map -->
+
+</table>
+</body>
+
+<!-- #EndTemplate --></html>
+

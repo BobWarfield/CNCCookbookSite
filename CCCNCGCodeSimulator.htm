@@ -1,0 +1,644 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCGuidePage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>5 Ways GCode Simulators Test Your CNC Programs</title>
+
+<meta name="description" content="You don't run gcode without testing it, do you?  A Gcode simulator previews toolpaths, finds errors, and verifies the part program, to save time and trouble.">
+
+<link rel="canonical" href="http://www.cnccookbook.com/CCCNCGCodeSimulator.htm" />
+
+<style type="text/css">
+<!--
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.WarningText {
+}
+.WarningText {
+}
+.Warning {
+}
+.Warning {
+}
+.Bozon {
+	font-size: large;
+	color: #F00;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText3 {}
+.BodyText3 {font-family: Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <!--script type="text/javascript" src="js/jquery.form.js"></script--><!-- Isn't this a duplicate of what google is giving us right above? -->
+    <script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageTitle {
+            font-family: Times New Roman, Times, serif;
+            color: #339933;
+            font-size: 30pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <script type="text/javascript">
+        multitouch();
+    </script>
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="http://www.cnccookbook.com/images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="http://www.cnccookbook.com/img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p align="center" class="style1 style4"><strong><font face="Arial, Helvetica, sans-serif" size="+1"><a href="CCCNCMillFeedsSpeeds.htm">CNC</a><a href="CCCNCGCodeCourse.htm">Cookbook's G-Code Course</a></font></strong></p>
+<p align="center" class="style1">&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="MakeCNCParts/HowToMakeCNCParts.html">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=hellobar&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2015/03/23/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=hellobar&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=hellobar&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                    <p class="BodyText"><strong><a href="CCCNCCutterFeedsSpeeds.htm">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText"><strong><a href="CCCNCMaterialFeedsSpeeds.htm">Feeds and Speeds By Material</a></strong></p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><img src="http://www.cnccookbook.com/GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="http://www.cnccookbook.com/img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                                                                <!-- Modernized Social Buttons -->
+                                <p align="center">
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" /></a><strong><span class="BodyText">THREE WAYS TO SHARE</span></strong></p>
+
+                            <div id="centerContainer" style="background-color:#d7dfc0">
+                                <!-- #BeginEditable "Body" --> 
+                                <p><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="MakeCNCFasterEasier">CNC Simulators, Backplots, and Viewers</font></p>
+                                <p><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="BlogTitle"><strong><a href="CCCNCGCodeCourse.htm">CNCCookbook's G-Code Tutorial</a></strong></font></p>
+                                <p align="left">&nbsp;</p>
+                                <p class="BlogTitle"><strong>5 Ways GCode Simulators Test Your CNC Programs</strong></p>
+      <p class="BodyText">You Don't Run GCode Without Testing It, Do You?</p>
+      <p class="BodyText">Considering what can happen if there's a mistake in the gcode, and even CAM software makes mistakes sometimes, you want to test your gcode before you run it to make chips. Testing it can range from &quot;cutting air&quot; to using a GCode Simulator. &quot;Cutting Air&quot; just means running with part zero set high above the workpiece so the cutter (hopefully) doesn't come in contact with any material until you see what it will do.  Cutting Air is the least you should do to test (also referred to as &quot;proving out&quot; a part program) your gcode part program.</p>
+      <p class="BodyText">The trouble with Cutting Air is it can be very time consuming and it ties up your expensive CNC machine the whole time.   What if there was a better way to get a second opinion and test your gcode?  One that didn't tie up the machine and that could be done much more quickly than Cutting Air.  That's what GCode Simulators are for.</p>
+      <p class="BodyText">It's actually  cheap and easy to run a GCode Simulation.    You need a piece of software that has variously been called a CNC Simulator, CNC Backplot, or <a href="CCGWEGCodeViewer.html">G-Code Viewer</a>.   You'll also hear the terms &quot;Verification&quot;, &quot;Emulation&quot;, and &quot;Virtual CNC&quot; batted around, though they're a little less common than the other three.  CNC Verification can sometimes have a little different meaning, referring to the high end of the market for this kind of software, so let's leave it to talk about until the end.  Meanwhile, let's take a look at CNC Simulation Software, and we'll use that name for the rest of the tutorial.</p>
+      <p class="BodyText">Here are 5 Ways a GCode Simulator Can Help Test Your CNC Programs:</p>
+      <p class="BodyText">1.  Backplot: A quick visual indication of what motions the program will make with the cutter.</p>
+      <p class="BodyText">2.  <a href="http://blog.cnccookbook.com/2013/12/16/using-g-wizard-editors-new-soft-limit-alarms-to-help-spot-crashes-before-they-happen/">Extents and Soft Limits</a>:  Checks to make sure the cutter will stay within the area you want it in.</p>
+      <p class="BodyText">3. Alarm Checks: The backplot might look okay, but your program can still immediately alarm out on the machine.   A good simulator will make many of the same tests as your machine controller ahead of time. For example, the if the distance from each endpoint to the center of an arc is not the same within a tolerance, you'll get an alarm.</p>
+      <p class="BodyText">4. Tooling Summary: A good simulator will compile information about the tools or cutters required by the program.  Checking over this list and making sure the right tools are loaded into the machine's toolchanger is a great test to avoid errors.</p>
+      <p class="BodyText">5.  Subprogram and Macro Tests:   A good simulator collects all sorts of information about macros, subprograms, and the variables that are in use.   This information can often turn up various problems the part program may encounter.      </p>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle"><strong>What is a CNC Simulator?</strong></p>
+      <p class="BodyText">Think of a <a href="CCGWECNCSimulator.html">CNC Simulator</a> (or g-code simulator if you prefer) as a piece of software that can execute g-code programs, but instead of controlling servo motors and a spindle on a machine, a simulator produces a graphical display of what the machine would do.   That graphical display is often referred to as a backplot.  It shows the toolpath your cutter will follow if the g-code program is executed.  Here is a backplot produced by the g-code simulator that's built i<span class="BodyText">nto the <a href="CCGWizardE.html">G-Wizard G-Code Editor</a>:</span></p>
+      <p align="center" class="BodyText"><img src="img/GWizardE/GWEOverview.jpg" width="800" height="585" alt="Backplot from a cnc simulator"></p>
+      <p align="center" class="BodyText">The <a href="CCGWECNCBackplotEditor.html">CNC Backplot</a> is the graphical display on the right...</p>
+<p class="BodyText">In this particular g-code program, we're doing some engraving for an electrical panel that's part of a CNC controller I put together.        </p>
+<p class="BlogTitle"><strong>Customization:  Having a &quot;Post&quot; in the CNC Editor</strong></p>
+<p class="BodyText">As we've discussed, g-code has &quot;dialects&quot; depending on which controller you use.   You may be thinking that since all your machines are Haas, or all your controllers are Fanuc, that a Fanuc Simulator or a Haas Simulator would be fine. But you never know when you might bring in a different machine and be wishing your Simulator could deal with it. Also, your g-code editor and simulator software should be capable of understanding as many of these nuances as possible.   In CAM software, the nuances are handled by what's called the &quot;Postprocessor&quot; or &quot;Post&quot;.  You want your editor to have a &quot;Post&quot; too.  For more, see <a href="CCCNCGCodeDialects.htm">our page on G-Code Dialects</a>.</p>
+<p class="BodyText1">&nbsp;</p>
+<p class="BlogTitle"><strong>Navigation in a  CNC Simulator's Backplot</strong></p>
+<p class="BodyText">A good CNC Simulator can tell you all sorts of useful information.  Let's go through some of the information we can glean about the electrical panel engraving program from the screen shot above.</p>
+<p class="BodyText">First of all, the graphics can often tell you at a glance whether the tool path is what you're expecting. Be on the lookout for any sudden unexplained departures outside the envelope you're expecting.  The red lines are rapids motion and are red because rapiding into the workpiece is a bad thing to be on the lookout for. Green represents motions made at feedrate speeds.</p>
+<p class="BodyText">In G-Wizard editor you can rotate the backplot by holding down the right mouse button while moving the mouse on the Perspective view.  In the other views, such as Top, Front, and Right, holding down the right mouse button lets you pan the view. </p>
+<p class="BodyText">You may need to zoom in close to see what's happening.  The mouse scroll wheel controls zoom.  If you get lost in the forest of lines, simply press the icon on the toolbar that looks like a magnifying glass with an &quot;A&quot; in the middle.  This is the &quot;Zoom Extents&quot; command, and it zooms the display and centers it based on the full extent of the motions for your program.</p>
+<p class="BodyText">If you want to redraw the backplot from scratch, there is a &quot;Backplot&quot; button as well--the two arrows circling one another. Pressing the Backplot button forces re-parsing and re-plotting of the entire program.</p>
+<p class="BodyText">The grid is there to give you an idea of position and size.  It's calibrated according to whether your Post is currently set for Imperial or Metric.  Down on the status line at the bottom are X, Y, and Z coordinates of the tip of the mouse cursor, so you can point at something on the backplot to see its coordinates.</p>
+<p class="BlogTitle"><strong>Hints: Data on Individual Lines</strong></p>
+<p class="BodyText">GWE has a unique feature called &quot;Hints&quot;.  Every line has a hint that is displayed below the backplot when the cursor is on that line.  You can also select the &quot;Hints&quot; tab and see the g-code replaced by a series of Hints.  Hints are simply an English-language description of what the g-code does.  They often include a lot of extra information that may not be obvious even to an expert just looking at the g-code.   Here is a typical example of a Hint for a line containing an arc:</p>
+<p align="center" class="BodyText"><img src="img/GWizardE/GCodeCourse/ArcHint.jpg" width="800" height="451" alt="G-Code arc information"></p>
+<p align="center" class="BodyText">Line N400 has an arc.  The Hint below the backplot tells all...</p>
+<p align="left" class="BodyText">We haven't learned arcs yet, but the line is as follows:</p>
+<blockquote>
+  <p align="left" class="BodyText">N400 G03 X0.5 Y0.375 I0. J0.125 F7.0</p>
+</blockquote>
+<p align="left" class="BodyText">The fact we don't yet know how arcs work makes the Hint even more valuable. Let's take a close look at the Hint:</p>
+<p align="center" class="BodyText"><img src="img/GWizardE/GCodeCourse/ArcHint2.jpg" width="800" height="197" alt="Arc Hint details"></p>
+<p align="center" class="BodyText">The Hint for an Arc...</p>
+<p align="left" class="BodyText">It tells us the following:</p>
+<p align="left" class="BodyText">- In <strong>bold</strong> at the top is the original text of the line. This is useful if we're in Hints view and can't see the g-code line text.</p>
+<p align="left" class="BodyText">Right below the bold, it starts telling us all about what the line does:</p>
+<p align="left" class="BodyText">-  The Block Number is N400</p>
+<p align="left" class="BodyText">- G03 performs Counter-clockwise circular interpolation. In other words, it tells the machine to move the cutter in a circular arc at feed speed.</p>
+<p align="left" class="BodyText">-  The Feed Rate was set to 7.0 on this line.</p>
+<p align="left" class="BodyText">- We see what the IJK values parse to be.  In this case, we have I=0, J=0.125, and no K</p>
+<p align="left" class="BodyText">- The endpoint of the arc after the move is 0.5, 0.375, -0.04</p>
+<p align="left" class="BodyText">- The coordinates of the center of the arc are 0.375, 0.375, -0.04.</p>
+<p align="left" class="BodyText">- The center was determined by IJK (as opposed to R, which is another way)</p>
+<p align="left" class="BodyText">- The angle of the arc runs from 270 degrees to 0, a total of 270 degrees.</p>
+<p align="left" class="BodyText">After all that, the Hint skips a line and gives us a time. This is telling us how long it will take the g-code program to reach this line and finish it if we execute on the machine.  In this case, we can see the arc will be completed 4 minutes and 54.7 seconds after the program starts executing.</p>
+<p align="left" class="BodyText">Phew, that's a lot of data spewed forth, but it can be extremely handy to have when you're trying to figure out what a g-code program is doing or what's wrong with one.  And, like I said, it's hard for an expert to tell all of this stuff at a glance.</p>
+<p align="left" class="BodyText">GWE gives this level of detail for each and every line of the program.</p>
+<p align="left" class="BodyText">&nbsp;</p>
+<p class="BlogTitle"><strong>Overall Program Information</strong></p>
+<table width="100%" border="0">
+  <tr>
+    <td valign="top"><p class="BodyText">In addition to detailed specific information on each g-code line, G-Wizard Editor also provides useful overall information about the program.  GWE has an &quot;Info&quot; tab that holds the overall information. Take a look at the illustration to the right to see what the Info tab looks like. As you can see, it tells you a variety of information about your g-code program including:</p>
+      <p class="BodyText">-  It's size both in terms of lines and bytes. If you're trying to make your program fit in the limited RAM memory available to an older controller, it's important to be able to tell quickly how you're doing.</p>
+      <p class="BodyText">-  For each axis, GWE will spell out the range of motion used as well as the length, width, and height these ranges imply.  You get the information both overall and in terms of just feedrate motion. The rapids will nearly always extend outside the feedrate envelope, but the feedrate envelope may give you a good idea of the rough stock size needed by the program.</p>
+      <p class="BodyText">-  You get to see the range of spindle rpm's used as well as the range of feedrates used in the program.</p>
+      <p class="BodyText">-  You get to see the overall predicted run time of the program.</p>
+      <p class="BodyText">- Lastly, there is a count of the different classes of operations within the program, as well as a count of the number of errors GWE discovered in your program.</p></td>
+    <td><img src="img/GWizardE/GCodeCourse/ProgramInfoTab.jpg" width="357" height="800" alt="G-Code Analysis"></td>
+  </tr>
+</table>
+<p class="BlogTitle"><strong>Why Use a G-Code Simulator?</strong></p>
+<p class="BodyText">Are you starting to get some ideas for how a g-code simulator could be useful to you?  As you can see, a good simulator throws off a wealth of information to help you understand what's going on in the program.  Machinists need to know these things for a variety of reasons.</p>
+<p class="BodyText">Here are some possibilities to think about:</p>
+<p class="BodyText">-  <strong>Learning and Training</strong>: CNC Simulators are great for getting a better understanding of what the g-code is doing, how specific g-codes work, and in general, answering &quot;What will it do if...&quot; sorts of questions. If you're trying to learn the ins and outs of a controller that is slightly different than the one you &quot;grew up with&quot;, a simulator can be a good place to start getting used to the differences of the <a href="CCCNCGCodeDialects.htm">G-Code Dialects</a>.</p>
+<p class="BodyText">-  <strong>Quick Sanity Check</strong>:  You just posted some g-code out of your CAM program.  Why not bring it up for a quick check in a good CNC Simulator.  Are there any obvious errors being flagged?  Does a quick visual check indicate nothing obvious is amiss?  Most CAM programs have bugs (heck, all software does, the CAM people certainly aren't immune).  Most of the time, their backplots and simulations are not true G-Code simulations. They're just geometry plots.   If there is any kind of error in the post processing, the CAM simulator will not show you a faithful rendition of what your machine will be doing.   I knew one machinist whose CAM program would periodically throw a wild rapid move in when he used work offsets.    It was an easy fix, provided he caught it before running it on the machine. It became not only easy, but essential to do the quick sanity check on a CNC Simulator before running each program.  After all, in many cases, the CAM program isn't sitting right next to the machine. Do everything you can to make sure the program is right before trying to load it and execute it.</p>
+<p class="BodyText">-  <strong>Debugging Hand Written Code</strong>:  Obviously if you're writing g-code by hand, a CNC Simulator can be a real labor saver.  In fact, I can't imagine how you do it without one.</p>
+<p class="BodyText">-  <strong>Tracking Down Subtle Errors</strong>:   You've got a g-code program.  It appears to have no errors, your machine runs it okay, but when the resulting part is finished, there are problems.  A CNC Simulator that can give you detailed information such as we worked through on the arc might help you to track down the source of the error and correct it, assuming the error stems from the g-code and not some other source.</p>
+<p class="BodyText">- <strong>Trying Out New Ideas</strong>: Suppose you want to compare some different approaches to a part program.  Is it faster to interpolate a hole to begin pocketing, or are you better of running an extra toolchange so you can make the hole faster with a 1&quot; indexable drill?    These kinds of things are ideal to compare with simulations, assuming they have the ability to accurately predict the run time of your g-code program. <span class="BodyText1">When you consider that some complex expensive parts can spend many hours if not days on machines, it only makes sense to figure out everything you can about how to optimize the job before you get to the point of putting it on a machine.</span></p>
+<p class="BodyText">There are probably lots of other reasons, but the bottom line is you can quickly tell what's going on with your CNC program without risk to machine, materials, or tooling.</p>
+<p class="BodyText1">&nbsp;</p>
+<p class="BlogTitle"><strong>Error Checking Features</strong></p>
+<p class="BodyText">Every error you find in your editor or simulator is an error you don't have to find at the machine, which saves you time and money.   The more extensive the error checking your simulator can do, the better.   It's ability to check errors will be limited by the precision of the Post.  The more detail it understands about your controller, the more accurate it can call out issues that the controller may object to. Another important capability is being able to ignore any error message.  Sometimes errors should be treated more like warnings.  Sometimes they're not quite right because of controller parameters that may change the controller's behavior.  Either way, it's convenient to be able to ignore them when you want to.</p>
+<p class="BodyText"> In the G-Wizard CNC Editor / Simulator, errors are displayed in the Hints view (see the <a href="CCCNCEditor.html">prior chapter on CNC Editors</a> for more on Hints).</p>
+<p class="BodyText1">&nbsp;</p>
+<p class="BlogTitle"><strong>Tool Data Management</strong></p>
+<p class="BodyText">This is a critical, and often overlooked function.  Your editor should be able to maintain a Tool Crib or Tool Table.   It should be possible to import and export these tables so they'll stay in sync with your CAM program and the Tool Changers on your machines.  Just as running a CNC machine without knowledge of the tools in the changer is bound to lead to trouble, so is running your simulator that way. For more on the Tool Data Management capabilities of G-Wizard Editor and other software, be sure to check our two part series on TDM:</p>
+<p class="BodyText"><a href="CCCNCToolManagement.html">Part 1</a> is the basics of Tool Length and other Tool Data.</p>
+<p class="BodyText"><a href="CCCNCToolManagement2.html">Part 2 </a>goes into topics like Tool Presetters and software to manage Tool Data.</p>
+<p class="BodyText">It's not part of the tutorial, but you should pop over and at least scan the articles some time so you know what the issues and concepts are for Tool Data Management.</p>
+<p class="BodyText">&nbsp;</p>
+<p class="BlogTitle"><strong>What is G-Code Verification?</strong></p>
+<p class="BodyText">As mentioned above, CNC Verification often refers to a higher level of functionality than straightforward CNC Simulation and Backplotting.    A full CNC Verification package will include capabilities such as:</p>
+<p class="BodyText">-  Full 3D simulation of the cutting. This is a basic requirement for verification and could as much be considered part of higher end CNC simulation as verification.</p>
+<p class="BodyText">- 3D Import and Display:    Some capacity to import 3D models, usually in the form of .STL files (Stereo Lithography, a common 3D file format).   For example, you might import models of the machine, fixtures, cutters, or the finished part.</p>
+<p class="BodyText">- Gouge detection:       Gouge detection involves detecting a number of conditions, all of them bad.   If the tool moves too quick, say at rapids, into the workpiece, that's a gouge.    If the tool moves into the fixtures (such as your Kurt Vise) or worse the machine itself, that's also a gouge.  Good verification software detects all of these conditions.</p>
+<p class="BodyText">-  Tolerance verification: With tolerance verification, you can import a 3D solid model of your finished part and the verification software will tell you how the simulated cut model deviates from it. Ideally, it can show you a color coded diagram that is marked with all the places where the g-code program either cut too deep or not deep enough based on the tolerances you've established.</p>
+<p class="BodyText">- Full Machine Kinematics Simulation.  This is the ability to show a faithful 3D reproduction of the machine with accurate modeling of everything from the machine's physical travel limits on to even the exact performance envelope of the machine.</p>
+<p class="BodyText">It's tough to say exactly where CNC Simulation ends and Verification begins, but just because a package calls itself a Verification package doesn't make it so.  In particular, if it can't do the 3D import of fixtures and finished part, if it can't do gouge detection, and if it can't do tolerance verification, you shouldn't regard it as a verification package.  It's a fancy simulation package.  True Verification software tends to be quite expensive, so caveat emptor (beware the buyer) if you seem to have found a cheap one. It may be too good to be true.</p>
+<p class="BodyText">Simulators and Verifiers are extremely useful tools for CNC. There are a lot of other software tools available too. See our <a href="MTCNCSoftware.htm">Digital Tooling</a> article for a good overview of the different types that are available.</p>
+<p class="BodyText">&nbsp;</p>
+<p align="left" class="BlogTitle"><strong>Exercises</strong></p>
+<p align="left" class="BodyText">1. Get some sample g-code and load it into G-Wizard Editor so you can play with the backplotting capability.   If you don't have any samples, try <a href="GWESampleFiles.html">our sample file page</a> for some downloads, including the files displayed in the screen shots for this G-Code tutorial.</p>
+<p align="left" class="BodyText">2.  Experiment with the different views available in G-Wizard Editor.</p>
+<p align="left" class="BodyText">3. Experiment with both Mill and Lathe sample g-code.  Remember, you'll have to change your machine profile from Mill to Lathe and be sure an appropriate controller profile is selected to view the different file types properly.</p>
+<p class="BodyText1">&nbsp;</p>
+      <p align="center" class="BodyText1"><b><i><font size="+2"><a href="CCGWizardE.html">Try the Free Trial Version of G-Wizard G-Code Editor...</a></font></i></b></p>
+      <p align="center" class="BodyText1"><span class="style12"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+      <p align="center" class="BodyText1">No credit card required--just your name and email.      </p>
+      <p class="BodyText1">&nbsp;</p>
+<p class="BlogTitle"><strong>Next Article:  <span class="BodyText1"><a href="CCCNCGCodeTouchOff.htm">Part Zero, Touch Offs, and Zeroing</a></span></strong></p>
+<p class="BodyText">&nbsp;</p>
+<p align="center" class="BodyText1">&nbsp;</p>
+<p align="center" class="BodyText">&nbsp;</p>
+      <!-- #EndEditable -->
+                          </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

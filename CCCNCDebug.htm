@@ -1,0 +1,1391 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNCCookbook:  Debugging CNC Electronics</title>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p><font color="#339933" size="+4">Debugging and Testing Your Mach3 + Geckodrive 
+        CNC Electronics</font></p>
+      <p class="BlogTitle">Introduction</p>
+      <p><font face="Arial, Helvetica, sans-serif">This is probably an entirely 
+        over-ambitious task, but I wanted a place to document all the tricks I've 
+        learned to debug the electronics of these Mach3 + Geckodrive CNC systems. 
+        I'll primarily focus on a servo system, because its more complex, but 
+        I'll try to capture relevant thoughts and notes for steppers along the 
+        way.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The idea is to document a systematic 
+        way to debug one of these systems. We wire up such a system from a bunch 
+        of components, often components from a variety of vendors, we flip the 
+        switch, and we wonder why it doesn't work! What's needed is a systematic 
+        way to go through the system and find and fix the problems.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The idea here is to understand 
+        how the different components are interconnected, how each component needs 
+        to be set up, and to document what to look for at the connections between 
+        components to track down problems. To be perfectly honest, I have no idea 
+        how well this will work, but after spending hours and hours piecing together 
+        clues from reading hundreds of different posts on various Internet boards, 
+        I needed some way to organize that mess.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Before we begin, think carefully 
+        about whether you should be doing this:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" color="#FF0033"><b>Power supplies 
+        and other aspects of CNC electronics are dangerous. If you're not completely 
+        comfortable with this stuff and knowledgable enough to understand what 
+        I'm saying, STAY AWAY FROM DEBUGGING! The voltages inside the cabinet 
+        can kill you! A wrong move and the motors can started turning at high 
+        speed and injure you. It isn't worth it. Get someone else who knows what 
+        they're doing to troubleshoot for you! Remember, these voltages are feeding 
+        powerful motors via the Geckodrives. That dangerous voltage is there all 
+        along the way.</b></font></p>
+      <p><b><font face="Arial, Helvetica, sans-serif" color="#FF0033">Also, remember 
+        where your E-stop is. Make sure it works properly. Practice hitting it 
+        a couple of times. Be ready to use it if an axis takes off at top speed 
+        or some other problem develops. It should be the fastest way to cut power 
+        to the system.</font></b></p>
+      <p class="BlogTitle">The CNC Servo System Block Diagram</p>
+      <p align="center"><img src="img/CNCCookbook/Debugging/ServoBlockDiagram.jpg" width="1024" height="561"></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The CNC Servo 
+        System Block Diagram is our roadmap for debugging. It shows the different 
+        components, and how they fit together. It's a roadmap because signals 
+        have to successfully travel from left to right to make the servo (or stepper) 
+        motor spin under Mach3 computer control. Problems can develop at any point 
+        along the way, interrupting our journey, as well as the excitement and 
+        fun of our CNC project. So the focus will be to move from left to right 
+        on the diagram using various means to test whether the magic signals that 
+        control our machines are able to get to the next stage. Many (I was!) 
+        will be tempted to connect it all up and throw the switch. Things might 
+        just work the first time for you. But if you hit a glitch, try following 
+        the roadmap until things are going again. If things are terribly wrong, 
+        connecting everything will expose more components to damage as well. For 
+        that reason, the most prudent approach is to connect one axis at a time 
+        as much as possible and get it working all the way through for that axis 
+        before going to an additional axis. Once you have one axis working all 
+        the way through, it becomes much easier to get the others running too, 
+        because you have confidence in what works.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Accordingly, each 
+        section below is about one of the building blocks in the block diagram 
+        and how you can verify things are functioning correctly up to that point.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><span class="BlogTitle">Power 
+        Switch, Master Control, E-Stop Circuitry, and Power Supplies</span></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Why start with 
+        the power supplies? In a word, because it's easy. All you need to check 
+        the power is a voltmeter. It doesn't take but a few minutes to go through 
+        and check it out.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Be sure to set 
+        it for AC or DC depending on which one you want to measure. In some cases 
+        you'll be checking for continuity with the ohmeter. The power swtich, 
+        master control, and E-stop circuitry are all there to make sure power 
+        is applied when desired and taken away instantly if the situation calls 
+        for it.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Here are some 
+        useful checks to make:</font></p>
+      <table width="100%" border="1" bordercolordark="#000000">
+        <tr> 
+          <td><b><font face="Arial, Helvetica, sans-serif">Power Switch</font></b></td>
+          <td><b><font face="Arial, Helvetica, sans-serif"></font></b></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif">Start with the power switch 
+            off. No power measured coming in, right?</font></td>
+          <td><font face="Arial, Helvetica, sans-serif">You're making sure the 
+            main AC wiring is correct.</font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif">Flip the switch on. Check 
+            visually for any smoke being ready to switch off immediately if you 
+            see any signs of trouble.</font></td>
+          <td><font face="Arial, Helvetica, sans-serif">The infamous &quot;smoke 
+            test&quot;.</font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"><b>Master Control and 
+            E-Stop Circuitry</b></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"><b></b></font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif">Check the AC current going 
+            into the Master Control or E-Stop circuitry. Are you getting the right 
+            AC voltage? Typically it is either correct (e.g. 110V) or 0. </font></td>
+          <td> 
+            <p><font face="Arial, Helvetica, sans-serif">If the voltage is 0, 
+              work back to the socket the cord is plugged into. Is your power 
+              switch on? Is it getting juice from the cord? Is the cord plugged 
+              in to the outlet? Is the breaker on the outlet blown? Perhaps a 
+              fuse or switch on a power strip you're connected to?</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Sorry if this sounds 
+              too elementary, but these are all things that can and do go wrong 
+              that we forget to check!</font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <p><font face="Arial, Helvetica, sans-serif">You may have a chicken 
+              and egg problem here. I use a CNC4PC Master Control Board. It shuts 
+              everything off if there is any of the following:</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">- An E-Stop</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">- A Servo Fault</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">- A Limit Switch Tripped</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">- Charge Pump Signal 
+              Missing from Breakout Board</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">It can also be finicky 
+              about the Start button if it isn't held long enough.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Try turning it on. You 
+              may get lucky and it just fires up. If it faults, see what is faulting 
+              and follow directions to the right.</font></p>
+          </td>
+          <td> 
+            <p><font face="Arial, Helvetica, sans-serif">- E-Stop Faults: Check 
+              E-Stop wiring. First time I had the E-Stop and Start reversed. Remember, 
+              one is Normally Open (Start) and one is Normally Closed (E-Stop). 
+              Use you ohmeter to verify the right switch behavior and check connections 
+              to the board as well.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">- Limit Switch: Like 
+              the E-stop, there ain't much to check. These are normally closed. 
+              If they're open, its a wiring problem, a bad switch, or perhaps 
+              they really are tripped. Fix the problem and continue.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">- Servo Fault: This one 
+              is the chicken and egg. A lot of downstream reasons can fault the 
+              servos. For now, disconnect the Err/Res from the board and see if 
+              it'll start up ok. Scan ahead to the Geckodrive section to figure 
+              out how to debug a servo fault. Also, if a servo oscillates or makes 
+              a lot of noise at this stage, its out of <a href="CCServoTuning.htm">tune</a>. 
+              Don't run the system for more than a minute or two in this condition. 
+              The Gecko and motor will get hot and you run the risk of frying 
+              a drive. To get it under control, <a href="CCServoTuning.htm">tune</a> 
+              the servo. It's good news if there is enough going on that you can 
+              even worry about that.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">- Charge Pump: Disable 
+              it with the DIP switches or jumpers for the time being. We'll revisit 
+              when we set up Mach3.</font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif">Cycle E-Stop manually. 
+            Does it shut down the system?</font></td>
+          <td><font face="Arial, Helvetica, sans-serif">Don't get too far into 
+            this without making sure your E-Stop works reliably! </font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif">With the Master Control/E-Stop 
+            working properly, check the AC current going into each power supply. 
+            Are you getting the right AC voltage? Typically it is either correct 
+            (e.g. 110V) or 0. </font></td>
+          <td> 
+            <p><font face="Arial, Helvetica, sans-serif">If the voltage is 0, 
+              is there a problem with the relay feeding the supplies? </font></p>
+            <p><font face="Arial, Helvetica, sans-serif">If you are using a solid 
+              state relay, make sure you're feeding it a control voltage that 
+              is suitable to trigger it according to its specs. Check this with 
+              your voltmeter. Even try triggering it directly by jumpering your 
+              logic power supplies to it. </font></p>
+            <p><font face="Arial, Helvetica, sans-serif">If it triggers ok when 
+              directly connected to a power supply but not when driven by your 
+              Master Control, there may not be enough capacity in the logic power 
+              supply. Try a more powerful supply.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Some other weird things 
+              I noticed with the Master Control Board:</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">It had to be configured 
+              for the right servo drive for the relay to work. </font></p>
+            <p><font face="Arial, Helvetica, sans-serif">It was touchy about how 
+              long I held down the Start button, so I learned to hold too long 
+              rather than too short.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Your circuitry may have 
+              similar quirks.</font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"><b>Power Supply Terminals:</b></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"><b></b></font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif">Check the Logic supplies. 
+            These are low voltage supplies that go to the various boards, not 
+            the higher voltage hefty supply that goes to the Geckos. Are you getting 
+            the right DC voltage from these supplies? For example, my CNC4PC boards 
+            need 23V and 5V. </font></td>
+          <td><font face="Arial, Helvetica, sans-serif">If you have no logic supply, 
+            none of your boards will work. If there is AC into the power supply, 
+            but no DC at logic levels out, check for fuses, on/off switches, 110/220 
+            switches, and the like on your power supply. If all else fails, try 
+            another supply. PC power supplies frequently have the right voltages 
+            to act as temporary stand ins as do many wall warts. If you try a 
+            wall wart, hopefully it has enough current and the correct voltages 
+            to do the job.</font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif">Check the DC motor power 
+            supply voltage out. Lots more voltage and current here, so be careful!</font></td>
+          <td> 
+            <p><font face="Arial, Helvetica, sans-serif">If the DC supply is producing 
+              the wrong voltage or no voltage, lots of possibilities. The transformer 
+              can be shorted or open, the rectifier or capacitor could be blow, 
+              and so on.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Start by checking for 
+              AC voltage into the transformer, then see what the AC voltage is 
+              out of the transformer. It will be a little different than your 
+              finally DC voltage, but not a lot.</font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif">Check the ripple from 
+            your DC motor supply. Set your meter for AC and put it across the 
+            terminals. A good meter will ignore the DC and show you an AC voltage 
+            that is the variation or &quot;ripple&quot; in the power supply.</font></td>
+          <td> 
+            <p><font face="Arial, Helvetica, sans-serif">Too much ripple can lead 
+              to over voltage and other problems. Assume the ripple is on top 
+              of the normal DC reading. Are you giving the Geckos too much voltage? 
+              Mine say 80V maximum. If I feed them 75V DC and have 10V of ripple 
+              on top of that it won't be helpful because it means I may be feeding 
+              my Geckos 85V when they are only rated to 80V.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">If your power supply 
+              is at the low end of the Gecko's capabilities, subtract the maximum 
+              ripple from the measured DC voltage. Is the result lower than the 
+              Gecko is rated for? If so, you need a power supply that delivers 
+              more voltage for reliable operation. More voltage will give you 
+              better performance anyway.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">For most of these motor 
+              supplies, too much ripple is an indication of too small a capacitor, 
+              or capacitors that aren't working or wired correctly.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Another rule of thumb 
+              is that the AC voltage </font><font face="Arial, Helvetica, sans-serif">should 
+              not read more than 3% of your DC voltage. If it does, your main 
+              filter cap is too small or is failing. This can destroy the drive 
+              because the cap is too small to absorb returned energy.</font></p>
+            </td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td><b><font face="Arial, Helvetica, sans-serif">Individual Boards:</font></b></td>
+          <td><b><font face="Arial, Helvetica, sans-serif"></font></b></td>
+        </tr>
+        <tr> 
+          <td height="45"><font face="Arial, Helvetica, sans-serif">Verify that 
+            appropriate status LEDs and other indicators light up for each board.</font></td>
+          <td height="45">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td height="45"><font face="Arial, Helvetica, sans-serif">Having verified 
+            that the power supplies are outputting the voltages expected, verify 
+            that the voltages arrive at each board intact. Check every screw terminal 
+            with you voltmeter. Be sure to measure the voltage between the board's 
+            positive terminal and the board's ground and not some other ground 
+            connection. Ideally you've grounded everything to the same spot (star 
+            ground), but sometimes connections wiggle loose. We'll check the connection 
+            between grounds later!</font></td>
+          <td height="45"><font face="Arial, Helvetica, sans-serif">You're checking 
+            for bad connections are miswiring in this step.</font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif">Don't forget to check 
+            the encoder power coming from each Gecko, and the Common (+5V) going 
+            into the Geckodrive. Measure the encoder power at the Gecko Enc+ and 
+            Enc- terminals. It should be +5V DC. Check common from the Common 
+            (may also be labeled +5V) and Ground on the Gecko. It should be +5V.</font></td>
+          <td><font face="Arial, Helvetica, sans-serif">Each signal has to have 
+            the right voltage relative to the right reference or ground. The Common 
+            or +5V for the Gecko is its reference for the Step and Dir signals. 
+            As such, that +5V should be coming from the breakout board.</font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td><b><font face="Arial, Helvetica, sans-serif">Grounds:</font></b></td>
+          <td><b><font face="Arial, Helvetica, sans-serif"></font></b></td>
+        </tr>
+        <tr> 
+          <td> 
+            <p><font face="Arial, Helvetica, sans-serif">There are many different 
+              approaches to grounding. I favor the star grounding approach where 
+              every single ground goes to one terminal. Note that improper application 
+              may circumvent the protection opto-isolation provides. I can't really 
+              comment on that, but I know that good grounding is important.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Check continuity of every 
+              ground connection and make sure each connection is tight.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Ground cables only at 
+              the CNC cabinet end, not at the machine end. </font> </p>
+          </td>
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"><b>Other:</b></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif">Got good fuses?</font></td>
+          <td><font face="Arial, Helvetica, sans-serif">Lots of folks put fuses 
+            in the system between the DC supply and the Geckos. Keep an eye on 
+            them and make sure they're not blown.</font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+      </table>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><span class="BlogTitle">PC 
+        Running Mach3</span></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">All your boards 
+        are getting juice. Now is a good time to jump into Mach3 and check on 
+        a few things.</font></p>
+      <table width="100%" border="1">
+        <tr> 
+          <td width="45%"><b><font face="Arial, Helvetica, sans-serif">Motor Ports 
+            and Pins:</font></b></td>
+          <td width="55%"><b><font face="Arial, Helvetica, sans-serif"></font></b></td>
+        </tr>
+        <tr> 
+          <td width="45%"> 
+            <p><font face="Arial, Helvetica, sans-serif">Set the appropriate pins 
+              on the Mach3 Motor Ports and Pins screen for each axis to enable 
+              the axis, and set Active Lo for step and direction. You can set 
+              pulse width to 2, which is a good setting for most breakout boards, 
+              but Smoothstepper ignores that setting.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Mariss says there is 
+              no advantage to a pulse width greater than 2 usec.</font></p>
+          </td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td width="45%">&nbsp;</td>
+          <td width="55%">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="45%"><font face="Arial, Helvetica, sans-serif"><b>Motor Tuning:</b></font></td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif"><b></b></font></td>
+        </tr>
+        <tr> 
+          <td width="45%"><font face="Arial, Helvetica, sans-serif">Start at the 
+            low end of inches per minute and acceleration. On my IH mill, this 
+            was 100 IPM and 0.15 acceleration. Even lower on the Z-axis may help, 
+            because this is the heaviest axis on many machines. Too much axis 
+            speed or acceleration can be a source of servo faults or inaccuracy.</font></td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td width="45%"><font face="Arial, Helvetica, sans-serif">Set the steps 
+            per inch based on your calculated value. For my servos, I have 500 
+            cpr encoders, which give 2000 &quot;steps&quot; per revolution due 
+            to quadrature (4 * 500). Multiply 2000 by your pulley ratio if you 
+            have a timing belt reduction, and then by the number of turns needed 
+            to move your leadscrew 1 inch. That's your starting point.</font></td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif">Note: We'll 
+            calibrate this value more precisely down below. Check the section 
+            on Performance Tuning for details.</font></td>
+        </tr>
+        <tr> 
+          <td width="45%">&nbsp;</td>
+          <td width="55%">&nbsp;</td>
+        </tr>
+      </table>
+      <p align="left">&nbsp;</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><span class="BlogTitle">Breakout 
+        Board or Other PC Interface</span></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">I'm assuming a 
+        Smoothstepper here. You may be using a parallel card or other interface. 
+        Some details may vary with those cards. By now we have good power everywhere, 
+        and we think we've got Mach3 configured properly. Time to see if your 
+        breakout board is passing along STEP, DIR, and the Safety Charge Pump 
+        properly. </font></p>
+      <table width="100%" border="1">
+        <tr> 
+          <td width="45%"><font face="Arial, Helvetica, sans-serif">Smoothstepper 
+            has a blinking red &quot;heartbeat&quot; LED that indicates it is 
+            connected to Mach3. In addition, Mach3 and the plugin know when contact 
+            has been lost.</font></td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif">If you don't 
+            get a heartbeat, something is wrong with your USB connection or the 
+            install of the Smoothstepper USB driver and Mach3 plugin. Double check 
+            all of that. Reinstall the driver and plugin. Make sure Windows sees 
+            the Smoothstepper as the USB device. Unplug and replug the USB capable 
+            and see if Windows tells you it connected to the Smoothstepper. If 
+            that fails, try another USB cable, and another USB device to make 
+            sure your computer's port is operating properly. </font></td>
+        </tr>
+        <tr> 
+          <td width="45%"><font face="Arial, Helvetica, sans-serif">Smoothstepper 
+            has a diagnostic screen that tells you whether it is getting the signal 
+            from Mach3. Jog Mach3 (press the arrow keys on the keyboard) and check 
+            it and see that the signal is getting through the USB. </font></td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif">Same as above.</font></td>
+        </tr>
+        <tr> 
+          <td width="45%"> 
+            <p><font face="Arial, Helvetica, sans-serif">Jog the axis you are 
+              debugging by holding down the right key or mousing on the jog panel 
+              in Mach3. Using your voltmeter, check what's coming out of the appropriate 
+              STEP and DIR terminals on your breakout card. Voltage should go 
+              up to between 3.3 and 5V when you hold down the key and go back 
+              to 0 when you release. Set your meter to DC when taking this reading, 
+              and measure between ground and the STEP terminal.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">If you have an oscilloscope, 
+              you can also monitor STEP and DIR. You should see a good clean set 
+              of square wave pulses going into STEP. Beware of any noise you see 
+              there as it can cause false steps.</font></p>
+          </td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif">If you can't 
+            see the step pulses on the voltmeter or the oscilloscope, there are 
+            a couple of possibilities. Most likely, you haven't configured Mach3 
+            properly on the Ports and Pins page so it isn't sending the STEP pulses 
+            to the output you expect. Another possibility is a problem of some 
+            kind with the breakout board. If you've got good pulses into the Gecko, 
+            you're ready to move on to another test.</font></td>
+        </tr>
+        <tr> 
+          <td width="45%"> 
+            <p><font face="Arial, Helvetica, sans-serif">Now is a good time to 
+              enable and test the Safety Charge Pump. </font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Enable the appropriate 
+              pin and see if you can measure a charge pump pulse train with your 
+              voltmeter or see the pulse train with your oscilloscope. Turn it 
+              on and off to see the difference.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Make sure that pin where 
+              you saw the charge pump running is properly connected to your Master 
+              Control Board and the DIP switches are set to process it properly.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Test by shutting down 
+              Mach3. When the Charge Pump goes away, does the Master Control Board 
+              fault? </font></p>
+          </td>
+          <td width="55%"> 
+            <p><font face="Arial, Helvetica, sans-serif">The Safety Charge Pump 
+              is designed to ensure that if Mach3 crashes or the PC is inadvertently 
+              shut down that an E-Stop is triggered.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">It is possible to configure 
+              Mach3 to send the Charge Pump signal to more than 1 pin. That is 
+              usually a bad idea!</font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="45%"><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td width="45%"><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+      </table>
+      <p align="left">&nbsp;</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><span class="BlogTitle">Servo 
+        Drive + Encoder</span></font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">By now we have 
+        verified that the Geckodrive (or other servo drive) is receiving the right 
+        power supply voltages, and that it is getting STEP and DIR signals in 
+        accordance with what Mach3 wants to send.</font></p>
+      <table width="100%" border="1">
+        <tr> 
+          <td width="45%"><font face="Arial, Helvetica, sans-serif">If the Gecko 
+            faults immediately at startup, it may be because the encoder's sense 
+            of direction is reversed relative to the motors. Because of this, 
+            when it sees an error, it tries to move the motor to reduce the encoder 
+            error, and the error just gets bigger, which quickly leads to a fault.</font></td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif">Try reversing 
+            the motor leads or the encoder Phase A/B leads (but not both!). If 
+            the fault goes away, you found the problem.</font></td>
+        </tr>
+        <tr> 
+          <td width="45%"> 
+            <p><font face="Arial, Helvetica, sans-serif">Power up with the motor 
+              armature outputs disconnected from the Geckodrive. See if the drive 
+              faults immediately.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">If the drive doesn't 
+              fault, twist the motor shaft (by moving the pulley if need be). 
+              Can you make the servo fault? If not, the Gecko doesn't really see 
+              the encoder, although it thinks it does, else it would fault. There 
+              are certain failure modes where it can think the encoder is there, 
+              but it can't read it.</font></p>
+          </td>
+          <td width="55%"> 
+            <p><font face="Arial, Helvetica, sans-serif">If there is an immediate 
+              fault, there may be a problem with the encoder cabling or the encoder.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">If you can't make it 
+              fault, check the cabling. Try another encoder. Make sure everything 
+              has power (see the Power Supply checks above!). Make sure the encoder 
+              +/- are showing proper voltage and grounding.</font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="45%"><font face="Arial, Helvetica, sans-serif">The Geckodrive 
+            documentation describes a voltmeter test of the encoder. Try that 
+            to see if your encoder is working properly and the Gecko is communicating 
+            with it properly.</font></td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td width="45%"> 
+            <p><font face="Arial, Helvetica, sans-serif">Listen for excessive 
+              noise from the servo. They should be nearly silent, perhaps with 
+              a slight &quot;ticking&quot; or other noise every so often. That 
+              noise is encoder dithering. If there is too much constant noise, 
+              it is a symptom the servo is out of tuning. Don't let it sit that 
+              way for too long, or you may burn up the drive or the motor.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Note: A stepper should 
+              be silent at idle. Ticking on a stepper is likely an indication 
+              of noise firing random steps.</font></p>
+          </td>
+          <td width="55%"> 
+            <p><font face="Arial, Helvetica, sans-serif"><a href="CCServoTuning.htm">Tune</a> 
+              the servo.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Other sources of noisy 
+              motor operation on a stepper or servo:</font></p>
+            <ul>
+              <li><font face="Arial, Helvetica, sans-serif">Check step and dir 
+                signal polarity in Mach 3. Is it right for the boards you're using? 
+                I had to reverse one but not the other to make my Xylotex board 
+                work properly when it was doing this. </font></li>
+              <li><font face="Arial, Helvetica, sans-serif">On steppers, it is 
+                possible one of the motor coils isn't energizing properly due 
+                to a wiring problem. Double check the wiring. I had to reverse 
+                2 of the conductors because a cable was wired wrong one time when 
+                this happened. </font></li>
+            </ul>
+            <p><font face="Arial, Helvetica, sans-serif">On steppers, if you get 
+              lots of low speed &quot;growling&quot;, check into:</font></p>
+            <ul>
+              <li><font face="Arial, Helvetica, sans-serif">Try the ADJUST trimpot 
+                on the Gecko Drive to see if it helps.</font></li>
+              <li><font face="Arial, Helvetica, sans-serif">If you have a NEMA42 
+                motor, make sure the Gecko's internal NEMA42 jumper is set properly. 
+                </font></li>
+              <li><font face="Arial, Helvetica, sans-serif"> Make sure the proper 
+                size current limiting resistor is in place on the Gecko Drive.</font></li>
+            </ul>
+            <p>&nbsp;</p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="45%"><font face="Arial, Helvetica, sans-serif">Try jogging. 
+            If the Gecko faults when you change direction suddenly, that is a 
+            sign of bad tuning.</font></td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif"><a href="CCServoTuning.htm">Tune</a> 
+            the servo.</font></td>
+        </tr>
+        <tr> 
+          <td width="45%"> 
+            <p><font face="Arial, Helvetica, sans-serif">Still getting a lot of 
+              faulting? You can tie Err/Res to Enc+ to keep automatically resetting 
+              the drive. Ultimately you'll want to figure out why, but this is 
+              a technique to eliminate the vagaries of your Master Control board 
+              or other Err/Res circuits until everything is tuned up.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Note: A powerful and 
+              properly <a href="CCServoTuning.htm">tuned</a> servo system will 
+              snap an end mill off without faulting! </font></p>
+          </td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td width="45%"> 
+            <p><font face="Arial, Helvetica, sans-serif">Now make sure you run 
+              your servos through a program that includes a variety of speeds 
+              and lots of reversal of direction to flush out any unwanted oscillation 
+              and be sure they're really <a href="CCServoTuning.htm">tuned up</a> 
+              well. I like to use the circular interpolation wizard in Mach3 to 
+              do this. Choose a circle diameter of 1 or 2 inches and try different 
+              feedrates. That'll work for the X and Y axes. </font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Use the peck drilling 
+              wizard on the Z-axis to get some direction change going.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">The first time I <a href="CCServoTuning.htm">tuned</a> 
+              my servos by ear, I lost a cap to some oscillation from a poorly 
+              tuned Geckodrive. The oscillation didn't show up until I was in 
+              the middle of making a part and I couldn't hear it over the sound 
+              of the mill cutting. But I did see it at the last minute before 
+              the drive blew.</font></p>
+          </td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif"><a href="CCServoTuning.htm">Tune</a> 
+            the servos as needed during this test!</font></td>
+        </tr>
+        <tr> 
+          <td width="45%"><font face="Arial, Helvetica, sans-serif">Motors move, 
+            but they may not move accurately and sometimes &quot;twitch&quot; 
+            a little bit</font></td>
+          <td width="55%"> 
+            <p class="style1"><font face="Arial, Helvetica, sans-serif">Check 
+              for proper Step/Dir signals to the Gecko Drives as described above. 
+              </font></p>
+            <p class="style1"><font face="Arial, Helvetica, sans-serif">You may 
+              have a noise problem. Check the <a href="CCCNCNoise.html">Noise 
+              Problems page</a> for ideas. </font></p>
+          </td>
+        </tr>
+        <tr>
+          <td width="45%"><font face="Arial, Helvetica, sans-serif">I keep blowing 
+            fuses!</font></td>
+          <td width="55%"><font face="Arial, Helvetica, sans-serif">On stepper 
+            drives, Mariss says drives that blow fuses usually have 1 or more 
+            damaged MOSFET power transistors. Here's how to check the health of 
+            the MOSFETs:<br>
+            <br>
+            1) Pull the main connector block from the drive to expose the connector 
+            header pins.<br>
+            <br>
+            2) Set your multimeter to Ohms. Set it to the '200K' range if the 
+            meter isn't auto-ranging.<br>
+            <br>
+            3) Connect one probe lead to terminal 1 (GND) of the drive.<br>
+            <br>
+            4) Use the other probe to measure the resistance to term. 3, 4, 5 
+            and 6.<br>
+            <br>
+            5) Now connect the first probe lead to terminal 2 (+SUPPLY).<br>
+            <br>
+            6) Repeat step (4).<br>
+            <br>
+            7) All 8 readings should be 100K Ohms or more for a good drive. A 
+            bad reading will be near zero Ohms and indicates a blown MOSFET.</font></td>
+        </tr>
+        <tr> 
+          <td width="45%"><font face="Arial, Helvetica, sans-serif">Possible issue: 
+            I burned up the capacitor on my servo drive! </font></td>
+          <td width="55%"> 
+            <p><font face="Arial, Helvetica, sans-serif">I lost a cap on a Geckodrive 
+              due to oscillation from a poorly <a href="CCServoTuning.htm">tuned</a> 
+              servo drive. See the note above on making sure your servos are <a href="CCServoTuning.htm">tuned</a> 
+              across a variety of speeds and lots of direction changes!</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Another possible cause: 
+              the leads between your power supply's big capacitor(s) and the servo 
+              driver are too long. Mariss talks about 18&quot; max to a Gecko, 
+              while Larkin wants 6&quot; max. <a href="http://www.cnczone.com/forums/showthread.php?t=70432">Larken 
+              says</a> you can burn up the on board cap if the leads are too long. 
+              Mariss talks about installing an additional cap near the Geckos 
+              to fix this problem.</font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="45%"> 
+            <p><font face="Arial, Helvetica, sans-serif">Other Geckodrive checks 
+              you can try:</font></p>
+            <p class="style1">&nbsp;</p>
+            <blockquote>&nbsp;</blockquote>
+            <p>&nbsp;</p>
+          </td>
+          <td width="55%"> 
+            <p class="style1"><font face="Arial, Helvetica, sans-serif">If the 
+              wiring to the motor coils checks out, you will need to tests your 
+              Gecko stepper drives as recommended by Mariss F.:</font></p>
+            <blockquote> 
+              <p class="style1"><font face="Arial, Helvetica, sans-serif">- Power 
+                down </font></p>
+              <p class="style1"><font face="Arial, Helvetica, sans-serif">- Measure 
+                resistance between pin 1 and each of the 4 motor control pins. 
+                </font></p>
+              <p class="style1"><font face="Arial, Helvetica, sans-serif">- Resistance 
+                should be 100K ohms or so else the H-bridge in the driver is damaged.</font></p>
+            </blockquote>
+            <font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+      </table>
+      <p align="left">&nbsp;</p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><span class="BlogTitle">Servo 
+        Motor</span></font></p>
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="1">
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif">Try directly connecting 
+            the motor to the Arm +/- inputs to the DC supply, with the motor removed 
+            from the machine. This should spin the motor at top speed. Don't try 
+            this with the motor on the machine as the axis will move at max speed!</font></td>
+          <td><font face="Arial, Helvetica, sans-serif">This test removes the 
+            Gecko from the loop and runs the motor directly from the power supply. 
+            If the motor won't spin, the cable is bad, there is an open connection 
+            inside the motor, or there is a short inside the motor. </font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+      </table>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Congratulations!</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">By now you should 
+        be able to get all of your servo motors spinning. This is the very coarsest 
+        level of debugging. Now it's time to move on the Performance Tuning to 
+        make sure your moves are accurate and fast.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif" class="BlogTitle">Performance 
+        Tuning</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Before attempting 
+        to do much here, check the tram on your mill. No sense trying to eek out 
+        accuracy below a thousandth if the mill isn't square. For more information 
+        on tramming and squaring mills, <a href="CCMillTipsTechniques.htm">check 
+        here</a>. </font></p>
+      <table width="100%" border="1">
+        <tr> 
+          <td> 
+            <p><font face="Arial, Helvetica, sans-serif">Calibrate steps per inch 
+              on each axis. Start out with the calculated steps per inch for your 
+              machine based on steps per rotation on your motor, leadscrew revolutions 
+              per inch, and any gearing.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Use an accurate standard 
+              that is clamped down so it won't move. The longer the better. </font></p>
+            <p><font face="Arial, Helvetica, sans-serif">A number of different 
+              standards may be considered so long as you very accurately know 
+              their length. Ideas include 1-2-3 block (checked with a micrometer), 
+              2-4-6 block (better still because it's longer-check with micrometer), 
+              or even a micrometer standard held in your vise. An accurate DRO 
+              is probably the ideal on the low end of the cost spectrum. Commercial 
+              machines use lasers to precisely measure moves. Ensure the standard 
+              is parallel to axis motion by indicating it in. </font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Now use an edge finder 
+              to accurately find one end of the standard. Place a 1-2-3 block 
+              or other reference at the other end so you can find the other end 
+              with the same edge of the edgefinder without reversing direction. 
+              After picking up one edge, zero the DRO on the axis you are measuring 
+              and then move the axis until you pick up the other edge. DO NOT 
+              REVERSE DIRECTION! If you do, you may have backlash and have to 
+              start over.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Compare your DRO's indicated 
+              distance to the precise length of you standard. Use the difference 
+              between the two to calibrate your steps per inch (or mm) on that 
+              axis. Check several times to understand the repeatability of these 
+              measurements.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">You can see how I did 
+              this for my IH mill with 2-4-6 blocks on the <a href="CCMillCNCConversionHome.html">CNC 
+              conversion home page</a>. It made quite a difference to my accuracies. 
+              Note how far out the 2-4-6 blocks were too on their dimensions. 
+              Important to know <i>exactly</i> how long your standard is!</font></p>
+          </td>
+          <td> 
+            <p><font face="Arial, Helvetica, sans-serif">This calibration eliminates 
+              a lot of error sources. Ballscrews have inaccuracies as do gear 
+              drives. The longer the standard, the more local errors are averaged. 
+              </font></p>
+            <p><font face="Arial, Helvetica, sans-serif">What if I can't get things 
+              repeatable?</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">There are several possibilities:</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">You can be losing or 
+              gaining steps electronically because of:</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">- A parallel port with 
+              an incompatible output voltage relative to your driver or breakout 
+              board. Newer PC's often output 3.3V and a lot of boards and drivers 
+              want to see a full 5V.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">- Problem with the pulse 
+              width parameter on step/dir for Mach3. Some conflicting info out 
+              there, but this is easy to fool around with, so worth a try. I have 
+              read in a number of places that Geckos like 5 uS pulse duration, 
+              and that more won't help you. </font><font face="Arial, Helvetica, sans-serif">Failure 
+              to set a long enough pulse duration can manifest as apparent lost 
+              steps ala<a href="http://www.cnczone.com/forums/showthread.php?t=79238"> 
+              this example</a> using a Gecko 540 stepper system.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">- Noise adding or hiding 
+              bogus steps.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">- Cabling that is susceptible 
+              to noise. Encoder cabling for servos is extremely noise sensitive. 
+              Longer cables are more so.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">For more on diagnosing 
+              and fixing noise problems in CNC systems, <a href="CCCNCNoise.html">check 
+              this page</a>.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Mechanical issues:</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">- Too much binding</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">- Too much acceleration, 
+              deceleration, or speed is making the motor work too hard.</font></p>
+            <p><font face="Arial, Helvetica, sans-serif"><a href="http://www.cnczone.com/forums/showthread.php?t=54039">A 
+              thought from Mariss F</a>.: If a stepper motor sounds smooth, you're 
+              probably not losing steps mechanically. Steppers are noisy if they 
+              are losing steps. If it is noisy, check carefully for mechanical 
+              losses. It's easy to turn down your speeds and accelerations to 
+              see if that helps.</font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif">Possible Issue: HEDS encoders. 
+            Many popular servos use US Digital sourced HEDS encoders. Per Mariss 
+            F., these encoders often lack a proper power supply bypass capacitor. 
+            This can lead to encoder errors (manifested as positioning errors 
+            in the servos), especially if your cables are at all long. This is 
+            discussed at length in many places, such as <a href="http://www.cnczone.com/forums/showthread.php?p=579615#post579615">this 
+            CNCZone thread</a>.</font></td>
+          <td> 
+            <p><font face="Arial, Helvetica, sans-serif"><a href="http://finance.groups.yahoo.com/group/geckodrive/message/18254">Fix 
+              recommended by Mariss</a>:</font></p>
+            <p><font face="Arial, Helvetica, sans-serif">Use a 100nF ceramic capacitor 
+              at the encoder from GND to +5VDC. Place it as close to the encoder 
+              as you possibly can (0.25" or 5mm lead lengths). Parallel it with 
+              a 10uF Aluminum electrolytic. </font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+        <tr> 
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+          <td><font face="Arial, Helvetica, sans-serif"></font></td>
+        </tr>
+      </table>
+      <p align="left">&nbsp;</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

@@ -1,0 +1,1091 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNC Cookbook: Eliminating Backlash, Part 1</title>
+
+<meta name="description" content="Methods for eliminating backlash in CNC machines, part 1 of a 2-part article." />
+
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p>&nbsp;</p>
+      <p><font face="Arial, Helvetica, sans-serif"><b><i><font color="#FFFFFF">See 
+        Also: <a href="CCBacklash2.htm">Eliminating Backlash, Part 2</a></font></i></b></font></p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p><font face="Times New Roman, Times, serif" size="7" color="#339933">Eliminating 
+        Backlash, Part 1: Basics</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BodyText">If you're looking over this 
+        page, I'll assume you wonder why you should eliminate backlash (or how 
+        much can your stand), you want to build a CNC machine from scratch, or 
+        you are converting a manual machine that has measurable backlash. If you 
+        have a machine already converted that has the &quot;good&quot; parts (like 
+        ballscrews), and still have too much backlash, try <a href="CCBacklash2.htm">Part 
+        2</a> for ideas to solve your problem.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><span class="BlogTitle">What 
+        is Backlash?</span></font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">According to the <a href="CCDictionary.htm">CNC 
+        Dictionary</a>, backlash is any kind of unexpected play in an axis due 
+        to clearance or looseness of mechanical parts.<span style='mso-spacerun:yes'>  
+        </span>When the axis is commanded to move, the drive motor may turn briefly 
+        before movement begins.<span style='mso-spacerun:yes'>  </span>That delay 
+        is the backlash.<span
+style='mso-spacerun:yes'>  </span></font></p>
+      <p class=BodyText><font face="Arial, Helvetica, sans-serif">Backlash has 
+        a variety of causes.<span
+style='mso-spacerun:yes'>  </span>The most common is play between the leadscrew 
+        threads and those of the nut.<span style='mso-spacerun:yes'>  </span>ACME 
+        screws can have considerable backlash of this kind, while ballscrews may 
+        have almost none.<span style='mso-spacerun:yes'>  </span>Another source 
+        is any tendency for the screw to move axial in the bearings that hold 
+        it, or any other such play in the system.<span style='mso-spacerun:yes'>  
+        </span>Precision angular contact bearings with preload are often used 
+        to combat this tendency.<span
+style='mso-spacerun:yes'>  </span>Gears, belts, and chains can all introduce backlash 
+        into a mechanical system.<span style='mso-spacerun:yes'>  </span>Even 
+        loose fasteners or flex in the mounting plates or chassis can be a source 
+        of backlash.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><span class="BlogTitle">Why 
+        Eliminate Backlash?</span></font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">Backlash is a subject that 
+        comes up frequently in CNC machine discussions, and it seems machine makers 
+        are willing to go to no end of trouble and expense to eliminate backlash. 
+        Why is it considered so bothersome?</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">There are several reasons. 
+        First, CNC machines are largely blind and even most closed loop systems 
+        lack much ability to sense that the axis hasn't moved even though the 
+        motor has. A system that has both encoders on the shafts and some form 
+        of linear encoder may be able to sense the axis hasn't moved, but even 
+        a machine that &quot;knows&quot; the backlash is there suffers from the 
+        other problems.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">A second issue for backlash 
+        can occur while climb milling (for a definition of climb and conventional 
+        milling, try the <a href="MTCNCDictCADtoCycle.htm">CNC Dictionary</a>). 
+        Climb milling is often preferred to conventional milling because it produces 
+        a better surface finish and places less stress on the machine and cutter. 
+        However, if an excess of backlash is present, the action of the cutter 
+        can operate to pull the workpiece suddenly into the cutter by a distance 
+        equal to the backlash. At the very least this is counterproductive to 
+        surface finish and at the worst, it can result in a broken cutter, scrapped 
+        workpiece, or even injury to the operator from flying debris. Very bad! 
+        Clearly this one doesn't go away even if the machine knows how to compensate 
+        for the backlash. The benefits of climb milling are so great that even 
+        some of the later manual milling machines at the high end came with ballscrews 
+        or &quot;backlash eliminators&quot; just so climb milling could be practiced 
+        on these machines. You can still buy retrofit kits today to add ballscrews 
+        to say a Bridgeport mill for this purpose. If you don't plan to CNC the 
+        machine, make sure your ballscrew installation is properly spec'd to avoid 
+        &quot;back driving&quot;. This is where the friction on the ballscrew 
+        is so low that it won't hold the table in place against the cutting forces. 
+        It's largely a matter of specifying the right lead for the ballscrew or 
+        in some cases have a friction mechanism on the axis that can be engaged 
+        and disengaged as needed.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">The last issue is one of smooth 
+        continuous machining when direction is reversed. It's possible for a CNC 
+        machine to do things a manual operator spinning the handwheels could never 
+        do, like cutting a smooth circle. The operator needs a rotary table to 
+        do this, but a CNC machine can smoothly operate two axes precisely enough 
+        to generate a circle, unless there is backlash. It turns out a circle 
+        forces several changes of direction throughout the course of the cut. 
+        See the <a href="MTCNCStepperServoBacklash.htm">Stepper/Servo/Backlash 
+        Simulator</a> for more details of this, but here is an example of what 
+        such a cut looks like when there is backlash:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/BacklashGraph.jpg" width="640" height="658"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Backlash 
+        &quot;Ears&quot;: 1&quot; diameter circle, 0.020&quot; backlash on both 
+        X and Y axes...</i></b></font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">The little kicked 
+        out &quot;ears&quot; happen at each point an axis changes direction on 
+        the circle. You can imagine also that when a part is being profiled, the 
+        spindle is moving back and forth and up and down to follow the contours 
+        of the part. Every time the spindle goes down and then shifts back up, 
+        that is a reverse of direction. Backlash is going to cause inaccuracy 
+        or dwell marks at those points where the direction is reversed.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">As a matter of 
+        fact, cutting circles is an acid test for a mill. Try one and see how 
+        it turns out to get a rough idea how your backlash is doing as well as 
+        a number of other factors.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">It's worth noting 
+        that lathes have it a lot easier than mills where backlash is concerned. 
+        There is no equivalent of climb milling on a lathe, and a reversal of 
+        direction need not occur smoothly while cutting as often.</font></p>
+      <p align="left" class="BodyText">Lastly, the CAM software you'd like to use to generate your g-codes assumes your machine has no backlash.  It doesn't produce code that operates the machine the way a manual machinist sensitive to avoiding backlash problems would.</p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Okay, hopefully 
+        we've made a believer out of you that you want to get rid of backlash. 
+        BTW, for some applications, such as plasma cutting, the resolution needed 
+        may be so low that quite a lot of backlash is acceptible. Try to keep 
+        that in perspective as well.</font></p>
+      <p class="BlogTitle">What About Backlash Compensation?</p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">When a manual machinist is 
+        faced with backlash, he naturally follows a routine that for the most 
+        part allows him to ignore it. That routine involves taking up the slack 
+        (or backlash) on the handwheels before beginning to cut. Machine control 
+        software such as Mach 3 can automatically follow the same routines for 
+        backlash. It isn't quite as good as the operator, because it lacks his 
+        &quot;feel&quot; of exactly when the lash is gone and instead relies on 
+        being told how much backlash is present. It's very hard to get that exactly 
+        right and it may change as your leadscrew wears or your machine needs 
+        adjustment (for example the gibs need adjusting). Remember also the problems 
+        with climb milling and reversing direction. Our manual machinist probably 
+        avoids both because he knows he'll get into trouble. We're not getting 
+        full value out of our CNC machine if we force it to avoid climb milling, 
+        cutting circles, or the host of other operations that involve changes 
+        of direction during a cut.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">So, backlash compensation is 
+        a weak bandaid for the problem. It's better than nothing, and may tide 
+        you over until you break out the checkbook and fix your backlash, but 
+        it isn't something you'd probably like to live with long term. If your 
+        machine is a lathe, you may be able to live with just backlash compensation.</font></p>
+      <p><span class="BlogTitle"><font face="Arial, Helvetica, sans-serif">How 
+        Do I Measure the Backlash in My Machine?</font></span></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">Okay, next question. How do 
+        I know how much backlash I have? A DRO is handy if you have one, because 
+        it will directly measure how far the axis really moved. Failing that, 
+        put a dial indicator in the spindle (attach one with an Indicol or similar 
+        and don't turn the spindle on for Heaven's Sake!). Set it up to read against 
+        a 1-2-3 block or other flat reference, put a little tension on it with 
+        the handwheel (or manually jogging a CNC machine) to get a reading, and 
+        zero the indicator. Now move the axis in the direction that takes the 
+        tension off the indicator a distance that is greater than any possible 
+        backlash and read that off the handwheel. Turn the handwheel in the opposite 
+        direction exactly the distance you read off from the first movement. Check 
+        your dial indicator. The amount it did not get back to zero is your backlash. 
+        </font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">A DRO will directly measure 
+        the distance travelled, and when I first got my <a href="CCMillHome.html">Industrial 
+        Hobbies mill</a>, I measured 0.010&quot; of backlash on the X-axis using 
+        my DRO.</font></p>
+      <p><span class="BlogTitle"><font face="Arial, Helvetica, sans-serif">Sources 
+        of Backlash in Conventional Machines</font></span></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">Okay, so where is that backlash 
+        coming from and what's it going to take to eliminate it?</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">In all likelihood, the majority 
+        of your backlash is coming from your leadscrew and associated nut. Most 
+        manual machines will use an ACME leadscrew. Because of the nature of these 
+        screws, if the nut is made tight enough to eliminate the backlash, it 
+        introduces too much friction and the screw becomes impossibly hard to 
+        turn. In addition, the nut is often made of a material that wears more 
+        rapidly than the screw, so that it may be replaced more cheaply than replacing 
+        the leadscrew itself. Such nuts often have an adjustment to take out some 
+        of the excess backlash as they wear. When they don't or when they're not 
+        adjusted properly, or when all the adjustment is used up on an old heavily 
+        used machine, you get lots of backlash. It is not unusual to see backlash 
+        of 0.005&quot; on a good quality manual machine with ACME screws, and 
+        that figure can easily deteriorate to 0.025&quot; or worse on a badly 
+        worn machine.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">There are other sources too, 
+        such as the gibs or the mounting of the nut or screw. There can be play 
+        in how a handwheel or motor is attached to the shaft as well. Since the 
+        leadscrew is the biggest source of trouble, we'll consider leadscrew alternatives 
+        first. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><span class="BlogTitle">The 
+        &quot;Good Parts&quot;: Leadscrew Alternatives</span></font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">The most commonly discussed 
+        alternative to a conventional ACME leadscrew for CNC use is a ballscrew. 
+        Ballscrews are typically intended for CNC work, and so are made to minimize 
+        backlash. Because they turn with a lot less friction than an ACME screw, 
+        they can be built to much tighter tolerances. Ballscrew come in rolled 
+        and ground flavors, with the latter being more precise and more backlash 
+        free. A decent rolled ballscrew will deliver 0.003&quot; backlash while 
+        a poorly made one has perhaps 0.010&quot;. A ground screw ought to be 
+        no more than 0.001&quot; and probably should be less. There are ways to 
+        reduce this further having to do with the nuts and preloading of oversized 
+        balls, which I'll talk about below.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">Besides ground versus rolled, 
+        ballscrews come in different accuracy grades that you should be aware 
+        of:</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">C0 - 3um or 0.0001" per 300 
+        mm / 12" </font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">C3 - 7um or 0.00027" per 300 
+        mm / 12" </font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">C5 - 14um or 0.0005" per 300 
+        mm / 12" </font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">This refers to how close the 
+        position will be after the screw has turned through 12&quot; of motion. 
+        Note that in this area, there are ACME screws available that are every 
+        bit as accurate, so the ballscrew has no special advantage here. Another 
+        thing to be aware of is that a lot of machine control software, including 
+        Mach 3, has a feature known as &quot;ballscrew mapping&quot;. This feature 
+        lets you measure the true position reached at various points along the 
+        ballscrew and use it to compensate for errors in the ballscrew. This function 
+        works very well, and should be taken advantage of if you have the means 
+        to accurately measure the deviations. This alone is a good reason to install 
+        an <a href="MTMillDRO.htm">inexpensive DRO</a> at least temporarily on 
+        your machine until you can get the compensation tables calibrated.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">It is also interesting to note 
+        that this error can vary as the temperature changes based on the room 
+        the machine is in and how hard its working. Companies such as <a href="http://www.heidenhain.com/">Heidenhain</a> 
+        sell special controls based on linear scales (i.e. scales like a DRO uses) 
+        that dynamically compensate for such errors on very high accuracy machines. 
+        It's quite interesting to read their<a href="http://www.heidenhain.com/index.php?WCMSArticle_177_2498=42523&amp;WCMSGroup_2238_177=778&amp;WCMSGroup_778_177=2498"> 
+        technical articles</a> about this and gain an understanding of how much 
+        error can accrue from such factors as temperature variations. The effects 
+        of a fully warmed up machine over the full length of the ballscrew was 
+        about 0.004&quot;, which is significant to many applications.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BodyText">There are some alternatives 
+        to ballscrews that I won't discuss here. They're not seen very often, 
+        and you can research them on the web if you like.</font></p>
+      <p><span class="BlogTitle">Nuts, Nuts, and more Nuts</span></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">Lots to know about nuts and 
+        backlash. First, you can get nuts made to reduce the backlash of an ACME 
+        screw? Wait a minute, you say, we just spent all that time hearing you 
+        can't do that without getting too much friction, what gives? Well, it 
+        turns out that if you make the nut from Delrin or similar low friction 
+        material, you can pretty well get rid of a lot of the normal ACME backlash 
+        and things work well for a time and with limited cutting forces. I feel 
+        this is a good solution of something like a plasma or router table, but 
+        I'm skeptical about how well it would work if you need high cutting forces, 
+        for example, to cut metal. In addition, such nuts will wear out rapidly 
+        and need to be protected from chips and other contamination.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">Secondly, one can arrange a 
+        scheme whereby there are two nuts with a spring (such as a Belleville 
+        Washer) between them to preload the backlash out of the system. This works 
+        for ballscrews, and it also works for ACME screws, albeit with a lot more 
+        friction. This is normal approach to eliminate backlash with ground ballscrews. 
+        It adds a fair amount to the cost, but is worth it.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">The last trick is to load the 
+        ballscrew with some oversize balls to take out the slop. This is the normal 
+        approach to fine tune a ground ballscrew, and it will work to an extent 
+        with rolled screws, but there is a problem with the latter. Since rolled 
+        screws are not made to the same degree of precision as ground, too much 
+        preloading with oversized balls can lead to binding. The grooves are simply 
+        not laid out precisely enough to use this method to eliminate all the 
+        backlash.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">Using these techniques carefully, 
+        one should be able to get the backlash in the ballscrew itself down to 
+        the tenths level (0.0001&quot; to 0.0005&quot;) or perhaps less with a 
+        very high quality screw.</font></p>
+      <p class="BlogTitle">Mounting the Leadscrew and Nut Properly: Angular Contact 
+        What? They Cost What?!??</p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">Now you've get a ballscrew 
+        with either double nuts or preloaded properly with oversized balls. The 
+        next step is to ensure the ballscrew is mounted properly. Unfortunately, 
+        this is neither an easy, nor particularly inexpensive thing to do. By 
+        design, ballscrews are intended to be secured at their driven end by a 
+        pair of angular contact bearings. The other end of the screw is either 
+        left to float free in some designs, or secured by a bearing in such a 
+        way that if the screw expands or contracts due to heat, it has the freedom 
+        to do so at this end. The two angular contact bearings are typically installed 
+        in a preloaded configuration which holds the ballscrew firmly and prevents 
+        any motion along the screws axis, but still lets the screw turn freely 
+        when driven. There is a lot to know to propely design and build a ballscrew 
+        mounting of this type!</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">First thing is to get familiar 
+        with the bearing maker's literature on angular contact bearings:</font></p>
+      <p><a href="http://www.schaeffler.com/remotemedien/media/_shared_media/08_media_library/01_publications/barden/catalogue_2/downloads_25/machine_tools_us_en.pdf"><b><i><font face="Arial, Helvetica, sans-serif">Barden</font></i></b></a></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i><b><a href="http://www.timken.com/products/bearings/catalogs/%20">Timken</a></b></i></font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i><b><a href="http://www.jp.nsk.com/app01/en/catalog/index.cgi?ec=bearings1">NSK</a></b></i></font></p>
+      <p><b><i><font face="Arial, Helvetica, sans-serif"><a href="http://medias.ina.de/medias/ext/hp?lang=en">FAG</a></font></i></b></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">It's really not all that painful 
+        to read through these documents, and there is a lot of good interesting 
+        information there. If you learn nothing else, be sure to study the standard 
+        nomenclature used to identify these bearings. If you're going out fishing 
+        on eBay or the Internet to find them, you've got to know how to identify 
+        what you're looking for or looking at.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">Now given those resources, 
+        we can start to explore some of the issues, or at least some rules of 
+        thumb that can be used in this area. First, how does the double bearing 
+        mounting look and work? Here's a basic schematic representation: </font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/BallscrewBearings.jpg" width="640" height="447"></font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><i>Mounting 
+        a Ballscrew with 2 Angular Contact Bearings...</i></b></font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Note the crossed 
+        lines. These are the <i>contact angles</i> for the angular contact bearings. 
+        Because they are opposed, this provides the resistance to back and forth 
+        motion along the axis of the ballscrew. In addition, the bearings are 
+        preloaded to take out any internal slop. The preload is provided by the 
+        spacer between the bearings, the shoulder of the ballscrew, and the lock 
+        nut that is threaded on the end of the ballscrew and bears against the 
+        other end of the bearing pack. The ballscrew shoulder and locknut bear 
+        on the inner races of the bearing, while the mounting block and cover 
+        bear on the outer races. The torque on that nut establishes the preload, 
+        and all of these surfaces need to be finished with some fair precision 
+        if the end result is to work precisely. The cover is simply holding the 
+        bearing assembly in place with respect to the machine, but it does need 
+        to be tight with respect to the outer races, so some shimming or spacers 
+        may be required. </font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">In this case I 
+        have shown the two bearings mounted in the DF, or duplex face to face 
+        configuration. The pressures against axial movement are outward, and you 
+        can see the bearing balls are supported in that way. You can reverse both 
+        bearings to create a DB, or duplex back to back configuration. This still 
+        works, and in fact, the bearings will be even stronger at fighting axial 
+        movement. The advantage of the DF configuration is that the assembly can 
+        tolerate misalignment a lot better, so this is the recommended configuration 
+        in this application.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Okay, let's assume 
+        you've carefully perused the bearing literature, you understand the way 
+        they're to be employed, how do you select the best bearings for your application? 
+        There are a number of selection parameters to consider:</font></p>
+      <table width="80%" border="1" align="center">
+        <tr> 
+          <td><i><b>Bore Size</b></i></td>
+          <td class="BodyText">You're going to want a bore that works with your ballscrew. In all 
+            likelihood, you may have to turn and thread the end of the ballscrew. 
+            You want as precise a fit as possible for best accuracy. The larger 
+            the bearing, the stronger it is likely to be as well, though you can 
+            check the specs to see for sure. You can't run the ballscrew inside 
+            a sleeve to make it fit a bearing that's too large and hope for any 
+            accuracy, however.</td>
+        </tr>
+        <tr> 
+          <td><i><b>Contact Angle</b></i></td>
+          <td class="BodyText">Remember the crossed lines above. The greater the angle, the stiffer 
+            and better the bearings will be. 15 degrees is the low end of the 
+            scale, 60 degrees is the high end of the scale.</td>
+        </tr>
+        <tr> 
+          <td><i><b>Preload</b></i></td>
+          <td class="BodyText"> 
+            <p>More is better. You shouldn't exceed the recommended preload of 
+              the bearing, but bearings are made to different preload specs. Get 
+              the ones with more preload for this application. It is amazing how 
+              much preload can be beneficial in eliminating as much backlash as 
+              possible. Think 500 lbs and up if you really want to control backlash 
+              to minute levels. A typical 15 degree contact angle bearing with 
+              high preload might only tolerate up to 125 lbs of preload. </p>
+            <p>Alternatives: </p>
+            <p>You can concievably stack 4 bearings instead of 2 in order to do 
+              better, but I confess I do not know much about this higher level 
+              of vodoo!</p>
+            <p>In addition, while I said not to exceed the preload, if you have 
+              a cheap set of bearings (not a $1000 set!), you might experiment 
+              with creeping up on more preload. The downside is that it is going 
+              to introduce friction and wear that at some stage may be self defeating.</p>          </td>
+        </tr>
+        <tr> 
+          <td><i><b>Quality, Accuracy, and Tolerances</b></i></td>
+          <td class="BodyText"> 
+            <p>The bearing is going to have some slop in it. The higher the accuracy 
+              rating, the less there will be. Here is the secret decoder ring:</p>
+            <table width="100%" border="0">
+              <tr> 
+                <td width="5%"> 
+                  <div align="center">DIN</div>                </td>
+                <td width="9%"> 
+                  <div align="center">JIS</div>                </td>
+                <td width="11%"> 
+                  <div align="center">ABEC</div>                </td>
+                <td width="17%"> 
+                  <div align="center">Bore Diameter</div>                </td>
+                <td width="16%"> 
+                  <div align="center">Width</div>                </td>
+                <td width="22%"> 
+                  <div align="center">Radial Runout</div>                </td>
+                <td width="20%"> 
+                  <div align="center">Application</div>                </td>
+              </tr>
+              <tr> 
+                <td width="5%">P0</td>
+                <td width="9%">Class 0</td>
+                <td width="11%">1</td>
+                <td width="17%">(0.00012)</td>
+                <td width="16%">&nbsp;</td>
+                <td width="22%">0.00012</td>
+                <td width="20%">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td width="5%">P6</td>
+                <td width="9%">Class 6</td>
+                <td width="11%">3</td>
+                <td width="17%">(0.00008)</td>
+                <td width="16%">0.00012</td>
+                <td width="22%">0.00008</td>
+                <td width="20%">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td width="5%">P5</td>
+                <td width="9%">Class 5</td>
+                <td width="11%">5</td>
+                <td width="17%">(0.00008)</td>
+                <td width="16%">0.00008</td>
+                <td width="22%">0.00006</td>
+                <td width="20%">Machine Tools</td>
+              </tr>
+              <tr> 
+                <td width="5%">P4</td>
+                <td width="9%">Class 4</td>
+                <td width="11%">7</td>
+                <td width="17%">(0.00006)</td>
+                <td width="16%">0.00004</td>
+                <td width="22%">0.00003</td>
+                <td width="20%">Machine Tools, Spindles</td>
+              </tr>
+              <tr> 
+                <td width="5%">P2</td>
+                <td width="9%">Class 2</td>
+                <td width="11%">9</td>
+                <td width="17%">(0.00004)</td>
+                <td width="16%">0.00002</td>
+                <td width="22%">0.00002</td>
+                <td width="20%">High Speed Spindles</td>
+              </tr>
+            </table>
+            <p>There is at least one highly regarded low end CNC mill being sold 
+              today that uses ABEC3 bearings to mount the ballscrews. OTOH, if 
+              you want the best, ABEC 7 is the way to go. Note how small the actual 
+              differences are between these two grades: 0.00008&quot; runout vs 
+              0.00003&quot; runout. Half a ten thousandth! I can see why for many 
+              applications the ABEC 3 works well enough. You need to decide what 
+              will be good enough for you, as this particular specification drives 
+              up bearing prices faster than anything else. It's easy to pay $1000 
+              or more for a set of ABEC 7 bearings.</p>          </td>
+        </tr>
+        <tr> 
+          <td><i><b>Axial Load Rating</b></i></td>
+          <td class="BodyText">If your bearing manufacturer offers this number, you've got the 
+            diving rod right there. This is the measurement of what it takes to 
+            cause axial motion with the bearing. You want the biggest honking 
+            axial load you can get!</td>
+        </tr>
+      </table>
+      <p align="center"><b><i>Understanding Angular Contact Bearings Specifications 
+        for Ballscrew Applications</i></b></p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BodyText">When it comes to mounting these 
+        little jewels, keep in mind that you probably want ground spacers between 
+        the two bearings and the preload nut probably wants to be ground as well. 
+        All that can be done for you by a qualified shop, or in some cases you 
+        can purchase the parts already ground. Try to buy your bearings as a matched 
+        pair (they'll say &quot;DUL&quot; or &quot;DUH&quot; in the bearing name) and they won't need the spacer between them either. As mentioned 
+        before, you may need to shim or spacer the bearings in the mounting block 
+        to make sure they're properly locked in there on the outer races. You 
+        will also want some form of dust seal to keep the junk out of your bearings. Here is an exploded view of a professional ballscrew bearing block:</font></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><img src="img/CNCCookbook/ACBearingBlock.jpg" width="716" height="463"></font></p>
+      <p align="left" class="BodyText">Note that the spacers shown here are not for preload, they simply allow more bearings to be mounted in the block for even greater stiffness, or different spacers would allow some bearing substitutions. Also note that this block has the bearings mounting in DB configuration, rather than DF. </p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">I suspect when you first start 
+        shopping for these bearings, particularly if you set out looking for ABEC-7's, 
+        your initial reaction is going to be one of discouragement. Great bearings 
+        are really expensive. It's easy to spend $1000 without hardly getting 
+        started. Your application may justify it, but most don't. Here's a couple 
+        of less expensive compromise bearings I came across that are worth looking 
+        at:</font></p>
+      <p class="BodyText"><a href="http://bearingsdirect.com/products/index.php?action=item&amp;id=289&amp;prevaction=search&amp;previd=&amp;prevstart=0"><font face="Arial, Helvetica, sans-serif">7204CTDULP4</font></a><font face="Arial, Helvetica, sans-serif"> 
+        : $200 for a duplex pair by Nachi (good name) that can be run in DF config, 
+        and are ABEC-7's. The downside? There's only a 15 degree contact angle 
+        and the preload is light. Still, not a bad starting point.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif"><a href="http://bearingsdirect.com/products/index.php?action=item&amp;id=325&amp;prevaction=search&amp;previd=&amp;prevstart=0">7204</a> 
+        : $200 too much? How about $24 each for ABEC3's? The downsides--they're 
+        not ABEC-7's and they're not a matched duplex pair. OTOH, they have a 
+        better contact angle at 40 degrees. Can't tell from this what the preload 
+        spec might be, which is bad. Note that what they're calling it, just &quot;7204&quot;, 
+        is an incomplete desription by bearing nomenclature standards. It would 
+        be like calling a person &quot;Frank&quot;. If you know there person well, 
+        you know which Frank, but in this case &quot;7204&quot; only tells us 
+        the size of the bearing. There's a lot we don't know about these bearings, 
+        and most of it is probably to the detriment of performance. You don't 
+        want to just go ask for a &quot;7204&quot;. Read the information above 
+        and learn how to fully specify your bearing if you want the best performance.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">What if you do want the all 
+        the performance possible? Try to find some bearings such as &quot;7204A5TYDUHP4&quot;. 
+        They'll have a higher contact angle and preload than the &quot;7204CTDULP4&quot; 
+        bearings I mentioned, which as we've discussed makes it a better choice. 
+        The real expensive bearings, the ones designed for ballscrew applications 
+        on machine tools and used by pros, would be something like &quot;20TAC47BDF&quot;. 
+        That nomenclature is a little different, but you can find them out there 
+        in the bearing catalogs. They won't be cheap, but they have a huge contact 
+        angle, 500 lbs of preload, and they are ABEC-7's. Don't expect to find 
+        the 20TAC's sitting in an eBay auction or expect to buy them from a skate 
+        bearing supplier. You might get lucky, but it's unlikely in the extreme. 
+        Get ready for some sticker shock on the price, but if they're what you 
+        need for ultimate performance, that's what it takes. Many bearing manufacturers 
+        keep these types of bearings in a separate &quot;precision&quot; or &quot;machine 
+        tool&quot; bearing catalog. Be sure to sniff around their web sites for 
+        those catalogs to see what these bearings are and to learn more about 
+        how to employ them in this sort of application.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">There are endless combinations 
+        and trade offs. Shop carefully. Your mileage may vary, and by all accounts, 
+        you do get what you pay for!</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">The other end of the ballscrew 
+        can be left unsupported, and indeed has been in at least one CNC mill 
+        out there, but this limits the speed you can drive the ballscrew without 
+        whipping. In this case, support it with a normal deep groove ball bearing 
+        such as you would use on an electric motor shaft. It's not providing precision, 
+        it's just providing support and the leeway for the ballscrew to expand 
+        and contract axially with temperature changes.</font></p>
+      <p class="BlogTitle">I Want to Use Cheaper Bearings Instead of Matched Duplex Pairs </p>
+      <p class="BodyText">This can be done. The matched pairs have simply had either the inner or outer race ground so there is a differential size between the inners and outers and preload can be had by compressing the shorter of the two until the races from the two bearings are in contact. One can achieve the same effect by using spacers on one or the other race (but not both!) to create that differential instead of grinding. Doing this is going to require a certain amount of skill and perhaps a lot of trial and error. </p>
+      <p class="BodyText">The first step is to measure the bearing race deflection with a given amount of preload. Use the amount recommended by the bearing manufacturer for these bearings. This given amount can be placed on the bearings using weights. Measure how much the races deflect with that amount of weight, and then make yourself a spacer with the same thickness.</p>
+      <p class="BodyText">For a DB configuration (stiffest configuration, but most alignment sensitive), you will be shimming the outer bearing rings. For a DF configuration (less stiff, but more tolerant of shaft misalignment), you will shim the inner bearing rings.</p>
+      <p class="BodyText">A variety of things can be used to make the bearing spacers, but they need to be very flat, and they will be very thin. In a pinch, aluminum foil could be used, but you'll need to carefully cut it to the correct size to serve. A more elegant solution is to draw up the appropriate washer shape in your 2D CAD program, send it to a laser cutting house, and have them cut washers out of shim stock. You'll want to get some in 0.010&quot;, some 0.020&quot; and some 0.002 and 0.005's. Be sure to consult your bearing handbook to make sure the washers are sized properly before you have them made up. <br>
+        <br> 
+      A note of warning: don't try to set preload by a torque wrench on the nut you're tightening or some sort of calculation on the force that nut delivers!   It is almost impossible to get it right.   A lot of the force is eaten up as friction, and you will not have enough data to do proper preloading this way.        The required information is held closely by the bearing manufacturers. When properly installed, tightening that nut will just tighten down the races on the shoulders and spacers. The nut will come to a stop when things are tight and you should not over tighten further. </p>
+      <p class="BodyText">A second warning: don't think you can get the preload right by feel. It is very easy to damage your bearings this way! </p>
+      <p class="BodyText">You really do have to rig up a test rig with weights and measure deflection! </p>
+      <p class="BodyText">You should also make sure the bearings are not fit too tightly on the shaft or in the bearing block. A hand slip fit is all you need! Too tight a fit can damage the bearings or make it impossible to accurately set preload. </p>
+      <p class="BodyText">For more thoughts and details on angular contact bearings, check out my <a href="CCMillBeltDrive.html">mill belt drive spindle project page</a>. </p>
+      <p align="left" class="BlogTitle">Align the High Spots When Installing the 
+        Bearings!</p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">I want to stop 
+        here and mention an important point, particularly if you are about to 
+        disassemble a ballscrew mounting assembly. Be sure to record the orientation 
+        of the bearings relative to the housing so you can put them back exactly 
+        as you found them. When assembling a new bearing system for the first 
+        time, most of these bearings have the high spot marked on the bearing. 
+        Align the high spots for the two bearings. This ensures that the ballscrews 
+        moves eccentrically in the same direction as the two bearings rotate, 
+        rather than wobbling, and will result in better performance.</font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Okay, that's the 
+        basics. I will assume at this stage you have a good ballscrew, proper 
+        nut to minimize backlash (or preloaded oversized balls), and a good mounting 
+        scheme using high quality angular contact bearings. I would hope your 
+        backlash is measuring considerably less than it had been before all those 
+        new goodies got installed. Hopefully its under 0.005&quot;. The next section 
+        discussed refinements to further reduce backlash.</font></p>
+      <p align="left">&nbsp;</p>
+      <p><font size="+2" color="#339933"><i><a href="CCBacklash2.htm"><font size="+3"><b>Part 
+        2: Refinements...</b></font></a></i></font></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

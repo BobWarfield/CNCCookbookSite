@@ -1,0 +1,464 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCGWCDocPage.dwt" --><!-- DW6 -->
+
+<head>
+
+<!-- #BeginEditable "doctitle" --> 
+<title>CADCAM Estimator Documentation</title>
+<style type="text/css">
+<!--
+.SectionTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: #339933;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.style1 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+
+
+<meta name="description" content="Documentation for the G-Wizard CNC Job Cost Estimator.">
+
+<!-- #EndEditable -->
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+<link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+<style type="text/css">
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 14pt}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.Tagline {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #0;
+	font-size: medium;
+	vertical-align: middle;
+}
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+<!-- SumoMe Listbuilder Email Exit Intent -->
+<script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" />
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">
+  multitouch();
+</script>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr></tr>
+<tr>
+  <td height="68" colspan="4" valign="middle" bordercolor="0" class="Tagline">
+  
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/LogoBitmap30High.jpg" alt="CNCCookbook: Software and Information for Macihnists" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="32" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+  
+  </td>
+</tr>
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+
+<tr class="LeftNav">
+  <td width="232" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0"><table width="65%"  border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><div align="center">
+        <p><a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"><img src="img/Ads/GWAd05152011.gif" width="120" height="90" alt="G-Wizard Machinist's Calculator" longdesc="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html"></a></p>
+        <p><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm"> <img src="img/Ads/FeedsSpeedsAd.jpg" width="120" height="69" alt="Feeds and Speeds Cookbook"></a></p>
+      </div></td>
+    </tr>
+  </table>
+    <p>
+      <!-- Place this tag where you want the +1 button to render -->
+        <g:plusone></g:plusone>
+    </p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="+1" color="#66CC00">G-Wizard 
+      User Guide</font></b></p>
+    <p align="center" class="BodyText"><a href="GWCUIntro.html"><strong>GW Calc Video University</strong></a></p>
+    <p align="center" class="BodyText"><strong><a href="GWCalcGettingStarted.htm">Getting Started</a></strong></p>
+    <p align="center" class="BodyText"><strong><a href="GWCalcHowToArticles.html">How-To Articles</a></strong></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalculator.htm">Calculator</a></b></font></p>
+    <p align="center" class="BodyText"><a href="GWCalcCADCAMWizard.htm"><strong>CADCAM Wizard</strong></a></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcFeedsSpeeds.htm">Feeds 
+      and Speeds</a></b></font></p>
+    <p align="center" class="BodyText"><a href="GWCalcBeginnerFeedsSpeedsExamples.htm"><strong>Examples for Beginners</strong></a></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCutOptimizer.html">Cut Optimizer</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcMiniCalcs.htm">Mini-Calcs</a></b></font></p>
+    <p align="center" class="BodyText"><strong><a href="GWCalcCutKB.html">Cut KB</a></strong></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcGeometry.htm">Geometry</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcThreads.htm">Threads</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcQuickRef.htm">Quick 
+      Reference</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcSetup.htm">Setup</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWTips.html">Tips and Goodies</a></b></font></p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="GWTrouble.htm">Troubleshooting</a></font></b>    </p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="GWCustTools.html">Download Tool Data</a></font></b></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><a href="http://www.cnccookbook.proboards.com/index.cgi" class="BodyText"><strong>User's Club</strong></a></p>
+    <p align="center"><a href="CCGWizardChangeLog.htm"><font face="Arial, Helvetica, sans-serif"><b>G-Wizard 
+      Change Log</b></font></a></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWizard/GWizardInstall1SC.html">G-Wizard 
+      Install</a></b></font></p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="CCGWizardE.html">GWizard G-Code Editor</a></font></b></p>
+<p>
+  <!-- Place this tag where you want the +1 button to render -->
+<p>
+  <g:plusone></g:plusone>
+  </p>
+    <!-- AddThis Button BEGIN -->
+    <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+    <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=cnccookbook"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=cnccookbook"></script>
+    <!-- AddThis Button END -->
+</p>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    gaTrack: true,
+    gaId: 'UA-1060932-2'
+  }, 'google_translate_element');
+}
+  </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</p>
+</td>
+</tr>
+<tr>
+  <td colspan="7" align="left" valign="top" bgcolor="#FFFFFF">
+  <div id="centerContainer">
+  <!-- #BeginEditable "Body" --> 
+      <p><font size="+4" color="#339933">G-Wizard Estimator</font></p>
+      <p class="BlogTitle"><strong>Overview</strong></p>
+      <p class="BodyText">Note: Please bear with us--G-Wizard Estimator is very new and we're still in the process of creating the documentation.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BodyText">G-Wizard Estimator is CNCCookbook's Manufacturing Cost Estimation and Quoting Software. <a href="CCMachineShopEstimatingSoftware.html">  It's available for purchase or free trial from it's home page</a>.</p>
+      <p class="BodyText">Here's what it looks like when it comes up:</p>
+      <p align="center" class="BodyText"><img src="img/GWizEstimator/GWEstimatorHome.jpg" width="800" height="624" alt=""/></p>
+      <p align="left" class="BodyText">There are a series of tabs that select various applets or sub-parts of the program:</p>
+      <p align="left" class="BodyText">- Estimate is the list of operations that make up an estimate together with the actual estimates.</p>
+      <p align="left" class="BodyText">- CADCCAM Wizard is used to create new feature-based estimation ops.</p>
+      <p align="left" class="BodyText">- Feeds/Speeds is used to create basic Feeds and Speeds ops.</p>
+      <p align="left" class="BodyText">- Setup has all the configuration information GWEst will need to perform its various operations.      </p>
+      <p align="left" class="BodyText">To create an estimate for a particular part, use the CADCAM Wizards to generate estimates for each feature. Press the &quot;Add to Estimate&quot; button for each feature to add it.  Then go to the Estimator tab and flesh out any Fixed Costs (such as Programming) for the whole job and fine tune your variable (per-part) costs.</p>
+      <p align="left" class="BodyText"><img src="img/GWizard/Posts/CADCAMEstimator.jpg" width="800" height="631" alt="CADCAM Estimator"></p>
+      <p align="left" class="BodyText">Here is a video that shows adding features for a simple part:</p>
+      <p align="center" class="BodyText"><a href="http://www.youtube.com/watch?v=sqhI-sPNbrM"><img src="http://img.youtube.com/vi/sqhI-sPNbrM/0.jpg" alt="YouTube Preview Image" /></a></p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle"><strong>Adding CADCAM Wizard Results to Estimates</strong></p>
+      <p class="BodyText">Adding a CADCAM Wizard Result to an Estimate is easy. Just press the &quot;Add to Estimate&quot; button that is just to the right of the DFM list.  You can see it in the area outlined in red in the screen shot above.   You have the option to add a few things beyond just what's in the Feeds area:</p>
+      <p class="BodyText">-   Qty:  You can add multiple copies of the feature.  This is particularly useful for things like Holes where there are often more than one hole with the same dimensions.</p>
+      <p class="BodyText">- Hourly Rate:  This is taken from the Machine Profile under Setup, but you can override it here if you need to.</p>
+      <p class="BodyText">-  Fixed:  If this box is checked, the cost is allocated to Fixed Costs, which are paid once for the entire run of parts. By default, Fixed is not checked and the Feature will be applied to variable costs for a part.   Why would you apply a machined feature to Fixed Costs?  The most common reason is because it is a feature associated with machining some sort of custom fixture that will be used to make the parts.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle"><strong>The Estimator Tab</strong></p>
+      <p class="BodyText">The Estimator Tab is used to see the current state of the Estimate as well as to add Operations (Estimate line items) other than those created by CADCAM Wizards.  Here is what the Estimator Tab looks like:</p>
+      <p align="center" class="BodyText"><img src="img/GWizard/Posts/CCWEstimatorTab.jpg" width="800" height="631" alt="CADCAM Estimator"></p>
+      <p align="left" class="BodyText">The Estimator tab is divided into two parts. At the top are a couple of areas that contain the basic information about the Estimate:</p>
+      <p align="left" class="BodyText"><strong>General Estimate Information</strong></p>
+      <p align="left" class="BodyText">-  Customer:  Who is the part being made for?</p>
+      <p align="left" class="BodyText">- Description:  What is the part?</p>
+      <p align="left" class="BodyText">- <span class="BodyText">Part Num:  How does the customer refer to the part?</span></p>
+      <p class="BodyText">- Estimator:  Who is the individual that is preparing the Estimate?</p>
+      <p class="BodyText">-   Revision:  A Revision number to help keep track of multiple versions of the Estimate.</p>
+      <p class="BodyText">-   Date:  The date of the Estimate.</p>
+      <p class="BodyText">-  Scrap Allowance:  What percentage of the production is scrapped.  Scroll down to &quot;Key Concepts and Assumptions&quot; to see how the Scrap Allowance is applied.</p>
+      <p class="BodyText"><strong>Estimate Cost Areas</strong></p>
+      <p class="BodyText">Below the General Estimate Information is a tabbed area that deals with different cost components for the Estimate:</p>
+      <p class="BodyText">-  Variable Costs: Variable Costs are costs that are assigned per-part.   They don't change as the volume of parts changes.</p>
+      <p class="BodyText">- Fixed Costs:  Fixed Costs are costs that are assigned for a run of parts in some particular volume.   They are applied once each time that volume is produced.</p>
+      <p class="BodyText">-  Volume Costs:  Volume Costs is a summary that combines Fixed Costs and Variable Costs for different volumes of production.</p>
+      <p>&nbsp;</p>
+      <p class="BlogTitle"><strong>Ops: Estimator Line Items</strong></p>
+      <p class="BodyText">Each entry in the Fixed or Variable Costs is called an &quot;Op&quot; or &quot;Operation.&quot;  Let's go through the different types of Ops that are available:</p>
+      <p class="BodyText"><strong>CADCAM Wizard Ops</strong></p>
+      <p class="BodyText">Each of the CADCAM Wizards has an &quot;Add to Estimate&quot; button in the bottom right corner. Pressing the button will add all the ops specified by the Wizard to the Estimate.    </p>
+      <p class="BodyText"><strong>Additional Ops</strong></p>
+      <p class="BodyText">Additional Ops are added to the Fixed or Variable Cost schedules by going to the Schedule and pressing the &quot;Add Op&quot; button.  You'll get a popup that lets you select from a bunch of different Additional Ops:</p>
+      <p align="center" class="BodyText"><img src="img/GWizard/Posts/CCWEstFinishOp.jpg" width="600" height="265" alt="Additional Cost Estimation Categories"></p>
+      <p align="center" class="BodyText">Additional Op types are across the top.  The &quot;Finish Op&quot; is shown selected...</p>
+      <p align="left" class="BodyText">Let's go through the various Additional Ops below:</p>
+      <p align="left" class="BodyText"><strong>Programming Op</strong></p>
+      <p class="BodyText">Suppose you&rsquo;re putting together an estimate for a tray similar to what we&rsquo;ve shown in our CADCAM Estimator video:</p>
+      <p align="center">
+        <span class="BodyText">
+        <object type="application/x-shockwave-flash" data="http://www.youtube.com/v/sqhI-sPNbrM&rel=0&fs=1&showsearch=0&showinfo=0" width="425" height="344" id="vvq-2959-youtube-1">
+        </object>
+        </span></p>
+      <p class="BodyText">Here&rsquo;s what the features look like for our tray:</p>
+      <p align="center" class="BodyText"><img alt="Feature Based Cost Estimation" src="http://cdn.cnccookbook.com/wp-content/uploads/2013/10/TrayFeatures.jpg" width="800" height="615"></p>
+      <p align="center" class="BodyText">Features required to manufacture the tray. &nbsp;&rdquo;Features&rdquo; are just the machining operations&hellip;</p>
+      <p class="BodyText">It&rsquo;s a simple part, so we have roughing and finishing passes needed for a pocket, profiling the outside edge, and face milling the top and bottom. &nbsp;That&rsquo;s gets all sides machined and away we go.</p>
+      <p class="BodyText">What will it cost us to do the CAM programming for this part?</p>
+      <p class="BodyText">To find out, click the &ldquo;Add Op&rdquo; button and select the &ldquo;Programming&rdquo; op:</p>
+      <p align="center" class="BodyText"><img alt="Estimating cost of CAM programming" src="http://cdn.cnccookbook.com/wp-content/uploads/2013/10/CCWEstProgrammingOp.jpg" width="600" height="601"></p>
+      <p align="center" class="BodyText">Programming Op is used to estimate the cost of CAM and g-code programming&hellip;</p>
+      <p class="BodyText">Note: &nbsp;Before clicking &ldquo;Add Op&rdquo;, be sure to select the Fixed Cost tab as we will need the programming just once and not for each part. &nbsp;Of course if you need to encounter for some kind of personalization like engraving each part, perhaps there would be some programming component on the Variable Costs.</p>
+      <p class="BodyText">The Programming Op works by counting up the features generated by the CADCAM Wizards. &nbsp;It knows, for example, that there are 6 features needed to make the tray. &nbsp;It then applies an amount of time to program each feature (default 10 minutes) and an hourly rate for programming ($30/hour by default). &nbsp;That all gets turned into the cost of programming and added to whichever (Variable or Fixed) schedule you have currently selected.</p>
+      <p class="BodyText"><strong>Components Op, Finish Op, and Coating Op</strong></p>
+      <p class="BodyText">These are all list-based ops designed to make it easier to enter common operations and keep things consistent:</p>
+      <p class="BodyText">Components Op: &nbsp;Covers purchase of additional components that will be incorporated into the part such as Fasteners or Bearings.</p>
+      <p class="BodyText">Finish Op: &nbsp;For operations like running the part through your blast cabinet (bead blasting) or vibratory polisher (tumbling).</p>
+      <p class="BodyText">Coating Op: &nbsp;Covers the cost of things like powder coat and anodizing.</p>
+      <p class="BodyText">These simple ops all work the same way. &nbsp;There&rsquo;s a combo box at top left that lets &nbsp;you select different options to go into the Op field. &nbsp;It&rsquo;s just there to save you typing and keep things consistent. &nbsp;You&rsquo;re free to add further comment to the op, but we encourage you to choose one of the canned options and put the further information into the Description field. &nbsp;Here&rsquo;s the Finish Op, for example:</p>
+      <p align="center" class="BodyText"><img alt="Cost estimate for bead blasting" src="http://cdn.cnccookbook.com/wp-content/uploads/2013/10/CCWEstFinishOp.jpg" width="600" height="265"></p>
+      <p align="center" class="BodyText">Finishing op&hellip;</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle"><strong>Key Concepts</strong></p>
+      <p class="BodyText"><strong>Additional Time and Cost Columns</strong></p>
+      <p class="BodyText">Several customers told us they wanted to be able to add some additional time or cost to any line item. &nbsp;This is done via the Addl Time and Addl Cost fields.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BodyText"><strong>Scrap Allowance</strong></p>
+      <p class="BodyText">The Scrap Allowance is found on the Estimator Tab. By default, it is set to 5%.  The Scrap Allowance affects the overall estimate by assuming that parts are completed before being scrapped and that the Scrap Allowance percent of parts will be scrapped.   It is therefore added to the overall cost of the part directly by increasing the value of Cost / Pc. In addition, the number of parts produced per time interval is reduced by the rounded up number of parts that will be scrapped. </p>
+      <p class="BodyText"> For example, let's assume we can produce 2 parts per hour and there is a 5% scrap allowance.   The parts per time interval will be:</p>
+      <p class="BodyText">-   2 parts per hour (actually, 2.0 * (100% - Scrap%) = 2.0 * 95% = 1.9 which rounds back to 2.</p>
+      <p class="BodyText">- 8 Hours:    2 * 8 * 95% = 15</p>
+      <p class="BodyText">- 40 Hours:   2 * 40 * 95% = 76</p>
+      <p class="BodyText">- 160 Hours:  2 * 160 * 95% = 304</p>
+      <p align="left">&nbsp;</p>
+      <p align="center"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a><span class="style1">&nbsp;</span></p>
+<p align="left">&nbsp;</p>
+      <!-- #EndEditable -->
+  </div>
+  </td>
+</tr>
+<!-- Begin Site Map -->
+<tr>
+  <td width="232" valign="top" bgcolor="#f0f0f0" ><p class="BodyText">&nbsp;</p></td>
+  <td width="283" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html"></a></strong> <strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/"></a></strong></p>
+    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong></p>
+    <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational</a></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></p></td>
+  <td width="223" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/techniques/">Techniques</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/beginner/">Beginner</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/cool/">Cool</a></p>
+    <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/cncprojects/">Projects</a></p>
+    <p class="BodyText"><strong></strong></p>
+    <p class="BodyText"></p>
+    <p>&nbsp;</p></td>
+  <td width="321" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Cookbooks</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/beginner/">CNC Beginner Articles</a></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a></p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a></strong></p></td>
+  <td width="339" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMachine.htm">Machines</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://www.cnccookbook.com/CCMillCNCConversionHome.html">CNC Mill Retrofit</a></strong></p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://www.cnccookbook.com/CCPlasmaCNCHome.htm">Plasma Table</a></strong></span></p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="BodyText"><strong><a href="http://www.cnccookbook.com/MTWeldingHome.htm">Welding</a></strong></span></p>
+    <p><span class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p></td>
+  <td width="333" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong>Resources</strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCSearch.html">Machinist's Search</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCVideosHome.htm">Videos</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Online Groups</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesInd.htm">Individuals</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesRef.htm">Reference Data</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesBooks.htm">Books</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesSup.htm">Suppliers</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResourcesBrands.htm">Tool Brands</a></strong></p></td>
+  <td width="650" valign="top" bgcolor="#f0f0f0" ><p class="BodyText"><strong>Workshop</strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a></strong></p>
+    <p class="BodyText">&nbsp;</p>
+    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://cnccookbook.uservoice.com/">Support</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCManufacturers.html">Customers</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPartners.html">Partners</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHistory.htm">Our History</a></strong></p>
+    <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">Cheapskate Page</a></strong></p>
+    <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></strong></p></td>
+  </tr>
+<tr>
+  <td colspan="5" bgcolor="#f0f0f0" >
+      <!-- Place this tag where you want the badge to render -->
+    <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;"/></a></strong></td>
+  <td colspan="2" bgcolor="#f0f0f0" ><div align="left">
+    <table width="100%" border="0">
+      <tr>
+        <td>&nbsp;</td>
+        <td><div align="right">All material &copy; 2010-2012, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a></div></td>
+        </tr>
+      </table>
+  </div></td>
+</tr>
+<!-- End Site Map -->
+
+</table>
+</body>
+
+<!-- Kissmetrics tracking snippet -->
+<script type="text/javascript">var _kmq = _kmq || [];
+var _kmk = _kmk || '2b958799075c725d4ce95572a0b6e967ecafd184';
+function _kms(u){
+  setTimeout(function(){
+    var d = document, f = d.getElementsByTagName('script')[0],
+    s = d.createElement('script');
+    s.type = 'text/javascript'; s.async = true; s.src = u;
+    f.parentNode.insertBefore(s, f);
+  }, 1);
+}
+_kms('//i.kissmetrics.com/i.js');
+_kms('//scripts.kissmetrics.com/' + _kmk + '.2.js');
+</script>
+
+
+<!-- #EndTemplate --></html>
+

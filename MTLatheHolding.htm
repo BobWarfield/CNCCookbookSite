@@ -1,0 +1,1098 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>Lathe Workholding</title>
+<style type="text/css">
+<!--
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-style: italic; }
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p class="style1 style4"><strong><font face="Arial, Helvetica, sans-serif" size="+1">Tips 
+        &amp; Techniques Pages</font></strong></p>
+      <p class="style1"><a href="CCUsefulTools.htm"><b>Commonly Used Tools</b></a></p>
+      <p class="style1"><b><a href="CCDeburrPolish.htm">Deburring and Polishing</a></b></p>
+      <p class="style1"><b><a href="CCDesignManufTips1.htm">Design &amp; Manufacturing</a></b></p>
+      <p class="style1"><b><a href="MTLatheDrillBore.htm">Drilling, Boring &amp; 
+        Reaming</a></b></p>
+      <p class="style1"><b><a href="CCLatheSurfaceFinish.html">Lathe Cutting &amp; 
+        Finish</a><a href="MTLatheDrillBore.htm"> </a></b></p>
+      <p class="style1"><b><a href="MTLathePartingCutoff.htm">Lathe Parting &amp; 
+        Cutoff </a></b></p>
+      <p class="style1"><b><a href="MTLatheHolding.htm">Lathe Workholding</a></b></p>
+      <p class="style1"><b><a href="CCMachineResto.html">Machine Restoration</a> 
+        </b></p>
+      <p class="style1"><b><a href="MTLatheCNCGRexNotes.htm">Mach3 and GRex </a></b></p>
+      <p class="style1"><b><a href="MTMillSurfaceFinish.htm">Mill Cutting &amp; 
+        Finish </a></b></p>
+      <p class="style1"><b><a href="CCMillTipsTechniques.htm">Mill Tips &amp; 
+        Techniques</a> </b></p>
+      <p class="style1"><b><a href="MTCNCRhinoTips.htm">Rhino Tips </a></b></p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left"><font face="Times New Roman, Times, serif" size="7" color="#339933">Total Guide to Lathe 
+        Workholding</font></p>
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Summary</font></b></font></td>
+        </tr>
+    </table>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The following 
+        table provides a quick comparison of the strengths and weaknesses of tthe different means of holding 
+        the workpiece on a lathe:</font></p>
+      <table width="100%" border="1" bordercolor="#666666">
+        <tr> 
+          <td width="18%"> 
+            <div align="center"><b>Method</b></div>
+          </td>
+          <td width="14%"> 
+            <div align="center"><b>Precision</b></div>
+          </td>
+          <td width="14%"> 
+            <div align="center"><b>Repeatability</b></div>
+          </td>
+          <td width="14%"> 
+            <div align="center"><b>Convenience</b></div>
+          </td>
+          <td width="68%"> 
+            <div align="center"><b>Notes</b></div>
+          </td>
+        </tr>
+        <tr>
+          <td>Collets</td>
+          <td bgcolor="#99FF99"><div align="center">High</div></td>
+          <td bgcolor="#99FF99"><div align="center">High</div></td>
+          <td bgcolor="#99FF99"><div align="center">High</div></td>
+          <td>Fast, high precision, high repeatability, grips well, 
+            unlikely to mar workpiece, grip spread over a wide area. Expensive 
+            chucks and collets. Handles limited lengths. Workpiece must be round 
+            and must fit nearly exactly to the collet size.</td>
+        </tr>
+        <tr>
+          <td>3-Jaw Chuck With Soft Jaws</td>
+          <td bgcolor="#99FF99"><div align="center">High</div></td>
+          <td bgcolor="#99FF99"><div align="center">High</div></td>
+          <td bgcolor="#99FF99"><div align="center">High</div></td>
+          <td>For larger workpieces, 3 jaw chucks with softjaws are the norm in the CNC world.</td>
+        </tr>
+        <tr> 
+          <td width="18%">3-Jaw Self-Centering Chuck with Hard Jaws</td>
+          <td width="14%" bgcolor="#FFFF00"> 
+            <div align="center">Low</div>
+            </td>
+          <td width="14%" bgcolor="#FFFF00"> 
+            <div align="center">Low</div>
+            </td>
+          <td width="14%" bgcolor="#99FF99"> 
+            <div align="center">High</div>
+            </td>
+          <td width="68%">Common, cheap, simple. Low precision, low repeatability 
+            if you remove the workpiece and have to put it back.</td>
+        </tr>
+        <tr> 
+          <td width="18%"> 
+            <p>4-Jaw Chuck</p>
+          </td>
+          <td width="14%" bgcolor="#99FF99"> 
+            <div align="center">High</div>
+          </td>
+          <td width="14%" bgcolor="#99FF99"> 
+            <div align="center">High</div>
+          </td>
+          <td width="14%"> 
+            <div align="center">Medium</div>
+          </td>
+          <td width="68%">Can be time consuming to individually adjust the jaws, 
+            but will result in high precision. Can hold pieces offset for turning 
+            cams or eccentrics. Can hold irregular shapes and square or rectangular 
+            stock. </td>
+        </tr>
+        <tr> 
+          <td width="18%">6-Jaw Self-Centering Chuck</td>
+          <td width="14%"> 
+            <div align="center">Medium</div>
+          </td>
+          <td width="14%"> 
+            <div align="center">Medium</div>
+          </td>
+          <td width="14%" bgcolor="#99FF99"> 
+            <div align="center">High</div>
+          </td>
+          <td width="68%">Best for thin wall work or to grip finished edges of 
+            workpiece. Obviously good for hex stock.</td>
+        </tr>
+        <tr> 
+          <td width="18%">Faceplate Turning</td>
+          <td width="14%"> 
+            <div align="center">Varies w/ Setup</div>
+          </td>
+          <td width="14%"> 
+            <div align="center">Medium</div>
+          </td>
+          <td width="14%" bgcolor="#FFFF00"> 
+            <div align="center">Low</div>
+          </td>
+          <td width="68%">Great for irregular shapes. Involves clamps like a milling 
+            setup. May need counterweights to keep things balanced.</td>
+        </tr>
+        <tr> 
+          <td width="18%">Turning Between Centers</td>
+          <td width="14%" bgcolor="#99FF99"> 
+            <div align="center">High</div>
+          </td>
+          <td width="14%" bgcolor="#99FF99"> 
+            <div align="center">High</div>
+          </td>
+          <td width="14%" bgcolor="#FFFF00"> 
+            <div align="center">Low</div>
+          </td>
+          <td width="68%">Great precision, allows part to be put back between 
+            centers with very high repeatability.</td>
+        </tr>
+        <tr> 
+          <td width="18%">Constant Face Turning</td>
+          <td width="14%" bgcolor="#99FF99"> 
+            <div align="center">High</div>
+          </td>
+          <td width="14%" bgcolor="#99FF99"> 
+            <div align="center">High</div>
+          </td>
+          <td width="14%" bgcolor="#99FF99"> 
+            <div align="center">High</div>
+          </td>
+          <td width="68%">The modern alternative to turning between centers. Instead 
+            of using lathe dogs, which are kind of a nuisance to set up, the constant 
+            face system uses hydraulic or other force to grip and drive the spindle 
+            end. You can now buy these systems relatively cheaply on eBay (see 
+            seller 800Watt who sold me mine).</td>
+        </tr>
+        <tr> 
+          <td width="18%">Expanding Arbors</td>
+          <td width="14%" bgcolor="#99FF99"> 
+            <div align="center">High</div>
+            </td>
+          <td width="14%" bgcolor="#99FF99"> 
+            <div align="center">High</div>
+            </td>
+          <td width="14%" bgcolor="#99FF99"> 
+            <div align="center">High</div>
+            </td>
+          <td width="68%">These work from the inside out rather than the outside 
+            in but are otherwise much like collets.</td>
+        </tr>
+      </table>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>Method</b> 
+        describes the particular technique or tooling to be used.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>Precision</b> 
+        describes how precisely the workpiece will be held, or how close to concentrically 
+        it will run with the spindle before taking any cuts.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>Repeatability</b> 
+        describes how easy it is to take the workpiece out and then get it back 
+        in precisely again.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif"><b>Notes</b> 
+        provides narrative summary of the method's strengths, weaknesses, and 
+        uses.</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Below we will 
+        consider each method in more detail. You should be able to choose an appropriate 
+        method pretty well from this table based on your needs. For example, if 
+        you can carry out all the operations on the part with removing it from 
+        the lathe, repeatability should not be an important factor.</font></p>
+      <p align="center">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr>
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Collets: High Precision, High Repeatability, High Convenience</font></b></font></td>
+        </tr>
+      </table>
+      <p align="center"><img src="img/LatheStuff/ColletChuck/P1010462.JPG" width="1024" height="666" alt="5c Collet Chuck"></p>
+      <p align="center" class="style1">Checking runout on a 5C Collet Chuck.  That's an Interapid 10ths indicator, so we're seeing not quite 0.004&quot;...</p>
+      <p><font face="Arial, Helvetica, sans-serif">Hardinge built a mighty lathe empire on machines that used collets very well, and we've got straight A's on our precision, repeatablity, and convenience report 
+        card, so how can we lose? There are basically three disadvantages to collets. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">First, is capacity. You can only use a 5C collet up to perhaps a 1&quot; 
+        diameter workpiece capacity and the collet will only take a similar length 
+        inside the collet. By definition this limits us to small parts.  Of course there are larger collet systems, such as 16C.  But by comparison to the size lathe you generally see a 16C collet on, this still begs the question of how to hold even larger workpieces.  There are various ways to escape the limitation:</font></p>
+      <p class="BodyText">- Expanding collets act like arbors.  They expand inside a hole on the workpiece rather than gripping the OD of a workpiece.</p>
+      <p class="BodyText">- <a href="http://blog.cnccookbook.com/2012/07/29/pot-chucks-for-5c-collet-systems/">Step Collets and Pot Chucks)</a> have to be machined for each diameter but can hold larger workpieces. They're also useful for holding workpieces off center.</p>
+      <p><font face="Arial, Helvetica, sans-serif">Second, 
+        you will need a collet that fits the workpiece with an accuracy of 1/64&quot;, 
+        at least for the very popular 5C collet system. The ER system tolerates 
+        more error, but is much more expensive and harder to find. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Lastly, collets 
+        are expensive. You will need an expensive collet chuck and an even more 
+        expensive collet set. Given how closely the collets have to fit the workpiece, 
+        you will need a lot of them if you expect to cover a wide range of sizes. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Still, if you want the most 
+        efficient and precise macining of small parts, collets are the way to 
+        go. Incidentally, the total mass of a collet workholding system is often 
+        less than conventional chucks allowing you to run higher spindle speeds 
+        with less vibration. The collet will also grip with more force spread 
+        over a greater area, and is less likely to mar a workpiece than many other 
+        methods.</font><font face="Arial, Helvetica, sans-serif"><span class="BodyText"></span> Because of all this, collets are the default workholding for smaller CNC lathes and many precision toolroom lathes such as the Hardinge.  Larger lathes typically use 3 Jaw Chucks with Soft Jaws to gain many of the same advantages.</font></p>
+      <p class="BodyText">There are a variety of ways to get started with collets.  One of the simplest is to purchase a collet chuck.  Slightly more involved is to use a nosepiece and drawbar setup.  With a lever operated collet closer, you can quickly pop parts in and out of the collet, which is a tremendous productivity increase when making runs of identical parts.  The logical conclusion to all this is a pneumatic or hydraulic collet closer and bar feeder or bar puller.<font face="Arial, Helvetica, sans-serif"> In CNC applications, you 
+        can set up the collet so bar is fed in, machined, and parted off as a 
+        continuous operation.</font></p>
+      <p class="BodyText">Using collets is an art form unto itself. <a href="http://www.hardingeus.com/usr/pdf/collet/2316.pdf">Hardinge has or used to have some excellent publications on techniques</a>.</p>
+      <p class="BodyText">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr>
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><font face="Arial, Helvetica, sans-serif"><b><font size="+1">3-Jaw Chuck With Soft 
+            Jaws </font></b></font></td>
+        </tr>
+      </table>
+      <p class="BodyText">If the principle shortcoming of collets is workpiece size, the most common answer to that for larger CNC lathes is to use a 3-Jaw Chuck with Soft Jaws</p>
+      <p class="BodyText">Soft Jaws have a couple of large advantages over hard jaws. </p>
+      <p class="BodyText">First, they align the workpiece to the centerline precisely.   The problem with hardjaws in a 3 jaw chuck is chuck scroll doesn't not perfectly align the workpiece on the centerline at different diameters.   Softjaws are precisely bored at the diameter they'll be used at so they're accurate and repeatable.</p>
+      <p class="BodyText">Second, they can provide a backstop that precisely aligns the rear of the workpiece as well.</p>
+      <p class="BodyText">Their main disadvantage is a new set of jaws has to be made for each workpiece size, but that's not very hard to do. </p>
+      <p class="BodyText">Here is a two-part video series from Haas that talks about how to make and use Soft Jaws:</p>
+      <p align="center" class="BodyText"><iframe width="640" height="360" src="//www.youtube.com/embed/dRMm9P9XdbY?feature=player_embedded" frameborder="0" allowfullscreen></iframe></p>
+      <p align="center" class="BodyText">Part 1:  Fundamentals and OD Gripping</p>
+      <p align="center" class="BodyText"><iframe width="640" height="360" src="//www.youtube.com/embed/-AyMQNoaBjc?feature=player_embedded" frameborder="0" allowfullscreen></iframe></p>
+      <p align="center" class="BodyText">Part 2: ID Gripping, Recutting, and More</p>
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><font face="Arial, Helvetica, sans-serif"><b><font size="+1">3-Jaw 
+            Self-Centering Chuck: Low Precision, Low Repeatability, High Convenience</font></b></font></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif">If your mission is to chuck 
+        up a cylindrical piece of material and get started making chips quickly, 
+        the 3-jaw chuck is your tool of choice. They are possibly the lowest precision 
+        option for holding your workpiece because there are many ways for them 
+        to be off in terms of concentricity with the axis of spindle rotation. 
+        Any little chip or dust between the jaws and workpiece or in the scroll 
+        mechanism will throw one off. Because they are so easy to use, they often 
+        have a lot of wear.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Once you turn a workpiece 
+        in the chuck, the physics of turning will ensure that your workpiece is 
+        now concentric with the spindle. Unfortunately, if you take it out of 
+        the chuck, the low precision means you are right back to an imprecise 
+        situation. Always try to finish all the operations, both rough and finishing 
+        in one setup when using a 3-jaw chuck! </font><font face="Arial, Helvetica, sans-serif">Conversely, 
+        if you can finish a piece entirely in one setup of the 3-jaw chuck, it 
+        is probably the absolute best choice because it will let you get started 
+        the fastest.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Harvey (Machine Shop Trade 
+        Secrets) says there is no point in using one unless it can be adjusted 
+        for concentricity. Such chucks (often called &quot;Set-Tru&quot;) are 
+        extremely expensive for the hobbyist market and so are seldom seen. I 
+        think it is interesting to note that very few 3-jaw chucks are pictured 
+        in Harvey's book, yet the <a href="MTLatheHolding.htm">web sites</a> catering 
+        to the hobby market show that this is the most popular means of workholding. 
+        The Harvey book shows more 4-jaw chucks than anything. Of course this 
+        is the chuck that comes with your lathe, it's the one everybody has seen, 
+        and so it will be the one that gets used firstest and mostest.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Note that the 3-jaw chuck, 
+        having the fewest jaws of the chuck types (thank you Albert Einstein!), 
+        will therefore apply the most pressure to the workpiece yet with the least 
+        surface area. More jaws will spread the pressure more evenly. This can 
+        result in marring of the surface, so a 3-jaw is not ideal for gripping 
+        a finished part of the piece in the jaws. Considering its accuracy and 
+        repeatability issues, this should be avoided anyway.</font></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><font face="Arial, Helvetica, sans-serif"><b><font size="+1">4-Jaw 
+            Chuck: High Precision, High Repeatability, Medium Convenience</font></b></font></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif">Next up in popularity is 
+        the 4-jaw chuck. Many lathes include one. This is your weapon of choice 
+        if you have to take a workpiece and start out with it being as close to 
+        concentric as possible right after you put it in the chuck before taking 
+        any cuts. It's ability to do this speaks to the repeatability of the chuck 
+        should you need to remove a part and then put it back. The fly in this 
+        ointment is convenience gets sacrificed. Each time you put a part into 
+        the chuck you need to center it by adjusting the jaws and using a dial 
+        indicator or wobbler.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">4-jaw chucks grip the workpiece 
+        more tightly than a 3-jaw, which may yield benefits in rigidity, especially 
+        for small parts. They also allow a part to be turned eccentrically (i.e. 
+        off center), which is essential for making cams and similar kinds of parts. 
+        </font><font face="Arial, Helvetica, sans-serif">The other great 
+        use for a 4-jaw is holding non-cylindrical pieces that have to be turned. 
+        Since the jaws are individually adjustable, you can make them fit a piece 
+        well. I have seen an amazing amount of work get done on non-cylindrical 
+        pieces using a 4-jaw from machinist's who don't have access to a mill. 
+        </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">I also use mine if I started 
+        with the 3-jaw and have to put the piece back in for futher machining. 
+        You won't get the 3-jaw lined up properly again, but the 4-jaw is made 
+        for realignment.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Many of the old hands feel 
+        a beginner should force himself to work exclusively with the 4-jaw until 
+        it becomes second nature, and there is much to be said for that. The act 
+        of indicating in a 4-jaw is something that ought to be second nature to 
+        a machinist, and it resembles many other measurements you will have to 
+        make, particularly if you have a mill.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b>Indicating in a 4-Jaw 
+        Chuck so the Work is Centered: </b></font></p>
+      <p class="style1"><a href="http://bbs.homeshopmachinist.net/showthread.php?t=22535">Here, 
+        fresh from another great HSM thread is the world's fastest way to set 
+        up a 4-jaw chuck</a>. The technique requires no more than 2 revolutions 
+        of the chuck, and is performed as follows:</p>
+      <p class="style1">1. After rough aligning to the chuck rings, using a dial 
+        indicator on the work-piece, rotate the spindle through one complete revolution 
+        noting the highest and lowest indicator readings;<BR>
+        <BR>
+        2. Continue rotating the spindle and halt at exactly Midway between the 
+        above two readings, then zero the indicator bezel to the needle;<BR>
+        <BR>
+        3. Rotate the spindle to bring jaw #1 &lsquo;on plunger&rsquo; and adjust 
+        jaws #1 and #3 to re-zero the indicator; finally<BR>
+        <BR>
+        4. Rotate the spindle 90 degrees and adjust jaws #2 and #4 to zero the 
+        indicator once again.</p>
+      <p class="style1">This is one of those things where I read it, it made total 
+        sense, it was elegant, and it made me feel stupid for not having thought 
+        of it myself. Here is a nice video by David Lemereis showing how to perform 
+        this technique:</p>
+      <p class="style1" align="center"><font face="Arial, Helvetica, sans-serif"><object width="425" height="344">
+          <param name="movie" value="http://www.youtube.com/v/2KMhx4DbyDg&hl=en_US&fs=1&">
+          <param name="allowFullScreen" value="true">
+          <param name="allowscriptaccess" value="always">
+          <embed src="http://www.youtube.com/v/2KMhx4DbyDg&hl=en_US&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344">
+          </embed> 
+        </object></font></p>
+      <p class="style1" align="center">Fastest way to indicate a 4-jaw...</p>
+      <p class="style1"><b>QCTP Indicator Holders</b></p>
+      <p class="style1">You can slap a magnetic indicator holder down on the cross 
+        slide, most people do, but having a QCTP indicator holder seems like such 
+        a wonderful luxury. Eventually I must build one, and it is on the <a href="CCWishListFutures.htm">project 
+        list</a>. Meanwhile, here is a photo to show you what I mean:</p>
+      <p class="style1" align="center">&nbsp;</p>
+      <p align="center" class="style1"><img src="img/OthersProjects/Tools/DovetailInd1.jpg" width="800" height="600"></p>
+      <p align="center" class="style1"><strong>A QCTP Indicator Holder... </strong></p>
+      <p class="style1"><b>Indicating Square or Hex Stock</b></p>
+      <p class="style1">Indicating in square or hex stock? Try my height<span class="style1"> 
+        gage method. </span></p>
+      <p align="center" class="style3"><img src="img/TurnersCubes/P1213710.JPG" width="800" height="600"></p>
+      <p align="left" class="style1">I use a bubble level to get the face level, 
+        then I drop my height gage onto the cross slide platform (mine is flat) 
+        and measure the height of the face. This is compared to the height of 
+        the opposite face. It really helps to know how far the jaws move in one 
+        revolution. On my 4-jaw, it's 0.140&quot; per turn. Once you know how 
+        far off you are numerically and how much a turn gives you, the process 
+        goes much faster. As you can see, I got it lined up within a thousandth.</p>
+      <p>&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><font face="Arial, Helvetica, sans-serif"><b><font size="+1">6-Jaw 
+            Self-Centering Chuck: Medium Precision, Medium Repeatability, High 
+            Convenience </font></b></font></td>
+        </tr>
+    </table>
+      <p><font face="Arial, Helvetica, sans-serif">I personally love the wonderfully 
+        complex look of a 6-jaw chuck. Their true forte is in holding thin walled 
+        tubing or finished parts without marring or collapsing the walls. Aside 
+        from their ability to grip with more surface area, and to spread the gripping 
+        force more evenly, they're pretty similar to 3-Jaw Chucks. Given the 6-Jaw 
+        advantage, and the tendency to reserve them only for finished workpieces 
+        or thin wall tubing, they achieve somewhat higher precision and repeatability 
+        than a 3-jaw with the same high convenience. Their biggest disadvantage 
+        is that they are costly. I would not throw a piece of rough stock into 
+        one of these elegant expensive beasts. I was finally able to afford one 
+        by haunting eBay until I got a good deal on a 5&quot; Buck 6-Jaw. The 
+        chuck is a little &quot;experienced&quot;, and I had to <a href="MTLathe6Jaw.htm">machine 
+        a backplate for it</a>, but I sure do love it!</font></p>
+      <p align="center"><img src="img/LatheStuff/6JawChuck/PB242761.JPG" width="640" height="650"></p>
+      <p align="center"><b>I love my 6-jaw chuck!</b></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">Some of the 
+        machinists I most respect swear by the 6-jaw chuck. Swede, the master 
+        machinist behind the popular <a href="MTLinksIndividuals.htm">5Bears site</a> 
+        says it is his favorite chuck. If you are a fan of <a href="CCResourcesBooks.htm">Harvey's 
+        book, <b>Machine Shop Trade Secrets</b></a>, you will note there are very 
+        few pictures there of 3-jaw chucks. Most are 6-jaw or 4-jaw models.</font></p>
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Faceplate 
+            Turning: Variable Precision, Medium Repeatability, Low Convenience</font></b></font></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif">Think of the faceplate as 
+        a milling machine where we spin the work instead of the cutting tool. 
+        We can bore a large hole in a piece of rectangular stock, for example. 
+        We need to take care to set up the work accurately and clamp it firmly 
+        using techniques very much like that off a mill. An additional complication 
+        is that you may need to also clamp a counterweight to the faceplate if 
+        the piece is off center in shape or mass to keep the vibration down. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">This is all a lot of trouble, 
+        hence the low convenience rating. If you have a mill, you are probably 
+        going to use it to do these operations rather than futzing with a faceplate.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">The other use for the faceplate 
+        is when turning between centers. The spindle engages the workpiece by 
+        means of a lathe dog which tracks in a groove on the faceplate.</font></p>
+      <p>&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Turning 
+            Between Centers: High Precision, High Repeatability, Low Convenience</font></b></font></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif">Turning a piece between 
+        centers means you have to drill the holes the centers run in, hence there 
+        is setup overhead resulting in low convenience. However, if want a part 
+        to be well supported and hence rigid, and if you will need to take that 
+        part on and off the lathe more than once so needing repeatability, turning 
+        between centers is a great approach to take.</font></p>
+      <p align="center"><img src="img/LatheStuff/ChuckCenterButton.jpg" width="600" height="450"></p>
+      <p align="center"><b>Chuck center button for turning between centers...</b></p>
+      <p align="center"><img src="img/LatheStuff/DogsAndChuck.jpg" width="600" height="450"></p>
+      <p align="center"><b>And away we go...</b></p>
+      <p><b><font face="Arial, Helvetica, sans-serif">Tip</font></b><font face="Arial, Helvetica, sans-serif">: 
+        If you don't own or want to deal with a faceplate and center at the spindle 
+        end, turn a &quot;center&quot; by chucking up some round stock in the 
+        3-jaw or 6-jaw and tapering it to a point. Try for about a 60 degree taper. 
+        As long as you leave the center in the chuck, it will be perfectly aligned 
+        to the spindle. You can even put a lathe dog on the workpiece and let 
+        the chuck jaws drive it. If you have a 4-jaw or Set-Tru chuck, you can 
+        even make this new center a permanent fixture in your tooling because 
+        you'll be able to dial it in with the 4-jaw so it is properly centered 
+        again.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><b>Tip</b>: No lathe dogs? 
+        I've seen guys use geared hose clamps (like on your car's radiator hoses) 
+        to good effect for this purpose. They will not deal with incredible amounts 
+        of force, so go easy!</font></p>
+      <p>&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Constant 
+            Face Turning: High Precision, High Repeatability, High Convenience</font></b></font></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif">The modern alternative to 
+        turning between centers. Instead of using lathe dogs, which are kind of 
+        a nuisance to set up, the constant face system uses hydraulic or other 
+        force to grip and drive the spindle end. You can now buy these systems 
+        relatively cheaply on eBay (see seller 800Watt who sold me mine). More 
+        on this when I get a chance to experiment with the rig I purchased. Meanwhile, 
+        if you are curious, do a little Google footwork. I found these interesting 
+        links:</font></p>
+      <p><a href="http://www.riten.com/technical_support/face_drivers/default.asp"><b>http://www.riten.com/technical_support/face_drivers/default.asp</b></a><b><br>
+        <br>
+        <a href="http://www.riten.com/products/face_drivers/default.asp">http://www.riten.com/products/face_drivers/default.asp</a><br>
+        <br>
+        <a href="http://www.roehm.biz/86.html?&L=1&user_products_pi1[showUid]=247&cHash=898a898cda">http://www.rohm-products.com/</a>:</b> 
+        <font face="Arial, Helvetica, sans-serif">Check the live center w/ 
+        pressure gauge! Nice diagram too.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">This constant face business 
+        is some cutting edge CNC-type stuff. Pretty cool!</font></p>
+      <p align="center"><img src="img/MillStuff/KurtViseStop/P6293503.JPG" width="800" height="518"></p>
+      <p align="center"><b><a href="MTMillKurtViseStop.htm">Face turning a 
+        part on my Lathemaster 9x30 lathe...</a></b></p>
+      <p align="center">&nbsp;</p>
+      <p class="BodyText">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Expanding 
+            Arbors </font></b></font></td>
+        </tr>
+      </table>
+      <p>TBD</p>
+      <p>&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Unique 
+            Setups: Offset Turning or Eccentric Turning</font></b></font></td>
+        </tr>
+    </table>
+      <p><font face="Arial, Helvetica, sans-serif">If you are going to build 
+        model engines, you'll need to get used to offset turning. Creating the 
+        right tooling to make this possible is a creative art. I find old metalworking 
+        books and magazines have a lot of ideas, and I have collected a <a href="CCLatheEccentricTurning.htm">small 
+        page of techniques</a> as well.</font></p>
+      <p align="center"><img src="img/LatheStuff/OffsetFixture.jpg" width="556" height="552"></p>
+      <p align="center"><b>Surface Plate and Height Gage Used to Create An 
+        Offset Fixture...</b></p>
+      <p align="center"><b><img src="img/LatheStuff/OffsetTurning.jpg" width="600" height="450"> 
+        </b></p>
+      <p align="center"><b>Using a cutoff tool for clearance to turn the crank 
+        offset...</b>      </p>
+      <p></p>
+      <p></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Truing 
+            a Lathe Chuck</font></b></font></td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif">You can increase the accuracy 
+        of a lathe chuck by truing the jaws. Doing so involves grinding them with 
+        the chuck spinning. You will also want the jaws to be loaded, so place 
+        a washer or other piece deep inside the chuck and clamp down on it. Then, 
+        use a toolpost grinder (rig one up if you have to) and a small stone to 
+        grind the inside of the jaws until you get down to the washer. You are 
+        only looking to take off a tiny bit of material, which makes the lathe 
+        jaws concentric.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">It is also suggested that 
+        for maximum accuracy, you always tighten with one of the multiple tightening 
+        holes in a 3-jaw chuck. Check which one works best, mark it, and stick 
+        to it.</font></p>
+      <p class="BodyText">The other way to true up a lathe chuck is to use an Adjust-Tru or Set-Tru Chuck.  These chucks have set screws in the backplate that allow the chuck's orientation to the spindle centerline to be precisely adjusted.</p>
+      <p>&nbsp;</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

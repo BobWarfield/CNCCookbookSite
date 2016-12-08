@@ -1,0 +1,734 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>CNC Milling Chiploads, Surface Speed, and Other Concepts</title>
+<style type="text/css">
+<!--
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-family: Arial, Helvetica, sans-serif}
+.WarningText {
+}
+.WarningText {
+}
+.Warning {
+}
+.Warning {
+}
+.Bozon {
+	font-size: large;
+	color: #F00;
+}
+.style3 {font-family: Arial, Helvetica, sans-serif; font-size: medium; }
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+.style12 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+      <p align="center" class="style1 style4"><strong><font face="Arial, Helvetica, sans-serif" size="+1"><a href="CCCNCMillFeedsSpeeds.htm">CNC Milling Feeds and Speeds</a></font></strong><a href="CCCNCMillFeedsSpeeds.htm"><strong><font size="+1" face="Arial, Helvetica, sans-serif">Contents</font></strong></a></p>
+<p align="center" class="style1">&nbsp;</p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="left">&nbsp;</p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="6%" align="center" bgcolor="#f4e9cb"><img src="img/GearsIcon.jpg" width="88" height="77"></td>
+          <td width="94%" bgcolor="#f4e9cb"><p><font face="Times New Roman, Times, serif" size="7" color="#FF0000">Chiploads, Surface Speed and Other Concepts</font></p>
+          <p><font color="#FF0000" size="7" face="Times New Roman, Times, serif" class="BlogTitle"><strong>CNC Milling Feeds and Speeds Cookbook</strong></font></p></td>
+        </tr>
+      </table>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BodyText">Before we get into calculating the best feeds and speeds for your goals, there are a few more concepts we need to understand.</p>
+      <p class="BlogTitle">Chipload: Chip Thickness per Tooth</p>
+      <p class="BodyText">While feedrates are specified in length units per minute, the more important measurement is something called &quot;Chipload&quot;.   Think of a chip as looking something like a comma in cross section, or perhaps an apostrophe.  One starts big and gets smaller at the end. The other starts small and gets bigger at the end.  We'll ignore that difference for a moment, though it is important as we shall see later.</p>
+      <p class="BodyText">Chipload is a measurement that is independent of spindle rpm, feedrate, or number of flutes that tells  how hard the tool is working.  That's a very useful thing, as you could imagine.  Hence, manufacturers and machinists typically like to talk about chipload for a particular tool.</p>
+      <p class="BodyText">You can see that a tool with more flutes (cutting edges) has to be fed faster to maintain a particular chipload.  Since  each tooth is going to take a cut every rotation, a tooth has only a fraction of a rotation in which to cut a chip that reaches the chipload thickness.   During the time it takes to rotate the next tooth to start cutting, the tool has to have moved far enough to shave off a chip that is thick enough.  Hence, tools with more flutes can be fed faster.  A 4 flute endmill can be feed twice as fast as a 2 flute, all other things being equal.</p>
+      <p class="BlogTitle">Why do Tools Break from Too Much Chipload?</p>
+      <p class="BodyText">You can imagine that forces simply become too great if a tool tries to take too much &quot;bite&quot; by having too much workload. This can chip or break the cutter.  </p>
+      <p class="BodyText">But there is a second issue that comes from too much chipload--the chips get bigger and eventually can't get out of the cutter's way.  Beginning machinists probably break more tools because they don't get the chips out of the way fast enough than because the force of the feed is breaking the tool.  If the cutter is down in a deep slot, the chips have a particularly hard time getting out of the way. We use air blasts, mists, and flood coolant to try to clear the chips out of the way, but if they're way down a hole or slot, it makes it that much harder, and we have to reduce speed.</p>
+      <p class="BodyText">Making matters worse, chips always take more room once they're chips than the equivalent weight of material takes as a solid.    The only place they have to go is gaps between the flutes of the cutter.  Of course, the more flutes we have, the less space there is in the gaps.  Can you see the point of diminishing returns coming?     In fact, some materials have a tendency to throw off such big chips that we prefer 2 or 3 flute cutters instead of 4 flutes.   Aluminum is a good example.</p>
+      <p class="BlogTitle">Performance Recipe: Cheating on the 2 Flute Rule for Aluminum and Going to More Flutes Elsewhere</p>
+      <p class="BodyText">Many beginners are taught to use a 2 flute in aluminum for chip clearance, but must we always use 2 (or perhaps 3 flutes) for Aluminum and never 4?   Now that we know why fewer flutes must be used (chip clearance), we can think effectively about when we might not be restricted to fewer flutes.   In general, when you have plenty of room for the chips to escape, you can use a 4 flute cutter, and you'll get a better surface finish.</p>
+      <p class="BodyText">How much is &quot;plenty&quot; of chip clearance?  </p>
+      <p class="BodyText">Forget slots and plunging. Those are the worst cases.   Try to avoid tight inside corners or interpolated holes whose diameter is at all close to the tool's diameter, those are nearly as tough.  But what if we are profiling around the outside of a part and there's no concave curves, only convex? Tons of chip clearance there, so have at it. If you have a sufficiently roomy pocket, you may also get away with a 4 flute, especially if you can <a href="CCCNCMillFeedsSpeedsBasics2.htm">open up a big hole in the middle of the pocket to get started in</a>.</p>
+      <p class="BodyText">The best case for more flutes is when you have a finishing pass, particularly if you're already committed to changing tools to get the best possible surface finish from a newer sharper tool that hasn't been roughing.    The finishing pass will be very shallow and the rougher will have opened up plenty of room for chip clearance.  Consider using 2 or 3 flutes for roughing followed by 4 flutes for finishing in materials like aluminum.  In harder materials that don't need so much chip clearance, tools with as many as 10 flutes may be used.</p>
+      <p class="BodyText">This doesn't just apply to aluminum either.        More exotic tools are available with 5, 6, 10 or more flutes.   <a href="http://www.practicalmachinist.com/vb/cnc-machining/anyone-familiar-destiny-tool-end-mills-226302/">Experienced hands</a> will tell you that if you're profiling (where there's lots of chip clearance) steel and aren't using 5 or 6 flutes, you're leaving money on the table.  Let's run the numbers in <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard</a>. Suppose we're profiling some mild steel--1020 or some such. We're going to profile the outside of a part, so there's plenty of clearance. Cut depth will be 1/2&quot;, cut width 0.100&quot;, and we'll use a 1/2&quot; TiAlN Endmill.  Here are the numbers:</p>
+      <p class="BodyText">- 4 Flute: 3158 rpm, 29.8 IPM.  MRR is 1.492 cubic inches/minute.  A little over 1 HP.</p>
+      <p class="BodyText">- 5 Flute:  Same rpms, now 37.3 IPM. MRR = 1.865.    1.3 HP.  That's 30% faster cutting.  </p>
+      <p class="BodyText">- 6 Flute: Now 44.8 IPM.  MRR = 2.238.  1.6 HP.  60% faster than the 4 flute case.</p>
+      <p class="BodyText">How much more profitable are your jobs if you could run them 60% faster?   The cost to do so is a more expensive endmill and a tool change for profiling.  Harder materials can benefit particularly well because they're already up against surface speed limits. More flutes is the only way to get faster feeds.</p>
+      <p class="BodyText">Sometimes we have to go the other way too.  If you've got some really sticky stainless steel that's giving you fits in tight chip clearances, try a 3 flute instead of a 4.</p>
+      <p class="BlogTitle">Rubbing: When You're Feeding too Slowly (aka I'm a Beginner, How About if I Just Run the Machine Super Slow?)</p>
+      <p class="BodyText">I've mentioned several times now that feeding too slowly causes &quot;rubbing&quot;.   How does that work?</p>
+      <p><span class="BodyText">Consider a magnified view of your cutting edge versus the material:</span></p>
+      <p align="center"><img src="img/CNCCookbook/CutEdgeRadius1.jpg" alt="Rubbing from too little chipload" width="800" height="645"></p>
+      <p align="center" class="style1">Two chiploads: Top one has chip thickness &gt; tool edge radius.  Bottom one has chip thickness &lt; tool edge radius and will rub...</p>
+      <p align="left" class="BodyText">In the diagram, the cutter edge radius centerline travels along the yellow lines.  If the radius is too large relative to the depth of cut (bottom), all the force goes to pushing the chip under the edge.  This is the &quot;rubbing&quot; effect you'll hear talked about when feedrate and hence chipload are too low.      </p>
+      <p><font face="Arial, Helvetica, sans-serif">Tool manufacturers will tell 
+        you that too little feed is just as bad for tool life as too much feed 
+        (or too much spindle rpm). But how little is too little? That part is 
+        seemingly hard to find out. I went fishing around with Google to try to 
+        find what speeds and feeds result in a &quot;burnishing&quot; effect with 
+        tools. Here is what I found:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- <a href="http://www.ctemag.com/pdf/2008/0801-HardMilling.pdf">Article 
+        on hard milling</a>: 0.0008&quot; per tooth is definitely burnishing because 
+        it is &quot;less than the edge hone typically applied to the insert.&quot;</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- <a href="http://www.dtic.mil/cgi-bin/GetTRDoc?AD=AD268081&amp;Location=U2&amp;doc=GetTRDoc.pdf">De-Classified 
+        1961 Batelle Institute report</a> on aerospace machining of super-alloys 
+        says an IPR less than 0.0035 will result in burnishing and likely work 
+        hardening of these alloys. Interesting how well this number agrees with 
+        the one above for a 4 flute cutter. 8 tenths times four would be 32 tenths.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- <a href="http://www.kennametal.com">Kennametal 
+        says</a> the &quot;highest possible feed per tooth will usually provide 
+        longer tool life. However, excessive feeds may overload the tool and cause 
+        the cutting edges to chip or break.&quot; So feed as fast as you can until 
+        you start to chip or break edges. They reiterate this under work hardening. 
+        One wonders whether rubbing leading to work hardening isn't the principal 
+        risk of cutting with too-low chiploads with respect to tool life in susceptible 
+        materials.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- <a href="http://www.moldmakingtechnology.com/articles/030002.html">Another 
+        reference</a>, like the first, to keeping chiploads higher than tool edge 
+        radius. In this case, IPT should be greater than 0.001&quot;. This is 
+        once again an article on hard machining where work hardening may be a 
+        factor.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- <a href="http://escholarship.org/uc/item/8rf718jm">Minimum 
+        chip thickness is 5-20% of the cutting edge radius</a>. Below that level, 
+        chips will not form and the cutter will &quot;plow&quot; across the workpiece 
+        causing plastic deformation and considerable heat.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">- <a href="http://www.ingersoll-imc.com/en/products/Ingersoll_CAT-008-1_Tech.pdf">Ingersoll 
+        says</a> that as a general rule carbide chiploads should not be less than 
+        0.004&quot; or you run the risk of rubbing which reduces tool life and 
+        causes chatter.</font></p>
+      <p class="BodyText">- <a href="http://www.geniemeca.fpms.ac.be/Recherche/Articles/ducob2009a.pdf">Chip Formation and Minimum Chip Thickness in Micromilling</a> uses a figure of 20 micrometers for edge radius on micromills, which is about 0.00079&quot;.  They go on to show that the rake angle becomes extremely negative as the chipload falls below the edge radius and conclude that there is a minimum chipload below which the cutter will not cut.  It varies from about 0.2 to 0.35 times the radius for various kinds of steel.</p>
+      <p class="BodyText">-  <a href="http://proceedings.asmedigitalcollection.asme.org/proceeding.aspx?articleid=1598563">The Rutgers research paper, &quot;Micromilling Process Planning and Modelling for Mold Making</a>&quot; uses a figure of 1 to 5 micrometers for micromill edge radius, which is 0.000039&quot; to 0.0002&quot;.</p>
+      <p><font face="Arial, Helvetica, sans-serif">I take away two things:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">1. If you cut too little, you 
+        run the risk of work hardening if your material is susceptible to it. 
+        That will wreck your tool life if you are over-stimulating work hardeni<span class="BodyText">ng.</span></font> <span class="BodyText"> Imagine tossing a handful of hardened chips into the path of our cutter--that can't be good!</span></p>
+      <p><font face="Arial, Helvetica, sans-serif">2. Aside from work hardening, if you're cutting much less than the cutting edge radius, you're 
+        rubbing and not making clean chips. That will heat the tool and material 
+        and drastically reduce tool life. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Figuring out the work hardening 
+        part is easy. If your material is susceptible, keep the chipload up at manufacturer's recommendations and don't fool around. Figuring 
+        out the whole cutting radius issue is harder. Most of the time we don't 
+        know what the cutting radius is. I'm not talking about tip radius on a 
+        lathe tool, for example. I'm talking about the actual radius of the sharp 
+        edge. In other words, the smaller the radius, the sharper the tool. A 
+        lot of carbide inserts are pretty blunt. A chipload of less than 0.001&quot; 
+        may very well be too little. Modern tools for aluminum are often much 
+        sharper, and can take less chipload. In general, indexable tools are usually 
+        less sharp than endmills, so they need higher chiploads.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">It's ironic that just when 
+        you think you are taking it easy on a cutter with a very light cut, you 
+        may be doing the most damage of all due to rubbing.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Why chance it though? Use a 
+        calculator like <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard</a> to figure out how to deliver the manufacturer's 
+        recommended chipload by increasing the feedrates. Not only will the job 
+        go faster but your tooling will last longer.</font>      </p>
+      <p class="BlogTitle">Radial Chip Thinning (aka I'm an Expert and I ran the Machine too slowly without even knowing it)</p>
+      <p class="BodyText">Would you believe that especially for light cuts, the basic   math combined with SFM and chipload tables often gives results that are wrong   and radically increase the wear on your tools? </p>
+      <p class="BodyText">The reason is that there is more going on here than meets the   eye. For example, if I poke around various endmill manufacturer's literature in   search of speeds and feeds for steel, I can get to a page like <A href="http://www.niagaracutter.com/techinfo/common_mat/1020.html">this one from   Niagara cutter</A>. First thing to note is that the recommended chiploads and   SFM vary depending on the exact operation being performed, and in particular,   the depths of cuts. If you're just using the basic shop math around SFM and   chipload, no such compensation is available. I have built compensation like this   into my <A href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard Machinist's Calculator</A>, but trust   me, it isn't so easy just to do it by hand. You'll be constantly referring to   pages and tables, or to Excel spreadsheets.</p>
+      <p class="BodyText">Let's try an example based on doing some peripheral (edge) milling to profile a part made out of mild steel using a   1/2" uncoated HSS 4 flute endmill. We plan to take fairly shallow finishing   quality cuts of 5% of the cutter diameter. Further, let's do a pretty deep cut   axially, a full cutter diameter of 1/2". So if I am profiling a 1" high part, I   can make a full pass by going around twice and cutting 1/2" each   time.</p>
+      <p class="BodyText">What feeds and speeds should we   use?</p>
+      <p class="BodyText">The Niagara page says for cuts less   than 1/16 of a diameter (5% is 1/20), we want 210 SFM and a chipload of 0.0035.   If I plug all that into G-Wizard, but ignore the chip thinning, I get the   following results:</p>
+      <blockquote>
+        <p class="BodyText">Radial Depth Ratio of 5% = 0.015"   depth of cut</p>
+        <p class="BodyText">210 SFM and 0.0035 chipload gives   us 22.46 IPM feedrate and a 1600 rpm spindle speed.</p>
+      </blockquote>
+      <p class="BodyText">Is that the right speeds and feeds? </p>
+      <p class="BodyText">Yes and no. It's certainly what the   majority of folks would use. In fact, they might even be less aggressive than   that if they're trying to be conservative.</p>
+      <p class="BodyText">Let's see what G-Wizard would   suggest by default and why:</p>
+      <blockquote>
+        <p class="BodyText">For the same depth of cut and   cutter, G-Wizard wants a little slower SFM of 160, and a little less aggressive   chipload at 0.003.</p>
+        <p class="BodyText">The spindle speed works out to be   1200 rpm due to the lower SFM, but the feedrate is now 84.69 IPM--nearly 4x the original values.</p>
+      </blockquote>
+      <p class="BodyText">How can we go so   fast?!??      </p>
+      <p class="BodyText1">Unfortunately, avoiding the rubbing problem gets harder, even for experts, because of a phenomenon known as &quot;Radial Chip Thinning.&quot;   With chip thinning, you can be making a cut and following all the recommended chiploads, and still be rubbing. The cut above, 1600 rpm at 22.46 IPM will almost certainly wind up rubbing.  The reason is that due to the geometry, when your radial engagement, the cut width looking down the axis of the tool, is less than half the diameter, the chips that come off are actually thinner than the basic formulas everyone learns in machinist's school predict.</p>
+<p class="BodyText1">A picture is worth a thousand words when understanding why:</p>
+      <p align="center"><img src="img/CNCCookbook/Blog/ChipThinning.jpg" alt="Radial chip thinning" width="800" height="659"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">The blue chip 
+        is a shallower cut. Note how thin it is at its widest compared to the 
+        red chip from a deeper cut...</font></p>
+      <p align="left"><font face="Arial, Helvetica, sans-serif">The blue chip 
+        represents a very shallow cut, and the red chip a deeper cut. Note how 
+        thin the blue chip is at its widest compared to the red chip from a deeper 
+        cut. You can see that the chip gets thicker all the way up to the point 
+        where we've buried the cutter to 1/2 its diameter. That's the thic<span class="BodyText">kest 
+        point. </span></font></p>
+      <p align="left" class="BodyText"><font face="Arial, Helvetica, sans-serif">Chip thinning 
+        simply answers the question, &quot;How much faster do we have to go so 
+        the maximum width of the blue chip is the recommended chipload?&quot;</font>  Because we're just trying to get back to the recommended chipload, chip thinning isn't about going faster in the sense of higher MRR's.   You will see your machine going faster, sometimes a LOT faster, but chip thinning is about avoiding rubbing that will dramatically shorten your tool life.</p>
+      <p align="left" class="BodyText">Many manufacturers publish tables that suggest how much faster to feed based on the % of cutter diameter you are cutting.  A good machinist's calculator, like <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard</a>, will factor in chip thinning automatically. Unless you never cut less than 1/2 the diameter of your tool, you need to make sure you're adjusting your cuts for chip thinning or you're probably wearing out tools prematurely as well as not taking full advantage of the material removal rates the tool is capable of.</p>
+      <p class="BlogTitle">Surface Speed:  How Fast the Tool Slides Against the Workpiece While Cutting</p>
+      <p class="BodyText">When specifying the operation of a tool, surface speed goes hand in hand with chipload.   Just as chipload is a better way to talk about feedrate because it is independent of so many factors, surface speed is a better way to talk about spindle rpm.   Imagine that instead of a rotating cylinder with cutting edges, your tool was a flat piece of metal slid against the workpiece.    The recommended speed to slide when cutting is the surface speed.  Here's the visual:</p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/MillFeedsSpeeds/SurfaceSpeed.jpg" width="559" height="335" alt="Definition of Surface Speed"/></p>
+      <p align="center" class="BodyText">Visualizing Surface Speed...</p>
+      <p class="BodyText">Surface speed is measured in linear units per minute: feet per minute (SFM) for Imperial, and meters per minute in Metric.</p>
+      <p class="BodyText">You can't really cheat on Surface Speed.   It is what it is and exceeding the manufacturer's recommendations is sure to reduce tool life fairly drastically except for some very special HSM cases you should only worry about when you've mastered the beginner and intermediate speeds and feeds concepts.</p>
+      <p class="BodyText">The Interaction of Surface Speed and Spindle RPM</p>
+      <p class="BodyText">Consider this table which shows tool diameter versus surface speed at 10,000 rpm:</p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/MillFeedsSpeeds/SurfaceSpeedVsDiameter.jpg" width="292" height="199" alt=""/></p>
+      <p align="center" class="BodyText">Surface Speed vs Diameter at 10,000 rpm...</p>
+      <p align="left" class="BodyText">If we keep rpms constant, Surface Speed is directly proportional to diameter. The 1/16&quot; endmill at the bottom is travelling 1/8 as fast in terms of Surface Speed as the 1/2&quot; endmill at top.   Hence, to achieve a given Surface Speed, small tools will have to spin faster and large diameter tools will have to spin slower.</p>
+      <p class="BlogTitle">&nbsp;</p>
+<p class="BlogTitle">Next Article:  <a href="CCCNCMillFeedsSpeedsCalculating.htm">Calculating Feeds and Speeds</a></p>
+<p class="BodyText">&nbsp;</p>
+<p align="center" class="BodyText"><b><i><font size="+2"><a href="http://www.cnccookbook.com/CCGWizard.html">Try the Free Trial Version of G-Wizard Speeds and Feeds Calculator...</a></font></i></b></p>
+<p align="center" class="BodyText"><span class="style12"><a href="http://www.cnccookbook.com/CCGWizard.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" id="Image21" border="0"></a>&nbsp;</span></p>
+<p align="center" class="BodyText">No credit card required--just your name and email.</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

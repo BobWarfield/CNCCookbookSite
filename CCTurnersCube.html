@@ -1,0 +1,822 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>How to Make a CNC Turner's Cube - [ Creative CNC Project ]</title>
+
+<meta name="description" content="Learn how to make a Turner's Cube.  Mesmorizing yet easy to do CNC art project.">
+
+<style type="text/css">
+<!--
+.BodyText {font-family: Arial, Helvetica, sans-serif}
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.BodyText2 {font-family: Arial, Helvetica, sans-serif}
+-->
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p class="BlogTitle"><font color="#339933" size="+4">How to Make a CNC Turner's Cube: <br>
+        [ Creative CNC Project ]</font></p>
+      <p class="BlogTitle">The Magic of the Turner's Cube</p>
+      <p class="BodyText">The Turner's Cube is a fascinating object. In the old 
+        days, novice machinist's were handed one and told to work out how to make 
+        one of their own. It was considered a good test to give a budding machinist 
+        to see whether they could first understand how to go about making one 
+        and second to see whether they could operate the machinery to the level 
+      of precision needed to produce a nice cube.</p>
+      <p class="BodyText">It isn't just machinists who love Turner's Cubes. After seeing my first example, my wife immediately appropriated it for display in the kitchen.      She later asked me to make her a small one for a pendant.  Color me surprised as most of her input on my machine so far had been to hold down the costs and quit dragging chips into the house!</p>
+      <p class="BodyText">Here are some spectacular examples of the art:</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/finishedcube_small.jpg" width="400" height="300"></p>
+      <p align="center" class="BodyText">In perspex and displayed on an edge by <a href="http://www.commsp.ee.ic.ac.uk/~mrt102/other/workshop/turnerscube.html">Mark Thomas</a>...</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/secondalignholes_small.jpg" width="400" height="300"></p>
+      <p align="center" class="BodyText">Even under construction Mark's work is beautiful.  Kind of like a flux capacitor for the De Lorean!</p>
+      <p align="center"><img src="img/OthersProjects/TurnerCubeOrnaments.jpg" alt="" width="480" height="318"></p>
+      <p align="center" class="BodyText">Lots of embedded shapes are possible with CNC.  They'd make pretty Christmas tree ornaments!</p>
+      <p align="center"><img src="img/OthersProjects/TurnersCube3.jpg" alt="" width="385" height="415"></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif">This cube was 
+        made by <a href="http://www.machsupport.com/forum/index.php/topic,2120.0.html">Marcel 
+          Beaudry</a>. Sticklers will tell you it isn't truly a Turner's cube unless 
+        the interior shapes are free to float. You can make that happen with an 
+        undercut using a cutter with flutes larger than the shank. For example, 
+        use a dovetail cutter...</font></p>
+      <p align="center"><img src="img/OthersProjects/JackInACube.jpg" alt="" width="640" height="480"></p>
+      <p align="center" class="BodyText"><strong>A Jack in a Cube... </strong></p>
+      <p align="center" class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Turner's Cube Dimensions </p>
+      <p class="BodyText">After seeing enough different 
+        examples go by on the web, I got the bug and decided to try to make one. 
+        Working out the dimensions is the first problem. For a given cube, one 
+        needs to understand the diameter and depth of bore needed to produce the 
+        desired effect. This sounds like a job for the <a href="FeedSpeedsCalculator/CCGWizard.html">G-Wizard calculator</a>!</p>
+      <p class="BodyText">So, I added a quick and easy calculator that takes your face width and cranks out the hole diameters and their depths:</p>
+      <p align="center" class="BodyText"><img src="img/GWizard/GWTCDesigner.jpg" width="800" height="552"></p>
+      <p align="center" class="BodyText">Here is the calculator set up for a 4&quot; face width...</p>
+      <p class="BodyText">To figure out the proportions the calculator uses, I went through through a few quick iterations looking at Rhino 3D models to create a pleasing result:</p>
+<p align="center" class="BodyText"><img src="img/TurnersCubes/RhinoCube25.jpg" width="749" height="800"></p>
+<p align="left" class="BlogTitle">Squaring Up the Block</p>
+      <p align="left" class="BodyText">The first place to start making a Turner's 
+        Cube is to square up a block of material. My project calls for a 
+        2 1/2&quot; square block of material, but you could scale it to any size 
+        or you could use the spreadsheet or you CAD software to figure out your 
+        own dimensions. If you're going to be making the cube through manual machining, 
+        I recommend squaring the block to exactly the desired dimensions of the 
+        cube. Then you can either bore out the holes on the lathe or the mill. 
+        However, if you plan to use CNC, just get the block square and either 
+        exactly the correct size (realizing that &quot;exactly&quot; means to 
+        you tolerances, as decorative art a few thou will be fine) or just a little 
+        larger. The main thing is that you be able to set it in the vise squarely, 
+        which means the stock needs to be square. </p>
+      <p align="left" class="BodyText">Here is an example of how I go about squaring 
+        up a block of aluminum:</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/P1203700.JPG" width="602" height="800"></p>
+      <p align="center" class="BodyText">That's my DeWalt Multicutter, a killer 
+        carbide saw for chopping metal. Works way better than an abrasive chop 
+        saw or the slow 4x6 metal cutting bandsaw I used to use!</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/P1203701.JPG" width="800" height="631"></p>
+      <p align="center" class="BodyText">It took about 30 seconds to chop that block 
+        of aluminum off...</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/P1203704.JPG" width="800" height="600"></p>
+      <p align="left" class="BodyText">Next, I locked that block down in the softjaws 
+        of my 6&quot; Kurt vise on my <a href="CCMillHome.html">Industrial Hobbies 
+        mill</a>. The face mill is a 7 insert 3&quot; diameter Lovejoy 225 that 
+        I got off eBay for a steal brand new from Lovejoy. Really a nice cutter 
+        and is much faster than a fly cutter for this sort of thing. The finish 
+        left behind is not bad, but a well tuned up fly cutter will still leave 
+        a nicer finish. This cutter is running at max spindle rpm (1500) and the 
+        fastest <a href="CCMillPowerFeed.html">my power feed</a> will feed. Depth 
+        of cut is about 0.020&quot;. It just sings right through the material.</p>
+      <p align="left" class="BodyText">Once you've got the first face square, flip 
+        the block upside down and do the second face. Those two faces should now 
+        be parallel to one another. Be sure to either use parallels or the soft 
+        jaws to sit the block up high in the vise. The sides of the block have 
+        not been machined and you want to minimize their effect on the procedure.</p>
+      <p align="left" class="BodyText"><img src="img/TurnersCubes/P1203705.JPG" width="800" height="620"></p>
+      <p align="left" class="BodyText">Now that you've got 2 sides parallel, bury 
+        the cube down in the vise with the jaws bearing on those 2 sides and do 
+        the 3rd face. When that's done, flip it over and catch the 4th face. That 
+        just leaves the top and bottom of the cube. There's a trick to these that 
+        I learned reading <a href="http://www.proshoppublishing.com/">Machine 
+        Shop Trade Secrets</a>. Cut the 5th face, with the cube buried in the 
+        jaws. Now flip the cube upside down, but turn it 90 degrees as you flip 
+        it. Mill the 6th face. All sides are now square except for the 5th. Flip 
+        the cube again and mill that 5th face. Your workpiece is now square, meaning 
+        the sides are all parallel and at right angles, but the width of each 
+        edge may not be identical.</p>
+      <p align="left" class="BodyText">Let's recap the milling steps to square the 
+        block:</p>
+      <p align="left" class="BodyText">- Put the rough stock on parallels or on 
+        a softjaw step in your milling vise and surface the top.</p>
+      <p align="left" class="BodyText">- Flip the block so the freshly machined 
+        face is down and surface the top. Now we have 2 faces parallel to one 
+        another.</p>
+      <p align="left" class="BodyText">- Bury the block in the vise with the jaws 
+        bearing on the 2 parallel sides and surface again. </p>
+      <p align="left" class="BodyText">- Flip the block upside down and surface 
+        the 4th face. </p>
+      <p align="left" class="BodyText">- Now there are just 2 faces left, and there 
+        are 4 faces square to one another. Bury the block with 2 of the 4 faces 
+        against the jaws and an unsurfaced face up (the other unsurfaced face 
+        is at the bottom. Surface the 5th face.</p>
+      <p align="left" class="BodyText">- Now flip the cube upside down, and rotate 
+        it 90 degrees. Surface the 6th face.</p>
+      <p align="left" class="BodyText">- Your 5th face (on the bottom right now) 
+        is not yet square. Flip the cube again and surface that face.</p>
+      <p align="left" class="BodyText">All sides are now square to one another, 
+        although the dimensions of the workpiece may not be square. Measure the 
+        different dimensions and see what to do next:</p>
+      <p align="left" class="BodyText"><img src="img/TurnersCubes/P1213709.JPG" width="800" height="600"></p>
+      <p align="left" class="BodyText">I used my surface plate and height gage to 
+        measure the cube, and just wrote the dimensions onto the cube faces. The 
+        two faces you can see are on sides measuring 2.503&quot; and 2.436&quot;. 
+        As I'm striving to get to 2.350&quot;, I have marked how much material 
+        I want to remove from each face. This is another job for the face mill, 
+        although you may want to try something finer for the last finishing cuts. 
+        I didn't bother as this is my first cube and I had no idea how it might 
+        turn out. I got it within +/- 0.001&quot; in thickness, and the sides 
+        measured to 0.001&quot; in squareness as well with my tenths indicator. 
+        More than satisfactory for this project!      </p>
+      <p align="center" class="BodyText">&nbsp;</p>
+      <p align="left" class="BodyText"><strong>For a tip or two about precision 
+        face milling, <a href="CCMillTipsTechniques.htm">check the milling techniques 
+        page under &quot;Accurate Z-Axis Adjustment&quot;</a>. Also, check our page of tips to make sure you're getting <a href="CCCNCMillFeedsSpeedsSurfaceFinish.htm">the best possible surface finish from your milling</a>. There are a few 
+        tricks to try!</strong></p>
+      <p class="BlogTitle">Manual Machining: Things Are About to Get Very Boring 
+        Now </p>
+      <p class="BodyText">I started out trying to make Turner's cubes on my mill 
+        and lathe with manually machining and botched up 2 tries. I got closer 
+        with the mill, but I think that was dumb luck. The mill attempt was first, 
+        and failed when I flipped the cube but made a mistake in lining it up. 
+        The lathe attempt failed because my first spreadsheet had an error. I 
+        made what they called out, but it wasn't a Turner's Cube because the bores 
+        were too large. Doh! </p>
+      <p class="BodyText">Important tip: Do your bores on two adjacent faces (faces 
+        at right angles to one another) first and you'll see the error of your 
+        ways before wasting too much time. </p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/P1213710.JPG" width="800" height="600"></p>
+      <p align="left" class="BodyText">As you must have surmised, the Turner's Cube 
+        is an ideal 4-jaw chuck exercise. Many HSM's dread the 4-jaw, but I find 
+        it is my second most commonly used chuck, next to my 6-jaw. Maybe you'll 
+        like my trick for squaring up rectangular workpieces that I've show here. 
+        I use a bubble level to get the face level, then I drop my height gage 
+        onto the cross slide platform (mine is flat) and measure the height of 
+        the face. This is compared to the height of the opposite face. If you 
+        are measure like this, it pays to record how much movement can be had 
+        by a full twist of one of the jaw screws. On my 4-jaw, it's 0.140&quot; 
+        per turn. Once you know how far off you are numerically and how much a 
+        turn gives you, the process goes much faster. As you can see, I got it 
+        lined up within a thousandth!</p>
+      <p align="left" class="BodyText">Once we have a face lined up, we're going 
+        to go through the whole series of bores before removing the cube to work 
+        on another face. </p>
+      <p align="left" class="BodyText">I did not complete a Turner's cube via manual 
+        machining, because about that time I got serious about <a href="CCMillCNCConversionHome.html">converting 
+        my mill to CNC</a>. So this story ends with the manual version incomplete 
+        (sorry, you'll have to work through that one for yourself), as I move 
+        on to CNC.</p>
+      <p align="left" class="BlogTitle">CNC Machining: Circular Interpolation 
+        is Your Friend!</p>
+      <p align="left" class="BodyText">Let's assume you've got a piece of squared 
+        stock ready to go. By squared, I mean the faces are appropriately flat 
+        and parallel or perpendicular to one another. The dimensions may not be 
+        square, but each one is at least as long as the finished cube's dimension. 
+        Making the Turner's Cube from that stock on a CNC mill is pretty easy. 
+        To do so, we need to be able to drop the workpiece in the vise with predictable 
+        alignment, let's say predictable to the lower left corner of the cube. 
+        The Y and Z predicatability will come from step jaws or parallels on a 
+        properly trammed in vise. The X may come from a workstop. I like to use 
+        a Kant-Twist clamp on the jaw.</p>
+      <p align="left" class="BodyText">So now we can drop the piece on the vise, 
+        and because of symmetry, we can run one CNC program on each of the 6 faces, 
+        and we will be done. That CNC program does the following:</p>
+      <p align="left" class="BodyText">1. Surfaces the face until we get to the 
+        desired z-height. Let's say we zero Z at the top of the parallels (or 
+        step on the jaw). Then Z = 0.000&quot; is the bottom of the workpiece. 
+        If we want a 2.500&quot; cube as is called out on the drawing above, we 
+        surface until we get to Z = 2.500&quot;.</p>
+      <p align="left" class="BodyText">2. Next we cut a series of concentric circular 
+        pockets, the diameters and depths of each pocket as called out on the 
+        dimensioned drawing. That drawing uses a minimum of 0.250&quot;, so we 
+        can use a 3/16&quot; endmill to avoid a tool change. Based on that drawing, 
+        we want the following circular pockets:</p>
+      <p align="left" class="BodyText">- 1.856&quot; diameter to a depth of 0.500&quot;. 
+        In other words, cutting from z = 2.500&quot; to z = 2.000&quot;.</p>
+      <p align="left" class="BodyText">- 1.237&quot; diameter to a depth of 0.750&quot;. 
+        In other words, cutting from z = 2.500&quot; to z = 1.750&quot;. I give 
+        the full cut range so I don't have to worry about rapids hitting the edge 
+        of the pocket for some crazy reason. We can optimize it better, but it 
+        may not be worth worrying about.</p>
+      <p align="left" class="BodyText">- 0.619&quot; diameter to a depth of 1.000&quot;. 
+        So cutting from z = 2.500&quot; to z = 1.500&quot;.</p>
+      <p align="left" class="BodyText">- 0.250&quot; diameter to a depth of 1.500&quot;. 
+        Cutting from z = 2.500&quot; to z = 1.000&quot;. In theory, I could cut 
+        this to a depth of 1.250&quot;, and the other side meets in the middle. 
+        I am cutting all the way through just to make a nice clean hole.</p>
+      <p align="left" class="BodyText">Note that you won't need a CAM program for 
+        this--surfacing and cutting circular pockets are both operations the Mach3 
+        wizards support very nicely right out of the box.</p>
+      <p align="left" class="BodyText">I'll structure this as 2 CNC programs, since 
+        I need to surface and then I need to interpolate some holes. To save on 
+        tool changes, I could surface all 6 sides with the same tool, and then 
+        start in on the holes after a tool change. I've got some new tooling I 
+        want to play with as well, so I'll do some of the work with different 
+        cutters.</p>
+      <p align="left" class="BodyText">Let's get started!</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/P1011477.JPG" width="650" height="800"></p>
+      <p align="center" class="BodyText">First thing after squaring the stock to 
+        make a cube is setting the Z height...</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/P1011479.JPG" width="696" height="522"></p>
+      <p align="center" class="BodyText">Now we start interpolating holes...</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/P1011454.JPG" width="700" height="522"></p>
+      <p align="center" class="BodyText">Lots and lots of holes...</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/P1011482.JPG" width="700" height="421"></p>
+      <p align="center" class="BodyText">You can see my makeshift air stream to 
+        clear the chips...</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/P1011483.JPG" width="700" height="522"></p>
+      <p align="center" class="BodyText">Working on the third of four layers...</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/P1011486.JPG" width="700" height="562"></p>
+      <p align="center" class="BodyText">Cube after milling. Could use a little 
+        more cosmetic cleanup, but it is basically done!</p>
+      <p align="left" class="BlogTitle"><span class="BodyText">Widgitmaster's <a href="http://www.cnczone.com/forums/showthread.php?t=52757">Cubes on a Lathe</a>...</span></p>
+      <p align="center" class="BlogTitle"><img src="img/TurnersCubes/Widgit/100_2798.JPG" width="800" height="600"></p>
+      <p align="center" class="BodyText">Bandsaw has the fastest material removal rate, LOL...</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/Widgit/100_2800.JPG" width="800" height="600"></p>
+      <p align="center" class="BodyText">Square with the face mill.  A handy piece of stock makes a chip guard so they don't go everywhere...</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/Widgit/100_2801.JPG" width="800" height="600"></p>
+      <p align="center" class="BodyText">Ready for the lathe as soon as we build a fixture.  Fixtures make everything better...</p>
+      <p align="center" class="BlogTitle"><img src="img/TurnersCubes/Widgit/100_2811.JPG" width="800" height="600"></p>
+      <p align="center" class="BodyText">Massive faceplate fixture made for the purpose...</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/Widgit/100_2815.JPG" width="800" height="600"></p>
+      <p align="center" class="BodyText">Cube is held in place like so...</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/Widgit/100_2818.JPG" width="800" height="600"></p>
+      <p align="center" class="BodyText">Taking shape.  Use the shortest boring bar possible.   Widget is using brazed carbide bars diamond honed to a keen edge...</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/Widgit/100_2819.JPG" width="800" height="600"></p>
+      <p align="center" class="BodyText">His custom turret lathe with carriage stops makes repeating multiple parts easy!</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/Widgit/100_2835.jpg" width="706" height="1000"></p>
+      <p align="center" class="BodyText">303SS looks great on a Turner's Cube, eh?</p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/Widgit/100_4141.JPG" width="540" height="562"></p>
+      <p align="center" class="BodyText">Oh no, they're multiplying!</p>
+      <p align="left" class="BlogTitle">Turner's and Other Interesting Geometric 
+        Diversions by Others</p>
+      <p align="center" class="BodyText">&nbsp;</p>
+      <p align="center"><img src="img/OthersProjects/TurnersCube.JPG" width="800" height="600"></p>
+      <p align="center"><img src="img/OthersProjects/TurnersCube2.JPG" width="448" height="384"></p>
+      <p align="center" class="BodyText"><img src="img/TurnersCubes/Stacked_cubes_th.jpg" width="124" height="200"></p>
+      <p align="center" class="BodyText"><a href="http://www.phys.washington.edu/users/sbtroy/Turners_Cube/Turners_Cube.html">Nice account</a> of making cubes on a lathe by sbtroy...</p>
+      <p align="center" class="BodyText1"><a href="FeedSpeedsCalculator/CCGWizard.html"><img src="img/GWizard/GWScreenRow.jpg" alt="" width="700" height="162"></a></p>
+      <p align="center" class="BodyText1"><span class="BodyText2"><a href="GWSignup.html"><img src="GWizard/cooltext508127259.png" alt="" name="Image21" width="312" height="41" border="0"></a>&nbsp;</span></p>
+      <p align="center" class="BodyText1"><a href="FeedSpeedsCalculator/CCGWizard.html">Be sure to check out G-Wizard, our Machinist's Software!</a></p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <p align="left" class="BodyText">&nbsp;</p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>

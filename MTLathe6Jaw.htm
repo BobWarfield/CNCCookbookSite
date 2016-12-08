@@ -1,0 +1,1102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>Buck 6-Jaw Chuck</title>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img src="img/Art/JoinUsTab.jpg" max-width="100%" height="auto" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="CNCSiteSearch.html"><img src="img/Art/Search32.jpg" width="auto" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="368" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->{PageNav}<!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p><font face="Times New Roman, Times, serif" size="7" color="#FF0000">Lathe 
+        Mods: Buck 6-Jaw Chuck</font></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i>I've always been enamored 
+        of <a href="MTLatheHolding.htm">6-jaw chucks</a>. If nothing else, they 
+        are things of great mechanical beauty. I notice that many machinist's 
+        I have a lot of respect for prefer them to the average 3-jaw for fine 
+        work, for example 5Bears and the Machine Shop Trade Secrets book. In fact, 
+        if you go through the latter, there is hardly a picture to be found of 
+        a 3-jaw--it's all 4-jaws and 6-jaws. There is no surprise when you consider 
+        the advantages of a 6-jaw chuck. </i></font><i><font face="Arial, Helvetica, sans-serif">Given 
+        all that, it wasn't long before I went hunting for and found a high quality 
+        6-jaw chuck on eBay. Mine is a 5&quot; Buck Chuck with the fancy set-tru 
+        capability. Having purchased this little beauty at an enormous discount 
+        from full retail, my next chore would be to machine a backplate so I can 
+        fit it to my Lathemaster. This will be my first project that had to come 
+        together with any degree of precision.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">Follow along while I plan 
+        and execute this project.</font></i></p>
+      <p align="center"><img src="img/LatheStuff/6JawChuck/PA162583.JPG" width="640" height="480"></p>
+      <p align="center"><b><i>The Spindle Nose...</i></b></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Drawings</font></b></font></i></td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif">My main concern is that 
+        the chuck be accurate on the lathe. It is an expensive chuck, particularly 
+        with the set-tru capability, and I want to realize its full potential. 
+        With that in mind, the first order of business is to machine the interface 
+        with the chuck spindle. If we do that, we can actually mount the adapter 
+        to the spindle and carry out the remaining machining operations from there, 
+        thus ensuring maximum accuracy (I think).</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">Getting the spindle interface 
+        right is a matter of getting 3 mounting bolts positioned exactly correctly 
+        as well as boring the proper hole for the spindle nose. This spindle nose 
+        measurements are thus:</font></i></p>
+      <p align="center"><img src="img/LatheStuff/6JawChuck/SpindleNose.jpg" width="720" height="540"></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">The closest 
+        and most important fit is with the spindle nose 2.046&quot; diameter to 
+        a corresponding hole in the back plate. The 0.8235&quot; spacer holes 
+        are a less tight fit, but we are placing them using a bolt circle, which 
+        is a calculated layout. I'll be double and triple checking it to make 
+        sure I get that bolt circle right!</font></i></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">On the other 
+        side of the adapter plate is the interface for the Buck 6-Jaw chuck. In 
+        this case, we have 6 evenly spaced bolt holes for bolts that will hold 
+        the adapter plate to the chuck, together with a hole in the chuck that 
+        accepts a nose on the adapter. This hole is where the set-tru feature 
+        comes into play. Within the hole are 4 Allen head adjustment screws that 
+        enable the chuck to be moved radially versus the axis in order to get 
+        it exactly aligned to the spindle's axis. Dimensions for the Buck chuck 
+        look something like this:</font></i></p>
+      <p align="center"><img src="img/Toys/MachineTools/LatheStuff/6JawChuck/Buck%206-Jaw%20Chuck%20Drawing.jpg" width="720" height="540"></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">There is some 
+        good news here. For example, the spindle nose diameter (2.046&quot;) is 
+        smaller than the set-tru hole (2.74&quot;). This means that the hole needed 
+        for the spindle hole can ride comfortable as a bore inside the nose that 
+        mates with the chuck.</font></i></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">Here is a Rhino 
+        3D model I made immediately after I got Rhino. This was after I'd already 
+        made the backplate:</font></i></p>
+      <p align="left"><img src="img/LatheStuff/6JawChuck/RhinoBackplate3ViewGhost.jpg" width="1024" height="549"></p>
+      <p align="center"><b><i>3-View &quot;Ghosted&quot; Solid Model of the Chuck 
+        Backplate...</i></b></p>
+      <p align="left"></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Materials 
+            and Tooling</font></b></font></i></td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif">I purchased a couple of 
+        cast iron round pieces from <a href="http://www.metalexpress.net">www.metalexpress.com</a>. 
+        A lot of materials would work, but the cast iron is pretty easy to machine, 
+        and is often used in machine parts where a hardened piece isn't neccessary. 
+        I bought 2 pieces that were 2&quot; thick by 6&quot; diameter. This is 
+        pretty large, but I have another lathe chuck I also need to make a backplate 
+        for that is a 6&quot;, and they didn't have much between 5&quot; and 6&quot;. 
+        We'll see how painful it is to rough out so much material. Given the mess 
+        involved with machining cast iron, I would be tempted to go mild steel 
+        the next time around. A piece of 12L14 would be much easier!</font></i></p>
+      <p><font face="Arial, Helvetica, sans-serif"><i><b>Tooling Used:</b></i></font></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">Dykem<br>
+        Combination Square with Center Head<br>
+        Carbide Scriber</font></i><br>
+        <i><font face="Arial, Helvetica, sans-serif">Drill Press<br>
+        Tap Magic<br>
+        TiN-Coated Drill Bits<br>
+        Center Drills<br>
+        Center Punch<br>
+        Dividers, Outside Calipers, and Oddleg (Hermaphrodite) Calipers<br>
+        Dial &amp; Digital Calipers</font></i><br>
+        <font face="Arial, Helvetica, sans-serif"><i>Several Lathe Tools from 
+        Glanze 5/16&quot; Indexable Carbide and 1/4&quot; Brazed Carbide Sets<br>
+        3 and 4-Jaw Lathe Chucks<br>
+        Live Center<br>
+        Telescoping ID Gages<br>
+        Micrometers <br>
+        Letter and Number Stamps</i></font><br>
+        <font face="Arial, Helvetica, sans-serif"><i>Height Gage<br>
+        Granite Surface Plate<br>
+        Tailstock Drill Chuck<br>
+        <a href="MTLatheTailstockDie.htm">Tailstock Die Holder</a></i></font><br>
+        <font face="Arial, Helvetica, sans-serif"><i>Dichropan T-4 Cold Bluing 
+        Solution</i></font></p>
+      <p align="left"></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Making 
+            the Adapter Plate</font></b></font></i></td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif">I'll tell you right now 
+        that the way I did this was wrong in several ways. What follows is what 
+        I actually did, so you can observe first hand the confused thought processes 
+        of a novice. It just goes to show how important it is to really plan the 
+        job ahead of time and not just meander around doing what pleases you. 
+        At least that's true if you care about proficiency at all. I must say 
+        that I still had a heck of a good time with it and learned a lot from 
+        my mistakes.</font></i></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td colspan="2"> 
+            <hr>
+          </td>
+        </tr>
+        <tr> 
+          <td width="19%">&nbsp;</td>
+          <td width="81%"> 
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>Boring the Off-Center 
+              Chuck Mounting Holes:</b></i></font></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">Being a bit daunted 
+              by how to hold my big chuck of cast iron in the lathe, I decided 
+              to start out boring the off-center holes on my drill press. Later, 
+              discovered this decision was a bad one, but not catastrophically 
+              so. The problem is that the cast iron blank I started with turned 
+              out not to be flat on the ends. This ensured that the holes drilled 
+              were not exactly parallel to the axis, and so they didn't line up 
+              quite right. The solution: enlarge then enough to provide clearance 
+              and make a mental note. It seems like the right way to begin any 
+              project is by squaring the workpiece!</font></i></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">There are 6-holes 
+              on a 2.22&quot; radius bolt circle needed for the chuck mounting 
+              bolts. </font></i><i><font face="Arial, Helvetica, sans-serif">To 
+              mark out these circles apply Dykem to one side of the cast iron 
+              workpiece. This gives you a nice colored surface that will make 
+              it easier to see your scribed layout lines.</font></i></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">Next, I marked out 
+              the center of the workpiece using my combination square with the 
+              centering head. I simply scribed two lines through the center at 
+              roughly right angles using my carbide scriber. Using a center punch 
+              and a light tap with a ball peen hammer, I made sure there was an 
+              accurately positioned center dimple that my divider point could 
+              ride in.</font></i></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">Having located the 
+              center, I scribed the bolt circle using a pair of dividers. The 
+              radius on the dividers was set using my dial calipers. Once I had 
+              a bolt circle, I center punched a point on the circle to be the 
+              center of one of the 6 chuck mounting bolt holes. I then took the 
+              dividers, and set them to the distance between bolt centers. This 
+              can be calculated by the following formula:</font></i></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Bolt Distance = Diameter * Sin( 
+              360/(2 * Number of Bolt Holes))</b></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">In order to check 
+              my math, I did a dry run around the bolt circle. I set the divider 
+              leg in the first center-punched bolt center, put the other leg onto 
+              the circle, pivoted the first leg to the next stop on the circle, 
+              and so on. Each leg set down is a potential bolt center. If you 
+              have all the distances right, you can walk all the way around the 
+              circle, touching down once on each bolt center, and wind up exactly 
+              back at the original center punched bolt center.</font></i></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">If all is well with 
+              your math and measurements, go ahead and do the walk around with 
+              the dividers once more, only this time, scribe a little arc across 
+              the bolt circle at each stop. The intersection of the arc and the 
+              bolt circle becomes the center point for the bolt. Center punch 
+              each one of these. </font></i><i><font face="Arial, Helvetica, sans-serif">Okay, 
+              we have now marked out the 6 hole circle for the chuck side of the 
+              backplate. Next step was to scribe the circle that will be the OD 
+              of the adapter snout that must fit into the set-tru cavity on the 
+              Buck chuck.</font></i></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">Having completed the 
+              layout work on one side, I then carried the cast iron blank over 
+              to the drill press, and center drilled each of the center punched 
+              dimples, including the center. Having done the center punching, 
+              I got out my drill bit set and proceeded to bore a 0.274&quot; ID 
+              hole (or thereabouts, I just trial fitted the shaft of the bits 
+              into the chuck until I got a good fit) in each of the 6 spots as 
+              well as the center. I wanted the center hold to align to when laying 
+              out the other side, to ensure everything stays concentric.</font></i></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">Boring the cast iron 
+              went pretty quickly. I used Tap Magic as a coolant and lubricant, 
+              kept my chip brush handy, and backed the bit out of the bore frequently 
+              to clear chips. Eventually 7 holes were bored. As a check, I got 
+              out my transfer punches, dropped one into place through the chuck 
+              mounting bolt hole and into the adapter hole. I next checked whether 
+              the other 5 holes lined up with the chuck using my trusty drill 
+              bit. Everything was pretty darned close: I could get 5 of the 6 
+              holes perfectly, with the 6th being not quite spot on. I believe 
+              if I increase the ID of all of these holes slightly, life will be 
+              good. We don't need perfectly tight holes because we're going to 
+              use the set-tru feature of the chuck anyway. I later decided the 
+              problem with the hole was that I didn't square the piece before 
+              layout and boring.</font></i></p>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"> 
+            <hr>
+          </td>
+        </tr>
+        <tr> 
+          <td width="19%">&nbsp;</td>
+          <td width="81%"> 
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>Turn, Face, and 
+              Make A Spigot for the Chuck to Grip:</b></i></font></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">I couldn't procrastinate 
+              forever before mounting this thing in the lathe. In fact, I shouldn't 
+              have procrastinated at all. This piece was about 6 inches in diameter--way 
+              too big for my chucks. I therefore had to improvise another mechanism 
+              to hold the cast iron in order to work on it. I opted for <a href="http://bedair.org/index.html">Steve 
+              Bedair's</a> method of drilling a center hole for a large bolt and 
+              then holding the bolt in the lathe. I decided to get a little bit 
+              fancy, hoping to increase precision, and finished a shaft to fit 
+              fairly snugly, with a threaded hole in the shaft I could use to 
+              tighten down a bolt and washer. In the end, I think a plain bolt 
+              would have been just as good, but it seemed worth a try at the time. 
+              Here's what it looked like with the sleeve held in the chuck:</font></i></p>
+            <p align="center"><img src="img/LatheStuff/6JawChuck/PB062598.JPG" width="640" height="504"></p>
+            <p align="center"><b><i>Whoa! Check the clearance, Clarence!</i></b></p>
+            <p align="left"><font face="Arial, Helvetica, sans-serif"><i>There 
+              are a couple of things to note about this picture having to do with 
+              clearances. I quickly found out that machining this blank was really 
+              at the limits of the lathe's capabilities in many ways. First, the 
+              carriage would barely fit under. In fact, I had to stick the tool 
+              way out over the edge and turn it down a bit to get there, working 
+              a little at a time in several passes to take off about 3/16&quot; 
+              before I could just get under. Second, my nifty <a href="MTLatheQCTP.htm">Quick 
+              Change Tool Post</a> absolutely wouldn't clear no matter what I 
+              did. The turret post that came with the lathe gives a little better 
+              clearance. Don't throw it out when you get your QCTP on! Many, I'm 
+              sure, would have made up a plinth toolpost arrangement to deal with 
+              this problem. The last problem was chatter. Mounting the cast iron 
+              on that sleeve left way too much flex in the system. I wanted to 
+              use a much larger bolt, but boring a decent sized hole in my drill 
+              press just wasn't working out, so I forged ahead. I don't know how 
+              much better a bigger bolt (say 3/4&quot;) would have faired, but 
+              &quot;It couldn't hoit!&quot; </i></font></p>
+            <p align="left"><font face="Arial, Helvetica, sans-serif"><i>Even 
+              with the chatter, I was able to cut 20 thousandths with each pass. 
+              I recently read an article about a guy with a Southbend who was 
+              trying to do something similar and claimed it was absolutely impossible 
+              to cut more than 3 thousandths on each pass. Not too bad when an 
+              Asian lathe surpasses the might Southbend! With that said, I have 
+              to assume the guy was either doing something wrong or his Southbend 
+              was worn out and full of slop. Probably the latter. I stick by my 
+              decision that I was <a href="MTWhoIsAfraidOfAsianTools.htm">better 
+              off with new Asian machines rather than trying to rebuild old classics</a>.</i></font></p>
+            <p align="left"><i><font face="Arial, Helvetica, sans-serif">You can 
+              see all the nasty gritty dust and graphite cast iron throws off. 
+              It does, however, cut pretty easily. When I get done with this piece 
+              I'm going over the lathe again just like when I unpacked it to make 
+              sure I get all that stuff out of the innards.</font></i></p>
+            <p align="center"><img src="img/LatheStuff/6JawChuck/PB062599.JPG" width="640" height="480"></p>
+            <p align="center"><b><i>Turning down the spigot...</i></b></p>
+            <p align="left"><i><font face="Arial, Helvetica, sans-serif">In this 
+              shot, you can see the other side, as well as the spigot I'm starting 
+              to produce. Note the nasty chatter marks on the turned piece! It 
+              took me quite a while to turn this down far enough that I could 
+              take it off the sleeve, flip it around, and clamp it in the chuck. 
+              It was worth the wait:</font></i></p>
+            <p align="center"><img src="img/LatheStuff/6JawChuck/PB112600.JPG" width="640" height="466"></p>
+            <p align="center"><b><i>Nasty chatter marks on left, smooth finish 
+              on right...</i></b></p>
+            <p align="left"><i><font face="Arial, Helvetica, sans-serif">You can 
+              still see those horrendous chatter marks on the spigot, but check 
+              the turned surface for a comparison. With the piece flipped around 
+              and properly mounted in the 4-jaw, life suddenly got a lot better. 
+              The chatter went away, the finish improved dramatically, and I could 
+              crank up the spindle speed to really let my carbide tools sing. 
+              At this stage, I still have a lot of material to take off both turning 
+              and facing, but it's a whole lot more comfortable doing it. </font></i></p>
+            <p>&nbsp;</p>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"> 
+            <hr>
+          </td>
+        </tr>
+        <tr> 
+          <td width="19%">&nbsp;</td>
+          <td width="81%"> 
+            <p><i><font face="Arial, Helvetica, sans-serif"><b>Make a Spindle 
+              Plug Gage:</b></font></i></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i>This just makes it 
+              easier to accurately measure the hole you will bore for the spindle 
+              nose. It's very quick to turn such a gage to size, and it will be 
+              useful for other projects. I turned mine with a shoulder in case 
+              I want to later produce a full spindle replica (useful when mounting 
+              your chucks to other tooling). I also used my number and stamp set 
+              to mark it's dimensions and purpose on the back. This was easy to 
+              do, using masking tape as a baseline to line up the text, and made 
+              the whole thing look a bit more professional. I'll still be able 
+              to read that stamped text long after tape or ink would have been 
+              worn off and lost.</i></font></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">This gage should be 
+              the first thing you make, BTW, under ideal circumstances. I stopped 
+              in the middle, before boring the spindle hole.</font></i></p>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"> 
+            <hr>
+          </td>
+        </tr>
+        <tr> 
+          <td width="19%">&nbsp;</td>
+          <td width="81%"> 
+            <p><i><font face="Arial, Helvetica, sans-serif"><b>Spindle Facing 
+              Side:</b></font></i></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i>Once having turned 
+              and faced to reasonable dimensions, I bored the 2.046&quot; ID spindle 
+              nose hole to a depth 1.25&quot;. This is probably more than I need 
+              depth-wise, but I'd rather have too much than too little. </i></font><i><font face="Arial, Helvetica, sans-serif">Make 
+              a last facing cut on the spindle spacing side to achieve a fine 
+              finish that's nice and flat. </font></i></p>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"> 
+            <hr>
+          </td>
+        </tr>
+        <tr> 
+          <td width="19%">&nbsp;</td>
+          <td width="81%"> 
+            <p><b><i><font face="Arial, Helvetica, sans-serif">Chuck Facing Side:</font></i></b></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">Now that the cast 
+              iron blank is of more reasonable size, i.e. 5&quot; OD, I was able 
+              to flip it around so the chuck side was exposed and place it in 
+              my 4-jaw.</font></i></p>
+            <p align="center"><img src="img/LatheStuff/6JawChuck/PB182693.JPG" width="640" height="513"></p>
+            <p align="center"><b><i>I'll turn down the nose to get to the right 
+              length rather than facing it down...</i></b></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i>Turn the shoulder 
+              that will fit inside the chuck to 2.74&quot; OD by 0.5&quot; deep. 
+              </i></font><font face="Arial, Helvetica, sans-serif"><i>Face the 
+              part that goes inside the chuck. When looking to get to the proper 
+              depth for the spigot, as well as the overall length of the backplate, 
+              I had to remove quite a lot of material. I remembered the adage 
+              learned from Machine Shop Trade Secrets: remove that material by 
+              turning, not facing, it goes much faster. He was right too! This 
+              is especially so for a cheap Asian lathe that lacks a power cross 
+              feed. When facing you can use the leadscrew feed. The downside is 
+              you build up an irregular shoulder that will have to be properly 
+              faced, so be sure to take that into account on your planning for 
+              how much material to remove.</i></font></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i>Face the shoulder 
+              that goes against the chuck. I did this facing operation before 
+              my final turning on the spigot that goes into the chuck. The latter 
+              I undercut a little deeper than the shoulder so it would all fit 
+              cleanly and squarely.</i></font></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i>Trial fit the chuck 
+              over the back plate nose before removing the back plate from the 
+              chuck. </i></font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"> 
+            <hr>
+          </td>
+        </tr>
+        <tr> 
+          <td width="19%">&nbsp;</td>
+          <td width="81%"> 
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>Making the 3 spacers:</b></i></font></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">Before beginning to 
+              make these three spacers, I realized I was going to need a <a href="MTLatheTailstockDie.htm">tailstock 
+              die holder</a> for threading. The threads really need to be lined 
+              up straight as these pieces need to fit true to ensure proper alignment. 
+              So, you may want to take a brief detour over to the <a href="MTLatheTailstockDie.htm">tailstock 
+              die holder page</a> if you don't already have one of your own. It's 
+              an easy project and very handy once you are done.</font></i></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">Place some round steel 
+              stock at least 0.8&quot; or greater in diameter in the 3-jaw chuck. 
+              I used an 8&quot; length. I'm cutting a pretty long length, so I'll 
+              turn with the live center.</font></i></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">Center drill and install 
+              live center. I wound up using my cut-off tool to create the edges 
+              of the spacer--it made them nice and flat as well as providing the 
+              necessary clearance for me to go in and turn down the threaded areas 
+              to the proper OD.</font></i></p>
+            <p align="center"><img src="img/LatheStuff/6JawChuck/PB212716.JPG" width="640" height="595"></p>
+            <p align="center"><b><i>Using the cut-off tool to groove next to the 
+              spacer bodies (colored in Black with a Sharpie)...</i></b></p>
+            <p align="center"><img src="img/LatheStuff/6JawChuck/PB212719.JPG" width="640" height="480"></p>
+            <p align="center"><b><i>Now I'm turning down the threaded areas to 
+              proper OD. I used a 1/4&quot; carbide insert tool for this--there 
+              wasn't room for my normal Glanze 5/16&quot; indexable tools! I also 
+              had to cut two passes with the cut-off tool to gain enough room 
+              to work in. Finally, that cut-off groove also provided a relief 
+              groove inboard of the threads.</i></b></p>
+            <p align="left"><font face="Arial, Helvetica, sans-serif"><i>Once 
+              the proper OD's are turned on the shaft, you can remove it from 
+              the lathe and use the vertical bandsaw to cut apart the pieces. 
+              I made four even though I only needed three. It only takes a little 
+              longer and you have a spare if things go wrong.</i></font></p>
+            <p align="center"><img src="img/LatheStuff/6JawChuck/PB212724.JPG" width="640" height="510"></p>
+            <p align="center"><b><i>Spacer blanks cut apart with the vertical 
+              bandsaw. Note the clearance grooves where the threading can stop...</i></b></p>
+            <p align="left"><i><font face="Arial, Helvetica, sans-serif">Now I 
+              put each one back in the lathe, fired up my new tailstock die holder, 
+              and cut the threads. Along the way I also used a well-chalked file 
+              to finely bevel any sharp edges before threading.</font></i></p>
+            <p align="center"><img src="img/LatheStuff/6JawChuck/PB212728.JPG" width="640" height="585"></p>
+            <p align="center">It's a bit groady looking with this much magnification. 
+              The whole thing is about 1&quot; long.</p>
+            <p align="left"><i><font face="Arial, Helvetica, sans-serif">As a 
+              last fit of ornamentation, I decided to try out a little cold bluing 
+              solution (<a href="MTMaterialsFinishesTreatmentsHome.htm">Brownell's 
+              Dicropan T-4 and Oxpho-Blue Creme were both tried</a>) to put a 
+              finish on the little buggers. The original spacers that came with 
+              the lathe have some sort of a black oxide finish on them too. I 
+              have to say, I like the effect. People complain that cold bluing 
+              looks lousy on guns, but for parts it beats an unfinished state 
+              and is really easy to do!</font></i></p>
+            <p align="center"><img src="img/LatheStuff/6JawChuck/PB212730.JPG" width="640" height="491"></p>
+            <p align="center"><b><i>Blank, original that came with the lathe, 
+              and my freshly cold blued part. I like my finish better, although 
+              the threads look lousy!</i></b></p>
+            <p><font face="Arial, Helvetica, sans-serif"><i>On the originals there 
+              is a 5/8&quot; flat milled for a wrench, but they seem to work fine 
+              finger tight, so I did not provide the wrench flats. If it gets 
+              too annoying I may Loctite the spacers in. In fact, I am tempted 
+              to do that on the originals too.</i></font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"> 
+            <hr>
+          </td>
+        </tr>
+        <tr> 
+          <td width="19%">&nbsp;</td>
+          <td width="81%"> 
+            <p><font face="Arial, Helvetica, sans-serif"><i><b>Final Assembly: 
+              We're almost done!</b></i></font></p>
+            <p align="center"><img src="img/LatheStuff/6JawChuck/PB182696.JPG" width="640" height="427"></p>
+            <p align="center"><b><i>Bolt circle for spacers marked out with Dykem...</i></b></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">Mark out the bolt 
+              circle for the spacers. Since I had already bored the spindle nose 
+              hole, I my oddleg (hermaphrodite) calipers to mark out the circle. 
+              I then eyeballed the right between hole spacing on a finished backplate 
+              using a pair of dividers. Walk the dividers around the bolt circle 
+              on the new backplate. You'll see whether they are too wide or too 
+              narrow--dividers that adjust with a threaded fitting are handy here. 
+              Remember that the circle magnifies the error since you go around 
+              once for each bolt. When you get to where you can walk the dividers 
+              all the way around the circle and end up exactly where you started, 
+              you have the right distance and can now scribe the cross points 
+              to drill. There are also math formulas to calculate the distance, 
+              but this was quick and easy for me.</font></i></p>
+            <p><img src="img/LatheStuff/6JawChuck/PB222736.JPG" width="640" height="816"></p>
+            <p align="center"><b><i>Preparing to Tap with Piloted Tap Wrench (Enco 
+              purchase)...</i></b></p>
+            <p><i><font face="Arial, Helvetica, sans-serif">Drill the holes for 
+              the threaded spacers. Tap them. Assemble the chuck and backplate 
+              and trial fit to the spindle. The last step for me was to counterbore 
+              the 6 chuck bolt holes so that the bolt heads and nuts would be 
+              recessed. </font></i></p>
+          </td>
+        </tr>
+      </table>
+      <hr>
+      <p align="center"><img src="img/LatheStuff/6JawChuck/PB242758.JPG" width="640" height="402"></p>
+      <p align="center"><b><i>The chuck installed together with the first trial 
+        piece turned. Runout adjust easily to 0.001&quot; with Set-Tru!</i></b></p>
+      <p align="center"><i><b><img src="img/LatheStuff/6JawChuck/PB242759.JPG" width="640" height="559"></b></i></p>
+      <p align="center"><i><b>This is an experienced chuck--some dings!</b></i></p>
+      <p align="center"><i><b><img src="img/LatheStuff/6JawChuck/PB242761.JPG" width="640" height="650"></b></i></p>
+      <p align="center"><i><b>It is a beauty though, no?</b></i></p>
+      <p align="left"><i><font face="Arial, Helvetica, sans-serif">When all was 
+        said and done, was it worth it? I have to say it was a worthwhile project 
+        for me. I got the chuck on eBay for $240, which is much less than the 
+        new cost for the chuck. In addition, it was good experience to make the 
+        backplate. I have to say that the feel of this chuck is far superior to 
+        the Asian chucks that came with the machine. The key is silky smooth, 
+        with virtually no trace of backlash.</font></i></p>
+      <p align="left"></p>
+      <table width="100%" border="0">
+        <tr> 
+          <td width="7%"><img src="img/GearsIconSm.jpg" width="53" height="46"></td>
+          <td width="93%"><i><font face="Arial, Helvetica, sans-serif"><b><font size="+1">Problems 
+            I Encountered, Things I Learned...</font></b></font></i></td>
+        </tr>
+      </table>
+      <p><i><font face="Arial, Helvetica, sans-serif">- My method of using a bolt 
+        to hold the initial blank until I could machine a spigot a chuck could 
+        hold worked very poorly. There was tremendous chatter involved. I've seen 
+        someone else center drill the bolt and bring a live center in to the equation. 
+        That, and a much large bolt seem like must haves for the next go-round 
+        with this. OTOH, I got through it without harming the lathe or myself 
+        so maybe I shouldn't sweat it!</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- It's hard to lay out precision 
+        bolt circles by hand. The circle for the 3 spacers was off on 1 spacer 
+        by 5 thousandths. It was that much closer to center than the other 2 holes. 
+        I fixed it by turning down that spacer to a slightly smaller diameter. 
+        In future I'd like to find a way to lay these out more precisely.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- I drilled my 6 holes for 
+        the chuck without first facing the ends of the cast iron blank. Those 
+        ends were not square to the sides so neither were the holes. I made them 
+        slightly oversized and it all worked out fine. They're just clearance 
+        holes. I would have been in a world of hurt had precision mattered here.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- Cast iron is pretty tough 
+        to machine! I would be tempted to use 12L14 the next time. Looks like 
+        I will get the chance as I need to make backplates for 2 more chucks.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- I am suspicious of the 
+        accuracy of my cheap Asian drill press. Eventually, I will own a mill 
+        which will be much more accurate. Also, I drilled using a big vise, but 
+        a clamping kit would have been helpful as well.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- When I first inserted 
+        the spacers in their holes, it looked like the threads were cocked. This 
+        was disappointing since I had used a piloted tap wrench to get them straight 
+        in the first place. It turned out that the threaded inserts were just 
+        too long. I used a tapered tap to thread the holes and the tapered end 
+        needs a lot of hole depth to start making threads. I solved the problem 
+        by facing some of the threads off on the lathe, doing so with a nut in 
+        place so that removing the nut would straighten out any damage I did to 
+        the threads. A better answer would be to use a bottoming tap and thread 
+        the hole all the way to the bottom.</font></i></p>
+      <p><i><font face="Arial, Helvetica, sans-serif">- Initially, one of the 
+        three nuts would not go through the spindle hole--I had to remove the 
+        nut mount the chuck, and put the nut on from the other side. I had assumed 
+        this was due to some of the other precision problems, but this turned 
+        out not to be the case. I tried to put a wrench on it, and while this 
+        nut was identical to the others thread-wise, it required a significantly 
+        larger nut! My brother-in-law says that my mistake was in assume to quickly 
+        I was the one with the precision problem rather than the nut factory. 
+        Go figure!</font></i></p>
+      <p><b><i><font size="+2"><a href="MTLatheHome.htm">Back to Lathe Central...</a></font></i></b></p>
+      <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>
