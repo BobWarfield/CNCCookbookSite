@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<meta NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW">
+<title>Windows Help Designer Menu Frame</title>
+<script language="JavaScript">
+<!--
+
+if (parent.theBrowser.hasDHTML) {
+	document.writeln('<STYLE TYPE="text/css">');
+	document.writeln('<!' + '--');
+	document.writeln('#menuTop {position:absolute; left:0px;}');
+	document.writeln('#menuBottom {position:absolute; left:0px; visibility:hidden;}');
+	document.writeln('#statusMsgDiv {position:absolute; left:0px; visibility:hidden;}');
+	document.writeln('#limitMarker {position:absolute; left:0px; visibility:hidden;}');
+	document.writeln('--' + '>');
+	document.writeln('</STYLE>');
+}
+//-->
+</script>
+
+<style TYPE="text/css">
+<!--
+	.menuItem {position:absolute; left:0px; visibility:hidden;}
+	.node { color: black }
+	.node A:link { color: black }
+	.node A:visited { color: black }
+	.node A:active { color: red }
+	.leaf { color: black }
+	.leaf A:link { color: black }
+	.leaf A:visited { color: black }
+	.leaf A:active { color: red }
+-->
+</style>
+<script language="JavaScript">
+<!--
+if (parent.theMenu) { parent.theMenu.amBusy = true; }
+var aboveMenu = null;
+var belowMenu = null;
+var statusMsg = null;
+var scrollLimit = null;
+var menuStart = 0;
+
+function getDHTMLObj(objName) {
+	return eval('document' + parent.theBrowser.DHTMLRange + '.' + objName + parent.theBrowser.DHTMLStyleObj);
+}
+function getDHTMLObjHeight(objName) {
+	return eval('document' + parent.theBrowser.DHTMLRange + '.' + objName + parent.theBrowser.DHTMLDivHeight);
+}
+function getDHTMLObjTop(theObj) {return (parent.theBrowser.code == "MSIE") ? theObj.pixelTop + 0 : theObj.top;}
+function setMenuHeight(theHeight) {
+	if (belowMenu != null) {
+		belowMenu.top = theHeight;
+	} else {
+		setTimeout('setMenuHeight(' + theHeight + ');', 100);
+	}
+}
+function setTop() {
+	if (parent.theBrowser.hasDHTML) {
+		document.writeln('<DIV ID="statusMsgDiv">');
+		document.writeln('<CENTER>Building Menu...</CENTER>');
+		document.writeln('</DIV>');
+		aboveMenu = getDHTMLObj("menuTop");
+		menuStart = getDHTMLObjHeight("menuTop");
+		statusMsg = getDHTMLObj("statusMsgDiv");
+		statusMsg.top = menuStart + 20;
+		statusMsg.visibility = 'visible';
+	}
+}
+function setBottom() {
+	if (parent.theMenu) {
+		if (parent.theBrowser.hasDHTML) {
+			belowMenu = getDHTMLObj('menuBottom');
+			if (belowMenu == null) {
+				parent.theBrowser.hasDHTML = false;
+				setTimeout("parent.theMenu.reload(false);", 100);
+			} else {
+				if (parent.theBrowser.code == 'NS') {
+					scrollLimit = getDHTMLObj('limitMarker');
+					scrollLimit.top = parent.theMenu.maxHeight + menuStart + getDHTMLObjHeight('menuBottom');
+				}
+				statusMsg.visibility = 'hidden';
+				parent.theMenu.refreshDHTML();
+				belowMenu.visibility = 'visible';
+			}
+		}
+		parent.theMenu.amBusy = false;
+	}
+}
+
+if (self.name != 'menu') {
+	replace('index.htm');
+}
+//-->
+</script>
+</head>
+
+<body LINK="#000000">
+<div ID="menuTop"><!-- Place anything you want to appear before the menu between these DIV tags. -->
+
+
+<table border="0" bgcolor="#C0C0C0" width="100%">
+  <tr>
+    <td width="100%"><font SIZE="3" face="ARIAL, MS SANS SERIF, SANS-SERIF"><b>Contents</b></font></td>
+  </tr>
+</table>
+</div><script LANGUAGE="JavaScript">
+<!--
+setTop();
+//-->
+</script>
+<!-- Set up any font's, colours, etc. that should apply to the menu here -->
+<font
+FACE="GENEVA, ARIAL, MS SANS SERIF, SANS-SERIF" SIZE="2"><script LANGUAGE="JavaScript">
+<!--
+if (parent.theMenu) {
+	document.write(parent.theMenu.draw());
+}
+//-->
+</script>
+<!-- Close any tags you set up for the menu here -->
+</font><div
+ID="menuBottom"><!-- Place anything you want to appear after the menu between these DIV tags. -->
+</div><div ID="limitMarker"><!-- This is automatically positioned at lowest possible point of the menu so that
+Netscape can get its scroll bars right. Do not modify this.-->
+
+
+<p>&nbsp; </p>
+</div><script LANGUAGE="JavaScript">
+<!--
+setBottom();
+//-->
+</script>
+
+</body>
+</html>
