@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCGuidedTour.dwt" --><!-- DW6 -->
+
+<head>
+
+<!-- #BeginEditable "doctitle" --> 
+
+<title>Fine Tuning Feeds and Speeds: Materials Database</title>
+
+<style type="text/css">
+.BodyText1 {	font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<!-- #EndEditable -->
+
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="http://www.cnccookbook.com/css/stylesNoSidebar.css" rel="stylesheet" type="text/css" />
+<link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+<script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.form.js"></script>
+<script type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script>
+
+<style type="text/css" >
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 140%}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.Tagline {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #0;
+	font-size: 140%;
+	vertical-align: middle;
+}
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+<script type="text/javascript" src="http://www.cnccookbook.com/js/cncheader.js"></script>
+
+<!-- SumoMe Listbuilder Email Exit Intent -->
+<script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+<!-- Place this tag in the <head> of your document -->
+<link href="https://plus.google.com/106834255444857094594" rel="author" />
+
+<!-- Google -->
+<meta name="google-site-verification" content="_7vbS5Ds4mm66MBoWsSBSZCLEM_WzxbIESh_gjqqLpQ" />
+
+</head>
+
+
+
+<body id="landing" bgcolor="#FFFFFF">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">
+  multitouch();
+</script>
+
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="../../images/LogoBitmap30High.jpg" alt="CNCCookbook: Software and Information for Macihnists" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="../../CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="../../CNCSiteSearch.html"><img src="../../img/Art/Search32.jpg" width="32" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+  <div id="centerContainer">
+  <!-- #BeginEditable "Body" -->
+  
+  <p align="center" class="LogoCookbookStyle">Materials Database</p>
+  <p><font face="Arial, Helvetica, sans-serif">G-Wizard divides the materials you can cut into families.  Within those families may be many specific materials consisting of the material itself and optionally, the condition of the material.  For example, cutting a particular alloy of steel is different when the steel is annealed versus hardened.   The job of the Materials Database is to keep all of those specific materials below the level of families straight, and to make it easy for you to find materials.</font></p>
+  <p class="BodyText">To access the Materials Database, click the &quot;More&quot; button just to the right of the Material menu:</p>
+  <p align="center" class="BodyText"><img src="../../img/Slides/FineTuning/MoreButton.jpg" width="700" height="163" alt=""/></p>
+  <p align="center" class="BodyText">The &quot;More&quot; button accesses the Materials Database and is located just right of the Material menu...</p>
+  <p align="left" class="BodyText"><span class="BodyText1">Once you click the &quot;More&quot; button, the Material Browser pops up showing you all of the different materials that are available:</span></p>
+  <p align="center" class="BodyText"><img src="../../img/Slides/FineTuning/MaterialDB.jpg" width="700" height="508" alt=""/></p>
+  <p align="center" class="BodyText">Once you click the &quot;More&quot; button, the Material Browser pops up showing you all of the different materials that are available...</p>
+  <p class="BodyText">Once it comes up, you can navigate to your material in a variety of ways.</p>
+  <p class="BlogTitle">Scroll Through the List by Family</p>
+  <p class="BodyText">When the Material DB first comes up, you can scroll through the list to find materials in the currently selected family. That's the family shown in the &quot;Family&quot; drop down. It's set to whatever was on the Material Menu, but you can change it at will.  When you do so, you'll get the list of materials that goes with whatever family you choose.</p>
+  <p class="BlogTitle">Search for a Material</p>
+  <p class="BodyText">Don't know what family your material belongs with?  No problem.  Jus tuse the Search box to find it.   Type in the name of the material and click the &quot;Search&quot; button.  The family containing that material will be selected and you can scroll to find your specific material.</p>
+  <p class="BlogTitle">Use the History List to Choose Materials You've Recently Used</p>
+  <p class="BodyText">As you use the Material DB, your most recent choices are kept on the History list.  You can use it to quickly find the materials you've accessed the most often.</p>
+  <p class="BlogTitle">What's the Hardness for?</p>
+  <p class="BodyText">If you need a particular alloy or condition that you know should be in a Material Family, but it's not there, you can enter the Brinell Hardness in the hardness box to adjust the Feeds and Speeds for your material.</p>
+  <p class="BlogTitle">What if My Material Isn't In the List?</p>
+  <p class="BodyText">We will add materials on request, provided we can find enough data on that material.  You can help facilitate the process by sending us links to feeds and speeds information on the material. Generally, it's pretty straightforward to add a new material to an existing family, but quite a lot more work to create a whole new family.</p>
+  <p class="BlogTitle">Should I Always Use the Materials DB?</p>
+  <p class="BodyText">The Materials Database is provided to fine tune Feeds and Speeds for difficult materials and to give a little extra boost for materials that are easier than the average in a family.  If you know you're working with a particularly tough material, it can be very helpful for Tool Life to fine tune with the Materials Database.  For softer and easier materials, it's mostly a matter of whether you're trying to remove material at the fastest possible pace.</p>
+  <p class="BodyText">&nbsp;</p>
+  <table width="100%" border="0">
+    <tbody>
+    <tr>
+      <td width="100%"><p class="BlogTitle"><a href="GWFineTuningMenu.html">Fine Tuning Menu</a></p></td>
+      <td width="100%" align="center"><p><a href="../FineTuning/GWFineTuningMenu.html" class="BlogTitle">Tour Menu</a></p></td>
+      <td width="80px" align="right">
+          <a class="flat-button" style="width:80px" href="GWFineTuningMenu.html">Next</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+    
+  <!-- #EndEditable -->
+  
+
+  </div>
+           
+</body>
+
+<!-- #EndTemplate --></html>
+

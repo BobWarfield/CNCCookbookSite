@@ -1,0 +1,795 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+
+    <!-- #BeginEditable "doctitle" -->
+
+    <title>Untitled Document</title>
+
+    <script>
+        _udn = 'cnccookbook.com'
+    </script>
+    <!-- This is here for Google Experiment code -->
+
+    <!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script type="text/javascript" src="js/jquery.form.js"></script>
+    <script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <script type="text/javascript" src="/js/multitouch_simple.min.js"></script>
+
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+
+        -->
+    </style>
+
+    <script type="text/javascript" src="js/cncheader.js"></script>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('../../Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <script type="text/javascript">
+        multitouch();
+    </script>
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/CCCookbook.htm">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/">QUESTIONX</a>
+                        </li>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="../images/LogoBitmap30High.jpg" alt="CNCCookbook: Software and Information for Macihnists" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="../CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="../CNCSiteSearch.html"><img src="../img/Art/Search32.jpg" width="32" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="268" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+        
+        
+                                        <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a> </strong></p>
+                                                    <p class="BodyText">
+                                                  <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Conversational CNC</a></span></strong> </p>
+                                                    <p class="BodyText"><a href="http://blog.cnccookbook.com/2015/12/30/strengths-weaknesses-16-leading-cam-software-packages/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Strengths &amp; Weaknesses of 16 CAM Packages</strong></a></p>
+                                                    <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/2015/11/29/little-known-factors-make-g-wizard-great-big-small-cnc-machines/http://blog.cnccookbook.com/2015/11/29/little-known-factors-make-g-wizard-great-big-small-cnc-machines/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Small Machine <br>
+                                                    Feeds &amp; Speeds Tips</a></strong></p>
+                                                    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/GWEVidTour.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">GW Editor Video Tour</a></strong></p>
+                                                    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Tool Deflection Bible</a></strong></p>
+                                                    <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/2010/05/25/is-carbide-always-faster/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Is Carbide Always Faster?</a></strong></p>
+                                                    <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/2014/04/23/what-if-porsche-made-cnc-machining-centers/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">What if Porsche Made VMCs?</a></strong></p>
+                                                    <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                    <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Cookbook</a></strong></p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                                <div id=greenbox style="background-color:#000;">
+                                                    <p>&nbsp;</p>
+                                                    <p align="center">
+                                                        <a href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><img src="../GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                                        </a>
+                                                    </p>
+                                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                                      Made Easy.
+                                                    </p>
+                                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                                        <a href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                                    </div>
+                                                </div>
+                                                <!-- Subscribe -->
+                                                <div id="mc_embed_signup">
+                                                    <p align="center" class="BodyText"><img src="../img/Art/FreeGiantTipList.jpg" width="237" height="99" alt=""/></p>
+                                                    <p align="center" class="BodyText"><strong>Get over 200 tips, techniques and strategies to:</strong></p>
+                                                    <p align="center" class="BodyText"><strong>Reduce Cycle Times</strong></p>
+                                                    <p align="center" class="BodyText"><strong>Save Setup Time</strong></p>
+                                                    <p align="center" class="BodyText"><strong>Increase Tool Life</strong></p>
+                                                    <p align="center" class="BodyText"><strong>Improve Surface Finish</strong></p>
+                                                    <p align="center" class="BodyText"><strong>And More!</strong></p>
+                                                    <form class="validate" id="mc-embedded-subscribe-form" action="http://cnccookbook.us5.list-manage.com/subscribe/post?u=42d3f2f2ca54d9f70dee76909&amp;id=df8004b230" method="post" name="mc-embedded-subscribe-form" target="_blank">
+                                                        <p class="BodyText"><strong>Enter your info below to get your FREE Tips:</strong>
+                                                        </p>
+                                                        <div class="mc-field-group" align="center">
+                                                          <div class="mc-field-group"><label for="mce-FNAME">First Name </label>
+                                                                <br>
+                                                                <input id="mce-FNAME" class="" name="FNAME" type="text" value="" placeholder="First Name"/></div>
+                                                              <label for="mce-EMAIL">Email<br>
+                                                              </label>
+                                                              <input class="required email" id="mce-EMAIL" type="email" name="EMAIL" value="" placeholder="Email"/>
+                                                              <br>
+                                                              <br>
+                                                        </div>
+                                                        <div class="clear" id="mce-responses"></div>
+                                                        <div id="chimpSection">
+                                                            <div class="clear" align="center">
+                                                                <input class="button" id="mc-embedded-subscribe" type="submit" name="subscribe" value=" Get Free Tips " />
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    // <![CDATA[
+                                                    var fnames = new Array();
+                                                    var ftypes = new Array();
+                                                    fnames[0] = 'EMAIL';
+                                                    ftypes[0] = 'email';
+                                                    fnames[1] = 'FNAME';
+                                                    ftypes[1] = 'text';
+                                                    fnames[2] = 'LNAME';
+                                                    ftypes[2] = 'text';
+                                                    fnames[3] = 'MMERGE3';
+                                                    ftypes[3] = 'text';
+                                                    fnames[4] = 'MMERGE4';
+                                                    ftypes[4] = 'text';
+                                                    fnames[5] = 'MMERGE5';
+                                                    ftypes[5] = 'text';
+                                                    fnames[6] = 'MMERGE6';
+                                                    ftypes[6] = 'text';
+                                                    fnames[7] = 'MMERGE7';
+                                                    ftypes[7] = 'text';
+                                                    fnames[8] = 'MMERGE8';
+                                                    ftypes[8] = 'text';
+                                                    fnames[9] = 'MMERGE9';
+                                                    ftypes[9] = 'text';
+                                                    fnames[10] = 'MMERGE10';
+                                                    ftypes[10] = 'text';
+                                                    fnames[11] = 'MMERGE11';
+                                                    ftypes[11] = 'text';
+                                                    fnames[12] = 'MMERGE12';
+                                                    ftypes[12] = 'text';
+                                                    fnames[13] = 'MMERGE13';
+                                                    ftypes[13] = 'text';
+                                                    fnames[14] = 'MMERGE14';
+                                                    ftypes[14] = 'text';
+                                                    try {  
+                                                        var jqueryLoaded = jQuery;  
+                                                        jqueryLoaded = true;
+                                                    } catch (err) {  
+                                                        var jqueryLoaded = false;
+                                                    }
+                                                    var head = document.getElementsByTagName('head')[0];
+                                                    if (!jqueryLoaded) {  
+                                                        var script = document.createElement('script');  
+                                                        script.type = 'text/javascript';  
+                                                        script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js';  
+                                                        head.appendChild(script);  
+                                                        if (script.readyState & #038;& script.onload!= = null) {    
+                                                            script.onreadystatechange = function() {       
+                                                                if (this.readyState == 'complete') mce_preload_check();    
+                                                            }    
+                                                        }
+                                                    }
+                                                    var err_style = '';
+                                                    try {  
+                                                        err_style = mc_custom_error_style;
+                                                    } catch (e) {  
+                                                        err_style = '#mc_embed_signup input.mce_inline_error{border-color:#6B0505;} #mc_embed_signup div.mce_inline_error{margin: 0 0 1em 0; padding: 5px 10px; background-color:#6B0505; font-weight: bold; z-index: 1; color:#fff;}';
+                                                    }
+                                                    var head = document.getElementsByTagName('head')[0];
+                                                    var style = document.createElement('style');
+                                                    style.type = 'text/css';
+                                                    if (style.styleSheet) { 
+                                                        style.styleSheet.cssText = err_style;
+                                                    } else { 
+                                                        style.appendChild(document.createTextNode(err_style));
+                                                    }
+                                                    head.appendChild(style);
+                                                    setTimeout('mce_preload_check();', 250);
+                                                    var mce_preload_checks = 0;
+
+                                                    function mce_preload_check() {  
+                                                        if (mce_preload_checks > 40) return;  
+                                                        mce_preload_checks++;  
+                                                        try {    
+                                                            var jqueryLoaded = jQuery;  
+                                                        } catch (err) {    
+                                                            setTimeout('mce_preload_check();', 250);    
+                                                            return;  
+                                                        }  
+                                                        var script = document.createElement('script');  
+                                                        script.type = 'text/javascript';  
+                                                        script.src = 'http://downloads.mailchimp.com/js/jquery.form-n-validate.js';  
+                                                        head.appendChild(script);  
+                                                        try {    
+                                                            var validatorLoaded = jQuery("#fake-form").validate({});  
+                                                        } catch (err) {    
+                                                            setTimeout('mce_preload_check();', 250);    
+                                                            return;  
+                                                        }  
+                                                        mce_init_form();
+                                                    }
+
+                                                    function mce_init_form() {  
+                                                    jQuery(document).ready(function($) {   
+                                                            var options = {
+                                                                errorClass: 'mce_inline_error',
+                                                                errorElement: 'div',
+                                                                onkeyup: function() {},
+                                                                onfocusout: function() {},
+                                                                onblur: function() {} 
+                                                            };   
+                                                            var mce_validator = $("#mc-embedded-subscribe-form").validate(options);   
+                                                            $("#mc-embedded-subscribe-form").unbind('submit'); //remove the validator so we can get into beforeSubmit on the ajaxform, which then calls the validator
+                                                               
+                                                            options = {
+                                                                url: 'http://cnccookbook.us5.list-manage.com/subscribe/post-json?u=42d3f2f2ca54d9f70dee76909&#038;id=df8004b230&#038;c=?',
+                                                                type: 'GET',
+                                                                dataType: 'json',
+                                                                contentType: "application/json; charset=utf-8",
+                                                                          beforeSubmit: function() {            
+                                                                    $('#mce_tmp_error_msg').remove();            
+                                                                    $('.datefield', '#mc_embed_signup').each(              function() {                
+                                                                        var txt = 'filled';                
+                                                                        var fields = new Array();                
+                                                                        var i = 0;                
+                                                                        $(':text', this).each(                  function() {                    
+                                                                            fields[i] = this;                    
+                                                                            i++;                  
+                                                                        });                
+                                                                        $(':hidden', this).each(                  function() {                    
+                                                                            var bday = false;                    
+                                                                            if (fields.length == 2) {                      
+                                                                                bday = true;                      
+                                                                                fields[2] = {
+                                                                                    'value': 1970
+                                                                                }; //trick birthdays into having years
+                                                                                                    
+                                                                            }                  
+                                                                            if (fields[0].value == 'MM' & #038;& fields[1].value= = 'DD' & #038;& (fields[2].value= = 'YYYY' || (bday & #038;& fields[2].value= = 1970))) {                  
+                                                                            this.value = '';  
+                                                                        } else if (fields[0].value == '' & #038;& fields[1].value= = '' & #038;& (fields[2].value= = '' || (bday & #038;& fields[2].value= = 1970))) {                  
+                                                                            this.value = '';  
+                                                                        } else {    
+                                                                            if (/\[day\]/.test(fields[0].name)) {                      
+                                                                                this.value = fields[1].value + '/' + fields[0].value + '/' + fields[2].value;        
+                                                                            } else {                      
+                                                                                this.value = fields[0].value + '/' + fields[1].value + '/' + fields[2].value;                    
+                                                                            }                  
+                                                                        }                  
+                                                                    });              
+                                                                });            
+                                                            $('.phonefield-us', '#mc_embed_signup').each(              function() {                
+                                                                var fields = new Array();                
+                                                                var i = 0;                
+                                                                $(':text', this).each(                  function() {                    
+                                                                    fields[i] = this;                    
+                                                                    i++;                  
+                                                                });                
+                                                                $(':hidden', this).each(                  function() {                    
+                                                                    if (fields[0].value.length != 3 || fields[1].value.length != 3 || fields[2].value.length != 4) {                  
+                                                                        this.value = '';  
+                                                                    } else {    
+                                                                        this.value = 'filled';                  
+                                                                    }                  
+                                                                });              
+                                                            });            
+                                                            return mce_validator.form();          
+                                                        },            success: mce_success_cb        
+                                                    };   
+                                                    $('#mc-embedded-subscribe-form').ajaxForm(options);
+
+
+
+
+                                                      
+                                                    });
+                                                    }
+
+                                                    function mce_success_cb(resp) {  
+                                                            $('#mce-success-response').hide();  
+                                                            $('#mce-error-response').hide();  
+                                                            if (resp.result == "success") {    
+                                                                $('#mce-' + resp.result + '-response').show();    
+                                                                $('#mce-' + resp.result + '-response').html(resp.msg);    
+                                                                $('#mc-embedded-subscribe-form').each(function() {      
+                                                                    this.reset();  
+                                                                });  
+                                                            } else {    
+                                                                var index = -1;    
+                                                                var msg;    
+                                                                try {      
+                                                                    var parts = resp.msg.split(' - ', 2);      
+                                                                    if (parts[1] == undefined) {        
+                                                                        msg = resp.msg;      
+                                                                    } else {        
+                                                                        i = parseInt(parts[0]);        
+                                                                        if (i.toString() == parts[0]) {          
+                                                                            index = parts[0];          
+                                                                            msg = parts[1];        
+                                                                        } else {          
+                                                                            index = -1;          
+                                                                            msg = resp.msg;        
+                                                                        }      
+                                                                    }    
+                                                                } catch (e) {      
+                                                                    index = -1;      
+                                                                    msg = resp.msg;    
+                                                                }    
+                                                                try {      
+                                                                    if (index == -1) {        
+                                                                        $('#mce-' + resp.result + '-response').show();        
+                                                                        $('#mce-' + resp.result + '-response').html(msg);            
+                                                                    } else {        
+                                                                        err_id = 'mce_tmp_error_msg';        
+                                                                        html = '
+
+
+
+
+                                                                        < div id = "'+err_id+'"
+                                                                        style = "'+err_style+'" > '+msg+' < /div>
+
+
+
+
+                                                                        ';
+
+
+
+
+                                                                                
+                                                                        var input_id = '#mc_embed_signup';        
+                                                                        var f = $(input_id);        
+                                                                        if (ftypes[index] == 'address') {          
+                                                                            input_id = '#mce-' + fnames[index] + '-addr1';          
+                                                                            f = $(input_id).parent().parent().get(0);        
+                                                                        } else if (ftypes[index] == 'date') {          
+                                                                            input_id = '#mce-' + fnames[index] + '-month';          
+                                                                            f = $(input_id).parent().parent().get(0);        
+                                                                        } else {          
+                                                                            input_id = '#mce-' + fnames[index];          
+                                                                            f = $().parent(input_id).get(0);        
+                                                                        }        
+                                                                        if (f) {          
+                                                                            $(f).append(html);          
+                                                                            $(input_id).focus();        
+                                                                        } else {          
+                                                                            $('#mce-' + resp.result + '-response').show();          
+                                                                            $('#mce-' + resp.result + '-response').html(msg);        
+                                                                        }      
+                                                                    }    
+                                                                } catch (e) {      
+                                                                    $('#mce-' + resp.result + '-response').show();      
+                                                                    $('#mce-' + resp.result + '-response').html(msg);    
+                                                                }  
+                                                            }
+                                                        }
+                                                        // ]]>
+                                                </script>
+                                                <!--End mc_embed_signup-->
+                                                <!-- End Subscribe -->
+                                                </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <!--div align="center" style=" background-color:#dfe8cd">
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCCNCSoftware.html"><img src="../img/Art/CheckSaleGreen.jpg" width="237" height="99" alt="Free CNC Software">
+                                        </a>
+                                    </p>
+                                    <p class="BodyText"><strong>Sale on software to make<br>
+                                    CNC faster and easier for you
+                                    </strong>
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%;">
+                                        <a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebartop" class="flat-button">Tell Me More</a>
+                                    </div>
+                                    <p>&nbsp;</p>
+                                </div-->
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="../img/GWizardE/GWEThumb.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" class="BodyText" -->
+                                <p>&nbsp;</p>
+                                <p><font face="Arial, Helvetica, sans-serif">{Body}</font></p>
+                                <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="285" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="../CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="335" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/techniques/">Techniques</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/beginner/">Beginner</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/cool/">Cool</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/cncprojects/">Projects</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GWizardWeeklyWebinar.html">Webinars</a>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="309" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCookbook.htm">Cookbooks</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td width="338" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCManufacturers.html">Customers</a></p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPartners.html">Partners</a></p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                        <td valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2015, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+
+<!-- #BeginEditable "doctitle" --> 
+
+<title>Untitled Document</title>
+
+<!-- #EndEditable -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="shortcut icon" href="../../Templates/img/CNCFavIcon.ico" />
+ 
+<!-- Borrowed from the Wordpress blog for consistency -->
+<!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+<link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
+<!-- End Borrowed from Wordpress blog. -->
+
+<style type="text/css">
+
+<!--
+
+.BlogDate {  font-family: Arial, Helvetica, sans-serif; color: #999999}
+
+.BlogTitle {  font-family: Arial, Helvetica, sans-serif; color: #339933; font-size: 14pt}
+
+.PageNav {  font-family: Arial, Helvetica, sans-serif; color: #FFFFFF}
+.Tagline {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #0;
+	font-size: medium;
+	vertical-align: middle;
+}
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#sddm
+{	margin: 0;
+	padding: 0;
+	z-index: 30}
+
+#sddm li
+{	margin: 0;
+	padding: 0;
+	list-style: none;
+	float: left;
+	font: bold 14px arial}
+
+#sddm li a
+{	display: block;
+	margin: 0 1px 0 0;
+	padding: 0; // 4px 10px
+	width: 60px;
+	background: #5970B2;
+	color: #FFF;
+	text-align: center;
+	text-decoration: none}
+
+#sddm li a:hover
+{	background: #49A3FF}
+
+#sddm div
+{	position: absolute;
+	visibility: hidden;
+	margin: 0;
+	padding: 0;
+	background: #000000;
+	border: 1px solid #000000
+}
+
+#sddm div a
+{	position: relative;
+	display: block;
+	margin: 0;
+	padding: 5px 10px;
+	width: auto;
+	white-space: nowrap;
+	text-align: left;
+	text-decoration: none;
+	background: #000000;
+	color: #999;
+	font: 17px arial;
+	top: 70px;
+	left: 120px;
+}
+
+#sddm div a:hover
+{	background: #e0e0e0;
+	color: #000000
+}
+	
+.LogoCNCStyle {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: xx-large;
+	color:#ffa304;
+}
+.LogoCookbookStyle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-large;
+	color: #339933;
+	font-weight: bold;
+}
+.NavChoice {
+	background-color: #000;
+	font-size:17px;	
+	color:#999;
+	line-height:120%;
+	text-decoration:none;
+	padding-top: 18px;
+
+	display:block;
+	height:49px;
+	/* color:#ccc; */
+	background:url(images/bk_mainmenu.png) 0 -78px no-repeat;
+}
+.NavChoice A:link {
+	color:#999;
+	text-decoration:none;
+}
+.NavChoice A:active {
+	color:#ffa304;
+	text-decoration:none;
+}
+.NavChoice A:visited {
+	color:#999;
+	text-decoration:none;
+}
+.NavChoice A:hover {
+	color:#339933;
+	text-decoration:none;
+	background:url(img/bk_mainmenu.png) 0 0 repeat-x;
+}
+.GutterVertLineImg {
+	background-image:"img/bk_vertline.jpg"
+	background-repeat-x: no-repeat;
+	background-repeat-y: repeat;
+}
+.LeftNav {
+}
+
+#mainMenu {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color:#000
+	position:absolute;
+	left:-18px;
+	top:0;
+}
+
+#mainMenu ul li{
+	float:left;
+}
+
+#mainMenu ul li a {
+	display:block;
+	height:49px;
+	color:#ccc;
+	padding:36px 18px 0;
+	font-size:17px;
+	background:url(images/bk_mainmenu.png) 0 -78px no-repeat;
+}
+
+#mainMenu ul li a span {
+	font-size:10px;	
+	color:#999;
+	line-height:120%;
+}
+
+#mainMenu ul li a:hover {
+	text-decoration:none;
+	background:url(images/bk_mainmenu.png) 0 0 repeat-x;
+	color:#339933;
+}
+
+
+#mainMenu ul li ul li a:hover{
+	background:#132325;
+}
+-->
+
+</style>
+
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+// Javascript for the software menu popup...
+
+var timeout	= 500;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose;
+//-->
+</script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('../../Templates/SoftwareDn.jpg')">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr></tr>
+<tr>
+  <td height="68" colspan="4" valign="middle" bordercolor="0" class="Tagline">
+  
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr height="48">
+	<td height="78" bgcolor="#000000"> &nbsp;
+        <!-- BEGIN MAIN MENU -->
+        <div id="mainMenu" class="ddsmoothmenu"><ul id="menu-mainmenu" class="menu">
+            <li id="menu-item-430" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-430"><a href="http://www.cnccookbook.com">Home</a></li>
+            <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://www.cnccookbook.com/CCCNCBlog.htm">Blog</a></li>
+            <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCGWizard.html">Software</a></li>
+            <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Cookbook</a></li>
+            <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCProjects.htm">Projects</a></li>
+            <li id="menu-item-42" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-42"><a href="http://www.cnccookbook.com/CCHallOfFame.html">Workshop</a></li>
+            <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCVideosHome.htm">Videos</a></li>
+            <li id="menu-item-44" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-44"><a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></li>
+            <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></li>
+      </ul></div>            
+        <!-- END MAIN MENU -->
+    </td>
+    </tr>
+  </table>
+  
+  </td>
+</tr>
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="68" colspan="4" valign="middle" bordercolor="0" class="Tagline">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td colspan="10" align="left" bgcolor="#f0f0f0"><p><span class="LogoCNCStyle">CNC</span><span class="LogoCookbookStyle">Cookbook</span> &nbsp;Software and Information for Machinists </p>
+        <div align="right" class="Tagline"></div></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+
+<tr class="LeftNav">
+  <td width="146" height="1624" rowspan="2" align="center" valign="top" bgcolor="#f0f0f0"><table width="65%"  border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><div align="center">
+        <p><a href="http://www.cnccookbook.com/CCGWizard.html"><img src="img/Ads/GWAd05152011.gif" width="120" height="90" alt="G-Wizard Machinist's Calculator" longdesc="http://www.cnccookbook.com/CCGWizard.html"></a></p>
+        <p><a href="../CCCNCMillFeedsSpeeds.htm"> <img src="img/Ads/FeedsSpeedsAd.jpg" width="120" height="69" alt="Feeds and Speeds Cookbook"></a></p>
+      </div></td>
+    </tr>
+  </table>
+    <p>
+      <!-- Place this tag where you want the +1 button to render -->
+        <g:plusone></g:plusone>
+    </p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="+1" color="#66CC00">G-Wizard 
+      User Guide</font></b></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalculator.htm">Calculator</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcFeedsSpeeds.htm">Feeds 
+      and Speeds</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCutOptimizer.html">Cut Optimizer</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="../cnccookbook/GWCalcMiniCalcs.htm">Mini-Calcs</a></b></font></p>
+    <p align="center" class="BodyText"><strong><a href="GWCalcCutKB.html">Cut KB</a></strong></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcGeometry.htm">Geometry</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcThreads.htm">Threads</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcQuickRef.htm">Quick 
+      Reference</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWCalcSetup.htm">Setup</a></b></font></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWTips.html">Tips and Goodies</a></b></font></p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="GWTrouble.htm">Troubleshooting</a></font></b></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="GWCustTools.html">Download Tool Data</a></font></b></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><a href="http://cnccookbook.proboards.com/index.cgi" class="BodyText"><strong>User's Club</strong></a></p>
+    <p align="center"><a href="CCGWizardChangeLog.htm"><font face="Arial, Helvetica, sans-serif"><b>G-Wizard 
+      Change Log</b></font></a></p>
+    <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWizard/GWizardInstall1SC.html">G-Wizard 
+      Install</a></b></font></p>
+    <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="CCGWizardE.html">GWizard G-Code Editor</a></font></b></p>
+<p>
+  <!-- Place this tag where you want the +1 button to render -->
+<p>
+  <g:plusone></g:plusone>
+  </p>
+    <!-- AddThis Button BEGIN -->
+    <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+    <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=cnccookbook"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=cnccookbook"></script>
+    <!-- AddThis Button END -->
+</p>
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    gaTrack: true,
+    gaId: 'UA-1060932-2'
+  }, 'google_translate_element');
+}
+  </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</p>
+</td>
+</tr>
+<tr>
+  <td width="10" bgcolor="#f0f0f0" ></td>
+  <td width="1200" valign="top">
+  <!-- #BeginEditable "Body" class="BodyText" -->
+    <p>&nbsp;</p>
+    <p><font face="Arial, Helvetica, sans-serif">{Body}</font></p>
+  <!-- #EndEditable -->
+  </td>
+</tr>
+<tr>
+  <td width="146" bgcolor="#f0f0f0" >&nbsp;</td>
+  <td width="10" bgcolor="#f0f0f0" >&nbsp;</td>
+  <td bgcolor="#f0f0f0" ><div align="left">
+    <table width="100%" border="0">
+      <tr>
+        <td><strong><a href="../../Templates/CCPrivacy.htm">Privacy</a> <a href="../CCSiteMap.html">Site Map</a> <a href="../CCAbout.htm">About </a><a rel="author" href="https://profiles.google.com/"> <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32"></a></strong></td>
+        <td><div align="right">All material &copy; 2010-2012, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a></div></td>
+      </tr>
+    </table>
+  </div></td>
+</tr>
+</table>
+</body>
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+
+</script>
+
+<script type="text/javascript">
+
+_uacct = "UA-1060932-2";
+
+urchinTracker();
+
+</script>
+
+</html>
+
