@@ -1,0 +1,926 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- #BeginTemplate "/Templates/CNCNavPage.dwt" --><!-- DW6 -->
+
+<head>
+
+    <!-- #BeginEditable "doctitle" --> 
+<title>G-Wizard: Troubleshooting</title>
+
+<meta name="description" content="Help downloading and installing the G-Wizard Feeds and Speeds Calculator and G-Wizard G-Code Editor / Simulator.">
+
+<style type="text/css">
+<!--
+.BodyText {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText {	font-family: Arial, Helvetica, sans-serif;
+}
+-->
+</style>
+<style type="text/css">
+.BodyText {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText {font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<style type="text/css">
+.BodyText {	font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText {            font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {font-family: Arial, Helvetica, sans-serif;
+}
+.BodyText1 {font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<!-- #EndEditable -->
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <link rel="shortcut icon" href="http://www.cnccookbook.com/img/CNCFavIcon.ico" />
+
+    <!-- Borrowed from the Wordpress blog for consistency -->
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="http://s3690.at2.pressdns.com/wp-content/themes/cnccookbookv1/style.css" /> -->
+    <link href="http://www.cnccookbook.com/css/styles.css" rel="stylesheet" type="text/css" />
+    <!--link href="http://www.cnccookbook.com/css/ddsmoothmenu.css" rel="stylesheet" type="text/css" /-->
+
+    <script async src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" language="JavaScript"></script>
+    <script async type="text/javascript" src="http://www.cnccookbook.com/js/ddsmoothmenu.js"></script>
+
+    <!-- Sticky sidebar javascript -->
+    <script type="text/javascript" src="http://www.cnccookbook.com/js/jquery.sticky.js"></script>
+	  <script>
+        $(window).load(function(){
+          $("#sticker").sticky({ topSpacing: 50 });
+        });
+      </script>
+
+    <!-- End Borrowed from Wordpress blog. -->
+
+    <!--script type="text/javascript" src="http://www.cnccookbook.com/js/multitouch_simple.min.js"></script-->
+
+	<!-- Inlining ddsmoothmenu.cs per Google PageSpeed -->
+    <style type="text/css">
+		#mainMenu.ddsmoothmenu ul{
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		}
+		
+		/*Top level list items*/
+		#mainMenu.ddsmoothmenu ul li{
+		position: relative;
+		display: inline;
+		float: left;
+		}
+		
+		/*Top level menu link items style*/
+		
+		* html #mainMenu.ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		}
+		
+		
+		/*1st sub level menu*/
+		#mainMenu.ddsmoothmenu ul li ul{
+		position: absolute;
+		left: 0;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		background:url(/images/bk_submenu.png) 0 9px no-repeat;
+		width:auto;
+		padding-bottom:3px;
+		/*border-bottom:1px solid #222;*/
+		}
+		
+		/*Sub level menu list items (undo style from Top level List Items)*/
+		#mainMenu.ddsmoothmenu ul li ul li{
+		float: none;
+		display: list-item;
+		background:#091011;
+		padding:0;
+		}
+		
+		
+		/* Sub level menu links style */
+		#mainMenu.ddsmoothmenu ul li ul li a, #mainMenu.ddsmoothmenu ul li ul li a:hover{
+		text-align:left;
+		margin:0;
+		padding:6px 0 6px 8px;
+		/*background:#000;*/
+		line-height:100%;
+		width:168px;
+		height:1%;
+		border-bottom:1px solid #333;
+		text-transform:none;
+		font-size:16px;
+		
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a:hover {
+			color:#339933;	
+		}
+		
+		#mainMenu.ddsmoothmenu ul li ul li a.last, #mainMenu.ddsmoothmenu ul li ul li a.last:hover {
+			border:none;	
+		}
+		
+		/* Holly Hack for IE \*/
+		* html #mainMenu.ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+	</style>    
+    
+    <style type="text/css">
+        .BlogDate {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #999999
+        }
+        .BlogTitle {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #339933;
+            font-size: 14pt
+        }
+        .PageNav {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF
+        }
+        .BodyText {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .WhatDoTheyKnow {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #53950D
+        }
+        .MakeCNCFasterEasier {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 48px;
+            color: #53950D
+        }
+        .YouDont {
+            background-color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            color: #fcd328;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+        #greenbox {
+            background-color: #339933;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 14pt
+        }
+        a.flat-button-orange {
+            clear: both;
+            font-size: 1.2em;
+            margin: 20px 20px;
+            margin-top: 0;
+            display: block;
+            background-color: #fa9c05;
+            color: #000;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-orange:hover {
+            background-color: #d88706;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+        a.flat-button-yellow {
+            clear: both;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 32px;
+            margin: 200px 200px;
+            margin-top: 0;
+            display: block;
+            background-color: #fcd328;
+            color: #A65115;
+            outline: none;
+            padding: 14px 0px;
+            text-align: center;
+            text-decoration: none !important;
+            border-bottom: 4px solid #186092;
+            border-radius: 6px;
+            font-weight: 100;
+            text-shadow: 0 -1px 0 #186092;
+            font-size: 1.3em;
+        }
+        a.flat-button-yellow:hover {
+            background-color: #fcd439;
+            border-bottom: 4px solid #12496f;
+            text-shadow: none;
+        }
+		
+        -->
+    </style>
+
+    <!-- Place this tag in your head or just before your close body tag -->
+    <script async type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
+
+    <script language="JavaScript">
+        <!--
+        function MM_preloadImages() { //v3.0
+
+            var d = document;
+            if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+
+                var i, j = d.MM_p.length,
+                    a = MM_preloadImages.arguments;
+                for (i = 0; i < a.length; i++)
+
+                    if (a[i].indexOf("#") != 0) {
+                    d.MM_p[j] = new Image;
+                    d.MM_p[j++].src = a[i];
+                }
+            }
+
+        }
+
+        // Javascript for the software menu popup...
+
+        var timeout = 500;
+        var closetimer = 0;
+        var ddmenuitem = 0;
+
+        // open hidden layer
+        function mopen(id) {
+                // cancel close timer
+                mcancelclosetime();
+
+                // close old layer
+                if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+                // get new layer and show it
+                ddmenuitem = document.getElementById(id);
+                ddmenuitem.style.visibility = 'visible';
+
+            }
+            // close showed layer
+        function mclose() {
+            if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+        }
+
+        // go close timer
+        function mclosetime() {
+            closetimer = window.setTimeout(mclose, timeout);
+        }
+
+        // cancel close timer
+        function mcancelclosetime() {
+            if (closetimer) {
+                window.clearTimeout(closetimer);
+                closetimer = null;
+            }
+        }
+
+        // close layer when click-out
+        document.onclick = mclose;
+        //-->
+    </script>
+
+    <!-- Place this tag in the <head> of your document -->
+    <link href="https://plus.google.com/106834255444857094594" rel="author" />
+    <style type="text/css">
+    .BodyText1 {            font-family: Arial, Helvetica, sans-serif;
+}
+    </style>
+
+    <!-- SumoMe Listbuilder Email Exit Intent -->
+    <script src="//load.sumome.com/" data-sumo-site-id="b857129b7814fcf0d1bba9c69fdb926fce887afe773d938445cf28022394ec4a" async></script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('file:///D|/My%20WebSites/Templates/SoftwareDn.jpg')">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N4WJTH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4WJTH');</script>
+<!-- End Google Tag Manager -->
+
+    <!--script type="text/javascript">multitouch();</script-->
+
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    	<tr>
+       	  <td  bgcolor="#000000" style="padding-top:5px" colspan="2">
+                <!-- BEGIN MAIN MENU -->
+                <div id="mainMenu" class="ddsmoothmenu">
+                    <ul id="menu-mainmenu" class="menu">
+                        <li id="menu-item-600" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-600"><a href="http://www.cnccookbook.com/CCCNCSoftware.html?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PRODUCTS">&nbsp;&nbsp;PRODUCTS</a>
+                        </li>
+                        <li id="menu-item-45" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-45"><a href="http://www.cnccookbook.com/CCAbout.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=ABOUT">ABOUT</a>
+                        <li id="menu-item-925" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-925"><a href="http://blog.cnccookbook.com/category/blog/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=BLOG">BLOG</a>
+                        </li>
+                      <li id="menu-item-601" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-601"><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=COOKBOOKS">COOKBOOKS</a>
+                        </li>
+                        <li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-43"><a href="http://www.cnccookbook.com/CCDIYCNC.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=DIYCNC">DIY CNC</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://www.cnccookbook.com/CCCNCProjects.htm?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=PROJECTS">PROJECTS</a>
+                        </li>
+                        <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="http://blog.cnccookbook.com/questions/?utm_source=cnccookbook&utm_medium=MainMenu&utm_campaign=QUESTIONX">QUESTIONX</a>
+                        </li>
+                        <img class="no-resizeJoin" src="img/Art/JoinUsTab.jpg" max-width="121" height="30" alt="" data-sumome-listbuilder-id="b063bd6e-9e23-4328-9b01-a2326c9888a3"/>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MAIN MENU -->
+            </td>
+        </tr>
+        <tr>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+                <div style="float: left;">
+                  <a href="http://www.cnccookbook.com/index.htm"><img src="images/CNC-cookbook_logo2b_horiz.jpg" alt="CNCCookbook: Be a Better CNC'er" />
+                  </a>
+                </div>
+          </td>
+          <td align="left"  valign="middle" bordercolor="0" bgcolor="#f0f0f0" class="Tagline">
+          	<ul>
+            	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=FreeTrialsBtn">&nbsp;&nbsp;Free Trials&nbsp;&nbsp;</a></li>
+	          	<li><a class="trialButton green-hollow" href="http://www.cnccookbook.com/CCHelpDesk.html"><strong>&nbsp;&nbsp;HELP&nbsp;&nbsp;</strong></a></li>
+          		<li><a href="http://www.cnccookbook.com/CNCSiteSearch.html"><img class="no-resizeSearch" src="http://www.cnccookbook.com/img/Art/Search32.jpg" width="32" height="26" alt="CNCCookbook Site Search" style="vertical-align:middle;"/></a></li>
+            </ul>
+          </td>
+        </tr>
+    </table>
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <!--tr></tr-->
+        <tr>
+            <td width="146" height="1624" rowspan="2" align="center" valign="top">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                            <td class="sidebar" width="20%" height="100%" background-color:#f0f0f0; rowspan="2" align="center" valign="top" style="padding-right:5px; padding-top:5px">
+                                <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                	<tr>
+										<!-- #BeginEditable "PageNav" -->
+
+      <p align="center">&nbsp;</p>
+      <p align="center"><b><font face="Arial, Helvetica, sans-serif" size="+1" color="#66CC00"><a href="GWCalcFeedsSpeeds.htm">G-Wizard 
+      User Guide</a></font></b></p>
+      <p align="center">&nbsp;</p>
+<p align="center"><a href="http://cnccookbook.proboards.com/index.cgi" class="BodyText"><strong>User's Club</strong></a></p>
+      <p align="center"><a href="CCGWizardChangeLog.htm"><font face="Arial, Helvetica, sans-serif"><b>G-Wizard 
+        Change Log</b></font></a></p>
+      <p align="center"><font face="Arial, Helvetica, sans-serif"><b><a href="GWizard/GWizardInstall1SC.html">G-Wizard 
+        Install</a></b></font></p>
+      <p align="center">&nbsp;</p>
+      <p align="center" class="BodyText"><a href="GWizard/GWEInstall.html"><strong>GWE Install</strong></a></p>
+      <p align="center"><b><font face="Arial, Helvetica, sans-serif"><a href="CCGWizardE.html">GWizard G-Code Editor</a></font></b></p>
+      <p align="center" class="BodyText"><a href="GWEChangeLog.html"><strong>GWE Change Log</strong></a></p>
+      <p align="center"><a href="CCGWizardChangeLog.htm"><font face="Arial, Helvetica, sans-serif"><b></b></font></a></p>
+      <!-- #EndEditable -->
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div align="center">
+                                                <div style="border: 1px solid #339933;">
+                                                  <p align="center" class="BlogTitle"><a href="http://www.cnccookbook.com/CNCSoftwareSale.html"><img src="img/Art/HolidaySale20Off-SideColumn.jpg" width="160" height="67" alt=""/></a></p>
+                                                  <p align="center" class="BlogTitle">[<a href="http://www.cnccookbook.com/CNCSoftwareSale.html">Sale Details</a>]</p>
+                                                  <p align="center" class="BlogTitle"><strong>Featured Articles</strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/MakeCNCParts/HowToMakeCNCParts.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Step-By-Step Guide to Making CNC Parts</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/04/06/cnc-router-cutters-types-and-how-to-use-them/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Router Cutter Types</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/12/23/why-use-a-single-flute-end-mill/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Why Use a Single Flute Endmill?</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2012/05/20/step-and-servo-motor-sizing-software-for-cnc?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>Step and Servo Motor Sizing</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeedsDeflect.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">The Truth About Tool Deflection</a></strong></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://blog.cnccookbook.com/2012/03/27/10-tips-for-cnc-router-aluminum-cutting-success/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">10 TIps for Router Aluminum Cutting</a></strong></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2016/11/08/2-tools-calculating-cut-depth-cut-widthstepover-milling?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>2 Tools for Calculating Cut Depth and Stepover</strong></a></p>
+                                                  <p align="center" class="BodyText"><a href="http://blog.cnccookbook.com/2013/10/21/cnc-machine-hourly-rate-calculator?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured"><strong>CNC Machine Hourly Rate Calculator</strong></a></p>
+                                                  <p align="center" class="BodyText"><strong><a href="http://www.cnccookbook.com/GWCalcMiniCalcs.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Special Purpose CNC Calculators</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds Guide</a></strong></p>
+                                                  <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCCutterFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">CNC Cutter Guide</a></strong></p>
+                                                    <p class="BodyText1"><strong><a href="http://blog.cnccookbook.com/CCCNCMaterialFeedsSpeeds.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Feeds and Speeds By Material</a></strong>                                                    </p>
+                                                    <p class="BodyText">
+                                                        <strong><span class="BodyText"><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">G-Code Tutorial</a>
+                                                    </span></strong></p>
+                                                    <p class="BodyText"><strong><span class="BodyText"><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/?utm_source=cnccookbook&utm_medium=banner&utm_campaign=featured">Sales, and Special Deals</a></span></strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div  id="sticker">
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2"><img src="GWizard/Thumbs/CutOptimizer.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>Feeds and Speeds</strong>:<br>
+                                      Made Easy.
+                                    </p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarmid2" class="flat-button">Try G-Wizard</a>
+                                    </div>
+                                </div>
+                                <!-- Modernized Social Buttons -->
+                                <p>
+                                    <a href="http://twitter.com/CNCCookbook" target="_blank"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/twitterBig.png" alt="" title="twitter" width="62" height="78" class="alignnone size-full wp-image-6249" />
+                                    </a>
+                                    <a href="http://www.facebook.com/CNCCookbook"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/facebookBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                    <a href="http://blog.cnccookbook.com/feed/"><img src="http://blog.cnccookbook.com/wp-content/uploads/2012/07/rssBig.png" alt="" title="facebook" width="62" height="78" class="alignnone size-full wp-image-6248" />
+                                    </a>
+                                </p>
+                                <div id=greenbox style="background-color:#000;">
+                                    <p>&nbsp;</p>
+                                    <p align="center">
+                                        <a href="http://www.cnccookbook.com/CCGWizardE.html"><img src="img/GWizardE/GWEThumb128.jpg" width="128" height="98" alt="" />
+                                        </a>
+                                    </p>
+                                    <p align="center" class="BodyText"><strong>GCode is complicated.<br>
+                                    </strong><strong>
+                                      G-Wizard Editor <br>
+                                      makes it easy.</strong></p>
+                                    <div style="margin: 0 auto; width: 80%; padding-top:20px">
+                                        <p><a href="http://www.cnccookbook.com/CCGWizardE.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=sidebarbottom" class="flat-button">Try It!</a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <g:plusone></g:plusone>
+                                <p>&nbsp;</p>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" valign="top" align="left" bgcolor="#FFFFFF">
+                            <div id="centerContainer">
+                                <!-- #BeginEditable "Body" --> 
+      <p align="center"><font size="+4" color="#339933">G-Wizard Won't Install on My Machine</font></p>
+      <p class="BodyText">Use this page for help troubleshooting the installation of the G-Wizard products.  If you don't find it here, try our <a href="CCHelpDesk.html">Help Desk page</a> for even more help.  If you were able to install but G-Wizard won't log you in, try our <strong><a href="GWTrouble.htm">login help page</a></strong>.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Where is the Installation Page so I can reinstall my software or get the latest update? </p>
+      <p class="BodyText"><a href="GWizard/GWizardInstall1SC.html">G-Wizard Calculator Install Page</a>      </p>
+      <p class="BodyText"><a href="GWizard/GWEInstall.html">G-Wizard Editor Install Page</a></p>
+      <p class="BodyText"><a href="GWizard/GWEstInstall.html">G-Wizard Estimator Install Page</a></p>
+      <p class="BodyText">Note: The install links are also at the top of the Help page. Just click the &quot;Help&quot; button near the top of most CNCCookbook web pages to get there.      </p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">How do I get Help?</p>
+      <p class="BodyText">Try this page first, and if you're still having problems, head on over to the <a href="http://cnccookbook.uservoice.com/">CNCCookbook Customer Portal</a>.</p>
+      <p class="BodyText">The Portal will allow you to search for answers to your problems or to file a trouble ticket and get customer service.      </p>
+      <p class="BodyText">&nbsp;</p>
+      <p align="left" class="BlogTitle">The Installer complains about a problem with the Certificate</p>
+      <p class="BodyText"><span class="BodyText">Periodically, we upgrade the digital certificate in the software that certifies where it came from.  The certificate enhances the security of the software from hacking, so it's important for us to keep it up to date.   When we change it, you'll receive a certificate warning.  When that happens you need to manually uninstall the prior version before install will work.  </span></p>
+      <p class="BodyText"><span class="BodyText">Use the Windows Control Panel or on Macs, move the old version to the trash (you'll find it in the Applications folder).   Once that's done, re-run the install and it should be fine.</span></p>
+      <p class="BodyText">On Macs, sometimes dragging to the trash doesn't quite get all the vestiges removed. You may need to track down a copy of AppDelete to get the rest if you're still having problems.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">It says, &quot;The Installer has been misconfigured&quot;, what now?</p>
+      <p class="BodyText">If you see this message:</p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/InstallerMisconfigured.jpg" width="498" height="270" alt="installer misconfigured"></p>
+      <p align="left" class="BodyText">It means you first have to uninstall the application from your control panel and then try installing again. For Macs, delete the application by moving it to trash from the Applications folder.</p>
+      <p align="left" class="BodyText">It does this because the application was installed previously and the new version has a newer digital security certificate that is incompatible with the older one.  Why they felt it was helpful to present this message for that problem is hard to understand, but that's what it is.</p>
+      <p align="left" class="BodyText">Note:  Sometimes you uninstall the application and you still get this message. Every time this has happened we've traced it to another copy of the application, sometimes on a backup disk that isn't even mounted. So, you will need to be thorough about tracking down the old ones.      </p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Internet Explorer Says, &quot;The signature of this program is corrupt or invalid&quot; when I download your software</p>
+      <p class="BodyText">This is not an issue with our software. It's a problem that is well documented on Microsoft forums which discuss several probable causes ranging from Internet Security software to known issues with specific Internet Explorer security updates. Links to these forums are below and our recommended first step resolutions are:</p>
+      <ul>
+        <li class="BodyText">Try the download again using an alternative browser such as Chrome or Firefox.</li>
+        <li class="BodyText">Update to Internet Explorer 11 which Microsoft&nbsp;reports will&nbsp;resolve this issue.</li>
+      </ul>
+      <p class="BodyText"><a href="https://connect.microsoft.com/IE/feedback/details/800433/kb2870699-breaks-ie-msi-signature-validation">https://connect.microsoft.com/IE/feedback/details/800433/kb2870699-breaks-ie-msi-signature-validation</a></p>
+      <p class="BodyText"><a href="http://answers.microsoft.com/en-us/ie/forum/ie10-windows_7/the-signature-of-this-program-is-corrupt-or/90ff01cd-41f1-426d-96a5-fb1a6852e8e2">http://answers.microsoft.com/en-us/ie/forum/ie10-windows_7/the-signature-of-this-program-is-corrupt-or/90ff01cd-41f1-426d-96a5-fb1a6852e8e2</a></p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Windows SmartScreen Won't Let Me Install or Says Your Software is &quot;Risky&quot;</p>
+      <p class="BodyText">Microsoft is not doing either of us any favors with this one, I'm sorry to say.  It does this a bit if you run IE Explorer latest versions and it gets hardcore about it starting with Windows 8.  Basically, they're doing more than just &quot;protecting&quot; you. <a href="http://stackoverflow.com/questions/15538925/how-can-i-work-around-smartscreen-filter-without-spending-a-boatload-of-money">They're also charging a tax on small developers, who hate it</a>.   Where I come from that's called &quot;protection money&quot; and it isn't legal.  </p>
+      <p class="BodyText">There's two things you need to know about G-Wizard software and Windows SmartScreen.  First, our software is safe and used by thousands of machinists from some of the most reputable manufacturers on the planet.   We're not a secret Bulgarian Phishing Operation left over from the Cold War.    We  use code signing certificates from a reputable source.   All of our releases are always signed.   That doesn't seem to slow Microsoft down from claiming they're not, unfortunately.    There are a lot of reasons this could be, and I notice Microsoft isn't even very consistent--some releases fail and some don't. </p>
+      <p class="BodyText">That brings me to my second point.   If SmartScreen is preventing you from downloading G-Wizard, you can simply disable until you get G-Wizard installed and then turn it back on if you like.  To do so basically involves making CNCCookbook a trusted site.  Here are the directions for how to do that <a href="http://windows.microsoft.com/en-us/windows/smartscreen-filter-faq#1TC=windows-7">copied from Microsoft's own site</a>:</p>
+      <ol>
+        <li>
+          <p class="BodyText">Open Internet Explorer by clicking the&nbsp;Start&nbsp;button&nbsp;<img src="http://res2.windows.microsoft.com/resbox/en/windows%207/main/4f6cbd09-148c-4dd8-b1f2-48f232a2fd33_818.jpg" alt="Picture of the Start button" data-id="pageContainer0_ID0EFBBTBBRA">. In the search box, type&nbsp;Internet Explorer, and then, in the list of results, click&nbsp;Internet Explorer.</p>
+        </li>
+        <li>
+          <p class="BodyText">Navigate to the website that you want to add to the list of trusted sites.</p>
+        </li>
+        <li>
+          <p class="BodyText">Click the&nbsp;Tools&nbsp;button, and then click&nbsp;Internet Options.</p>
+        </li>
+        <li>
+          <p class="BodyText">Click the&nbsp;Security&nbsp;tab, and then click&nbsp;Trusted sites.</p>
+        </li>
+        <li>
+          <p class="BodyText">Click the&nbsp;Sites&nbsp;button.</p>
+          <p class="BodyText">The website address should appear in the&nbsp;Add this website to the zone&nbsp;box.</p>
+        </li>
+        <li>
+          <p class="BodyText">If the site is not a secure site (HTTPS), clear the&nbsp;Require server verification (https:) for all sites in this zone&nbsp;check box.</p>
+        </li>
+        <li>
+          <p class="BodyText">Click&nbsp;Add, and then click&nbsp;Close.</p>
+        </li>
+        <li>
+          <p class="BodyText">On the&nbsp;Security&nbsp;tab, click&nbsp;Custom level.</p>
+        </li>
+        <li>
+          <p class="BodyText">In the&nbsp;Security Settings&nbsp;dialog box, scroll to find&nbsp;Use SmartScreen Filter, and then click&nbsp;Disable.</p>
+        </li>
+        <li>
+          <p class="BodyText">Click&nbsp;OK, and then click&nbsp;OK&nbsp;again.</p>
+        </li>
+      </ol>
+      <p class="BodyText"> Sorry for the inconvenience. 
+        We wish Microsoft had figured out a better way.  Alternatively, download with Google Chrome or Firefox instead of IE.</p>
+      <p class="BodyText">Once downloaded, you may get this message:</p>
+      <p align="center" class="BodyText"><img src="img/CNCCookbook/SmartScreen.png" width="800" height="450" alt=""/></p>
+      <p align="center" class="BodyText">Just click &quot;More Info&quot; and use there is an option to install it anyway...</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">My Antivirus Software is Blocking Access or Says CNCCookbook or G-Wizard is Risky</p>
+      <p class="BodyText">Microsoft (see above about SmartScreen) are not the only ones that assume small business sites are guilty without really checking before they cry &quot;Wolf.&quot; We check our site constantly as well as checking any file we upload.    Everything we run is hosted on Amazon Web Services and they also have a variety of security preventative measures in place.   Rather than just ignore what your software is telling you, you can get a second opinion.   BrightCloud will let you check and individual site for free:</p>
+      <blockquote>
+        <p class="BodyText"><strong><a href="GWCalcFeedsSpeeds.htm">Use BrightCloud to check a site for malware and phishing attacks</a></strong></p>
+      </blockquote>
+      <p class="BodyText">They offer one of the top-rated antivirus products, Webroot, and they're part of a network of companies fighting malware, so they get alerts from their partners if any web site starts acting badly.      So feel free to check www.cnccookbook.com for problems.  It's fast, it's free, and it brings peace of mind.</p>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle">I use Google Chrome and it keeps trying to install AIR but never succeeds in installing G-Wizard</p>
+      <p class="BodyText">There seems to be a problem with the Adobe AIR installer and the most recent Chrome releases. If you get a little box offering to install AIR that never seems to work, you're experiencing that problem. Try Firefox or IE, or bypass the installer by clicking the "Download EXE file directly" link below. Sorry for the inconvenience, hopefully Google and Adobe will have that fixed shortly.      </p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Problems uninstalling AIR or prior versions?</p>
+      <p class="BodyText"><a href="https://support.microsoft.com/en-us/help/17588/fix-problems-that-block-programs-from-being-installed-or-removed">See this Microsoft article</a>. They have an automated tool that may help.</p>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle">The Installer complains about Error #0</p>
+      <p class="BodyText"><a href="https://forums.adobe.com/thread/899180">Microsoft suggests this solution</a>:</p>
+      <blockquote>
+        <p class="BodyText">When running the Fix it, go through the uninstall process and try to remove Adobe AIR from your system.&nbsp; Once finished, download the&nbsp;<a href="http://get.adobe.com/air" rel="nofollow" onclick="s_objectID='http://get.adobe.com/air_2';return this.s_oc?this.s_oc(e):true">latest version of AIR</a>&nbsp;and install again. </p>
+        <p class="BodyText"><a href="http://support.microsoft.com/mats/Program_Install_and_Uninstall/en-us" rel="nofollow" onclick="s_objectID='http://support.microsoft.com/mats/Program_Install_and_Uninstall/en-us_2';return this.s_oc?this.s_oc(e):true">Microsoft Install and Uninstall Fix It</a>: See also the above article about problems unintalling, it is more recent and may work better.</p>
+      </blockquote>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">The Installer gives Error 5100</p>
+      <p class="BodyText">This is Adobe AIR's &quot;catch all&quot; error message. It can be caused by a variety of factors. To fix it, first try the <a href="https://helpx.adobe.com/air/kb/troubleshoot-air-installation-windows.html">Adobe steps to reinstall AIR</a>.  Make sure you're not running out of disk space and that you have sufficient permission to install--typically you need &quot;Administrator.&quot;</p>
+      <p class="BodyText">If that doesn't work, installing with a different browser or clearing the browser cache often works.</p>
+      <p class="BodyText">When all else fails, <a href="http://www.solvusoft.com/en/errors/runtime-errors/adobe-systems-inc/adobe-air/5100-adobe-air-error-5100/">here is a detailed Troubleshooting list for Error 5100</a>.  This covers some of the more hard-core fixes that can happen if there are registry problems or if malware from another source is blocking the install.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">The Installer keeps saying, &quot;No Internet Connection.&quot;</p>
+      <p class="BodyText">Try a different browser. This has usually been reported for IE users. Chrome is better, but Firefox is the most universally successful.  If you don't have another browser installed, follow the instructions right below about bypassing the browser (very next item, &quot;I can't install because I can't even see the Install button!&quot;).</p>
+      <p class="BlogTitle"></p>
+      <p class="BlogTitle">I can't install because I can't even see the Install button!</p>
+      <p class="BodyText">This can be an issue with popup blockers, security software, or bad version/install of Flash or AIR. Bypass the browser to take that variable off the table. To do so, either download the EXE link if it is available (PC only, G-Wizard Calculator only, sorry), or scroll down on this page to where it says, &quot;Downloading the AIR file directly.&quot;</p>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle">I can't install because the installer says I have already 
+        installed!</p>
+      <p><font face="Arial, Helvetica, sans-serif">Take a careful look at the 
+        message. If it says, &quot;The same version of the application you opened 
+        already exists on this system,&quot; and there are &quot;Uninstall&quot; 
+        and &quot;Run Now&quot; buttons, it means you already have the latest 
+        version and don't need to install/re-install.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">If you're sure you need to 
+        install/re-install, you need to uninstall before that will work follow 
+        the directions under, &quot;How do I uninstall G-Wizard?&quot;</font> </p>
+      <p>&nbsp;</p>
+      <p class="BlogTitle">It says there is another G-Wizard install already in progress!</p>
+      <p class="BodyText">Sometimes AIR gets confused. You'll have to bring up the Windows Control Panel and uninstall G-Wizard.  Chances are if you see this message you'll even see G-Wizard installed twice. Be sure to zap both installations.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">I Purchased G-Wizard, but you didn't send me a license key.  How do I activate my purchase?</p>
+      <p class="BodyText">There is no purchase activation required and no license key is needed.   G-Wizard subscriptions are automatically activated by the server after you make your purchase. Authorization can take a few hours.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">How do I uninstall G-Wizard?</p>
+      <p><font face="Arial, Helvetica, sans-serif">You can either use the Control 
+        Panel in Windows to Add/Remove Software, or you can simply delete the 
+        G-Wizard directory from Program Files.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Alternatively, if you run the 
+        Installer on the Install Page (<a href="GWizard/GWizardInstall1SC.html">Calculator Install</a>, <a href="GWizard/GWEInstall.html">Editor Install</a>), 
+        and you already have the latets version, the Installer will tell you, 
+        &quot;The same version of the application you opened already exists on 
+        this system.&quot; It gives you the option to either &quot;Uninstall&quot; 
+        or &quot;Run Now&quot;. Choose &quot;Uninstall&quot;.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">G-Wizard keeps its configuration 
+        information in separate files. You can delete them, or keep them if you're 
+        installing a new version and what it to pick up your old config information. 
+        They are located in:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">C:\Documents and Settings\&lt;YourNameOnTheComputer, 
+        e.g. &quot;BobWarfield&quot;&gt;\Application Data</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Look for the GWizard directories. 
+        There may be more than one if you've ever had multiple versions installed 
+        at the same time, but this should be unlikely. The files are updated every 
+        time you load G-Wizard, so if you're in doubt about which one it is, load 
+        G-Wizard and go see which one has the latest time stamp.</font></p>
+      <p>&nbsp;</p>
+      <p class="BlogTitle">Why does G-Wizard tell me I am unauthorized when I 
+        logoff?</p>
+      <p><font face="Arial, Helvetica, sans-serif">G-Wiz doesn't mean anything 
+        by it. When you logoff, it simply means G-Wiz has quit remembering your 
+        logon (email) credentials. When you login the next time, you're right 
+        back to being authorized, assuming you should be. The easiest thing to 
+        do is just never to logoff. G-Wizard will remember your credentials from 
+        one session to the next.</font></p>
+      <p>&nbsp;</p>
+      <p class="BlogTitle">I get a message, &quot;AIR proxy swf won't load&quot;</p>
+      <p class="BodyText">This is telling you that either your Flash player or AIR are not the latest versions. Be sure to update them.  I like to keep auto-update on because these change pretty frequently.   Often the changes involve security, so it's better to always be up to date.  Here is the <a href="http://www.adobe.com/products/flashplayer/productinfo/instructions/">Flash Player download page</a>.</p>
+      <p class="BodyText">Another cause is that  your firewall may be blocking some access that AIR needs to install.     Turn it down a bit until after you've installed and then try your old settings again.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">I get a message, &quot;the installer file is damaged&quot;</p>
+      <p class="BodyText">This is telling you that the install program that runs in your browser has hit some unknown problem.   Isn't it great that Adobe chooses to deflect that onto the application creator by saying the file is damaged?  While that may be the problem, it usually isn't.        The install failure can come from a lot of sources having to do with which browser you run, which version of the browser, the exact settings of your browser, or your firewall and antivirus software and settings.   Figuring out exactly where all of that went wrong is a pain, so the easier answer is often just to sidestep it entirely and download the AIR file directly as described below under &quot;When all else fails...&quot;</p>
+      <p class="BodyText">Ironically, Adobe even gets this problem with their own software.  You can follow some of  recommendations of Adobe and other software vendors for how to fix it:</p>
+      <p class="BodyText">- When help fails for this reason on Creative Suite, here is the <a href="http://kb2.adobe.com/cps/842/cpsid_84215.html">answer</a>.  Boils down to uninstall Help, get the latest Flash/AIR, but there is some magic in deleting a directory entry.</p>
+      <p class="BodyText">- <a href="http://help.sparkbooth.com/kb/setup/cannot-installed-because-installer-file-is-damaged">Sparkbooth says</a> it is a permissions or access issue, and recommend downloading the AIR file directly as I have suggested.</p>
+      <p class="BodyText">- <a href="http://community.balsamiq.com/balsamiq/topics/new_solution_for_air_file_is_damaged_issue_on_win_xp?from_gsfn=true">Balsamiq</a> has the same advice to directly download the AIR file.</p>
+      <p class="BodyText">As I say, downloading the AIR file cuts through a lot of BS. Follow the directions below--no need to reinstall AIR and all that, just scroll down to where it tells how to download the file.</p>
+      <p class="BodyText"><strong>Special Note for Mac Users</strong>: If you have G-Wizard running, but get this problem trying to upgrade, uninstall your current G-Wizard first.</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">I Need to Install a New Adobe AIR But I Can't Uninstall the Older Version</p>
+      <p class="BodyText">This annoying problem has come up a couple of times. Here's are the things that have worked to get folks unstuck:</p>
+      <p class="BodyText">-  This guy couldn't uninstall or install, but found a trick:<a href="http://blog.underplot.com/blog/10/"> http://blog.underplot.com/blog/10/</a></p>
+      <p class="BodyText">-  This thread tried that guy's same trick, but when it failed ran the Windows Install Clean-up: <a href="http://forums.adobe.com/thread/427487">http://forums.adobe.com/thread/427487 </a></p>
+      <p class="BodyText">-  Same advice here plus directions for how to capture the installer log: <a href="http://forums.adobe.com/message/3294423">http://forums.adobe.com/message/3294423</a></p>
+      <p class="BodyText">- After trying the above three things with no success, one customer rebooted and suddenly all was well. There's a reason Customer Service peeps like to ask you to reboot a lot!</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Is My Firewall Preventing G-Wizard From Running?</p>
+      <p class="BodyText">Maybe so.  A good sign of this is G-Wizard asking to connect to the Internet when it has a connection and shouldn't have to ask. You may have to add an &quot;allow&quot; entry to your firewall to tell it to let G-Wizard connect to our servers.</p>
+      <p>&nbsp;</p>
+      <p><font face="Arial, Helvetica, sans-serif" class="BlogTitle">When all 
+        else fails, how do I get G-Wizard to run?</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">When all else fails, there 
+        are a couple of things to try.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">First, you need to uninstall 
+        Adobe AIR and G-Wizard and try again after rebooting. Use one of the methods 
+        described above to uninstall G-Wizard. To uninstall Adobe AIR, here are 
+        the steps:</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">To remove Adobe AIR on Windows, 
+        do the following: </font></p>
+      <p>
+      <blockquote>
+        <p><font face="Arial, Helvetica, sans-serif">Select Start > Settings 
+          > Control Panel. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">Open the Add or Remove 
+          Programs panel. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">Select Adobe AIR to remove 
+          the runtime. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif">Click the Change/Remove 
+          button. </font></p>
+      </blockquote>
+      </p>
+      <p><font face="Arial, Helvetica, sans-serif">To remove Adobe AIR on Mac 
+        OS, double-click the Adobe AIR Uninstaller (Adobe AIR Uninstaller.app)in 
+        your Applications/Utilities folder. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif">Next, try to reinstall. There is a <a href="http://www.adobe.com/products/air.html">download link on the Adobe AIR page</a>. And 
+        yes, if it still won't come up, try to start after one more reboot.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif">If you still have a problem, 
+        it's time to see<span class="BodyText"> whether Adobe AIR is working properly. </span></font><span class="BodyText"><a href="https://helpx.adobe.com/air/kb/troubleshoot-air-installation-windows.html">Adobe has a Troubleshooting Guide for AIR.</a></span></p>
+      <p class="BodyText">In addition, you'll want to find an AIR application other than G-Wizard and make sure it runs first so we can isolate whether the problem is with Adobe AIR on your machine or the G-Wizard software.  To find an AIR application, g<font face="Arial, Helvetica, sans-serif">o to the <a href="http://www.adobe.com/products/air">Adobe 
+        AIR application page</a>, pick one </font><font face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif">of the free applications in the <a href="http://www.adobe.com/devnet-apps/flashshowcase/#/main">application showcase</a>, and try to 
+          install it. </font>You need an app that installs on your PC, not a mobile app. </p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">I have tried the Superstring app, for example, which downloads here: </font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif"> <a href="http://www.avatarmovie.com/air/">http://www.simplestways.com/superstring/index.html</a></font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">If you can't run another Adobe 
+        AIR app, our problem is getting Adobe AIR properly installed on your machine. 
+        Try directly installing the latest from Adobe by going to the <a href="http://get.adobe.com/air/">Adobe 
+          AIR Installer</a> page. Make sure your Flash Player is up to date here is the <a href="http://www.adobe.com/products/flashplayer/productinfo/instructions/">download page for Flash</a>.  And BTW, much to my surprise and consternation, you can install AIR without installing Flash.  Shame on Adobe for not automating that.</font></p>
+      <p class="BodyText"><font face="Arial, Helvetica, sans-serif">Note that sometimes you can 
+        wind up with a corrupted AIR install on your machine, and that requires 
+        a little more care to get rid of. If the Adobe AIR install got interrupted 
+        in the middle, this is definitely something to be suspicious of. The trick 
+        is to use Microsoft's free "Windows Install Clean-Up" utility. Run that, 
+        find any entries for "Adobe AIR" and remove them. To download, visit <a href="http://support.microsoft.com/kb/290301">http://support.microsoft.com/kb/290301</a>, 
+        then scroll down till you see download link. </font></p>
+      <p>&nbsp;</p>
+      <p class="BlogTitle">Make sure you've logged in as Administrator and you have UAC disabled</p>
+      <p><font face="Arial, Helvetica, sans-serif">Another thing to note: during 
+        all this installing you need to be logged on with Administrator <span class="BodyText">rights 
+          or the wrong things will happen. Most folks just run as Admin all the 
+          time, but some keep that separate on their machine.</span></font> <span class="BodyText">Closely related to being an Administrator is your UAC setting on Windows Vista and Windows 7.  Adobe has this advice:</span></p>
+      <blockquote>
+        <p>Installing an AIR   application displays the error message: "Sorry an error has occurred. The   application could not be installed. Try installing it again. If the problem   persists, contact the application author." (Windows Vista / Windows 7)</p>
+        <p>This error may occur during installation if the user has turned off User   Account Control (UAC) operating system feature and is a standard or restricted   user. From Control Panel, Open UAC and enable it. A reboot maybe required, once   complete, re-try the installation. </p>
+      </blockquote>
+      <p><font face="Arial, Helvetica, sans-serif">Does the avatar app run now? 
+        If not, we're going to have to go to Adobe tech support to figure out 
+        why. Before you do that, try doing the Adobe AIR install using an alternate 
+        browser. Firefox is especially compatible with most things and is less 
+        finicky than Microsoft Internet Explorer. H</font><span class="BodyText">ere is<a href="http://kb2.adobe.com/cps/403/kb403150.html"> Adobe's AIR Troubleshooting page</a> with their specific hints for each machine type.</span></p>
+      <p><font face="Arial, Helvetica, sans-serif">In fact, I had one customer 
+        overcome their problem by simply trying the whole G-Wizard install (AIR 
+        + GWizard) in the Firefox browser instead of Internet Explorer. If you 
+        have Firefox installed, this is very easy to try. Just bring up Firefox, 
+        go to the Install Page (<a href="GWizard/GWizardInstall1SC.html">Calculator Install</a>, <a href="GWizard/GWEInstall.html">Editor Install</a>)<a href="GWizard/GWizardInstall1SC.html"></a>, and 
+        try again.</font></p>
+      <p>&nbsp;</p>
+      <p class="BlogTitle">I get the message, &quot;Another application is already being installed.&quot;</p>
+      <p class="BodyText">Try the cure suggested in this Adobe thread: <a href="https://forums.adobe.com/thread/864569">https://forums.adobe.com/thread/864569</a></p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">I want to run the prior version of G-Wizard, I'm having problems with the newest</p>
+      <p class="BodyText">We always keep a prior version available for you so you can fall back if something gets broken unexpectedly.   Just visit our prior version page to download:</p>
+      <blockquote>
+        <p class="BodyText"><a href="GWizard/GWizardInstall1SCOld.html">GW Calculator Prior Version Page</a></p>
+        <p class="BodyText"><a href="GWizard/GWEInstallOld.html">GW Editor Prior Version Page</a></p>
+      </blockquote>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BlogTitle">Extracting a Log File from the G-Wizard Application</p>
+      <p class="BodyText">Adobe tells how on this page.  For Windows, it works like this:</p>
+      <ul>
+        <LI>Choose Start &gt; Run, and then type <STRONG>cmd</STRONG> in the Open text   box to open a DOS window. </LI>
+      </ul>
+      <ul>
+        <LI>Type: <STRONG>cd \documents and settings\userName</STRONG>, and press   Return. <BR>
+          <BR>
+          <STRONG><EM>Note:</EM></STRONG> On Windows Vista, the home   directory is C:\Users\userName. <BR>
+          <BR>
+        </LI>
+      </ul>
+      <ul>
+        <LI>Type: <STRONG>echo &gt; .airinstall.log</STRONG> and/or <STRONG>echo &gt;   .airappinstall.log</STRONG>, and press Return. </LI>
+      </ul>
+      <ul>
+        <LI>Run the Adobe AIR installation you wish to log. The file is overwritten each   time the installatioin or uninstallation is run. </LI>
+      </ul>
+      <p>&nbsp;</p>
+      <p class="BlogTitle">How do I get Updates for G-Wizard Software? Why doesn&rsquo;t my software upgrade itself or tell me when an  upgrade is ready?</p>
+      <p> <span class="BodyText">First, the software will tell you when an upgrade is  ready, but it won&rsquo;t automatically upgrade  you because we want you to be in control of upgrades as much as possible.&nbsp; In September, 2014, we changed our upgrade process to work like this:</span></p>
+      <p class="BodyText">You may see the &ldquo;Install&rdquo; button from time to time, but there is some decidedly new behavior that goes along with the New Upgrade Process.</p>
+      <p class="BodyText">First, as soon as the software sees a new upgrade is available, it will start downloading the file to your machine. &nbsp;It won&rsquo;t interrupt your work in anyway to do this, it will just get the file down onto your machine so you don&rsquo;t have to worry about finding the download page or waiting for a download. &nbsp;If it can&rsquo;t do it for some reason, you will still see the Install button. &nbsp;If you press it, not only will it attempt to run the browser, but it will also give you the link to the page. &nbsp;That way, if you have a pop-up blocker that prevents the browser appearing, you can still cut and paste that link and not have to go searching.</p>
+      <p class="BodyText">Most of the time, the update will just quietly get downloaded and you can ignore the Install button.</p>
+      <p class="BodyText">So when does that downloaded file get installed? &nbsp;Here&rsquo;s the next nifty thing. &nbsp;When you Exit the G-Wizard software, it will automatically start the installer if there is a version downloaded and ready to go. &nbsp;You can either cancel it or tell it to go right ahead. &nbsp;Either way, you&rsquo;re done working in G-Wizard and you can let the install go without having to wait on it. &nbsp;This minimizes the potential for distraction&ndash;just Exit, Click &ldquo;OK&rdquo; to install, and walk away. &nbsp;When you get back, the new version should be all installed and ready to go.</p>
+      <p class="BodyText">We&rsquo;ll continue to keep our pace of updating down to a dull roar on our more mature products so you can assimilate updates as and when you need them, but this new Upgrade Process should also minimize the potential for distraction from the upgrades. &nbsp;We hope you like it better!</p>
+      <p class="BodyText">&nbsp;</p>
+      <p class="BlogTitle">Can't Get It to Install on a Mac</p>
+      <p class="BodyText">Normally, uninstalling both G-Wizard and Adobe AIR by moving them to the trash will do the trick. Note that if there was ever an install even on a removable drive, you apparently need to remount the drive and uninstall there too. </p>
+      <p class="BodyText">Adobe's AIR Troubleshooting page has a number of helpful tips:</p>
+      <blockquote>
+        <p class="BodyText"><a href="https://helpx.adobe.com/air/kb/troubleshoot-air-installation-mac-os.html">https://helpx.adobe.com/air/kb/troubleshoot-air-installation-mac-os.html</a></p>
+      </blockquote>
+      <p class="BodyText">If none of that helps, try these two:</p>
+      <p class="BodyText"><span class="BodyText">If you get it installed, and it appears to start but won't actually open a window, try running the application once from the Terminal window.  This has been a problem on Sierra, and we're looking to fix it, but running it once via the Terminal window appears to heal the problem.</span></p>
+      <p class="BodyText">I did have one customer report the following:<br>
+      </p>
+      <blockquote>
+        <p class="BodyText">I did a total uninstall of both GWizard and GWizardE as well as Adobe AIR Installer.<br>
+          <br>
+          When I tried to install GWizard, it claimed it needed a version unavailable for my system.&nbsp; I then had to go to the Adobe site and download and install the AIR installer.&nbsp; When I attempted to then install GWizard, AIR would install the application and attempt to launch it.&nbsp; At that point, the application would launch and immediately quit and nothing I did would get it to launch properly.&nbsp; I ran into the "Cannot open this app because it's from an unidentified developer" dialog, and dismissed it.&nbsp; I know how to authorize one of these applications (use the control key while opening the application, then allow it), but it still quit immediately after launching.<br>
+          <br>
+          I then did a total uninstall again, including AIR installer, and started over.&nbsp; I recalled an article in OS Daily about re-enabling the "Allow unidentified developer" setting in the security settings, which requires a terminal command.&nbsp; After issuing that command and re-attempting the install, it finally worked.&nbsp; Apparently, the initial launch by AIR after installation is a required step or the application will never launch correctly. </p>
+      </blockquote>
+      <p class="BodyText">Here is a<a href="http://osxdaily.com/2016/09/27/allow-apps-from-anywhere-macos-gatekeeper/"> link to the article in OS Daily that is referred to</a>.</p>
+      <p class="BodyText"></p>
+      <p class="BlogTitle">What are the System Requirements for G-Wizard?</p>
+      <p class="BodyText"><span class="BodyText1">The G-Wizard products </span>run on Windows and  Machintosh systems as Adobe AIR applications.  As such, the <a href="http://www.adobe.com/products/air/systemreqs/">Adobe AIR System Requirements</a> are applicable.   G-Wizard Calculator is very lightweight, and it doesn't take much of a machine to run it.  G-Wizard Editor includes a lot of graphics to support the Toolpath Simulation, so more powerful systems will run faster.</p>
+      <p class="BodyText">Your machine will need an Internet connection to install G-Wizard, and then it needs to connect once every 4 weeks.   In between the 4 week check-in intervals, no Internet connection is needed.</p>
+      <p class="BodyText">For G-Wizard Editor, you can <a href="http://helpx.adobe.com/x-productkb/multi/stage3d-unsupported-chipsets-drivers-flash.html">check whether your graphics card is supported by checking whether the graphic at the bottom of this page is animated</a>.</p>
+      <p>&nbsp;</p>
+      <p class="BlogTitle">I run G-Wizard Editor and the window doesn't paint properly.  It's all white, or mostly white with a black square.</p>
+      <p class="BodyText">This is a driver problem.  Sometimes, Windows (haven't caught Macs doing this) updates its video drivers to more generic versions that don't have all the latest fixes. You'll need to find the latest driver for your particular graphics card and install it to fix this problem.  There are 3 good links for the latest drivers on this Adobe page:</p>
+      <p align="center" class="BodyText"><a href="https://helpx.adobe.com/flash-player/kb/stage3d-unsupported-chipsets-drivers-flash.html"><strong>https://helpx.adobe.com/flash-player/kb/stage3d-unsupported-chipsets-drivers-flash.html</strong></a></p>
+      <p class="BlogTitle">&nbsp;</p>
+      <p class="BodyText">&nbsp;</p>
+                              <!-- #EndEditable -->
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Begin Site Map -->
+                    <tr>
+                        <td bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                        </td>
+                        <td colspan="5" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5" class="sidebar">
+                            <div align="center">
+                              <p>&nbsp;</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#000">Do you want to be a better CNC'er?</p>
+                                <p class="BlogTitle" style="font-size:140%; color:#727b84">Get Better Tool Life, Surface Finish, and Material Removal Rates.</p>
+                                <p>&nbsp;</p>
+                                <p align="center" style="margin: 0 auto">
+                                  <a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html?utm_source=cnccookbook&utm_medium=banner&utm_campaign=bottomcap5" class="flat-button" style="width:300px"><strong>Start Now, It's Free!</strong></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="20%" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/index.htm">Home</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCSoftware.html">Software</a></strong>
+                            </p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/FeedSpeedsCalculator/CCGWizard.html">GW Calculator</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGWizardE.html">GW Editor</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCGearoticGearDesignSoftware.html">Gearotic</a>
+                            </p>
+                            <p class="BodyText">  &nbsp;&nbsp;<a href="CCMeshCamEasyCAMSoftware.html">MeshCAM</a></p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCGWizardConversationalCNC.html">Conversational CNC</a><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/cheapskate-resources-coupon-codes-sales-and-smokin-deals/">&nbsp;&nbsp;Deals and Steals</a></strong>
+                            </p>
+                        </td>
+                        <td width="20%" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://blog.cnccookbook.com/category/blog/">Blog</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/software/">Software</a></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/feedsandspeeds/">Feeds and Speeds</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://blog.cnccookbook.com/category/gcode/">G-Code </a></p>
+                            <p class="BodyText">&nbsp;&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/Calculators/CNCCalculatorCharts.htm">Calculators and References</a></strong></p>
+                            <p class="BodyText"> &nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCGCodeRef.html">G-Code List</a></p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                        </td>
+                        <td width="20%" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/OnlineCNCTrainingCoursesGuides.htm">Online CNC Training</a></strong>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCMillFeedsSpeeds.htm">Feeds and Speeds</a>
+                            </p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="http://www.cnccookbook.com/CCCNCGCodeCourse.htm">G-Code Tutorial</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCMachiningManufacturing.htm">CNC Machining &amp; Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GD&T/GD&TTutorialHome.html">GD&amp;T</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/GD&T/GD&TSymbols.html">GD&amp;T Symbols</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCLeanManufacturingPrinciples.htm">Lean Manufacturing</a>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCostEstimatingMachiningManufacturing.htm">Cost Estimating Software</a></p>
+                            <p class="BodyText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCDictionary.htm">CNC Dictionary</a>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCCNCProjects.htm"></a></strong>
+                            </p>
+                            <p class="BodyText"><strong></strong>
+                            </p>
+                            <p class="BodyText"></p>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td width="20%" valign="top" bgcolor="#f9fafa" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5"  class="sidebar">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNCBeginners.html">CNC Beginners Start Here</a></strong></p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong><a href="http://www.cnccookbook.com/CCDIYCNC.htm">DIY CNC</a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCCNCProjects.htm">CNC Projects</a><br>
+                            </p>
+                            <p class="BodyText">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html">Hall of Fame</a> </p>
+                            <p><span class="BodyText"><span class="BodyText1">&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCResources.htm">Resources</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </p>
+                        </td>
+                        <td colspan="2" valign="top" bgcolor="#f9fafa"  class="sidebar" style="color:#000; border-top-width:1px; border-top-style:solid; border-color:#e5e5e5">
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText1"><strong><a href="http://www.cnccookbook.com/CCAbout.htm">About</a></strong> </p>
+                            <p class="BodyText1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCPrivacy.htm">Privacy Policy</a></p>
+                            <p class="BodyText1"></p>
+                            <p class="BodyText">&nbsp;</p>
+                        
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.cnccookbook.com/CCHomeMachineShops.html"></a></strong>
+                            </p>
+                            <p class="BodyText">&nbsp;</p>
+                            <p class="BodyText">&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#f9fafa" colspan="5">
+                            <!-- Place this tag where you want the badge to render -->
+                            <a href="https://plus.google.com/106834255444857094594?prsrc=3" style="text-decoration:none;"><img src="https://ssl.gstatic.com/images/icons/gplus-32.png" alt="" style="border:0;width:32px;height:32px;" />
+                            </a>
+                            </strong>
+                        </td>
+                        <td bgcolor="#f9fafa">
+                            <div align="left">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div align="right">All material &copy; 2010-2016, <a href="mailto:sales@cnccookbook.com"><b>CNCCookbook, Inc.</b></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End Site Map -->
+
+                </table>
+
+             
+</body>
+
+<!-- #EndTemplate --></html>
